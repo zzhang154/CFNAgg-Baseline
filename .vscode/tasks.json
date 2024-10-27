@@ -1,0 +1,39 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build",
+            "type": "shell",
+            "command": "./ns3",
+            
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Run tests",
+            "type": "shell",
+            "command": "./test.py",
+            
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Print Env",
+            "type": "shell",
+            "command": "printenv",
+            
+            "group": {
+                "kind": "none",
+                "isDefault": false
+            },
+            "problemMatcher": []
+        }
+    ]
+}
