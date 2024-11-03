@@ -34,7 +34,8 @@ namespace ns3 {
     void
     Producer::StartApplication () {
         NS_LOG_FUNCTION (this);
-        this->nodeInnetworkAggregationInterface->CreateSocketPool (cc_name);
+        //this->nodeInnetworkAggregationInterface->CreateSocketPool (cc_name);
+        ns3::Simulator::Schedule(ns3::MilliSeconds(0), &InnetworkAggregationInterface::CreateSocketPool, this->nodeInnetworkAggregationInterface, cc_name);
         ns3::Simulator::Schedule(ns3::MilliSeconds(basetime+500), &InnetworkAggregationInterface::ReceiveDataFromAll, this->nodeInnetworkAggregationInterface);
     }
 

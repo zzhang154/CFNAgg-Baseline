@@ -60,20 +60,20 @@ const std::string currentDir = GetCurrentWorkingDir();
 
 NS_LOG_COMPONENT_DEFINE("innetwork-test");
 
-const std::string linkFilePath = currentDir + "/src/innetwork-task/examples/link.txt";
-const std::string aggGropuFilePath = currentDir + "/src/innetwork-task/examples/aggtree.txt";
+const std::string linkFilePath = currentDir + "/scratch/link.txt";
+const std::string aggGropuFilePath = currentDir + "/scratch/aggtree.txt";
 const std::string conName = "con";
 const std::string proName = "pro";
 const std::string fowName = "forwarder";
 const std::string aggName = "agg";
 const uint32_t consumerNum = 1;
-const uint32_t producerNum = 30;
-const uint32_t forwarderNum = 10;
-const uint32_t aggregatorNum = 6;
+const uint32_t producerNum = 10;
+const uint32_t forwarderNum = 6;
+const uint32_t aggregatorNum = 5;
 std::string cc = "bbr";
 uint16_t basetime = 1000;
 uint16_t starttime = 1;
-uint16_t stoptime = 5000;//5000
+uint16_t stoptime = 500;//5000
 
 // name nodes
 void NameNodes(NodeContainer &nodes, std::string baseName) {
@@ -160,7 +160,7 @@ void BuildTopo(const std::string &linkFile,  NodeContainer &consumer, NodeContai
 
         address.SetBase(Ipv4Address(ipBaseAddr.c_str()), "255.255.255.0");
         address.Assign(d1d2);
-        //std::cout<<"--------------node1  ip----"<<n1n2.Get(0)->GetObject<Ipv4> ()->GetAddress(1,0).GetLocal()<<"--------------node2  ip----"<<n1n2.Get(1)->GetObject<Ipv4> ()->GetAddress(1,0).GetLocal()<<std::endl;
+        std::cout<<"---node1  ip---"<<node1<<"---"<<n1n2.Get(0)->GetObject<Ipv4> ()->GetAddress(1,0).GetLocal()<<"---node2  ip---"<<node2<<"---"<<n1n2.Get(1)->GetObject<Ipv4> ()->GetAddress(1,0).GetLocal()<<std::endl;
         
     }
     Ipv4GlobalRoutingHelper::PopulateRoutingTables ();
@@ -184,7 +184,7 @@ void Createagg (uint16_t port, uint16_t itr, uint8_t rank, uint16_t vsize, std::
     Ptr<Aggregator> aggragator = CreateObject<Aggregator> ();
     node->AddApplication (aggragator);
     aggragator->SetupAggregator (port, itr, rank, vsize, sGroup, cGroup, basetime, cc);
-    aggragator->SetStartTime (Seconds(starttime + 1));
+    aggragator->SetStartTime (Seconds(starttime));
     aggragator->SetStopTime (Seconds(stoptime));
 }
 
@@ -194,7 +194,7 @@ void Createcon (uint16_t port, uint16_t itr, uint8_t rank, uint16_t vsize,
     Ptr<Consumer> consumer = CreateObject<Consumer> ();
     node->AddApplication (consumer);
     consumer->SetupConsumer (port, itr, rank, vsize, sGroup, cGroup, basetime, cc);
-    consumer->SetStartTime (Seconds(starttime + 2));
+    consumer->SetStartTime (Seconds(starttime));
     consumer->SetStopTime (Seconds(stoptime));
 }
 
@@ -285,7 +285,7 @@ void CreateDirectTopo (NodeContainer &cons, NodeContainer &pros, uint16_t itr,
     Ptr<Consumer> consumer = CreateObject<Consumer> ();
     cons. Get (0)->AddApplication (consumer);
     consumer->SetupConsumer (server_port, itr, rank, vsize, nullV, producers, basetime, cc);
-    consumer->SetStartTime (Seconds(starttime + 1));
+    consumer->SetStartTime (Seconds(starttime));
     consumer->SetStopTime (Seconds(stoptime));
     //std::cout << consumer <<std::endl;
 }
@@ -294,8 +294,8 @@ int
 main (int argc, char *argv[])
 {
     CommandLine cmd;
-    uint16_t itr = 1000;//1000
-    uint16_t vsize = 1200;
+    uint16_t itr = 150;//1000 Zhuoxu: now this number should set to one.
+    uint16_t vsize = 3000;
     bool topotype = 1;
     cmd.AddValue("itr", "max iteration consumer performed", itr);
     cmd.AddValue("vsize", "vector size", vsize);
@@ -311,13 +311,16 @@ main (int argc, char *argv[])
         << "\n\n#################### SIMULATION PARAMETERS ####################\n\n\n";
     
     std::cout
-        << "Topotype : "<<topotype<< "Vector Size : "<<vsize<< "Congestion Control Algorithm : "<< cc <<std::endl;
+        << "Topotype: "<<topotype<< " Vector Size: "<<vsize<< " Congestion Control Algorithm: "<< cc <<std::endl;
 
     std::cout
         << "\n\n#################### SIMULATION SET-UP ####################\n\n\n";
 
-    //LogLevel log_precision = LOG_LEVEL_LOGIC;
+    LogLevel log_precision = LOG_LEVEL_LOGIC;
     Time::SetResolution (Time::NS);
+    // Disable all log levels initially
+    LogComponentDisableAll(LOG_LEVEL_ALL);
+
     LogComponentEnableAll (LOG_PREFIX_TIME);
     LogComponentEnableAll (LOG_PREFIX_FUNC);
     LogComponentEnableAll (LOG_PREFIX_NODE);
@@ -333,10 +336,26 @@ main (int argc, char *argv[])
     //LogComponentEnable("QuicL5Protocol",log_precision);
 
     // Enable logging for the Consumer component
-    LogComponentEnable("Consumer", LOG_LEVEL_INFO);
-    LogComponentEnable("Consumer", LOG_LEVEL_FUNCTION);
+    //LogComponentEnable("Consumer", LOG_LEVEL_INFO);
+    //LogComponentEnable("Aggregator", LOG_LEVEL_INFO);
+    
+    //LogComponentEnable("Producer", LOG_LEVEL_INFO);
+    //LogComponentEnable("Consumer", LOG_LEVEL_FUNCTION);
 
-    NS_LOG_INFO ("Starting simulation");
+    // Enable logging debug for some component
+    LogComponentEnable("Consumer", LOG_LEVEL_DEBUG);
+    LogComponentEnable("Aggregator", LOG_LEVEL_DEBUG);
+    LogComponentEnable("Producer", LOG_LEVEL_DEBUG);
+    LogComponentEnable("InnetworkAggregationInterface", LOG_LEVEL_DEBUG);
+
+    // zhuoxu: disable the QuicSubheader log
+    ns3::LogComponentDisable("QuicSubheader", ns3::LOG_LEVEL_ALL);
+
+    //Ensure that LOG_LEVEL_FUNCTION and other levels are not enabled
+    LogComponentDisable("Consumer", LOG_LEVEL_FUNCTION);
+    LogComponentDisable("Aggregator", LOG_LEVEL_FUNCTION);
+    LogComponentDisable("Producer", LOG_LEVEL_FUNCTION);
+    LogComponentDisable("InnetworkAggregationInterface", LOG_LEVEL_FUNCTION);
     
     NodeContainer consumer;
     NodeContainer producer;
@@ -352,6 +371,7 @@ main (int argc, char *argv[])
     } else {
         CreateAggTreeTopo (itr, vsize, server_port);
     }
+
 
     // PointToPointHelper pointToPoint;
     // pointToPoint.EnablePcapAll  ("/home/hxq/ns-allinone-3.37/ns-3.37/topo/topo");

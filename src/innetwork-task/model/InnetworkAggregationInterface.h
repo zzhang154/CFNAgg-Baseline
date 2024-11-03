@@ -39,9 +39,11 @@ namespace ns3 {
             std::vector<uint64_t> avg; // result
             std::vector<Address> cGroup; // nodes acts as clients with respect to current node
             std::vector<Address> sGroup; // nodes acts as servers with respect to current node
-            std::unordered_map<uint8_t, ReceivedChunk> chunkMap; // chunk counting by chunkNumber and count
+            std::unordered_map<uint8_t, ReceivedChunk> 
+            chunkMap; // chunk counting by chunkNumber and count
             std::unordered_map <std::string, Ptr<Application>> socketPool;
             uint8_t currentIndex;
+            uint8_t iterationNumber;
 
 
         public:
@@ -58,11 +60,11 @@ namespace ns3 {
             void SendRequestVTo (std::string toStr);
             void SendRequestVToAll ();
             void ScheduleAndSend();
-            void SendResponseVToP (std::vector<uint64_t> &vec );
-            void AVG ();
-            void SendResponseVTo (std::string toStr, std::vector<uint64_t> &vec);
+            void SendResponseVToP (std::vector<uint64_t> &vec , uint8_t iterationNumber);
+            void AVG (uint8_t iterationNumber);
+            void SendResponseVTo (std::string toStr, std::vector<uint64_t> &vec, uint8_t iterationNumber);
             void SetVSize (uint16_t size);
-            void AvgEnd (uint16_t size);
+            //void AvgEnd (uint16_t size, uint8_t iterationNumber);
             
             bool GetisEnd ();
             void SetisEnd (bool v);
@@ -73,6 +75,7 @@ namespace ns3 {
             void Addr2Str (Address addr, std::string &str);
             void DelayedSend(Ptr<QuicMyServer> responseptr, uint8_t* chunkBuffer, uint32_t bufferSize);
             void GoToReadPos(Ptr<CircularBuffer> ccircularBuffer);
+            void SendPacketFromPro (std::string toStr, uint8_t iterationNumber, std::vector<uint8_t> &serializeVec);
     };
 
 }; /*namespace ns3*/

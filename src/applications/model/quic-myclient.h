@@ -53,7 +53,6 @@ public:
   QuicMyClient ();
 
   virtual ~QuicMyClient ();
-
   void Bind (uint16_t port);
   //void Start();
   void SetRemote (Address ip, uint16_t port);
@@ -68,6 +67,7 @@ public:
   Address GetBindAddress();
   Ptr<CircularBuffer> GetBuffer();
   void SetCongestionControlAlgorithm(std::string cc_name);
+  
 
 protected:
   virtual void DoDispose (void);

@@ -1,13 +1,13 @@
 #include "consumer.h"
 
-// #include <unistd.h>  // For getcwd
-// #include <limits.h>  // For PATH_MAX
-// std::string GetCurrentWorkingDir() {
-//     char temp[PATH_MAX];
-//     return (getcwd(temp, sizeof(temp)) ? std::string(temp) : std::string(""));
-// }
-// // Global variables with paths
-// const std::string currentDir = GetCurrentWorkingDir();
+#include <unistd.h>  // For getcwd
+#include <limits.h>  // For PATH_MAX
+std::string GetCurrentWorkingDir() {
+    char temp[PATH_MAX];
+    return (getcwd(temp, sizeof(temp)) ? std::string(temp) : std::string(""));
+}
+// Global variables with paths
+const std::string currentDir = GetCurrentWorkingDir();
 
 namespace ns3 {
     NS_LOG_COMPONENT_DEFINE ("Consumer");
@@ -40,8 +40,8 @@ namespace ns3 {
         //     NS_LOG_INFO("Error getting current working directory");
         // }
 
-        const std::string fileName = "/home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/scratch/data.txt";
-        // const std::string fileName = GetCurrentWorkingDir() + "/scratch/data.txt";
+        // const std::string fileName = "/home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/scratch/data.txt";
+        const std::string fileName = GetCurrentWorkingDir() + "/scratch/data.txt";
         this->m_peerPort = port;
         this->basetime = basetime;
         this->cc_name = cc_name;
@@ -54,8 +54,9 @@ namespace ns3 {
     void
     Consumer::StartApplication () {
         NS_LOG_FUNCTION (this);
-        this->nodeInnetworkAggregationInterface->CreateSocketPool (cc_name);
-        ns3::Simulator::Schedule(ns3::MilliSeconds(basetime), &InnetworkAggregationInterface::AVG, this->nodeInnetworkAggregationInterface);
+        //this->nodeInnetworkAggregationInterface->CreateSocketPool (cc_name);
+        ns3::Simulator::Schedule(ns3::MilliSeconds(0), &InnetworkAggregationInterface::CreateSocketPool, this->nodeInnetworkAggregationInterface, cc_name);
+        ns3::Simulator::Schedule(ns3::MilliSeconds(basetime), &InnetworkAggregationInterface::AVG, this->nodeInnetworkAggregationInterface, 0);
         ns3::Simulator::Schedule(ns3::MilliSeconds(basetime + 30), &InnetworkAggregationInterface::ReceiveDataFromAll, this->nodeInnetworkAggregationInterface);
     }
 

@@ -88,7 +88,7 @@ public:
   void SetNode (Ptr<Node> node);
   void CreateSocket(Ptr<Node> node,uint16_t port);
   //void SendToAddress(const uint8_t* buffer, size_t len,const InetSocketAddress& dest);
-  void Send(const uint8_t* buffer, uint32_t len);
+  int Send(const uint8_t* buffer, uint32_t len);
   Address GetBindAddress();
   Ptr<CircularBuffer> GetBuffer();
   InetSocketAddress GetLocalAddress() const;

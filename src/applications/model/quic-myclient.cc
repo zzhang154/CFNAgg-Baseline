@@ -328,8 +328,8 @@ QuicMyClient::HandleRead (Ptr<Socket> socket) {
       delete [] packetContent;
       packet = nullptr;
   }
-    //std::cout<<"QuicMyClient----"<<GetLocalAddress().GetIpv4()<<"-received---response---from--"<<InetSocketAddress::ConvertFrom(m_peerAddress).GetIpv4()<<std::endl;
-    //std::cout<<"total received---packet--num ----"<<m_rcount<<"totalReceive"<<totalReceive<<std::endl;
+    std::cout<<"QuicMyClient---"<<GetLocalAddress().GetIpv4()<<"-received---response---from--"<<InetSocketAddress::ConvertFrom(m_peerAddress).GetIpv4()<<std::endl;
+    std::cout<<"total received---packet--num---"<<m_rcount<<" Total Receive: "<<totalReceive<<std::endl;
     //m_circularBuffer->print();
     this->m_socket = socket;
         

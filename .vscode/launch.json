@@ -10,7 +10,7 @@
             "request": "launch",
             "program": "${workspaceFolder}/build/${relativeFileDirname}/ns3.42-${fileBasenameNoExtension}-${input:buildType}",
             "args": [
-                "--vsize=100",
+                "--vsize=3000",
                 "--topotype=1"
             ],
             "stopAtEntry": false,

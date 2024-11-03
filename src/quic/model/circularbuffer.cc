@@ -17,7 +17,7 @@ namespace ns3 {
 
     // 构造函数
     CircularBuffer::CircularBuffer() {
-        size_t capacity = pktlen * 20;
+        size_t capacity = pktlen * 200;
         init(capacity);
     }
 

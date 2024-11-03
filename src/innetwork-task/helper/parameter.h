@@ -13,7 +13,7 @@ namespace ns3 {
     //extern uint16_t vsize;
 
     //struch data chunk
-    struct ReceivedChunk {
+    struct  ReceivedChunk {
         //count the proucer
         uint8_t count;
         //data

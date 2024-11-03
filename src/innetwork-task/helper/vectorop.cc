@@ -25,8 +25,10 @@ void AvgVector (uint64_t * sum, uint8_t count){
 
 void 
 AvgVector (std::vector<uint64_t> &sum, uint8_t count) {
-    for (uint8_t i = 0; i < sum. size (); ++i)
+    size_t size = sum.size();
+    for (size_t i = 0; i < size; ++i) {
         sum[i] /= count;
+    }
 }
 
 void

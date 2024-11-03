@@ -129,7 +129,7 @@ QuicSocketBase::GetTypeId (void)
                    MakeBooleanAccessor (&QuicSocketBase::m_omit_connection_id),
                    MakeBooleanChecker ())
     .AddAttribute ("MaxPacketSize", "Maximum Packet Size",
-                   UintegerValue (1840),//1460  1620  //1840
+                   UintegerValue (25000),//1460  1620  //1840 //Zhuoxu: try 25000 here
                    MakeUintegerAccessor (&QuicSocketBase::GetSegSize,
                                          &QuicSocketBase::SetSegSize),
                    MakeUintegerChecker<uint16_t> ())

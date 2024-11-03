@@ -240,7 +240,7 @@ QuicMyServer::Bind (uint16_t port) {
 
 
 
-void 
+int 
 QuicMyServer::Send(const uint8_t* buffer, uint32_t len) {
     NS_LOG_FUNCTION (this);
 
@@ -252,6 +252,7 @@ QuicMyServer::Send(const uint8_t* buffer, uint32_t len) {
     else {
         NS_LOG_INFO ("Error while sending " << sentSize << " bytes to " << m_peerAddress );
     }
+    return sentSize;
 }
 
 
