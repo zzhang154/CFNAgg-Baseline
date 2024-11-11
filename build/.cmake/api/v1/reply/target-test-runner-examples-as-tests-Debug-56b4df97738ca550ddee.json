@@ -1,0 +1,259 @@
+{
+	"backtrace" : 2,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_custom_target",
+			"process_options",
+			"add_dependencies",
+			"build_lib"
+		],
+		"files" : 
+		[
+			"build-support/macros-and-definitions.cmake",
+			"CMakeLists.txt",
+			"build-support/custom-modules/ns3-module-macros.cmake",
+			"src/aodv/CMakeLists.txt",
+			"src/core/CMakeLists.txt",
+			"src/dsr/CMakeLists.txt",
+			"src/lte/CMakeLists.txt",
+			"src/mesh/CMakeLists.txt",
+			"src/mobility/CMakeLists.txt",
+			"src/network/CMakeLists.txt",
+			"src/sixlowpan/CMakeLists.txt",
+			"src/wifi/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 1
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 149,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 814,
+				"parent" : 1
+			},
+			{
+				"file" : 3
+			},
+			{
+				"command" : 3,
+				"file" : 3,
+				"line" : 1,
+				"parent" : 3
+			},
+			{
+				"command" : 2,
+				"file" : 2,
+				"line" : 472,
+				"parent" : 4
+			},
+			{
+				"file" : 4
+			},
+			{
+				"command" : 3,
+				"file" : 4,
+				"line" : 332,
+				"parent" : 6
+			},
+			{
+				"command" : 2,
+				"file" : 2,
+				"line" : 472,
+				"parent" : 7
+			},
+			{
+				"command" : 2,
+				"file" : 2,
+				"line" : 472,
+				"parent" : 7
+			},
+			{
+				"command" : 2,
+				"file" : 2,
+				"line" : 472,
+				"parent" : 7
+			},
+			{
+				"file" : 5
+			},
+			{
+				"command" : 3,
+				"file" : 5,
+				"line" : 1,
+				"parent" : 11
+			},
+			{
+				"command" : 2,
+				"file" : 2,
+				"line" : 472,
+				"parent" : 12
+			},
+			{
+				"file" : 6
+			},
+			{
+				"command" : 3,
+				"file" : 6,
+				"line" : 346,
+				"parent" : 14
+			},
+			{
+				"command" : 2,
+				"file" : 2,
+				"line" : 472,
+				"parent" : 15
+			},
+			{
+				"file" : 7
+			},
+			{
+				"command" : 3,
+				"file" : 7,
+				"line" : 1,
+				"parent" : 17
+			},
+			{
+				"command" : 2,
+				"file" : 2,
+				"line" : 472,
+				"parent" : 18
+			},
+			{
+				"file" : 8
+			},
+			{
+				"command" : 3,
+				"file" : 8,
+				"line" : 1,
+				"parent" : 20
+			},
+			{
+				"command" : 2,
+				"file" : 2,
+				"line" : 472,
+				"parent" : 21
+			},
+			{
+				"file" : 9
+			},
+			{
+				"command" : 3,
+				"file" : 9,
+				"line" : 155,
+				"parent" : 23
+			},
+			{
+				"command" : 2,
+				"file" : 2,
+				"line" : 472,
+				"parent" : 24
+			},
+			{
+				"command" : 2,
+				"file" : 2,
+				"line" : 472,
+				"parent" : 24
+			},
+			{
+				"file" : 10
+			},
+			{
+				"command" : 3,
+				"file" : 10,
+				"line" : 8,
+				"parent" : 27
+			},
+			{
+				"command" : 2,
+				"file" : 2,
+				"line" : 472,
+				"parent" : 28
+			},
+			{
+				"file" : 11
+			},
+			{
+				"command" : 3,
+				"file" : 11,
+				"line" : 333,
+				"parent" : 30
+			},
+			{
+				"command" : 2,
+				"file" : 2,
+				"line" : 472,
+				"parent" : 31
+			}
+		]
+	},
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 5,
+			"id" : "aodv::@ad38c89485e5e67cec0a"
+		},
+		{
+			"backtrace" : 8,
+			"id" : "command-line-example::@fad85cec64f9971644fe"
+		},
+		{
+			"backtrace" : 9,
+			"id" : "sample-random-variable::@fad85cec64f9971644fe"
+		},
+		{
+			"backtrace" : 10,
+			"id" : "sample-simulator::@fad85cec64f9971644fe"
+		},
+		{
+			"backtrace" : 13,
+			"id" : "dsr::@50d1c65683cf9eb729c4"
+		},
+		{
+			"backtrace" : 16,
+			"id" : "lena-dual-stripe::@e29f8724c79744577ae3"
+		},
+		{
+			"backtrace" : 19,
+			"id" : "mesh::@51c1f5fdb1e680a5a0d5"
+		},
+		{
+			"backtrace" : 22,
+			"id" : "mobility-trace-example::@7724fcf1e14e3a7fd020"
+		},
+		{
+			"backtrace" : 25,
+			"id" : "bit-serializer::@4b49282bd3eaf586512e"
+		},
+		{
+			"backtrace" : 26,
+			"id" : "packet-socket-apps::@4b49282bd3eaf586512e"
+		},
+		{
+			"backtrace" : 29,
+			"id" : "example-ping-lr-wpan::@a8d1d8edc18100f62811"
+		},
+		{
+			"backtrace" : 32,
+			"id" : "wifi-phy-configuration::@428dbd1c540d797cd6dd"
+		}
+	],
+	"id" : "test-runner-examples-as-tests::@6890427a1f51a3e7e1df",
+	"name" : "test-runner-examples-as-tests",
+	"paths" : 
+	{
+		"build" : ".",
+		"source" : "."
+	},
+	"sources" : [],
+	"type" : "UTILITY"
+}

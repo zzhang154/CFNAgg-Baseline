@@ -8,7 +8,7 @@ pro6       forwarder1       1Gbps       1       0ms       5000
 pro7       forwarder1       1Gbps       1       0ms       5000
 pro8       forwarder1       1Gbps       1       0ms       5000
 pro9       forwarder1       1Gbps       1       0ms       5000
-con0       forwarder5       1Gbps       1       0ms       5000
+con0       forwarder0       1Gbps       1       0ms       5000
 forwarder0       agg0       1Gbps       1       0ms       5000
 forwarder0       agg1       1Gbps       1       0ms       5000
 forwarder0       agg2       1Gbps       1       0ms       5000
@@ -19,7 +19,6 @@ forwarder1       agg1       1Gbps       1       0ms       5000
 forwarder1       agg2       1Gbps       1       0ms       5000
 forwarder1       agg3       1Gbps       1       0ms       5000
 forwarder1       agg4       1Gbps       1       0ms       5000
-forwarder5       forwarder2       1Gbps       1       0ms       5000
 forwarder2       agg0       1Gbps       1       0ms       5000
 forwarder2       agg1       1Gbps       1       0ms       5000
 forwarder2       agg2       1Gbps       1       0ms       5000
@@ -35,3 +34,8 @@ forwarder4       agg1       1Gbps       1       0ms       5000
 forwarder4       agg2       1Gbps       1       0ms       5000
 forwarder4       agg3       1Gbps       1       0ms       5000
 forwarder4       agg4       1Gbps       1       0ms       5000
+forwarder5       agg0       1Gbps       1       0ms       5000
+forwarder5       agg1       1Gbps       1       0ms       5000
+forwarder5       agg2       1Gbps       1       0ms       5000
+forwarder5       agg3       1Gbps       1       0ms       5000
+forwarder5       agg4       1Gbps       1       0ms       5000

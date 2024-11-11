@@ -67,7 +67,7 @@ include CMakeFiles/doxygen-no-build.dir/compiler_depend.make
 include CMakeFiles/doxygen-no-build.dir/progress.make
 
 CMakeFiles/doxygen-no-build:
-	cd /home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42 && /bin/doxygen /home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/doc/doxygen.conf
+	cd /home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42 && /usr/bin/doxygen /home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/doc/doxygen.conf
 
 doxygen-no-build: CMakeFiles/doxygen-no-build
 doxygen-no-build: CMakeFiles/doxygen-no-build.dir/build.make

@@ -1,1 +1,1 @@
-/bin/c++ -Os -g -DNDEBUG CMakeFiles/stdlib_pch_exec.dir/build-support/empty-main.cc.o -o ns3.42-stdlib_pch_exec-default   -L/home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/build/lib 
+/usr/bin/c++ -Os -g -DNDEBUG CMakeFiles/stdlib_pch_exec.dir/build-support/empty-main.cc.o -o ns3.42-stdlib_pch_exec-default   -L/home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/build/lib 

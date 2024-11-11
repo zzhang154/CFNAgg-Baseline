@@ -23,7 +23,7 @@ namespace ns3 {
             count = 0;
             //uint16_t k = (uint16_t)(BASESIZE / 8);
             //std::vector<uint64_t> data = std::vector<uint64_t>(chunkSize, 0);
-            data = std::vector<uint64_t> (chunkSize, 0); 
+            data = std::vector<uint64_t> (chunkSize, 9); 
             //data = vec_buffer.data(); 
         }
     };

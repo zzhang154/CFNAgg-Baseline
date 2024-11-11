@@ -67,9 +67,9 @@ const std::string proName = "pro";
 const std::string fowName = "forwarder";
 const std::string aggName = "agg";
 const uint32_t consumerNum = 1;
-const uint32_t producerNum = 10;
-const uint32_t forwarderNum = 6;
-const uint32_t aggregatorNum = 5;
+const uint32_t producerNum = 50;
+const uint32_t forwarderNum = 14;
+const uint32_t aggregatorNum = 15;
 std::string cc = "bbr";
 uint16_t basetime = 1000;
 uint16_t starttime = 1;
@@ -174,7 +174,7 @@ void Createpro (uint16_t port, uint16_t itr, uint8_t rank, uint16_t vsize, std::
     //cGroup.resize(0);
     cGroup.clear();
     node->AddApplication (producer);
-    producer->SetupProducer (port, itr, rank, vsize, sGroup, cGroup, basetime * 6, cc);
+    producer->SetupProducer (port, itr, rank, vsize, sGroup, cGroup, basetime, cc);
     producer->SetStartTime (Seconds(starttime));
     producer->SetStopTime (Seconds(stoptime));
 }
@@ -239,9 +239,9 @@ void CreateAggTree (std::string &nodeName, std::vector<Address> pa,
         // for each object, we have to specify its connection. So here we pass the address of the parent node and children nodes for construction.
         Createcon(server_port, itr, rank, vsize, pa, cGroup, Names::Find<Node> (nodeName));
     if (nodeName. find ("agg") != std::string::npos)
-        Createagg(server_port, 0, rank, vsize, pa, cGroup, Names::Find<Node> (nodeName));
+        Createagg(server_port, itr, rank, vsize, pa, cGroup, Names::Find<Node> (nodeName));
     if (nodeName. find ("pro") != std::string::npos)
-        Createpro(server_port, 0, rank, vsize, pa, cGroup, Names::Find<Node> (nodeName));
+        Createpro(server_port, itr, rank, vsize, pa, cGroup, Names::Find<Node> (nodeName));
 }
 
 void CreateAggTreeTopo (uint16_t itr, uint16_t vsize, uint16_t server_port) {
@@ -294,7 +294,7 @@ int
 main (int argc, char *argv[])
 {
     CommandLine cmd;
-    uint16_t itr = 150;//1000 Zhuoxu: now this number should set to one.
+    uint16_t itr = 149;//1000 Zhuoxu: now this number should set to one.
     uint16_t vsize = 3000;
     bool topotype = 1;
     cmd.AddValue("itr", "max iteration consumer performed", itr);
@@ -336,11 +336,11 @@ main (int argc, char *argv[])
     //LogComponentEnable("QuicL5Protocol",log_precision);
 
     // Enable logging for the Consumer component
-    //LogComponentEnable("Consumer", LOG_LEVEL_INFO);
-    //LogComponentEnable("Aggregator", LOG_LEVEL_INFO);
+    // LogComponentEnable("Consumer", LOG_LEVEL_INFO);
+    // LogComponentEnable("Aggregator", LOG_LEVEL_INFO);
     
-    //LogComponentEnable("Producer", LOG_LEVEL_INFO);
-    //LogComponentEnable("Consumer", LOG_LEVEL_FUNCTION);
+    // LogComponentEnable("Producer", LOG_LEVEL_INFO);
+    // LogComponentEnable("Consumer", LOG_LEVEL_FUNCTION);
 
     // Enable logging debug for some component
     LogComponentEnable("Consumer", LOG_LEVEL_DEBUG);

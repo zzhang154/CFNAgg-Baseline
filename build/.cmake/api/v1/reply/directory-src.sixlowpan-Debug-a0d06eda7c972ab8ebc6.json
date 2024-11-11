@@ -1,0 +1,66 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"install",
+			"build_lib"
+		],
+		"files" : 
+		[
+			"build-support/custom-modules/ns3-module-macros.cmake",
+			"src/sixlowpan/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 1
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 8,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 481,
+				"parent" : 1
+			}
+		]
+	},
+	"installers" : 
+	[
+		{
+			"backtrace" : 2,
+			"component" : "Unspecified",
+			"destination" : "lib",
+			"paths" : 
+			[
+				"lib/libns3.42-sixlowpan-debug.so"
+			],
+			"targetId" : "libsixlowpan::@e4181c97e2610be1aaf4",
+			"targetIndex" : 185,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 2,
+			"component" : "Unspecified",
+			"destination" : "include/ns3",
+			"paths" : 
+			[
+				"src/sixlowpan/helper/sixlowpan-helper.h",
+				"src/sixlowpan/model/sixlowpan-header.h",
+				"src/sixlowpan/model/sixlowpan-net-device.h",
+				"build/include/ns3/sixlowpan-module.h"
+			],
+			"type" : "file"
+		}
+	],
+	"paths" : 
+	{
+		"build" : "src/sixlowpan",
+		"source" : "src/sixlowpan"
+	}
+}

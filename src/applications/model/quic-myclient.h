@@ -58,7 +58,7 @@ public:
   void SetRemote (Address ip, uint16_t port);
   void SetRemote (Address addr);
   void SetNode (Ptr<Node> node);
-  void Send(const uint8_t* buffer, size_t len);
+  int Send(const uint8_t* buffer, size_t len);
   void RecvPacket(Ptr<Socket> socket);
   InetSocketAddress GetLocalAddress() const;
   Ptr<Socket> GetSocket();

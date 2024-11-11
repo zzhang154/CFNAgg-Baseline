@@ -1,0 +1,85 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"install",
+			"build_lib"
+		],
+		"files" : 
+		[
+			"build-support/custom-modules/ns3-module-macros.cmake",
+			"src/quic/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 1
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 1,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 481,
+				"parent" : 1
+			}
+		]
+	},
+	"installers" : 
+	[
+		{
+			"backtrace" : 2,
+			"component" : "Unspecified",
+			"destination" : "lib",
+			"paths" : 
+			[
+				"lib/libns3.42-quic-debug.so"
+			],
+			"targetId" : "libquic::@0916540e2f1b62352110",
+			"targetIndex" : 182,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 2,
+			"component" : "Unspecified",
+			"destination" : "include/ns3",
+			"paths" : 
+			[
+				"src/quic/model/quic-congestion-ops.h",
+				"src/quic/model/quic-socket.h",
+				"src/quic/model/quic-socket-base.h",
+				"src/quic/model/quic-socket-factory.h",
+				"src/quic/model/quic-l4-protocol.h",
+				"src/quic/model/quic-socket-rx-buffer.h",
+				"src/quic/model/quic-socket-tx-buffer.h",
+				"src/quic/model/quic-socket-tx-scheduler.h",
+				"src/quic/model/quic-socket-tx-pfifo-scheduler.h",
+				"src/quic/model/quic-socket-tx-edf-scheduler.h",
+				"src/quic/model/quic-stream.h",
+				"src/quic/model/quic-stream-base.h",
+				"src/quic/model/quic-l5-protocol.h",
+				"src/quic/model/quic-stream-tx-buffer.h",
+				"src/quic/model/quic-stream-rx-buffer.h",
+				"src/quic/model/quic-header.h",
+				"src/quic/model/quic-subheader.h",
+				"src/quic/model/quic-transport-parameters.h",
+				"src/quic/model/quic-bbr.h",
+				"src/quic/helper/quic-helper.h",
+				"src/quic/model/windowed-filter.h",
+				"src/quic/model/circularbuffer.h",
+				"build/include/ns3/quic-module.h"
+			],
+			"type" : "file"
+		}
+	],
+	"paths" : 
+	{
+		"build" : "src/quic",
+		"source" : "src/quic"
+	}
+}

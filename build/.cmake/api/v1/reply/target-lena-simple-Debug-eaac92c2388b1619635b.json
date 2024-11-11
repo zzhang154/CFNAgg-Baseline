@@ -1,0 +1,670 @@
+{
+	"artifacts" : 
+	[
+		{
+			"path" : "src/lte/examples/ns3.42-lena-simple-debug"
+		}
+	],
+	"backtrace" : 3,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_executable",
+			"build_exec",
+			"build_lib_example",
+			"link_directories",
+			"include",
+			"target_link_libraries",
+			"target_precompile_headers",
+			"add_compile_options",
+			"process_options",
+			"add_definitions",
+			"include_directories"
+		],
+		"files" : 
+		[
+			"build-support/custom-modules/ns3-executables.cmake",
+			"build-support/custom-modules/ns3-module-macros.cmake",
+			"src/lte/examples/CMakeLists.txt",
+			"build-support/custom-modules/ns3-output-directory.cmake",
+			"build-support/macros-and-definitions.cmake",
+			"CMakeLists.txt",
+			"build-support/custom-modules/ns3-platform-support.cmake"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 2
+			},
+			{
+				"command" : 2,
+				"file" : 2,
+				"line" : 31,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 538,
+				"parent" : 1
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 91,
+				"parent" : 2
+			},
+			{
+				"file" : 5
+			},
+			{
+				"command" : 4,
+				"file" : 5,
+				"line" : 111,
+				"parent" : 4
+			},
+			{
+				"file" : 4,
+				"parent" : 5
+			},
+			{
+				"command" : 4,
+				"file" : 4,
+				"line" : 46,
+				"parent" : 6
+			},
+			{
+				"file" : 3,
+				"parent" : 7
+			},
+			{
+				"command" : 3,
+				"file" : 3,
+				"line" : 81,
+				"parent" : 8
+			},
+			{
+				"command" : 5,
+				"file" : 0,
+				"line" : 134,
+				"parent" : 2
+			},
+			{
+				"command" : 6,
+				"file" : 0,
+				"line" : 100,
+				"parent" : 2
+			},
+			{
+				"command" : 8,
+				"file" : 5,
+				"line" : 149,
+				"parent" : 4
+			},
+			{
+				"command" : 7,
+				"file" : 4,
+				"line" : 231,
+				"parent" : 12
+			},
+			{
+				"command" : 9,
+				"file" : 4,
+				"line" : 559,
+				"parent" : 12
+			},
+			{
+				"command" : 9,
+				"file" : 4,
+				"line" : 558,
+				"parent" : 12
+			},
+			{
+				"command" : 9,
+				"file" : 4,
+				"line" : 863,
+				"parent" : 12
+			},
+			{
+				"command" : 9,
+				"file" : 4,
+				"line" : 614,
+				"parent" : 12
+			},
+			{
+				"command" : 9,
+				"file" : 4,
+				"line" : 545,
+				"parent" : 12
+			},
+			{
+				"command" : 9,
+				"file" : 4,
+				"line" : 1145,
+				"parent" : 12
+			},
+			{
+				"command" : 9,
+				"file" : 4,
+				"line" : 157,
+				"parent" : 12
+			},
+			{
+				"command" : 9,
+				"file" : 4,
+				"line" : 1140,
+				"parent" : 12
+			},
+			{
+				"command" : 9,
+				"file" : 4,
+				"line" : 19,
+				"parent" : 6
+			},
+			{
+				"command" : 4,
+				"file" : 4,
+				"line" : 52,
+				"parent" : 6
+			},
+			{
+				"file" : 6,
+				"parent" : 23
+			},
+			{
+				"command" : 9,
+				"file" : 6,
+				"line" : 34,
+				"parent" : 24
+			},
+			{
+				"command" : 10,
+				"file" : 4,
+				"line" : 485,
+				"parent" : 12
+			},
+			{
+				"command" : 10,
+				"file" : 4,
+				"line" : 546,
+				"parent" : 12
+			},
+			{
+				"command" : 10,
+				"file" : 4,
+				"line" : 560,
+				"parent" : 12
+			},
+			{
+				"command" : 10,
+				"file" : 4,
+				"line" : 588,
+				"parent" : 12
+			},
+			{
+				"command" : 10,
+				"file" : 4,
+				"line" : 615,
+				"parent" : 12
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "-g -fPIE   -fno-semantic-interposition"
+				},
+				{
+					"backtrace" : 13,
+					"fragment" : "-Wall"
+				},
+				{
+					"fragment" : "-std=c++2a"
+				},
+				{
+					"fragment" : "-Winvalid-pch -include /home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/build/CMakeFiles/stdlib_pch_exec.dir/cmake_pch.hxx"
+				}
+			],
+			"defines" : 
+			[
+				{
+					"backtrace" : 14,
+					"define" : "EIGEN_MPL2_ONLY"
+				},
+				{
+					"backtrace" : 10,
+					"define" : "HAVE_BOOST"
+				},
+				{
+					"backtrace" : 10,
+					"define" : "HAVE_BOOST_UNITS"
+				},
+				{
+					"backtrace" : 15,
+					"define" : "HAVE_EIGEN3"
+				},
+				{
+					"backtrace" : 16,
+					"define" : "HAVE_GSL"
+				},
+				{
+					"backtrace" : 17,
+					"define" : "HAVE_LIBXML2"
+				},
+				{
+					"backtrace" : 10,
+					"define" : "HAVE_NETMAP_USER_H"
+				},
+				{
+					"backtrace" : 10,
+					"define" : "HAVE_PACKET_H"
+				},
+				{
+					"backtrace" : 18,
+					"define" : "HAVE_SQLITE3"
+				},
+				{
+					"backtrace" : 10,
+					"define" : "NETMAP_DEV_CREATOR=\"/home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/build/src/fd-net-device/ns3.42-netmap-device-creator-debug\""
+				},
+				{
+					"backtrace" : 19,
+					"define" : "NS3_ASSERT_ENABLE"
+				},
+				{
+					"backtrace" : 20,
+					"define" : "NS3_BUILD_PROFILE_DEBUG"
+				},
+				{
+					"backtrace" : 21,
+					"define" : "NS3_LOG_ENABLE"
+				},
+				{
+					"backtrace" : 22,
+					"define" : "PROJECT_SOURCE_PATH=\"/home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42\""
+				},
+				{
+					"backtrace" : 10,
+					"define" : "RAW_SOCK_CREATOR=\"/home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/build/src/fd-net-device/ns3.42-raw-sock-creator-debug\""
+				},
+				{
+					"backtrace" : 10,
+					"define" : "TAP_DEV_CREATOR=\"/home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/build/src/fd-net-device/ns3.42-tap-device-creator-debug\""
+				},
+				{
+					"backtrace" : 25,
+					"define" : "__LINUX__"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 26,
+					"path" : "/home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/build/include"
+				},
+				{
+					"backtrace" : 27,
+					"path" : "/usr"
+				},
+				{
+					"backtrace" : 28,
+					"path" : "/usr/include/eigen3"
+				},
+				{
+					"backtrace" : 29,
+					"path" : "/usr/include/freetype2"
+				},
+				{
+					"backtrace" : 29,
+					"path" : "/usr/include/glib-2.0"
+				},
+				{
+					"backtrace" : 29,
+					"path" : "/usr/lib/x86_64-linux-gnu/glib-2.0/include"
+				},
+				{
+					"backtrace" : 29,
+					"path" : "/usr/include/gdk-pixbuf-2.0"
+				},
+				{
+					"backtrace" : 29,
+					"path" : "/usr/include/gtk-3.0"
+				},
+				{
+					"backtrace" : 29,
+					"path" : "/usr/include/cairo"
+				},
+				{
+					"backtrace" : 29,
+					"path" : "/usr/include/pango-1.0"
+				},
+				{
+					"backtrace" : 29,
+					"path" : "/usr/include/harfbuzz"
+				},
+				{
+					"backtrace" : 29,
+					"path" : "/usr/include/atk-1.0"
+				},
+				{
+					"backtrace" : 30,
+					"path" : "/usr/include/libxml2"
+				}
+			],
+			"language" : "CXX",
+			"languageStandard" : 
+			{
+				"backtraces" : 
+				[
+					3
+				],
+				"standard" : "20"
+			},
+			"sourceIndexes" : 
+			[
+				0
+			]
+		}
+	],
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 11,
+			"id" : "stdlib_pch_exec::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 10,
+			"id" : "libantenna::@000737a0949b1597daab"
+		},
+		{
+			"backtrace" : 10,
+			"id" : "libapplications::@a48e303ef543a0192510"
+		},
+		{
+			"backtrace" : 10,
+			"id" : "libbridge::@e12754a9402ac756973a"
+		},
+		{
+			"backtrace" : 10,
+			"id" : "libbuildings::@2d6478ec4a24b1f7bdbd"
+		},
+		{
+			"backtrace" : 10,
+			"id" : "libconfig-store::@0a448824ace9838c932a"
+		},
+		{
+			"backtrace" : 10,
+			"id" : "libcore::@0618756b1ff51bca1a0e"
+		},
+		{
+			"backtrace" : 10,
+			"id" : "libcsma::@457f510286be5371199b"
+		},
+		{
+			"backtrace" : 10,
+			"id" : "libfd-net-device::@556bfae050776c5ab597"
+		},
+		{
+			"backtrace" : 10,
+			"id" : "libinternet::@cf20f20ea777b8d334b4"
+		},
+		{
+			"backtrace" : 10,
+			"id" : "liblte::@f1c97db8cc3fcef38804"
+		},
+		{
+			"backtrace" : 10,
+			"id" : "libmobility::@2e8c3d564dbe2f6b990d"
+		},
+		{
+			"backtrace" : 10,
+			"id" : "libnetwork::@311edf953348ef8fadde"
+		},
+		{
+			"backtrace" : 10,
+			"id" : "libpoint-to-point::@440f5f261b9566ce758a"
+		},
+		{
+			"backtrace" : 10,
+			"id" : "libpropagation::@e1205667d4949730ed2e"
+		},
+		{
+			"backtrace" : 10,
+			"id" : "libspectrum::@edd78237c376ce4d0dc6"
+		},
+		{
+			"backtrace" : 10,
+			"id" : "libstats::@a16f7aa18ccba9be6aba"
+		},
+		{
+			"backtrace" : 10,
+			"id" : "libtraffic-control::@5510e62c9c27dee44e6c"
+		},
+		{
+			"backtrace" : 10,
+			"id" : "libvirtual-net-device::@7550cbb5e76b22ae209d"
+		}
+	],
+	"id" : "lena-simple::@e29f8724c79744577ae3",
+	"link" : 
+	{
+		"commandFragments" : 
+		[
+			{
+				"fragment" : "-g",
+				"role" : "flags"
+			},
+			{
+				"fragment" : "",
+				"role" : "flags"
+			},
+			{
+				"backtrace" : 9,
+				"fragment" : "-L/home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/build/lib",
+				"role" : "libraryPath"
+			},
+			{
+				"fragment" : "-Wl,-rpath,/home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/build/lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 10,
+				"fragment" : "-Wl,--no-as-needed",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 10,
+				"fragment" : "../../../lib/libns3.42-lte-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 10,
+				"fragment" : "../../../lib/libns3.42-config-store-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 10,
+				"fragment" : "-Wl,--as-needed",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libxml2.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libfreetype.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libglib-2.0.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libgthread-2.0.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libgobject-2.0.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libgio-2.0.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libgdk_pixbuf-2.0.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libgdk-3.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libgtk-3.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libcairo.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libpango-1.0.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libatk-1.0.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "../../../lib/libns3.42-fd-net-device-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "../../../lib/libns3.42-spectrum-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "../../../lib/libns3.42-buildings-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "../../../lib/libns3.42-propagation-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "../../../lib/libns3.42-mobility-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "../../../lib/libns3.42-antenna-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "../../../lib/libns3.42-virtual-net-device-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "../../../lib/libns3.42-point-to-point-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "../../../lib/libns3.42-applications-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "../../../lib/libns3.42-internet-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "../../../lib/libns3.42-bridge-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "../../../lib/libns3.42-traffic-control-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "../../../lib/libns3.42-csma-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "../../../lib/libns3.42-network-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "../../../lib/libns3.42-stats-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "../../../lib/libns3.42-core-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 10,
+				"fragment" : "-Wl,--no-as-needed",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 10,
+				"fragment" : "-Wl,--as-needed",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libgsl.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libgslcblas.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libsqlite3.so",
+				"role" : "libraries"
+			}
+		],
+		"language" : "CXX"
+	},
+	"name" : "lena-simple",
+	"nameOnDisk" : "ns3.42-lena-simple-debug",
+	"paths" : 
+	{
+		"build" : "src/lte/examples",
+		"source" : "src/lte/examples"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		},
+		{
+			"name" : "Precompile Header File",
+			"sourceIndexes" : 
+			[
+				1
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 3,
+			"compileGroupIndex" : 0,
+			"path" : "src/lte/examples/lena-simple.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 0,
+			"path" : "build/CMakeFiles/stdlib_pch_exec.dir/cmake_pch.hxx",
+			"sourceGroupIndex" : 1
+		}
+	],
+	"type" : "EXECUTABLE"
+}

@@ -1,0 +1,90 @@
+Consolidate compiler generated dependencies of target scratch_tcp-test
+[  0%] Building CXX object scratch/CMakeFiles/scratch_tcp-test.dir/tcp-test.cc.o
+/home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/scratch/tcp-test.cc: In function ‘int main(int, char**)’:
+/home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/scratch/tcp-test.cc:165:18: error: no matching function for call to ‘MakeCallback(main(int, char**)::<lambda(ns3::Ptr<const ns3::Packet>)>)’
+  165 |                 }));
+      |                  ^
+In file included from /home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/src/core/model/object-base.h:22,
+                 from /home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/src/core/model/object.h:25,
+                 from /home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/src/core/model/object-factory.h:23,
+                 from /home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/src/core/model/simulator.h:27,
+                 from /home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/build/include/ns3/simulator.h:1,
+                 from /home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/src/core/helper/event-garbage-collector.h:23,
+                 from /home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/build/include/ns3/event-garbage-collector.h:1,
+                 from /home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/build/include/ns3/core-module.h:9,
+                 from /home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/scratch/tcp-test.cc:1:
+/home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/src/core/model/callback.h:700:1: note: candidate: ‘template<class T, class OBJ, class R, class ... Args> ns3::Callback<R, Args ...> ns3::MakeCallback(R (T::*)(Args ...), OBJ)’
+  700 | MakeCallback(R (T::*memPtr)(Args...), OBJ objPtr)
+      | ^~~~~~~~~~~~
+/home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/src/core/model/callback.h:700:1: note:   template argument deduction/substitution failed:
+/home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/scratch/tcp-test.cc:165:18: note:   mismatched types ‘R (T::*)(Args ...)’ and ‘main(int, char**)::<lambda(ns3::Ptr<const ns3::Packet>)>’
+  165 |                 }));
+      |                  ^
+In file included from /home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/src/core/model/object-base.h:22,
+                 from /home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/src/core/model/object.h:25,
+                 from /home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/src/core/model/object-factory.h:23,
+                 from /home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/src/core/model/simulator.h:27,
+                 from /home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/build/include/ns3/simulator.h:1,
+                 from /home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/src/core/helper/event-garbage-collector.h:23,
+                 from /home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/build/include/ns3/event-garbage-collector.h:1,
+                 from /home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/build/include/ns3/core-module.h:9,
+                 from /home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/scratch/tcp-test.cc:1:
+/home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/src/core/model/callback.h:707:1: note: candidate: ‘template<class T, class OBJ, class R, class ... Args> ns3::Callback<R, Args ...> ns3::MakeCallback(R (T::*)(Args ...) const, OBJ)’
+  707 | MakeCallback(R (T::*memPtr)(Args...) const, OBJ objPtr)
+      | ^~~~~~~~~~~~
+/home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/src/core/model/callback.h:707:1: note:   template argument deduction/substitution failed:
+/home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/scratch/tcp-test.cc:165:18: note:   mismatched types ‘R (T::*)(Args ...) const’ and ‘main(int, char**)::<lambda(ns3::Ptr<const ns3::Packet>)>’
+  165 |                 }));
+      |                  ^
+In file included from /home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/src/core/model/object-base.h:22,
+                 from /home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/src/core/model/object.h:25,
+                 from /home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/src/core/model/object-factory.h:23,
+                 from /home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/src/core/model/simulator.h:27,
+                 from /home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/build/include/ns3/simulator.h:1,
+                 from /home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/src/core/helper/event-garbage-collector.h:23,
+                 from /home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/build/include/ns3/event-garbage-collector.h:1,
+                 from /home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/build/include/ns3/core-module.h:9,
+                 from /home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/scratch/tcp-test.cc:1:
+/home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/src/core/model/callback.h:726:1: note: candidate: ‘template<class R, class ... Args> ns3::Callback<R, Args ...> ns3::MakeCallback(R (*)(Args ...))’
+  726 | MakeCallback(R (*fnPtr)(Args...))
+      | ^~~~~~~~~~~~
+/home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/src/core/model/callback.h:726:1: note:   template argument deduction/substitution failed:
+/home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/scratch/tcp-test.cc:165:18: note:   mismatched types ‘R (*)(Args ...)’ and ‘main(int, char**)::<lambda(ns3::Ptr<const ns3::Packet>)>’
+  165 |                 }));
+      |                  ^
+In file included from /home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/src/core/model/object-base.h:22,
+                 from /home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/src/core/model/object.h:25,
+                 from /home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/src/core/model/object-factory.h:23,
+                 from /home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/src/core/model/simulator.h:27,
+                 from /home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/build/include/ns3/simulator.h:1,
+                 from /home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/src/core/helper/event-garbage-collector.h:23,
+                 from /home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/build/include/ns3/event-garbage-collector.h:1,
+                 from /home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/build/include/ns3/core-module.h:9,
+                 from /home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/scratch/tcp-test.cc:1:
+/home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/src/core/model/callback.h:782:1: note: candidate: ‘template<class T, class OBJ, class R, class ... Args, class ... BArgs> auto ns3::MakeCallback(R (T::*)(Args ...), OBJ, BArgs ...)’
+  782 | MakeCallback(R (T::*memPtr)(Args...), OBJ objPtr, BArgs... bargs)
+      | ^~~~~~~~~~~~
+/home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/src/core/model/callback.h:782:1: note:   template argument deduction/substitution failed:
+/home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/scratch/tcp-test.cc:165:18: note:   mismatched types ‘R (T::*)(Args ...)’ and ‘main(int, char**)::<lambda(ns3::Ptr<const ns3::Packet>)>’
+  165 |                 }));
+      |                  ^
+In file included from /home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/src/core/model/object-base.h:22,
+                 from /home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/src/core/model/object.h:25,
+                 from /home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/src/core/model/object-factory.h:23,
+                 from /home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/src/core/model/simulator.h:27,
+                 from /home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/build/include/ns3/simulator.h:1,
+                 from /home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/src/core/helper/event-garbage-collector.h:23,
+                 from /home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/build/include/ns3/event-garbage-collector.h:1,
+                 from /home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/build/include/ns3/core-module.h:9,
+                 from /home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/scratch/tcp-test.cc:1:
+/home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/src/core/model/callback.h:789:1: note: candidate: ‘template<class T, class OBJ, class R, class ... Args, class ... BArgs> auto ns3::MakeCallback(R (T::*)(Args ...) const, OBJ, BArgs ...)’
+  789 | MakeCallback(R (T::*memPtr)(Args...) const, OBJ objPtr, BArgs... bargs)
+      | ^~~~~~~~~~~~
+/home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/src/core/model/callback.h:789:1: note:   template argument deduction/substitution failed:
+/home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/scratch/tcp-test.cc:165:18: note:   mismatched types ‘R (T::*)(Args ...) const’ and ‘main(int, char**)::<lambda(ns3::Ptr<const ns3::Packet>)>’
+  165 |                 }));
+      |                  ^
+gmake[3]: *** [scratch/CMakeFiles/scratch_tcp-test.dir/build.make:78: scratch/CMakeFiles/scratch_tcp-test.dir/tcp-test.cc.o] Error 1
+gmake[2]: *** [CMakeFiles/Makefile2:17826: scratch/CMakeFiles/scratch_tcp-test.dir/all] Error 2
+gmake[1]: *** [CMakeFiles/Makefile2:17832: scratch/CMakeFiles/scratch_tcp-test.dir/rule] Error 2
+gmake: *** [Makefile:6056: scratch_tcp-test] Error 2

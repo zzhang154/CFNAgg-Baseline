@@ -1,0 +1,1390 @@
+{
+	"artifacts" : 
+	[
+		{
+			"path" : "lib/libns3.42-lte-debug.so"
+		}
+	],
+	"backtrace" : 2,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_library",
+			"build_lib",
+			"install",
+			"link_directories",
+			"include",
+			"target_link_libraries",
+			"add_compile_options",
+			"process_options",
+			"add_definitions",
+			"include_directories"
+		],
+		"files" : 
+		[
+			"build-support/custom-modules/ns3-module-macros.cmake",
+			"src/lte/CMakeLists.txt",
+			"build-support/custom-modules/ns3-output-directory.cmake",
+			"build-support/macros-and-definitions.cmake",
+			"CMakeLists.txt",
+			"build-support/custom-modules/ns3-platform-support.cmake"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 1
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 346,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 155,
+				"parent" : 1
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 481,
+				"parent" : 1
+			},
+			{
+				"file" : 4
+			},
+			{
+				"command" : 4,
+				"file" : 4,
+				"line" : 111,
+				"parent" : 4
+			},
+			{
+				"file" : 3,
+				"parent" : 5
+			},
+			{
+				"command" : 4,
+				"file" : 3,
+				"line" : 46,
+				"parent" : 6
+			},
+			{
+				"file" : 2,
+				"parent" : 7
+			},
+			{
+				"command" : 3,
+				"file" : 2,
+				"line" : 81,
+				"parent" : 8
+			},
+			{
+				"command" : 5,
+				"file" : 0,
+				"line" : 292,
+				"parent" : 1
+			},
+			{
+				"command" : 7,
+				"file" : 4,
+				"line" : 149,
+				"parent" : 4
+			},
+			{
+				"command" : 6,
+				"file" : 3,
+				"line" : 231,
+				"parent" : 11
+			},
+			{
+				"command" : 8,
+				"file" : 3,
+				"line" : 559,
+				"parent" : 11
+			},
+			{
+				"command" : 8,
+				"file" : 3,
+				"line" : 558,
+				"parent" : 11
+			},
+			{
+				"command" : 8,
+				"file" : 3,
+				"line" : 863,
+				"parent" : 11
+			},
+			{
+				"command" : 8,
+				"file" : 3,
+				"line" : 614,
+				"parent" : 11
+			},
+			{
+				"command" : 8,
+				"file" : 3,
+				"line" : 545,
+				"parent" : 11
+			},
+			{
+				"command" : 8,
+				"file" : 3,
+				"line" : 1145,
+				"parent" : 11
+			},
+			{
+				"command" : 8,
+				"file" : 3,
+				"line" : 157,
+				"parent" : 11
+			},
+			{
+				"command" : 8,
+				"file" : 3,
+				"line" : 1140,
+				"parent" : 11
+			},
+			{
+				"command" : 8,
+				"file" : 3,
+				"line" : 19,
+				"parent" : 6
+			},
+			{
+				"command" : 4,
+				"file" : 3,
+				"line" : 52,
+				"parent" : 6
+			},
+			{
+				"file" : 5,
+				"parent" : 22
+			},
+			{
+				"command" : 8,
+				"file" : 5,
+				"line" : 34,
+				"parent" : 23
+			},
+			{
+				"command" : 9,
+				"file" : 3,
+				"line" : 485,
+				"parent" : 11
+			},
+			{
+				"command" : 9,
+				"file" : 3,
+				"line" : 546,
+				"parent" : 11
+			},
+			{
+				"command" : 9,
+				"file" : 3,
+				"line" : 560,
+				"parent" : 11
+			},
+			{
+				"command" : 9,
+				"file" : 3,
+				"line" : 588,
+				"parent" : 11
+			},
+			{
+				"command" : 9,
+				"file" : 3,
+				"line" : 615,
+				"parent" : 11
+			}
+		]
+	},
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 10,
+			"id" : "libantenna::@000737a0949b1597daab"
+		},
+		{
+			"backtrace" : 10,
+			"id" : "libapplications::@a48e303ef543a0192510"
+		},
+		{
+			"backtrace" : 10,
+			"id" : "libbridge::@e12754a9402ac756973a"
+		},
+		{
+			"backtrace" : 10,
+			"id" : "libbuildings::@2d6478ec4a24b1f7bdbd"
+		},
+		{
+			"backtrace" : 10,
+			"id" : "libconfig-store::@0a448824ace9838c932a"
+		},
+		{
+			"backtrace" : 10,
+			"id" : "libcore::@0618756b1ff51bca1a0e"
+		},
+		{
+			"backtrace" : 10,
+			"id" : "libcsma::@457f510286be5371199b"
+		},
+		{
+			"backtrace" : 10,
+			"id" : "libfd-net-device::@556bfae050776c5ab597"
+		},
+		{
+			"backtrace" : 10,
+			"id" : "libinternet::@cf20f20ea777b8d334b4"
+		},
+		{
+			"id" : "liblte-obj::@f1c97db8cc3fcef38804"
+		},
+		{
+			"backtrace" : 10,
+			"id" : "libmobility::@2e8c3d564dbe2f6b990d"
+		},
+		{
+			"backtrace" : 10,
+			"id" : "libnetwork::@311edf953348ef8fadde"
+		},
+		{
+			"backtrace" : 10,
+			"id" : "libpoint-to-point::@440f5f261b9566ce758a"
+		},
+		{
+			"backtrace" : 10,
+			"id" : "libpropagation::@e1205667d4949730ed2e"
+		},
+		{
+			"backtrace" : 10,
+			"id" : "libspectrum::@edd78237c376ce4d0dc6"
+		},
+		{
+			"backtrace" : 10,
+			"id" : "libstats::@a16f7aa18ccba9be6aba"
+		},
+		{
+			"backtrace" : 10,
+			"id" : "libtraffic-control::@5510e62c9c27dee44e6c"
+		},
+		{
+			"backtrace" : 10,
+			"id" : "libvirtual-net-device::@7550cbb5e76b22ae209d"
+		}
+	],
+	"id" : "liblte::@f1c97db8cc3fcef38804",
+	"install" : 
+	{
+		"destinations" : 
+		[
+			{
+				"backtrace" : 3,
+				"path" : "lib"
+			},
+			{
+				"backtrace" : 3,
+				"path" : "lib"
+			}
+		],
+		"prefix" : 
+		{
+			"path" : "/usr/local"
+		}
+	},
+	"link" : 
+	{
+		"commandFragments" : 
+		[
+			{
+				"fragment" : "",
+				"role" : "flags"
+			},
+			{
+				"backtrace" : 9,
+				"fragment" : "-L/home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/build/lib",
+				"role" : "libraryPath"
+			},
+			{
+				"fragment" : "-Wl,-rpath,/home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/build/lib:::::::::::::::::",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 10,
+				"fragment" : "-Wl,--no-as-needed",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 10,
+				"fragment" : "../../lib/libns3.42-fd-net-device-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 10,
+				"fragment" : "../../lib/libns3.42-spectrum-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 10,
+				"fragment" : "../../lib/libns3.42-buildings-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 10,
+				"fragment" : "../../lib/libns3.42-virtual-net-device-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 10,
+				"fragment" : "../../lib/libns3.42-point-to-point-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 10,
+				"fragment" : "../../lib/libns3.42-applications-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 10,
+				"fragment" : "../../lib/libns3.42-csma-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 10,
+				"fragment" : "../../lib/libns3.42-config-store-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 10,
+				"fragment" : "-Wl,--as-needed",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "../../lib/libns3.42-propagation-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "../../lib/libns3.42-mobility-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "../../lib/libns3.42-antenna-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "../../lib/libns3.42-internet-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "../../lib/libns3.42-bridge-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "../../lib/libns3.42-traffic-control-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "../../lib/libns3.42-network-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "../../lib/libns3.42-stats-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libsqlite3.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "../../lib/libns3.42-core-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 10,
+				"fragment" : "-Wl,--no-as-needed",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 10,
+				"fragment" : "-Wl,--as-needed",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libgsl.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libgslcblas.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libxml2.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libfreetype.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libglib-2.0.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libgthread-2.0.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libgobject-2.0.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libgio-2.0.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libgdk_pixbuf-2.0.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libgdk-3.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libgtk-3.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libcairo.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libpango-1.0.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libatk-1.0.so",
+				"role" : "libraries"
+			}
+		],
+		"language" : "CXX"
+	},
+	"name" : "liblte",
+	"nameOnDisk" : "libns3.42-lte-debug.so",
+	"paths" : 
+	{
+		"build" : "src/lte",
+		"source" : "src/lte"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Object Libraries",
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				2,
+				3,
+				4,
+				5,
+				6,
+				7,
+				8,
+				9,
+				10,
+				11,
+				12,
+				13,
+				14,
+				15,
+				16,
+				17,
+				18,
+				19,
+				20,
+				21,
+				22,
+				23,
+				24,
+				25,
+				26,
+				27,
+				28,
+				29,
+				30,
+				31,
+				32,
+				33,
+				34,
+				35,
+				36,
+				37,
+				38,
+				39,
+				40,
+				41,
+				42,
+				43,
+				44,
+				45,
+				46,
+				47,
+				48,
+				49,
+				50,
+				51,
+				52,
+				53,
+				54,
+				55,
+				56,
+				57,
+				58,
+				59,
+				60,
+				61,
+				62,
+				63,
+				64,
+				65,
+				66,
+				67,
+				68,
+				69,
+				70,
+				71,
+				72,
+				73,
+				74,
+				75,
+				76,
+				77,
+				78,
+				79,
+				80,
+				81,
+				82,
+				83,
+				84,
+				85,
+				86,
+				87,
+				88,
+				89,
+				90,
+				91,
+				92,
+				93,
+				94,
+				95,
+				96,
+				97,
+				98,
+				99,
+				100,
+				101,
+				102,
+				103,
+				104,
+				105,
+				106,
+				107,
+				108,
+				109,
+				110,
+				111,
+				112,
+				113,
+				114,
+				115,
+				116,
+				117,
+				118,
+				119,
+				120,
+				121,
+				122,
+				123,
+				124,
+				125,
+				126,
+				127
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/helper/emu-epc-helper.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/helper/cc-helper.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/helper/epc-helper.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/helper/lte-global-pathloss-database.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/helper/lte-helper.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/helper/lte-hex-grid-enb-topology-helper.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/helper/lte-stats-calculator.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/helper/mac-stats-calculator.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/helper/no-backhaul-epc-helper.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/helper/phy-rx-stats-calculator.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/helper/phy-stats-calculator.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/helper/phy-tx-stats-calculator.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/helper/point-to-point-epc-helper.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/helper/radio-bearer-stats-calculator.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/helper/radio-bearer-stats-connector.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/helper/radio-environment-map-helper.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/a2-a4-rsrq-handover-algorithm.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/a3-rsrp-handover-algorithm.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/component-carrier-enb.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/component-carrier-ue.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/component-carrier.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/cqa-ff-mac-scheduler.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/epc-enb-application.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/epc-enb-s1-sap.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/epc-gtpc-header.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/epc-gtpu-header.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/epc-mme-application.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/epc-pgw-application.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/epc-s11-sap.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/epc-s1ap-sap.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/epc-sgw-application.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/epc-tft-classifier.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/epc-tft.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/epc-ue-nas.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/epc-x2-header.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/epc-x2-sap.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/epc-x2.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/eps-bearer-tag.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/eps-bearer.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/fdbet-ff-mac-scheduler.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/fdmt-ff-mac-scheduler.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/fdtbfq-ff-mac-scheduler.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/ff-mac-common.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/ff-mac-csched-sap.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/ff-mac-sched-sap.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/ff-mac-scheduler.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/lte-amc.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/lte-anr-sap.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/lte-anr.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/lte-as-sap.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/lte-asn1-header.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/lte-ccm-mac-sap.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/lte-ccm-rrc-sap.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/lte-chunk-processor.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/lte-common.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/lte-control-messages.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/lte-enb-cmac-sap.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/lte-enb-component-carrier-manager.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/lte-enb-cphy-sap.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/lte-enb-mac.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/lte-enb-net-device.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/lte-enb-phy-sap.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/lte-enb-phy.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/lte-enb-rrc.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/lte-ffr-algorithm.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/lte-ffr-distributed-algorithm.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/lte-ffr-enhanced-algorithm.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/lte-ffr-rrc-sap.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/lte-ffr-sap.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/lte-ffr-soft-algorithm.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/lte-fr-hard-algorithm.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/lte-fr-no-op-algorithm.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/lte-fr-soft-algorithm.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/lte-fr-strict-algorithm.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/lte-handover-algorithm.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/lte-handover-management-sap.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/lte-harq-phy.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/lte-interference.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/lte-mac-sap.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/lte-mi-error-model.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/lte-net-device.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/lte-pdcp-header.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/lte-pdcp-sap.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/lte-pdcp-tag.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/lte-pdcp.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/lte-phy-tag.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/lte-phy.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/lte-radio-bearer-info.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/lte-radio-bearer-tag.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/lte-rlc-am-header.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/lte-rlc-am.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/lte-rlc-header.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/lte-rlc-sap.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/lte-rlc-sdu-status-tag.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/lte-rlc-sequence-number.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/lte-rlc-tag.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/lte-rlc-tm.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/lte-rlc-um.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/lte-rlc.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/lte-rrc-header.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/lte-rrc-protocol-ideal.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/lte-rrc-protocol-real.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/lte-rrc-sap.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/lte-spectrum-phy.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/lte-spectrum-signal-parameters.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/lte-spectrum-value-helper.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/lte-ue-ccm-rrc-sap.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/lte-ue-cmac-sap.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/lte-ue-component-carrier-manager.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/lte-ue-cphy-sap.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/lte-ue-mac.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/lte-ue-net-device.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/lte-ue-phy-sap.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/lte-ue-phy.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/lte-ue-power-control.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/lte-ue-rrc.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/lte-vendor-specific-parameters.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/no-op-component-carrier-manager.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/no-op-handover-algorithm.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/pf-ff-mac-scheduler.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/pss-ff-mac-scheduler.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/rem-spectrum-phy.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/rr-ff-mac-scheduler.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/simple-ue-component-carrier-manager.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/tdbet-ff-mac-scheduler.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/tdmt-ff-mac-scheduler.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/tdtbfq-ff-mac-scheduler.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/lte/CMakeFiles/liblte-obj.dir/model/tta-ff-mac-scheduler.cc.o",
+			"sourceGroupIndex" : 0
+		}
+	],
+	"type" : "SHARED_LIBRARY"
+}

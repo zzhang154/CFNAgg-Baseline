@@ -1,0 +1,13 @@
+# CMake generated Testfile for 
+# Source directory: /home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/scratch
+# Build directory: /home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/build/scratch
+# 
+# This file includes the relevant testing commands required for 
+# testing this directory and lists subdirectories to be tested as well.
+add_test(ctest-scratch_innetwork-test "ns3.42-innetwork-test-debug")
+set_tests_properties(ctest-scratch_innetwork-test PROPERTIES  WORKING_DIRECTORY "/home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/build/scratch/" _BACKTRACE_TRIPLES "/home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/build-support/custom-modules/ns3-executables.cmake;47;add_test;/home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/build-support/custom-modules/ns3-executables.cmake;140;set_runtime_outputdirectory;/home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/scratch/CMakeLists.txt;67;build_exec;/home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/scratch/CMakeLists.txt;79;create_scratch;/home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/scratch/CMakeLists.txt;0;")
+add_test(ctest-scratch_tcp-test "ns3.42-tcp-test-debug")
+set_tests_properties(ctest-scratch_tcp-test PROPERTIES  WORKING_DIRECTORY "/home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/build/scratch/" _BACKTRACE_TRIPLES "/home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/build-support/custom-modules/ns3-executables.cmake;47;add_test;/home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/build-support/custom-modules/ns3-executables.cmake;140;set_runtime_outputdirectory;/home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/scratch/CMakeLists.txt;67;build_exec;/home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/scratch/CMakeLists.txt;79;create_scratch;/home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/scratch/CMakeLists.txt;0;")
+add_test(ctest-scratch_subdir_scratch-subdir "ns3.42-scratch-subdir-debug")
+set_tests_properties(ctest-scratch_subdir_scratch-subdir PROPERTIES  WORKING_DIRECTORY "/home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/build/scratch/subdir/" _BACKTRACE_TRIPLES "/home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/build-support/custom-modules/ns3-executables.cmake;47;add_test;/home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/build-support/custom-modules/ns3-executables.cmake;140;set_runtime_outputdirectory;/home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/scratch/CMakeLists.txt;67;build_exec;/home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/scratch/CMakeLists.txt;109;create_scratch;/home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/scratch/CMakeLists.txt;0;")
+subdirs("nested-subdir")

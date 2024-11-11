@@ -1,0 +1,1159 @@
+{
+	"artifacts" : 
+	[
+		{
+			"path" : "lib/libns3.42-lte-test-debug.so"
+		}
+	],
+	"backtrace" : 2,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_library",
+			"build_lib",
+			"link_directories",
+			"include",
+			"target_link_libraries",
+			"target_precompile_headers",
+			"add_compile_options",
+			"process_options",
+			"add_definitions",
+			"target_compile_definitions",
+			"include_directories"
+		],
+		"files" : 
+		[
+			"build-support/custom-modules/ns3-module-macros.cmake",
+			"src/lte/CMakeLists.txt",
+			"build-support/custom-modules/ns3-output-directory.cmake",
+			"build-support/macros-and-definitions.cmake",
+			"CMakeLists.txt",
+			"build-support/custom-modules/ns3-platform-support.cmake"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 1
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 346,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 436,
+				"parent" : 1
+			},
+			{
+				"file" : 4
+			},
+			{
+				"command" : 3,
+				"file" : 4,
+				"line" : 111,
+				"parent" : 3
+			},
+			{
+				"file" : 3,
+				"parent" : 4
+			},
+			{
+				"command" : 3,
+				"file" : 3,
+				"line" : 46,
+				"parent" : 5
+			},
+			{
+				"file" : 2,
+				"parent" : 6
+			},
+			{
+				"command" : 2,
+				"file" : 2,
+				"line" : 81,
+				"parent" : 7
+			},
+			{
+				"command" : 4,
+				"file" : 0,
+				"line" : 445,
+				"parent" : 1
+			},
+			{
+				"command" : 5,
+				"file" : 0,
+				"line" : 460,
+				"parent" : 1
+			},
+			{
+				"command" : 7,
+				"file" : 4,
+				"line" : 149,
+				"parent" : 3
+			},
+			{
+				"command" : 6,
+				"file" : 3,
+				"line" : 231,
+				"parent" : 11
+			},
+			{
+				"command" : 8,
+				"file" : 3,
+				"line" : 559,
+				"parent" : 11
+			},
+			{
+				"command" : 8,
+				"file" : 3,
+				"line" : 558,
+				"parent" : 11
+			},
+			{
+				"command" : 8,
+				"file" : 3,
+				"line" : 863,
+				"parent" : 11
+			},
+			{
+				"command" : 8,
+				"file" : 3,
+				"line" : 614,
+				"parent" : 11
+			},
+			{
+				"command" : 8,
+				"file" : 3,
+				"line" : 545,
+				"parent" : 11
+			},
+			{
+				"command" : 8,
+				"file" : 3,
+				"line" : 1145,
+				"parent" : 11
+			},
+			{
+				"command" : 8,
+				"file" : 3,
+				"line" : 157,
+				"parent" : 11
+			},
+			{
+				"command" : 8,
+				"file" : 3,
+				"line" : 1140,
+				"parent" : 11
+			},
+			{
+				"command" : 9,
+				"file" : 0,
+				"line" : 456,
+				"parent" : 1
+			},
+			{
+				"command" : 8,
+				"file" : 3,
+				"line" : 19,
+				"parent" : 5
+			},
+			{
+				"command" : 3,
+				"file" : 3,
+				"line" : 52,
+				"parent" : 5
+			},
+			{
+				"file" : 5,
+				"parent" : 23
+			},
+			{
+				"command" : 8,
+				"file" : 5,
+				"line" : 34,
+				"parent" : 24
+			},
+			{
+				"command" : 10,
+				"file" : 3,
+				"line" : 485,
+				"parent" : 11
+			},
+			{
+				"command" : 10,
+				"file" : 3,
+				"line" : 546,
+				"parent" : 11
+			},
+			{
+				"command" : 10,
+				"file" : 3,
+				"line" : 560,
+				"parent" : 11
+			},
+			{
+				"command" : 10,
+				"file" : 3,
+				"line" : 588,
+				"parent" : 11
+			},
+			{
+				"command" : 10,
+				"file" : 3,
+				"line" : 615,
+				"parent" : 11
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "-g -fPIC   -fno-semantic-interposition"
+				},
+				{
+					"backtrace" : 12,
+					"fragment" : "-Wall"
+				},
+				{
+					"fragment" : "-std=c++2a"
+				},
+				{
+					"fragment" : "-Winvalid-pch -include /home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/build/CMakeFiles/stdlib_pch-debug.dir/cmake_pch.hxx"
+				}
+			],
+			"defines" : 
+			[
+				{
+					"backtrace" : 13,
+					"define" : "EIGEN_MPL2_ONLY"
+				},
+				{
+					"backtrace" : 9,
+					"define" : "HAVE_BOOST"
+				},
+				{
+					"backtrace" : 9,
+					"define" : "HAVE_BOOST_UNITS"
+				},
+				{
+					"backtrace" : 14,
+					"define" : "HAVE_EIGEN3"
+				},
+				{
+					"backtrace" : 15,
+					"define" : "HAVE_GSL"
+				},
+				{
+					"backtrace" : 16,
+					"define" : "HAVE_LIBXML2"
+				},
+				{
+					"backtrace" : 9,
+					"define" : "HAVE_NETMAP_USER_H"
+				},
+				{
+					"backtrace" : 9,
+					"define" : "HAVE_PACKET_H"
+				},
+				{
+					"backtrace" : 17,
+					"define" : "HAVE_SQLITE3"
+				},
+				{
+					"backtrace" : 9,
+					"define" : "NETMAP_DEV_CREATOR=\"/home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/build/src/fd-net-device/ns3.42-netmap-device-creator-debug\""
+				},
+				{
+					"backtrace" : 18,
+					"define" : "NS3_ASSERT_ENABLE"
+				},
+				{
+					"backtrace" : 19,
+					"define" : "NS3_BUILD_PROFILE_DEBUG"
+				},
+				{
+					"backtrace" : 20,
+					"define" : "NS3_LOG_ENABLE"
+				},
+				{
+					"backtrace" : 21,
+					"define" : "NS_TEST_SOURCEDIR=\"src/lte/test\""
+				},
+				{
+					"backtrace" : 22,
+					"define" : "PROJECT_SOURCE_PATH=\"/home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42\""
+				},
+				{
+					"backtrace" : 9,
+					"define" : "RAW_SOCK_CREATOR=\"/home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/build/src/fd-net-device/ns3.42-raw-sock-creator-debug\""
+				},
+				{
+					"backtrace" : 9,
+					"define" : "TAP_DEV_CREATOR=\"/home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/build/src/fd-net-device/ns3.42-tap-device-creator-debug\""
+				},
+				{
+					"backtrace" : 25,
+					"define" : "__LINUX__"
+				},
+				{
+					"define" : "liblte_test_EXPORTS"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 26,
+					"path" : "/home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/build/include"
+				},
+				{
+					"backtrace" : 27,
+					"path" : "/usr"
+				},
+				{
+					"backtrace" : 28,
+					"path" : "/usr/include/eigen3"
+				},
+				{
+					"backtrace" : 29,
+					"path" : "/usr/include/freetype2"
+				},
+				{
+					"backtrace" : 29,
+					"path" : "/usr/include/glib-2.0"
+				},
+				{
+					"backtrace" : 29,
+					"path" : "/usr/lib/x86_64-linux-gnu/glib-2.0/include"
+				},
+				{
+					"backtrace" : 29,
+					"path" : "/usr/include/gdk-pixbuf-2.0"
+				},
+				{
+					"backtrace" : 29,
+					"path" : "/usr/include/gtk-3.0"
+				},
+				{
+					"backtrace" : 29,
+					"path" : "/usr/include/cairo"
+				},
+				{
+					"backtrace" : 29,
+					"path" : "/usr/include/pango-1.0"
+				},
+				{
+					"backtrace" : 29,
+					"path" : "/usr/include/harfbuzz"
+				},
+				{
+					"backtrace" : 29,
+					"path" : "/usr/include/atk-1.0"
+				},
+				{
+					"backtrace" : 30,
+					"path" : "/usr/include/libxml2"
+				}
+			],
+			"language" : "CXX",
+			"languageStandard" : 
+			{
+				"backtraces" : 
+				[
+					2
+				],
+				"standard" : "20"
+			},
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				2,
+				3,
+				4,
+				5,
+				6,
+				7,
+				8,
+				9,
+				10,
+				11,
+				12,
+				13,
+				14,
+				15,
+				16,
+				17,
+				18,
+				19,
+				20,
+				21,
+				22,
+				23,
+				24,
+				25,
+				26,
+				27,
+				28,
+				29,
+				30,
+				31,
+				32,
+				33,
+				34,
+				35,
+				36,
+				37,
+				38,
+				39,
+				40,
+				41,
+				42,
+				43,
+				44,
+				45,
+				46,
+				47,
+				48,
+				49,
+				50,
+				51,
+				52,
+				53,
+				54,
+				55,
+				56,
+				57,
+				58,
+				59,
+				60
+			]
+		}
+	],
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 10,
+			"id" : "stdlib_pch-debug::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 9,
+			"id" : "libantenna::@000737a0949b1597daab"
+		},
+		{
+			"backtrace" : 9,
+			"id" : "libapplications::@a48e303ef543a0192510"
+		},
+		{
+			"backtrace" : 9,
+			"id" : "libbridge::@e12754a9402ac756973a"
+		},
+		{
+			"backtrace" : 9,
+			"id" : "libbuildings::@2d6478ec4a24b1f7bdbd"
+		},
+		{
+			"backtrace" : 9,
+			"id" : "libconfig-store::@0a448824ace9838c932a"
+		},
+		{
+			"backtrace" : 9,
+			"id" : "libcore::@0618756b1ff51bca1a0e"
+		},
+		{
+			"backtrace" : 9,
+			"id" : "libcsma::@457f510286be5371199b"
+		},
+		{
+			"backtrace" : 9,
+			"id" : "libfd-net-device::@556bfae050776c5ab597"
+		},
+		{
+			"backtrace" : 9,
+			"id" : "libinternet::@cf20f20ea777b8d334b4"
+		},
+		{
+			"backtrace" : 9,
+			"id" : "liblte::@f1c97db8cc3fcef38804"
+		},
+		{
+			"backtrace" : 9,
+			"id" : "libmobility::@2e8c3d564dbe2f6b990d"
+		},
+		{
+			"backtrace" : 9,
+			"id" : "libnetwork::@311edf953348ef8fadde"
+		},
+		{
+			"backtrace" : 9,
+			"id" : "libpoint-to-point::@440f5f261b9566ce758a"
+		},
+		{
+			"backtrace" : 9,
+			"id" : "libpropagation::@e1205667d4949730ed2e"
+		},
+		{
+			"backtrace" : 9,
+			"id" : "libspectrum::@edd78237c376ce4d0dc6"
+		},
+		{
+			"backtrace" : 9,
+			"id" : "libstats::@a16f7aa18ccba9be6aba"
+		},
+		{
+			"backtrace" : 9,
+			"id" : "libtraffic-control::@5510e62c9c27dee44e6c"
+		},
+		{
+			"backtrace" : 9,
+			"id" : "libvirtual-net-device::@7550cbb5e76b22ae209d"
+		}
+	],
+	"id" : "liblte-test::@f1c97db8cc3fcef38804",
+	"link" : 
+	{
+		"commandFragments" : 
+		[
+			{
+				"fragment" : "",
+				"role" : "flags"
+			},
+			{
+				"backtrace" : 8,
+				"fragment" : "-L/home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/build/lib",
+				"role" : "libraryPath"
+			},
+			{
+				"fragment" : "-Wl,-rpath,/home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/build/lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 9,
+				"fragment" : "-Wl,--no-as-needed",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 9,
+				"fragment" : "../../lib/libns3.42-lte-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 9,
+				"fragment" : "../../lib/libns3.42-fd-net-device-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 9,
+				"fragment" : "../../lib/libns3.42-spectrum-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 9,
+				"fragment" : "../../lib/libns3.42-buildings-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 9,
+				"fragment" : "../../lib/libns3.42-virtual-net-device-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 9,
+				"fragment" : "../../lib/libns3.42-point-to-point-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 9,
+				"fragment" : "../../lib/libns3.42-applications-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 9,
+				"fragment" : "../../lib/libns3.42-csma-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 9,
+				"fragment" : "../../lib/libns3.42-config-store-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 9,
+				"fragment" : "-Wl,--as-needed",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "../../lib/libns3.42-propagation-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "../../lib/libns3.42-mobility-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "../../lib/libns3.42-antenna-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "../../lib/libns3.42-internet-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "../../lib/libns3.42-bridge-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "../../lib/libns3.42-traffic-control-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "../../lib/libns3.42-network-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "../../lib/libns3.42-stats-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libsqlite3.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "../../lib/libns3.42-core-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 9,
+				"fragment" : "-Wl,--no-as-needed",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libgsl.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libgslcblas.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libxml2.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libfreetype.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libglib-2.0.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libgthread-2.0.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libgobject-2.0.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libgio-2.0.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libgdk_pixbuf-2.0.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libgdk-3.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libgtk-3.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libcairo.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libpango-1.0.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libatk-1.0.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 9,
+				"fragment" : "-Wl,--as-needed",
+				"role" : "libraries"
+			}
+		],
+		"language" : "CXX"
+	},
+	"name" : "liblte-test",
+	"nameOnDisk" : "libns3.42-lte-test-debug.so",
+	"paths" : 
+	{
+		"build" : "src/lte",
+		"source" : "src/lte"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				2,
+				3,
+				4,
+				5,
+				6,
+				7,
+				8,
+				9,
+				10,
+				11,
+				12,
+				13,
+				14,
+				15,
+				16,
+				17,
+				18,
+				19,
+				20,
+				21,
+				22,
+				23,
+				24,
+				25,
+				26,
+				27,
+				28,
+				29,
+				30,
+				31,
+				32,
+				33,
+				34,
+				35,
+				36,
+				37,
+				38,
+				39,
+				40,
+				41,
+				42,
+				43,
+				44,
+				45,
+				46,
+				47,
+				48,
+				49,
+				50,
+				51,
+				52,
+				53,
+				54,
+				55,
+				56,
+				57,
+				58,
+				59,
+				60
+			]
+		},
+		{
+			"name" : "Precompile Header File",
+			"sourceIndexes" : 
+			[
+				61
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "src/lte/test/epc-test-gtpu.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "src/lte/test/epc-test-s1u-downlink.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "src/lte/test/epc-test-s1u-uplink.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "src/lte/test/lte-ffr-simple.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "src/lte/test/lte-simple-helper.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "src/lte/test/lte-simple-net-device.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "src/lte/test/lte-simple-spectrum-phy.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "src/lte/test/lte-test-aggregation-throughput-scale.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "src/lte/test/lte-test-carrier-aggregation-configuration.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "src/lte/test/lte-test-carrier-aggregation.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "src/lte/test/lte-test-cell-selection.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "src/lte/test/lte-test-cqa-ff-mac-scheduler.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "src/lte/test/lte-test-cqi-generation.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "src/lte/test/lte-test-deactivate-bearer.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "src/lte/test/lte-test-downlink-power-control.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "src/lte/test/lte-test-downlink-sinr.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "src/lte/test/lte-test-earfcn.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "src/lte/test/lte-test-entities.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "src/lte/test/lte-test-fdbet-ff-mac-scheduler.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "src/lte/test/lte-test-fdmt-ff-mac-scheduler.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "src/lte/test/lte-test-fdtbfq-ff-mac-scheduler.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "src/lte/test/lte-test-frequency-reuse.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "src/lte/test/lte-test-harq.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "src/lte/test/lte-test-interference-fr.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "src/lte/test/lte-test-interference.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "src/lte/test/lte-test-ipv6-routing.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "src/lte/test/lte-test-link-adaptation.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "src/lte/test/lte-test-mimo.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "src/lte/test/lte-test-pathloss-model.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "src/lte/test/lte-test-pf-ff-mac-scheduler.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "src/lte/test/lte-test-phy-error-model.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "src/lte/test/lte-test-primary-cell-change.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "src/lte/test/lte-test-pss-ff-mac-scheduler.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "src/lte/test/lte-test-radio-link-failure.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "src/lte/test/lte-test-rlc-am-e2e.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "src/lte/test/lte-test-rlc-am-transmitter.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "src/lte/test/lte-test-rlc-um-e2e.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "src/lte/test/lte-test-rlc-um-transmitter.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "src/lte/test/lte-test-rr-ff-mac-scheduler.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "src/lte/test/lte-test-secondary-cell-handover.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "src/lte/test/lte-test-secondary-cell-selection.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "src/lte/test/lte-test-spectrum-value-helper.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "src/lte/test/lte-test-tdbet-ff-mac-scheduler.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "src/lte/test/lte-test-tdmt-ff-mac-scheduler.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "src/lte/test/lte-test-tdtbfq-ff-mac-scheduler.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "src/lte/test/lte-test-tta-ff-mac-scheduler.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "src/lte/test/lte-test-ue-measurements.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "src/lte/test/lte-test-ue-phy.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "src/lte/test/lte-test-uplink-power-control.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "src/lte/test/lte-test-uplink-sinr.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "src/lte/test/test-asn1-encoding.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "src/lte/test/test-epc-tft-classifier.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "src/lte/test/test-lte-antenna.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "src/lte/test/test-lte-epc-e2e-data.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "src/lte/test/test-lte-handover-delay.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "src/lte/test/test-lte-handover-failure.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "src/lte/test/test-lte-handover-target.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "src/lte/test/test-lte-rlc-header.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "src/lte/test/test-lte-rrc.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "src/lte/test/test-lte-x2-handover-measures.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "src/lte/test/test-lte-x2-handover.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 0,
+			"path" : "build/CMakeFiles/stdlib_pch-debug.dir/cmake_pch.hxx",
+			"sourceGroupIndex" : 1
+		}
+	],
+	"type" : "SHARED_LIBRARY"
+}

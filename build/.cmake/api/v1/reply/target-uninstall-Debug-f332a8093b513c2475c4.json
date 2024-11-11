@@ -1,0 +1,799 @@
+{
+	"backtrace" : 5,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_custom_target",
+			"include",
+			"add_dependencies",
+			"pkgconfig_module",
+			"ns3_cmake_package",
+			"build_exec"
+		],
+		"files" : 
+		[
+			"build-support/custom-modules/ns3-cmake-package.cmake",
+			"build-support/macros-and-definitions.cmake",
+			"CMakeLists.txt",
+			"build-support/custom-modules/ns3-executables.cmake",
+			"src/fd-net-device/CMakeLists.txt",
+			"src/tap-bridge/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 2
+			},
+			{
+				"command" : 1,
+				"file" : 2,
+				"line" : 111,
+				"parent" : 0
+			},
+			{
+				"file" : 1,
+				"parent" : 1
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 49,
+				"parent" : 2
+			},
+			{
+				"file" : 0,
+				"parent" : 3
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 182,
+				"parent" : 4
+			},
+			{
+				"command" : 4,
+				"file" : 2,
+				"line" : 170,
+				"parent" : 0
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 142,
+				"parent" : 6
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 122,
+				"parent" : 7
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 142,
+				"parent" : 6
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 122,
+				"parent" : 9
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 142,
+				"parent" : 6
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 122,
+				"parent" : 11
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 142,
+				"parent" : 6
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 122,
+				"parent" : 13
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 142,
+				"parent" : 6
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 122,
+				"parent" : 15
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 142,
+				"parent" : 6
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 122,
+				"parent" : 17
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 142,
+				"parent" : 6
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 122,
+				"parent" : 19
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 142,
+				"parent" : 6
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 122,
+				"parent" : 21
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 142,
+				"parent" : 6
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 122,
+				"parent" : 23
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 142,
+				"parent" : 6
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 122,
+				"parent" : 25
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 142,
+				"parent" : 6
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 122,
+				"parent" : 27
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 142,
+				"parent" : 6
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 122,
+				"parent" : 29
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 142,
+				"parent" : 6
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 122,
+				"parent" : 31
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 142,
+				"parent" : 6
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 122,
+				"parent" : 33
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 142,
+				"parent" : 6
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 122,
+				"parent" : 35
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 142,
+				"parent" : 6
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 122,
+				"parent" : 37
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 142,
+				"parent" : 6
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 122,
+				"parent" : 39
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 142,
+				"parent" : 6
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 122,
+				"parent" : 41
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 142,
+				"parent" : 6
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 122,
+				"parent" : 43
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 142,
+				"parent" : 6
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 122,
+				"parent" : 45
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 142,
+				"parent" : 6
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 122,
+				"parent" : 47
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 142,
+				"parent" : 6
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 122,
+				"parent" : 49
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 142,
+				"parent" : 6
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 122,
+				"parent" : 51
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 142,
+				"parent" : 6
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 122,
+				"parent" : 53
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 142,
+				"parent" : 6
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 122,
+				"parent" : 55
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 142,
+				"parent" : 6
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 122,
+				"parent" : 57
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 142,
+				"parent" : 6
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 122,
+				"parent" : 59
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 142,
+				"parent" : 6
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 122,
+				"parent" : 61
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 142,
+				"parent" : 6
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 122,
+				"parent" : 63
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 142,
+				"parent" : 6
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 122,
+				"parent" : 65
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 142,
+				"parent" : 6
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 122,
+				"parent" : 67
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 142,
+				"parent" : 6
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 122,
+				"parent" : 69
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 142,
+				"parent" : 6
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 122,
+				"parent" : 71
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 142,
+				"parent" : 6
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 122,
+				"parent" : 73
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 142,
+				"parent" : 6
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 122,
+				"parent" : 75
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 142,
+				"parent" : 6
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 122,
+				"parent" : 77
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 142,
+				"parent" : 6
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 122,
+				"parent" : 79
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 142,
+				"parent" : 6
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 122,
+				"parent" : 81
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 142,
+				"parent" : 6
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 122,
+				"parent" : 83
+			},
+			{
+				"file" : 4
+			},
+			{
+				"command" : 5,
+				"file" : 4,
+				"line" : 156,
+				"parent" : 85
+			},
+			{
+				"command" : 2,
+				"file" : 3,
+				"line" : 159,
+				"parent" : 86
+			},
+			{
+				"command" : 5,
+				"file" : 4,
+				"line" : 194,
+				"parent" : 85
+			},
+			{
+				"command" : 2,
+				"file" : 3,
+				"line" : 159,
+				"parent" : 88
+			},
+			{
+				"command" : 5,
+				"file" : 4,
+				"line" : 235,
+				"parent" : 85
+			},
+			{
+				"command" : 2,
+				"file" : 3,
+				"line" : 159,
+				"parent" : 90
+			},
+			{
+				"file" : 5
+			},
+			{
+				"command" : 5,
+				"file" : 5,
+				"line" : 37,
+				"parent" : 92
+			},
+			{
+				"command" : 2,
+				"file" : 3,
+				"line" : 159,
+				"parent" : 93
+			}
+		]
+	},
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 8,
+			"id" : "uninstall_pkgconfig_wimax::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 10,
+			"id" : "uninstall_pkgconfig_wifi::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 12,
+			"id" : "uninstall_pkgconfig_virtual-net-device::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 14,
+			"id" : "uninstall_pkgconfig_uan::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 16,
+			"id" : "uninstall_pkgconfig_traffic-control::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 18,
+			"id" : "uninstall_pkgconfig_topology-read::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 20,
+			"id" : "uninstall_pkgconfig_tap-bridge::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 22,
+			"id" : "uninstall_pkgconfig_stats::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 24,
+			"id" : "uninstall_pkgconfig_spectrum::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 26,
+			"id" : "uninstall_pkgconfig_sixlowpan::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 28,
+			"id" : "uninstall_pkgconfig_quic::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 30,
+			"id" : "uninstall_pkgconfig_propagation::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 32,
+			"id" : "uninstall_pkgconfig_point-to-point-layout::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 34,
+			"id" : "uninstall_pkgconfig_point-to-point::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 36,
+			"id" : "uninstall_pkgconfig_olsr::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 38,
+			"id" : "uninstall_pkgconfig_nix-vector-routing::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 40,
+			"id" : "uninstall_pkgconfig_network::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 42,
+			"id" : "uninstall_pkgconfig_netanim::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 44,
+			"id" : "uninstall_pkgconfig_mobility::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 46,
+			"id" : "uninstall_pkgconfig_mesh::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 48,
+			"id" : "uninstall_pkgconfig_lte::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 50,
+			"id" : "uninstall_pkgconfig_lr-wpan::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 52,
+			"id" : "uninstall_pkgconfig_internet-apps::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 54,
+			"id" : "uninstall_pkgconfig_internet::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 56,
+			"id" : "uninstall_pkgconfig_innetwork-task::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 58,
+			"id" : "uninstall_pkgconfig_flow-monitor::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 60,
+			"id" : "uninstall_pkgconfig_fd-net-device::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 62,
+			"id" : "uninstall_pkgconfig_energy::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 64,
+			"id" : "uninstall_pkgconfig_dsr::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 66,
+			"id" : "uninstall_pkgconfig_dsdv::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 68,
+			"id" : "uninstall_pkgconfig_csma-layout::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 70,
+			"id" : "uninstall_pkgconfig_csma::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 72,
+			"id" : "uninstall_pkgconfig_core::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 74,
+			"id" : "uninstall_pkgconfig_config-store::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 76,
+			"id" : "uninstall_pkgconfig_buildings::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 78,
+			"id" : "uninstall_pkgconfig_bridge::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 80,
+			"id" : "uninstall_pkgconfig_applications::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 82,
+			"id" : "uninstall_pkgconfig_aodv::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 84,
+			"id" : "uninstall_pkgconfig_antenna::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 87,
+			"id" : "uninstall_raw-sock-creator::@556bfae050776c5ab597"
+		},
+		{
+			"backtrace" : 89,
+			"id" : "uninstall_tap-device-creator::@556bfae050776c5ab597"
+		},
+		{
+			"backtrace" : 91,
+			"id" : "uninstall_netmap-device-creator::@556bfae050776c5ab597"
+		},
+		{
+			"backtrace" : 94,
+			"id" : "uninstall_tap-creator::@41c2f7889af4d596f671"
+		}
+	],
+	"id" : "uninstall::@6890427a1f51a3e7e1df",
+	"name" : "uninstall",
+	"paths" : 
+	{
+		"build" : ".",
+		"source" : "."
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		},
+		{
+			"name" : "CMake Rules",
+			"sourceIndexes" : 
+			[
+				1
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 5,
+			"isGenerated" : true,
+			"path" : "build/CMakeFiles/uninstall",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "build/CMakeFiles/uninstall.rule",
+			"sourceGroupIndex" : 1
+		}
+	],
+	"type" : "UTILITY"
+}

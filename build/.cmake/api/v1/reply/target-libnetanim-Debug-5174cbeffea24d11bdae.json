@@ -1,0 +1,546 @@
+{
+	"artifacts" : 
+	[
+		{
+			"path" : "lib/libns3.42-netanim-debug.so"
+		}
+	],
+	"backtrace" : 2,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_library",
+			"build_lib",
+			"install",
+			"link_directories",
+			"include",
+			"target_link_libraries",
+			"add_compile_options",
+			"process_options",
+			"add_definitions",
+			"include_directories"
+		],
+		"files" : 
+		[
+			"build-support/custom-modules/ns3-module-macros.cmake",
+			"src/netanim/CMakeLists.txt",
+			"build-support/custom-modules/ns3-output-directory.cmake",
+			"build-support/macros-and-definitions.cmake",
+			"CMakeLists.txt",
+			"build-support/custom-modules/ns3-platform-support.cmake"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 1
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 1,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 155,
+				"parent" : 1
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 481,
+				"parent" : 1
+			},
+			{
+				"file" : 4
+			},
+			{
+				"command" : 4,
+				"file" : 4,
+				"line" : 111,
+				"parent" : 4
+			},
+			{
+				"file" : 3,
+				"parent" : 5
+			},
+			{
+				"command" : 4,
+				"file" : 3,
+				"line" : 46,
+				"parent" : 6
+			},
+			{
+				"file" : 2,
+				"parent" : 7
+			},
+			{
+				"command" : 3,
+				"file" : 2,
+				"line" : 81,
+				"parent" : 8
+			},
+			{
+				"command" : 5,
+				"file" : 0,
+				"line" : 292,
+				"parent" : 1
+			},
+			{
+				"command" : 7,
+				"file" : 4,
+				"line" : 149,
+				"parent" : 4
+			},
+			{
+				"command" : 6,
+				"file" : 3,
+				"line" : 231,
+				"parent" : 11
+			},
+			{
+				"command" : 8,
+				"file" : 3,
+				"line" : 559,
+				"parent" : 11
+			},
+			{
+				"command" : 8,
+				"file" : 3,
+				"line" : 558,
+				"parent" : 11
+			},
+			{
+				"command" : 8,
+				"file" : 3,
+				"line" : 863,
+				"parent" : 11
+			},
+			{
+				"command" : 8,
+				"file" : 3,
+				"line" : 614,
+				"parent" : 11
+			},
+			{
+				"command" : 8,
+				"file" : 3,
+				"line" : 545,
+				"parent" : 11
+			},
+			{
+				"command" : 8,
+				"file" : 3,
+				"line" : 1145,
+				"parent" : 11
+			},
+			{
+				"command" : 8,
+				"file" : 3,
+				"line" : 157,
+				"parent" : 11
+			},
+			{
+				"command" : 8,
+				"file" : 3,
+				"line" : 1140,
+				"parent" : 11
+			},
+			{
+				"command" : 8,
+				"file" : 3,
+				"line" : 19,
+				"parent" : 6
+			},
+			{
+				"command" : 4,
+				"file" : 3,
+				"line" : 52,
+				"parent" : 6
+			},
+			{
+				"file" : 5,
+				"parent" : 22
+			},
+			{
+				"command" : 8,
+				"file" : 5,
+				"line" : 34,
+				"parent" : 23
+			},
+			{
+				"command" : 9,
+				"file" : 3,
+				"line" : 485,
+				"parent" : 11
+			},
+			{
+				"command" : 9,
+				"file" : 3,
+				"line" : 546,
+				"parent" : 11
+			},
+			{
+				"command" : 9,
+				"file" : 3,
+				"line" : 560,
+				"parent" : 11
+			},
+			{
+				"command" : 9,
+				"file" : 3,
+				"line" : 588,
+				"parent" : 11
+			},
+			{
+				"command" : 9,
+				"file" : 3,
+				"line" : 615,
+				"parent" : 11
+			}
+		]
+	},
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 10,
+			"id" : "libantenna::@000737a0949b1597daab"
+		},
+		{
+			"backtrace" : 10,
+			"id" : "libapplications::@a48e303ef543a0192510"
+		},
+		{
+			"backtrace" : 10,
+			"id" : "libbridge::@e12754a9402ac756973a"
+		},
+		{
+			"backtrace" : 10,
+			"id" : "libbuildings::@2d6478ec4a24b1f7bdbd"
+		},
+		{
+			"backtrace" : 10,
+			"id" : "libconfig-store::@0a448824ace9838c932a"
+		},
+		{
+			"backtrace" : 10,
+			"id" : "libcore::@0618756b1ff51bca1a0e"
+		},
+		{
+			"backtrace" : 10,
+			"id" : "libcsma::@457f510286be5371199b"
+		},
+		{
+			"backtrace" : 10,
+			"id" : "libenergy::@64b7acd7d729390dea74"
+		},
+		{
+			"backtrace" : 10,
+			"id" : "libfd-net-device::@556bfae050776c5ab597"
+		},
+		{
+			"backtrace" : 10,
+			"id" : "libinternet::@cf20f20ea777b8d334b4"
+		},
+		{
+			"backtrace" : 10,
+			"id" : "liblr-wpan::@45be7a455a5f76cbc3d2"
+		},
+		{
+			"backtrace" : 10,
+			"id" : "liblte::@f1c97db8cc3fcef38804"
+		},
+		{
+			"backtrace" : 10,
+			"id" : "libmobility::@2e8c3d564dbe2f6b990d"
+		},
+		{
+			"id" : "libnetanim-obj::@bd6b8f954589cac10ad0"
+		},
+		{
+			"backtrace" : 10,
+			"id" : "libnetwork::@311edf953348ef8fadde"
+		},
+		{
+			"backtrace" : 10,
+			"id" : "libpoint-to-point::@440f5f261b9566ce758a"
+		},
+		{
+			"backtrace" : 10,
+			"id" : "libpropagation::@e1205667d4949730ed2e"
+		},
+		{
+			"backtrace" : 10,
+			"id" : "libspectrum::@edd78237c376ce4d0dc6"
+		},
+		{
+			"backtrace" : 10,
+			"id" : "libstats::@a16f7aa18ccba9be6aba"
+		},
+		{
+			"backtrace" : 10,
+			"id" : "libtraffic-control::@5510e62c9c27dee44e6c"
+		},
+		{
+			"backtrace" : 10,
+			"id" : "libuan::@b2ca6ee95032a5560205"
+		},
+		{
+			"backtrace" : 10,
+			"id" : "libvirtual-net-device::@7550cbb5e76b22ae209d"
+		},
+		{
+			"backtrace" : 10,
+			"id" : "libwifi::@7d28256f07142c24adbf"
+		},
+		{
+			"backtrace" : 10,
+			"id" : "libwimax::@487b93290c50ee31c181"
+		}
+	],
+	"id" : "libnetanim::@bd6b8f954589cac10ad0",
+	"install" : 
+	{
+		"destinations" : 
+		[
+			{
+				"backtrace" : 3,
+				"path" : "lib"
+			},
+			{
+				"backtrace" : 3,
+				"path" : "lib"
+			}
+		],
+		"prefix" : 
+		{
+			"path" : "/usr/local"
+		}
+	},
+	"link" : 
+	{
+		"commandFragments" : 
+		[
+			{
+				"fragment" : "",
+				"role" : "flags"
+			},
+			{
+				"backtrace" : 9,
+				"fragment" : "-L/home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/build/lib",
+				"role" : "libraryPath"
+			},
+			{
+				"fragment" : "-Wl,-rpath,/home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/build/lib:::::::::::::::::",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 10,
+				"fragment" : "-Wl,--no-as-needed",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 10,
+				"fragment" : "../../lib/libns3.42-wimax-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 10,
+				"fragment" : "../../lib/libns3.42-wifi-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 10,
+				"fragment" : "../../lib/libns3.42-lte-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 10,
+				"fragment" : "../../lib/libns3.42-uan-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 10,
+				"fragment" : "../../lib/libns3.42-lr-wpan-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 10,
+				"fragment" : "-Wl,--as-needed",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "../../lib/libns3.42-fd-net-device-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "../../lib/libns3.42-buildings-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "../../lib/libns3.42-virtual-net-device-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "../../lib/libns3.42-point-to-point-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "../../lib/libns3.42-applications-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "../../lib/libns3.42-internet-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "../../lib/libns3.42-bridge-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "../../lib/libns3.42-traffic-control-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "../../lib/libns3.42-csma-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "../../lib/libns3.42-config-store-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libxml2.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libfreetype.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libglib-2.0.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libgthread-2.0.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libgobject-2.0.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libgio-2.0.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libgdk_pixbuf-2.0.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libgdk-3.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libgtk-3.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libcairo.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libpango-1.0.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libatk-1.0.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "../../lib/libns3.42-energy-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "../../lib/libns3.42-spectrum-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "../../lib/libns3.42-propagation-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "../../lib/libns3.42-mobility-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "../../lib/libns3.42-network-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "../../lib/libns3.42-stats-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libsqlite3.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "../../lib/libns3.42-antenna-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "../../lib/libns3.42-core-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 10,
+				"fragment" : "-Wl,--no-as-needed",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 10,
+				"fragment" : "-Wl,--as-needed",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libgsl.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libgslcblas.so",
+				"role" : "libraries"
+			}
+		],
+		"language" : "CXX"
+	},
+	"name" : "libnetanim",
+	"nameOnDisk" : "libns3.42-netanim-debug.so",
+	"paths" : 
+	{
+		"build" : "src/netanim",
+		"source" : "src/netanim"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Object Libraries",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/netanim/CMakeFiles/libnetanim-obj.dir/model/animation-interface.cc.o",
+			"sourceGroupIndex" : 0
+		}
+	],
+	"type" : "SHARED_LIBRARY"
+}

@@ -60,9 +60,21 @@ namespace ns3 {
         //NS_LOG_FUNCTION (this);
         std::string addrStr;
 
-        // setup servers
-        for (uint8_t i = 0; i < this->sGroup. size (); ++i) {
-            Addr2Str (sGroup[i], addrStr);
+
+        // Zhuoxu: Twist the server and client here.
+        // Setup itself as clients, if it has parents
+        for (uint8_t i = 0; i < this->sGroup.size(); ++i) {
+            Addr2Str(sGroup[i], addrStr);
+            Ptr<QuicMyClient> myclient = Create<QuicMyClient>();
+            myclient->SetNode(node);
+            myclient->SetRemote(Ipv4Address::ConvertFrom(sGroup[i]), m_peerPort);
+            myclient->Bind(m_peerPort + i + 1);
+            socketPool[addrStr] = myclient;
+        }
+
+        // Setup itself as servers, if it has children
+        for (uint8_t i = 0; i < this->cGroup.size(); ++i) {
+            Addr2Str(cGroup[i], addrStr);
             QuicServerHelper myserverhelper(m_peerPort);
             myserverhelper.Install(node);
             Ptr<QuicMyServer> myserver = myserverhelper.GetServer();
@@ -72,15 +84,6 @@ namespace ns3 {
             socketPool[addrStr] = myserver;
         }
 
-        //setup clients
-        for (uint8_t i = 0; i < this->cGroup. size (); ++i) {
-            Addr2Str (cGroup[i], addrStr);
-            Ptr<QuicMyClient> myclient= Create<QuicMyClient>();
-            myclient->SetNode(node);
-            myclient->SetRemote(Ipv4Address::ConvertFrom (cGroup[i]), m_peerPort);
-            myclient->Bind(m_peerPort + i + 1);
-            socketPool[addrStr] = myclient;
-        }
         NS_LOG_DEBUG("Connection Setting Finishing in: "<< Simulator::Now().GetMilliSeconds() << "ms");
     }
 
@@ -89,22 +92,27 @@ namespace ns3 {
     void 
     InnetworkAggregationInterface::ReceiveDataFrom (std::string fromStr) {
         NS_ASSERT ( socketPool. find (fromStr) != socketPool. end () );
-        // NS_LOG_FUNCTION (this<<fromStr);
         Ptr<CircularBuffer> ccircularBuffer;
+        // if (this->sGroup. size () > 0 && this-> cGroup.size() > 0)
+        //     NS_LOG_DEBUG(this<<" In aggregator... ReceiveDataFrom,"<<"fromStr:"<<fromStr);
         if( socketPool[fromStr] != nullptr ){
-            //NS_LOG_FUNCTION(this<<"socketPool[fromStr] is not nullptr---");
+            //NS_LOG_DEBUG(this<<" socketPool[fromStr] is not nullptr---");
             
             if ( socketPool[fromStr]->GetObject<QuicMyServer>() ){
                 Ptr<QuicMyServer> server = socketPool[fromStr]->GetObject<QuicMyServer>();
                 // Zhuoxu: the write operation on the ccircularBuffer is integrated in the QuicMyServer::HandleRead function.
                 ccircularBuffer = server->GetBuffer();
                 //ccircularBuffer->print();
-                NS_LOG_FUNCTION(this<<"QuickMyServer,"<<"ccircularBufferSize:"<<ccircularBuffer->getSize());
+                // Zhuoxu: only print if it is an aggregator
+                //if (this->sGroup. size () > 0 && this-> cGroup.size() > 0)
+                //    NS_LOG_DEBUG(this<<" In aggregator... QuickMyServer,"<<"ccircularBufferSize:"<<ccircularBuffer->getSize());
             }
             else if( socketPool[fromStr]->GetObject<QuicMyClient>() ){
                 Ptr<QuicMyClient> client = socketPool[fromStr]->GetObject<QuicMyClient>();
                 ccircularBuffer = client->GetBuffer();
-                NS_LOG_FUNCTION(this<<"QuickMyClient,"<<"ccircularBufferSize:"<<ccircularBuffer->getSize());
+                // Zhuoxu: only print if it is an aggregator
+                //if (this->sGroup. size () > 0 && this-> cGroup.size() > 0)
+                //    NS_LOG_DEBUG(this<<" In aggregator... QuickMyClient,"<<"ccircularBufferSize:"<<ccircularBuffer->getSize());
             }
             else{
                 NS_FATAL_ERROR("Application is not a QuicMyServer or QuicMyClient");
@@ -114,14 +122,18 @@ namespace ns3 {
             uint8_t* quicpacket = new uint8_t[pktlen];
             // If there are no data be receive then, all these process will be just triggered by the ns3::scheduler function.
             while ( ccircularBuffer->getSize() >= pktlen )
-            {
-                                   
-                if ( ccircularBuffer->getNextToRead() == uint8_t(0) ){
-                    ccircularBuffer->read(quicpacket,pktlen);
-                    HandleRequestV(fromStr);
-                }
-                else if ( ccircularBuffer->getNextToRead() == uint8_t(1) ){
-                    std::cout<<"ReceiveDataFrom    ccircularBuffer->getNextToRead() == uint8_t(1)---------"<<std::endl;
+            {           
+                // if ( ccircularBuffer->getNextToRead() == uint8_t(0) ){
+                //     NS_LOG_DEBUG("strange request---------");
+                //     //ccircularBuffer->print();
+                //     //GoToReadPos(ccircularBuffer);
+                //     ccircularBuffer->read(quicpacket,pktlen);
+                //     // HandleRequestV(fromStr);
+                // }
+                // else 
+                if ( ccircularBuffer->getNextToRead() == uint8_t(1) ){
+                    NS_LOG_DEBUG("ReceiveDataFrom----ccircularBuffer->getNextToRead() == uint8_t(1)---------");
+                    ccircularBuffer->print();
                     ccircularBuffer->read(quicpacket,pktlen);
                     //ccircularBuffer->print();
                     HandleResponseV(fromStr,quicpacket+1);
@@ -136,7 +148,7 @@ namespace ns3 {
             delete [] quicpacket;
         }
         else{
-            std::cout<< "socketPool[fromStr] is nullptr---" << socketPool[fromStr] <<std::endl;
+            NS_LOG_DEBUG("socketPool[fromStr] is nullptr---" << socketPool[fromStr]);
         }
     }
 
@@ -187,11 +199,8 @@ namespace ns3 {
             ReceiveDataFrom (item.first);
         }
 
-        if (!isEnd || cGroup. size () == 0){
-            // The minimum time interval is 1ms in the test.
-            ns3::Simulator::Schedule(ns3::MilliSeconds(1), &InnetworkAggregationInterface::ReceiveDataFromAll, this);
-        }
-
+        // The minimum time interval is 1ms in the test.
+        ns3::Simulator::Schedule(ns3::MilliSeconds(4), &InnetworkAggregationInterface::ReceiveDataFromAll, this);
     }
 
 
@@ -229,98 +238,17 @@ namespace ns3 {
         // if one iterationNumber collects enough data
         if (bool(chunkMap[iterationNumber].count == cGroup.size())) {
             //std::cout<<"3333"<<chunkMap[iterationNumber].count-uint8_t(0)<<"cGroup:"<<cGroup.size()<<bool(chunkMap[iterationNumber].count == cGroup.size())<<std::endl;
-            // AvgVector(chunkMap[iterationNumber].data, chunkMap[iterationNumber].count); //correct only for evenly distributed networks, simply SumVector for other scenarios 
+            AvgVector(chunkMap[iterationNumber].data, chunkMap[iterationNumber].count); //correct only for evenly distributed networks, simply SumVector for other scenarios 
             //std::cout<<"chunkMap[iterationNumber].count == cGroup.size()  ----iterationNumber-- "<<iterationNumber-uint8_t(0)<<"---count-- "<<chunkMap[iterationNumber].count-uint8_t(0)<<std::endl;
             this->isEnd = true;
             this->currentIteration++;
-            NS_LOG_FUNCTION (this << "iteration" << iterationNumber - uint8_t(0) <<"collect all the data from the child");
+            if (this->sGroup. size () > 0 && this-> cGroup.size() > 0)
+                NS_LOG_DEBUG(this << "In iteration: " << iterationNumber - uint8_t(0) <<" aggregator collect all "<< cGroup.size() <<" data from the child");
+            else if (this->sGroup. size () == 0)
+                NS_LOG_DEBUG(this << "In iteration: " << iterationNumber - uint8_t(0) <<" consumer collect all "<< cGroup.size() <<" data from the child");
             AVG (iterationNumber);       
         }
     }
-
-    void 
-    InnetworkAggregationInterface::HandleRequestV (std::string fromStr) {
-        //NS_LOG_FUNCTION (this);
-
-        //std::cout<<"HandleRequestV from----"<<fromStr<<std::endl;
-        // producers response
-        if (cGroup. size () <= 0) {
-            // add a loop here
-            
-            std::vector<uint64_t> randVec (vsize);
-            GenetrateRandomVector (randVec, this->aggTreeLevel);
-            SendResponseVTo (fromStr, randVec, iterationNumber);
-        }
-        
-        // aggregators deliver request
-        SendRequestVToAll ();        
-    }
-
-
-
-    void 
-    InnetworkAggregationInterface::SendRequestVTo (std::string toStr) {
-        //NS_LOG_FUNCTION (this);        
-        NS_ASSERT (socketPool. find (toStr) != socketPool. end ());
-        Ptr<QuicMyClient> requestptr = socketPool[toStr]->GetObject<QuicMyClient>();
-        if (!requestptr){std::cout<<"no such client to sent request!"<<std::endl;}
-
-        // create request packet
-        uint8_t* buffer = new uint8_t[pktlen];
-        // not useful representations
-        uint16_t request_port = requestptr->GetBindPort();
-        buffer[0] = 0;
-        buffer[1] = (request_port >> 8);
-        buffer[2] = request_port & 0xFF;
-        for (int i = 3; i < pktlen; i++){
-            buffer[i]=0;
-        }
-        
-        requestptr->Send(buffer, pktlen);
-        
-        delete [] buffer;
-    }
-
-    void
-    InnetworkAggregationInterface::SendRequestVToAll () {
-        //NS_LOG_FUNCTION (this);
-        for (uint8_t i = 0; i < this->cGroup. size (); ++i) {
-            // send request
-            std::string toStr;
-            Addr2Str (this->cGroup[i], toStr);
-            //std::cout<<"SendRequestVToAllsending request to :--------"<<toStr<<std::endl;
-            SendRequestVTo (toStr);
-        }
-        
-        
-        /*currentIndex = 0;   
-        if (currentIndex < cGroup.size()) {
-            ScheduleAndSend();
-        }*/
-    }
-
-//     void 
-//     InnetworkAggregationInterface::ScheduleAndSend() {
-//         //NS_LOG_FUNCTION(this);
-
-//         // 检查索引是否在有效范围内
-//         if (currentIndex >= cGroup.size()) {
-//             // 索引超出范围，停止发送和调度
-//             return;
-//         }
-
-//         // 发送请求
-//         std::string toStr;
-//         Addr2Str(cGroup[currentIndex], toStr);
-//         SendRequestVTo(toStr);
-
-//         // 更新索引，准备下一次发送
-//         currentIndex++;
-
-//         // 安排在20ms后发送下一条请求
-//         ns3::Simulator::Schedule(ns3::MilliSeconds(2000), &InnetworkAggregationInterface::ScheduleAndSend, this);
-// }
-
 
     // serialize and slice vec into chunks of k elements, that is k*8 uint8_t/chunk.
     void 
@@ -365,8 +293,9 @@ namespace ns3 {
     InnetworkAggregationInterface::SendPacketFromPro (std::string toStr, uint8_t iterationNumber, std::vector<uint8_t> &serializeVec){
         
         NS_LOG_INFO("iteration-"<<iterationNumber-uint8_t(0));
-        std::cout<<"CurrentTime in SendPacketFromPro: " << Simulator::Now().GetMilliSeconds() << "ms" <<std::endl;
-        Ptr<QuicMyServer> server = socketPool[toStr]->GetObject<QuicMyServer>();
+
+        // Zhuoxu: change the producer to client here
+        Ptr<QuicMyClient> client = socketPool[toStr]->GetObject<QuicMyClient>();
         std::vector<uint8_t> chunkBuffer = std::vector<uint8_t>(pktlen,0); //Zhuoxu: 
         uint8_t* buffer = serializeVec.data(); 
         chunkBuffer[0] = 1;
@@ -379,14 +308,19 @@ namespace ns3 {
         // 在这里获取是否
         int sentSize = -1;
         while(sentSize < 0 ){
-         sentSize = server->Send(chunkBuffer.data(),pktlen);
+         sentSize = client->Send(chunkBuffer.data(),pktlen);
+            // determine if the sent operation success
+            if(sentSize > 0)
+                NS_LOG_DEBUG(this<<"client->Send() success at iteration "<<iterationNumber-uint8_t(0));
+            else
+                NS_LOG_DEBUG(this<<"client->Send() failed at iteration "<<iterationNumber-uint8_t(0));
         }
         // Continue if have not yet reached the maximum iteration
-        if (cGroup.size()<=0 && iterationNumber <= 149){
-        // Schedule the next call
-        std::cout<<"IterationNum-"<<iterationNumber-uint8_t(0)<< " Innetwork aggregation Startfrom (Before Schedule SendPacketFrom): " << Simulator::Now().GetMilliSeconds() << "ms" <<std::endl;
-        // When the schedule frequency is below than 5ms, error will happen.
-        ns3::Simulator::Schedule(ns3::MilliSeconds(5), &InnetworkAggregationInterface::SendPacketFromPro, this, toStr, iterationNumber+1, serializeVec);
+        if (cGroup.size()<=0 && iterationNumber <= maxIteration){
+            // Schedule the next call
+            // NS_LOG_DEBUG("IterationNum-" << static_cast<int>(iterationNumber) << " Startfrom: " << Simulator::Now().GetMilliSeconds() << "ms");
+            // When the schedule frequency is below than 5ms, error will happen.
+            ns3::Simulator::Schedule(ns3::MilliSeconds(10), &InnetworkAggregationInterface::SendPacketFromPro, this, toStr, iterationNumber+1, serializeVec);
         }
     }
 
@@ -400,7 +334,7 @@ namespace ns3 {
     void 
     InnetworkAggregationInterface::SendResponseVToP (std::vector<uint64_t> &avg , uint8_t iterationNumber) {
 
-        for (uint8_t i = 0; i < this->sGroup. size (); ++i) {
+        for (uint8_t i = 0; i < this->sGroup.size (); ++i) {
             std::string toStr;
             Addr2Str (this->sGroup[i], toStr);
             SendResponseVTo (toStr, avg, iterationNumber);
@@ -410,47 +344,35 @@ namespace ns3 {
     void 
     InnetworkAggregationInterface::AVG (uint8_t iterationNumber) {
         // NS_LOG_FUNCTION (this<<this->node->GetObject<Ipv4>()<<iterationNumber);
-        if (this->isEnd) {
-            this->isEnd = false;
-            if (this->currentIteration > 0) {
-                NS_LOG_FUNCTION (this<<iterationNumber<<" sGroup.size()"<<sGroup.size());
-                // std::vector<uint64_t> avg = std::vector<uint64_t>(vsize, 0);
-                // WriteChunk2Vec (avg, vsize);//vsize //Zhuoxu: problematic code
 
-                if (this->sGroup. size () <= 0) {
-                    std::cout<<"chunkMap.size()"<<chunkMap.size()<<std::endl;
-                    Time currentTime = Simulator::Now();
-                    // Time duration = currentTime - this->startTime;
-                    // std::cout<<  "Innetwork aggregation completed in : " << duration.GetMilliSeconds()  << "ms" <<std::endl;
-                    NS_LOG_DEBUG("IterationNum-"<<iterationNumber-uint8_t(0)<< " Innetwork aggregation completed in: " << currentTime.GetMilliSeconds() << "ms");
-                    //NS_LOG_INFO ("Innetwork aggregation completed in : " << duration.GetMilliSeconds() << "ms");
-                    // if (chunkMap.size() > 9) {
-                    //     Simulator::Stop (Seconds(Simulator::Now().GetSeconds() + 1));
-                    // }
-                    
-                }
-                //reply result to parent
-                // NS_LOG_INFO( "AVG: " << iterationNumber-uint8_t(0));
-                SendResponseVToP (chunkMap[iterationNumber].data, iterationNumber);
-                // SaveResult (avg);Zhuoxu: No need this 
-                //ClearChunkMap ();
-            }
+        if (this->currentIteration == 0) {
+            NS_LOG_DEBUG("[InnetworkAggregationInterface:AVG] send a new data at time "<< Simulator::Now().GetSeconds () << 
+                            " currentIteration = " << this->currentIteration << " maxIteration = " << this->maxIteration);
+        }
+        NS_LOG_DEBUG(this<<" sGroup.size(): "<<sGroup.size());
+        // std::vector<uint64_t> avg = std::vector<uint64_t>(vsize, 0);
+        // WriteChunk2Vec (avg, vsize);//vsize //Zhuoxu: problematic code
+
+        if (this->sGroup. size () <= 0) {
+            std::cout<<"chunkMap.size()"<<chunkMap.size()<<std::endl;
+            Time currentTime = Simulator::Now();
+            // Time duration = currentTime - this->startTime;
+            // std::cout<<  "Innetwork aggregation completed in : " << duration.GetMilliSeconds()  << "ms" <<std::endl;
+            NS_LOG_DEBUG("IterationNum-"<<iterationNumber-uint8_t(0)<< " Innetwork aggregation completed in: " << currentTime.GetMilliSeconds() << "ms");
+            //NS_LOG_INFO ("Innetwork aggregation completed in : " << duration.GetMilliSeconds() << "ms");
 
             // simulator end early
-            // if (this->currentIteration >= this->maxIteration) {
-            //     Simulator::Stop (Seconds(Simulator::Now().GetSeconds() + 1));
-            // }
-
-            // zhuoxu: this can only be triggered once.
-            if (this->currentIteration ==0) {
-                std::cout<<"[InnetworkAggregationInterface:AVG] start a new request at time "<< Simulator::Now().GetSeconds () << 
-                                " count = " << this->currentIteration << " maxIteration = " << this->maxIteration<<std::endl;
-                NS_LOG_INFO ("[InnetworkAggregationInterface:AVG] start a new request at time " << Simulator::Now().GetSeconds () << 
-                                " count = " << this->currentIteration << " maxIteration = " << this->maxIteration);
-                this->startTime = Simulator::Now();
-                SendRequestVToAll ();
+            // Zhuoxu: This will go wrong will iteration disorder.
+            if (this->currentIteration >= this->maxIteration) {
+                Simulator::Stop (Seconds(Simulator::Now().GetSeconds() + 1));
             }
+            
         }
+        //reply result to parent
+        // NS_LOG_INFO( "AVG: " << iterationNumber-uint8_t(0));
+        SendResponseVToP (chunkMap[iterationNumber].data, iterationNumber);
+        // SaveResult (avg);Zhuoxu: No need this 
+        //ClearChunkMap ();
     }
 
     bool 
@@ -472,19 +394,6 @@ namespace ns3 {
             tmp. second. count = 0;
             std::vector<uint64_t> tmp1 (chunkSize, 0);
             tmp. second. data = tmp1;
-        }
-    }
-
-    void 
-    InnetworkAggregationInterface::WriteChunk2Vec (std::vector<uint64_t> &vec, uint16_t size) {
-        //NS_LOG_FUNCTION (this);
-        //uint16_t chunkSize = static_cast<uint16_t>(BASESIZE / 8);
-        uint8_t range = static_cast<uint8_t>(size / chunkSize + (size % chunkSize != 0));
-        
-        for (uint8_t i = 0; i < range; ++i) {
-            for (uint8_t j = 0; j < chunkSize ;++j) {
-                vec[i * chunkSize + j] = chunkMap[i]. data[j];
-            }
         }
     }
 

@@ -272,7 +272,7 @@ QuicMyClient::CreateSocket(Ptr<Node> node,uint16_t port) {
 }
 
 
-void 
+int
 QuicMyClient::Send(const uint8_t* buffer, size_t len) {
   NS_LOG_FUNCTION (this<<len);
   NS_ASSERT (m_sendEvent.IsExpired ());
@@ -294,6 +294,7 @@ QuicMyClient::Send(const uint8_t* buffer, size_t len) {
   <<"----state:"<<m_socket->GetObject<QuicSocketBase>()->GetSocketState()<<"---with conID---"
   <<m_socket->GetObject<QuicSocketBase>()->GetConnectionId()
   <<"--at--time--"<<Simulator::Now()<<std::endl;*/
+  return sentSize;
 }
 
 

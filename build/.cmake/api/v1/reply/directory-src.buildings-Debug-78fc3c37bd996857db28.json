@@ -1,0 +1,77 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"install",
+			"build_lib"
+		],
+		"files" : 
+		[
+			"build-support/custom-modules/ns3-module-macros.cmake",
+			"src/buildings/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 1
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 1,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 481,
+				"parent" : 1
+			}
+		]
+	},
+	"installers" : 
+	[
+		{
+			"backtrace" : 2,
+			"component" : "Unspecified",
+			"destination" : "lib",
+			"paths" : 
+			[
+				"lib/libns3.42-buildings-debug.so"
+			],
+			"targetId" : "libbuildings::@2d6478ec4a24b1f7bdbd",
+			"targetIndex" : 117,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 2,
+			"component" : "Unspecified",
+			"destination" : "include/ns3",
+			"paths" : 
+			[
+				"src/buildings/helper/building-allocator.h",
+				"src/buildings/helper/building-container.h",
+				"src/buildings/helper/building-position-allocator.h",
+				"src/buildings/helper/buildings-helper.h",
+				"src/buildings/model/building-list.h",
+				"src/buildings/model/building.h",
+				"src/buildings/model/buildings-channel-condition-model.h",
+				"src/buildings/model/buildings-propagation-loss-model.h",
+				"src/buildings/model/hybrid-buildings-propagation-loss-model.h",
+				"src/buildings/model/itu-r-1238-propagation-loss-model.h",
+				"src/buildings/model/mobility-building-info.h",
+				"src/buildings/model/oh-buildings-propagation-loss-model.h",
+				"src/buildings/model/random-walk-2d-outdoor-mobility-model.h",
+				"src/buildings/model/three-gpp-v2v-channel-condition-model.h",
+				"build/include/ns3/buildings-module.h"
+			],
+			"type" : "file"
+		}
+	],
+	"paths" : 
+	{
+		"build" : "src/buildings",
+		"source" : "src/buildings"
+	}
+}

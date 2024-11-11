@@ -1,0 +1,107 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"install",
+			"build_lib"
+		],
+		"files" : 
+		[
+			"build-support/custom-modules/ns3-module-macros.cmake",
+			"src/wimax/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 1
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 99,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 481,
+				"parent" : 1
+			}
+		]
+	},
+	"installers" : 
+	[
+		{
+			"backtrace" : 2,
+			"component" : "Unspecified",
+			"destination" : "lib",
+			"paths" : 
+			[
+				"lib/libns3.42-wimax-debug.so"
+			],
+			"targetId" : "libwimax::@487b93290c50ee31c181",
+			"targetIndex" : 211,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 2,
+			"component" : "Unspecified",
+			"destination" : "include/ns3",
+			"paths" : 
+			[
+				"src/wimax/helper/wimax-helper.h",
+				"src/wimax/model/wimax-channel.h",
+				"src/wimax/model/wimax-net-device.h",
+				"src/wimax/model/bs-net-device.h",
+				"src/wimax/model/ss-net-device.h",
+				"src/wimax/model/cid.h",
+				"src/wimax/model/cid-factory.h",
+				"src/wimax/model/ofdm-downlink-frame-prefix.h",
+				"src/wimax/model/wimax-connection.h",
+				"src/wimax/model/ss-record.h",
+				"src/wimax/model/mac-messages.h",
+				"src/wimax/model/dl-mac-messages.h",
+				"src/wimax/model/ul-mac-messages.h",
+				"src/wimax/model/wimax-phy.h",
+				"src/wimax/model/simple-ofdm-wimax-phy.h",
+				"src/wimax/model/simple-ofdm-wimax-channel.h",
+				"src/wimax/model/send-params.h",
+				"src/wimax/model/service-flow.h",
+				"src/wimax/model/ss-manager.h",
+				"src/wimax/model/connection-manager.h",
+				"src/wimax/model/wimax-mac-header.h",
+				"src/wimax/model/wimax-mac-queue.h",
+				"src/wimax/model/crc8.h",
+				"src/wimax/model/service-flow-manager.h",
+				"src/wimax/model/bs-uplink-scheduler.h",
+				"src/wimax/model/bs-uplink-scheduler-simple.h",
+				"src/wimax/model/bs-uplink-scheduler-mbqos.h",
+				"src/wimax/model/bs-uplink-scheduler-rtps.h",
+				"src/wimax/model/ul-job.h",
+				"src/wimax/model/bs-scheduler.h",
+				"src/wimax/model/bs-scheduler-simple.h",
+				"src/wimax/model/bs-scheduler-rtps.h",
+				"src/wimax/model/service-flow-record.h",
+				"src/wimax/model/snr-to-block-error-rate-record.h",
+				"src/wimax/model/snr-to-block-error-rate-manager.h",
+				"src/wimax/model/simple-ofdm-send-param.h",
+				"src/wimax/model/ss-service-flow-manager.h",
+				"src/wimax/model/bs-service-flow-manager.h",
+				"src/wimax/model/cs-parameters.h",
+				"src/wimax/model/ipcs-classifier-record.h",
+				"src/wimax/model/wimax-tlv.h",
+				"src/wimax/model/ipcs-classifier.h",
+				"src/wimax/model/bvec.h",
+				"src/wimax/model/wimax-mac-to-mac-header.h",
+				"build/include/ns3/wimax-module.h"
+			],
+			"type" : "file"
+		}
+	],
+	"paths" : 
+	{
+		"build" : "src/wimax",
+		"source" : "src/wimax"
+	}
+}
