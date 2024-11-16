@@ -3,6 +3,7 @@
   
 #include <vector>
 #include <string>
+#include <unordered_set>
 
 namespace ns3 {
 
@@ -14,17 +15,29 @@ namespace ns3 {
 
     //struch data chunk
     struct  ReceivedChunk {
-        //count the proucer
-        uint8_t count;
+        //count the child
+        std::unordered_set<std::string> chAddr;
+        uint16_t iterNum;
+
         //data
-        std::vector<uint64_t> data;
+        std::vector<uint64_t> vec;
         //uint64_t* data;
-        ReceivedChunk () {
-            count = 0;
+        ReceivedChunk (uint16_t iterationNum) {
+            iterNum = iterationNum;
             //uint16_t k = (uint16_t)(BASESIZE / 8);
             //std::vector<uint64_t> data = std::vector<uint64_t>(chunkSize, 0);
-            data = std::vector<uint64_t> (chunkSize, 9); 
-            //data = vec_buffer.data(); 
+            // Zhuoxu: here we set the content to 44 to see if the serialization and deserialization works.
+            vec = std::vector<uint64_t> (chunkSize, 0); 
+            //data = vec_buffer.data();
+        }
+
+        ReceivedChunk () {
+            iterNum = UINT16_MAX;
+            //uint16_t k = (uint16_t)(BASESIZE / 8);
+            //std::vector<uint64_t> data = std::vector<uint64_t>(chunkSize, 0);
+            // Zhuoxu: here we set the content to 44 to see if the serialization and deserialization works.
+            vec = std::vector<uint64_t> (chunkSize, 0); 
+            //data = vec_buffer.data();
         }
     };
 

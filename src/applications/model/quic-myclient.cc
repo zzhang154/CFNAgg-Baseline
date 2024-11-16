@@ -205,6 +205,9 @@ QuicMyClient::Bind (uint16_t port) {
   if (m_socket == nullptr ) {
     CreateSocket(m_node,m_bindPort);
     m_socket->Connect(InetSocketAddress::ConvertFrom(m_peerAddress));
+    std::cout << "m_socket->Connect(InetSocketAddress::ConvertFrom(m_peerAddress)); "
+          << InetSocketAddress::ConvertFrom(m_peerAddress).GetIpv4() << " "
+          << InetSocketAddress::ConvertFrom(m_peerAddress).GetPort() << std::endl;
   }
   m_socket->SetRecvCallback (MakeCallback(&QuicMyClient::HandleRead,this));
   m_socket->SetAllowBroadcast (true);

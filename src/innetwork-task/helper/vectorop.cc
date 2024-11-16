@@ -11,7 +11,7 @@ void SumVector (uint64_t * sum, uint64_t * vec1,
 void 
 SumVector(std::vector<uint64_t> &sum, std::vector<uint64_t> &vec1, 
                 std::vector<uint64_t> &vec2) {
-    for (uint8_t i = 0; i < uint8_t(sum. size ()); ++i) 
+    for (uint16_t i = 0; i < uint16_t(sum. size ()); ++i) 
         sum[i] = vec1[i] + vec2[i];
 
 }
@@ -52,17 +52,19 @@ void SerializeVector (const std::vector<uint64_t> &vec, uint8_t *buffer){
     }
 }
 
-
-void DeserializeVector (std::vector<uint64_t> &vec, uint8_t *buffer, uint16_t bufferSize){
-    int elementsCount = bufferSize/8;
+// Zhuoxu: change the definition of this part.
+void DeserializeVector (uint64_t* vecPtr, uint8_t *buffer, uint16_t bufferSize) {
+    int elementsCount = bufferSize / 8;
+    std::cout<<"elementsCount: "<<elementsCount<<std::endl;
     uint8_t *ptr = buffer;
     for (int i = 0; i < elementsCount; ++i) {
         uint64_t value = 0;
-        for (int j = 0; j <8; ++j) {
+        for (int j = 0; j < 8; ++j) {
             value |= static_cast<uint64_t>(*ptr++) << (8 * j);
         }
-        vec[i]=value;
+        vecPtr[i] = value;
     }
+    std::cout<<"DeserializeVector Ending .... "<<std::endl;
 }
 
 

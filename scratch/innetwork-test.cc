@@ -294,7 +294,7 @@ int
 main (int argc, char *argv[])
 {
     CommandLine cmd;
-    uint16_t itr = 149;//1000 Zhuoxu: now this number should set to one.
+    uint16_t itr = 10;//1000 Zhuoxu: now this number should set to one.
     uint16_t vsize = 3000;
     bool topotype = 1;
     cmd.AddValue("itr", "max iteration consumer performed", itr);
@@ -325,7 +325,9 @@ main (int argc, char *argv[])
     LogComponentEnableAll (LOG_PREFIX_FUNC);
     LogComponentEnableAll (LOG_PREFIX_NODE);
     //LogComponentEnable ("QuicMyClient", log_precision);
-    //LogComponentEnable ("QuicMyServer", log_precision);
+    LogComponentEnable ("QuicMyServer", log_precision);
+    LogComponentEnable("QuicMyServer", LOG_LEVEL_DEBUG);
+    LogComponentDisable("QuicMyServer", LOG_LEVEL_FUNCTION);
     //LogComponentEnable ("QuicSocketTxScheduler", log_precision);
     //LogComponentEnable ("Consumer", log_precision);
     //LogComponentEnable ("Producer", log_precision);

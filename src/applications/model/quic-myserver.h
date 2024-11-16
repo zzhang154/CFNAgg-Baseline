@@ -28,9 +28,16 @@
 #include "ns3/event-id.h"
 #include "ns3/ptr.h"
 #include "ns3/address.h"
+#include "ns3/ipv4-address.h"
 #include "packet-loss-counter.h"
 #include <iostream>
 #include <fstream>
+#include <queue>
+
+// Zhuoxu: add this in order to use chunkMap
+#include "ns3/parameter.h"
+#include "ns3/vectorop.h"
+#include <string.h>
 
 namespace ns3 {
 /**
@@ -47,6 +54,12 @@ namespace ns3 {
  * stamp in their payloads. The application uses the sequence number
  * to determine if a packet is lost, and the time stamp to compute the delay.
  */
+
+enum PacketState {
+    FIRST_PACKET,
+    SECOND_PACKET
+};
+
 class QuicMyServer : public Application
 {
 public:
@@ -86,6 +99,7 @@ public:
   void Bind (uint16_t port);
   void RecvPacket(Ptr<Socket> socket);
   void SetNode (Ptr<Node> node);
+  //
   void CreateSocket(Ptr<Node> node,uint16_t port);
   //void SendToAddress(const uint8_t* buffer, size_t len,const InetSocketAddress& dest);
   int Send(const uint8_t* buffer, uint32_t len);
@@ -93,6 +107,15 @@ public:
   Ptr<CircularBuffer> GetBuffer();
   InetSocketAddress GetLocalAddress() const;
   void SetCongestionControlAlgorithm(std::string cc_name);
+
+
+  // Zhuoxu: relative function w.r.t the interface.cc
+  uint16_t GetCompIterNum();
+  ReceivedChunk GetResult(uint16_t iterationNum);
+  void ReleaseMap(uint16_t iterationNum);
+  void SetcGroupSize(uint16_t size);
+  void CheckChComp(uint16_t iterationNum);
+  
 
 protected:
   virtual void DoDispose (void);
@@ -102,6 +125,8 @@ private:
   virtual void StartApplication (void);
   virtual void StopApplication (void);
 
+  bool CheckFirstPacket(uint8_t* packetContent, int len);
+
   /**
    * \brief Handle a packet reception.
    *
@@ -110,16 +135,12 @@ private:
    * \param socket the socket the packet was received to.
    */
   void HandleRead (Ptr<Socket> socket);
-
   
   Ptr<Socket> m_socket=nullptr ; //!< IPv4 Socket
   Ptr<Socket> m_rxsocket=nullptr ; //!< IPv4 Socket for responding the requests
   Ptr<Socket> m_socket6; //!< IPv6 Socket
   uint64_t m_received; //!< Number of received packets
   PacketLossCounter m_lossCounter; //!< Lost packet counter
-  
-  
-  
   
   uint16_t m_port; //!< Port on which we listen for incoming packets.
   Address m_bindIp;
@@ -139,6 +160,17 @@ private:
   Ptr<Packet> p = nullptr;
   Ptr<CircularBuffer> m_circularBuffer;
   std::string congestionControlAlgorithm = "reno";
+
+  // Zhuoxu: add two more states here to distinguish between the first and second packet.
+  PacketState m_packetState = FIRST_PACKET;
+  uint16_t m_iterationNum = 0; // Zhuoxu: this also need to access in the interface.cc
+  std::queue<uint16_t> compQueue;
+
+  // Zhuoxu: add data structure chunkmap here to store data of all the child individully.
+  std::unordered_map<uint16_t, ReceivedChunk> iterChunkMap;
+  // Zhuoxu: create a buffer to store the first and second received data.
+  uint8_t* packetContent;
+  uint16_t cGroupSize;
 };
 
 } // namespace ns3

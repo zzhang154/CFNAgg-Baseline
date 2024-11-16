@@ -22,9 +22,13 @@
 
 #include "ns3/parameter.h"
 #include "ns3/vectorop.h"
+#include <unordered_set>
+
 
 // used for datatransfer by nodes
 namespace ns3 {
+    typedef std::unordered_map<std::string, std::vector<uint64_t>> ChildChunkMap; // Zhuoxu: socket name -- chunk map
+
     class InnetworkAggregationInterface : public Object {
             bool isEnd;
             uint8_t aggTreeLevel; // level of nodes in the aggregation tree or topology using the consumer as the root
@@ -39,11 +43,14 @@ namespace ns3 {
             std::vector<uint64_t> avg; // result
             std::vector<Address> cGroup; // nodes acts as clients with respect to current node
             std::vector<Address> sGroup; // nodes acts as servers with respect to current node
-            std::unordered_map<uint8_t, ReceivedChunk> 
-            chunkMap; // chunk counting by chunkNumber and count
+            // Zhuoxu: what happen if we do not use map dataset? i.e., use vector instead.
+            std::unordered_map<uint8_t, ReceivedChunk> chunkMap; // chunk counting by chunkNumber and count
+            std::unordered_map<uint16_t, ChildChunkMap> iterChMap;
+
             std::unordered_map <std::string, Ptr<Application>> socketPool;
             uint8_t currentIndex;
-            uint8_t iterationNumber;
+            uint16_t iterationNum;
+            std::unordered_set <uint16_t> successIter;
 
 
         public:
@@ -60,22 +67,19 @@ namespace ns3 {
             void SendRequestVTo (std::string toStr);
             void SendRequestVToAll ();
             void ScheduleAndSend();
-            void SendResponseVToP (std::vector<uint64_t> &vec , uint8_t iterationNumber);
-            void AVG (uint8_t iterationNumber);
-            void SendResponseVTo (std::string toStr, std::vector<uint64_t> &vec, uint8_t iterationNumber);
+            void SendResponseVToP (std::vector<uint64_t> &vec , uint16_t iterationNum);
+            void AVG (uint16_t iterationNum);
+            void SendResponseVTo (std::string toStr, std::vector<uint64_t> &vec, uint16_t iterationNum);
             void SetVSize (uint16_t size);
-            //void AvgEnd (uint16_t size, uint8_t iterationNumber);
+            //void AvgEnd (uint16_t size, uint16_t iterationNum);
             
             bool GetisEnd ();
             void SetisEnd (bool v);
             void ClearChunkMap ();
-            void WriteChunk2Vec (std::vector<uint64_t> &vec, uint16_t size);
             void SaveResult (std::vector<uint64_t> &vec );
             void SetOutFile (const std::string fileName);
             void Addr2Str (Address addr, std::string &str);
-            void DelayedSend(Ptr<QuicMyServer> responseptr, uint8_t* chunkBuffer, uint32_t bufferSize);
-            void GoToReadPos(Ptr<CircularBuffer> ccircularBuffer);
-            void SendPacketFromPro (std::string toStr, uint8_t iterationNumber, std::vector<uint8_t> &serializeVec);
+            void SendPacket (std::string toStr, uint16_t iterationNum, std::vector<uint8_t> &serializeVec);
     };
 
 }; /*namespace ns3*/
