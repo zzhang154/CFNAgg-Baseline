@@ -147,7 +147,7 @@ namespace ns3 {
             iterationNum = server->GetCompIterNum();
         }
         
-        ns3::Simulator::Schedule(ns3::MilliSeconds(4), &InnetworkAggregationInterface::ReceiveDataFromAll, this);
+        ns3::Simulator::Schedule(ns3::MilliSeconds(10), &InnetworkAggregationInterface::ReceiveDataFromAll, this);
         return;
         // The minimum time interval is 1ms in the test.
         // ns3::Simulator::Schedule(ns3::MilliSeconds(4), &InnetworkAggregationInterface::ReceiveDataFromAll, this);
@@ -190,28 +190,58 @@ namespace ns3 {
 
         //iterationNum++;
 
+        
         std::copy(buffer, buffer + BASESIZE, chunkBuffer.data() + 10);
             
         // record the time RTT
         // 在这里获取是否
         int sentSize = -1;
         while(sentSize < 0 ){
-         sentSize = client->Send(chunkBuffer.data(),pktlen);
+            sentSize = client->Send(chunkBuffer.data(),pktlen);
             // determine if the sent operation success
             if(sentSize > 0)
-                NS_LOG_DEBUG(this<<" client->Send() success at iteration "<<iterationNum-uint16_t(0));
+                NS_LOG_DEBUG(this<<" client->Send()--sentSize: " << sentSize <<" at iteration "<<iterationNum-uint16_t(0));
             else
                 NS_LOG_DEBUG(this<<" client->Send() failed at iteration "<<iterationNum-uint16_t(0));
         }
-        // Continue if have not yet reached the maximum iteration
-        if (cGroup.size()<=0 && iterationNum < maxIteration - 1){
-            // Schedule the next call
-            // NS_LOG_DEBUG("IterationNum-" << static_cast<int>(iterationNum) << " Startfrom: " << Simulator::Now().GetMilliSeconds() << "ms");
-            // When the schedule frequency is below than 5ms, error will happen.
 
-            // Zhuoxu: first try this, then change this without the schedule.
-            ns3::Simulator::Schedule(ns3::MilliSeconds(10), &InnetworkAggregationInterface::SendPacket, this, toStr, iterationNum + 1, serializeVec);
+        
+
+        // Zhuoxu: Todo: print the send content of aggregator
+        if(cGroup.size()>0 && sGroup.size()>0){
+            NS_LOG_DEBUG("Agg send to consumer, the content is as follows: ");
+            std::cout << "------------------------------------" << std::endl;
+            for(int i = 0; i < 24; i++){
+                std::cout << static_cast<int>(chunkBuffer[i]) << " ";
+                if((i+1) % 8 == 0){
+                    std::cout << " the " << (i+1) / 8 << "th byte" << std::endl;
+                }
+            }
         }
+        else if(cGroup.size()==0){
+            NS_LOG_DEBUG("producer send to aggregator, the content is as follows: ");
+            std::cout << "------------------------------------" << std::endl;
+            for(int i = 0; i < 24; i++){
+                std::cout << static_cast<int>(chunkBuffer[i]) << " ";
+                if((i+1) % 8 == 0){
+                    std::cout << " the " << (i+1) / 8 << "th byte" << std::endl;
+                }
+            }
+        }
+
+        // if (cGroup.size()<=0 && iterationNum < maxIteration - 1){
+        //     ns3::Simulator::Schedule(ns3::MilliSeconds(8), &InnetworkAggregationInterface::SendPacket, this, toStr, iterationNum + 1, serializeVec);
+        // }
+
+        
+        // // for loop implementation will incur frame error
+        // if (iterationNum == 0 && cGroup.size() <= 0){
+        //     for(uint16_t i = 1; i < maxIteration; ++i){
+        //         SendPacket(toStr, i, serializeVec);
+        //     }
+
+        // }
+        
     }
 
     void 
@@ -221,6 +251,23 @@ namespace ns3 {
             std::string toStr;
             Addr2Str (this->sGroup[i], toStr);
             SendResponseVTo (toStr, avg, iterationNum);
+        }
+    }
+
+    void 
+    InnetworkAggregationInterface::ProduceVToP (){
+        for (uint8_t i = 0; i < this->sGroup.size (); ++i) {
+            std::string toStr;
+            Addr2Str (this->sGroup[i], toStr);
+            for (uint16_t j = 0; j < this->maxIteration; ++j) {
+                std::vector<uint64_t> initData(chunkSize, 88 + 11*static_cast<int>(j));
+                SendResponseVTo (toStr, initData, j);
+                std::cout<<"initData info:"<<std::endl;
+                for(int k=0;k<5;k++){
+                    std::cout<<initData[k]<<" ";
+                }
+                std::cout<<"iterationNum:"<<static_cast<int>(j)<<std::endl;
+            }
         }
     }
 

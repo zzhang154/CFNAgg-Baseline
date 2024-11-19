@@ -75,11 +75,9 @@ QuicMyServer::QuicMyServer ()
   : m_lossCounter (0)
 {
   NS_LOG_FUNCTION (this);
-  m_received = 0;
   m_node = node;
   quicSocketFactory=nullptr;
   m_socket = nullptr ;
-  m_circularBuffer = Create<CircularBuffer>(); 
   // Zhuoxu: we don't have to initialize the iterVecMap here.
 }
 
@@ -176,10 +174,12 @@ QuicMyServer::GetLocalAddress() const {
   return InetSocketAddress{local_ip,m_port}; 
 }
 
+/*
 Ptr<CircularBuffer> 
 QuicMyServer::GetBuffer() {
   return m_circularBuffer;
 }
+*/
 
 void
 QuicMyServer::DoDispose (void) {
@@ -190,8 +190,6 @@ QuicMyServer::DoDispose (void) {
   quicSocketFactory=nullptr;
   Application::DoDispose();
 }
-
-
 
 void QuicMyServer::CreateSocket(Ptr<Node> node,uint16_t port) {
   if (m_socket == nullptr )
@@ -238,14 +236,22 @@ void QuicMyServer::CreateSocket(Ptr<Node> node,uint16_t port) {
     }
 }
 
-
-bool 
-QuicMyServer::CheckFirstPacket(uint8_t* packetContent, int len){
-  for(int i = 0; i < len; i++)
-  {
-    if(packetContent[i] != 3)
-      return false;
+bool
+QuicMyServer::CheckHeader(uint8_t* packetContent, int len) {
+  for (int i = 0; i < len; i++) {
+    if (packetContent[i] != headerChr) {
+      NS_LOG_WARN("Invalid header for first packet: "
+                     << static_cast<int>(packetContent[0]) << " "
+                     << static_cast<int>(packetContent[1]) << " "
+                     << static_cast<int>(packetContent[2]) << " "
+                     << static_cast<int>(packetContent[3]) << " "
+                     << static_cast<int>(packetContent[4]) << " "
+                     << static_cast<int>(packetContent[5]) << " "
+                     << static_cast<int>(packetContent[6]) << " "
+                     << static_cast<int>(packetContent[7]));
+    }
   }
+  NS_LOG_DEBUG("Header check passed");
   return true;
 }
 
@@ -276,25 +282,74 @@ QuicMyServer::CheckChComp(uint16_t iterNum){
   }
 }
 
-// Zhuoxu: distinguish between the first and second packet, in order to receive 24010 bytes.
+ void 
+ QuicMyServer::PrintBuffInfo_8(uint8_t* buffer, uint32_t packetSize){
+  NS_LOG_DEBUG(this);
+  std::cout << "Buffer info:" << std::endl;
+  std::cout << "m_iterationMap[ipAddressStr]: " << m_iterationMap[ipAddressStr] << std::endl;
 
-// Zhuoxu: now we need to modify this to trigger the interface function.
+  std::cout << "Printing all data bytes by bytes" << std::endl;
+  int byteCount = 0;
+  for (uint32_t i = 0; i < packetSize; ++i) {
+    std::cout << buffer[i] - uint8_t(0) << " ";
+    byteCount++;
+    if (byteCount % 8 == 0) {
+      std::cout << " the " << byteCount / 8 << "th byte" << std::endl;
+    }
+  }
+}
+
+void
+QuicMyServer::ProcessPerPkt(){
+  // check header
+  CheckHeader(m_bufferMap[ipAddressStr], 8);
+  NS_LOG_DEBUG(this);
+  // extract the iteration number
+  m_iterationMap[ipAddressStr] = (static_cast<uint16_t>(m_bufferMap[ipAddressStr][8]) << 8) | static_cast<uint16_t>(m_bufferMap[ipAddressStr][9]);
+
+  std::vector<uint64_t> vecTmp (chunkSize, 0);
+  DeserializeVector(vecTmp.data(), m_bufferMap[ipAddressStr] + 10, pktlen - 10);
+  NS_LOG_DEBUG("Cover vector: vecTmp[0]:" << vecTmp[0] << " vecTmp[1]:" << vecTmp[1] << " vecTmp[MAX-1]:" << vecTmp[vecTmp.size() - 2] << " vector[MAX]:" << vecTmp.back());
+  // Zhuoxu: sum up the vector
+  for (uint16_t i = 0; i < chunkSize; ++i) {
+    iterChunkMap[m_iterationMap[ipAddressStr]].vec[i] += vecTmp[i];
+  }
+
+  // Zhuoxu: add the child count
+  iterChunkMap[m_iterationMap[ipAddressStr]].chAddr.insert(ipAddressStr);
+
+  NS_LOG_DEBUG("iterChunkMap[" << m_iterationMap[ipAddressStr] <<"].size(): " << iterChunkMap[m_iterationMap[ipAddressStr]].chAddr.size()<<" iterChunkMap.size(): "<<iterChunkMap.size());
+
+  NS_LOG_DEBUG("compQueue.size(): "<<compQueue.size());
+
+  // check if all the children have collected
+  CheckChComp(m_iterationMap[ipAddressStr]);
+}
+
+bool 
+QuicMyServer::CheckReTransmit(uint8_t* packetContent){
+  // Zhuoxu: it seems that there is no Retransmission currently, we don't need to do this now.
+  uint32_t nextHeadPtr = pktlen - m_bufferPtrMap[ipAddressStr];
+  for (int i = 0; i < 8; i++) {
+    if (packetContent[nextHeadPtr + i] != headerChr) 
+      return true;
+  return false;
+  }
+}
+
+
 void
 QuicMyServer::HandleRead (Ptr<Socket> socket) {
+  std::cout << "***********************START***************************" << std::endl;
   NS_LOG_DEBUG (this << " Entering the handleRead Function ......" );
 
-  if (InetSocketAddress::IsMatchingType(this->m_bindIp) && InetSocketAddress::IsMatchingType(this->m_peerAddress))
   // NS_LOG_DEBUG (this << " m_bindIp: " << this->m_bindIp.GetIpv4());
-  NS_LOG_DEBUG (this << " m_bindIp: " << InetSocketAddress::ConvertFrom(GetLocalAddress()).GetIpv4());
 
   Ptr<Packet> packet;
   Address from;
   uint32_t packetSize = 0;
-  PacketState packetState = FIRST_PACKET;
+  
   // Zhuoxu: ensure 24010 bytes (pktlen + 10) is read.
-  // Zhuoxu: here we need to create a flag in order to process two continuous packets.
-
-  // Zhuoxu: no use of this while loop
   if(!(packet = socket->RecvFrom (from)))
     NS_FATAL_ERROR("Invalid packet received in QuicMyServer");
   
@@ -304,9 +359,16 @@ QuicMyServer::HandleRead (Ptr<Socket> socket) {
   ns3::Ipv4Address str = InetSocketAddress::ConvertFrom(m_peerAddress).GetIpv4();
   std::ostringstream oss;
   str.Print(oss);
-  std::string ipAddressStr = oss.str();
-  std::cout << "IP Address of m_peerAddress: " << ipAddressStr << std::endl;
+  ipAddressStr = oss.str();
+  NS_LOG_DEBUG (this << " m_bindIp: " << InetSocketAddress::ConvertFrom(GetLocalAddress()).GetIpv4() << " m_peerAddress: " << ipAddressStr);
 
+  // initialize the m_bufferMap
+  if(m_bufferMap.find(ipAddressStr) == m_bufferMap.end()){
+    m_bufferMap[ipAddressStr] = nullptr;
+    m_bufferPtrMap[ipAddressStr] = 0;
+    m_iterationMap[ipAddressStr] = 0;
+  }
+  
   packetSize=packet->GetSize () ;
   NS_LOG_DEBUG (this << " Socket: "<< socket << " packetSize: " << packetSize);
 
@@ -315,66 +377,46 @@ QuicMyServer::HandleRead (Ptr<Socket> socket) {
 
   m_received++;
 
-  // Check header to distinguish between the first and second packet
-  if (m_packetState == FIRST_PACKET)
-  {
-    packetContent = new uint8_t[packetSize*2]; // Zhuoxu: large enough to store the two packets
-    uint32_t copyedSize =  packet->CopyData(packetContent,packetSize);
-    if (!CheckFirstPacket(packetContent, 8))
-      NS_FATAL_ERROR("Invalid header for first packet: " << packetContent[0] << " " << packetContent[1] << " " << packetContent[2] << " " << packetContent[3] << " " << packetContent[4] << " " << packetContent[5] << " " << packetContent[6] << " " << packetContent[7]);
+  // Zhuoxu: new code here to handle continue packets
+  uint8_t* packetContent = new uint8_t[packetSize];
+  m_pktPtr = 0;
+  std::vector<uint64_t> vecTmp (chunkSize, 0);
+  uint32_t copyedSize =  packet->CopyData(packetContent,packetSize);
+  NS_LOG_DEBUG( this << " Copy data size: " << copyedSize);
+  // general case: pktContent[i-1], pktContent[i], pktContent[i+1]; So we should consider the general case. In worse case, we need to consider the storage of 3 packets.
 
-    m_packetState = SECOND_PACKET;
-
-    NS_LOG_DEBUG( this << " Copy data size in the first Quic frame: " << copyedSize);
-
-    m_iterationNum = (static_cast<uint16_t>(packetContent[8]) << 8) | static_cast<uint16_t>(packetContent[9]);
-    NS_LOG_DEBUG (this << " iterationNum: " << m_iterationNum-uint16_t(0));
-
-    if (m_iterationNum < 0) 
-          NS_FATAL_ERROR("Invalid iteration number: " << m_iterationNum);
-      
-    if (iterChunkMap.find(m_iterationNum) == iterChunkMap.end()) {
-      iterChunkMap[m_iterationNum] = ReceivedChunk (m_iterationNum);
-    }
-  }
-  else if (m_packetState == SECOND_PACKET){
-    m_packetState = FIRST_PACKET;
-
-    uint32_t copyedSize =  packet->CopyData(packetContent + packetSize, packetSize);
-    NS_LOG_DEBUG( this << " Copy data size in the second Quic frame: " << copyedSize);
-
-    // Zhuoxu: Skip the first packetSize - 10 elements in the vector 
-    // Zhuoxu: Deserialize the vector into a tmp vec, and then sum up.
-    std::vector<uint64_t> vecTmp (chunkSize, 0);
-    DeserializeVector(vecTmp.data(), packetContent + 10, packetSize*2 - 10);
-    NS_LOG_DEBUG("Cover vector: vecTmp[0]:" << vecTmp[0] << " vecTmp[1]:" << vecTmp[1] << " vecTmp[MAX-1]:" << vecTmp[vecTmp.size() - 2] << " vector[MAX]:" << vecTmp.back());
-    // Zhuoxu: sum up the vector
-    for (uint16_t i = 0; i < chunkSize; ++i) {
-      iterChunkMap[m_iterationNum].vec[i] += vecTmp[i];
+  while(m_pktPtr < packetSize){
+    std::cout << "------------------------------------" << std::endl;
+    std::cout << "before process, m_pktPtr is: " << static_cast<int>(m_pktPtr) << std::endl;
+    std::cout << "before process, m_bufferPtr is: " << static_cast<int>(m_bufferPtrMap[ipAddressStr]) << std::endl;
+    
+    if(m_bufferMap[ipAddressStr] == nullptr){
+      m_bufferMap[ipAddressStr] = new uint8_t[pktlen];
     }
 
-    // Zhuoxu: add the child count
-    iterChunkMap[m_iterationNum].chAddr.insert(ipAddressStr);
-
-    NS_LOG_DEBUG("iterChunkMap[" << m_iterationNum <<"].size(): " << iterChunkMap[m_iterationNum].chAddr.size()<<" iterChunkMap.size(): "<<iterChunkMap.size());
-
-    NS_LOG_DEBUG("compQueue.size(): "<<compQueue.size());
-
-
-    // check if all the children have collected
-    CheckChComp(m_iterationNum);
-    // add another member, and use "Set" to initiate it.
-
-    delete[] packetContent;
+    while(m_bufferPtrMap[ipAddressStr] <  pktlen && m_pktPtr < packetSize){
+      m_bufferMap[ipAddressStr][m_bufferPtrMap[ipAddressStr]] = packetContent[m_pktPtr];
+      m_bufferPtrMap[ipAddressStr]++;
+      m_pktPtr++;
+    }
+    if (m_bufferPtrMap[ipAddressStr] == pktlen){
+      // pocess the bufferPtr
+      std::cout << "Begin process the packet, now the m_bufferPtrMap[ipAddressStr] is: " << m_bufferPtrMap[ipAddressStr] - uint16_t(0) << std::endl;
+      ProcessPerPkt();
+      m_bufferPtrMap[ipAddressStr] = 0;
+      delete[] m_bufferMap[ipAddressStr];
+      m_bufferMap[ipAddressStr] = nullptr;
+    }
+    std::cout << "after process, m_pktPtr is: " << static_cast<int>(m_pktPtr) << std::endl;
+    std::cout << "after process, m_bufferPtr is: " << static_cast<int>(m_bufferPtrMap[ipAddressStr]) << std::endl;
+    std::cout << "------------------------------------" << std::endl;
   }
-      // Zhuoxu, Todo List
-      // 1. abstract the iteration number
-      // 2. DeserializeVector(chunkmap[iteration], packetContent + 9, BASESIZE);
-      // first Deserialize the iteration number
-      // DeserializeVector(desPacketContent, payloadData + 9, BASESIZE);
-
-      //std::cout<<"QuicMyServer----"<<GetLocalAddress().GetIpv4()<<"-received---request---from--"<<InetSocketAddress::ConvertFrom(m_peerAddress).GetIpv4()<<std::endl;
-    this->m_socket = socket;
+  // Zhuoxu: only print the packet of 10.1.1.1
+  if(ipAddressStr == "10.1.1.1")
+    PrintBuffInfo_8(packetContent, packetSize);
+  delete[] packetContent;
+  //std::cout<<"QuicMyServer----"<<GetLocalAddress().GetIpv4()<<"-received---request---from--"<<InetSocketAddress::ConvertFrom(m_peerAddress).GetIpv4()<<std::endl;
+  this->m_socket = socket;
 }
 
 void 
@@ -382,9 +424,6 @@ QuicMyServer::Bind (uint16_t port) {
   NS_LOG_FUNCTION (this);
   m_port = port;
 }
-
-
-
 int 
 QuicMyServer::Send(const uint8_t* buffer, uint32_t len) {
     NS_LOG_FUNCTION (this);
@@ -399,7 +438,6 @@ QuicMyServer::Send(const uint8_t* buffer, uint32_t len) {
     }
     return sentSize;
 }
-
 
 void
 QuicMyServer::StartApplication (void)
@@ -429,6 +467,5 @@ QuicMyServer::RecvPacket(Ptr<Socket> socket) {
   NS_LOG_FUNCTION (this);
 
 }
-
 
 } // Namespace ns3

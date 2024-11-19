@@ -38,6 +38,7 @@
 #include "ns3/parameter.h"
 #include "ns3/vectorop.h"
 #include <string.h>
+#include <unordered_map>
 
 namespace ns3 {
 /**
@@ -108,13 +109,13 @@ public:
   InetSocketAddress GetLocalAddress() const;
   void SetCongestionControlAlgorithm(std::string cc_name);
 
-
   // Zhuoxu: relative function w.r.t the interface.cc
   uint16_t GetCompIterNum();
   ReceivedChunk GetResult(uint16_t iterationNum);
   void ReleaseMap(uint16_t iterationNum);
   void SetcGroupSize(uint16_t size);
-  void CheckChComp(uint16_t iterationNum);
+  void CheckChComp(uint16_t iterationNum); 
+  void PrintBuffInfo_8(uint8_t* buffer, uint32_t packetSize);
   
 
 protected:
@@ -124,8 +125,10 @@ private:
 
   virtual void StartApplication (void);
   virtual void StopApplication (void);
+  void ProcessPerPkt();
 
-  bool CheckFirstPacket(uint8_t* packetContent, int len);
+  bool CheckHeader(uint8_t* packetContent, int len);
+  bool CheckReTransmit(uint8_t* packetContent);
 
   /**
    * \brief Handle a packet reception.
@@ -158,19 +161,21 @@ private:
   Ptr<QuicSocketFactory> quicSocketFactory = nullptr;
   QuicHeader pHeader;
   Ptr<Packet> p = nullptr;
-  Ptr<CircularBuffer> m_circularBuffer;
   std::string congestionControlAlgorithm = "reno";
 
   // Zhuoxu: add two more states here to distinguish between the first and second packet.
   PacketState m_packetState = FIRST_PACKET;
-  uint16_t m_iterationNum = 0; // Zhuoxu: this also need to access in the interface.cc
   std::queue<uint16_t> compQueue;
 
   // Zhuoxu: add data structure chunkmap here to store data of all the child individully.
   std::unordered_map<uint16_t, ReceivedChunk> iterChunkMap;
   // Zhuoxu: create a buffer to store the first and second received data.
-  uint8_t* packetContent;
+  std::unordered_map<std::string, uint16_t> m_iterationMap;
+  std::unordered_map<std::string, uint8_t*> m_bufferMap;
+  std::unordered_map<std::string, uint16_t> m_bufferPtrMap;
+  uint32_t m_pktPtr = 0;
   uint16_t cGroupSize;
+  std::string ipAddressStr;
 };
 
 } // namespace ns3

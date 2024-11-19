@@ -68,6 +68,7 @@ namespace ns3 {
             void SendRequestVToAll ();
             void ScheduleAndSend();
             void SendResponseVToP (std::vector<uint64_t> &vec , uint16_t iterationNum);
+            void ProduceVToP ();
             void AVG (uint16_t iterationNum);
             void SendResponseVTo (std::string toStr, std::vector<uint64_t> &vec, uint16_t iterationNum);
             void SetVSize (uint16_t size);

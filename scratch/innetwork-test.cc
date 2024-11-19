@@ -67,9 +67,9 @@ const std::string proName = "pro";
 const std::string fowName = "forwarder";
 const std::string aggName = "agg";
 const uint32_t consumerNum = 1;
-const uint32_t producerNum = 50;
-const uint32_t forwarderNum = 14;
-const uint32_t aggregatorNum = 15;
+const uint32_t producerNum = 10;
+const uint32_t forwarderNum = 6;
+const uint32_t aggregatorNum = 5;
 std::string cc = "bbr";
 uint16_t basetime = 1000;
 uint16_t starttime = 1;
@@ -294,7 +294,7 @@ int
 main (int argc, char *argv[])
 {
     CommandLine cmd;
-    uint16_t itr = 10;//1000 Zhuoxu: now this number should set to one.
+    uint16_t itr = 3;//1000 Zhuoxu: now this number should set to one.
     uint16_t vsize = 3000;
     bool topotype = 1;
     cmd.AddValue("itr", "max iteration consumer performed", itr);
@@ -332,7 +332,7 @@ main (int argc, char *argv[])
     //LogComponentEnable ("Consumer", log_precision);
     //LogComponentEnable ("Producer", log_precision);
     //LogComponentEnable ("Aggregator", log_precision);
-    //LogComponentEnable ("QuicSocketBase", log_precision);
+    // LogComponentEnable ("QuicSocketBase", log_precision);
     //LogComponentEnable("CircularBuffer",log_precision);
     //LogComponentEnable ("InnetworkAggregationInterface", log_precision);
     //LogComponentEnable("QuicL5Protocol",log_precision);

@@ -36,8 +36,10 @@ namespace ns3 {
         NS_LOG_FUNCTION (this);
         //this->nodeInnetworkAggregationInterface->CreateSocketPool (cc_name);
         ns3::Simulator::Schedule(ns3::MilliSeconds(0), &InnetworkAggregationInterface::CreateSocketPool, this->nodeInnetworkAggregationInterface, cc_name);
-        std::vector<uint64_t> initData(chunkSize, 33);
-        ns3::Simulator::Schedule(ns3::MilliSeconds(basetime), &InnetworkAggregationInterface::SendResponseVToP,this->nodeInnetworkAggregationInterface, initData, 0);
+        std::vector<uint64_t> initData(chunkSize, 88);
+        // ns3::Simulator::Schedule(ns3::MilliSeconds(basetime), &InnetworkAggregationInterface::SendResponseVToP,this->nodeInnetworkAggregationInterface, initData, 0);
+
+        ns3::Simulator::Schedule(ns3::MilliSeconds(basetime), &InnetworkAggregationInterface::ProduceVToP,this->nodeInnetworkAggregationInterface);
         
     }
 

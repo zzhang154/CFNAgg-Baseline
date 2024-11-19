@@ -11,6 +11,7 @@ namespace ns3 {
     extern uint16_t chunkSize; 
     extern uint16_t pktlen;
     extern uint16_t rqtlen;
+    extern uint8_t headerChr;
     //extern uint16_t vsize;
 
     //struch data chunk

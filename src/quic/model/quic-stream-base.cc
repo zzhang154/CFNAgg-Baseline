@@ -55,12 +55,12 @@ QuicStreamBase::GetTypeId (void)
     .AddConstructor<QuicStreamBase> ()
     .AddAttribute ("StreamSndBufSize",
                    "QuicStreamBase maximum transmit buffer size (bytes)",
-                   UintegerValue (131072), // 128k
+                   UintegerValue (UINT32_MAX / 2), // 128k = 131072
                    MakeUintegerAccessor (&QuicStreamBase::m_streamTxBufferSize),
                    MakeUintegerChecker<uint32_t> ())
     .AddAttribute ("StreamRcvBufSize",
                    "QuicStreamBase maximum receive buffer size (bytes)",
-                   UintegerValue (131072), // 128k
+                   UintegerValue (UINT32_MAX / 2), // 128k
                    MakeUintegerAccessor (&QuicStreamBase::m_streamRxBufferSize),
                    MakeUintegerChecker<uint32_t> ())
     .AddAttribute ("MaxDataInterval",
