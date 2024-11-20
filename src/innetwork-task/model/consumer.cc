@@ -28,7 +28,7 @@ namespace ns3 {
     }
 
     void 
-    Consumer::SetupConsumer (uint16_t port, uint16_t itr, uint8_t rank, uint16_t vsize, std::vector<Address> &sGroup, 
+    Consumer::SetupConsumer (uint16_t port, uint16_t itr, uint8_t rank, uint32_t vsize, std::vector<Address> &sGroup, 
                                         std::vector<Address> &cGroup, uint16_t basetime, std::string cc_name) {
         NS_LOG_FUNCTION (this);
 

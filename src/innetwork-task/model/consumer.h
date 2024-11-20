@@ -27,7 +27,7 @@ class Consumer : public Application {
         static TypeId GetTypeId (void);
         Consumer ();
         virtual ~Consumer ();
-        void SetupConsumer (uint16_t port, uint16_t itr, uint8_t rank, uint16_t vsize, std::vector<Address> &sGroup, 
+        void SetupConsumer (uint16_t port, uint16_t itr, uint8_t rank, uint32_t vsize, std::vector<Address> &sGroup, 
                                         std::vector<Address> &cGroup, uint16_t basetime, std::string name);
 
     protected:

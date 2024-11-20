@@ -1,5 +1,5 @@
 Comment for v4.0
-
+Quic-Agg-v4.0:
 1. producer now push all the data in a "for" loop
 2. Quic will treat this as a whole process. And the stream now will cut random within one iteration. This means that data can only be recovered after all streams finish their transmission.
 
@@ -101,21 +101,8 @@ ns3::QuicSubHeader (|STREAM110|
 |Length 574|
 ) Payload Fragment [12005:12579]ns3::QuicSubHeader (|STREAM110|
 
-Experiment Result:
-producer-10, iteration-150
-ns3::Simulator::Schedule(ns3::MilliSeconds(10), &InnetworkAggregationInterface::ReceiveDataFromAll, this);
-+2.200000000s 0 InnetworkAggregationInterface:ReceiveDataFromAll(): All iteration-150 completed in: 200ms
+Quic-Agg-v4.1:
+1. fix the bug for change the vsize from uint16_t to uint32_t, such that we can test for large data.
 
-ns3::Simulator::Schedule(ns3::MilliSeconds(3), &InnetworkAggregationInterface::ReceiveDataFromAll, this);
-+2.202000000s 0 InnetworkAggregationInterface:ReceiveDataFromAll(): All iteration-150 completed in: 202ms
-
-producer-50, iteration-150
-ns3::Simulator::Schedule(ns3::MilliSeconds(5), &InnetworkAggregationInterface::ReceiveDataFromAll, this);
-+2.215000000s 0 InnetworkAggregationInterface:ReceiveDataFromAll(): All iteration-150 completed in: 215ms
-
-ns3::Simulator::Schedule(ns3::MilliSeconds(10), &InnetworkAggregationInterface::ReceiveDataFromAll, this);
-+2.210000000s 0 InnetworkAggregationInterface:ReceiveDataFromAll(): All iteration-150 completed in: 210ms
-
-ns3::Simulator::Schedule(ns3::MilliSeconds(3), &InnetworkAggregationInterface::ReceiveDataFromAll, this);
-+2.193000000s 0 InnetworkAggregationInterface:ReceiveDataFromAll(): All iteration-150 completed in: 193ms
-
+Quic-Agg-v4.1.1:
+1. It seems that the chunkSize has wrongly set to uint16_t, which actually not send the 300,000 vector size at all. Now we fix that.

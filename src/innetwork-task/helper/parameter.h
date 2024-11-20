@@ -7,12 +7,12 @@
 
 namespace ns3 {
 
-    extern uint16_t BASESIZE;
-    extern uint16_t chunkSize; 
-    extern uint16_t pktlen;
+    extern uint32_t BASESIZE;
+    extern uint32_t chunkSize; 
+    extern uint32_t pktlen;
     extern uint16_t rqtlen;
     extern uint8_t headerChr;
-    //extern uint16_t vsize;
+    //extern uint32_t vsize;
 
     void UpdatePktlen();
     void SetBaseSize(uint32_t newBaseSize);

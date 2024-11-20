@@ -299,6 +299,22 @@ QuicMyServer::CheckChComp(uint16_t iterNum){
   }
 }
 
+void 
+QuicMyServer::PrintState(){
+    // loop over the keys in the m_bufferMap and print its length of uint8_t*, which is defined as m_bufferPtrMap.
+    for(auto const& x : m_bufferMap){
+      NS_LOG_INFO( "From Address " << x.first << " m_bufferPtrMap: " << m_bufferPtrMap[x.first] );
+    }
+    NS_LOG_INFO("print m_iterationMap[]");
+    for(auto const& x : m_iterationMap){
+      NS_LOG_INFO("m_iterationMap[" << x.first << "]: " << x.second);
+    }
+    NS_LOG_INFO("print iterChunkMap[] keys");
+    for(auto const& x : iterChunkMap){
+      NS_LOG_INFO("iterChunkMap[" << x.first << "]: " );
+    }
+}
+
 void
 QuicMyServer::ProcessPerPkt(){
   // check header
@@ -309,18 +325,26 @@ QuicMyServer::ProcessPerPkt(){
 
   std::vector<uint64_t> vecTmp (chunkSize, 0);
   DeserializeVector(vecTmp.data(), m_bufferMap[ipAddressStr] + 10, pktlen - 10);
-  NS_LOG_DEBUG("Cover vector: vecTmp[0]:" << vecTmp[0] << " vecTmp[1]:" << vecTmp[1] << " vecTmp[MAX-1]:" << vecTmp[vecTmp.size() - 2] << " vector[MAX]:" << vecTmp.back());
+  NS_LOG_INFO("Cover vector: vecTmp[0]:" << vecTmp[0] << " vecTmp[1]:" << vecTmp[1] << " vecTmp[MAX-1]:" << vecTmp[vecTmp.size() - 2] << " vector[MAX]:" << vecTmp.back());
+
+  // Ensure the vectors are properly sized
+  if (iterChunkMap[m_iterationMap[ipAddressStr]].vec.size() != vecTmp.size()) {
+      NS_LOG_ERROR("Vector sizes do not match.");
+      return;
+  }
+
   // Zhuoxu: sum up the vector
-  for (uint16_t i = 0; i < chunkSize; ++i) {
+  for (uint32_t i = 0; i < chunkSize; ++i) {
     iterChunkMap[m_iterationMap[ipAddressStr]].vec[i] += vecTmp[i];
   }
 
   // Zhuoxu: add the child count
   iterChunkMap[m_iterationMap[ipAddressStr]].chAddr.insert(ipAddressStr);
 
-  NS_LOG_DEBUG("iterChunkMap[" << m_iterationMap[ipAddressStr] <<"].size(): " << iterChunkMap[m_iterationMap[ipAddressStr]].chAddr.size()<<" iterChunkMap.size(): "<<iterChunkMap.size());
 
-  NS_LOG_DEBUG("compQueue.size(): "<<compQueue.size());
+  NS_LOG_INFO("iterChunkMap[" << m_iterationMap[ipAddressStr] <<"].size(): " << iterChunkMap[m_iterationMap[ipAddressStr]].chAddr.size()<<" iterChunkMap.size(): "<<iterChunkMap.size());
+
+  NS_LOG_INFO("compQueue.size(): "<<compQueue.size());
 
   // check if all the children have collected
   CheckChComp(m_iterationMap[ipAddressStr]);
@@ -340,7 +364,7 @@ QuicMyServer::CheckReTransmit(uint8_t* packetContent){
 
 void
 QuicMyServer::HandleRead (Ptr<Socket> socket) {
-  std::cout << "***********************START***************************" << std::endl;
+  // std::cout << "***********************START***************************" << std::endl;
   NS_LOG_DEBUG (this << " Entering the handleRead Function ......" );
 
   // NS_LOG_DEBUG (this << " m_bindIp: " << this->m_bindIp.GetIpv4());
@@ -386,9 +410,9 @@ QuicMyServer::HandleRead (Ptr<Socket> socket) {
   // general case: pktContent[i-1], pktContent[i], pktContent[i+1]; So we should consider the general case. In worse case, we need to consider the storage of 3 packets.
 
   while(m_pktPtr < packetSize){
-    std::cout << "------------------------------------" << std::endl;
-    std::cout << "before process, m_pktPtr is: " << static_cast<int>(m_pktPtr) << std::endl;
-    std::cout << "before process, m_bufferPtr is: " << static_cast<int>(m_bufferPtrMap[ipAddressStr]) << std::endl;
+    // std::cout << "------------------------------------" << std::endl;
+    // std::cout << "before process, m_pktPtr is: " << static_cast<int>(m_pktPtr) << std::endl;
+    // std::cout << "before process, m_bufferPtr is: " << static_cast<int>(m_bufferPtrMap[ipAddressStr]) << std::endl;
     
     if(m_bufferMap[ipAddressStr] == nullptr){
       m_bufferMap[ipAddressStr] = new uint8_t[pktlen];
@@ -401,15 +425,15 @@ QuicMyServer::HandleRead (Ptr<Socket> socket) {
     }
     if (m_bufferPtrMap[ipAddressStr] == pktlen){
       // pocess the bufferPtr
-      std::cout << "Begin process the packet, now the m_bufferPtrMap[ipAddressStr] is: " << m_bufferPtrMap[ipAddressStr] - uint16_t(0) << std::endl;
+      // std::cout << "Begin process the packet, now the m_bufferPtrMap[ipAddressStr] is: " << m_bufferPtrMap[ipAddressStr] - uint16_t(0) << std::endl;
       ProcessPerPkt();
       m_bufferPtrMap[ipAddressStr] = 0;
       delete[] m_bufferMap[ipAddressStr];
       m_bufferMap[ipAddressStr] = nullptr;
     }
-    std::cout << "after process, m_pktPtr is: " << static_cast<int>(m_pktPtr) << std::endl;
-    std::cout << "after process, m_bufferPtr is: " << static_cast<int>(m_bufferPtrMap[ipAddressStr]) << std::endl;
-    std::cout << "------------------------------------" << std::endl;
+    // std::cout << "after process, m_pktPtr is: " << static_cast<int>(m_pktPtr) << std::endl;
+    // std::cout << "after process, m_bufferPtr is: " << static_cast<int>(m_bufferPtrMap[ipAddressStr]) << std::endl;
+    // std::cout << "------------------------------------" << std::endl;
   }
   // Zhuoxu: only print the packet of 10.1.1.1
   // if(ipAddressStr == "10.1.1.1")
@@ -417,6 +441,7 @@ QuicMyServer::HandleRead (Ptr<Socket> socket) {
   delete[] packetContent;
   //std::cout<<"QuicMyServer----"<<GetLocalAddress().GetIpv4()<<"-received---request---from--"<<InetSocketAddress::ConvertFrom(m_peerAddress).GetIpv4()<<std::endl;
   this->m_socket = socket;
+  // PrintState();
 }
 
 void 

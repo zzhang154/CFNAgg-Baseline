@@ -59,9 +59,9 @@ const std::string currentDir = GetCurrentWorkingDir();
 
 NS_LOG_COMPONENT_DEFINE("innetwork-test");
 
-const std::string routerFilePath = currentDir + "/scratch/config/router10.txt";
-const std::string linkFilePath = currentDir + "/scratch/config/link10.txt";
-const std::string aggGropuFilePath = currentDir + "/scratch/config/aggtree10.txt";
+const std::string routerFilePath = currentDir + "/scratch/config/router50.txt";
+const std::string linkFilePath = currentDir + "/scratch/config/link50.txt";
+const std::string aggGropuFilePath = currentDir + "/scratch/config/aggtree50.txt";
 const std::string conName = "con";
 const std::string proName = "pro";
 const std::string fowName = "forwarder";
@@ -203,7 +203,7 @@ void BuildTopo(const std::string &linkFile,  NodeContainer &consumer, NodeContai
     infile.close ();
 }
 
-void Createpro (uint16_t port, uint16_t itr, uint8_t rank, uint16_t vsize, std::vector<Address> &sGroup, 
+void Createpro (uint16_t port, uint16_t itr, uint8_t rank, uint32_t vsize, std::vector<Address> &sGroup, 
                 std::vector<Address> &cGroup, Ptr<Node> node) {
     Ptr<Producer> producer = CreateObject<Producer> ();
     //cGroup.resize(0);
@@ -214,7 +214,7 @@ void Createpro (uint16_t port, uint16_t itr, uint8_t rank, uint16_t vsize, std::
     producer->SetStopTime (Seconds(stoptime));
 }
 
-void Createagg (uint16_t port, uint16_t itr, uint8_t rank, uint16_t vsize, std::vector<Address> &sGroup, 
+void Createagg (uint16_t port, uint16_t itr, uint8_t rank, uint32_t vsize, std::vector<Address> &sGroup, 
                                         std::vector<Address> &cGroup, Ptr<Node> node) {
     Ptr<Aggregator> aggragator = CreateObject<Aggregator> ();
     node->AddApplication (aggragator);
@@ -223,7 +223,7 @@ void Createagg (uint16_t port, uint16_t itr, uint8_t rank, uint16_t vsize, std::
     aggragator->SetStopTime (Seconds(stoptime));
 }
 
-void Createcon (uint16_t port, uint16_t itr, uint8_t rank, uint16_t vsize,
+void Createcon (uint16_t port, uint16_t itr, uint8_t rank, uint32_t vsize,
                     std::vector<Address> &sGroup, std::vector<Address> &cGroup, 
                     Ptr<Node> node) {
     Ptr<Consumer> consumer = CreateObject<Consumer> ();
@@ -253,7 +253,7 @@ void CreateAggGroup (const std::string aggGroupFile,
 
 void CreateAggTree (std::string &nodeName, std::vector<Address> pa,
                 std::unordered_map<std::string, std::vector<std::string>> &aggGroups,
-                uint8_t rank, uint16_t itr, uint16_t vsize, uint16_t server_port) {
+                uint8_t rank, uint16_t itr, uint32_t vsize, uint16_t server_port) {
     std::vector<Address> sGroup;
     Ptr<Ipv4> ipv4 = Names::Find<Node> (nodeName)->GetObject<Ipv4>(); // find ipv4 address of the root node 'con0' for the first time
     Ipv4InterfaceAddress iaddr = ipv4->GetAddress (1, 0);
@@ -279,7 +279,7 @@ void CreateAggTree (std::string &nodeName, std::vector<Address> pa,
         Createpro(server_port, itr, rank, vsize, pa, cGroup, Names::Find<Node> (nodeName));
 }
 
-void CreateAggTreeTopo (uint16_t itr, uint16_t vsize, uint16_t server_port) {
+void CreateAggTreeTopo (uint16_t itr, uint32_t vsize, uint16_t server_port) {
     // get Aggragator Group
     std::unordered_map<std::string, std::vector<std::string>> aggGroups;
     CreateAggGroup (aggGropuFilePath, aggGroups);
@@ -290,7 +290,7 @@ void CreateAggTreeTopo (uint16_t itr, uint16_t vsize, uint16_t server_port) {
 
 
 void CreateDirectTopo (NodeContainer &cons, NodeContainer &pros, uint16_t itr, 
-                       uint16_t vsize, uint16_t server_port) {
+                       uint32_t vsize, uint16_t server_port) {
     std::vector<Address> consumers;
     Ptr<Ipv4> ipv4 = cons. Get (0)->GetObject<Ipv4>();
     Ipv4InterfaceAddress iaddr = ipv4->GetAddress (1, 0);
@@ -329,7 +329,7 @@ int
 main (int argc, char *argv[])
 {
     CommandLine cmd;
-    uint16_t itr = 150;//1000 Zhuoxu: now this number should set to one.
+    uint16_t itr = 3;//1000 Zhuoxu: now this number should set to one.
     uint32_t vsize = 300000;
     bool topotype = 1;
     cmd.AddValue("itr", "max iteration consumer performed", itr);
@@ -362,8 +362,10 @@ main (int argc, char *argv[])
     LogComponentEnableAll (LOG_PREFIX_NODE);
     //LogComponentEnable ("QuicMyClient", log_precision);
     LogComponentEnable ("QuicMyServer", log_precision);
-    LogComponentEnable("QuicMyServer", LOG_LEVEL_DEBUG);
-    LogComponentDisable("QuicMyServer", LOG_LEVEL_FUNCTION);
+    LogComponentEnable("QuicMyServer", LOG_LEVEL_INFO);
+    // LogComponentDisable("QuicMyServer", LOG_LEVEL_FUNCTION);
+
+
     //LogComponentEnable ("QuicSocketTxScheduler", log_precision);
     //LogComponentEnable ("Consumer", log_precision);
     //LogComponentEnable ("Producer", log_precision);
@@ -381,10 +383,10 @@ main (int argc, char *argv[])
     // LogComponentEnable("Consumer", LOG_LEVEL_FUNCTION);
 
     // Enable logging debug for some component
-    LogComponentEnable("Consumer", LOG_LEVEL_DEBUG);
-    LogComponentEnable("Aggregator", LOG_LEVEL_DEBUG);
-    LogComponentEnable("Producer", LOG_LEVEL_DEBUG);
-    LogComponentEnable("InnetworkAggregationInterface", LOG_LEVEL_DEBUG);
+    // LogComponentEnable("Consumer", LOG_LEVEL_DEBUG);
+    // LogComponentEnable("Aggregator", LOG_LEVEL_DEBUG);
+    // LogComponentEnable("Producer", LOG_LEVEL_DEBUG);
+    LogComponentEnable("InnetworkAggregationInterface", LOG_LEVEL_INFO);
 
     // zhuoxu: disable the QuicSubheader log
     ns3::LogComponentDisable("QuicSubheader", ns3::LOG_LEVEL_ALL);

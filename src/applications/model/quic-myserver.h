@@ -116,6 +116,7 @@ public:
   void SetcGroupSize(uint16_t size);
   void CheckChComp(uint16_t iterationNum); 
   void PrintBuffInfo_8(uint8_t* buffer, uint32_t packetSize);
+  void PrintState();
   
 
 protected:
@@ -172,7 +173,7 @@ private:
   // Zhuoxu: create a buffer to store the first and second received data.
   std::unordered_map<std::string, uint16_t> m_iterationMap;
   std::unordered_map<std::string, uint8_t*> m_bufferMap;
-  std::unordered_map<std::string, uint16_t> m_bufferPtrMap;
+  std::unordered_map<std::string, uint32_t> m_bufferPtrMap;
   uint32_t m_pktPtr = 0;
   uint16_t cGroupSize;
   std::string ipAddressStr;

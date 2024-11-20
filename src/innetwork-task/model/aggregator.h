@@ -29,7 +29,7 @@ namespace ns3 {
             static TypeId GetTypeId(void);
             Aggregator();
             ~Aggregator();
-            void SetupAggregator (uint16_t port, uint16_t itr, uint8_t rank, uint16_t vsize, std::vector<Address> &sGroup, 
+            void SetupAggregator (uint16_t port, uint16_t itr, uint8_t rank, uint32_t vsize, std::vector<Address> &sGroup, 
                                         std::vector<Address> &cGroup, uint16_t basetime, std::string cc_name);
 
         protected:

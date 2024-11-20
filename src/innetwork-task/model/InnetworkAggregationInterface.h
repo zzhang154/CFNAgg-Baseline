@@ -33,7 +33,7 @@ namespace ns3 {
             bool isEnd;
             uint8_t aggTreeLevel; // level of nodes in the aggregation tree or topology using the consumer as the root
             uint16_t m_peerPort; // remote port
-            uint16_t vsize;
+            uint32_t vsize;
             Ptr<Node> node;
             uint16_t currentIteration;
             uint16_t maxIteration;
@@ -71,7 +71,7 @@ namespace ns3 {
             void ProduceVToP ();
             void AVG (uint16_t iterationNum);
             void SendResponseVTo (std::string toStr, std::vector<uint64_t> &vec, uint16_t iterationNum);
-            void SetVSize (uint16_t size);
+            void SetVSize (uint32_t size);
             //void AvgEnd (uint16_t size, uint16_t iterationNum);
             
             bool GetisEnd ();

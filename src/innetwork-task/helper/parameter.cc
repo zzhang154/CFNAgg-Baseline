@@ -10,7 +10,7 @@ namespace ns3 {
 
     //uint16_t k=100;
     uint32_t BASESIZE = 0; //the num of uint8_t per one chunk 800
-    uint32_t chunkSize = static_cast<uint16_t>(BASESIZE/sizeof(uint64_t));//100; sizeof returns the size in bytes.
+    uint32_t chunkSize = static_cast<uint32_t>(BASESIZE/sizeof(uint64_t));//100; sizeof returns the size in bytes.
     uint32_t pktlen = BASESIZE + 10;
     uint16_t rqtlen = 10;
     uint8_t headerChr = 3;
@@ -24,7 +24,7 @@ namespace ns3 {
     // Example function to change BASESIZE and update pktlen
     void SetBaseSize(uint32_t newBaseSize) {
         BASESIZE = newBaseSize;
-        chunkSize = static_cast<uint16_t>(BASESIZE / sizeof(uint64_t));
+        chunkSize = static_cast<uint32_t>(BASESIZE / sizeof(uint64_t));
         UpdatePktlen();
     }
 
