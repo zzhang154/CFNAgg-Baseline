@@ -24,7 +24,7 @@ void GenetrateRandomVector (std::vector<uint64_t> &vec, uint8_t rank);
 
 void SerializeVector (const std::vector<uint64_t> &vec, uint8_t *buffer);
 
-void DeserializeVector (uint64_t* vecPtr, uint8_t *buffer, uint16_t bufferSize);
+void DeserializeVector (uint64_t* vecPtr, uint8_t *buffer, uint32_t bufferSize);
 
 void DeepVectorCopy (std::vector<Address> &vec1, 
                     const std::vector<Address> &vec2);

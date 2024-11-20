@@ -412,8 +412,8 @@ QuicMyServer::HandleRead (Ptr<Socket> socket) {
     std::cout << "------------------------------------" << std::endl;
   }
   // Zhuoxu: only print the packet of 10.1.1.1
-  if(ipAddressStr == "10.1.1.1")
-    PrintBuffInfo_8(packetContent, packetSize);
+  // if(ipAddressStr == "10.1.1.1")
+  //   PrintBuffInfo_8(packetContent, packetSize);
   delete[] packetContent;
   //std::cout<<"QuicMyServer----"<<GetLocalAddress().GetIpv4()<<"-received---request---from--"<<InetSocketAddress::ConvertFrom(m_peerAddress).GetIpv4()<<std::endl;
   this->m_socket = socket;

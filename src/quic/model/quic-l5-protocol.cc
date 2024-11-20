@@ -328,42 +328,44 @@ QuicL5Protocol::Recv (Ptr<Packet> frame, Address &address)
 std::vector<Ptr<Packet> >
 QuicL5Protocol::DisgregateSend (Ptr<Packet> data)
 {
-  NS_LOG_FUNCTION (this<<data->GetSize());
+  // Zhuoxu: uncomment all the following code, and comment the return {data}; will enable the disgregateSend again.
 
-  uint32_t dataSizeByte = data->GetSize ();
-  std::vector< Ptr<Packet> > disgregated;
-  //data->Print(std::cout);
+  // NS_LOG_FUNCTION (this<<data->GetSize());
 
-  // Equally distribute load on all streams except on stream 0
+  // uint32_t dataSizeByte = data->GetSize ();
+  // std::vector< Ptr<Packet> > disgregated;
+  // //data->Print(std::cout);
 
-  //std::cout<<"111000000-dataSizeByte---"<<dataSizeByte<<"-m_streams.size ()----"<<m_streams.size ()<<std::endl;
-  uint32_t loadPerStream = dataSizeByte / (m_streams.size () - 1);
-  uint32_t remainingLoad = dataSizeByte - loadPerStream * (m_streams.size () - 1);
-  //loadPerStream = dataSizeByte;
-  //remainingLoad = 0;
-  if (loadPerStream < 1)
-    {
-      loadPerStream = 1;
-    }
+  // // Equally distribute load on all streams except on stream 0
 
-  for (uint32_t start = 0; start < dataSizeByte; start += loadPerStream)
-    {
-      if (remainingLoad > 0 && start + remainingLoad == dataSizeByte)
-        {
-          Ptr<Packet> remainingfragment = data->CreateFragment (
-            start, remainingLoad);
-          disgregated.push_back (remainingfragment);
-        }
-      else
-        {
-          Ptr<Packet> fragment = data->CreateFragment (start, loadPerStream);
-          disgregated.push_back (fragment);
-        }
+  // //std::cout<<"111000000-dataSizeByte---"<<dataSizeByte<<"-m_streams.size ()----"<<m_streams.size ()<<std::endl;
+  // uint32_t loadPerStream = dataSizeByte / (m_streams.size () - 1);
+  // uint32_t remainingLoad = dataSizeByte - loadPerStream * (m_streams.size () - 1);
+  // //loadPerStream = dataSizeByte;
+  // //remainingLoad = 0;
+  // if (loadPerStream < 1)
+  //   {
+  //     loadPerStream = 1;
+  //   }
 
-    }
+  // for (uint32_t start = 0; start < dataSizeByte; start += loadPerStream)
+  //   {
+  //     if (remainingLoad > 0 && start + remainingLoad == dataSizeByte)
+  //       {
+  //         Ptr<Packet> remainingfragment = data->CreateFragment (
+  //           start, remainingLoad);
+  //         disgregated.push_back (remainingfragment);
+  //       }
+  //     else
+  //       {
+  //         Ptr<Packet> fragment = data->CreateFragment (start, loadPerStream);
+  //         disgregated.push_back (fragment);
+  //       }
 
-  return disgregated;
-  //return {data};
+  //   }
+
+  // return disgregated;
+  return {data};
 }
 
 std::vector< std::pair<Ptr<Packet>, QuicSubheader> >

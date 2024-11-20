@@ -147,7 +147,7 @@ namespace ns3 {
             iterationNum = server->GetCompIterNum();
         }
         
-        ns3::Simulator::Schedule(ns3::MilliSeconds(10), &InnetworkAggregationInterface::ReceiveDataFromAll, this);
+        ns3::Simulator::Schedule(ns3::MilliSeconds(3), &InnetworkAggregationInterface::ReceiveDataFromAll, this);
         return;
         // The minimum time interval is 1ms in the test.
         // ns3::Simulator::Schedule(ns3::MilliSeconds(4), &InnetworkAggregationInterface::ReceiveDataFromAll, this);
@@ -160,8 +160,8 @@ namespace ns3 {
         NS_LOG_FUNCTION (this);
         //uint16_t iterationNum = 0;
         //Ptr<QuicMyServer> server = socketPool[toStr]->GetObject<QuicMyServer>();
-        uint16_t pos = 0;
-        uint16_t end = vsize*sizeof(uint64_t); //transalte from uint64_t to uint8_t
+        uint32_t pos = 0;
+        uint32_t end = vsize*sizeof(uint64_t); //transalte from uint64_t to uint8_t
         uint8_t type = 1;
         //uint8_t *serializeVec = new uint8_t[end]();
         std::vector<uint8_t> serializeVec = std::vector<uint8_t>(end,0);
@@ -179,6 +179,7 @@ namespace ns3 {
         Ptr<QuicMyClient> client = socketPool[toStr]->GetObject<QuicMyClient>();
         NS_LOG_DEBUG( this << " Sends data to socketPool["<<toStr<<"] ");
         std::vector<uint8_t> chunkBuffer = std::vector<uint8_t>(pktlen,0); //Zhuoxu: 
+        NS_LOG_DEBUG( this << " pktlen " << pktlen);
         uint8_t* buffer = serializeVec.data(); 
         // mark 33... as the type of the send data packet
         for (uint16_t i = 0; i < 8; ++i) {

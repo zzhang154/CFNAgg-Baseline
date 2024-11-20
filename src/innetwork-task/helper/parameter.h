@@ -14,6 +14,9 @@ namespace ns3 {
     extern uint8_t headerChr;
     //extern uint16_t vsize;
 
+    void UpdatePktlen();
+    void SetBaseSize(uint32_t newBaseSize);
+
     //struch data chunk
     struct  ReceivedChunk {
         //count the child

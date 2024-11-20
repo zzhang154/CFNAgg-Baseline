@@ -53,7 +53,7 @@ void SerializeVector (const std::vector<uint64_t> &vec, uint8_t *buffer){
 }
 
 // Zhuoxu: change the definition of this part.
-void DeserializeVector (uint64_t* vecPtr, uint8_t *buffer, uint16_t bufferSize) {
+void DeserializeVector (uint64_t* vecPtr, uint8_t *buffer, uint32_t bufferSize) {
     int elementsCount = bufferSize / 8;
     std::cout<<"elementsCount: "<<elementsCount<<std::endl;
     uint8_t *ptr = buffer;

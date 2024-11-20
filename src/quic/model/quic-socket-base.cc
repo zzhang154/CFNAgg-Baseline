@@ -114,10 +114,12 @@ QuicSocketBase::GetTypeId (void)
     .AddAttribute ("MaxStreamIdBidi",
                    "Maximum StreamId for Bidirectional Streams",
                    UintegerValue (2),                   // according to the QUIC RFC this value should default to 0, and be increased by the client/server
+                   // Zhuoxu: set this to zero and see what happens?
                    MakeUintegerAccessor (&QuicSocketBase::m_initial_max_stream_id_bidi),
                    MakeUintegerChecker<uint32_t> ())
     .AddAttribute ("MaxStreamIdUni", "Maximum StreamId for Unidirectional Streams",
                    UintegerValue (2),                                  // according to the QUIC RFC this value should default to 0, and be increased by the client/server
+                   // Zhuoxu: set this to zero and see what happens?
                    MakeUintegerAccessor (&QuicSocketBase::m_initial_max_stream_id_uni),
                    MakeUintegerChecker<uint32_t> ())
     .AddAttribute ("MaxTrackedGaps", "Maximum number of gaps in an ACK",
@@ -139,7 +141,7 @@ QuicSocketBase::GetTypeId (void)
                                          &QuicSocketBase::SetSocketSndBufSize),
                    MakeUintegerChecker<uint32_t> ())
     .AddAttribute ("SocketRcvBufSize", "QuicSocketBase maximum receive buffer size (bytes)",
-                   UintegerValue (UINT32_MAX / 2),                                  // 128k = 131072
+                   UintegerValue (24600*10),                                  // 128k = 131072
                    MakeUintegerAccessor (&QuicSocketBase::GetSocketRcvBufSize,
                                          &QuicSocketBase::SetSocketRcvBufSize),
                    MakeUintegerChecker<uint32_t> ())

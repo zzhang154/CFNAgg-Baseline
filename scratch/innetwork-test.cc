@@ -38,16 +38,15 @@
 #include <iostream>
 
 // Zhuoxu: no need to use the absolute path
-// #include "/home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/src/innetwork-task/model/consumer.h"
-// #include "/home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/src/innetwork-task/model/producer.h"
-// #include "/home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/src/innetwork-task/model/aggregator.h"
 #include "ns3/consumer.h"
 #include "ns3/producer.h"
 #include "ns3/aggregator.h"
+#include "ns3/parameter.h"
 
 #include <unistd.h>
 #include <limits.h>
 #include <string>
+#include <climits> // For CHAR_BIT
 
 using namespace ns3;
 
@@ -60,16 +59,19 @@ const std::string currentDir = GetCurrentWorkingDir();
 
 NS_LOG_COMPONENT_DEFINE("innetwork-test");
 
-const std::string linkFilePath = currentDir + "/scratch/link.txt";
-const std::string aggGropuFilePath = currentDir + "/scratch/aggtree.txt";
+const std::string routerFilePath = currentDir + "/scratch/config/router10.txt";
+const std::string linkFilePath = currentDir + "/scratch/config/link10.txt";
+const std::string aggGropuFilePath = currentDir + "/scratch/config/aggtree10.txt";
 const std::string conName = "con";
 const std::string proName = "pro";
 const std::string fowName = "forwarder";
 const std::string aggName = "agg";
-const uint32_t consumerNum = 1;
-const uint32_t producerNum = 10;
-const uint32_t forwarderNum = 6;
-const uint32_t aggregatorNum = 5;
+
+// Zhuoxu: this should be set automatically by the configuration file.
+uint32_t consumerNum;
+uint32_t producerNum;
+uint32_t forwarderNum;
+uint32_t aggregatorNum;
 std::string cc = "bbr";
 uint16_t basetime = 1000;
 uint16_t starttime = 1;
@@ -89,6 +91,39 @@ void NameNodes(NodeContainer &nodes, std::string baseName) {
             std::cout << "Error: Name already exists: " << nodeName << std::endl;
         }
     }
+}
+
+void CountRouterNodes(const std::string& filename) {
+
+    // Open the file
+    std::ifstream file(filename);
+    if (!file.is_open()) {
+        std::cerr << "Failed to open file: " << filename << std::endl;
+        return;
+    }
+
+    // Read the file line by line
+    std::string line;
+    while (std::getline(file, line)) {
+        if (line.find("con") == 0) {
+            ++consumerNum;
+        } else if (line.find("pro") == 0) {
+            ++producerNum;
+        } else if (line.find("for") == 0) {
+            ++forwarderNum;
+        } else if (line.find("agg") == 0) {
+            ++aggregatorNum;
+        }
+    }
+
+    // Close the file
+    file.close();
+
+    // Output the results
+    std::cout << "uint32_t consumerNum = " << consumerNum << ";" << std::endl;
+    std::cout << "uint32_t producerNum = " << producerNum << ";" << std::endl;
+    std::cout << "uint32_t forwarderNum = " << forwarderNum << ";" << std::endl;
+    std::cout << "uint32_t aggregatorNum = " << aggregatorNum << ";" << std::endl;
 }
 
 // read link.txt to create links
@@ -294,8 +329,8 @@ int
 main (int argc, char *argv[])
 {
     CommandLine cmd;
-    uint16_t itr = 3;//1000 Zhuoxu: now this number should set to one.
-    uint16_t vsize = 3000;
+    uint16_t itr = 150;//1000 Zhuoxu: now this number should set to one.
+    uint32_t vsize = 300000;
     bool topotype = 1;
     cmd.AddValue("itr", "max iteration consumer performed", itr);
     cmd.AddValue("vsize", "vector size", vsize);
@@ -306,6 +341,7 @@ main (int argc, char *argv[])
     cmd.AddValue("stoptime", "set stop time", stoptime);
     cmd.Parse (argc, argv);
 
+    ns3::SetBaseSize(vsize * sizeof(uint8_t) * CHAR_BIT);
 
     std::cout
         << "\n\n#################### SIMULATION PARAMETERS ####################\n\n\n";
@@ -364,6 +400,7 @@ main (int argc, char *argv[])
     NodeContainer forwarder;
     NodeContainer aggregator;
 
+    CountRouterNodes(routerFilePath);
     BuildTopo(linkFilePath, consumer, producer, forwarder, aggregator);
     //LogLevel log_precision = LOG_LEVEL_INFO; 
     uint16_t server_port=1234;
