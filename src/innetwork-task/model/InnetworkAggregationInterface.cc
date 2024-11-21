@@ -129,7 +129,7 @@ namespace ns3 {
             successIter.insert(iterationNum);
 
             Time currentTime = Simulator::Now();
-            NS_LOG_INFO("IterationNum-"<<iterationNum-uint16_t(0)<< " Innetwork aggregation completed in: " << currentTime.GetMilliSeconds() << "ms");
+            NS_LOG_DEBUG("IterationNum-"<<iterationNum-uint16_t(0)<< " Innetwork aggregation completed in: " << currentTime.GetMilliSeconds() << "ms");
 
             // Send packet to the parent
             SendResponseVToP (result.vec , iterationNum);
@@ -137,7 +137,7 @@ namespace ns3 {
             //check if all the iteration has been collected
             if (successIter.size() == maxIteration) {
                 if (this->sGroup.size() <= 0) {
-                    NS_LOG_INFO("All iteration-"<<maxIteration<< " completed in: " << currentTime.GetMilliSeconds() - 2000<< "ms");
+                    NS_LOG_DEBUG("All iteration-"<<maxIteration<< " completed in: " << currentTime.GetMilliSeconds() - 2000<< "ms");
                     Simulator::Stop (Seconds(Simulator::Now().GetSeconds() + 1));
                 }
                 return;
@@ -153,6 +153,16 @@ namespace ns3 {
         // ns3::Simulator::Schedule(ns3::MilliSeconds(4), &InnetworkAggregationInterface::ReceiveDataFromAll, this);
     }
 
+
+    void 
+    InnetworkAggregationInterface::SendResponseVToP (std::vector<uint64_t> &avg , uint16_t iterationNum) {
+        NS_LOG_FUNCTION (this << " iteration: " << iterationNum);
+        for (uint8_t i = 0; i < this->sGroup.size (); ++i) {
+            std::string toStr;
+            Addr2Str (this->sGroup[i], toStr);
+            SendResponseVTo (toStr, avg, iterationNum);
+        }
+    }
 
     // serialize and slice vec into chunks of k elements, that is k*8 uint8_t/chunk.
     void 
@@ -170,9 +180,8 @@ namespace ns3 {
         SendPacket(toStr, iterationNum, serializeVec);
     }
 
-    void
+    void 
     InnetworkAggregationInterface::SendPacket (std::string toStr, uint16_t iterationNum, std::vector<uint8_t> &serializeVec){
-        
         //NS_LOG_INFO("iteration-"<<iterationNum-uint16_t(0));
 
         // Zhuoxu: change the producer to client here
@@ -192,14 +201,13 @@ namespace ns3 {
         //iterationNum++;
 
         // Debug output to verify sizes
-        // std::cout << "BASESIZE: " << BASESIZE << std::endl;
-        // std::cout << "pktlen: " << pktlen << std::endl;
-        // std::cout << "buffer size: " << serializeVec.size() << std::endl;
-        // std::cout << "chunkBuffer size: " << chunkBuffer.size() << std::endl;
+        // NS_LOG_DEBUG("BASESIZE: " << BASESIZE);
+        // NS_LOG_DEBUG("pktlen: " << pktlen);
+        // NS_LOG_DEBUG("buffer size: " << serializeVec.size());
+        // NS_LOG_DEBUG("chunkBuffer size: " << chunkBuffer.size());
 
-        
         std::copy(buffer, buffer + BASESIZE, chunkBuffer.data() + 10);
-            
+
         // record the time RTT
         // 在这里获取是否
         int sentSize = -1;
@@ -212,28 +220,26 @@ namespace ns3 {
                 NS_LOG_DEBUG(this<<" client->Send() failed at iteration "<<iterationNum-uint16_t(0));
         }
 
-        
-
         // Zhuoxu: Todo: print the send content of aggregator
         if(cGroup.size()>0 && sGroup.size()>0){
             NS_LOG_DEBUG("Agg send to consumer, the content is as follows: ");
-            // std::cout << "------------------------------------" << std::endl;
-            // for(int i = 0; i < 24; i++){
-            //     std::cout << static_cast<int>(chunkBuffer[i]) << " ";
-            //     if((i+1) % 8 == 0){
-            //         std::cout << " the " << (i+1) / 8 << "th byte" << std::endl;
-            //     }
-            // }
+            std::cout << "------------------------------------" << std::endl;
+            for(int i = 0; i < 24; i++){
+                std::cout << static_cast<int>(chunkBuffer[i]) << " ";
+                if((i+1) % 8 == 0){
+                    std::cout << " the " << (i+1) / 8 << "th byte" << std::endl;
+                }
+            }
         }
         else if(cGroup.size()==0){
             NS_LOG_DEBUG("producer send to aggregator, the content is as follows: ");
-            // std::cout << "------------------------------------" << std::endl;
-            // for(int i = 0; i < 24; i++){
-            //     std::cout << static_cast<int>(chunkBuffer[i]) << " ";
-            //     if((i+1) % 8 == 0){
-            //         std::cout << " the " << (i+1) / 8 << "th byte" << std::endl;
-            //     }
-            // }
+            std::cout << "------------------------------------" << std::endl;
+            for(int i = 0; i < 24; i++){
+                std::cout << static_cast<int>(chunkBuffer[i]) << " ";
+                if((i+1) % 8 == 0){
+                    std::cout << " the " << (i+1) / 8 << "th byte" << std::endl;
+                }
+            }
         }
 
         // if (cGroup.size()<=0 && iterationNum < maxIteration - 1){
@@ -248,17 +254,6 @@ namespace ns3 {
         //     }
 
         // }
-        
-    }
-
-    void 
-    InnetworkAggregationInterface::SendResponseVToP (std::vector<uint64_t> &avg , uint16_t iterationNum) {
-        NS_LOG_FUNCTION (this << " iteration: " << iterationNum);
-        for (uint8_t i = 0; i < this->sGroup.size (); ++i) {
-            std::string toStr;
-            Addr2Str (this->sGroup[i], toStr);
-            SendResponseVTo (toStr, avg, iterationNum);
-        }
     }
 
     void 
@@ -269,7 +264,7 @@ namespace ns3 {
             for (uint16_t j = 0; j < this->maxIteration; ++j) {
                 std::vector<uint64_t> initData(chunkSize, 88 + 11*static_cast<int>(j));
                 SendResponseVTo (toStr, initData, j);
-                std::cout<<"initData info:"<<std::endl;
+                std::cout<<"initData info for first 5th:"<<std::endl;
                 for(int k=0;k<5;k++){
                     std::cout<<initData[k]<<" ";
                 }

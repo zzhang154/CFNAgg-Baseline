@@ -59,9 +59,9 @@ const std::string currentDir = GetCurrentWorkingDir();
 
 NS_LOG_COMPONENT_DEFINE("innetwork-test");
 
-const std::string routerFilePath = currentDir + "/scratch/config/router50.txt";
-const std::string linkFilePath = currentDir + "/scratch/config/link50.txt";
-const std::string aggGropuFilePath = currentDir + "/scratch/config/aggtree50.txt";
+const std::string routerFilePath = currentDir + "/scratch/config/router10.txt";
+const std::string linkFilePath = currentDir + "/scratch/config/link10.txt";
+const std::string aggGropuFilePath = currentDir + "/scratch/config/aggtree10.txt";
 const std::string conName = "con";
 const std::string proName = "pro";
 const std::string fowName = "forwarder";
@@ -329,8 +329,8 @@ int
 main (int argc, char *argv[])
 {
     CommandLine cmd;
-    uint16_t itr = 3;//1000 Zhuoxu: now this number should set to one.
-    uint32_t vsize = 300000;
+    uint16_t itr = 100;//1000 Zhuoxu: now this number should set to one.
+    uint32_t vsize = 30000;
     bool topotype = 1;
     cmd.AddValue("itr", "max iteration consumer performed", itr);
     cmd.AddValue("vsize", "vector size", vsize);
@@ -363,6 +363,7 @@ main (int argc, char *argv[])
     //LogComponentEnable ("QuicMyClient", log_precision);
     LogComponentEnable ("QuicMyServer", log_precision);
     LogComponentEnable("QuicMyServer", LOG_LEVEL_INFO);
+    LogComponentEnable("QuicMyServer", LOG_LEVEL_DEBUG);
     // LogComponentDisable("QuicMyServer", LOG_LEVEL_FUNCTION);
 
 
@@ -383,10 +384,11 @@ main (int argc, char *argv[])
     // LogComponentEnable("Consumer", LOG_LEVEL_FUNCTION);
 
     // Enable logging debug for some component
-    // LogComponentEnable("Consumer", LOG_LEVEL_DEBUG);
-    // LogComponentEnable("Aggregator", LOG_LEVEL_DEBUG);
-    // LogComponentEnable("Producer", LOG_LEVEL_DEBUG);
+    LogComponentEnable("Consumer", LOG_LEVEL_DEBUG);
+    LogComponentEnable("Aggregator", LOG_LEVEL_DEBUG);
+    LogComponentEnable("Producer", LOG_LEVEL_DEBUG);
     LogComponentEnable("InnetworkAggregationInterface", LOG_LEVEL_INFO);
+    LogComponentEnable("InnetworkAggregationInterface", LOG_LEVEL_DEBUG);
 
     // zhuoxu: disable the QuicSubheader log
     ns3::LogComponentDisable("QuicSubheader", ns3::LOG_LEVEL_ALL);

@@ -130,18 +130,18 @@ QuicSocketBase::GetTypeId (void)
                    BooleanValue (false),
                    MakeBooleanAccessor (&QuicSocketBase::m_omit_connection_id),
                    MakeBooleanChecker ())
-    .AddAttribute ("MaxPacketSize", "Maximum Packet Size",
-                   UintegerValue (UINT16_MAX-100),//1460  1620  //1840 //Zhuoxu: try 25000 here
+    .AddAttribute ("MaxPacketSize", "Maximum Packet Size (bits)",
+                   UintegerValue (1840),//1460  1620  //1840 //Zhuoxu: try 25000 here
                    MakeUintegerAccessor (&QuicSocketBase::GetSegSize,
                                          &QuicSocketBase::SetSegSize),
                    MakeUintegerChecker<uint16_t> ())
     .AddAttribute ("SocketSndBufSize", "QuicSocketBase maximum transmit buffer size (bytes)",
-                   UintegerValue (UINT32_MAX / 2),                                  // 128k
+                   UintegerValue (pktlen*60),                                  // 128k
                    MakeUintegerAccessor (&QuicSocketBase::GetSocketSndBufSize,
                                          &QuicSocketBase::SetSocketSndBufSize),
                    MakeUintegerChecker<uint32_t> ())
     .AddAttribute ("SocketRcvBufSize", "QuicSocketBase maximum receive buffer size (bytes)",
-                   UintegerValue (24600*10),                                  // 128k = 131072
+                   UintegerValue (pktlen*30),                                  // 128k = 131072
                    MakeUintegerAccessor (&QuicSocketBase::GetSocketRcvBufSize,
                                          &QuicSocketBase::SetSocketRcvBufSize),
                    MakeUintegerChecker<uint32_t> ())

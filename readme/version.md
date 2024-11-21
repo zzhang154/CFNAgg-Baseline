@@ -101,8 +101,32 @@ ns3::QuicSubHeader (|STREAM110|
 |Length 574|
 ) Payload Fragment [12005:12579]ns3::QuicSubHeader (|STREAM110|
 
+----------------------------
 Quic-Agg-v4.1:
 1. fix the bug for change the vsize from uint16_t to uint32_t, such that we can test for large data.
 
+----------------------------
 Quic-Agg-v4.1.1:
 1. It seems that the chunkSize has wrongly set to uint16_t, which actually not send the 300,000 vector size at all. Now we fix that.
+
+2. Just really be careful that all variable in the "parameters.cc" should change to uint32_t.
+
+
+---------------------------
+Quic-Agg-v5.0. ToDo List:
+1. InnetworkAggregationInterface.cc
+(1) Control the action of QuicMyServer. Check the status of iterChunkMap, if it is full, then stop sending the data.
+(2) Alternatively, maintain the available space of iterChunkMap. It means that once the data of one iteration has been processed, it should triggered the send operation. But does this mean that the server should send packets to their children node as notification?
+
+2. QuicMyServer.cc:
+(1) only call "packet = socket->RecvFrom (from)", when the iterChunkMap (the table) has available space. Let say constraint is 30 iterations for example.
+
+check the discussion record with Xinjiao:
+我感觉你想的和DK想的可能不是一个东西。关于agg满了以后让producer不要再发的这个东西。首先，是程序的缓存满，那就不readfrom；然后不读之后接收缓冲区会满，那这个就会让pro那边的rtt变大的，那边自动就会调整发包策略了。所以一般不会返回-1啊。。只要能放到send buffer里面，就能发，时间长短的问题。我们不就是想让时间变长吗。。这就是把数据丢给了quic，让他自适应的发啊。这不是DK一开始想要的么
+
+3. Bug to be fixed.
+(1) Now, only can run 117 iteration. Don't know why the left 30+ iteration data have not received? When both the SendBuf and RecBuf is INT32_MAX.
+
+(2) When sendBuf both the SendBuf and RecBuf is pktlen * 10 or pktlen * 30. Only 8 iterations can run.
+
+(3) SendBuf is INT32_MAX and RecBuf is pktlen * 30, only 107 iterations can run. After that, there are constantly small packets received by QuicMyServer, the sizes are as follows: 508, 1316, 1252, 572, 1284, 1316. It seems that these packets are not contained anything, maybe just some notification packet.

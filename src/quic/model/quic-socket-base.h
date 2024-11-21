@@ -44,6 +44,9 @@
 #include "ns3/tcp-congestion-ops.h"
 #include "quic-socket-tx-scheduler.h"
 
+// Zhuoxu: include the parameter file
+#include "ns3/parameter.h"
+
 namespace ns3 {
 
 class QuicL5Protocol;
