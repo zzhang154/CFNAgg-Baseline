@@ -114,7 +114,8 @@ public:
   Ptr<Packet> NextSequence (uint32_t numBytes, const SequenceNumber32 seq);
 
   /**
-   * \brief Get a block of data not transmitted yet and move it into SentList
+   * \brief Get a block of data not transmitted yet and move it into SentList. 
+   * ----Zhuoxu: The function is modified since we don't need the large packet split operation. In our assumption, we assume that the vector we send is always smaller than MTU.
    *
    * \param numBytes number of bytes of the QuicSocketTxItem requested
    * \return the item that contains the right packet

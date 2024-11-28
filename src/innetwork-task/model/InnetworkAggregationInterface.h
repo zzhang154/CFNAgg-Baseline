@@ -30,7 +30,6 @@ namespace ns3 {
     typedef std::unordered_map<std::string, std::vector<uint64_t>> ChildChunkMap; // Zhuoxu: socket name -- chunk map
 
     class InnetworkAggregationInterface : public Object {
-            bool isEnd;
             uint8_t aggTreeLevel; // level of nodes in the aggregation tree or topology using the consumer as the root
             uint16_t m_peerPort; // remote port
             uint32_t vsize;
@@ -51,6 +50,9 @@ namespace ns3 {
             uint8_t currentIndex;
             uint16_t iterationNum;
             std::unordered_set <uint16_t> successIter;
+
+            std::unordered_map<uint16_t, DataChunk> iterChunk;
+            bool isEnd = false;
 
 
         public:
@@ -81,6 +83,13 @@ namespace ns3 {
             void SetOutFile (const std::string fileName);
             void Addr2Str (Address addr, std::string &str);
             void SendPacket (std::string toStr, uint16_t iterationNum, std::vector<uint8_t> &serializeVec);
+            void SendEndPacket (std::string toStr);
+            bool PrintCompInfo (uint16_t iterationNum);
+            void PrintBufferSummary(std::vector<uint8_t>& chunkBuffer);
+
+            // Zhuoxu: Todo 
+            ns3::Ipv4Address GetIpAddrFromNode (Ptr<Node> node);
+            uint16_t HashIpToPort(const std::string& ip);
     };
 
 }; /*namespace ns3*/

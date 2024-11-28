@@ -125,8 +125,8 @@ QuicSocketRxBuffer::Extract (uint32_t maxSize)
   NS_LOG_FUNCTION (this << maxSize);
 
   uint32_t extractSize = std::min (maxSize, m_recvSize);
-  NS_LOG_INFO (
-    "Requested to extract " << extractSize << " bytes from QuicSocketRxBuffer of size=" << m_recvSize);
+  NS_LOG_INFO ( this <<
+    " Requested to extract " << extractSize << " bytes from QuicSocketRxBuffer of size=" << m_recvSize);
 
   if (extractSize == 0)
     {
@@ -137,20 +137,32 @@ QuicSocketRxBuffer::Extract (uint32_t maxSize)
 
   QuicSocketRxPacketList::iterator it = m_socketRecvList.begin ();
 
+  if(m_socketRecvList.empty ())
+    NS_LOG_INFO (
+      "m_socketRecvList.empty ()"
+    );
+  if( it == m_socketRecvList.end ())
+    NS_LOG_INFO (
+      "it == m_socketRecvList.end ()"
+    );
+
+  // NS_LOG_INFO ( this << " extractSize111: " << extractSize);
+
   while (extractSize > 0 && !m_socketRecvList.empty () && it != m_socketRecvList.end ())
     {
+      // NS_LOG_INFO ( this << " extractSize222: " << extractSize);
       it = m_socketRecvList.begin ();
       Ptr<Packet> currentPacket = *it;
 
       if (currentPacket->GetSize () + outPkt->GetSize () <= extractSize)   // Merge
         {
-
+          // NS_LOG_INFO( this << " For each while loop, currentPacket->GetSize(): " << currentPacket->GetSize() << " outPkt->GetSize(): " << outPkt->GetSize() << " extractSize: " << extractSize);
           outPkt->AddAtEnd ((*it));
-          m_socketRecvList.erase (it);
 
           m_recvSize -= (*it)->GetSize ();
           extractSize -= (*it)->GetSize ();
-          NS_LOG_LOGIC ("Added packet of size " << (*it)->GetSize ());
+          NS_LOG_LOGIC (this << " Added packet of size " << (*it)->GetSize ());
+          m_socketRecvList.erase (it);
           continue;
         }
       else
@@ -186,7 +198,7 @@ QuicSocketRxBuffer::GetMaxBufferSize (void) const
 uint32_t
 QuicSocketRxBuffer::Size (void) const
 {
-  NS_LOG_FUNCTION (this);
+  // NS_LOG_FUNCTION (this);
 
   return m_recvSize;
 }

@@ -37,6 +37,7 @@
 // Zhuoxu: add this in order to use chunkMap
 #include "ns3/parameter.h"
 #include "ns3/vectorop.h"
+// #include "ns3/utils.h"
 #include <string.h>
 #include <unordered_map>
 
@@ -111,12 +112,18 @@ public:
 
   // Zhuoxu: relative function w.r.t the interface.cc
   uint16_t GetCompIterNum();
-  ReceivedChunk GetResult(uint16_t iterationNum);
+  std::queue<uint16_t> GetCompIterQueue();
+  void ClearCompQueue();
   void ReleaseMap(uint16_t iterationNum);
   void SetcGroupSize(uint16_t size);
   void CheckChComp(uint16_t iterationNum); 
   void PrintBuffInfo_8(uint8_t* buffer, uint32_t packetSize);
   void PrintState();
+  void SetIterChunkPtr(std::unordered_map<uint16_t, DataChunk>* iterChunk);
+  int CheckMemory();
+  void CallHandleRead();
+  void Addr2Str (Address addr, std::string &str);
+  void SetIpAddrStr(std::string ipAddrStr);
   
 
 protected:
@@ -174,9 +181,16 @@ private:
   std::unordered_map<std::string, uint16_t> m_iterationMap;
   std::unordered_map<std::string, uint8_t*> m_bufferMap;
   std::unordered_map<std::string, uint32_t> m_bufferPtrMap;
+  uint8_t* m_buffer = nullptr;
+  uint32_t m_bufferPtr = 0;
   uint32_t m_pktPtr = 0;
+  uint16_t m_iteration = 0;
   uint16_t cGroupSize;
   std::string ipAddressStr;
+  uint16_t iterThresh = ITERTHRESH;
+
+  Ptr<CircularBuffer> m_circularBuffer;
+  std::unordered_map<uint16_t, DataChunk>* iterChunkPtr;
 };
 
 } // namespace ns3

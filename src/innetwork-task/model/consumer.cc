@@ -46,7 +46,7 @@ namespace ns3 {
         this->basetime = basetime;
         this->cc_name = cc_name;
         this->nodeInnetworkAggregationInterface = CreateObject<InnetworkAggregationInterface> ();
-        this->nodeInnetworkAggregationInterface->SetupInnetworkAggregationInterface (port, itr, rank, sGroup, cGroup, GetNode (), true);
+        this->nodeInnetworkAggregationInterface->SetupInnetworkAggregationInterface (port, itr, rank, sGroup, cGroup, GetNode (), false);
         this->nodeInnetworkAggregationInterface->SetOutFile (fileName);
         this->nodeInnetworkAggregationInterface->SetVSize (vsize);
     }
@@ -56,7 +56,7 @@ namespace ns3 {
         NS_LOG_FUNCTION (this);
         //this->nodeInnetworkAggregationInterface->CreateSocketPool (cc_name);
         ns3::Simulator::Schedule(ns3::MilliSeconds(0), &InnetworkAggregationInterface::CreateSocketPool, this->nodeInnetworkAggregationInterface, cc_name);
-        ns3::Simulator::Schedule(ns3::MilliSeconds(basetime+10), &InnetworkAggregationInterface::ReceiveDataFromAll, this->nodeInnetworkAggregationInterface);
+        ns3::Simulator::Schedule(ns3::MilliSeconds(basetime+0.1), &InnetworkAggregationInterface::ReceiveDataFromAll, this->nodeInnetworkAggregationInterface);
     }
 
     Consumer::~Consumer () {

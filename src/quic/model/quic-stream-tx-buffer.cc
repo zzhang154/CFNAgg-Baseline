@@ -163,6 +163,8 @@ QuicStreamTxBuffer::Add (Ptr<Packet> p)
   return false;
 }
 
+// Zhuoxu: maybe we should apply this function. Add the rejected packet to the front of the list. Not just directly drop it.
+// Zhuoxu: Todo: See what is m_sentList? Where does this packet sent to?
 bool
 QuicStreamTxBuffer::Rejected (Ptr<Packet> p)
 {
@@ -196,11 +198,11 @@ QuicStreamTxBuffer::Rejected (Ptr<Packet> p)
   return false;
 }
 
-
+// Zhuoxu: we should modify this function so that it will not generate small frames.
 Ptr<Packet>
 QuicStreamTxBuffer::NextSequence (uint32_t numBytes, const SequenceNumber32 seq)
 {
-  NS_LOG_FUNCTION (this << numBytes << seq);
+  NS_LOG_FUNCTION (this << " numBytes: " << numBytes << " seq: " << seq);
 
   Ptr<QuicStreamTxItem> outItem = GetNewSegment (numBytes);
 
@@ -230,56 +232,80 @@ QuicStreamTxBuffer::GetNewSegment (uint32_t numBytes)
   outItem->m_packet = Create<Packet> ();
   uint32_t outItemSize = 0;
   QuicTxPacketList::iterator it = m_appList.begin ();
+  int index = 0;
 
-  while (it != m_appList.end () && outItemSize < numBytes)
-    {
-      currentItem = *it;
-      currentPacket = currentItem->m_packet;
+  // Zhuoxu: here, we don't need the large packet split operation. In our assumption, we assume that the vector we send is always smaller than MTU.
 
-//	  uint32_t subheaderSize = 0;
-//	  if(m_TxBufferType == SOCKET)
-//	  {
-//		  QuicSubheader sub;
-//		  currentItem->m_packet->PeekHeader(sub);
-//		  subheaderSize = sub.GetSerializedSize();
-//	  }
+  currentItem = *it;
+  currentPacket = currentItem->m_packet;
+  if(!(outItemSize + currentItem->m_packet->GetSize () /*- subheaderSize*/ <= numBytes))
+  {
+    NS_LOG_ERROR ("MTU setting" << numBytes << " is smaller than vector size" << currentItem->m_packet->GetSize () << " , please check.");
+    return nullptr;
+  }
+  toInsert = true;
+  MergeItems (*outItem, *currentItem);
+  uint32_t itemSize = currentItem->m_packet->GetSize ();
+  outItemSize += itemSize;
+  NS_LOG_LOGIC ("Extracting packet from stream TX buffer, size: " << itemSize << " bytes");
 
-      if (outItemSize + currentItem->m_packet->GetSize () /*- subheaderSize*/ <= numBytes)   // Merge
-        {
-          QuicSubheader qsb;
-          NS_LOG_LOGIC ("Extracting packet from stream TX buffer");
-          toInsert = true;
-          MergeItems (*outItem, *currentItem);
-          outItemSize += currentItem->m_packet->GetSize ();
+  m_appList.erase (it);
+  m_appSize -= currentItem->m_packet->GetSize ();
 
-          m_appList.erase (it);
-          m_appSize -= currentItem->m_packet->GetSize ();
+  // Zhuoxu: No need the while loop now.
+//   while (it != m_appList.end () && outItemSize < numBytes)
+//     {
+//       currentItem = *it;
+//       currentPacket = currentItem->m_packet;
+//       NS_LOG_LOGIC ("Current process item index: " << index++);
 
-          it = m_appList.begin (); // Restart to find other possible merges
-          continue;
-        }
-      else
-        {
-          // The packet is too large, split it
-          uint32_t split = numBytes - outItemSize;
+// //	  uint32_t subheaderSize = 0;
+// //	  if(m_TxBufferType == SOCKET)
+// //	  {
+// //		  QuicSubheader sub;
+// //		  currentItem->m_packet->PeekHeader(sub);
+// //		  subheaderSize = sub.GetSerializedSize();
+// //	  }
 
-          Ptr<QuicStreamTxItem> toBeBuffered = CreateObject<QuicStreamTxItem> ();
-          SplitItems (*currentItem, *toBeBuffered, split);
+//       if (outItemSize + currentItem->m_packet->GetSize () /*- subheaderSize*/ <= numBytes)   // Merge
+//         {
+//           QuicSubheader qsb;
 
-          // Add left part of the split to subframe
-          NS_LOG_LOGIC ("Add incomplete subframe to the outItem");
-          MergeItems (*outItem, *currentItem);
-          outItemSize += currentItem->m_packet->GetSize ();
+//           toInsert = true;
+//           MergeItems (*outItem, *currentItem);
+//           uint32_t itemSize = currentItem->m_packet->GetSize ();
+//           outItemSize += itemSize;
+//           NS_LOG_LOGIC ("Extracting packet from stream TX buffer, size: " << itemSize << " bytes");
 
-          m_appList.erase (it);
-          m_appSize -= currentItem->m_packet->GetSize ();
+//           m_appList.erase (it);
+//           m_appSize -= currentItem->m_packet->GetSize ();
 
-          m_appList.push_front (toBeBuffered);
+//           it = m_appList.begin (); // Restart to find other possible merges
+//           continue;
+//         }
+//       else
+//         {
+//           // The packet is too large, split it
+//           uint32_t split = numBytes - outItemSize;
 
-        }
+//           Ptr<QuicStreamTxItem> toBeBuffered = CreateObject<QuicStreamTxItem> ();
+//           SplitItems (*currentItem, *toBeBuffered, split);
 
-      it++;
-    }
+//           // Add left part of the split to subframe
+//           NS_LOG_LOGIC ("Add incomplete subframe to the outItem");
+//           MergeItems (*outItem, *currentItem);
+//           outItemSize += currentItem->m_packet->GetSize ();
+
+//           m_appList.erase (it);
+//           m_appSize -= currentItem->m_packet->GetSize ();
+
+//           m_appList.push_front (toBeBuffered);
+
+//         }
+
+//       it++;
+//     }
+  
 
   if (toInsert)
     {

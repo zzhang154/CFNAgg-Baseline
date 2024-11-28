@@ -785,25 +785,40 @@ QuicL4Protocol::SendPacket (Ptr<QuicSocketBase> socket, Ptr<Packet> pkt, const Q
   NS_LOG_LOGIC (this
                 << " sending seq " << outgoing.GetPacketNumber ()
                 << " data size " << pkt->GetSize ());
+  
 
   NS_LOG_INFO ("Sending Packet Through UDP Socket");
+
+  if(pkt->GetSize () > 2000)
+    {
+      NS_LOG_ERROR ("Packet size is larger than 2000");
+      return;
+    }
 
   // Given the presence of multiple subheaders in pkt,
   // we create a new packet, add the new QUIC header and
   // then add pkt as payload
   Ptr<Packet> packetSent = Create<Packet> ();
+
   packetSent->AddHeader (outgoing);
+  uint32_t pktSize = packetSent->GetSize ();
+  NS_LOG_INFO("Header size: " << packetSent->GetSize());
+  
   packetSent->AddAtEnd (pkt);
+  uint32_t dataSize = packetSent->GetSize () - pktSize;
+  NS_LOG_INFO("packet size: " << dataSize);
   // NS_LOG_INFO ("" );
   //packetSent->Print (std::clog);
   // NS_LOG_INFO ("");
 
   QuicUdpBindingList::const_iterator it;
+  // Zhuoxu: here it iterates all the sockets ports, and find the right one.
   for (it = m_quicUdpBindingList.begin (); it != m_quicUdpBindingList.end (); ++it)
     {
       Ptr<QuicUdpBinding> item = *it;
       if (item->m_quicSocket == socket)
         {
+          // Zhuoxu: it is clear that it is sent by Udp
           UdpSend (item->m_budpSocket, packetSent, 0);
           break;
         }

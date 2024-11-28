@@ -20,6 +20,7 @@ namespace ns3 {
         size_t write(uint8_t *data, size_t bytes);
         size_t read(uint8_t *dest, size_t bytes);
         size_t getSize ();
+        size_t getAvailable ();
         uint8_t *getData ();
         uint16_t getHeadUint16 ();
         uint8_t getCapacity();

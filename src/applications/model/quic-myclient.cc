@@ -159,7 +159,6 @@ QuicMyClient::GetBuffer() {
   return m_circularBuffer;
 }
 
-
 void
 QuicMyClient::DoDispose (void) {
   NS_LOG_FUNCTION (this);

@@ -454,24 +454,19 @@ PacketSocket::Recv(uint32_t maxSize, uint32_t flags)
 }
 
 Ptr<Packet>
-PacketSocket::RecvFrom(uint32_t maxSize, uint32_t flags, Address& fromAddress)
-{
+PacketSocket::RecvFrom(uint32_t maxSize, uint32_t flags, Address& fromAddress) {
     NS_LOG_FUNCTION(this << maxSize << flags);
 
-    if (m_deliveryQueue.empty())
-    {
+    if (m_deliveryQueue.empty()) {
         return nullptr;
     }
     Ptr<Packet> p = m_deliveryQueue.front().first;
     fromAddress = m_deliveryQueue.front().second;
 
-    if (p->GetSize() <= maxSize)
-    {
+    if (p->GetSize() <= maxSize) {
         m_deliveryQueue.pop();
         m_rxAvailable -= p->GetSize();
-    }
-    else
-    {
+    } else {
         p = nullptr;
     }
     return p;

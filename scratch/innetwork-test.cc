@@ -264,12 +264,14 @@ void CreateAggTree (std::string &nodeName, std::vector<Address> pa,
     for (std::string &str : aggGroups[nodeName]) {
         rank += 1;
         CreateAggTree (str, sGroup, aggGroups, rank, itr, vsize, server_port);
+        // Zhuoxu: the following function can help us to get the IpAddress of a node class.
         ipv4 = Names::Find<Node> (str)->GetObject<Ipv4>();
         iaddr = ipv4->GetAddress (1, 0);
         addr = iaddr.GetLocal ();
         cGroup. push_back (addr);
     }
-    //std::cout << "current node " << nodeName << std::endl;
+    std::cout << "current node " << nodeName << std::endl;
+
     if (nodeName. find ("con") != std::string::npos)
         // for each object, we have to specify its connection. So here we pass the address of the parent node and children nodes for construction.
         Createcon(server_port, itr, rank, vsize, pa, cGroup, Names::Find<Node> (nodeName));
@@ -284,6 +286,7 @@ void CreateAggTreeTopo (uint16_t itr, uint32_t vsize, uint16_t server_port) {
     std::unordered_map<std::string, std::vector<std::string>> aggGroups;
     CreateAggGroup (aggGropuFilePath, aggGroups);
     // create agg tree
+
     std::string root = "con0";
     CreateAggTree (root, std::vector<Address>(), aggGroups, 0, itr, vsize, server_port);
 }
@@ -327,10 +330,11 @@ void CreateDirectTopo (NodeContainer &cons, NodeContainer &pros, uint16_t itr,
 
 int
 main (int argc, char *argv[])
-{
+{   
+
     CommandLine cmd;
-    uint16_t itr = 100;//1000 Zhuoxu: now this number should set to one.
-    uint32_t vsize = 30000;
+    uint16_t itr = 350; // has some problem when the iteration number reach 60.
+    uint32_t vsize = 200;
     bool topotype = 1;
     cmd.AddValue("itr", "max iteration consumer performed", itr);
     cmd.AddValue("vsize", "vector size", vsize);
@@ -356,6 +360,13 @@ main (int argc, char *argv[])
     Time::SetResolution (Time::NS);
     // Disable all log levels initially
     LogComponentDisableAll(LOG_LEVEL_ALL);
+    LogComponentEnable("QuicSocketBase", LOG_LEVEL_ALL);
+    LogComponentEnable("QuicStreamBase", LOG_LEVEL_ALL);
+    LogComponentEnable("QuicL5Protocol", LOG_LEVEL_ALL);
+    LogComponentEnable("QuicL4Protocol", LOG_LEVEL_ALL);
+    // LogComponentEnable("QuicStreamTxBuffer", LOG_LEVEL_ALL);
+    LogComponentEnable("QuicSocketTxBuffer", LOG_LEVEL_ALL);
+    LogComponentEnable ("QuicStreamTxBuffer", LOG_LEVEL_ALL);
 
     LogComponentEnableAll (LOG_PREFIX_TIME);
     LogComponentEnableAll (LOG_PREFIX_FUNC);
@@ -364,7 +375,8 @@ main (int argc, char *argv[])
     LogComponentEnable ("QuicMyServer", log_precision);
     LogComponentEnable("QuicMyServer", LOG_LEVEL_INFO);
     LogComponentEnable("QuicMyServer", LOG_LEVEL_DEBUG);
-    // LogComponentDisable("QuicMyServer", LOG_LEVEL_FUNCTION);
+    LogComponentDisable("QuicMyServer", LOG_LEVEL_FUNCTION);
+    LogComponentEnable("QuicMyServer", LOG_LEVEL_WARN);
 
 
     //LogComponentEnable ("QuicSocketTxScheduler", log_precision);
@@ -373,20 +385,22 @@ main (int argc, char *argv[])
     //LogComponentEnable ("Aggregator", log_precision);
     // LogComponentEnable ("QuicSocketBase", log_precision);
     //LogComponentEnable("CircularBuffer",log_precision);
-    //LogComponentEnable ("InnetworkAggregationInterface", log_precision);
+    LogComponentEnable ("InnetworkAggregationInterface", log_precision);
     //LogComponentEnable("QuicL5Protocol",log_precision);
+    LogComponentEnable ("QuicSocketRxBuffer", log_precision);
+    
 
     // Enable logging for the Consumer component
     // LogComponentEnable("Consumer", LOG_LEVEL_INFO);
     // LogComponentEnable("Aggregator", LOG_LEVEL_INFO);
-    
     // LogComponentEnable("Producer", LOG_LEVEL_INFO);
     // LogComponentEnable("Consumer", LOG_LEVEL_FUNCTION);
+    LogComponentEnable ("QuicSocketRxBuffer", LOG_LEVEL_ALL);
 
     // Enable logging debug for some component
-    LogComponentEnable("Consumer", LOG_LEVEL_DEBUG);
-    LogComponentEnable("Aggregator", LOG_LEVEL_DEBUG);
-    LogComponentEnable("Producer", LOG_LEVEL_DEBUG);
+    // LogComponentEnable("Consumer", LOG_LEVEL_DEBUG);
+    // LogComponentEnable("Aggregator", LOG_LEVEL_DEBUG);
+    // LogComponentEnable("Producer", LOG_LEVEL_DEBUG);
     LogComponentEnable("InnetworkAggregationInterface", LOG_LEVEL_INFO);
     LogComponentEnable("InnetworkAggregationInterface", LOG_LEVEL_DEBUG);
 
@@ -397,7 +411,7 @@ main (int argc, char *argv[])
     LogComponentDisable("Consumer", LOG_LEVEL_FUNCTION);
     LogComponentDisable("Aggregator", LOG_LEVEL_FUNCTION);
     LogComponentDisable("Producer", LOG_LEVEL_FUNCTION);
-    LogComponentDisable("InnetworkAggregationInterface", LOG_LEVEL_FUNCTION);
+    // LogComponentDisable("InnetworkAggregationInterface", LOG_LEVEL_FUNCTION);
     
     NodeContainer consumer;
     NodeContainer producer;
@@ -422,7 +436,7 @@ main (int argc, char *argv[])
     Packet::EnablePrinting ();
     Packet::EnableChecking ();
     // run
-    //Simulator::Stop (Seconds (50000));
+    Simulator::Stop (Seconds (2.3));
     Simulator::Run();
     
     //end

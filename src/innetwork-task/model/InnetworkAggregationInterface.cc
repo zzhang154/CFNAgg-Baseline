@@ -52,6 +52,16 @@ namespace ns3 {
         this->vsize = size;
     }
 
+    ns3::Ipv4Address
+    InnetworkAggregationInterface::GetIpAddrFromNode (Ptr<Node> node){
+        NS_LOG_FUNCTION (this);
+        Ptr<Ipv4> ipv4 = node->GetObject<Ipv4>();
+        Ipv4InterfaceAddress iaddr = ipv4->GetAddress (1, 0);
+        Ipv4Address addr = iaddr.GetLocal ();
+        return addr;
+    }
+
+
     // socketPool:
     // <addrString(IPv4),Ptr<Application> 
     void 
@@ -59,37 +69,53 @@ namespace ns3 {
         NS_LOG_DEBUG("Connection Setting Time: "<< Simulator::Now().GetMilliSeconds() << "ms");
         //NS_LOG_FUNCTION (this);
         std::string addrStr;
-
+        auto serverAddr = GetIpAddrFromNode(this->node);
+            std::string serverAddrStr;
+            Addr2Str(serverAddr, serverAddrStr);
 
         // Zhuoxu: Becareful that client and server should be binded to different ports. Otherwise there will be error.
         for (uint8_t i = 0; i < this->sGroup.size(); ++i) {
             Addr2Str(sGroup[i], addrStr);
             Ptr<QuicMyClient> myclient = Create<QuicMyClient>();
             myclient->SetNode(node);
-            myclient->SetRemote(Ipv4Address::ConvertFrom(sGroup[i]), m_peerPort+1);
+
+            // Hash(IpAddress(thisNode))
+            uint16_t serverPort = HashIpToPort(serverAddrStr);
+            NS_LOG_DEBUG("serverPort: "<<serverPort);
+            myclient->SetRemote(Ipv4Address::ConvertFrom(sGroup[i]), serverPort);
+            
             myclient->Bind(m_peerPort);
             socketPool[addrStr] = myclient;
             std::cout<<"client ptr:"<<myclient<<std::endl;
-            NS_LOG_DEBUG(this << " CreateSocketPool: "<<addrStr<<" -myclient, port: " << m_peerPort);
+            NS_LOG_DEBUG(this << " CreateSocketPool: socketPool["<< addrStr << "] -myclient, port: " << m_peerPort);
         }
 
         // Setup itself as servers, if it has children
         for (uint8_t i = 0; i < this->cGroup.size(); ++i) {
             Addr2Str(cGroup[i], addrStr);
-            QuicServerHelper myserverhelper(m_peerPort+1);
+
+            // Hash(IpAddress(cGroup[i]))
+            uint16_t serverPort = HashIpToPort(addrStr);
+            NS_LOG_DEBUG("serverPort: "<<serverPort);
+            QuicServerHelper myserverhelper(serverPort);
+
             myserverhelper.Install(node); 
             Ptr<QuicMyServer> myserver = myserverhelper.GetServer();
             // Zhuoxu: Here, we should defind another set function that pass the address of the IterationChunk to all the servers binded in this node.
             myserver->SetNode(node);
             myserver->SetcGroupSize(cGroup.size());
+            myserver->SetIterChunkPtr(&this->iterChunk);
             // Todo: initialize the chunkMap here
             // Todo: myserver->SetIterationChunk(&chunkMap[i]);
-            myserver->Bind(m_peerPort+1);
+            myserver->Bind(serverPort);
+            // set server IP address
+            myserver->SetIpAddrStr(addrStr);
+
             // Zhuoxu: socket[] is owned by each node, therefore there won't be any conflict on the same port.
             socketPool[addrStr] = myserver;
             
             std::cout<<"myserver ptr:"<<myserver<<std::endl;
-            NS_LOG_DEBUG(this << " CreateSocketPool: "<<addrStr<<" -myserver, port: " << m_peerPort+1);
+            NS_LOG_DEBUG(this << " CreateSocketPool: socketPool["<< addrStr << "] -myserver, port: " << serverPort);
         }
 
         NS_LOG_DEBUG("Connection Setting Finishing in: "<< Simulator::Now().GetMilliSeconds() << "ms");
@@ -97,62 +123,70 @@ namespace ns3 {
 
     void 
     InnetworkAggregationInterface::ReceiveDataFromAll () {
-        NS_LOG_DEBUG (this);
-        Ptr<QuicMyServer> server;
-        uint16_t iterationNum;
-        // Zhuoxu: get received server socket;
         for (auto item : socketPool) {
-            // std::cout<<"ReceiveDataFromAll () item.first:"<<item.first<<std::endl;
+            // Zhuoxu: only receive data from the server
             if ( socketPool[item.first]->GetObject<QuicMyServer>() )
-            {
-                server = socketPool[item.first]->GetObject<QuicMyServer>();
-                iterationNum = server->GetCompIterNum();
-                if (iterationNum != UINT16_MAX) {
-                    NS_LOG_DEBUG(this << " sucess server ptr: "<<socketPool[item.first]->GetObject<QuicMyServer>() << " socketPool[" << item.first << "]:");
-                    // Zhuoxu: must break here, otherwise the iterationNum will be overwrited by the last server.
-                    break;
-                }
-                // Zhuoxu: bugs to be fixed, iteration received has problem ... check.
-            }
+                ReceiveDataFrom (item.first);
         }
-
-        bool hasData = true;
-        ReceivedChunk result(0);
-
-        while(iterationNum != UINT16_MAX){
-            // Zhuoxu: get the result from the server
-            result = server->GetResult(iterationNum);
-            // Zhuoxu: release the map
-            server->ReleaseMap(iterationNum);
-
-            // Zhuoxu: add the iteration number to the success set
-            successIter.insert(iterationNum);
-
-            Time currentTime = Simulator::Now();
-            NS_LOG_DEBUG("IterationNum-"<<iterationNum-uint16_t(0)<< " Innetwork aggregation completed in: " << currentTime.GetMilliSeconds() << "ms");
-
-            // Send packet to the parent
-            SendResponseVToP (result.vec , iterationNum);
-            
-            //check if all the iteration has been collected
-            if (successIter.size() == maxIteration) {
-                if (this->sGroup.size() <= 0) {
-                    NS_LOG_DEBUG("All iteration-"<<maxIteration<< " completed in: " << currentTime.GetMilliSeconds() - 2000<< "ms");
-                    Simulator::Stop (Seconds(Simulator::Now().GetSeconds() + 1));
-                }
-                return;
-            }
-
-            // Zhuoxu: Check if the next iteration is ready
-            iterationNum = server->GetCompIterNum();
-        }
-        
-        ns3::Simulator::Schedule(ns3::MilliSeconds(3), &InnetworkAggregationInterface::ReceiveDataFromAll, this);
-        return;
-        // The minimum time interval is 1ms in the test.
-        // ns3::Simulator::Schedule(ns3::MilliSeconds(4), &InnetworkAggregationInterface::ReceiveDataFromAll, this);
     }
 
+    bool
+    InnetworkAggregationInterface::PrintCompInfo(uint16_t iterationNum){
+        Time currentTime = Simulator::Now();
+        //check if all the iteration has been collected
+        if (successIter.size() == maxIteration - padIter) {
+            if (this->sGroup.size() <= 0) {
+                NS_LOG_INFO("Consumer All iteration-"<< maxIteration-1 << " completed in: " << currentTime.GetMilliSeconds() - 2000<< "ms");
+                Simulator::Stop (Seconds(Simulator::Now().GetSeconds() + 0.001));
+            }
+            else{
+                NS_LOG_INFO("Aggregator All iteration-"<< maxIteration-1 << " completed in: " << currentTime.GetMilliSeconds() - 2000<< "ms");
+            }
+            return true;
+        }
+        if (this->sGroup.size() <= 0)
+            NS_LOG_INFO("IterationNum-"<<iterationNum-uint16_t(0)<< ", Consumer completed in: " << currentTime.GetMilliSeconds() << "ms");
+        else
+            NS_LOG_INFO("IterationNum-"<<iterationNum-uint16_t(0)<< ", Aggregator completed in: " << currentTime.GetMilliSeconds() << "ms");
+        return false;
+    }
+
+    void 
+    InnetworkAggregationInterface::ReceiveDataFrom (std::string fromStr) {
+        // first handle read
+        Ptr<QuicMyServer> server;
+        server = socketPool[fromStr]->GetObject<QuicMyServer>();
+        server->CallHandleRead();
+
+        // check if there are any complete iteration.
+        // here, we should pass a local vector to record all the finished iteration.
+        std::queue<uint16_t> iterQueue = server->GetCompIterQueue();
+        if(!iterQueue.empty()){
+            NS_LOG_DEBUG( this << " fromStr " << fromStr);
+            NS_LOG_DEBUG("Size of iterQueue: " << iterQueue.size());
+        }
+
+        if(!iterQueue.empty()){
+            server->ClearCompQueue();
+            // Output the log info
+
+            // Send result to parent
+            while (!iterQueue.empty()) {
+                // NS_LOG_DEBUG("test....");
+                uint16_t iterNum = iterQueue.front();
+                successIter.insert(iterNum);
+                iterQueue.pop();
+                SendResponseVToP (iterChunk[iterNum].vec, iterNum);
+                // clear the iterChunk
+                auto it = iterChunk.find(iterNum);
+                iterChunk.erase(it);
+                isEnd = PrintCompInfo(iterNum);
+            }
+        }
+
+        if(!isEnd)
+            ns3::Simulator::Schedule(ns3::MilliSeconds(3), &InnetworkAggregationInterface::ReceiveDataFrom, this, fromStr);
+    }
 
     void 
     InnetworkAggregationInterface::SendResponseVToP (std::vector<uint64_t> &avg , uint16_t iterationNum) {
@@ -181,6 +215,33 @@ namespace ns3 {
     }
 
     void 
+    InnetworkAggregationInterface::SendEndPacket (std::string toStr){
+        // Zhuoxu: change the producer to client here
+        Ptr<QuicMyClient> client = socketPool[toStr]->GetObject<QuicMyClient>();
+        NS_LOG_DEBUG( this << " Sends End Packet to socketPool["<<toStr<<"] ");
+        std::vector<uint8_t> chunkBuffer = std::vector<uint8_t>(pktlen,0); //Zhuoxu: 
+        NS_LOG_DEBUG( this << " pktlen " << pktlen);
+
+        int sentSize = -1;
+        for (uint16_t i = 0; i < 10; ++i) {
+            chunkBuffer[i] = 7;
+        }
+
+        for(int i=10;i<pktlen;i++)
+            chunkBuffer[i] = 9;
+
+        while(sentSize < 0 ){
+            sentSize = client->Send(chunkBuffer.data(),pktlen);
+            // determine if the sent operation success
+            if(sentSize > 0)
+                NS_LOG_DEBUG(this<<" client->Send() ending packet success --sentSize: " << sentSize <<" at iteration "<<iterationNum-uint16_t(0));
+            else
+                NS_LOG_DEBUG(this<<" client->Send() ending packet failed at iteration "<<iterationNum-uint16_t(0));
+        }
+        PrintBufferSummary(chunkBuffer);
+    }
+
+    void 
     InnetworkAggregationInterface::SendPacket (std::string toStr, uint16_t iterationNum, std::vector<uint8_t> &serializeVec){
         //NS_LOG_INFO("iteration-"<<iterationNum-uint16_t(0));
 
@@ -198,14 +259,6 @@ namespace ns3 {
         chunkBuffer[8] = static_cast<uint8_t>((iterationNum >> 8) & 0xFF); // High byte
         chunkBuffer[9] = static_cast<uint8_t>(iterationNum & 0xFF);
 
-        //iterationNum++;
-
-        // Debug output to verify sizes
-        // NS_LOG_DEBUG("BASESIZE: " << BASESIZE);
-        // NS_LOG_DEBUG("pktlen: " << pktlen);
-        // NS_LOG_DEBUG("buffer size: " << serializeVec.size());
-        // NS_LOG_DEBUG("chunkBuffer size: " << chunkBuffer.size());
-
         std::copy(buffer, buffer + BASESIZE, chunkBuffer.data() + 10);
 
         // record the time RTT
@@ -219,7 +272,15 @@ namespace ns3 {
             else
                 NS_LOG_DEBUG(this<<" client->Send() failed at iteration "<<iterationNum-uint16_t(0));
         }
+        PrintBufferSummary(chunkBuffer);
 
+        // Zhuoxu: send ending packet for padding. Otherwise, packet for the last iteration cannot be process because of size(MTU) != size(per quic frame)
+        if (iterationNum == maxIteration - 1)
+            SendEndPacket (toStr);
+    }
+
+    void 
+    InnetworkAggregationInterface::PrintBufferSummary(std::vector<uint8_t>& chunkBuffer){
         // Zhuoxu: Todo: print the send content of aggregator
         if(cGroup.size()>0 && sGroup.size()>0){
             NS_LOG_DEBUG("Agg send to consumer, the content is as follows: ");
@@ -229,7 +290,13 @@ namespace ns3 {
                 if((i+1) % 8 == 0){
                     std::cout << " the " << (i+1) / 8 << "th byte" << std::endl;
                 }
+            } 
+            for(int i = pktlen - 24; i < pktlen; i++) {
+                std::cout << static_cast<int>(chunkBuffer[i]) << " ";
+                if((i + 1) % 8 == 0) {
+                    std::cout << " the " << (i + 1) / 8 << "th byte" << std::endl;
             }
+}
         }
         else if(cGroup.size()==0){
             NS_LOG_DEBUG("producer send to aggregator, the content is as follows: ");
@@ -240,21 +307,15 @@ namespace ns3 {
                     std::cout << " the " << (i+1) / 8 << "th byte" << std::endl;
                 }
             }
+            for(int i = pktlen - 24; i < pktlen; i++) {
+                std::cout << static_cast<int>(chunkBuffer[i]) << " ";
+                if((i + 1) % 8 == 0) {
+                    std::cout << " the " << (i + 1) / 8 << "th byte" << std::endl;
+                }
+            }
         }
-
-        // if (cGroup.size()<=0 && iterationNum < maxIteration - 1){
-        //     ns3::Simulator::Schedule(ns3::MilliSeconds(8), &InnetworkAggregationInterface::SendPacket, this, toStr, iterationNum + 1, serializeVec);
-        // }
-
-        
-        // // for loop implementation will incur frame error
-        // if (iterationNum == 0 && cGroup.size() <= 0){
-        //     for(uint16_t i = 1; i < maxIteration; ++i){
-        //         SendPacket(toStr, i, serializeVec);
-        //     }
-
-        // }
     }
+
 
     void 
     InnetworkAggregationInterface::ProduceVToP (){
@@ -264,11 +325,11 @@ namespace ns3 {
             for (uint16_t j = 0; j < this->maxIteration; ++j) {
                 std::vector<uint64_t> initData(chunkSize, 88 + 11*static_cast<int>(j));
                 SendResponseVTo (toStr, initData, j);
-                std::cout<<"initData info for first 5th:"<<std::endl;
+                // std::cout<<"initData info for first 5th:"<<std::endl;
                 for(int k=0;k<5;k++){
-                    std::cout<<initData[k]<<" ";
+                    // std::cout<<initData[k]<<" ";
                 }
-                std::cout<<"iterationNum:"<<static_cast<int>(j)<<std::endl;
+                // std::cout<<"iterationNum:"<<static_cast<int>(j)<<std::endl;
             }
         }
     }
@@ -330,7 +391,17 @@ namespace ns3 {
     std::stringstream ss;
     ss << Ipv4Address::ConvertFrom (addr);
     str = ss.str();
-}
+    }
 
+    uint16_t InnetworkAggregationInterface::HashIpToPort(const std::string& ip) {
+    // Use std::hash to hash the IP address string
+    std::hash<std::string> hash_fn;
+    size_t hash = hash_fn(ip);
+
+    // Use modulo operation to fit the hash into the uint16_t range
+    uint16_t port = static_cast<uint16_t>(hash % 65536);
+
+    return port;
+    }
 
 }; /*namespace ns3*/

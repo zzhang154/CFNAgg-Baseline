@@ -330,6 +330,7 @@ Ptr<Packet> QuicSocketTxBuffer::NextSequence (uint32_t numBytes,
 {
   NS_LOG_FUNCTION (this << numBytes << seq);
 
+  //
   Ptr<QuicSocketTxItem> outItem = GetNewSegment (numBytes);
 
   if (outItem != nullptr)
@@ -635,9 +636,11 @@ void QuicSocketTxBuffer::CleanSentList ()
       Ptr<QuicSocketTxItem> item = *sent_it;
       item->m_acked = true;
       m_sentSize -= item->m_packet->GetSize ();
-      m_sentList.erase (sent_it);
+      // Zhuoxu: has problem here because sent_it has deleted already. So print before delete.
       NS_LOG_LOGIC (
         "Packet " << (*sent_it)->m_packetNumber << " received and ACKed. Removing from sent buffer");
+      
+      m_sentList.erase (sent_it);
       sent_it = m_sentList.begin ();
     }
 }

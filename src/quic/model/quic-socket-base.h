@@ -173,6 +173,10 @@ public:
 class QuicSocketBase : public QuicSocket
 {
 public:
+
+  // Zhuoxu: DIY function
+  Ptr<QuicSocketRxBuffer> GetRxBuffer();
+ 
   static const uint16_t MIN_INITIAL_PACKET_SIZE;
 
   /**
@@ -531,6 +535,8 @@ public:
    * \returns the size (in bytes)
    */
   uint32_t GetInitialPacketSize (void) const;
+
+  
 
   // Implementation of ns3::Socket virtuals
 

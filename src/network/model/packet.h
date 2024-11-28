@@ -35,6 +35,8 @@
 
 #include <stdint.h>
 
+#include <iomanip> // For std::setw and std::setfill
+
 namespace ns3
 {
 
@@ -766,6 +768,9 @@ class Packet : public SimpleRefCount<Packet>
      */
     typedef void (*SinrTracedCallback)(Ptr<const Packet> packet, double sinr);
 
+    // Zhuoxu: DIY Function
+    std::string PrintToStrPacketBytes();
+
   private:
     /**
      * \brief Constructor
@@ -862,6 +867,7 @@ Packet::GetSize() const
 {
     return m_buffer.GetSize();
 }
+
 
 } // namespace ns3
 

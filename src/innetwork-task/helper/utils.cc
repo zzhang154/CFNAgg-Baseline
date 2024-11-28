@@ -1,7 +1,8 @@
 #include "utils.h"
-#include <cstring> 
+#include <cstring>
 namespace ns3 {
 
+/*
 uint16_t 
 PraseHeader (uint8_t *buffer, std::string &header, uint16_t &dataLen, uint16_t &offset) {
     // prase dataLen
@@ -116,6 +117,9 @@ CreatResponseVK (uint8_t *buffer, const std::string &header, const std::vector<u
     // std::cout << "end = " << end << "bufferSize = " << bufferSize << std::endl;
     return bufferSize;
 }
+
+
+*/
 
 void 
 Addr2Str (Address addr, std::string &str) {

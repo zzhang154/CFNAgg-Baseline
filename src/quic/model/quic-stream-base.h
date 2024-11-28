@@ -36,6 +36,9 @@
 #include "quic-l5-protocol.h"
 //#include "quic-frame-manager.h"
 
+#include "ns3/address.h"
+#include "ns3/ipv4-address.h"
+#include "ns3/inet-socket-address.h"
 
 namespace ns3 {
 
@@ -195,6 +198,8 @@ public:
   void SetStreamId (uint64_t streamId);
   uint64_t GetStreamId (void);
   uint32_t GetStreamTxAvailable (void) const;
+
+  std::string Addr2Str (Address &addr);
 
 protected:
   QuicStreamTypes_t m_streamType;                    //!< The stream type

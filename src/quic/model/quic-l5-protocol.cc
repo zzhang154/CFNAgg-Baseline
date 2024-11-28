@@ -179,6 +179,7 @@ QuicL5Protocol::DispatchSend (Ptr<Packet> data)
       CreateStream (QuicStream::SENDER, m_socket->GetMaxStreamId ());   // TODO open up to max_stream_uni and max_stream_bidi
     }
 
+  // Zhuoxu: here we don't fragment the data based on stream. 
   std::vector<Ptr<Packet> > disgregated = DisgregateSend (data);
   //std::cout<<"11111111111111111111111111-------"<<data<<std::endl;
   std::vector<Ptr<QuicStreamBase> >::iterator jt = m_streams.begin () + 1;   // Avoid Send on stream <0>, which is used only for handshake
@@ -255,6 +256,7 @@ QuicL5Protocol::DispatchRecv (Ptr<Packet> data, Address &address)
 
   bool onlyAckFrames = true;
   uint64_t currStreamNum = m_streams.size () - 1;
+  // Zhuoxu: here, we don't have multiple frames within one packet. So the for loop will only run once.
   for (auto &elem : disgregated)
     {
       QuicSubheader sub = elem.second;
@@ -381,6 +383,7 @@ QuicL5Protocol::DisgregateRecv (Ptr<Packet> data)
   // the packet could contain multiple frames
   // each of them starts with a subheader
   // cycle through the data packet and extract the frames
+  int count = 0;
   for (uint32_t start = 0; start < dataSizeByte; )
     {
       QuicSubheader sub;
@@ -394,6 +397,7 @@ QuicL5Protocol::DisgregateRecv (Ptr<Packet> data)
       data->RemoveAtStart (sub.GetLength ());
       start += sub.GetSerializedSize () + sub.GetLength ();
       disgregated.push_back (std::make_pair (remainingfragment, sub));
+      count++;
     }
 
 

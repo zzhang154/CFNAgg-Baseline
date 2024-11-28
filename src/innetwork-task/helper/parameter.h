@@ -8,10 +8,13 @@
 namespace ns3 {
 
     extern uint32_t BASESIZE;
-    extern uint32_t chunkSize; 
+    extern uint32_t chunkSize;
+    extern uint32_t quicFrameSize;
     extern uint32_t pktlen;
     extern uint16_t rqtlen;
     extern uint8_t headerChr;
+    extern uint16_t ITERTHRESH;
+    extern int padIter;
     //extern uint32_t vsize;
 
     void UpdatePktlen();
@@ -44,6 +47,17 @@ namespace ns3 {
             //data = vec_buffer.data();
         }
     };
+
+    struct DataChunk
+    {
+        std::unordered_set<std::string> chAddr;
+        std::vector<uint64_t> vec; /* data */
+        DataChunk () {
+            vec = std::vector<uint64_t> (chunkSize, 0); 
+            //data = vec_buffer.data();
+        }
+    };
+    
 
 }; /*namespace ns3*/
 

@@ -17,7 +17,7 @@ namespace ns3 {
 
     // 构造函数
     CircularBuffer::CircularBuffer() {
-        size_t capacity = pktlen * 200;
+        size_t capacity = pktlen * ITERTHRESH;
         init(capacity);
     }
 
@@ -54,7 +54,7 @@ namespace ns3 {
         // if (bytes > (this->capacity - this->size)) {
         //     bytes = this->capacity - this->size; // 防止溢出
         // }
-        //NS_ASSERT (bytes <= (this->capacity - this->size));
+        NS_ASSERT (bytes <= (this->capacity - this->size));
         //NS_LOG_INFO ("write buffer");
         //bytes <= (this->capacity - this->size);
         size_t first_part = this->capacity - this->write_pos;
@@ -86,8 +86,8 @@ namespace ns3 {
 
         size_t first_part = this->capacity - this->read_pos;
         if (bytes > first_part) {
-            std::copy(this->buffer + this->read_pos,this->buffer + this->capacity, dest);
-            std::copy(this->buffer,this->buffer+bytes-first_part,dest+first_part);
+            std::copy(this->buffer + this->read_pos, this->buffer + this->capacity, dest);
+            std::copy(this->buffer, this->buffer+bytes-first_part, dest + first_part);
 
             //memcpy(dest, this->buffer + this->read_pos, first_part);
             //memcpy(dest + first_part, this->buffer, bytes - first_part);
@@ -105,6 +105,11 @@ namespace ns3 {
     size_t 
     CircularBuffer::getSize () {
         return this->size;
+    }
+
+    size_t 
+    CircularBuffer::getAvailable (){
+        return this->capacity - this->size;
     }
 
     uint8_t *
@@ -125,12 +130,14 @@ namespace ns3 {
         return buffer[10];
     }
 
+    // Zhuoxu: return the context.
     uint8_t CircularBuffer::getNextToRead(){
         return buffer[this->read_pos];
     }
 
+    // Zhuoxu: return a pointer.
     uint8_t* CircularBuffer::getNextToReadBuffer(){
-        return buffer+(this->read_pos);
+        return buffer + (this->read_pos);
     }
 
 

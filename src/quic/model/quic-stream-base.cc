@@ -60,7 +60,7 @@ QuicStreamBase::GetTypeId (void)
                    MakeUintegerChecker<uint32_t> ())
     .AddAttribute ("StreamRcvBufSize",
                    "QuicStreamBase maximum receive buffer size (bytes)",
-                   UintegerValue (UINT32_MAX / 2), // 128k
+                   UintegerValue (131072), // 128k
                    MakeUintegerAccessor (&QuicStreamBase::m_streamRxBufferSize),
                    MakeUintegerChecker<uint32_t> ())
     .AddAttribute ("MaxDataInterval",
@@ -125,7 +125,6 @@ QuicStreamBase::Send (Ptr<Packet> frame)
   if (m_streamStateSend == OPEN or m_streamStateSend == SEND)
     {
       int sent = AppendingTx (frame);
-
 
       NS_LOG_LOGIC ("Sending packets in stream. TxBufSize = " << m_txBuffer->AppSize () << " AvailableWindow = " << AvailableWindow () << " state " << QuicStreamStateName[m_streamStateSend]);
 
@@ -203,9 +202,11 @@ QuicStreamBase::SendPendingData (void)
       uint32_t s = std::min (availableWindow, (uint32_t)m_quicl5->GetMaxPacketSize ());
 
       NS_LOG_DEBUG ("BEFOREAvailable Window " << AvailableWindow () <<
-                    "Stream RWnd " << StreamWindow () <<
-                    "BytesInFlight " << m_txBuffer->BytesInFlight () << "BufferedSize " << m_txBuffer->AppSize () <<
-                    "MaxPacketSize " << (uint32_t)m_quicl5->GetMaxPacketSize ());
+                    " Stream RWnd " << StreamWindow () <<
+                    " BytesInFlight " << m_txBuffer->BytesInFlight () << 
+                    " BufferedSize " << m_txBuffer->AppSize () <<
+                    " MaxPacketSize " << (uint32_t)m_quicl5->GetMaxPacketSize () <<
+                    " SendDataFrame maxSize " << s);
 
       int success = SendDataFrame ((SequenceNumber32)m_sentSize, s);
 
@@ -240,21 +241,28 @@ QuicStreamBase::SendPendingData (void)
 uint32_t
 QuicStreamBase::SendDataFrame (SequenceNumber32 seq, uint32_t maxSize)
 {
-  NS_LOG_FUNCTION (this);
+  NS_LOG_FUNCTION (this << " maxSize: " << maxSize << " seq: " << seq);
 
   if (m_streamStateSend == OPEN and (m_streamDirectionType == SENDER or m_streamDirectionType == BIDIRECTIONAL))
     {
       SetStreamStateSend (SEND);
     }
 
-  Ptr<Packet> frame = m_txBuffer->NextSequence (maxSize, seq);
+  // Zhuoxu: here, we should output the maxSize and the size of the frame to be sent. Specially, to check iteration 1523. Why multiple itertations are stacked together?
 
+
+  Ptr<Packet> frame = m_txBuffer->NextSequence (maxSize, seq);
   bool lengthBit = true;
+
+  NS_LOG_FUNCTION("Before the header is added, the frame size is " << frame->GetSize() << " bytes.");
 
   QuicSubheader sub = QuicSubheader::CreateStreamSubHeader (m_streamId, (uint64_t)seq.GetValue (), frame->GetSize (), m_sentSize != 0, lengthBit, m_fin);
   m_sentSize += frame->GetSize ();
 
-  frame->AddHeader (sub);
+  frame->AddHeader (sub); // here to add the header.
+
+  NS_LOG_FUNCTION("After the header is added, the frame size is " << frame->GetSize() << " bytes.");
+
   int size = m_quicl5->Send (frame);
   if (size < 0)
     {
@@ -429,9 +437,13 @@ QuicStreamBase::Recv (Ptr<Packet> frame, const QuicSubheader& sub, Address &addr
 
       if (m_recvSize == sub.GetOffset ())
         {
-
-          NS_LOG_INFO ("Received a frame with the correct order of size " << sub.GetLength ());
+          std::string addressStr = Addr2Str(address);
+          NS_LOG_INFO ("From Address: "<< addressStr << " Received a frame with the correct order of size " << sub.GetLength ());
           m_recvSize += sub.GetLength ();
+
+          // Print all bytes of the packet
+          if(addressStr == "10.1.1.1")
+            NS_LOG_INFO ("Print the content of the frame from " << addressStr << ' ' << frame->PrintToStrPacketBytes());
 
           if (m_maxAdvertisedData == 0 || m_recvSize + m_rxBuffer->Available () > m_maxAdvertisedData + m_maxDataInterval)
             {
@@ -453,7 +465,7 @@ QuicStreamBase::Recv (Ptr<Packet> frame, const QuicSubheader& sub, Address &addr
               m_recvSize += offSetLength.second;
               frame->AddAtEnd (payload);
             }
-          NS_LOG_LOGIC ("Flushed RxBuffer - new offset " << m_recvSize << ", " << m_rxBuffer->Available () << "bytes available");
+          NS_LOG_LOGIC ("Flushed RxBuffer - new offset " << m_recvSize << ", " << m_rxBuffer->Available () << " bytes available");
 
           SetStreamStateRecvIf (m_streamStateRecv == SIZE_KNOWN and m_rxBuffer->Size () == 0, DATA_RECVD);
 
@@ -464,6 +476,7 @@ QuicStreamBase::Recv (Ptr<Packet> frame, const QuicSubheader& sub, Address &addr
                   SetMaxStreamData (sub.GetMaxStreamData ());
                   NS_LOG_LOGIC ("Received window set to offset " << sub.GetMaxStreamData ());
                 }
+              // Zhuoxu: use l5, get the socket and call the m_socket->AppendingRx (frame, address) function.
               m_quicl5->Recv (frame, address);
             }
           else
@@ -741,6 +754,14 @@ uint32_t
 QuicStreamBase::GetStreamRcvBufSize (void) const
 {
   return m_rxBuffer->GetMaxBufferSize ();
+}
+
+std::string
+QuicStreamBase::Addr2Str (Address &addr) {
+    std::stringstream ss;
+    // Zhuoxu: Here, we should differentiate between Ipv4 address or socket address, in order to transform it into a string.
+    ss << Ipv4Address::ConvertFrom (InetSocketAddress::ConvertFrom(addr).GetIpv4());
+    return ss.str();
 }
 
 } // namespace ns3
