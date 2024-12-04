@@ -195,3 +195,78 @@ Ptr<Packet> QuicSocketTxBuffer::NextSequence (uint32_t numBytes,
                                               const SequenceNumber32 seq)
 
 We can add an iteration item in the Ptr<QuicSocketTxItem>, to bind the packet number and iteration number together.
+
+
+Todo: 11.29
+1. SendBuffer 128k. INF is wrong.
+2. Condition send, based on whether SendBuff has available space.
+3. Check whether ACK has info of remained RecvBuff space.
+4. If 3 is right, then check whether some var will change. See whether there is flow control function.
+
+problem:
+
+QuicSocketBase:SetReTxTimeout(): Schedule ReTxTimeout at time 2.04145 to expire at time 14.0829
+
+a too high expire time.
+
+
+feedback to the producer (from the aggregator):
+
++2.069697090s 9 QuicL5Protocol:DisgregateRecv(): subheader |ACK|
+|Largest Acknowledged 313|
+|Ack Delay 3657|
+|Ack Block Count 1|
+|First Ack Block 313|
+|Gap 312|
+|Additional Ack Block 293|
+ dataSizeByte 12 remaining 0 frame size 0
+
+ Here, it seems that packet 287 has been received....
+
+ producer的所有350轮次都收到了，但是aggregator的处理有问题
+
+ 检查一下producer端在没有收到ACK时，究竟有没有触发重传？以及触发重传时的检查机制是怎么样的？是检查之前发送过的包是否都收到ACK还是怎么样？
+
+ Ptr<QuicSocketTxItem> retx->m_retrans = true; 可以利用该表项判断是否是重传的包
+
+ 打印包：
+ 17 QuicStreamBase:Recv(): Print the content of the frame from 10.1.1.1 Packet，
+ 参考这个，看一下能否打印是否重传的信息。
+ 
+ 目前似乎重传信息只会存储在buffer里面，并不会体现在quic 头部里面。那么我们要做的应该是把重传的信息放在头部里面？
+
+ ToDo: 在DoRetransmit函数里面，往头部里面添加一个重传的标志位，表明这是重传的包。
+ 疑问：按照现在的设计，是会一次性往buffer里面推很多包，直到buffer不能再推为止。
+
+ 这样就需要考虑以下的问题：发生重传的时候，是对面接受端的buffer满了，这时候后续的包到达了，也能处理，但是由于table也被占用着，是否会导致出现死锁问题。比如后续到达的包由于无法被table读入，导致其一直堆积在buffer里面，这个时候buffer也满了。而此时重传的包即使到了，也没有足够的空位去容纳。
+ 
+ 如何
+
+ header is added in the quic-l4-protocol and we should also parse in the quic-l4-protocol to check whether it is a transmit packet. And output this information.
+
+ Todo: We should check that we add the retransmit info into the quicheader or quicSubheader class.
+
+ We find that in QuicSocketBase::SendDataPacket (SequenceNumber32 packetNumber,
+                                uint32_t maxSize, bool withAck),
+it creates 
+
+
+Current problem: in the quic-socket-base.cc QuicSocketBase::SendDataPacket, we set the Retransmission flag correctly. But in the void QuicL4Protocol::ForwardUp (Ptr<Socket> sock), when we deserialize the result, it constantly get the same one. Maybe we should just directly change the application content in the packet to testify. See the print function and change the first 8 bytes in application content. Do this tomorrow.
+
+12.3
+在stream receive上，如果被drop掉了packet，会将abort的信号添加至quic-subheader里面。
++2.026669778s 17 QuicStreamBase:Recv(): Buffering unordered received frame - offset 420210, frame offset 629510
++2.026669778s 17 QuicStreamBase:Recv(): Dropping packet as it could not be inserted in RX buffer
++2.026669778s 17 QuicL5Protocol:SignalAbortConnection(0x5565ad155660)
++2.026669778s 17 QuicSocketBase:AbortConnection(0x5565ad151e40)
++2.026669778s 17 QuicSocketBase:AbortConnection(): Abort connection 0 because Aborting connection due to full RX buffer
+
+
+12.3 Todo List:
+1. 打印所有的Buffer状态
+
+Markdown the error:
++2.000073594s 17 QuicSocketBase:AppendingRx(): Received AppendingRx of size 1610from--10.1.1.1
++2.000073594s 17 QuicSocketBase:AppendingRx(): Packet number: Packet bytes: 03 03 03 03 03 03 03 03 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+Even though I set the schedule function of the handleRead(), aggregator 17 still don't work after 260 iteration. It seems that aggregator 17 is blocked by something.

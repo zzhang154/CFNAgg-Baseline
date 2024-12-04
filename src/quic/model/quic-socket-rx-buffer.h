@@ -54,6 +54,7 @@ public:
    */
   void Print (std::ostream &os) const;
 
+
   /**
    * Comparison operator
    * \param other rhs operand
@@ -103,6 +104,7 @@ public:
    * \param os the std::ostream object
    */
   void Print (std::ostream & os) const;
+  std::string PrintToStr();
 
   /**
    * Get the buffer occupancy in bytes

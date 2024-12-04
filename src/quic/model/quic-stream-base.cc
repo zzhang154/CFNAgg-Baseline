@@ -55,7 +55,7 @@ QuicStreamBase::GetTypeId (void)
     .AddConstructor<QuicStreamBase> ()
     .AddAttribute ("StreamSndBufSize",
                    "QuicStreamBase maximum transmit buffer size (bytes)",
-                   UintegerValue (UINT32_MAX / 2), // 128k = 131072
+                   UintegerValue (131072), // 128k = 131072
                    MakeUintegerAccessor (&QuicStreamBase::m_streamTxBufferSize),
                    MakeUintegerChecker<uint32_t> ())
     .AddAttribute ("StreamRcvBufSize",
@@ -300,6 +300,7 @@ int
 QuicStreamBase::Recv (Ptr<Packet> frame, const QuicSubheader& sub, Address &address)
 {
   NS_LOG_FUNCTION (this);
+  std::string addressStr = Addr2Str(address);
 
   uint8_t frameType = sub.GetFrameType ();
 
@@ -434,12 +435,14 @@ QuicStreamBase::Recv (Ptr<Packet> frame, const QuicSubheader& sub, Address &addr
         }
 
       SetStreamStateRecvIf (m_streamStateRecv == RECV and m_fin, SIZE_KNOWN);
+      
 
       if (m_recvSize == sub.GetOffset ())
         {
-          std::string addressStr = Addr2Str(address);
           NS_LOG_INFO ("From Address: "<< addressStr << " Received a frame with the correct order of size " << sub.GetLength ());
           m_recvSize += sub.GetLength ();
+
+          // Zhuoxu: here we judge whether the packet is retrans or not.
 
           // Print all bytes of the packet
           if(addressStr == "10.1.1.1")
@@ -477,6 +480,7 @@ QuicStreamBase::Recv (Ptr<Packet> frame, const QuicSubheader& sub, Address &addr
                   NS_LOG_LOGIC ("Received window set to offset " << sub.GetMaxStreamData ());
                 }
               // Zhuoxu: use l5, get the socket and call the m_socket->AppendingRx (frame, address) function.
+              NS_LOG_INFO ("m_quicl5->Recv (frame, address);");
               m_quicl5->Recv (frame, address);
             }
           else

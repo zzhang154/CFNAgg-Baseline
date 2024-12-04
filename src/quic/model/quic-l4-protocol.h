@@ -244,7 +244,7 @@ public:
   const std::vector<Address >& GetAuthAddresses () const;
 
   /**
-   * \brief This method is called by the underlying UDP socket upon receiving a packet
+   * \brief This method is called by the underlying UDP socket upon receiving a packet. Zhuoxu: this method equals to the receive function. It is the handleRead function of l4-layer.
    *
    * \param sock a smart pointer to the unerlying UDP socket
    */

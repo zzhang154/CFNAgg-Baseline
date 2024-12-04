@@ -44,6 +44,8 @@ class Packet;
 class QuicMyClient : public Application
 {
 public:
+  Ptr<Socket> m_socket=nullptr ; //!< Socket
+
   /**
    * \brief Get the type ID.
    * \return the object TypeId
@@ -92,7 +94,6 @@ private:
   uint32_t m_size; //!< Size of the sent packet (including the SeqTsHeader)
 
   uint32_t m_sent; //!< Counter for sent packets
-  Ptr<Socket> m_socket=nullptr ; //!< Socket
   EventId m_sendEvent; //!< Event to send the next packet
 
   uint32_t m_numStreams;

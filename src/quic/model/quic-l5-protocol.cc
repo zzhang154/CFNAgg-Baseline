@@ -181,10 +181,9 @@ QuicL5Protocol::DispatchSend (Ptr<Packet> data)
 
   // Zhuoxu: here we don't fragment the data based on stream. 
   std::vector<Ptr<Packet> > disgregated = DisgregateSend (data);
-  //std::cout<<"11111111111111111111111111-------"<<data<<std::endl;
+  
   std::vector<Ptr<QuicStreamBase> >::iterator jt = m_streams.begin () + 1;   // Avoid Send on stream <0>, which is used only for handshake
 
-  //std::cout<<"12------------------------"<<data<<std::endl;
   for (std::vector<Ptr<Packet> >::iterator it = disgregated.begin ();
        it != disgregated.end (); ++jt)
     {
@@ -293,6 +292,11 @@ QuicL5Protocol::DispatchRecv (Ptr<Packet> data, Address &address)
               NS_LOG_INFO (
                 "Receiving frame on stream " << stream->GetStreamId () <<
                   " trigger stream");
+                if ((*it).first->GetSize()>1600){
+                  NS_LOG_INFO ("Received DispatchRecv (*it).first of size " << (*it).first->GetSize ()<< " from--"<<InetSocketAddress::ConvertFrom(address).GetIpv4());
+                  NS_LOG_INFO ("Packet number: " << (*it).first->PrintToStrPacketBytes ());
+                }
+                
               stream->Recv ((*it).first, sub, address);
             }
         }
@@ -322,7 +326,12 @@ QuicL5Protocol::Recv (Ptr<Packet> frame, Address &address)
 {
   NS_LOG_FUNCTION (this);
 
+  NS_LOG_INFO ("Received frame of size " << frame->GetSize ()<< " from--"<<InetSocketAddress::ConvertFrom(address).GetIpv4());
+  NS_LOG_INFO ("Packet number: " << frame->PrintToStrPacketBytes ());
+  NS_LOG_INFO ("RXBUFFER size before appendingRX: " << m_socket->m_rxBuffer->Available ());
   m_socket->AppendingRx (frame, address);
+  NS_LOG_INFO ("RXBUFFER size after appendingRX: " << m_socket->m_rxBuffer->Available ());
+
 
   return frame->GetSize ();
 }

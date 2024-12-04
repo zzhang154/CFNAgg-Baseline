@@ -287,7 +287,7 @@ public:
   void SetScheduler (Ptr<QuicSocketTxScheduler> sched);
 
   /**
-   * Updates per packet variables required for rate sampling on each packet transmission
+   * Updates per packet variables required for rate sampling on each packet transmission. Has nothing to do with the UDP send.
    * \param The sequence number of the sent packet
    * \param The size of the sent packet
    */
@@ -348,6 +348,8 @@ public:
    * \return The default maximum latency
    */
   Time GetDefaultLatency ();
+
+  std::string PrintToStr();
 
 private:
   typedef std::list<Ptr<QuicSocketTxItem> > QuicTxPacketList;      //!< container for data stored in the buffer

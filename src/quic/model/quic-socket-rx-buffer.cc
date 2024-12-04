@@ -115,7 +115,7 @@ QuicSocketRxBuffer::Add (Ptr<Packet> p)
           return false;
         }
     }
-  NS_LOG_WARN ("Rejected. Not enough room to buffer packet.");
+  NS_LOG_WARN ("Rejected. Not enough room to buffer packet in rx-buffer.");
   return false;
 }
 
@@ -157,6 +157,7 @@ QuicSocketRxBuffer::Extract (uint32_t maxSize)
       if (currentPacket->GetSize () + outPkt->GetSize () <= extractSize)   // Merge
         {
           // NS_LOG_INFO( this << " For each while loop, currentPacket->GetSize(): " << currentPacket->GetSize() << " outPkt->GetSize(): " << outPkt->GetSize() << " extractSize: " << extractSize);
+          std::cout << " For each while loop, currentPacket->GetSize(): " << currentPacket->GetSize() << " outPkt->GetSize(): " << outPkt->GetSize() << " extractSize: " << extractSize << std::endl;
           outPkt->AddAtEnd ((*it));
 
           m_recvSize -= (*it)->GetSize ();
@@ -217,15 +218,38 @@ QuicSocketRxBuffer::Print (std::ostream & os) const
   std::stringstream ss;
   std::stringstream as;
 
-  for (it = m_socketRecvList.begin (); it != m_socketRecvList.end (); ++it)
+  if(m_socketRecvList.empty ())
     {
-      (*it)->Print (ss);
+      NS_LOG_INFO("m_socketRecvList is empty");
     }
 
+  NS_LOG_INFO( "print the receive list" );
+  for (it = m_socketRecvList.begin (); it != m_socketRecvList.end (); ++it)
+    {
+      NS_LOG_INFO( "\n QuicSocketRxBuffer::Print" << (*it)->PrintToStrPacketBytes ());
+      // (*it)->Print(ss);
+    }
+  // NS_LOG_INFO( "Socket Recv list: \n" << ss.str () << "\n\nCurrent Status: "
+  //    << "\nNumber of receptions = " << m_socketRecvList.size ()
+  //    << "\nReceived Size = " << m_recvSize);
   os << "Socket Recv list: \n" << ss.str () << "\n\nCurrent Status: "
      << "\nNumber of receptions = " << m_socketRecvList.size ()
-     << "\nReceived Size = " << m_recvSize;
-
+     << "\nReceived Size = " << m_recvSize << '\n';
 }
 
-} //namepsace ns3
+std::string
+QuicSocketRxBuffer::PrintToStr() {
+  std::ostringstream oss;
+  QuicSocketRxBuffer::QuicSocketRxPacketList::const_iterator it;
+  int count = 1;
+  oss << "Print the content in the QuicSocketRxBuffer\n";
+  for (it = m_socketRecvList.begin (); it != m_socketRecvList.end (); ++it, count ++)
+    {
+      oss << "m_socketRecvList[" << count << "]:\n"  << (*it)->PrintToStrPacketBytes () << '\n'; 
+    }
+  return oss.str();
+}
+
+} //namespace ns3
+
+

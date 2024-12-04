@@ -323,6 +323,12 @@ public:
    */
   friend bool operator== (const QuicHeader &lhs, const QuicHeader &rhs);
 
+  
+  // Zhuoxu: the following is DIY function
+  bool GetRetrans () {return this->m_retrans;}
+
+  void SetRetrans (bool retrans) {this->m_retrans = retrans;}  
+
 private:
   /**
    * \brief Calculates the header length (in words)
@@ -341,6 +347,9 @@ private:
   uint64_t m_connectionId;          //!< Connection Id
   SequenceNumber32 m_packetNumber;  //!< Packet number
   uint32_t m_version;               //!< Version
+
+  // Zhuoxu: DIY var to identify whether it is a retransmission packet
+  bool m_retrans = false;
 };
 
 } // namespace ns3

@@ -771,6 +771,11 @@ class Packet : public SimpleRefCount<Packet>
     // Zhuoxu: DIY Function
     std::string PrintToStrPacketBytes();
 
+    /**
+     * \brief Change the first 8 bytes of the packet to 0x05, if it is a retransmission packet.
+     */
+    void SetPacketRetrans();
+
   private:
     /**
      * \brief Constructor

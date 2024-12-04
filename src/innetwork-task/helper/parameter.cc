@@ -18,7 +18,7 @@ namespace ns3 {
     //uint16_t k=250;
     //uint16_t BASESIZE=2000; //the num of uint8_t per one chunk
     uint16_t ITERTHRESH = 30;
-    int padIter = 10;
+    int padIter = 0;
 
      void UpdatePktlen() {
         pktlen = BASESIZE + 10;

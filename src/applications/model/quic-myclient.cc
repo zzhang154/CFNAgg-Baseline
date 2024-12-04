@@ -232,11 +232,11 @@ QuicMyClient::CreateSocket(Ptr<Node> node,uint16_t port) {
     //m_socket->GetObject<QuicSocketBase>()->GetSocketStatetcb()->SetAttribute("kMinRTOTimeout",TimeValue (MilliSeconds (50)));
 
     m_socket->GetObject<QuicSocketBase>()->GetSocketStatetcb()->SetAttribute("kUsingTimeLossDetection",BooleanValue (true));
-    m_socket->GetObject<QuicSocketBase>()->GetSocketStatetcb()->SetAttribute("kTimeReorderingFraction",DoubleValue (29 / 8));
-    //m_socket->GetObject<QuicSocketBase>()->GetSocketStatetcb()->m_kMaxPacketsReceivedBeforeAckSend = 10;
+    m_socket->GetObject<QuicSocketBase>()->GetSocketStatetcb()->SetAttribute("kTimeReorderingFraction",DoubleValue (19 / 8));
+    m_socket->GetObject<QuicSocketBase>()->GetSocketStatetcb()->m_kMaxPacketsReceivedBeforeAckSend = 15;
     m_socket->GetObject<QuicSocketBase>()->SetAttribute("LegacyCongestionControl",BooleanValue (true));
-    m_socket->GetObject<QuicSocketBase>()->GetSocketStatetcb()->SetAttribute("kReorderingThreshold",UintegerValue (5));
-    //m_socket->GetObject<QuicSocketBase>()->GetSocketStatetcb()->SetAttribute("kMaxPacketsReceivedBeforeAckSend",UintegerValue (10));
+    // m_socket->GetObject<QuicSocketBase>()->GetSocketStatetcb()->SetAttribute("kReorderingThreshold",UintegerValue (5));
+    // m_socket->GetObject<QuicSocketBase>()->GetSocketStatetcb()->SetAttribute("kMaxPacketsReceivedBeforeAckSend",UintegerValue (100));
     
     
     if (!m_socket) {

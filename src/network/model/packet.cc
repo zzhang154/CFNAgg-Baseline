@@ -1,3 +1,4 @@
+\
 /*
  * Copyright (c) 2005,2006 INRIA
  *
@@ -295,6 +296,9 @@ Packet::RemoveHeader(Header& header)
 {
     uint32_t deserialized = header.Deserialize(m_buffer.Begin());
     NS_LOG_FUNCTION(this << header.GetInstanceTypeId().GetName() << deserialized);
+    
+    std::cout << header.GetInstanceTypeId().GetName() << deserialized << std::endl;
+
     m_buffer.RemoveAtStart(deserialized);
     m_byteTagList.Adjust(-deserialized);
     m_metadata.RemoveHeader(header, deserialized);
@@ -1032,18 +1036,45 @@ operator<<(std::ostream& os, const Packet& packet)
 
 std::string 
 Packet::PrintToStrPacketBytes() {
+    // std::cout << "in the PrintToStrPacketBytes function ..." << std::endl;
     uint32_t packetSize = this->GetSize();
     uint8_t* buffer = new uint8_t[packetSize];
     this->CopyData(buffer, packetSize);
 
+
     std::ostringstream oss;
     oss << "Packet bytes: ";
-    for (uint32_t i = 0; i < packetSize; ++i) {
+    for (uint32_t i = 0; i < 30; ++i) {
         oss << std::hex << std::setw(2) << std::setfill('0') << static_cast<int>(buffer[i]) << " ";
     }
     delete[] buffer;
 
     return oss.str();
+}
+
+void Packet::SetPacketRetrans() {
+    NS_LOG_FUNCTION(this);
+
+    uint32_t packetSize = this->GetSize();
+    if (packetSize < 8) {
+        NS_LOG_WARN("Packet size is less than 8 bytes. Cannot change the first 8 bytes.");
+        return;
+    }
+
+    // Create a buffer to hold the packet data
+    uint8_t* buffer = new uint8_t[packetSize];
+    this->CopyData(buffer, packetSize);
+
+    // Change the first 8 bytes to 0x05
+    for (uint32_t i = 0; i < 8; ++i) {
+        buffer[i] = 0x05;
+    }
+
+    // Update the packet with the modified buffer
+    this->RemoveAtStart(packetSize);
+    this->AddAtEnd(Create<Packet>(buffer, packetSize));
+
+    delete[] buffer;
 }
 
 } // namespace ns3

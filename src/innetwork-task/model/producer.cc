@@ -39,7 +39,7 @@ namespace ns3 {
         std::vector<uint64_t> initData(chunkSize, 88);
         // ns3::Simulator::Schedule(ns3::MilliSeconds(basetime), &InnetworkAggregationInterface::SendResponseVToP,this->nodeInnetworkAggregationInterface, initData, 0);
 
-        ns3::Simulator::Schedule(ns3::MilliSeconds(basetime), &InnetworkAggregationInterface::ProduceVToP,this->nodeInnetworkAggregationInterface);
+        ns3::Simulator::Schedule(ns3::MilliSeconds(basetime), &InnetworkAggregationInterface::ProduceVToP, this->nodeInnetworkAggregationInterface, 0);
         
     }
 

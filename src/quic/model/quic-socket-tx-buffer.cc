@@ -251,6 +251,8 @@ bool QuicSocketTxBuffer::Add (Ptr<Packet> p)
   NS_LOG_FUNCTION (this << p);
   QuicSubheader qsb;
   uint32_t headerSize = p->PeekHeader (qsb);
+  NS_LOG_INFO (p->PrintToStrPacketBytes());
+
   NS_LOG_INFO (
     "Try to append " << p->GetSize () << " bytes " << ", availSize=" << Available () << " offset " << qsb.GetOffset () << " on stream " << qsb.GetStreamId ());
 
@@ -333,11 +335,21 @@ Ptr<Packet> QuicSocketTxBuffer::NextSequence (uint32_t numBytes,
   //
   Ptr<QuicSocketTxItem> outItem = GetNewSegment (numBytes);
 
+  // Zhuoxu: here the outItem contains the infomation of retransmission, which can be achieved by calling the outItem->m_retrans == true
+
   if (outItem != nullptr)
     {
       NS_LOG_INFO ("Extracting " << outItem->m_packet->GetSize () << " bytes");
       outItem->m_packetNumber = seq;
       outItem->m_lastSent = Now ();
+
+      // Zhuoxu: test for the function of retransmission
+      // We must think also how to put this info into the packet
+      if (outItem->m_retrans)
+      {
+        NS_LOG_INFO ("Sending Retransmission Packet ...");
+      }
+
       Ptr<Packet> toRet = outItem->m_packet;
       return toRet;
     }
@@ -458,7 +470,7 @@ std::vector<Ptr<QuicSocketTxItem> > QuicSocketTxBuffer::OnAckUpdate (
             {
               (*sent_it)->m_lost = true;
               NS_LOG_LOGIC (
-                "Packet " << (*sent_it)->m_packetNumber << " lost");
+                "In the if(lost) loop. Packet " << (*sent_it)->m_packetNumber << " lost");
             }
         }
       else
@@ -863,6 +875,18 @@ void QuicSocketTxBuffer::SetDefaultLatency (Time latency)
 Time QuicSocketTxBuffer::GetDefaultLatency ()
 {
   return GetLatency (0);
+}
+
+std::string
+QuicSocketTxBuffer::PrintToStr() {
+  std::ostringstream oss;
+  int count = 1;
+  oss << "Print the content in the QuicSocketTxBuffer\n";
+  for (auto it = m_sentList.begin (); it != m_sentList.end (); ++it, count ++)
+    {
+      oss << "m_sentList[" << count << "]:\n"  << (*it)->m_packet->PrintToStrPacketBytes () << '\n'; 
+    }
+  return oss.str();
 }
 
 }

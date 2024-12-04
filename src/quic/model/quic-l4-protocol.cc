@@ -446,8 +446,19 @@ QuicL4Protocol::ForwardUp (Ptr<Socket> sock)
       //packet->Print (std::clog);
       // NS_LOG_INFO ("");
 
+      if (packet->GetSize()> 1600){
+        NS_LOG_INFO ("Packet size: " << packet->PrintToStrPacketBytes());
+      }
+      // Some problem here, if we need to recognize the m_retrans term, we need to deserialize in the RemoveHeader function. We can do better if we directly change the content of the packet?
       QuicHeader header;
       packet->RemoveHeader (header);
+      if(header.GetRetrans()){
+        NS_LOG_INFO ("Todo: recognize whether it is a retrans in the header ....");
+      }
+      else
+      {
+        NS_LOG_INFO ("Is not a retransmission packet recognized in quic-l4-protocol");
+      }
 
       uint64_t connectionId;
       if (header.HasConnectionId ())
@@ -544,6 +555,11 @@ QuicL4Protocol::ForwardUp (Ptr<Socket> sock)
         }
       else if (header.IsShort ())
         {
+          NS_LOG_LOGIC ("header is short in quic-l4-protocol");
+          if(header.GetRetrans())
+          {
+            NS_LOG_LOGIC ("Todo: if(header.GetRetrans())");
+          }
           auto result = std::find (m_authAddresses.begin (), m_authAddresses.end (), InetSocketAddress::ConvertFrom (from).GetIpv4 ());
 
           if (result == m_authAddresses.end () && m_0RTTHandshakeStart)
@@ -800,6 +816,9 @@ QuicL4Protocol::SendPacket (Ptr<QuicSocketBase> socket, Ptr<Packet> pkt, const Q
   // then add pkt as payload
   Ptr<Packet> packetSent = Create<Packet> ();
 
+
+  // Zhuoxu: the header infomation is added into the packet.
+  // Serialize is done in AddHeader function.
   packetSent->AddHeader (outgoing);
   uint32_t pktSize = packetSent->GetSize ();
   NS_LOG_INFO("Header size: " << packetSent->GetSize());

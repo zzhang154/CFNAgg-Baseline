@@ -137,7 +137,7 @@ QuicSocketBase::GetTypeId (void)
                                            &QuicSocketBase::SetSegSize),
                    MakeUintegerChecker<uint16_t> ())
     .AddAttribute ("SocketSndBufSize", "QuicSocketBase maximum transmit buffer size (bytes)",
-                   UintegerValue (INT32_MAX / 2),                                  // 128k
+                   UintegerValue (131072),                                  // 128k
                    MakeUintegerAccessor (&QuicSocketBase::GetSocketSndBufSize,
                                          &QuicSocketBase::SetSocketSndBufSize),
                    MakeUintegerChecker<uint32_t> ())
@@ -1274,7 +1274,7 @@ QuicSocketBase::SendAck ()
 
 uint32_t
 QuicSocketBase::SendDataPacket (SequenceNumber32 packetNumber,
-                                uint32_t maxSize, bool withAck)
+                                uint32_t maxSize, bool withAck, bool isRetransmission)
 {
   std::ostringstream oss;
   oss << std::left << std::setw(15) << "this: " << this << "\n"
@@ -1315,6 +1315,9 @@ QuicSocketBase::SendDataPacket (SequenceNumber32 packetNumber,
     }
 
   uint32_t sz = p->GetSize ();
+
+  // Update the time of the last sent packet
+  m_tcb->m_timeOfLastSentPacket = Simulator::Now();
 
   // check whether the connection is appLimited, i.e. not enough data to fill a packet
   if (sz < maxSize and m_txBuffer->AppSize () == 0 and m_tcb->m_bytesInFlight.Get () < m_tcb->m_cWnd)
@@ -1382,7 +1385,7 @@ QuicSocketBase::SendDataPacket (SequenceNumber32 packetNumber,
         {
           head = QuicHeader::CreateShort (m_connectionId, packetNumber,
                                           !m_omit_connection_id, m_keyPhase);
-        }
+        } 
     }
   else
     {
@@ -1392,10 +1395,32 @@ QuicSocketBase::SendDataPacket (SequenceNumber32 packetNumber,
 
   NS_LOG_INFO ("SendDataPacket of size " << p->GetSize ());
   //std::cout<<"SendDataPacket of size " << p->GetSize ()<<std::endl;
+
+  // Zhuoxu: if this is a retransmission packet, then we set the flag in the head state.
+  NS_LOG_INFO ("Checking retransmission flag in the header: QuicHeader head.m_retrans = " << head.GetRetrans()); 
+  if(isRetransmission) {
+    // the SetRetrans method should be called before serialization.
+    head.SetRetrans(true);
+    // Zhuoxu: change the content of the packet, the header should be updated. 
+
+    // Zhuoxu: checking... We have set the flag to true here, why in the receiving side, the flag from the header is still the wrong? Some extract process get wrong. We should check this.
+    NS_LOG_INFO ("Setting the retransmission flag in the header: QuicHeader head.m_retrans = " << head.GetRetrans()); 
+
+    // We should print the packet before we change the head.
+    NS_LOG_INFO ("Printing the retrans packet .......");
+    NS_LOG_INFO (p->PrintToStrPacketBytes());
+
+    // Zhuoxu: change the content of the packet.
+    // p->SetPacketRetrans();
+
+    // Zhuoxu: Then print it.
+  }
+
   m_quicl4->SendPacket (this, p, head);
   m_txTrace (p, head, this);
   NotifyDataSent (sz);
 
+  // update some stastic information.
   m_txBuffer->UpdatePacketSent (packetNumber, sz);
 
   if (!m_quicCongestionControlLegacy)
@@ -1411,104 +1436,77 @@ QuicSocketBase::SendDataPacket (SequenceNumber32 packetNumber,
   return sz;
 }
 
-void
-QuicSocketBase::SetReTxTimeout ()
-{
-  //TODO check for special packets
-  NS_LOG_FUNCTION (this);
+void QuicSocketBase::AdjustLossTime() {
+    // Calculate the new loss time based on smoothed RTT and RTT variance
+    Time newLossTime = m_tcb->m_smoothedRtt + 4 * m_tcb->m_rttVar;
 
-  // Don't arm the alarm if there are no packets with retransmittable data in flight.
-  //if (numRetransmittablePacketsOutstanding == 0)
-  if (false)
-    {
-      m_tcb->m_lossDetectionAlarm.Cancel ();
-      return;
+    // Ensure the new loss time is within reasonable bounds
+    Time minLossTime = MilliSeconds(10); // Minimum loss time
+    Time maxLossTime = MilliSeconds(50); // Maximum loss time
+
+    if (newLossTime < minLossTime) {
+        newLossTime = minLossTime;
+    } else if (newLossTime > maxLossTime) {
+        newLossTime = maxLossTime;
     }
 
-  if (m_tcb->m_kUsingTimeLossDetection)
-    {
-      Time tmp1 = 100 * m_tcb->m_kDefaultInitialRtt;//100
-      Time tmp2 = m_tcb->m_kTimeReorderingFraction * m_tcb->m_smoothedRtt;
-      /*if (tmp1>tmp2)
-      {std::cout<<"initiallizing m_losstime=====20 * m_tcb->m_kDefaultInitialRtt;--"<<tmp1.GetSeconds()<<"--<<tmp2.GetSeconds()--"<<tmp2.GetSeconds()<<std::endl;}
-      else
-      {std::cout<<"initiallizing m_losstime=====m_tcb->m_kTimeReorderingFraction * m_tcb->m_smoothedRtt;"<<tmp2.GetSeconds()<<std::endl;}
-      */Time tmp = (tmp1>tmp2)?tmp1:tmp2;
-      m_tcb->m_lossTime = Simulator::Now () + tmp;
-      // m_tcb->m_lossTime = Simulator::Now () + m_tcb->m_kTimeReorderingFraction * m_tcb->m_smoothedRtt;
+    // Set the new loss time
+    m_tcb->m_lossTime = newLossTime + Simulator::Now();
+
+    NS_LOG_INFO("Adjusted loss time: " << m_tcb->m_lossTime.GetSeconds() << " seconds");
+}
+
+void QuicSocketBase::SetReTxTimeout() {
+    NS_LOG_FUNCTION(this);
+
+    // Don't arm the alarm if there are no packets with retransmittable data in flight.
+    // if (numRetransmittablePacketsOutstanding == 0)
+    if (false) {
+        m_tcb->m_lossDetectionAlarm.Cancel();
+        return;
     }
 
-  Time alarmDuration;
-  // Handshake packets are outstanding
-  if (m_socketState == CONNECTING_CLT || m_socketState == CONNECTING_SVR)
-    {
-      NS_LOG_INFO ("Connecting, set alarm");
-      // Handshake retransmission alarm.
-      if (m_tcb->m_smoothedRtt == Seconds (0))
-        {
-          alarmDuration = 2 * m_tcb->m_kDefaultInitialRtt;
+    if (m_tcb->m_kUsingTimeLossDetection) {
+        NS_LOG_INFO("m_kUsingTimeLossDetection");
+        AdjustLossTime();
+    }
+
+    Time alarmDuration;
+    // Handshake packets are outstanding
+    if (m_socketState == CONNECTING_CLT || m_socketState == CONNECTING_SVR) {
+        NS_LOG_INFO("Connecting, set alarm");
+        // Handshake retransmission alarm.
+        if (m_tcb->m_smoothedRtt == Seconds(0)) {
+            alarmDuration = 2 * m_tcb->m_kDefaultInitialRtt;
+        } else {
+            alarmDuration = 2 * m_tcb->m_smoothedRtt;
         }
-      else
-        {
-          alarmDuration = 2 * m_tcb->m_smoothedRtt;
-        }
-      alarmDuration = std::max (alarmDuration + m_tcb->m_maxAckDelay,
-                                m_tcb->m_kMinTLPTimeout);
-      alarmDuration = alarmDuration * (2 ^ m_tcb->m_handshakeCount);
-      //std::cout<<"if (m_socketState == CONNECTING_CLT----alarmDuration-:"<<alarmDuration<<std::endl;
-      m_tcb->m_alarmType = 0;
+        alarmDuration = std::max(alarmDuration + m_tcb->m_maxAckDelay, m_tcb->m_kMinTLPTimeout);
+        alarmDuration = alarmDuration * (2 ^ m_tcb->m_handshakeCount);
+        m_tcb->m_alarmType = 0;
+    } else if (m_tcb->m_lossTime != Seconds(0)) {
+        NS_LOG_INFO("Early retransmit timer");
+        // Early retransmit timer or time loss detection.
+        alarmDuration = m_tcb->m_lossTime - m_tcb->m_timeOfLastSentPacket;
+        NS_LOG_INFO("m_lossTime: " << m_tcb->m_lossTime.GetSeconds() << " m_timeOfLastSentPacket: " << m_tcb->m_timeOfLastSentPacket.GetSeconds());
+        m_tcb->m_alarmType = 1;
+    } else if (m_tcb->m_tlpCount < m_tcb->m_kMaxTLPs) {
+        NS_LOG_LOGIC("m_tcb->m_tlpCount < m_tcb->m_kMaxTLPs");
+        // Tail Loss Probe
+        alarmDuration = std::max((3 / 2) * m_tcb->m_smoothedRtt + m_tcb->m_maxAckDelay, m_tcb->m_kMinTLPTimeout);
+        m_tcb->m_alarmType = 2;
+    } else {
+        NS_LOG_LOGIC("RTO");
+        alarmDuration = m_tcb->m_smoothedRtt + 4 * m_tcb->m_rttVar + m_tcb->m_maxAckDelay;
+        alarmDuration = std::max(alarmDuration, m_tcb->m_kMinRTOTimeout);
+        alarmDuration = alarmDuration * (2 ^ m_tcb->m_rtoCount);
+        m_tcb->m_alarmType = 3;
     }
-  else if (m_tcb->m_lossTime != Seconds (0))
-    {
-      NS_LOG_INFO ("Early retransmit timer");
-      // Early retransmit timer or time loss detection.
-      //m_tcb->m_lossTime = m_tcb->m_smoothedRtt + m_tcb->m_rttVar * m_tcb->m_kTimeReorderingFraction;
-    //if()5* (m_tcb->m_smoothedRtt + m_tcb->m_rttVar * m_tcb->m_kTimeReorderingFraction);
-       //m_tcb->m_lossTime=
-      //std::cout<<"m-timeloss-----:"<<m_tcb->m_lossTime<<std::endl;
-      //Time tmp1 =  2*(m_tcb->m_smoothedRtt + m_tcb->m_rttVar * m_tcb->m_kTimeReorderingFraction);
-      //Time tmp2 = m_tcb->m_lossTime ;
-      //alarmDuration = (tmp1>tmp2)?tmp1:(tmp2);
-      //alarmDuration = m_tcb->m_lossTime;
-      //m_tcb->m_lossTime = Simulator::Now () + 10 * m_tcb->m_kTimeReorderingFraction * m_tcb->m_smoothedRtt;
-  
-      //alarmDuration = m_tcb->m_kTimeReorderingFraction * m_tcb->m_smoothedRtt;
-      //m_tcb->m_lossTime = Simulator::Now () +10 * m_tcb->m_kTimeReorderingFraction * ((m_tcb->m_smoothedRtt>m_tcb->m_kDefaultInitialRtt) ? m_tcb->m_smoothedRtt : m_tcb->m_kDefaultInitialRtt);
-      //alarmDuration = m_tcb->m_lossTime - m_tcb->m_timeOfLastSentPacket;
-      //alarmDuration = Simulator::Now () + m_tcb->m_lossTime - m_tcb->m_timeOfLastSentPacket;
-      //alarmDuration = m_tcb->m_lossTime ;
-      //std::cout<<"--m_tcb->m_kDefaultInitialRtt---"<<m_tcb->m_kDefaultInitialRtt<<"--m_tcb->m_smoothedRtt---"<<m_tcb->m_smoothedRtt<<"--m_timeOfLastSentPacket--"<<m_tcb->m_timeOfLastSentPacket<<"--m-timeloss-----:"<<m_tcb->m_lossTime<<"m-alarmDuration-"<<alarmDuration<<std::endl;
-      //m_tcb->m_lossTime = Simulator::Now () + m_tcb->m_kTimeReorderingFraction * m_tcb->m_smoothedRtt;
-      alarmDuration = m_tcb->m_lossTime - m_tcb->m_timeOfLastSentPacket;
-      //std::cout<<"alarmduration----for retransmit---type1-m_connectionId--"<<m_connectionId<<"----duriation----"<<alarmDuration.GetSeconds()<<std::endl;
-      //if(alarmDuration.GetDouble() == 0){alarmDuration = Seconds(5);}
-      m_tcb->m_alarmType = 1;
-    }
-  else if (m_tcb->m_tlpCount < m_tcb->m_kMaxTLPs)
-    {
-      NS_LOG_LOGIC ("m_tcb->m_tlpCount < m_tcb->m_kMaxTLPs");
-      // Tail Loss Probe
-      alarmDuration = std::max (
-        (3 / 2) * m_tcb->m_smoothedRtt + m_tcb->m_maxAckDelay,
-        m_tcb->m_kMinTLPTimeout);
-      m_tcb->m_alarmType = 2;
 
-      //std::cout<<"lse if (m_tcb->m_tlpCount < m_tcb-----alarmDuration-:"<<alarmDuration<<std::endl;
-    }
-  else
-    {
-      NS_LOG_LOGIC ("RTO");
-      alarmDuration = m_tcb->m_smoothedRtt + 4 * m_tcb->m_rttVar
-        + m_tcb->m_maxAckDelay;
-      alarmDuration = std::max (alarmDuration, m_tcb->m_kMinRTOTimeout);
-      alarmDuration = alarmDuration * (2 ^ m_tcb->m_rtoCount);
-      m_tcb->m_alarmType = 3;
-    }
-  NS_LOG_INFO ("Schedule ReTxTimeout at time " << Simulator::Now ().GetSeconds () << " to expire at time " << (Simulator::Now () + alarmDuration).GetSeconds ());
-  NS_LOG_INFO ("Alarm after " << alarmDuration.GetSeconds () << " seconds");
-  m_tcb->m_lossDetectionAlarm = Simulator::Schedule (alarmDuration,
-                                                     &QuicSocketBase::ReTxTimeout, this);
-  m_tcb->m_nextAlarmTrigger = Simulator::Now () + alarmDuration;
+    NS_LOG_INFO("Schedule ReTxTimeout at time " << Simulator::Now().GetSeconds() << " to expire at time " << (Simulator::Now() + alarmDuration).GetSeconds());
+    NS_LOG_INFO("Alarm after " << alarmDuration.GetSeconds() << " seconds");
+    m_tcb->m_lossDetectionAlarm = Simulator::Schedule(alarmDuration, &QuicSocketBase::ReTxTimeout, this);
+    m_tcb->m_nextAlarmTrigger = Simulator::Now() + alarmDuration;
 }
 
 void
@@ -1539,7 +1537,7 @@ QuicSocketBase::DoRetransmit (std::vector<Ptr<QuicSocketTxItem> > lostPackets)
                                << " BufferedSize " << m_txBuffer->AppSize ()
                                << " MaxPacketSize " << GetSegSize ()
                                <<"Retransmitted packet, next sequence number " << m_tcb->m_nextTxSequence<<std::endl;*/
-  SendDataPacket (next, toRetx, m_connected);
+  SendDataPacket (next, toRetx, m_connected, true);
 }
 
 void
@@ -1569,6 +1567,7 @@ QuicSocketBase::ReTxTimeout ()
       // Early retransmit or Time Loss Detection.
       if (m_quicCongestionControlLegacy)
         {
+          NS_LOG_INFO ("trigger m_quicCongestionControlLegacy");
           // TCP early retransmit logic [RFC 5827]: enter recovery (RFC 6675, Sec. 5)
           if (m_tcb->m_congState != TcpSocketState::CA_RECOVERY)
             {
@@ -1944,6 +1943,8 @@ QuicSocketBase::AppendingRx (Ptr<Packet> frame, Address &address)
   else
     {
       NS_LOG_INFO ("Notify Data Recv");
+      NS_LOG_INFO ("Received AppendingRx of size " << frame->GetSize ()<< " from--"<<InetSocketAddress::ConvertFrom(address).GetIpv4());
+      NS_LOG_INFO ("Packet number: " << frame->PrintToStrPacketBytes ());
       NotifyDataRecv ();   // trigger the application method
     }
 
@@ -2291,11 +2292,31 @@ QuicSocketBase::OnSendingAckFrame ()
   return ackFrame;
 }
 
+void QuicSocketBase::UpdateRttEstimate(Time rttSample) {
+    // Update smoothed RTT and RTT variance
+    m_tcb->m_rttVar = (1 - 0.25) * m_tcb->m_rttVar + 0.25 * Abs(m_tcb->m_smoothedRtt - rttSample);
+    m_tcb->m_smoothedRtt = (1 - 0.125) * m_tcb->m_smoothedRtt + 0.125 * rttSample;
+
+    // Adjust the loss time based on the updated RTT estimates
+    AdjustLossTime();
+}
+
 void
 QuicSocketBase::OnReceivedAckFrame (QuicSubheader &sub)
 {
   NS_LOG_FUNCTION (this);
   NS_LOG_INFO ("Process ACK, QuicSubheader seq: " << sub.GetSequence());
+
+  // Calculate the RTT sample
+  Time rttSample = Simulator::Now() - m_tcb->m_timeOfLastSentPacket;
+  NS_LOG_INFO ("m_timeOfLastSentPacket: " << m_tcb->m_timeOfLastSentPacket.GetSeconds());
+
+  // Update RTT estimates
+  UpdateRttEstimate(rttSample);
+  AdjustLossTime();
+
+  // Existing code for handling ACK frames...
+  // Adjust the loss time based on the updated RTT estimates
 
   // Generate RateSample
   struct RateSample * rs = m_txBuffer->GetRateSample ();
@@ -2665,7 +2686,11 @@ QuicSocketBase::ReceivedData (Ptr<Packet> p, const QuicHeader& quicHeader,
 
   m_rxTrace (p, quicHeader, this);
 
-  NS_LOG_INFO ("Received packet of size " << p->GetSize ());
+  if (p->GetSize () >1600 )
+    {
+      NS_LOG_INFO ("Received packet of size " << p->GetSize ()<< " from--"<<InetSocketAddress::ConvertFrom(address).GetIpv4());
+      NS_LOG_INFO ("Packet number: " << p->PrintToStrPacketBytes ());
+    }
 
   // check if this packet is not received during the draining period
   if (!m_drainingPeriodEvent.IsRunning ())
@@ -2678,6 +2703,9 @@ QuicSocketBase::ReceivedData (Ptr<Packet> p, const QuicHeader& quicHeader,
     }
   else   // If the socket is in Draining Period, discard the packets
     {
+      NS_LOG_INFO("socket is in Draining Period" );
+      NS_LOG_INFO ("m_receivedPacketNumbers don't push back Pkt number: " << quicHeader.GetPacketNumber () << " from address: " << InetSocketAddress::ConvertFrom(address).GetIpv4());
+        NS_LOG_INFO ("print iteration number in the retrans packet header: " << p->PrintToStrPacketBytes());
       return;
     }
 
@@ -2838,10 +2866,18 @@ QuicSocketBase::ReceivedData (Ptr<Packet> p, const QuicHeader& quicHeader,
       // in this case we cannot explicitely ACK it!
       // check if delayed ACK is used
       
+      // Zhuoxu, if there is not limit space, then don't send ACK.
       if (p->GetSize () <= m_rxBuffer->Available ())
       {
+        NS_LOG_INFO ("print iteration number in the header: " << p->PrintToStrPacketBytes());
         m_receivedPacketNumbers.push_back (quicHeader.GetPacketNumber ());
         onlyAckFrames = m_quicl5->DispatchRecv (p, address);
+      }
+      else{
+        NS_LOG_INFO ("p->GetSize () > m_rxBuffer->Available ()");
+        NS_LOG_INFO ("m_receivedPacketNumbers don't push back Pkt number: " << quicHeader.GetPacketNumber () << " from address: " << InetSocketAddress::ConvertFrom(address).GetIpv4());
+        NS_LOG_INFO ("print iteration number in the retrans packet header: " << p->PrintToStrPacketBytes());
+        NS_LOG_INFO (m_rxBuffer->PrintToStr());
       }
 
     }
@@ -2850,11 +2886,9 @@ QuicSocketBase::ReceivedData (Ptr<Packet> p, const QuicHeader& quicHeader,
 
       AbortConnection (m_transportErrorCode,
                        "Received packet in Closing state");
-
     }
   else
     {
-
       return;
     }
 

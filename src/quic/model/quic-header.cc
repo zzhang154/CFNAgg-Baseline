@@ -5,7 +5,7 @@
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as
  * published by the Free Software Foundation;
- *
+ *                      
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -42,7 +42,8 @@ QuicHeader::QuicHeader ()
   m_type (0),
   m_connectionId (0),
   m_packetNumber (0),
-  m_version (0)
+  m_version (0),
+  m_retrans (false)
 {
 }
 
@@ -201,6 +202,9 @@ QuicHeader::Serialize (Buffer::Iterator start) const
           break;
         }
     }
+
+    // Serialize the m_retrans field
+    i.WriteU8(static_cast<uint8_t>(m_retrans));
 }
 
 uint32_t
@@ -210,6 +214,7 @@ QuicHeader::Deserialize (Buffer::Iterator start)
 
   Buffer::Iterator i = start;
 
+  // as can be seen in the quic-header.h file, bool m_form is defined first.
   uint8_t t = i.ReadU8 ();
 
   m_form = (t & 0x80) >> 7;
@@ -254,6 +259,9 @@ QuicHeader::Deserialize (Buffer::Iterator start)
           break;
         }
     }
+
+  // Deserialize the m_retrans value
+  m_retrans = i.ReadU8 () != 0;
 
   NS_LOG_INFO ("Deserialize::Serialized Size " << CalculateHeaderLength ());
 

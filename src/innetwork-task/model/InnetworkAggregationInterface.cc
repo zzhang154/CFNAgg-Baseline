@@ -156,6 +156,8 @@ namespace ns3 {
         // first handle read
         Ptr<QuicMyServer> server;
         server = socketPool[fromStr]->GetObject<QuicMyServer>();
+
+        NS_LOG_DEBUG("Runing the call handle read function in " << fromStr);
         server->CallHandleRead();
 
         // check if there are any complete iteration.
@@ -181,11 +183,13 @@ namespace ns3 {
                 auto it = iterChunk.find(iterNum);
                 iterChunk.erase(it);
                 isEnd = PrintCompInfo(iterNum);
+                NS_LOG_DEBUG("current successIter.size(): " << successIter.size());
+                NS_LOG_DEBUG("isEnd " << isEnd);
             }
         }
-
+        NS_LOG_DEBUG("maxIteration " << maxIteration);
         if(!isEnd)
-            ns3::Simulator::Schedule(ns3::MilliSeconds(3), &InnetworkAggregationInterface::ReceiveDataFrom, this, fromStr);
+            ns3::Simulator::Schedule(ns3::MilliSeconds(10), &InnetworkAggregationInterface::ReceiveDataFrom, this, fromStr);
     }
 
     void 
@@ -199,6 +203,7 @@ namespace ns3 {
     }
 
     // serialize and slice vec into chunks of k elements, that is k*8 uint8_t/chunk.
+    // send data prepare.
     void 
     InnetworkAggregationInterface::SendResponseVTo (std::string toStr, std::vector<uint64_t> &vec, uint16_t iterationNum) {
         NS_LOG_FUNCTION (this);
@@ -211,43 +216,6 @@ namespace ns3 {
         std::vector<uint8_t> serializeVec = std::vector<uint8_t>(end,0);
         //uint8_t *chunkBuffer = new uint8_t[pktlen]();note that: uint16_t pktlen = BASESIZE + 10; So the first 10 position are for chunkNum and type.
         SerializeVector(vec,serializeVec.data());
-        SendPacket(toStr, iterationNum, serializeVec);
-    }
-
-    void 
-    InnetworkAggregationInterface::SendEndPacket (std::string toStr){
-        // Zhuoxu: change the producer to client here
-        Ptr<QuicMyClient> client = socketPool[toStr]->GetObject<QuicMyClient>();
-        NS_LOG_DEBUG( this << " Sends End Packet to socketPool["<<toStr<<"] ");
-        std::vector<uint8_t> chunkBuffer = std::vector<uint8_t>(pktlen,0); //Zhuoxu: 
-        NS_LOG_DEBUG( this << " pktlen " << pktlen);
-
-        int sentSize = -1;
-        for (uint16_t i = 0; i < 10; ++i) {
-            chunkBuffer[i] = 7;
-        }
-
-        for(int i=10;i<pktlen;i++)
-            chunkBuffer[i] = 9;
-
-        while(sentSize < 0 ){
-            sentSize = client->Send(chunkBuffer.data(),pktlen);
-            // determine if the sent operation success
-            if(sentSize > 0)
-                NS_LOG_DEBUG(this<<" client->Send() ending packet success --sentSize: " << sentSize <<" at iteration "<<iterationNum-uint16_t(0));
-            else
-                NS_LOG_DEBUG(this<<" client->Send() ending packet failed at iteration "<<iterationNum-uint16_t(0));
-        }
-        PrintBufferSummary(chunkBuffer);
-    }
-
-    void 
-    InnetworkAggregationInterface::SendPacket (std::string toStr, uint16_t iterationNum, std::vector<uint8_t> &serializeVec){
-        //NS_LOG_INFO("iteration-"<<iterationNum-uint16_t(0));
-
-        // Zhuoxu: change the producer to client here
-        Ptr<QuicMyClient> client = socketPool[toStr]->GetObject<QuicMyClient>();
-        NS_LOG_DEBUG( this << " Sends data to socketPool["<<toStr<<"] ");
         std::vector<uint8_t> chunkBuffer = std::vector<uint8_t>(pktlen,0); //Zhuoxu: 
         NS_LOG_DEBUG( this << " pktlen " << pktlen);
         uint8_t* buffer = serializeVec.data(); 
@@ -258,27 +226,76 @@ namespace ns3 {
 
         chunkBuffer[8] = static_cast<uint8_t>((iterationNum >> 8) & 0xFF); // High byte
         chunkBuffer[9] = static_cast<uint8_t>(iterationNum & 0xFF);
-
         std::copy(buffer, buffer + BASESIZE, chunkBuffer.data() + 10);
+        SendPacket(toStr, iterationNum, chunkBuffer);
+    }
+
+    void 
+    InnetworkAggregationInterface::SendPacket (std::string toStr, uint16_t iterationNum, std::vector<uint8_t> &chunkBuffer){
+        //NS_LOG_INFO("iteration-"<<iterationNum-uint16_t(0));
+
+        // Zhuoxu: change the producer to client here
+        Ptr<QuicMyClient> client = socketPool[toStr]->GetObject<QuicMyClient>();
+        NS_LOG_DEBUG( this << " Sends data to socketPool["<<toStr<<"] ");
+        NS_LOG_DEBUG( "print the send buffer of this client ...");
+        NS_LOG_DEBUG( client->m_socket->GetObject<QuicSocketBase>()->m_txBuffer->PrintToStr());
 
         // record the time RTT
         // 在这里获取是否
-        int sentSize = -1;
-        while(sentSize < 0 ){
-            sentSize = client->Send(chunkBuffer.data(),pktlen);
-            // determine if the sent operation success
-            if(sentSize > 0)
-                NS_LOG_DEBUG(this<<" client->Send()--sentSize: " << sentSize <<" at iteration "<<iterationNum-uint16_t(0));
-            else
-                NS_LOG_DEBUG(this<<" client->Send() failed at iteration "<<iterationNum-uint16_t(0));
+        int sentSize = client->Send(chunkBuffer.data(),pktlen);
+        // determine if the sent operation success
+        if(sentSize > 0){
+            NS_LOG_DEBUG(this << " client->Send()--sentSize success: " << sentSize << " at iteration "<<iterationNum-uint16_t(0));
+            PrintBufferSummary(chunkBuffer);
+            if (this->cGroup.size() == 0)
+                ProduceVToP (iterationNum + 1);
         }
-        PrintBufferSummary(chunkBuffer);
+        else{
+            NS_LOG_DEBUG(this << " client->Send() failed at iteration " << iterationNum - uint16_t(0) << " schedule next send");
+            // Zhuoxu: we first try 100ns, to see what happen...
+            ns3::Simulator::Schedule(ns3::MilliSeconds(1), 
+                         &InnetworkAggregationInterface::SendPacket,
+                         this, toStr, iterationNum, chunkBuffer);
+        }
 
         // Zhuoxu: send ending packet for padding. Otherwise, packet for the last iteration cannot be process because of size(MTU) != size(per quic frame)
-        if (iterationNum == maxIteration - 1)
-            SendEndPacket (toStr);
+        if (iterationNum == maxIteration - 1){
+            std::vector<uint8_t> chunkBuffer = std::vector<uint8_t>(pktlen,0); 
+
+            int sentSize = -1;
+            for (uint16_t i = 0; i < 10; ++i) {
+                chunkBuffer[i] = 7;
+            }
+
+            for(int i=10;i<pktlen;i++)
+                chunkBuffer[i] = 9;
+
+            SendEndPacket (toStr, chunkBuffer);
+        }
+        
+        // if it is a producer, then begin the next send call of next iteration.
     }
 
+    void 
+    InnetworkAggregationInterface::SendEndPacket (std::string toStr, std::vector<uint8_t> &chunkBuffer){
+        // Zhuoxu: change the producer to client here
+        Ptr<QuicMyClient> client = socketPool[toStr]->GetObject<QuicMyClient>();
+        NS_LOG_DEBUG( this << " Sends End Packet to socketPool["<<toStr<<"] ");
+
+        int sentSize = client->Send(chunkBuffer.data(),pktlen);
+        // determine if the sent operation success
+        if(sentSize > 0){
+            NS_LOG_DEBUG(this<<" client->Send() ending packet success --sentSize: " << sentSize <<" at iteration "<<iterationNum-uint16_t(0));
+            PrintBufferSummary(chunkBuffer);
+        }
+        else{
+            NS_LOG_DEBUG(this<<" client->Send() ending packet failed at iteration "<<iterationNum-uint16_t(0));
+            ns3::Simulator::Schedule(ns3::MilliSeconds(10), 
+                         &InnetworkAggregationInterface::SendEndPacket,
+                         this, toStr, chunkBuffer);
+        }
+    }
+    
     void 
     InnetworkAggregationInterface::PrintBufferSummary(std::vector<uint8_t>& chunkBuffer){
         // Zhuoxu: Todo: print the send content of aggregator
@@ -295,8 +312,8 @@ namespace ns3 {
                 std::cout << static_cast<int>(chunkBuffer[i]) << " ";
                 if((i + 1) % 8 == 0) {
                     std::cout << " the " << (i + 1) / 8 << "th byte" << std::endl;
+              }
             }
-}
         }
         else if(cGroup.size()==0){
             NS_LOG_DEBUG("producer send to aggregator, the content is as follows: ");
@@ -307,58 +324,26 @@ namespace ns3 {
                     std::cout << " the " << (i+1) / 8 << "th byte" << std::endl;
                 }
             }
-            for(int i = pktlen - 24; i < pktlen; i++) {
+            for(int i = pktlen - 24, j = 0; i < pktlen; i++, j++) {
                 std::cout << static_cast<int>(chunkBuffer[i]) << " ";
-                if((i + 1) % 8 == 0) {
+                if((j + 1) % 8 == 0) {
                     std::cout << " the " << (i + 1) / 8 << "th byte" << std::endl;
                 }
             }
         }
     }
 
-
     void 
-    InnetworkAggregationInterface::ProduceVToP (){
+    InnetworkAggregationInterface::ProduceVToP (uint16_t iterationNum){
+        if(iterationNum == this->maxIteration)
+            return;
         for (uint8_t i = 0; i < this->sGroup.size (); ++i) {
             std::string toStr;
             Addr2Str (this->sGroup[i], toStr);
-            for (uint16_t j = 0; j < this->maxIteration; ++j) {
-                std::vector<uint64_t> initData(chunkSize, 88 + 11*static_cast<int>(j));
-                SendResponseVTo (toStr, initData, j);
-                // std::cout<<"initData info for first 5th:"<<std::endl;
-                for(int k=0;k<5;k++){
-                    // std::cout<<initData[k]<<" ";
-                }
+            std::vector<uint64_t> initData(chunkSize, static_cast<int>(iterationNum));
+            SendResponseVTo (toStr, initData, iterationNum);
                 // std::cout<<"iterationNum:"<<static_cast<int>(j)<<std::endl;
             }
-        }
-    }
-
-    bool 
-    InnetworkAggregationInterface::GetisEnd () {
-        //NS_LOG_FUNCTION (this);
-        return this->isEnd;
-    }
-
-    void 
-    InnetworkAggregationInterface::SetisEnd (bool v) {
-        //NS_LOG_FUNCTION (this);
-        this->isEnd = v;
-    }
-
-    void
-    InnetworkAggregationInterface::ClearChunkMap () {
-        //NS_LOG_FUNCTION (this);
-        
-        // Zhuoxu: No need this currently.
-
-        /*
-        for (auto &tmp : this->chunkMap) {
-            tmp. second. childCount = 0;
-            std::vector<uint64_t> tmp1 (chunkSize, 0);
-            tmp. second. data = tmp1;
-        }
-        */
     }
 
     void 

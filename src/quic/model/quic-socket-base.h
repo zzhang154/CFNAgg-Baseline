@@ -49,6 +49,7 @@
 
 namespace ns3 {
 
+
 class QuicL5Protocol;
 class QuicL4Protocol;
 
@@ -173,7 +174,9 @@ public:
 class QuicSocketBase : public QuicSocket
 {
 public:
-
+  
+  Ptr<QuicSocketRxBuffer> m_rxBuffer;                     //!< RX buffer
+  Ptr<QuicSocketTxBuffer> m_txBuffer;                     //!< TX buffer
   // Zhuoxu: DIY function
   Ptr<QuicSocketRxBuffer> GetRxBuffer();
  
@@ -631,6 +634,13 @@ protected:
   Ptr<QuicL5Protocol> CreateStreamController ();
 
   /**
+   * \brief Change the m_smoothedRtt and m_rttVar.
+   */
+  void AdjustLossTime();
+
+  void UpdateRttEstimate(Time rttSample);
+
+  /**
    * \brief Set the RTO timer (called when packets or ACKs are sent)
    */
   void SetReTxTimeout ();
@@ -659,7 +669,7 @@ protected:
    * \returns the number of bytes sent
    */
   uint32_t SendDataPacket (SequenceNumber32 packetNumber, uint32_t maxSize,
-                           bool withAck);
+                           bool withAck, bool isRetransmission = false);
 
   /**
    * \brief Send a Connection Close frame
@@ -758,8 +768,7 @@ protected:
   Ptr<QuicL5Protocol> m_quicl5;  //!< The associated L5 Protocol
 
   // Rx and Tx buffer management
-  Ptr<QuicSocketRxBuffer> m_rxBuffer;                     //!< RX buffer
-  Ptr<QuicSocketTxBuffer> m_txBuffer;                     //!< TX buffer
+  
   uint32_t m_socketTxBufferSize;                          //!< Size of the socket TX buffer
   uint32_t m_socketRxBufferSize;                          //!< Size of the socket RX buffer
   std::vector<SequenceNumber32> m_receivedPacketNumbers;  //!< Received packet number vector

@@ -219,11 +219,11 @@ void QuicMyServer::CreateSocket(Ptr<Node> node,uint16_t port) {
       m_socket = quicSocketFactory->CreateSocket();
 
       m_socket->GetObject<QuicSocketBase>()->GetSocketStatetcb()->SetAttribute("kUsingTimeLossDetection",BooleanValue (true));
-      m_socket->GetObject<QuicSocketBase>()->GetSocketStatetcb()->SetAttribute("kTimeReorderingFraction",DoubleValue (29 / 8));
-      //m_socket->GetObject<QuicSocketBase>()->GetSocketStatetcb()->m_kMaxPacketsReceivedBeforeAckSend = 3;
+      m_socket->GetObject<QuicSocketBase>()->GetSocketStatetcb()->SetAttribute("kTimeReorderingFraction",DoubleValue (19 / 8));
+      m_socket->GetObject<QuicSocketBase>()->GetSocketStatetcb()->m_kMaxPacketsReceivedBeforeAckSend = 15;
       m_socket->GetObject<QuicSocketBase>()->SetAttribute("LegacyCongestionControl",BooleanValue (true));
 
-      //m_socket->GetObject<QuicSocketBase>()->GetSocketStatetcb()->SetAttribute("kMaxPacketsReceivedBeforeAckSend",UintegerValue (1));
+      // m_socket->GetObject<QuicSocketBase>()->GetSocketStatetcb()->SetAttribute("kMaxPacketsReceivedBeforeAckSend",UintegerValue (100));
       if (!m_socket) {
           NS_FATAL_ERROR("m_socket not found!");
           return;
@@ -238,10 +238,10 @@ void QuicMyServer::CreateSocket(Ptr<Node> node,uint16_t port) {
 
       // congestion strategy
       //if(congestionControlAlgorithm == "bbr") {
-      //Ptr<QuicCongestionOps> quicbbr = CreateObject<QuicBbr>();
-      //double highGain = 2.5;//3.0
-      //quicbbr->SetAttribute("HighGain", ns3::DoubleValue(highGain));
-      //m_socket->GetObject<QuicSocketBase>()->SetCongestionControlAlgorithm(quicbbr);
+      // Ptr<QuicCongestionOps> quicbbr = CreateObject<QuicBbr>();
+      // double highGain = 2.5;//3.0
+      // quicbbr->SetAttribute("HighGain", ns3::DoubleValue(highGain));
+      // m_socket->GetObject<QuicSocketBase>()->SetCongestionControlAlgorithm(quicbbr);
     //}
      
     }
@@ -419,85 +419,102 @@ QuicMyServer::CheckReTransmit(uint8_t* packetContent){
 // Zhuoxu: table[iteration] = DataChunk;
 void
 QuicMyServer::HandleRead (Ptr<Socket> socket) {
+  NS_LOG_DEBUG( this << " Entering the HandleRead function ..., with Ipv4 address " << ipAddressStr);
+  NS_LOG_DEBUG(this << " Printing all members of compQueue with size: " << compQueue.size());
+
+  std::queue<uint16_t> tempQueue = compQueue; // Create a copy of the queue to iterate through
+  while (!tempQueue.empty()) {
+      uint16_t value = tempQueue.front();
+      std::cout << value - uint16_t(0) << "-";
+      tempQueue.pop();
+  }
+  std::cout << std::endl;
+
   int memState = CheckMemory();
   if(memState <= 0){
     NS_LOG_DEBUG( this << " No memory available for new chunk");
-    return;
   }
-  // read from RecvBuffer
-  Ptr<Packet> packet;
-  Address from;
-  // NS_LOG_DEBUG( this << " RxBuffer Available(): " << socket->GetObject<QuicSocketBase>()->GetRxBuffer()->Available() - uint32_t(0));
-  // NS_LOG_DEBUG( this << " RxBuffer Size(): " << socket->GetObject<QuicSocketBase>()->GetRxBuffer()->Size() - uint32_t(0));
-  // Zhuoxu: also output the value of RxstreamBuffer.
-  while ((memState > 0) && (packet = socket->GetObject<QuicSocketBase>()->RecvFrom (memState * pktlen, 0, from)))
-  {
-    NS_LOG_DEBUG("***********START***********");
-    NS_LOG_DEBUG("memState: " << memState << ", memState * pktlen = " << memState * pktlen);
-    m_peerAddress = from;
-    uint32_t packetSize=packet->GetSize();
-    m_received++; 
-    m_pktPtr = 0;
+  else{
+    socket->GetObject<QuicSocketBase>()->m_rxBuffer->Print(std::cout);
+    // read from RecvBuffer
+    Ptr<Packet> packet;
+    Address from;
+    // NS_LOG_DEBUG( this << " RxBuffer Available(): " << socket->GetObject<QuicSocketBase>()->GetRxBuffer()->Available() - uint32_t(0));
+    // NS_LOG_DEBUG( this << " RxBuffer Size(): " << socket->GetObject<QuicSocketBase>()->GetRxBuffer()->Size() - uint32_t(0));
+    // Zhuoxu: also output the value of RxstreamBuffer.
+    while ((memState > 0) && (packet = socket->GetObject<QuicSocketBase>()->RecvFrom (memState * pktlen, 0, from)))
+    {
+      NS_LOG_DEBUG("***********START***********");
+      // socket->GetObject<QuicSocketBase>()->m_rxBuffer->Print(std::cout);
+      NS_LOG_DEBUG("memState: " << memState << ", memState * pktlen = " << memState * pktlen);
+      m_peerAddress = from;
+      uint32_t packetSize=packet->GetSize();
+      m_received++; 
+      m_pktPtr = 0;
 
-    // Zhuoxu: if we can let the quic to give us exactly the size of chunkSize data in each quic frame, then we can simplify the code here.
-    // Todo: Check the quic frame size setting.
-    uint8_t* packetContent = new uint8_t[packetSize];
-    m_pktPtr = 0;
-    std::vector<uint64_t> vecTmp (chunkSize, 0);
-    uint32_t copyedSize =  packet->CopyData(packetContent,packetSize);
-    NS_LOG_DEBUG( this << " Copy data size: " << copyedSize);
-    if (ipAddressStr == "10.1.1.1"){
-      NS_LOG_DEBUG("Print data from " << ipAddressStr << " for iteration- " << m_iteration <<" group");
-      for(int i =0;i<copyedSize;i++){
-        std::cout << static_cast<int>(packetContent[i]) << '|';
-        if(i==copyedSize-1)
-          std::cout << "Ending..." << std::endl;
-    }
-    std::cout;
-    }
-    // general case: pktContent[i-1], pktContent[i], pktContent[i+1]; So we should consider the general case. In worse case, we need to consider the storage of 3 packets.
+      // Zhuoxu: if we can let the quic to give us exactly the size of chunkSize data in each quic frame, then we can simplify the code here.
+      // Todo: Check the quic frame size setting.
+      uint8_t* packetContent = new uint8_t[packetSize];
+      m_pktPtr = 0;
+      std::vector<uint64_t> vecTmp (chunkSize, 0);
+      uint32_t copyedSize =  packet->CopyData(packetContent,packetSize);
+      NS_LOG_DEBUG( this << " Copy data size: " << copyedSize);
+      if (ipAddressStr == "10.1.1.1"){
+        NS_LOG_DEBUG("Print data from " << ipAddressStr << " for iteration- " << m_iteration <<" group");
+        for(int i =0;i<copyedSize;i++){
+          std::cout << static_cast<int>(packetContent[i]) << '|';
+          if(i==copyedSize-1)
+            std::cout << "Ending..." << std::endl;
+        }
+      std::cout;
+      }
+      // general case: pktContent[i-1], pktContent[i], pktContent[i+1]; So we should consider the general case. In worse case, we need to consider the storage of 3 packets.
 
-    while(m_pktPtr < packetSize){
-      NS_LOG_DEBUG("------------------------------------");
-      NS_LOG_DEBUG("before process, m_pktPtr is: " << static_cast<int>(m_pktPtr));
-      NS_LOG_DEBUG("before process, m_bufferPtr is: " << static_cast<int>(m_bufferPtr));
-      
-      if(m_buffer == nullptr){
-        m_buffer = new uint8_t[pktlen];
-      }
+      while(m_pktPtr < packetSize){
+        NS_LOG_DEBUG("------------------------------------");
+        NS_LOG_DEBUG("before process, m_pktPtr is: " << static_cast<int>(m_pktPtr));
+        NS_LOG_DEBUG("before process, m_bufferPtr is: " << static_cast<int>(m_bufferPtr));
+        
+        if(m_buffer == nullptr){
+          m_buffer = new uint8_t[pktlen];
+        }
 
-      // Copy context from packetContent to buffer
-      while(m_bufferPtr <  pktlen && m_pktPtr < packetSize){
-        m_buffer[m_bufferPtr] = packetContent[m_pktPtr];
-        m_bufferPtr++;
-        m_pktPtr++;
+        // Copy context from packetContent to buffer
+        while(m_bufferPtr <  pktlen && m_pktPtr < packetSize){
+          m_buffer[m_bufferPtr] = packetContent[m_pktPtr];
+          m_bufferPtr++;
+          m_pktPtr++;
+        }
+        if (m_bufferPtr == pktlen){
+          // pocess the bufferPtr
+          // NS_LOG_DEBUG("Begin process the packet, now the m_bufferPtrMap[ipAddressStr] is: " << m_bufferPtrMap[ipAddressStr] - uint16_t(0));
+          ProcessPerPkt();
+          memState--;
+          m_bufferPtr = 0;
+          delete[] m_buffer;
+          m_buffer = nullptr;
+        }
+        NS_LOG_DEBUG("after process, m_pktPtr is: " << static_cast<int>(m_pktPtr));
+        NS_LOG_DEBUG("after process, m_bufferPtr is: " << static_cast<int>(m_bufferPtrMap[ipAddressStr]));
+        NS_LOG_DEBUG("------------------------------------");
       }
-      if (m_bufferPtr == pktlen){
-        // pocess the bufferPtr
-        // NS_LOG_DEBUG("Begin process the packet, now the m_bufferPtrMap[ipAddressStr] is: " << m_bufferPtrMap[ipAddressStr] - uint16_t(0));
-        ProcessPerPkt();
-        memState--;
-        m_bufferPtr = 0;
-        delete[] m_buffer;
-        m_buffer = nullptr;
-      }
-    NS_LOG_DEBUG("after process, m_pktPtr is: " << static_cast<int>(m_pktPtr));
-    NS_LOG_DEBUG("after process, m_bufferPtr is: " << static_cast<int>(m_bufferPtrMap[ipAddressStr]));
-    NS_LOG_DEBUG("------------------------------------");
+      // Zhuoxu: only print the packet of 10.1.1.1
+      // if(ipAddressStr == "10.1.1.1")
+      //   PrintBuffInfo_8(packetContent, packetSize);
+      delete[] packetContent;
+      // NS_LOG_DEBUG("delete packetContent");
+      // NS_LOG_DEBUG("QuicMyServer----"<<GetLocalAddress().GetIpv4()<<"-received---request---from--"<<+
+      ;
+      // PrintState();
+      NS_LOG_DEBUG("#########END###########");
     }
-    // Zhuoxu: only print the packet of 10.1.1.1
-    // if(ipAddressStr == "10.1.1.1")
-    //   PrintBuffInfo_8(packetContent, packetSize);
-    delete[] packetContent;
-    // NS_LOG_DEBUG("delete packetContent");
-    // NS_LOG_DEBUG("QuicMyServer----"<<GetLocalAddress().GetIpv4()<<"-received---request---from--"<<InetSocketAddress::ConvertFrom(m_peerAddress).GetIpv4());
-    // PrintState();
-    NS_LOG_DEBUG("#########END###########");
-  }
-    //std::cout<<"QuicMyServer----"<<GetLocalAddress().GetIpv4()<<"-received---request---from--"<<InetSocketAddress::ConvertFrom(m_peerAddress).GetIpv4()<<std::endl;
-    //m_circularBuffer->print();
     NS_ASSERT(memState >= 0);
-    this->m_socket = socket;
+  }
+  //std::cout<<"QuicMyServer----"<<GetLocalAddress().GetIpv4()<<"-received---request---from--"<<InetSocketAddress::ConvertFrom(m_peerAddress).GetIpv4()<<std::endl;
+  //m_circularBuffer->print();
+  this->m_socket = socket;
+  NS_LOG_DEBUG("quit the function...");
+  // ns3::Simulator::Schedule(ns3::MilliSeconds(10), &QuicMyServer::HandleRead, this, socket);
 }
 
 void 

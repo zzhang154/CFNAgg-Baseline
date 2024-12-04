@@ -70,7 +70,7 @@ namespace ns3 {
             void SendRequestVToAll ();
             void ScheduleAndSend();
             void SendResponseVToP (std::vector<uint64_t> &vec , uint16_t iterationNum);
-            void ProduceVToP ();
+            void ProduceVToP (uint16_t iterationNum);
             void AVG (uint16_t iterationNum);
             void SendResponseVTo (std::string toStr, std::vector<uint64_t> &vec, uint16_t iterationNum);
             void SetVSize (uint32_t size);
@@ -83,7 +83,7 @@ namespace ns3 {
             void SetOutFile (const std::string fileName);
             void Addr2Str (Address addr, std::string &str);
             void SendPacket (std::string toStr, uint16_t iterationNum, std::vector<uint8_t> &serializeVec);
-            void SendEndPacket (std::string toStr);
+            void SendEndPacket (std::string toStr, std::vector<uint8_t> &chunkBuffer);
             bool PrintCompInfo (uint16_t iterationNum);
             void PrintBufferSummary(std::vector<uint8_t>& chunkBuffer);
 
