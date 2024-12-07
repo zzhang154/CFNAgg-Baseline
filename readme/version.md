@@ -270,3 +270,17 @@ Markdown the error:
 +2.000073594s 17 QuicSocketBase:AppendingRx(): Packet number: Packet bytes: 03 03 03 03 03 03 03 03 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
 
 Even though I set the schedule function of the handleRead(), aggregator 17 still don't work after 260 iteration. It seems that aggregator 17 is blocked by something.
+
+Quic-Agg-v6.0 Test List:
+test the value effect for the "kReorderingThreshold"
+
+We change the value from '3' to '20', but there is no effect on the result. Still stuck on the 111 iteration.
+
+.AddAttribute ("kReorderingThreshold", "Maximum reordering in packet number space before FACK style loss detection considers a packet lost",
+                   UintegerValue (20),
+                   MakeUintegerAccessor (&QuicSocketState::m_kReorderingThreshold),
+                   MakeUintegerChecker<uint32_t> ())
+
+Problem statement of current Quic-Agg-v6.0:
+
+iteration 111 has been retransmit, but after that the system will be blocked. And the receiving buffer will be empty. Not sure what happen ...
