@@ -2264,11 +2264,15 @@ TcpSocketBase::ProcessListen(Ptr<Packet> packet,
     {
         return;
     }
+
+
+    // Zhuoxu: Here, we delete the copy function to avoid the create of new socket.
+
     // Clone the socket, simulate fork
-    Ptr<TcpSocketBase> newSock = Fork();
-    NS_LOG_LOGIC("Cloned a TcpSocketBase " << newSock);
+    // Ptr<TcpSocketBase> newSock = Fork();
+    // NS_LOG_LOGIC("Cloned a TcpSocketBase " << newSock);
     Simulator::ScheduleNow(&TcpSocketBase::CompleteFork,
-                           newSock,
+                           this,
                            packet,
                            tcpHeader,
                            fromAddress,
