@@ -58,9 +58,10 @@ const std::string currentDir = GetCurrentWorkingDir();
 
 NS_LOG_COMPONENT_DEFINE("innetwork-test");
 
-const std::string routerFilePath = currentDir + "/scratch/config/router10.txt";
-const std::string linkFilePath = currentDir + "/scratch/config/link10.txt";
-const std::string aggGropuFilePath = currentDir + "/scratch/config/aggtree10.txt";
+const std::string Number = "50";
+const std::string routerFilePath = currentDir + "/scratch/config/router" + Number + ".txt";
+const std::string linkFilePath = currentDir + "/scratch/config/link" + Number + ".txt";
+const std::string aggGropuFilePath = currentDir + "/scratch/config/aggtree" + Number + ".txt";
 const std::string conName = "con";
 const std::string proName = "pro";
 const std::string fowName = "forwarder";
@@ -332,7 +333,7 @@ main (int argc, char *argv[])
 {   
 
     CommandLine cmd;
-    uint16_t itr = 10000; // has some problem when the iteration number reach 60.
+    uint16_t itr = 3200; // has some problem when the iteration number reach 60.
     uint32_t vsize = 200;
     bool topotype = 1;
     cmd.AddValue("itr", "max iteration consumer performed", itr);
@@ -380,6 +381,7 @@ main (int argc, char *argv[])
     // LogComponentEnable("Consumer", LOG_LEVEL_DEBUG);
     // LogComponentEnable("Aggregator", LOG_LEVEL_DEBUG);
     // LogComponentEnable("Producer", LOG_LEVEL_DEBUG);
+    LogComponentDisable("InnetworkAggregationInterface", LOG_LEVEL_FUNCTION);
     LogComponentEnable("InnetworkAggregationInterface", LOG_LEVEL_INFO);
     // LogComponentEnable("InnetworkAggregationInterface", LOG_LEVEL_DEBUG);
 
