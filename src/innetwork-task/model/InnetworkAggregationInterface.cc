@@ -75,6 +75,7 @@ namespace ns3 {
         auto serverAddr = GetIpAddrFromNode(this->node);
         std::string serverAddrStr;
         Addr2Str(serverAddr, serverAddrStr);
+        this->thisAddress = serverAddrStr;
 
         // Zhuoxu: Becareful that client and server should be binded to different ports. Otherwise there will be error.
         for (uint8_t i = 0; i < this->sGroup.size(); ++i) {
@@ -91,6 +92,7 @@ namespace ns3 {
             socketPool[addrStr] = myclient;
             std::cout<<"client ptr:"<<myclient<<std::endl;
             NS_LOG_DEBUG(this << " CreateSocketPool: socketPool["<< addrStr << "] -myclient, port: " << m_peerPort);
+            NS_LOG_DEBUG("local ip: " << serverAddrStr);
             NS_LOG_DEBUG("---------End-----------\n");
         }
 
@@ -138,6 +140,21 @@ namespace ns3 {
         }
     }
 
+
+    void 
+    InnetworkAggregationInterface::TriggerHandleRead () {
+        for (auto item : socketPool) {
+            // Zhuoxu: only receive data from the server
+            if ( socketPool[item.first]->GetObject<TCPserver>() ){
+                Ptr<TCPserver> server = socketPool[item.first]->GetObject<TCPserver>();
+                // We first let the receiver to send the space message to the sender.
+                server->CallSendEmptyPacket();
+                server->CallHandleRead();
+            }
+        }
+        return;
+    }
+
     bool
     InnetworkAggregationInterface::PrintCompInfo(uint16_t iterationNum){
         Time currentTime = Simulator::Now();
@@ -148,7 +165,7 @@ namespace ns3 {
                 Simulator::Stop (Seconds(Simulator::Now().GetSeconds() + 0.001));
             }
             else{
-                NS_LOG_INFO("Aggregator All iteration-"<< maxIteration-1 << " completed in: " << currentTime.GetMilliSeconds() - 2000<< "ms");
+                NS_LOG_INFO("Receive the ending packet. Finish Process.");
             }
             return true;
         }
@@ -165,15 +182,25 @@ namespace ns3 {
         Ptr<TCPserver> server;
         server = socketPool[fromStr]->GetObject<TCPserver>();
 
-        NS_LOG_DEBUG("Runing the call handle read function in " << fromStr);
-        server->CallHandleRead();
+        // Zhuoxu: comment this to see what happen.
+        // NS_LOG_DEBUG("Runing the call handle read function in " << fromStr);
+        // server->CallHandleRead();
 
         // check if there are any complete iteration.
         // here, we should pass a local vector to record all the finished iteration.
         std::queue<uint16_t> iterQueue = server->GetCompIterQueue();
         if(!iterQueue.empty()){
-            NS_LOG_DEBUG( this << " fromStr " << fromStr);
-            NS_LOG_DEBUG("Size of iterQueue: " << iterQueue.size());
+            NS_LOG_DEBUG( "fromStr: " << fromStr << ", Size of iterQueue: " << iterQueue.size());
+            if(fromStr == "10.1.1.1"){
+                NS_LOG_DEBUG("checking the RxBuffer content for debug...");
+                NS_LOG_DEBUG(server->GetSocket()->GetObject<TcpSocketBase>()->GetRxBuffer()->PrintRxBuffer());
+            }
+        }
+        else{
+            if(fromStr == "10.1.1.1"){
+                NS_LOG_DEBUG("iterQueue is empty, checking the RxBuffer content ...");
+                NS_LOG_DEBUG(server->GetSocket()->GetObject<TcpSocketBase>()->GetRxBuffer()->PrintRxBuffer());
+            }
         }
 
         if(!iterQueue.empty()){
@@ -191,11 +218,13 @@ namespace ns3 {
                 auto it = iterChunk.find(iterNum);
                 iterChunk.erase(it);
                 isEnd = PrintCompInfo(iterNum);
-                NS_LOG_DEBUG("current successIter.size(): " << successIter.size());
+                NS_LOG_DEBUG("fromStr: " << fromStr << " current successIter.size(): " << successIter.size());
                 NS_LOG_DEBUG("isEnd " << isEnd);
             }
+            // Call handleRead function after the memory has been released.
+            TriggerHandleRead ();
         }
-        NS_LOG_DEBUG("maxIteration " << maxIteration);
+        NS_LOG_DEBUG("fromStr: " << fromStr << ", maxIteration " << maxIteration);
         if(!isEnd)
             ns3::Simulator::Schedule(ns3::MilliSeconds(10), &InnetworkAggregationInterface::ReceiveDataFrom, this, fromStr);
     }
@@ -254,12 +283,24 @@ namespace ns3 {
         // determine if the sent operation success
         if(sentSize > 0){
             NS_LOG_DEBUG(this << " client->Send()--sentSize success: " << sentSize << " at iteration "<<iterationNum-uint16_t(0));
+            if(thisAddress == "10.1.1.1")
+            {
+                NS_LOG_DEBUG("Print the TxBuffer of 10.1.1.1 when send success");
+                std::cout << *(client->GetSocket()->GetObject<TcpSocketBase>()->GetTxBuffer()) << std::endl;
+            }
             PrintBufferSummary(chunkBuffer);
             if (this->cGroup.size() == 0)
                 ProduceVToP (iterationNum + 1);
+
         }
         else{
             NS_LOG_DEBUG(this << " client->Send() failed at iteration " << iterationNum - uint16_t(0) << " schedule next send");
+            if(thisAddress == "10.1.1.1")
+            {
+                NS_LOG_DEBUG("Print the TxBuffer of 10.1.1.1 when send failed");
+                client->GetSocket()->GetObject<TcpSocketBase>()->GetTxBuffer()->PrintTxBuffer();
+                std::cout << *(client->GetSocket()->GetObject<TcpSocketBase>()->GetTxBuffer()) << std::endl;
+            }
             // Zhuoxu: we first try 100ns, to see what happen...
             ns3::Simulator::Schedule(ns3::MilliSeconds(1), 
                          &InnetworkAggregationInterface::SendPacket,
@@ -307,38 +348,40 @@ namespace ns3 {
     void 
     InnetworkAggregationInterface::PrintBufferSummary(std::vector<uint8_t>& chunkBuffer){
         // Zhuoxu: Todo: print the send content of aggregator
+        std::stringstream ss;
         if(cGroup.size()>0 && sGroup.size()>0){
             NS_LOG_DEBUG("Agg send to consumer, the content is as follows: ");
-            std::cout << "------------------------------------" << std::endl;
+            ss << "------------------------------------" << std::endl;
             for(int i = 0; i < 24; i++){
-                std::cout << static_cast<int>(chunkBuffer[i]) << " ";
+                ss << static_cast<int>(chunkBuffer[i]) << " ";
                 if((i+1) % 8 == 0){
-                    std::cout << " the " << (i+1) / 8 << "th byte" << std::endl;
+                    ss << " the " << (i+1) / 8 << "th byte" << std::endl;
                 }
             } 
             for(int i = pktlen - 24; i < pktlen; i++) {
-                std::cout << static_cast<int>(chunkBuffer[i]) << " ";
+                ss << static_cast<int>(chunkBuffer[i]) << " ";
                 if((i + 1) % 8 == 0) {
-                    std::cout << " the " << (i + 1) / 8 << "th byte" << std::endl;
+                    ss << " the " << (i + 1) / 8 << "th byte" << std::endl;
               }
             }
         }
         else if(cGroup.size()==0){
             NS_LOG_DEBUG("producer send to aggregator, the content is as follows: ");
-            std::cout << "------------------------------------" << std::endl;
+            ss << "------------------------------------" << std::endl;
             for(int i = 0; i < 24; i++){
-                std::cout << static_cast<int>(chunkBuffer[i]) << " ";
+                ss << static_cast<int>(chunkBuffer[i]) << " ";
                 if((i+1) % 8 == 0){
-                    std::cout << " the " << (i+1) / 8 << "th byte" << std::endl;
+                    ss << " the " << (i+1) / 8 << "th byte" << std::endl;
                 }
             }
             for(int i = pktlen - 24, j = 0; i < pktlen; i++, j++) {
                 std::cout << static_cast<int>(chunkBuffer[i]) << " ";
                 if((j + 1) % 8 == 0) {
-                    std::cout << " the " << (i + 1) / 8 << "th byte" << std::endl;
+                    ss << " the " << (i + 1) / 8 << "th byte" << std::endl;
                 }
             }
         }
+        NS_LOG_DEBUG("PrintBufferSummary:\n" << ss.str());
     }
 
     void 

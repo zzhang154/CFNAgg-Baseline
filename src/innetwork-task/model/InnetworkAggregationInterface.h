@@ -55,6 +55,7 @@ namespace ns3 {
 
             std::unordered_map<uint16_t, DataChunk> iterChunk;
             bool isEnd = false;
+            std::string thisAddress;
 
 
         public:
@@ -88,6 +89,7 @@ namespace ns3 {
             void SendEndPacket (std::string toStr, std::vector<uint8_t> &chunkBuffer);
             bool PrintCompInfo (uint16_t iterationNum);
             void PrintBufferSummary(std::vector<uint8_t>& chunkBuffer);
+            void TriggerHandleRead();
 
             // Zhuoxu: Todo 
             ns3::Ipv4Address GetIpAddrFromNode (Ptr<Node> node);

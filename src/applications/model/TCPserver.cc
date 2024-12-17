@@ -159,7 +159,7 @@ void TCPserver::ClearCompQueue() {
     while (!compQueue.empty()) {
         compQueue.pop();
     }
-    NS_LOG_DEBUG("compQueue has been cleared.");
+    NS_LOG_DEBUG("compQueue has been cleared. compQueue.size(): " << compQueue.size());
 }
 
 void 
@@ -228,6 +228,21 @@ TCPserver::SetIterChunkPtr(std::unordered_map<uint16_t, DataChunk>* iterChunk){
   iterChunkPtr = iterChunk;
 }
 
+// Todo: print the info of the table
+void 
+TCPserver::PrintTable(){
+  std::stringstream ss;
+  for (const auto& pair : *iterChunkPtr) {
+        ss << "iteration: " << pair.first << "  collected child: " << std::endl; 
+        const std::unordered_set<std::string>& chAddr = pair.second.chAddr;
+        for (const auto& addr : chAddr) {
+            ss << addr << "----";
+        }
+        ss << std::endl;
+  }
+  NS_LOG_DEBUG(ss.str());
+}
+
 int
 TCPserver::CheckMemory(){
   // Addr2Str(m_bindIp, addrStr); cannot run this command.
@@ -271,12 +286,14 @@ TCPserver::CheckChComp(uint16_t iterNum){
 
     // }
     std::queue<uint16_t> tempQueue = compQueue; // Create a copy of the queue to iterate through
+    std::stringstream ss;
     while (!tempQueue.empty()) {
         uint16_t value = tempQueue.front();
-        std::cout << value - uint16_t(0) << "-";
+        ss << value - uint16_t(0) << "-";
         tempQueue.pop();
     }
-    std::cout << std::endl;
+    ss << std::endl;
+    NS_LOG_DEBUG("compQueue: " << ss.str());
   }
 }
 
@@ -390,16 +407,19 @@ TCPserver::HandleRead (Ptr<Socket> socket) {
   }
 
   std::queue<uint16_t> tempQueue = compQueue; // Create a copy of the queue to iterate through
+  std::stringstream ss;
   while (!tempQueue.empty()) {
       uint16_t value = tempQueue.front();
-      std::cout << value - uint16_t(0) << "-";
+      ss << value - uint16_t(0) << "-";
       tempQueue.pop();
   }
-  std::cout << std::endl;
+  ss << std::endl;
+  NS_LOG_DEBUG("Complete iteration: " << ss.str());
 
   int memState = CheckMemory();
   if(memState <= 0){
     NS_LOG_DEBUG( this << " No memory available for new chunk");
+    PrintTable();
   }
   else{
     // read from RecvBuffer
@@ -434,7 +454,7 @@ TCPserver::HandleRead (Ptr<Socket> socket) {
       // general case: pktContent[i-1], pktContent[i], pktContent[i+1]; So we should consider the general case. In worse case, we need to consider the storage of 3 packets.
 
       while(m_pktPtr < packetSize){
-        NS_LOG_DEBUG("------------------------------------");
+        NS_LOG_DEBUG("----------------BEGIN PROCESS--------------------");
         NS_LOG_DEBUG("before process, m_pktPtr is: " << static_cast<int>(m_pktPtr));
         NS_LOG_DEBUG("before process, m_bufferPtr is: " << static_cast<int>(m_bufferPtr));
         
@@ -459,7 +479,7 @@ TCPserver::HandleRead (Ptr<Socket> socket) {
         }
         NS_LOG_DEBUG("after process, m_pktPtr is: " << static_cast<int>(m_pktPtr));
         NS_LOG_DEBUG("after process, m_bufferPtr is: " << static_cast<int>(m_bufferPtrMap[ipAddressStr]));
-        NS_LOG_DEBUG("------------------------------------");
+        NS_LOG_DEBUG("----------------END PROCESS--------------------\n");
       }
       // Zhuoxu: only print the packet of 10.1.1.1
       // if(ipAddressStr == "10.1.1.1")
@@ -518,6 +538,13 @@ void
 TCPserver::StartApplication (void)
 {
   NS_LOG_FUNCTION (this);
+}
+
+void 
+TCPserver::CallSendEmptyPacket()
+{
+  NS_LOG_FUNCTION (this << " CallSendEmptyPacket");
+  m_socket->GetObject<TcpSocketBase>()->CallSendEmptyPacketACK();
 }
 
 void

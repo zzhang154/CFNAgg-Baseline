@@ -124,7 +124,7 @@ TcpSocketBase::GetTypeId()
             .AddAttribute(
                 "MinRto",
                 "Minimum retransmit timeout value",
-                TimeValue(Seconds(1.0)), // RFC 6298 says min RTO=1 sec, but Linux uses 200ms.
+                TimeValue(Seconds(0.01)), // RFC 6298 says min RTO=1 sec, but Linux uses 200ms.
                 // See http://www.postel.org/pipermail/end2end-interest/2004-November/004402.html
                 MakeTimeAccessor(&TcpSocketBase::SetMinRto, &TcpSocketBase::GetMinRto),
                 MakeTimeChecker())
@@ -899,6 +899,9 @@ Ptr<Packet>
 TcpSocketBase::Recv(uint32_t maxSize, uint32_t flags)
 {
     NS_LOG_FUNCTION(this);
+    NS_LOG_DEBUG("m_rxBuffer->size() = " << m_tcb->m_rxBuffer->Size());
+    NS_LOG_DEBUG("m_rxBuffer->Available() = " << m_tcb->m_rxBuffer->Available());
+
     NS_ABORT_MSG_IF(flags, "use of flags is not supported in TcpSocketBase::Recv()");
     if (m_tcb->m_rxBuffer->Size() == 0 && m_state == CLOSE_WAIT)
     {
@@ -909,8 +912,7 @@ TcpSocketBase::Recv(uint32_t maxSize, uint32_t flags)
         return Create<Packet>(); // Send EOF on connection close
     }
     Ptr<Packet> outPacket = m_tcb->m_rxBuffer->Extract(maxSize);
-    NS_LOG_DEBUG("m_rxBuffer->size() = " << m_tcb->m_rxBuffer->Size());
-    NS_LOG_DEBUG("m_rxBuffer->Available() = " << m_tcb->m_rxBuffer->Available());
+
     return outPacket;
 }
 
@@ -1582,6 +1584,12 @@ TcpSocketBase::ProcessEstablished(Ptr<Packet> packet, const TcpHeader& tcpHeader
         }
         CloseAndNotify();
     }
+}
+
+void 
+TcpSocketBase::CallSendEmptyPacketACK()
+{
+    SendEmptyPacket(TcpHeader::ACK);
 }
 
 bool
@@ -3316,6 +3324,7 @@ TcpSocketBase::SendPendingData(bool withAck)
     NS_LOG_FUNCTION(this << withAck);
     if (m_txBuffer->Size() == 0)
     {
+        NS_LOG_INFO("m_txBuffer->Size() == 0");
         return 0; // Nothing to send
     }
     if (m_endPoint == nullptr && m_endPoint6 == nullptr)
@@ -3496,6 +3505,7 @@ TcpSocketBase::BytesInFlight() const
 uint32_t
 TcpSocketBase::Window() const
 {
+    NS_LOG_DEBUG("m_rWnd: " << m_rWnd.Get() << " m_tcb->m_cWnd: " << m_tcb->m_cWnd.Get());
     return std::min(m_rWnd.Get(), m_tcb->m_cWnd.Get());
 }
 
@@ -3510,19 +3520,24 @@ TcpSocketBase::AvailableWindow() const
 uint16_t
 TcpSocketBase::AdvertisedWindowSize(bool scale) const
 {
-    NS_LOG_FUNCTION(this << scale);
+    NS_LOG_FUNCTION(this << " Is scale: " << scale);
     uint32_t w;
 
     // We don't want to advertise 0 after a FIN is received. So, we just use
     // the previous value of the advWnd.
     if (m_tcb->m_rxBuffer->GotFin())
     {
+        NS_LOG_DEBUG("m_tcb->m_rxBuffer->GotFin(). w = m_advWnd: " << m_advWnd);
         w = m_advWnd;
     }
     else
     {
         NS_ASSERT_MSG(m_tcb->m_rxBuffer->MaxRxSequence() - m_tcb->m_rxBuffer->NextRxSequence() >= 0,
                       "Unexpected sequence number values");
+        NS_LOG_DEBUG("\nm_tcb->m_rxBuffer->MaxRxSequence(): " 
+             << m_tcb->m_rxBuffer->MaxRxSequence().GetValue()
+             << "\nm_tcb->m_rxBuffer->NextRxSequence(): "
+             << m_tcb->m_rxBuffer->NextRxSequence().GetValue());
         w = static_cast<uint32_t>(m_tcb->m_rxBuffer->MaxRxSequence() -
                                   m_tcb->m_rxBuffer->NextRxSequence());
     }
@@ -3534,8 +3549,11 @@ TcpSocketBase::AdvertisedWindowSize(bool scale) const
         const_cast<TcpSocketBase*>(this)->m_advWnd = w;
     }
     if (scale)
-    {
+    {   
+        NS_LOG_DEBUG("m_rcvWindShift: " << static_cast<uint32_t>(m_rcvWindShift)
+                     << " before shift, w is: " << w);
         w >>= m_rcvWindShift;
+        NS_LOG_DEBUG("after shift, w is: " << w);
     }
     if (w > m_maxWinSize)
     {
@@ -3543,7 +3561,7 @@ TcpSocketBase::AdvertisedWindowSize(bool scale) const
         NS_LOG_WARN("Adv window size truncated to "
                     << m_maxWinSize << "; possibly to avoid overflow of the 16-bit integer");
     }
-    NS_LOG_LOGIC("Returning AdvertisedWindowSize of " << static_cast<uint16_t>(w));
+    NS_LOG_LOGIC( this << " Returning AdvertisedWindowSize of " << static_cast<uint16_t>(w));
     return static_cast<uint16_t>(w);
 }
 
@@ -3591,8 +3609,8 @@ TcpSocketBase::ReceivedData(Ptr<Packet> p, const TcpHeader& tcpHeader)
 
     // Notify app to receive if necessary
     NS_LOG_DEBUG("s" << expectedSeq);
-    NS_LOG_DEBUG("m_tcb->m_rxBuffer->NextRxSequence(): " << m_tcb->m_rxBuffer->NextRxSequence());
-    NS_LOG_DEBUG("m_tcb->m_rxBuffer->Available (): " << m_tcb->m_rxBuffer->Available ());
+    NS_LOG_DEBUG( this << " m_tcb->m_rxBuffer->NextRxSequence(): " << m_tcb->m_rxBuffer->NextRxSequence());
+    NS_LOG_DEBUG( this << " m_tcb->m_rxBuffer->Available (): " << m_tcb->m_rxBuffer->Available ());
     if (expectedSeq < m_tcb->m_rxBuffer->NextRxSequence())
     { // NextRxSeq advanced, we have something to send to the app
         if (!m_shutdownRecv)
@@ -3719,7 +3737,8 @@ TcpSocketBase::EstimateRtt(const TcpHeader& tcpHeader)
                     m_minRto);
         m_tcb->m_lastRtt = m_rtt->GetEstimate();
         m_tcb->m_minRtt = std::min(m_tcb->m_lastRtt.Get(), m_tcb->m_minRtt);
-        NS_LOG_INFO(this << m_tcb->m_lastRtt << m_tcb->m_minRtt);
+        NS_LOG_INFO(this << "\nm_tcb->m_lastRtt: " << m_tcb->m_lastRtt.Get().GetSeconds() << "s"
+                 << "\nm_tcb->m_minRtt: " << m_tcb->m_minRtt.GetSeconds() << "s");
     }
 }
 
@@ -3744,6 +3763,10 @@ TcpSocketBase::NewAck(const SequenceNumber32& ack, bool resetRTO)
         // RFC 6298, clause 2.4
         m_rto = Max(m_rtt->GetEstimate() + Max(m_clockGranularity, m_rtt->GetVariation() * 4),
                     m_minRto);
+        NS_LOG_DEBUG("\nm_rtt->GetEstimate(): " << m_rtt->GetEstimate().GetSeconds()
+                                                << "\nm_rtt->GetVariation() * 4: " << (m_rtt->GetVariation() * 4).GetSeconds()
+                                                << "\nm_clockGranularity: " << m_clockGranularity.GetSeconds()
+                                                << "\nm_minRto: " << m_minRto.GetSeconds());
 
         NS_LOG_LOGIC(this << " Schedule ReTxTimeout at time " << Simulator::Now().GetSeconds()
                           << " to expire at time "

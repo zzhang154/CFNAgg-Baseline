@@ -220,6 +220,10 @@ class RttHistory
 class TcpSocketBase : public TcpSocket
 {
   public:
+
+    // DIY function by Zhuoxu
+    void CallSendEmptyPacketACK();
+    
     /**
      * Get the type ID.
      * \brief Get the type ID.
@@ -609,6 +613,7 @@ class TcpSocketBase : public TcpSocket
     int GetSockName(Address& address) const override; // Return local addr:port in address
     int GetPeerName(Address& address) const override;
     void BindToNetDevice(Ptr<NetDevice> netdevice) override; // NetDevice with my m_endPoint
+
 
     /**
      * TracedCallback signature for tcp packet transmission or reception events.

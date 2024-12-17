@@ -332,7 +332,7 @@ main (int argc, char *argv[])
 {   
 
     CommandLine cmd;
-    uint16_t itr = 350; // has some problem when the iteration number reach 60.
+    uint16_t itr = 10000; // has some problem when the iteration number reach 60.
     uint32_t vsize = 200;
     bool topotype = 1;
     cmd.AddValue("itr", "max iteration consumer performed", itr);
@@ -381,11 +381,14 @@ main (int argc, char *argv[])
     // LogComponentEnable("Aggregator", LOG_LEVEL_DEBUG);
     // LogComponentEnable("Producer", LOG_LEVEL_DEBUG);
     LogComponentEnable("InnetworkAggregationInterface", LOG_LEVEL_INFO);
-    LogComponentEnable("InnetworkAggregationInterface", LOG_LEVEL_DEBUG);
-    LogComponentEnable("TCPclient", LOG_LEVEL_ALL);
-    LogComponentEnable("TCPserver", LOG_LEVEL_ALL);
-    LogComponentEnable("TcpSocketBase", LOG_LEVEL_ALL);
-    LogComponentEnable("TcpRxBuffer", LOG_LEVEL_ALL);
+    // LogComponentEnable("InnetworkAggregationInterface", LOG_LEVEL_DEBUG);
+
+    // LogComponentEnable("TCPclient", LOG_LEVEL_ALL);
+    // LogComponentEnable("TCPserver", LOG_LEVEL_ALL);
+    // LogComponentEnable("TcpSocketBase", LOG_LEVEL_ALL);
+    // LogComponentEnable("TcpRxBuffer", LOG_LEVEL_ALL);
+    // LogComponentEnable("TcpTxBuffer", LOG_LEVEL_ALL);
+    // LogComponentEnable("Packet", LOG_LEVEL_DEBUG);
     
     //Ensure that LOG_LEVEL_FUNCTION and other levels are not enabled
     LogComponentDisable("Consumer", LOG_LEVEL_FUNCTION);
@@ -416,7 +419,7 @@ main (int argc, char *argv[])
     Packet::EnablePrinting ();
     Packet::EnableChecking ();
     // run
-    Simulator::Stop (Seconds (2.2));
+    Simulator::Stop (Seconds (10.0));
     Simulator::Run();
     
     //end

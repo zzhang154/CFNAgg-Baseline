@@ -128,6 +128,7 @@ TcpTxBuffer::SetSackEnabled(bool enabled)
 uint32_t
 TcpTxBuffer::Available() const
 {
+    // NS_LOG_DEBUG(this);
     return m_maxBuffer - m_size;
 }
 
@@ -1489,5 +1490,23 @@ operator<<(std::ostream& os, const TcpTxBuffer& tcpTxBuf)
     NS_ASSERT(tcpTxBuf.m_size - tcpTxBuf.m_sentSize == appSize);
     return os;
 }
+
+void
+TcpTxBuffer::PrintTxBuffer() {
+  std::ostringstream oss;
+  int count = 1;
+  if(m_sentList.empty()){
+    NS_LOG_DEBUG("m_sentList is empty");
+    return;
+  }
+  oss << "Print the content in the QuicSocketTxBuffer\n";
+  for (auto it = m_sentList.begin (); it != m_sentList.end (); ++it, count ++)
+    {
+      oss << "m_sentList[" << count << "]:\n" << (*it)->m_packet->PrintPacket () << '\n'; 
+    }
+  NS_LOG_DEBUG(oss.str());
+}
+
+
 
 } // namespace ns3

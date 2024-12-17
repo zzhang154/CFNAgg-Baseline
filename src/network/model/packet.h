@@ -62,6 +62,7 @@ class ByteTagIterator
     class Item
     {
       public:
+
         /**
          * \returns the ns3::TypeId associated to this tag.
          */
@@ -238,6 +239,10 @@ class PacketTagIterator
 class Packet : public SimpleRefCount<Packet>
 {
   public:
+
+    // Zhuoxu: DIY function.
+    std::string PrintPacket();
+
     /**
      * \brief Create an empty packet with a new uid (as returned
      * by getUid).

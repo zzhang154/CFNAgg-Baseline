@@ -186,6 +186,8 @@ class TcpRxBuffer : public Object
         return m_gotFin;
     }
 
+    std::string PrintRxBuffer() const;
+
   private:
     /**
      * \brief Update the sack list, with the block seq starting at the beginning

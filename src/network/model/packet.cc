@@ -24,6 +24,7 @@
 
 #include <cstdarg>
 #include <string>
+#include <iomanip>
 
 namespace ns3
 {
@@ -1027,6 +1028,22 @@ operator<<(std::ostream& os, const Packet& packet)
 {
     packet.Print(os);
     return os;
+}
+
+std::string
+Packet::PrintPacket() {
+    // std::cout << "in the PrintToStrPacketBytes function ..." << std::endl;
+    uint32_t packetSize = this->GetSize();
+    uint8_t* buffer = new uint8_t[packetSize];
+    this->CopyData(buffer, packetSize);
+
+    std::ostringstream oss;
+    oss << "Packet bytes: ";
+    for (uint32_t i = 0; i < 30; ++i) {
+        oss << std::hex << std::setw(2) << std::setfill('0') << static_cast<int>(buffer[i]) << " ";
+    }
+    delete[] buffer;
+    return oss.str();
 }
 
 } // namespace ns3

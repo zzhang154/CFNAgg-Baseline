@@ -129,6 +129,8 @@ public:
   void SetIpAddrStr(std::string ipAddrStr);
   void LogSocketInfo();
   void CheckSocketState();
+  void PrintTable();
+  void CallSendEmptyPacket();
 
 protected:
   virtual void DoDispose (void);

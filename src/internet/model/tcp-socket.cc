@@ -72,7 +72,7 @@ TcpSocket::GetTypeId()
             .AddAttribute(
                 "SegmentSize",
                 "TCP maximum segment size in bytes (may be adjusted based on MTU discovery)",
-                UintegerValue(536),
+                UintegerValue(1610),
                 MakeUintegerAccessor(&TcpSocket::GetSegSize, &TcpSocket::SetSegSize),
                 MakeUintegerChecker<uint32_t>())
             .AddAttribute("InitialSlowStartThreshold",

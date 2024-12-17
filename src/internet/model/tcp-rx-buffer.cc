@@ -66,6 +66,7 @@ TcpRxBuffer::~TcpRxBuffer()
 SequenceNumber32
 TcpRxBuffer::NextRxSequence() const
 {
+    // NS_LOG_DEBUG(this);
     return m_nextRxSeq;
 }
 
@@ -117,6 +118,8 @@ TcpRxBuffer::MaxRxSequence() const
     { // No data allowed beyond FIN
         return m_finSeq;
     }
+    // Zhuoxu --- Explain by ChatGPT: This condition indicates that there is a gap in the received data. Specifically, it means that the receive buffer has received data segments that are out of order, and there are missing segments that need to be received before the data can be processed in order.
+
     else if (!m_data.empty() && m_nextRxSeq > m_data.begin()->first)
     { // No data allowed beyond Rx window allowed
         return m_data.begin()->first + SequenceNumber32(m_maxBuffer);
@@ -382,7 +385,7 @@ TcpRxBuffer::Extract(uint32_t maxSize)
 
     uint32_t extractSize = std::min(maxSize, m_availBytes);
     NS_LOG_LOGIC("Requested to extract " << extractSize
-                                         << " bytes from TcpRxBuffer of size=" << m_size);
+                                         << " bytes from TcpRxBuffer of size = " << m_size);
     if (extractSize == 0)
     {
         return nullptr; // No contiguous block to return
@@ -423,6 +426,24 @@ TcpRxBuffer::Extract(uint32_t maxSize)
     NS_LOG_LOGIC("Extracted " << outPkt->GetSize() << " bytes, bufsize=" << m_size
                               << ", num pkts in buffer=" << m_data.size());
     return outPkt;
+}
+
+std::string
+TcpRxBuffer::PrintRxBuffer() const{
+    std::ostringstream oss;
+    NS_LOG_DEBUG( this << " RxBuffer: nextRxSeq=" << m_nextRxSeq << " size=" << m_size << " availBytes=" << m_availBytes);
+    if(m_data.empty()){
+        NS_LOG_DEBUG( "RxBuffer is empty" );
+        return oss.str();
+    }
+
+    for (auto i = m_data.begin(); i != m_data.end(); ++i)
+    {
+       oss << "  [" << i->first << ", " << i->second->GetSize() << ")" << std::endl;
+       oss << i->second->PrintPacket();
+       oss << std::endl;
+    }
+    return oss.str();
 }
 
 } // namespace ns3

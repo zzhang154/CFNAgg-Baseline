@@ -137,6 +137,9 @@ class TcpTxBuffer : public Object
 
     // Accessors
 
+    // Zhuoxu: DIY function.
+    void PrintTxBuffer();
+
     /**
      * \brief Get the sequence number of the buffer head
      * \returns the first byte's sequence number
