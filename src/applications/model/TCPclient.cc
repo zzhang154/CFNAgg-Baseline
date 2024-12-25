@@ -223,6 +223,7 @@ TCPclient::Send(const uint8_t* buffer, size_t len) {
       NS_LOG_INFO ("TraceDelay TX " << sentSize << " bytes to " << m_peerAddress<< " Uid: " << p->GetUid () << " Time: " << (Simulator::Now ()).GetSeconds ());
   }
   else {
+      LogSocketInfo();
       NS_LOG_INFO ("Error while sending " << sentSize << " bytes to " << m_peerAddress );
   }
 
@@ -247,24 +248,24 @@ TCPclient::HandleRead (Ptr<Socket> socket) {
   
   //uint8_t zero=0;
   while (isReading) {  
-      Ptr<Packet> packet = socket->RecvFrom (from);
-      if(!packet){    
-        isReading =false;
-        break;
-      }
-      uint32_t packetSize=packet->GetSize () ;
-      packet->RemoveAllPacketTags ();
-      packet->RemoveAllByteTags ();
-      m_peerAddress = from;
+    Ptr<Packet> packet = socket->RecvFrom (from);
+    if(!packet){    
+      isReading =false;
+      break;
+    }
+    uint32_t packetSize=packet->GetSize () ;
+    packet->RemoveAllPacketTags ();
+    packet->RemoveAllByteTags ();
+    m_peerAddress = from;
 
-      totalReceive = totalReceive +packetSize;
-      m_rcount ++;
-      NS_LOG_FUNCTION (this << socket <<packetSize);
+    totalReceive = totalReceive +packetSize;
+    m_rcount ++;
+    NS_LOG_FUNCTION (this << socket <<packetSize);
 
-      uint8_t* packetContent = new uint8_t[packetSize];
-      uint32_t copyedSize =  packet->CopyData(packetContent,packetSize);
-      delete [] packetContent;
-      packet = nullptr;
+    uint8_t* packetContent = new uint8_t[packetSize];
+    uint32_t copyedSize =  packet->CopyData(packetContent,packetSize);
+    delete [] packetContent;
+    packet = nullptr;
   }
     std::cout<<"TCPclient---"<<GetLocalAddress().GetIpv4()<<"-received---response---from--"<<InetSocketAddress::ConvertFrom(m_peerAddress).GetIpv4()<<std::endl;
     std::cout<<"total received---packet--num---"<<m_rcount<<" Total Receive: "<<totalReceive<<std::endl;
@@ -310,14 +311,14 @@ TCPclient::LogSocketInfo()
 void
 TCPclient::CheckSocketState()
 {
-    NS_LOG_INFO (this);
+    // NS_LOG_INFO (this);
     if (m_socket != nullptr)
     {
         Ptr<TcpSocketBase> tcpSocket = m_socket->GetObject<TcpSocketBase>();
         if (tcpSocket != nullptr)
         {
             TcpSocket::TcpStates_t state = tcpSocket->GetState();
-            NS_LOG_INFO("Socket state: " << TcpSocket::TcpStateName[state]);
+            // NS_LOG_INFO("Socket state: " << TcpSocket::TcpStateName[state]);
 
             switch (state)
             {

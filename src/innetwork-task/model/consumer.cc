@@ -57,6 +57,8 @@ namespace ns3 {
         //this->nodeInnetworkAggregationInterface->CreateSocketPool (cc_name);
         ns3::Simulator::Schedule(ns3::MilliSeconds(0), &InnetworkAggregationInterface::CreateSocketPool, this->nodeInnetworkAggregationInterface, cc_name);
         ns3::Simulator::Schedule(ns3::MilliSeconds(basetime+0.1), &InnetworkAggregationInterface::ReceiveDataFromAll, this->nodeInnetworkAggregationInterface);
+        ns3::Simulator::Schedule(ns3::MilliSeconds(basetime+2700), &InnetworkAggregationInterface::PrintAllInfo, this->nodeInnetworkAggregationInterface);
+
     }
 
     Consumer::~Consumer () {

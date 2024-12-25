@@ -16,6 +16,7 @@ namespace ns3 {
     extern uint16_t ITERTHRESH;
     extern int padIter;
     //extern uint32_t vsize;
+    extern std::string TraceIPAddress;
 
     void UpdatePktlen();
     void SetBaseSize(uint32_t newBaseSize);

@@ -328,12 +328,30 @@ void CreateDirectTopo (NodeContainer &cons, NodeContainer &pros, uint16_t itr,
     //std::cout << consumer <<std::endl;
 }
 
+void EnableLoggingComponents() {
+
+    LogComponentEnable("TCPclient", LOG_LEVEL_ALL);
+    LogComponentEnable("TCPserver", LOG_LEVEL_ALL);
+    LogComponentEnable("TcpSocketBase", LOG_LEVEL_ALL);
+    LogComponentEnable("TcpRxBuffer", LOG_LEVEL_ALL);
+    LogComponentEnable("TcpTxBuffer", LOG_LEVEL_ALL);
+    LogComponentEnable("Packet", LOG_LEVEL_DEBUG);
+}
+
+void DisableLoggingComponents() {
+    LogComponentDisable("TCPclient", LOG_LEVEL_ALL);
+    LogComponentDisable("TCPserver", LOG_LEVEL_ALL);
+    LogComponentDisable("TcpSocketBase", LOG_LEVEL_ALL);
+    LogComponentDisable("TcpRxBuffer", LOG_LEVEL_ALL);
+    LogComponentDisable("TcpTxBuffer", LOG_LEVEL_ALL);
+    LogComponentDisable("Packet", LOG_LEVEL_DEBUG);
+}
+
 int
 main (int argc, char *argv[])
 {   
-
     CommandLine cmd;
-    uint16_t itr = 3200; // has some problem when the iteration number reach 60.
+    uint16_t itr = 3000; // has some problem when the iteration number reach 60.
     uint32_t vsize = 200;
     bool topotype = 1;
     cmd.AddValue("itr", "max iteration consumer performed", itr);
@@ -368,8 +386,6 @@ main (int argc, char *argv[])
     
     LogComponentEnable ("InnetworkAggregationInterface", log_precision);
    
-    
-
     // Enable logging for the Consumer component
     // LogComponentEnable("Consumer", LOG_LEVEL_INFO);
     // LogComponentEnable("Aggregator", LOG_LEVEL_INFO);
@@ -397,6 +413,12 @@ main (int argc, char *argv[])
     LogComponentDisable("Aggregator", LOG_LEVEL_FUNCTION);
     LogComponentDisable("Producer", LOG_LEVEL_FUNCTION);
     // LogComponentDisable("InnetworkAggregationInterface", LOG_LEVEL_FUNCTION);
+
+    // Schedule the logging to be enabled at 3.75 seconds
+    // Simulator::Schedule(Seconds(3.5), &EnableLoggingComponents);
+
+    // Schedule the logging to be disabled at 4.0 seconds
+    // Simulator::Schedule(Seconds(3.76), &DisableLoggingComponents);
     
     NodeContainer consumer;
     NodeContainer producer;

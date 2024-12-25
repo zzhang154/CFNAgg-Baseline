@@ -669,7 +669,7 @@ TcpTxBuffer::DiscardUpTo(const SequenceNumber32& seq, const Callback<void, TcpTx
     NS_LOG_FUNCTION(this << seq);
 
     // Cases do not need to scan the buffer
-    if (m_firstByteSeq >= seq)
+    if (m_firstByteSeq >= seq)                                                                                           
     {
         NS_LOG_DEBUG("Seq " << seq << " already discarded.");
         return;
@@ -1494,19 +1494,34 @@ operator<<(std::ostream& os, const TcpTxBuffer& tcpTxBuf)
 void
 TcpTxBuffer::PrintTxBuffer() {
   std::ostringstream oss;
+
+  // print m_sentList
   int count = 1;
   if(m_sentList.empty()){
     NS_LOG_DEBUG("m_sentList is empty");
-    return;
   }
-  oss << "Print the content in the QuicSocketTxBuffer\n";
-  for (auto it = m_sentList.begin (); it != m_sentList.end (); ++it, count ++)
-    {
-      oss << "m_sentList[" << count << "]:\n" << (*it)->m_packet->PrintPacket () << '\n'; 
-    }
+  else{
+    oss << "Print the content in the QuicSocketTxBuffer, m_sentList\n";
+    for (auto it = m_sentList.begin (); it != m_sentList.end (); ++it, count ++){
+        oss << "m_sentList[" << count << "]:\n" << (*it)->m_packet->PrintPacket () << '\n'; 
+        }
+    oss << std::endl;
+  }
+
+  // print m_appList
+  count = 1;
+  if(m_appList.empty()){
+    NS_LOG_DEBUG("m_appList is empty");
+  }
+  else{
+    oss << "Print the content in the QuicSocketTxBuffer, m_appList\n";
+    for (auto it = m_appList.begin (); it != m_appList.end (); ++it, count ++){
+        oss << "m_appList[" << count << "]:\n" << (*it)->m_packet->PrintPacket () << '\n'; 
+        }
+    oss << std::endl;
+  }
+  
   NS_LOG_DEBUG(oss.str());
 }
-
-
 
 } // namespace ns3

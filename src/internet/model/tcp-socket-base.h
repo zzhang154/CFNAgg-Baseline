@@ -223,6 +223,8 @@ class TcpSocketBase : public TcpSocket
 
     // DIY function by Zhuoxu
     void CallSendEmptyPacketACK();
+
+    Ptr<TcpSocketState> GetTcpSocketState();
     
     /**
      * Get the type ID.

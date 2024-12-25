@@ -898,7 +898,7 @@ TcpSocketBase::SendTo(Ptr<Packet> p, uint32_t flags, const Address& /* address *
 Ptr<Packet>
 TcpSocketBase::Recv(uint32_t maxSize, uint32_t flags)
 {
-    NS_LOG_FUNCTION(this);
+    // NS_LOG_FUNCTION(this);
     NS_LOG_DEBUG("m_rxBuffer->size() = " << m_tcb->m_rxBuffer->Size());
     NS_LOG_DEBUG("m_rxBuffer->Available() = " << m_tcb->m_rxBuffer->Available());
 
@@ -4750,6 +4750,11 @@ TcpSocketBase::TcpStates_t
 TcpSocketBase::GetState() const
 {
     return m_state;
+}
+
+Ptr<TcpSocketState> 
+TcpSocketBase::GetTcpSocketState(){
+    return m_tcb;
 }
 
 // RttHistory methods

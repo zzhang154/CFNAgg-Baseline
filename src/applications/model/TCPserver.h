@@ -65,6 +65,8 @@ enum PacketState {
 class TCPserver : public Application
 {
 public:
+
+
   /**
    * \brief Get the type ID.
    * \return the object TypeId
@@ -131,6 +133,7 @@ public:
   void CheckSocketState();
   void PrintTable();
   void CallSendEmptyPacket();
+  void SetLocalAddressStr(std::string str);
 
 protected:
   virtual void DoDispose (void);
@@ -194,6 +197,7 @@ private:
   uint16_t iterThresh = ITERTHRESH;
 
   std::unordered_map<uint16_t, DataChunk>* iterChunkPtr;
+  std::string LocalAddressStr;
 };
 
 } // namespace ns3

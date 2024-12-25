@@ -406,3 +406,972 @@ TcpSocketBase::SetRcvBufSize(uint32_t size) 函数
 说不定可以让应用层在完成的时候，触发一下这个操作。
 
 Debug: 优化里面的一些输出。把一些没有必要的输出给取消了。
+
+---node1  ip---pro0---10.1.1.1---node2  ip---forwarder0---10.1.1.2
+---node1  ip---pro1---10.1.2.1---node2  ip---forwarder0---10.1.1.2
+---node1  ip---pro2---10.1.3.1---node2  ip---forwarder0---10.1.1.2
+---node1  ip---pro3---10.1.4.1---node2  ip---forwarder0---10.1.1.2
+---node1  ip---pro4---10.1.5.1---node2  ip---forwarder0---10.1.1.2
+---node1  ip---pro5---10.1.6.1---node2  ip---forwarder1---10.1.6.2
+---node1  ip---pro6---10.1.7.1---node2  ip---forwarder1---10.1.6.2
+---node1  ip---pro7---10.1.8.1---node2  ip---forwarder1---10.1.6.2
+---node1  ip---pro8---10.1.9.1---node2  ip---forwarder1---10.1.6.2
+---node1  ip---pro9---10.1.10.1---node2  ip---forwarder1---10.1.6.2
+---node1  ip---pro10---10.1.11.1---node2  ip---forwarder2---10.1.11.2
+---node1  ip---pro11---10.1.12.1---node2  ip---forwarder2---10.1.11.2
+---node1  ip---pro12---10.1.13.1---node2  ip---forwarder2---10.1.11.2
+---node1  ip---pro13---10.1.14.1---node2  ip---forwarder2---10.1.11.2
+---node1  ip---pro14---10.1.15.1---node2  ip---forwarder2---10.1.11.2
+---node1  ip---pro15---10.1.16.1---node2  ip---forwarder3---10.1.16.2
+---node1  ip---pro16---10.1.17.1---node2  ip---forwarder3---10.1.16.2
+---node1  ip---pro17---10.1.18.1---node2  ip---forwarder3---10.1.16.2
+---node1  ip---pro18---10.1.19.1---node2  ip---forwarder3---10.1.16.2
+---node1  ip---pro19---10.1.20.1---node2  ip---forwarder3---10.1.16.2
+---node1  ip---pro20---10.1.21.1---node2  ip---forwarder4---10.1.21.2
+---node1  ip---pro21---10.1.22.1---node2  ip---forwarder4---10.1.21.2
+---node1  ip---pro22---10.1.23.1---node2  ip---forwarder4---10.1.21.2
+---node1  ip---pro23---10.1.24.1---node2  ip---forwarder4---10.1.21.2
+---node1  ip---pro24---10.1.25.1---node2  ip---forwarder4---10.1.21.2
+---node1  ip---pro25---10.1.26.1---node2  ip---forwarder5---10.1.26.2
+---node1  ip---pro26---10.1.27.1---node2  ip---forwarder5---10.1.26.2
+---node1  ip---pro27---10.1.28.1---node2  ip---forwarder5---10.1.26.2
+---node1  ip---pro28---10.1.29.1---node2  ip---forwarder5---10.1.26.2
+---node1  ip---pro29---10.1.30.1---node2  ip---forwarder5---10.1.26.2
+---node1  ip---pro30---10.1.31.1---node2  ip---forwarder6---10.1.31.2
+---node1  ip---pro31---10.1.32.1---node2  ip---forwarder6---10.1.31.2
+---node1  ip---pro32---10.1.33.1---node2  ip---forwarder6---10.1.31.2
+---node1  ip---pro33---10.1.34.1---node2  ip---forwarder6---10.1.31.2
+---node1  ip---pro34---10.1.35.1---node2  ip---forwarder6---10.1.31.2
+---node1  ip---pro35---10.1.36.1---node2  ip---forwarder7---10.1.36.2
+---node1  ip---pro36---10.1.37.1---node2  ip---forwarder7---10.1.36.2
+---node1  ip---pro37---10.1.38.1---node2  ip---forwarder7---10.1.36.2
+---node1  ip---pro38---10.1.39.1---node2  ip---forwarder7---10.1.36.2
+---node1  ip---pro39---10.1.40.1---node2  ip---forwarder7---10.1.36.2
+---node1  ip---pro40---10.1.41.1---node2  ip---forwarder8---10.1.41.2
+---node1  ip---pro41---10.1.42.1---node2  ip---forwarder8---10.1.41.2
+---node1  ip---pro42---10.1.43.1---node2  ip---forwarder8---10.1.41.2
+---node1  ip---pro43---10.1.44.1---node2  ip---forwarder8---10.1.41.2
+---node1  ip---pro44---10.1.45.1---node2  ip---forwarder8---10.1.41.2
+---node1  ip---pro45---10.1.46.1---node2  ip---forwarder9---10.1.46.2
+---node1  ip---pro46---10.1.47.1---node2  ip---forwarder9---10.1.46.2
+---node1  ip---pro47---10.1.48.1---node2  ip---forwarder9---10.1.46.2
+---node1  ip---pro48---10.1.49.1---node2  ip---forwarder9---10.1.46.2
+---node1  ip---pro49---10.1.50.1---node2  ip---forwarder9---10.1.46.2
+---node1  ip---con0---10.1.51.1---node2  ip---forwarder13---10.1.51.2
+---node1  ip---forwarder0---10.1.1.2---node2  ip---agg0---10.2.1.2
+---node1  ip---forwarder0---10.1.1.2---node2  ip---agg1---10.2.2.2
+---node1  ip---forwarder0---10.1.1.2---node2  ip---agg2---10.2.3.2
+---node1  ip---forwarder0---10.1.1.2---node2  ip---agg3---10.2.4.2
+---node1  ip---forwarder0---10.1.1.2---node2  ip---agg4---10.2.5.2
+---node1  ip---forwarder0---10.1.1.2---node2  ip---agg5---10.2.6.2
+---node1  ip---forwarder0---10.1.1.2---node2  ip---agg6---10.2.7.2
+---node1  ip---forwarder0---10.1.1.2---node2  ip---agg7---10.2.8.2
+---node1  ip---forwarder0---10.1.1.2---node2  ip---agg8---10.2.9.2
+---node1  ip---forwarder0---10.1.1.2---node2  ip---agg9---10.2.10.2
+---node1  ip---forwarder0---10.1.1.2---node2  ip---agg10---10.2.11.2
+---node1  ip---forwarder0---10.1.1.2---node2  ip---agg11---10.2.12.2
+---node1  ip---forwarder0---10.1.1.2---node2  ip---agg12---10.2.13.2
+---node1  ip---forwarder0---10.1.1.2---node2  ip---agg13---10.2.14.2
+---node1  ip---forwarder0---10.1.1.2---node2  ip---agg14---10.2.15.2
+---node1  ip---forwarder1---10.1.6.2---node2  ip---agg0---10.2.1.2
+---node1  ip---forwarder1---10.1.6.2---node2  ip---agg1---10.2.2.2
+---node1  ip---forwarder1---10.1.6.2---node2  ip---agg2---10.2.3.2
+---node1  ip---forwarder1---10.1.6.2---node2  ip---agg3---10.2.4.2
+---node1  ip---forwarder1---10.1.6.2---node2  ip---agg4---10.2.5.2
+---node1  ip---forwarder1---10.1.6.2---node2  ip---agg5---10.2.6.2
+---node1  ip---forwarder1---10.1.6.2---node2  ip---agg6---10.2.7.2
+---node1  ip---forwarder1---10.1.6.2---node2  ip---agg7---10.2.8.2
+---node1  ip---forwarder1---10.1.6.2---node2  ip---agg8---10.2.9.2
+---node1  ip---forwarder1---10.1.6.2---node2  ip---agg9---10.2.10.2
+---node1  ip---forwarder1---10.1.6.2---node2  ip---agg10---10.2.11.2
+---node1  ip---forwarder1---10.1.6.2---node2  ip---agg11---10.2.12.2
+---node1  ip---forwarder1---10.1.6.2---node2  ip---agg12---10.2.13.2
+---node1  ip---forwarder1---10.1.6.2---node2  ip---agg13---10.2.14.2
+---node1  ip---forwarder1---10.1.6.2---node2  ip---agg14---10.2.15.2
+---node1  ip---forwarder2---10.1.11.2---node2  ip---agg0---10.2.1.2
+---node1  ip---forwarder2---10.1.11.2---node2  ip---agg1---10.2.2.2
+---node1  ip---forwarder2---10.1.11.2---node2  ip---agg2---10.2.3.2
+---node1  ip---forwarder2---10.1.11.2---node2  ip---agg3---10.2.4.2
+---node1  ip---forwarder2---10.1.11.2---node2  ip---agg4---10.2.5.2
+---node1  ip---forwarder2---10.1.11.2---node2  ip---agg5---10.2.6.2
+---node1  ip---forwarder2---10.1.11.2---node2  ip---agg6---10.2.7.2
+---node1  ip---forwarder2---10.1.11.2---node2  ip---agg7---10.2.8.2
+---node1  ip---forwarder2---10.1.11.2---node2  ip---agg8---10.2.9.2
+---node1  ip---forwarder2---10.1.11.2---node2  ip---agg9---10.2.10.2
+---node1  ip---forwarder2---10.1.11.2---node2  ip---agg10---10.2.11.2
+---node1  ip---forwarder2---10.1.11.2---node2  ip---agg11---10.2.12.2
+---node1  ip---forwarder2---10.1.11.2---node2  ip---agg12---10.2.13.2
+---node1  ip---forwarder2---10.1.11.2---node2  ip---agg13---10.2.14.2
+---node1  ip---forwarder2---10.1.11.2---node2  ip---agg14---10.2.15.2
+---node1  ip---forwarder3---10.1.16.2---node2  ip---agg0---10.2.1.2
+---node1  ip---forwarder3---10.1.16.2---node2  ip---agg1---10.2.2.2
+---node1  ip---forwarder3---10.1.16.2---node2  ip---agg2---10.2.3.2
+---node1  ip---forwarder3---10.1.16.2---node2  ip---agg3---10.2.4.2
+---node1  ip---forwarder3---10.1.16.2---node2  ip---agg4---10.2.5.2
+---node1  ip---forwarder3---10.1.16.2---node2  ip---agg5---10.2.6.2
+---node1  ip---forwarder3---10.1.16.2---node2  ip---agg6---10.2.7.2
+---node1  ip---forwarder3---10.1.16.2---node2  ip---agg7---10.2.8.2
+---node1  ip---forwarder3---10.1.16.2---node2  ip---agg8---10.2.9.2
+---node1  ip---forwarder3---10.1.16.2---node2  ip---agg9---10.2.10.2
+---node1  ip---forwarder3---10.1.16.2---node2  ip---agg10---10.2.11.2
+---node1  ip---forwarder3---10.1.16.2---node2  ip---agg11---10.2.12.2
+---node1  ip---forwarder3---10.1.16.2---node2  ip---agg12---10.2.13.2
+---node1  ip---forwarder3---10.1.16.2---node2  ip---agg13---10.2.14.2
+---node1  ip---forwarder3---10.1.16.2---node2  ip---agg14---10.2.15.2
+---node1  ip---forwarder4---10.1.21.2---node2  ip---agg0---10.2.1.2
+---node1  ip---forwarder4---10.1.21.2---node2  ip---agg1---10.2.2.2
+---node1  ip---forwarder4---10.1.21.2---node2  ip---agg2---10.2.3.2
+---node1  ip---forwarder4---10.1.21.2---node2  ip---agg3---10.2.4.2
+---node1  ip---forwarder4---10.1.21.2---node2  ip---agg4---10.2.5.2
+---node1  ip---forwarder4---10.1.21.2---node2  ip---agg5---10.2.6.2
+---node1  ip---forwarder4---10.1.21.2---node2  ip---agg6---10.2.7.2
+---node1  ip---forwarder4---10.1.21.2---node2  ip---agg7---10.2.8.2
+---node1  ip---forwarder4---10.1.21.2---node2  ip---agg8---10.2.9.2
+---node1  ip---forwarder4---10.1.21.2---node2  ip---agg9---10.2.10.2
+---node1  ip---forwarder4---10.1.21.2---node2  ip---agg10---10.2.11.2
+---node1  ip---forwarder4---10.1.21.2---node2  ip---agg11---10.2.12.2
+---node1  ip---forwarder4---10.1.21.2---node2  ip---agg12---10.2.13.2
+---node1  ip---forwarder4---10.1.21.2---node2  ip---agg13---10.2.14.2
+---node1  ip---forwarder4---10.1.21.2---node2  ip---agg14---10.2.15.2
+---node1  ip---forwarder5---10.1.26.2---node2  ip---agg0---10.2.1.2
+---node1  ip---forwarder5---10.1.26.2---node2  ip---agg1---10.2.2.2
+---node1  ip---forwarder5---10.1.26.2---node2  ip---agg2---10.2.3.2
+---node1  ip---forwarder5---10.1.26.2---node2  ip---agg3---10.2.4.2
+---node1  ip---forwarder5---10.1.26.2---node2  ip---agg4---10.2.5.2
+---node1  ip---forwarder5---10.1.26.2---node2  ip---agg5---10.2.6.2
+---node1  ip---forwarder5---10.1.26.2---node2  ip---agg6---10.2.7.2
+---node1  ip---forwarder5---10.1.26.2---node2  ip---agg7---10.2.8.2
+---node1  ip---forwarder5---10.1.26.2---node2  ip---agg8---10.2.9.2
+---node1  ip---forwarder5---10.1.26.2---node2  ip---agg9---10.2.10.2
+---node1  ip---forwarder5---10.1.26.2---node2  ip---agg10---10.2.11.2
+---node1  ip---forwarder5---10.1.26.2---node2  ip---agg11---10.2.12.2
+---node1  ip---forwarder5---10.1.26.2---node2  ip---agg12---10.2.13.2
+---node1  ip---forwarder5---10.1.26.2---node2  ip---agg13---10.2.14.2
+---node1  ip---forwarder5---10.1.26.2---node2  ip---agg14---10.2.15.2
+---node1  ip---forwarder6---10.1.31.2---node2  ip---agg0---10.2.1.2
+---node1  ip---forwarder6---10.1.31.2---node2  ip---agg1---10.2.2.2
+---node1  ip---forwarder6---10.1.31.2---node2  ip---agg2---10.2.3.2
+---node1  ip---forwarder6---10.1.31.2---node2  ip---agg3---10.2.4.2
+---node1  ip---forwarder6---10.1.31.2---node2  ip---agg4---10.2.5.2
+---node1  ip---forwarder6---10.1.31.2---node2  ip---agg5---10.2.6.2
+---node1  ip---forwarder6---10.1.31.2---node2  ip---agg6---10.2.7.2
+---node1  ip---forwarder6---10.1.31.2---node2  ip---agg7---10.2.8.2
+---node1  ip---forwarder6---10.1.31.2---node2  ip---agg8---10.2.9.2
+---node1  ip---forwarder6---10.1.31.2---node2  ip---agg9---10.2.10.2
+---node1  ip---forwarder6---10.1.31.2---node2  ip---agg10---10.2.11.2
+---node1  ip---forwarder6---10.1.31.2---node2  ip---agg11---10.2.12.2
+---node1  ip---forwarder6---10.1.31.2---node2  ip---agg12---10.2.13.2
+---node1  ip---forwarder6---10.1.31.2---node2  ip---agg13---10.2.14.2
+---node1  ip---forwarder6---10.1.31.2---node2  ip---agg14---10.2.15.2
+---node1  ip---forwarder7---10.1.36.2---node2  ip---agg0---10.2.1.2
+---node1  ip---forwarder7---10.1.36.2---node2  ip---agg1---10.2.2.2
+---node1  ip---forwarder7---10.1.36.2---node2  ip---agg2---10.2.3.2
+---node1  ip---forwarder7---10.1.36.2---node2  ip---agg3---10.2.4.2
+---node1  ip---forwarder7---10.1.36.2---node2  ip---agg4---10.2.5.2
+---node1  ip---forwarder7---10.1.36.2---node2  ip---agg5---10.2.6.2
+---node1  ip---forwarder7---10.1.36.2---node2  ip---agg6---10.2.7.2
+---node1  ip---forwarder7---10.1.36.2---node2  ip---agg7---10.2.8.2
+---node1  ip---forwarder7---10.1.36.2---node2  ip---agg8---10.2.9.2
+---node1  ip---forwarder7---10.1.36.2---node2  ip---agg9---10.2.10.2
+---node1  ip---forwarder7---10.1.36.2---node2  ip---agg10---10.2.11.2
+---node1  ip---forwarder7---10.1.36.2---node2  ip---agg11---10.2.12.2
+---node1  ip---forwarder7---10.1.36.2---node2  ip---agg12---10.2.13.2
+---node1  ip---forwarder7---10.1.36.2---node2  ip---agg13---10.2.14.2
+---node1  ip---forwarder7---10.1.36.2---node2  ip---agg14---10.2.15.2
+---node1  ip---forwarder8---10.1.41.2---node2  ip---agg0---10.2.1.2
+---node1  ip---forwarder8---10.1.41.2---node2  ip---agg1---10.2.2.2
+---node1  ip---forwarder8---10.1.41.2---node2  ip---agg2---10.2.3.2
+---node1  ip---forwarder8---10.1.41.2---node2  ip---agg3---10.2.4.2
+---node1  ip---forwarder8---10.1.41.2---node2  ip---agg4---10.2.5.2
+---node1  ip---forwarder8---10.1.41.2---node2  ip---agg5---10.2.6.2
+---node1  ip---forwarder8---10.1.41.2---node2  ip---agg6---10.2.7.2
+---node1  ip---forwarder8---10.1.41.2---node2  ip---agg7---10.2.8.2
+---node1  ip---forwarder8---10.1.41.2---node2  ip---agg8---10.2.9.2
+---node1  ip---forwarder8---10.1.41.2---node2  ip---agg9---10.2.10.2
+---node1  ip---forwarder8---10.1.41.2---node2  ip---agg10---10.2.11.2
+---node1  ip---forwarder8---10.1.41.2---node2  ip---agg11---10.2.12.2
+---node1  ip---forwarder8---10.1.41.2---node2  ip---agg12---10.2.13.2
+---node1  ip---forwarder8---10.1.41.2---node2  ip---agg13---10.2.14.2
+---node1  ip---forwarder8---10.1.41.2---node2  ip---agg14---10.2.15.2
+---node1  ip---forwarder9---10.1.46.2---node2  ip---agg0---10.2.1.2
+---node1  ip---forwarder9---10.1.46.2---node2  ip---agg1---10.2.2.2
+---node1  ip---forwarder9---10.1.46.2---node2  ip---agg2---10.2.3.2
+---node1  ip---forwarder9---10.1.46.2---node2  ip---agg3---10.2.4.2
+---node1  ip---forwarder9---10.1.46.2---node2  ip---agg4---10.2.5.2
+---node1  ip---forwarder9---10.1.46.2---node2  ip---agg5---10.2.6.2
+---node1  ip---forwarder9---10.1.46.2---node2  ip---agg6---10.2.7.2
+---node1  ip---forwarder9---10.1.46.2---node2  ip---agg7---10.2.8.2
+---node1  ip---forwarder9---10.1.46.2---node2  ip---agg8---10.2.9.2
+---node1  ip---forwarder9---10.1.46.2---node2  ip---agg9---10.2.10.2
+---node1  ip---forwarder9---10.1.46.2---node2  ip---agg10---10.2.11.2
+---node1  ip---forwarder9---10.1.46.2---node2  ip---agg11---10.2.12.2
+---node1  ip---forwarder9---10.1.46.2---node2  ip---agg12---10.2.13.2
+---node1  ip---forwarder9---10.1.46.2---node2  ip---agg13---10.2.14.2
+---node1  ip---forwarder9---10.1.46.2---node2  ip---agg14---10.2.15.2
+---node1  ip---forwarder13---10.1.51.2---node2  ip---forwarder10---10.1.52.2
+
+trace: 75 Tcp
+查看一下10.2.4.2端口的数据发包情况，貌似该端口的很早就已经满了。
+0x56188023ba30 Entering the HandleRead function ..., with Ipv4 address 10.2.4.2
+
+---node1  ip---forwarder10---10.1.52.2---node2  ip---agg0---10.2.1.2
+---node1  ip---forwarder10---10.1.52.2---node2  ip---agg1---10.2.2.2
+---node1  ip---forwarder10---10.1.52.2---node2  ip---agg2---10.2.3.2
+---node1  ip---forwarder10---10.1.52.2---node2  ip---agg3---10.2.4.2
+---node1  ip---forwarder10---10.1.52.2---node2  ip---agg4---10.2.5.2
+---node1  ip---forwarder10---10.1.52.2---node2  ip---agg5---10.2.6.2
+---node1  ip---forwarder10---10.1.52.2---node2  ip---agg6---10.2.7.2
+---node1  ip---forwarder10---10.1.52.2---node2  ip---agg7---10.2.8.2
+---node1  ip---forwarder10---10.1.52.2---node2  ip---agg8---10.2.9.2
+---node1  ip---forwarder10---10.1.52.2---node2  ip---agg9---10.2.10.2
+---node1  ip---forwarder10---10.1.52.2---node2  ip---agg10---10.2.11.2
+---node1  ip---forwarder10---10.1.52.2---node2  ip---agg11---10.2.12.2
+---node1  ip---forwarder10---10.1.52.2---node2  ip---agg12---10.2.13.2
+---node1  ip---forwarder10---10.1.52.2---node2  ip---agg13---10.2.14.2
+---node1  ip---forwarder10---10.1.52.2---node2  ip---agg14---10.2.15.2
+---node1  ip---forwarder11---10.2.166.1---node2  ip---agg0---10.2.1.2
+---node1  ip---forwarder11---10.2.166.1---node2  ip---agg1---10.2.2.2
+---node1  ip---forwarder11---10.2.166.1---node2  ip---agg2---10.2.3.2
+---node1  ip---forwarder11---10.2.166.1---node2  ip---agg3---10.2.4.2
+---node1  ip---forwarder11---10.2.166.1---node2  ip---agg4---10.2.5.2
+---node1  ip---forwarder11---10.2.166.1---node2  ip---agg5---10.2.6.2
+---node1  ip---forwarder11---10.2.166.1---node2  ip---agg6---10.2.7.2
+---node1  ip---forwarder11---10.2.166.1---node2  ip---agg7---10.2.8.2
+---node1  ip---forwarder11---10.2.166.1---node2  ip---agg8---10.2.9.2
+---node1  ip---forwarder11---10.2.166.1---node2  ip---agg9---10.2.10.2
+---node1  ip---forwarder11---10.2.166.1---node2  ip---agg10---10.2.11.2
+---node1  ip---forwarder11---10.2.166.1---node2  ip---agg11---10.2.12.2
+---node1  ip---forwarder11---10.2.166.1---node2  ip---agg12---10.2.13.2
+---node1  ip---forwarder11---10.2.166.1---node2  ip---agg13---10.2.14.2
+---node1  ip---forwarder11---10.2.166.1---node2  ip---agg14---10.2.15.2
+---node1  ip---forwarder12---10.2.181.1---node2  ip---agg0---10.2.1.2
+---node1  ip---forwarder12---10.2.181.1---node2  ip---agg1---10.2.2.2
+---node1  ip---forwarder12---10.2.181.1---node2  ip---agg2---10.2.3.2
+---node1  ip---forwarder12---10.2.181.1---node2  ip---agg3---10.2.4.2
+---node1  ip---forwarder12---10.2.181.1---node2  ip---agg4---10.2.5.2
+---node1  ip---forwarder12---10.2.181.1---node2  ip---agg5---10.2.6.2
+---node1  ip---forwarder12---10.2.181.1---node2  ip---agg6---10.2.7.2
+---node1  ip---forwarder12---10.2.181.1---node2  ip---agg7---10.2.8.2
+---node1  ip---forwarder12---10.2.181.1---node2  ip---agg8---10.2.9.2
+---node1  ip---forwarder12---10.2.181.1---node2  ip---agg9---10.2.10.2
+---node1  ip---forwarder12---10.2.181.1---node2  ip---agg10---10.2.11.2
+---node1  ip---forwarder12---10.2.181.1---node2  ip---agg11---10.2.12.2
+---node1  ip---forwarder12---10.2.181.1---node2  ip---agg12---10.2.13.2
+---node1  ip---forwarder12---10.2.181.1---node2  ip---agg13---10.2.14.2
+---node1  ip---forwarder12---10.2.181.1---node2  ip---agg14---10.2.15.2
+
+debug:
+blocking status:
+75 TCPserver:PrintTable(): iteration: 2893  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2891  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2890  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2889  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2888  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2887  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2886  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2885  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2884  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2883  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2882  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2881  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2880  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2879  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2878  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2877  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2876  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2875  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2874  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2873  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2872  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2871  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2870  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2869  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2868  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2867  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2866  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2865  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2864  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2863  collected child: 
+10.2.2.2----10.2.10.2----
+
++3.740062416s 76 TCPserver:PrintTable(): iteration: 2892  collected child: 
+10.2.5.2----10.2.8.2----10.2.6.2----10.2.7.2----
+iteration: 2891  collected child: 
+10.2.5.2----10.2.8.2----10.2.6.2----10.2.7.2----
+iteration: 2890  collected child: 
+10.2.5.2----10.2.8.2----10.2.6.2----10.2.7.2----
+iteration: 2889  collected child: 
+10.2.5.2----10.2.8.2----10.2.6.2----10.2.7.2----
+iteration: 2888  collected child: 
+10.2.5.2----10.2.8.2----10.2.6.2----10.2.7.2----
+iteration: 2887  collected child: 
+10.2.5.2----10.2.8.2----10.2.6.2----10.2.7.2----
+iteration: 2886  collected child: 
+10.2.5.2----10.2.8.2----10.2.6.2----10.2.7.2----
+iteration: 2885  collected child: 
+10.2.5.2----10.2.8.2----10.2.6.2----10.2.7.2----
+iteration: 2884  collected child: 
+10.2.5.2----10.2.8.2----10.2.6.2----10.2.7.2----
+iteration: 2883  collected child: 
+10.2.5.2----10.2.8.2----10.2.6.2----10.2.7.2----
+iteration: 2882  collected child: 
+10.2.5.2----10.2.8.2----10.2.6.2----10.2.7.2----
+iteration: 2881  collected child: 
+10.2.5.2----10.2.8.2----10.2.6.2----10.2.7.2----
+iteration: 2880  collected child: 
+10.2.5.2----10.2.8.2----10.2.6.2----10.2.7.2----
+iteration: 2879  collected child: 
+10.2.5.2----10.2.8.2----10.2.6.2----10.2.7.2----
+iteration: 2878  collected child: 
+10.2.5.2----10.2.8.2----10.2.6.2----10.2.7.2----
+iteration: 2877  collected child: 
+10.2.5.2----10.2.8.2----10.2.6.2----10.2.7.2----
+iteration: 2876  collected child: 
+10.2.5.2----10.2.8.2----10.2.6.2----10.2.7.2----
+iteration: 2875  collected child: 
+10.2.5.2----10.2.8.2----10.2.6.2----10.2.7.2----
+iteration: 2874  collected child: 
+10.2.5.2----10.2.8.2----10.2.6.2----10.2.7.2----
+iteration: 2873  collected child: 
+10.2.5.2----10.2.8.2----10.2.6.2----10.2.7.2----
+iteration: 2872  collected child: 
+10.2.5.2----10.2.8.2----10.2.6.2----10.2.7.2----
+iteration: 2871  collected child: 
+10.2.5.2----10.2.8.2----10.2.6.2----10.2.7.2----
+iteration: 2870  collected child: 
+10.2.5.2----10.2.8.2----10.2.6.2----10.2.7.2----
+iteration: 2869  collected child: 
+10.2.5.2----10.2.8.2----10.2.6.2----10.2.7.2----
+iteration: 2868  collected child: 
+10.2.5.2----10.2.8.2----10.2.6.2----10.2.7.2----
+iteration: 2867  collected child: 
+10.2.5.2----10.2.8.2----10.2.6.2----10.2.7.2----
+iteration: 2866  collected child: 
+10.2.5.2----10.2.8.2----10.2.6.2----10.2.7.2----
+iteration: 2865  collected child: 
+10.2.5.2----10.2.8.2----10.2.6.2----10.2.7.2----
+iteration: 2864  collected child: 
+10.2.5.2----10.2.8.2----10.2.6.2----10.2.7.2----
+iteration: 2863  collected child: 
+10.2.5.2----10.2.8.2----10.2.6.2----10.2.7.2----
+
+Todo: 把log精简一下，删除多余的log，看看这样是否可以输出更多。
+
+
+Todo: 在卡住的地方把所有的Buffer和table都输出来，Block掉所有的日志信息，切换为std::cout模式。
+目前卡在3.75s的话，就让所有的producer, aggregator, consumer 在3.75s的时候输出自己的信息
+输出信息：
+1. RxBuffer.
+2. TxBuffer.
+3. Application Table.
+
+agg0--node 65 (m_sentList = End*1, appList = End*80, table = Empty)
+RxBuffer = empty*5
+
+agg1--node 66 (m_sentList = Empty, appList = 2975-2979 + End*76, table = 1799)
+collected child: 
+10.1.16.1----10.1.17.1----10.1.19.1----10.1.18.1----10.1.20.1----
+RxBuffer = empty*5
+
+agg2--node 67 (m_sentList = End*1, appList = End*80, table = Empty)
+RxBuffer = empty*5
+
+agg3--node 68 (m_sentList = End*1, appList = End*80, table = Empty)
+RxBuffer = empty*5
+
+agg4--node 69 (m_sentList = Empty*1, appList = 2975-2977 + End*78, table = 1799)
+collected child: 
+10.1.21.1----10.1.22.1----10.1.23.1----10.1.24.1----10.1.25.1----
+RxBuffer = empty*5
+
+agg5--node 70 (m_sentList = Empty*1, appList = 2975-2977 + End*78, table = 1799)
+collected child:
+10.1.31.1----10.1.32.1----10.1.33.1----10.1.35.1----10.1.34.1----
+RxBuffer = empty*5
+
+agg6--node 71 (m_sentList = Empty*1, appList = 2966-2968, 2998 + End*77, table = Empty)
+RxBuffer = empty*5
+
+agg7--node 72 (m_sentList = Empty*1, appList = 2975-2977 + End*78, table = 1799)
+collected child:
+10.1.6.1----10.1.7.1----10.1.8.1----10.1.9.1----10.1.10.1----
+RxBuffer = empty*5
+
+agg8--node 73 (m_sentList = End*1, appList = End*80, table = Empty)
+RxBuffer = empty*5
+
+agg9--node 74 (m_sentList = Empty, appList = 2975-2979 + End*76, table = 1799)
+collected child: 
+10.1.47.1----10.1.46.1----10.1.48.1----10.1.49.1----10.1.50.1----
+RxBuffer = empty*5
+
+agg10--node 75 (m_sentList = Empty, appList = Empty, table = ?)
+RxBuffer---10.2.10.2---agg9: 2894-2974
+RxBuffer---10.2.2.2---agg1: 2894-2974
+other 3 RxBuffer is empty.
+
+PrintTable:
+10.2.3.2----10.2.4.2----10.2.9.2----
+iteration: 2968  collected child: 
+10.2.3.2----10.2.4.2----10.2.9.2----
+iteration: 2908  collected child: 
+10.2.3.2----10.2.4.2----10.2.9.2----
+iteration: 2893  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2891  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2890  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2889  collected child:  检查：貌似All children have collected the data for iteration 2889 in server IP: 10.2.4.2。但这样的话为什么这样agg10没有收到来自10.2.4.2的消息？查看一下send函数，查看发送了哪些消息？
+10.2.2.2----10.2.10.2----
+iteration: 2888  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2887  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2886  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2885  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2884  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2883  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2882  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2881  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2998  collected child: 
+10.2.3.2----10.2.4.2----10.2.9.2----
+iteration: 2880  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2938  collected child: 
+10.2.3.2----10.2.4.2----10.2.9.2----
+iteration: 2879  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2878  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2877  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2876  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2875  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2874  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2873  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2872  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2871  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2870  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2869  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2868  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2867  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2866  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2865  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2864  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2863  collected child: 
+10.2.2.2----10.2.10.2----
+
+
+agg11--node 76 (m_sentList = Empty, appList = Empty, table = ?)
+RxBuffer---10.2.7.2---agg6: 2894-2965
+RxBuffer---10.2.6.2---agg5: 2894-2974
+RxBuffer---10.2.8.2---agg7: 2894-2974
+RxBuffer---10.2.5.2---agg4: 2894-2974
+RxBuffer---10.2.1.2---agg0: empty
+other 3 RxBuffer is empty.
+
+PrintTable(): iteration: 1799  collected child: 
+10.2.1.2----
+iteration: 2960  collected child: 
+10.2.1.2----
+iteration: 2900  collected child: 
+10.2.1.2----
+iteration: 2893  collected child: 
+10.2.5.2----10.2.8.2----10.2.6.2----10.2.7.2----
+iteration: 2892  collected child: 
+10.2.5.2----10.2.8.2----10.2.6.2----10.2.7.2----
+iteration: 2891  collected child: 
+10.2.5.2----10.2.8.2----10.2.6.2----10.2.7.2----
+iteration: 2890  collected child: 
+10.2.5.2----10.2.8.2----10.2.6.2----10.2.7.2----
+iteration: 2889  collected child: 
+10.2.5.2----10.2.8.2----10.2.6.2----10.2.7.2----
+iteration: 2888  collected child: 
+10.2.5.2----10.2.8.2----10.2.6.2----10.2.7.2----
+iteration: 2887  collected child: 
+10.2.5.2----10.2.8.2----10.2.6.2----10.2.7.2----
+iteration: 2886  collected child: 
+10.2.5.2----10.2.8.2----10.2.6.2----10.2.7.2----
+iteration: 2885  collected child: 
+10.2.5.2----10.2.8.2----10.2.6.2----10.2.7.2----
+iteration: 2884  collected child: 
+10.2.5.2----10.2.8.2----10.2.6.2----10.2.7.2----
+iteration: 2883  collected child: 
+10.2.5.2----10.2.8.2----10.2.6.2----10.2.7.2----
+iteration: 2882  collected child: 
+10.2.5.2----10.2.8.2----10.2.6.2----10.2.7.2----
+iteration: 2881  collected child: 
+10.2.5.2----10.2.8.2----10.2.6.2----10.2.7.2----
+iteration: 2880  collected child: 
+10.2.5.2----10.2.8.2----10.2.6.2----10.2.7.2----
+iteration: 2879  collected child: 
+10.2.5.2----10.2.8.2----10.2.6.2----10.2.7.2----
+iteration: 2878  collected child: 
+10.2.5.2----10.2.8.2----10.2.6.2----10.2.7.2----
+iteration: 2877  collected child: 
+10.2.5.2----10.2.8.2----10.2.6.2----10.2.7.2----
+iteration: 2876  collected child: 
+10.2.5.2----10.2.8.2----10.2.6.2----10.2.7.2----
+iteration: 2875  collected child: 
+10.2.5.2----10.2.8.2----10.2.6.2----10.2.7.2----
+iteration: 2874  collected child: 
+10.2.5.2----10.2.8.2----10.2.6.2----10.2.7.2----
+iteration: 2873  collected child: 
+10.2.5.2----10.2.8.2----10.2.6.2----10.2.7.2----
+iteration: 2990  collected child: 
+10.2.1.2----
+iteration: 2872  collected child: 
+10.2.5.2----10.2.8.2----10.2.6.2----10.2.7.2----
+iteration: 2930  collected child: 
+10.2.1.2----
+iteration: 2871  collected child: 
+10.2.5.2----10.2.8.2----10.2.6.2----10.2.7.2----
+iteration: 2869  collected child: 
+10.2.5.2----10.2.8.2----10.2.6.2----10.2.7.2----
+iteration: 2868  collected child: 
+10.2.5.2----10.2.8.2----10.2.6.2----10.2.7.2----
+iteration: 2867  collected child: 
+10.2.5.2----10.2.8.2----10.2.6.2----10.2.7.2----
+iteration: 2866  collected child: 
+10.2.5.2----10.2.8.2----10.2.6.2----10.2.7.2----
+iteration: 2865  collected child: 
+10.2.5.2----10.2.8.2----10.2.6.2----10.2.7.2----
+iteration: 2864  collected child: 
+10.2.5.2----10.2.8.2----10.2.6.2----10.2.7.2----
+iteration: 2863  collected child: 
+10.2.5.2----10.2.8.2----10.2.6.2----10.2.7.2----
+
+bug:
+10.2.4.2 client->Send()--sentSize success: 1610 at iteration 2862
+这个地方出现了断层，在2862以前，所有iteration成功发送都会显示10.2.4.2 client->Send()--sentSize success: 1610 at iteration 0-2862 （判断依据是搜索10.2.4.2 client->Send()--sentSize success: 1610 at iteration时，出现的词条数目为2863个）。
+
+但是下一轮立刻跳转到了10.2.4.2 client->Send()--sentSize success: 1610 at iteration 2892。
+
+是不是搞了什么操作，不处理表格里面的聚合操作了？
+重点关注下面这一段的数据后续去了什么地方！感觉这里是突破口
+iteration: 2878  collected child: 
+10.1.36.1----10.1.38.1----10.1.39.1----10.1.42.1----10.1.43.1----
+iteration: 2877  collected child: 
+10.1.36.1----10.1.38.1----10.1.39.1----10.1.42.1----10.1.43.1----
+iteration: 2876  collected child: 
+10.1.36.1----10.1.38.1----10.1.39.1----10.1.42.1----10.1.43.1----
+iteration: 2875  collected child: 
+10.1.36.1----10.1.38.1----10.1.39.1----10.1.42.1----10.1.43.1----
+iteration: 2874  collected child: 
+10.1.36.1----10.1.38.1----10.1.39.1----10.1.42.1----10.1.43.1----
+iteration: 2873  collected child: 
+10.1.36.1----10.1.38.1----10.1.39.1----10.1.42.1----10.1.43.1----
+iteration: 2872  collected child: 
+10.1.36.1----10.1.38.1----10.1.39.1----10.1.42.1----10.1.43.1----
+iteration: 2871  collected child: 
+10.1.36.1----10.1.38.1----10.1.39.1----10.1.42.1----10.1.43.1----
+iteration: 2870  collected child: 
+10.1.36.1----10.1.38.1----10.1.39.1----10.1.42.1----10.1.43.1----
+明明在 68 TCPserver:PrintTable()的表格里面这些数据都已经收齐完毕了，为什么
+
+All children have collected the data for iteration 2907 in server IP: 10.2.4.2
+compQueue: 2870-2871-2872-2873-2874-2875-2876-2877-2878-2879-2880-2881-2882-2883-2884-2885-2886-2887-2888-2889-2890-2891-2900-2901-2902-2903-2904-2905-2906-2907-
+貌似这些iteration也有被收集到。那为什么不send这些收集好的数据呢？
+
+log日志显示：
+client->Send()--sentSize failed: -1 at iteration 2905Sent list: {[4960411;4962021|1610][+5.91581s]}, size = 1 Total size: 130410 m_firstByteSeq = 4960411 m_sentSize = 1610 m_retransOut = 0 m_lostOut = 0 m_sackedOut = 0
+ client->Send()--sentSize failed: -1 at iteration 2906Sent list: {[4960411;4962021|1610][+5.91581s]}, size = 1 Total size: 130410 m_firstByteSeq = 4960411 m_sentSize = 1610 m_retransOut = 0 m_lostOut = 0 m_sackedOut = 0
+ client->Send()--sentSize failed: -1 at iteration 2907Sent list: {[4960411;4962021|1610][+5.91581s]}, size = 1 Total size: 130410 m_firstByteSeq = 4960411 m_sentSize = 1610 m_retransOut = 0 m_lostOut = 0 m_sackedOut = 0
+ client->Send()--sentSize failed: -1 at iteration 2863Sent list: {[4960411;4962021|1610][+5.91581s]}, size = 1 Total size: 130410 m_firstByteSeq = 4960411 m_sentSize = 1610 m_retransOut = 0 m_lostOut = 0 m_sackedOut = 0
+ client->Send()--sentSize failed: -1 at iteration 2864Sent list: {[4960411;4962021|1610][+5.91581s]}, size = 1 Total size: 130410 m_firstByteSeq = 4960411 m_sentSize = 1610 m_retransOut = 0 m_lostOut = 0 m_sackedOut = 0
+ client->Send()--sentSize failed: -1 at iteration 2865Sent list: {[4960411;4962021|1610][+5.91581s]}, size = 1 Total size: 130410 m_firstByteSeq = 4960411 m_sentSize = 1610 m_retransOut = 0 m_lostOut = 0 m_sackedOut = 0
+ client->Send()--sentSize failed: -1 at iteration 2866Sent list: {[4960411;4962021|1610][+5.91581s]}, size = 1 Total size: 130410 m_firstByteSeq = 4960411 m_sentSize = 1610 m_retransOut = 0 m_lostOut = 0 m_sackedOut = 0
+ client->Send()--sentSize failed: -1 at iteration 2867Sent list: {[4960411;4962021|1610][+5.91581s]}, size = 1 Total size: 130410 m_firstByteSeq = 4960411 m_sentSize = 1610 m_retransOut = 0 m_lostOut = 0 m_sackedOut = 0
+ 说明这些包一直发送失败，没有被发送出去。
+ 或者可以在发包前，把所有log权限打开，然后在send之后，再把log权限给关了，看看究竟发生了什么事情。
+ 12.22:
+ 可能的原因，某个iteration失败了之后，没有一直循环调用，貌似只重复了2-3次。按道理来说，程序不应该终止，应该一直重复调用send函数，才是正确的。可以检查一下是哪里出了问题。明天早上起来重点检查这个部分。
+ 存在的问题：为什么结束的末尾包会一直存放在sendList里面？
+
+下一段的输出
+.4.2
+All children have collected the data for iteration 2901 in server IP: 10.2.4.2
+All children have collected the data for iteration 2902 in server IP: 10.2.4.2
+All children have collected the data for iteration 2903 in server IP: 10.2.4.2
+All children have collected the data for iteration 2904 in server IP: 10.2.4.2
+All children have collected the data for iteration 2905 in server IP: 10.2.4.2
+All children have collected the data for iteration 2906 in server IP: 10.2.4.2
+All children have collected the data for iteration 2907 in server IP: 10.2.4.2
+All children have collected the data for iteration 2908 in server IP: 10.2.4.2
+All children have collected the data for iteration 2909 in server IP: 10.2.4.2
+All children have collected the data for iteration 2910 in server IP: 10.2.4.2
+All children have collected the data for iteration 2911 in server IP: 10.2.4.2
+All children have collected the data for iteration 2912 in server IP: 10.2.4.2
+All children have collected the data for iteration 2913 in server IP: 10.2.4.2
+All children have collected the data for iteration 2914 in server IP: 10.2.4.2
+All children have collected the data for iteration 2915 in server IP: 10.2.4.2
+All children have collected the data for iteration 2916 in server IP: 10.2.4.2
+All children have collected the data for iteration 2917 in server IP: 10.2.4.2
+All children have collected the data for iteration 2918 in server IP: 10.2.4.2
+All children have collected the data for iteration 2919 in server IP: 10.2.4.2
+All children have collected the data for iteration 2920 in server IP: 10.2.4.2
+All children have collected the data for iteration 2921 in server IP: 10.2.4.2
+All children have collected the data for iteration 2922 in server IP: 10.2.4.2
+All children have collected the data for iteration 2923 in server IP: 10.2.4.2
+All children have collected the data for iteration 2924 in server IP: 10.2.4.2
+All children have collected the data for iteration 2925 in server IP: 10.2.4.2
+All children have collected the data for iteration 2926 in server IP: 10.2.4.2
+All children have collected the data for iteration 2927 in server IP: 10.2.4.2
+All children have collected the data for iteration 2928 in server IP: 10.2.4.2
+All children have collected the data for iteration 2929 in server IP: 10.2.4.2
+All children have collected the data for iteration 2930 in server IP: 10.2.4.2
+All children have collected the data for iteration 2931 in server IP: 10.2.4.2
+All children have collected the data for iteration 2932 in server IP: 10.2.4.2
+All children have collected the data for iteration 2933 in server IP: 10.2.4.2
+All children have collected the data for iteration 2934 in server IP: 10.2.4.2
+All children have collected the data for iteration 2935 in server IP: 10.2.4.2
+All children have collected the data for iteration 2936 in server IP: 10.2.4.2
+All children have collected the data for iteration 2937 in server IP: 10.2.4.2
+
+直接跳过了中间部分，这是什么原因？
+
+
+从下面的log看出，m_sentList[1]的包一直没有处理，原因大概率是cwnd出现了问题。于是，我们应该回溯查看于10.2.4.2相连的agg10，也就是10.2.11.2节点出现了什么问题。    
+
+Trace the node information for 10.2.4.2
++3.289000000s 68 InnetworkAggregationInterface:PrintAllInfo(): 0x5628b6796b80 In PrintAllInfo. Local ip: 10.2.4.2
++3.289000000s 68 InnetworkAggregationInterface:PrintAllInfo(): Print TxBuffer for Peer ip: 10.2.11.2
++3.289000000s 68 TcpTxBuffer:PrintTxBuffer(): Print the content in the QuicSocketTxBuffer, m_sentList
+m_sentList[1]:
+Packet bytes: 03 03 03 03 03 03 03 03 0b 02 02 0b 00 00 00 00 00 00 02 0b 00 00 00 00 00 00 02 0b 00 00 
+
+Print the content in the QuicSocketTxBuffer, m_appList
+m_appList[1]:
+Packet bytes: 03 03 03 03 03 03 03 03 0b 03 03 0b 00 00 00 00 00 00 03 0b 00 00 00 00 00 00 03 0b 00 00 
+m_appList[2]:
+Packet bytes: 03 03 03 03 03 03 03 03 0b 04 04 0b 00 00 00 00 00 00 04 0b 00 00 00 00 00 00 04 0b 00 00 
+m_appList[3]:
+Packet bytes: 03 03 03 03 03 03 03 03 0b 05 05 0b 00 00 00 00 00 00 05 0b 00 00 00 00 00 00 05 0b 00 00 
+m_appList[4]:
+Packet bytes: 03 03 03 03 03 03 03 03 0b 06 06 0b 00 00 00 00 00 00 06 0b 00 00 00 00 00 00 06 0b 00 00 
+m_appList[5]:
+Packet bytes: 03 03 03 03 03 03 03 03 0b 07 07 0b 00 00 00 00 00 00 07 0b 00 00 00 00 00 00 07 0b 00 00 
+m_appList[6]:
+Packet bytes: 03 03 03 03 03 03 03 03 0b 08 08 0b 00 00 00 00 00 00 08 0b 00 00 00 00 00 00 08 0b 00 00 
+m_appList[7]:
+Packet bytes: 03 03 03 03 03 03 03 03 0b 09 09 0b 00 00 00 00 00 00 09 0b 00 00 00 00 00 00 09 0b 00 00 
+m_appList[8]:
+Packet bytes: 03 03 03 03 03 03 03 03 0b 0a 0a 0b 00 00 00 00 00 00 0a 0b 00 00 00 00 00 00 0a 0b 00 00 
+m_appList[9]:
+Packet bytes: 03 03 03 03 03 03 03 03 0b 0b 0b 0b 00 00 00 00 00 00 0b 0b 00 00 00 00 00 00 0b 0b 00 00 
+m_appList[10]:
+Packet bytes: 03 03 03 03 03 03 03 03 0b 0c 0c 0b 00 00 00 00 00 00 0c 0b 00 00 00 00 00 00 0c 0b 00 00 
+m_appList[11]:
+Packet bytes: 03 03 03 03 03 03 03 03 0b 0d 0d 0b 00 00 00 00 00 00 0d 0b 00 00 00 00 00 00 0d 0b 00 00 
+m_appList[12]:
+Packet bytes: 03 03 03 03 03 03 03 03 0b 0e 0e 0b 00 00 00 00 00 00 0e 0b 00 00 00 00 00 00 0e 0b 00 00 
+m_appList[13]:
+Packet bytes: 03 03 03 03 03 03 03 03 0b 0f 0f 0b 00 00 00 00 00 00 0f 0b 00 00 00 00 00 00 0f 0b 00 00 
+m_appList[14]:
+Packet bytes: 03 03 03 03 03 03 03 03 0b 10 10 0b 00 00 00 00 00 00 10 0b 00 00 00 00 00 00 10 0b 00 00 
+m_appList[15]:
+Packet bytes: 03 03 03 03 03 03 03 03 0b 11 11 0b 00 00 00 00 00 00 11 0b 00 00 00 00 00 00 11 0b 00 00 
+m_appList[16]:
+Packet bytes: 03 03 03 03 03 03 03 03 0b 12 12 0b 00 00 00 00 00 00 12 0b 00 00 00 00 00 00 12 0b 00 00 
+m_appList[17]:
+Packet bytes: 03 03 03 03 03 03 03 03 0b 13 13 0b 00 00 00 00 00 00 13 0b 00 00 00 00 00 00 13 0b 00 00 
+m_appList[18]:
+Packet bytes: 03 03 03 03 03 03 03 03 0b 14 14 0b 00 00 00 00 00 00 14 0b 00 00 00 00 00 00 14 0b 00 00 
+m_appList[19]:
+Packet bytes: 03 03 03 03 03 03 03 03 0b 15 15 0b 00 00 00 00 00 00 15 0b 00 00 00 00 00 00 15 0b 00 00 
+m_appList[20]:
+Packet bytes: 03 03 03 03 03 03 03 03 0b 16 16 0b 00 00 00 00 00 00 16 0b 00 00 00 00 00 00 16 0b 00 00 
+m_appList[21]:
+Packet bytes: 03 03 03 03 03 03 03 03 0b 17 17 0b 00 00 00 00 00 00 17 0b 00 00 00 00 00 00 17 0b 00 00 
+m_appList[22]:
+Packet bytes: 03 03 03 03 03 03 03 03 0b 18 18 0b 00 00 00 00 00 00 18 0b 00 00 00 00 00 00 18 0b 00 00 
+m_appList[23]:
+Packet bytes: 03 03 03 03 03 03 03 03 0b 19 19 0b 00 00 00 00 00 00 19 0b 00 00 00 00 00 00 19 0b 00 00 
+m_appList[24]:
+Packet bytes: 03 03 03 03 03 03 03 03 0b 1a 1a 0b 00 00 00 00 00 00 1a 0b 00 00 00 00 00 00 1a 0b 00 00 
+m_appList[25]:
+Packet bytes: 03 03 03 03 03 03 03 03 0b 1b 1b 0b 00 00 00 00 00 00 1b 0b 00 00 00 00 00 00 1b 0b 00 00 
+m_appList[26]:
+Packet bytes: 03 03 03 03 03 03 03 03 0b 1c 1c 0b 00 00 00 00 00 00 1c 0b 00 00 00 00 00 00 1c 0b 00 00 
+m_appList[27]:
+Packet bytes: 03 03 03 03 03 03 03 03 0b 1d 1d 0b 00 00 00 00 00 00 1d 0b 00 00 00 00 00 00 1d 0b 00 00 
+m_appList[28]:
+Packet bytes: 03 03 03 03 03 03 03 03 0b 1e 1e 0b 00 00 00 00 00 00 1e 0b 00 00 00 00 00 00 1e 0b 00 00 
+m_appList[29]:
+Packet bytes: 03 03 03 03 03 03 03 03 0b 1f 1f 0b 00 00 00 00 00 00 1f 0b 00 00 00 00 00 00 1f 0b 00 00 
+m_appList[30]:
+Packet bytes: 03 03 03 03 03 03 03 03 0b 20 20 0b 00 00 00 00 00 00 20 0b 00 00 00 00 00 00 20 0b 00 00 
+m_appList[31]:
+Packet bytes: 03 03 03 03 03 03 03 03 0b 21 21 0b 00 00 00 00 00 00 21 0b 00 00 00 00 00 00 21 0b 00 00 
+m_appList[32]:
+Packet bytes: 03 03 03 03 03 03 03 03 0b 22 22 0b 00 00 00 00 00 00 22 0b 00 00 00 00 00 00 22 0b 00 00 
+m_appList[33]:
+Packet bytes: 03 03 03 03 03 03 03 03 0b 23 23 0b 00 00 00 00 00 00 23 0b 00 00 00 00 00 00 23 0b 00 00 
+m_appList[34]:
+Packet bytes: 03 03 03 03 03 03 03 03 0b 24 24 0b 00 00 00 00 00 00 24 0b 00 00 00 00 00 00 24 0b 00 00 
+m_appList[35]:
+Packet bytes: 03 03 03 03 03 03 03 03 0b 25 25 0b 00 00 00 00 00 00 25 0b 00 00 00 00 00 00 25 0b 00 00 
+m_appList[36]:
+Packet bytes: 03 03 03 03 03 03 03 03 0b 26 26 0b 00 00 00 00 00 00 26 0b 00 00 00 00 00 00 26 0b 00 00 
+m_appList[37]:
+Packet bytes: 03 03 03 03 03 03 03 03 0b 27 27 0b 00 00 00 00 00 00 27 0b 00 00 00 00 00 00 27 0b 00 00 
+m_appList[38]:
+Packet bytes: 03 03 03 03 03 03 03 03 0b 28 28 0b 00 00 00 00 00 00 28 0b 00 00 00 00 00 00 28 0b 00 00 
+m_appList[39]:
+Packet bytes: 03 03 03 03 03 03 03 03 0b 29 29 0b 00 00 00 00 00 00 29 0b 00 00 00 00 00 00 29 0b 00 00 
+m_appList[40]:
+Packet bytes: 03 03 03 03 03 03 03 03 0b 2a 2a 0b 00 00 00 00 00 00 2a 0b 00 00 00 00 00 00 2a 0b 00 00 
+m_appList[41]:
+Packet bytes: 03 03 03 03 03 03 03 03 0b 2b 2b 0b 00 00 00 00 00 00 2b 0b 00 00 00 00 00 00 2b 0b 00 00 
+m_appList[42]:
+Packet bytes: 03 03 03 03 03 03 03 03 0b 2c 2c 0b 00 00 00 00 00 00 2c 0b 00 00 00 00 00 00 2c 0b 00 00 
+m_appList[43]:
+Packet bytes: 03 03 03 03 03 03 03 03 0b 2d 2d 0b 00 00 00 00 00 00 2d 0b 00 00 00 00 00 00 2d 0b 00 00 
+m_appList[44]:
+Packet bytes: 03 03 03 03 03 03 03 03 0b 2e 2e 0b 00 00 00 00 00 00 2e 0b 00 00 00 00 00 00 2e 0b 00 00 
+m_appList[45]:
+Packet bytes: 03 03 03 03 03 03 03 03 0b 4c 4c 0b 00 00 00 00 00 00 4c 0b 00 00 00 00 00 00 4c 0b 00 00 
+m_appList[46]:
+Packet bytes: 03 03 03 03 03 03 03 03 0b 5c 5c 0b 00 00 00 00 00 00 5c 0b 00 00 00 00 00 00 5c 0b 00 00 
+m_appList[47]:
+Packet bytes: 03 03 03 03 03 03 03 03 0b 7a 7a 0b 00 00 00 00 00 00 7a 0b 00 00 00 00 00 00 7a 0b 00 00 
+m_appList[48]:
+Packet bytes: 03 03 03 03 03 03 03 03 0b 98 98 0b 00 00 00 00 00 00 98 0b 00 00 00 00 00 00 98 0b 00 00 
+m_appList[49]:
+Packet bytes: 03 03 03 03 03 03 03 03 0b b6 b6 0b 00 00 00 00 00 00 b6 0b 00 00 00 00 00 00 b6 0b 00 00 
+m_appList[50]:
+Packet bytes: 07 07 07 07 07 07 07 07 07 07 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 
+m_appList[51]:
+Packet bytes: 07 07 07 07 07 07 07 07 07 07 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 
+m_appList[52]:
+Packet bytes: 07 07 07 07 07 07 07 07 07 07 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 
+m_appList[53]:
+Packet bytes: 07 07 07 07 07 07 07 07 07 07 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 
+m_appList[54]:
+Packet bytes: 07 07 07 07 07 07 07 07 07 07 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 
+m_appList[55]:
+Packet bytes: 07 07 07 07 07 07 07 07 07 07 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 
+m_appList[56]:
+Packet bytes: 07 07 07 07 07 07 07 07 07 07 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 
+m_appList[57]:
+Packet bytes: 07 07 07 07 07 07 07 07 07 07 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 
+m_appList[58]:
+Packet bytes: 07 07 07 07 07 07 07 07 07 07 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 
+m_appList[59]:
+Packet bytes: 07 07 07 07 07 07 07 07 07 07 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 
+m_appList[60]:
+Packet bytes: 07 07 07 07 07 07 07 07 07 07 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 
+m_appList[61]:
+Packet bytes: 07 07 07 07 07 07 07 07 07 07 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 
+m_appList[62]:
+Packet bytes: 07 07 07 07 07 07 07 07 07 07 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 
+m_appList[63]:
+Packet bytes: 07 07 07 07 07 07 07 07 07 07 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 
+m_appList[64]:
+Packet bytes: 07 07 07 07 07 07 07 07 07 07 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 
+m_appList[65]:
+Packet bytes: 07 07 07 07 07 07 07 07 07 07 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 
+m_appList[66]:
+Packet bytes: 07 07 07 07 07 07 07 07 07 07 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 
+m_appList[67]:
+Packet bytes: 07 07 07 07 07 07 07 07 07 07 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 
+m_appList[68]:
+Packet bytes: 07 07 07 07 07 07 07 07 07 07 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 
+m_appList[69]:
+Packet bytes: 07 07 07 07 07 07 07 07 07 07 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 
+m_appList[70]:
+Packet bytes: 07 07 07 07 07 07 07 07 07 07 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 
+m_appList[71]:
+Packet bytes: 07 07 07 07 07 07 07 07 07 07 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 
+m_appList[72]:
+Packet bytes: 07 07 07 07 07 07 07 07 07 07 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 
+m_appList[73]:
+Packet bytes: 07 07 07 07 07 07 07 07 07 07 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 
+m_appList[74]:
+Packet bytes: 07 07 07 07 07 07 07 07 07 07 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 
+m_appList[75]:
+Packet bytes: 07 07 07 07 07 07 07 07 07 07 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 
+m_appList[76]:
+Packet bytes: 07 07 07 07 07 07 07 07 07 07 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 
+m_appList[77]:
+Packet bytes: 07 07 07 07 07 07 07 07 07 07 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 
+m_appList[78]:
+Packet bytes: 07 07 07 07 07 07 07 07 07 07 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 
+m_appList[79]:
+Packet bytes: 07 07 07 07 07 07 07 07 07 07 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 
+m_appList[80]:
+Packet bytes: 07 07 07 07 07 07 07 07 07 07 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 09 
+
+74, 75是级别最高的aggregator，观察一下他们是什么原因被堵塞了。
+目前来看，他们的sentList和appList都是空的。
+
++4.700000000s 75 TCPserver:PrintTable(): 
+iteration: 2981  collected child: 
+10.2.3.2----10.2.4.2----10.2.9.2----
+iteration: 2982  collected child: 
+10.2.3.2----10.2.4.2----10.2.9.2----
+iteration: 2983  collected child: 
+10.2.3.2----10.2.4.2----10.2.9.2----
+iteration: 2993  collected child: 
+10.2.3.2----10.2.4.2----10.2.9.2----
+iteration: 2866  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2984  collected child: 
+10.2.3.2----10.2.4.2----10.2.9.2----
+iteration: 2867  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2985  collected child: 
+10.2.3.2----10.2.4.2----10.2.9.2----
+iteration: 2868  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2986  collected child: 
+10.2.3.2----10.2.4.2----10.2.9.2----
+iteration: 2869  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2987  collected child: 
+10.2.3.2----10.2.4.2----10.2.9.2----
+iteration: 2870  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2988  collected child: 
+10.2.3.2----10.2.4.2----10.2.9.2----
+iteration: 2989  collected child: 
+10.2.3.2----10.2.4.2----10.2.9.2----
+iteration: 2872  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2863  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2990  collected child: 
+10.2.3.2----10.2.4.2----10.2.9.2----
+iteration: 2873  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2864  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2991  collected child: 
+10.2.3.2----10.2.4.2----10.2.9.2----
+iteration: 2874  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2865  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2992  collected child: 
+10.2.3.2----10.2.4.2----10.2.9.2----
+iteration: 2875  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2876  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2877  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2878  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2879  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2938  collected child: 
+10.2.3.2----10.2.4.2----10.2.9.2----
+iteration: 2880  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2871  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2998  collected child: 
+10.2.3.2----10.2.4.2----10.2.9.2----
+iteration: 2881  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2882  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2883  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2884  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2885  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2886  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2887  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2888  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2889  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2890  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2891  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2893  collected child: 
+10.2.2.2----10.2.10.2----
+iteration: 2908  collected child: 
+10.2.3.2----10.2.4.2----10.2.9.2----
+iteration: 2968  collected child: 
+10.2.3.2----10.2.4.2----10.2.9.2----
+iteration: 1799  collected child: 
+10.2.3.2----10.2.4.2----10.2.9.2----
+iteration: 2979  collected child: 
+10.2.3.2----10.2.4.2----10.2.9.2----
+iteration: 2969  collected child: 
+10.2.3.2----10.2.4.2----10.2.9.2----
+iteration: 2970  collected child: 
+10.2.3.2----10.2.4.2----10.2.9.2----
+iteration: 2971  collected child: 
+10.2.3.2----10.2.4.2----10.2.9.2----
+iteration: 2972  collected child: 
+10.2.3.2----10.2.4.2----10.2.9.2----
+iteration: 2973  collected child: 
+10.2.3.2----10.2.4.2----10.2.9.2----
+iteration: 2974  collected child: 
+10.2.3.2----10.2.4.2----10.2.9.2----
+iteration: 2975  collected child: 
+10.2.3.2----10.2.4.2----10.2.9.2----
+iteration: 2976  collected child: 
+10.2.3.2----10.2.4.2----10.2.9.2----
+iteration: 2977  collected child: 
+10.2.3.2----10.2.4.2----10.2.9.2----
+iteration: 2978  collected child: 
+10.2.3.2----10.2.4.2----10.2.9.2----
+iteration: 2980  collected child: 
+10.2.3.2----10.2.4.2----10.2.9.2----
