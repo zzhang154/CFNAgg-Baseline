@@ -1,0 +1,2 @@
+scratch/tcp-testing.log filter=lfs diff=lfs merge=lfs -text
+scratch/tcp-disorder-record.log filter=lfs diff=lfs merge=lfs -text
