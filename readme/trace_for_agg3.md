@@ -99,3 +99,8 @@ Check the send success log for 10.2.4.2
 其次，查看一下successIter的记录，这里要更改一下successIter的数据结构（目前好像是set，set是无法记录先后顺序）。应该将其修改为queue，然后观察一下乱序的情况，是从哪个节点开始第一次出现乱序的。以及，乱序的轮次第一次出现是什么时候？这些信息都应该被记录下来。
 
 TCPserver里面的checkComp函数有问题，不能轮训地检测，只能是从第一个开始检测。否则就会乱序。
+
+
+12.25改动：
+1. 将unorder_map改成map
+2. 将
