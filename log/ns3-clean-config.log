@@ -1,0 +1,171 @@
+Finished executing the following commands:
+rm -R build
+rm -R cmake-cache
+rm -R .lock-ns3_linux_build
+Warn about uninitialized values.
+-- The CXX compiler identification is GNU 11.4.0
+-- The C compiler identification is GNU 11.4.0
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Using default output directory /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build
+-- Performing Test GCC_WORKING_PEDANTIC_SEMICOLON
+-- Performing Test GCC_WORKING_PEDANTIC_SEMICOLON - Success
+-- Proceeding without cmake-format
+-- Found Git: /bin/git (found version "2.34.1") 
+-- find_external_library: SQLite3 was found.
+-- Found GTK3_GTK: /usr/lib/x86_64-linux-gnu/libgtk-3.so  
+-- Found Boost: /usr/include (found version "1.55.0")  
+-- Found PkgConfig: /bin/pkg-config (found version "0.29.2") 
+-- GSL was found.
+-- Found Sphinx: /bin/sphinx-build  
+-- docs: sphinx documentation not enabled due to missing dependencies: epstopdf dvipng
+-- Performing Test HAVE_UINT128_T
+-- Performing Test HAVE_UINT128_T - Failed
+-- Performing Test HAVE___UINT128_T
+-- Performing Test HAVE___UINT128_T - Success
+-- Looking for stdint.h
+-- Looking for stdint.h - found
+-- Looking for inttypes.h
+-- Looking for inttypes.h - found
+-- Looking for sys/types.h
+-- Looking for sys/types.h - found
+-- Looking for sys/stat.h
+-- Looking for sys/stat.h - found
+-- Looking for dirent.h
+-- Looking for dirent.h - found
+-- Looking for stdlib.h
+-- Looking for stdlib.h - found
+-- Looking for signal.h
+-- Looking for signal.h - found
+-- Looking for netpacket/packet.h
+-- Looking for netpacket/packet.h - found
+-- Looking for getenv
+-- Looking for getenv - found
+-- Precompiled headers were enabled
+-- Processing src/antenna
+-- Performing Test HAVE_STD_BESSEL_FUNC
+-- Performing Test HAVE_STD_BESSEL_FUNC - Success
+-- Standard library Bessel function has been found
+-- Processing src/aodv
+-- Processing src/applications
+-- Processing src/bridge
+-- Processing src/brite
+-- Skipping src/brite
+-- Processing src/buildings
+-- Processing src/click
+-- Skipping src/click
+-- Processing src/config-store
+-- Processing src/core
+-- Looking for include files boost/units/quantity.hpp, boost/units/systems/si.hpp
+-- Looking for include files boost/units/quantity.hpp, boost/units/systems/si.hpp - found
+-- Boost Units have been found.
+-- Processing src/csma
+-- Processing src/csma-layout
+-- Processing src/dsdv
+-- Processing src/dsr
+-- Processing src/energy
+-- Processing src/fd-net-device
+-- Looking for net/ethernet.h
+-- Looking for net/ethernet.h - found
+-- Looking for netpacket/packet.h
+-- Looking for netpacket/packet.h - found
+-- Looking for net/if.h
+-- Looking for net/if.h - found
+-- Looking for linux/if_tun.h
+-- Looking for linux/if_tun.h - found
+-- Looking for net/netmap_user.h
+-- Looking for net/netmap_user.h - found
+-- Looking for sys/ioctl.h
+-- Looking for sys/ioctl.h - found
+-- Checking for module 'libdpdk'
+--   No package 'libdpdk' found
+-- Processing src/flow-monitor
+-- Processing src/innetwork-task
+-- Processing src/internet
+-- Processing src/internet-apps
+-- Processing src/lr-wpan
+-- Processing src/lte
+-- Processing src/mesh
+-- Processing src/mobility
+-- Processing src/netanim
+-- Processing src/network
+-- Processing src/nix-vector-routing
+-- Processing src/olsr
+-- Processing src/openflow
+-- Skipping src/openflow
+-- Processing src/point-to-point
+-- Processing src/point-to-point-layout
+-- Processing src/propagation
+-- Processing src/sixlowpan
+-- Processing src/spectrum
+-- Processing src/stats
+-- Processing src/tap-bridge
+-- Processing src/topology-read
+-- Processing src/traffic-control
+-- Processing src/uan
+-- Processing src/virtual-net-device
+-- Processing src/wifi
+-- Processing src/wimax
+-- ---- Summary of ns-3 settings:
+Build profile                 : default
+Build directory               : /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build
+Build with runtime asserts    : ON
+Build with runtime logging    : ON
+Build version embedding       : OFF (not requested)
+BRITE Integration             : OFF (Missing headers: "Brite.h" and missing libraries: "brite")
+DES Metrics event collection  : OFF (not requested)
+DPDK NetDevice                : OFF (not requested)
+Emulation FdNetDevice         : ON
+Examples                      : OFF (not requested)
+File descriptor NetDevice     : ON
+GNU Scientific Library (GSL)  : ON
+GtkConfigStore                : ON
+LibXml2 support               : ON
+MPI Support                   : OFF (not requested)
+ns-3 Click Integration        : OFF (Missing headers: "simclick.h" and missing libraries: "nsclick click")
+ns-3 OpenFlow Integration     : OFF (Missing headers: "openflow.h" and missing libraries: "openflow")
+Netmap emulation FdNetDevice  : ON
+PyViz visualizer              : OFF (Python Bindings are disabled)
+Python Bindings               : OFF (not requested)
+SQLite support                : ON
+Eigen3 support                : ON
+Tap Bridge                    : ON
+Tap FdNetDevice               : ON
+Tests                         : OFF (not requested)
+
+
+Modules configured to be built:
+antenna                   aodv                      applications              
+bridge                    buildings                 config-store              
+core                      csma                      csma-layout               
+dsdv                      dsr                       energy                    
+fd-net-device             flow-monitor              innetwork-task            
+internet                  internet-apps             lr-wpan                   
+lte                       mesh                      mobility                  
+netanim                   network                   nix-vector-routing        
+olsr                      point-to-point            point-to-point-layout     
+propagation               sixlowpan                 spectrum                  
+stats                     tap-bridge                topology-read             
+traffic-control           uan                       virtual-net-device        
+wifi                      wimax                     
+
+Modules that cannot be built:
+brite                     click                     mpi                       
+openflow                  test                      visualizer                
+
+
+
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/cmake-cache
+Finished executing the following commands:
+mkdir cmake-cache
+/bin/cmake -S /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42 -B /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/cmake-cache -DCMAKE_BUILD_TYPE=default -DNS3_ASSERT=ON -DNS3_LOG=ON -DNS3_WARNINGS_AS_ERRORS=OFF -DNS3_NATIVE_OPTIMIZATIONS=OFF -DNS3_WARNINGS_AS_ERRORS=OFF -G Unix Makefiles --warn-uninitialized

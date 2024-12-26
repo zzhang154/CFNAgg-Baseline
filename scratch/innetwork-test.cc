@@ -443,7 +443,7 @@ main (int argc, char *argv[])
     Packet::EnablePrinting ();
     Packet::EnableChecking ();
     // run
-    Simulator::Stop (Seconds (10.0));
+    Simulator::Stop (Seconds (5));
     Simulator::Run();
     
     //end

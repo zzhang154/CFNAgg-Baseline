@@ -102,7 +102,8 @@ TcpSocket::GetTypeId()
             .AddAttribute(
                 "DataRetries",
                 "Number of data retransmission attempts",
-                UintegerValue(6),
+                // Zhuoxu: This is set to 6 before
+                UintegerValue(10000),
                 MakeUintegerAccessor(&TcpSocket::GetDataRetries, &TcpSocket::SetDataRetries),
                 MakeUintegerChecker<uint32_t>())
             .AddAttribute(
@@ -114,7 +115,8 @@ TcpSocket::GetTypeId()
             .AddAttribute(
                 "DelAckCount",
                 "Number of packets to wait before sending a TCP ack",
-                UintegerValue(2),
+                // Zhuoxu: This is set to 2 before
+                UintegerValue(1),
                 MakeUintegerAccessor(&TcpSocket::GetDelAckMaxCount, &TcpSocket::SetDelAckMaxCount),
                 MakeUintegerChecker<uint32_t>())
             .AddAttribute("TcpNoDelay",

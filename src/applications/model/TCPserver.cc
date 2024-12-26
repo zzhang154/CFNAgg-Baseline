@@ -224,7 +224,7 @@ TCPserver::SetcGroupSize(uint16_t size){
 }
 
 void 
-TCPserver::SetIterChunkPtr(std::unordered_map<uint16_t, DataChunk>* iterChunk){
+TCPserver::SetIterChunkPtr(std::map<uint16_t, DataChunk>* iterChunk){
   iterChunkPtr = iterChunk;
 }
 

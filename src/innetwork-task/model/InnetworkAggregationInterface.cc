@@ -6,6 +6,16 @@
 
 namespace ns3 {
 
+    // Overload the << operator for std::queue
+    template <typename T>
+    std::ostream& operator<<(std::ostream& os, std::queue<T> q) {
+        os << "Queue elements: ";
+        while (!q.empty()) {
+            os << q.front() << " ";
+            q.pop();
+        }
+        return os;
+    }
 
     NS_LOG_COMPONENT_DEFINE ("InnetworkAggregationInterface");
     NS_OBJECT_ENSURE_REGISTERED (InnetworkAggregationInterface);
@@ -121,8 +131,6 @@ namespace ns3 {
             myserver->SetNode(node);
             myserver->SetcGroupSize(cGroup.size());
             myserver->SetIterChunkPtr(&this->iterChunk);
-            // Todo: initialize the chunkMap here
-            // Todo: myserver->SetIterationChunk(&chunkMap[i]);
             myserver->Bind(serverPort);
             // set server IP address
             myserver->SetIpAddrStr(addrStr);
@@ -173,11 +181,20 @@ namespace ns3 {
 
     bool
     InnetworkAggregationInterface::PrintCompInfo(uint16_t iterationNum){
+
+        LogComponentEnable("InnetworkAggregationInterface", LOG_LEVEL_ALL);
+
         Time currentTime = Simulator::Now();
         //check if all the iteration has been collected
         if (successIter.size() == maxIteration - padIter) {
             if (this->sGroup.size() <= 0) {
-                NS_LOG_INFO("Consumer All iteration-"<< maxIteration-1 << " completed in: " << currentTime.GetMilliSeconds() - 2000<< "ms");
+                NS_LOG_INFO("Consumer All iteration-"<< maxIteration + 1 << " completed in: " << currentTime.GetMilliSeconds() - 2000<< "ms");
+                if(CheckQueueOrder(this->successIter, maxIteration)){
+                    NS_LOG_INFO("Aggregation Order is correct.");
+                }
+                else{
+                    NS_LOG_INFO("Aggregation Order is incorrect.");
+                }
                 Simulator::Stop (Seconds(Simulator::Now().GetSeconds() + 0.001));
             }
             else{
@@ -186,9 +203,12 @@ namespace ns3 {
             return true;
         }
         if (this->sGroup.size() <= 0)
-            NS_LOG_INFO("IterationNum-"<<iterationNum-uint16_t(0)<< ", Consumer completed in: " << currentTime.GetMilliSeconds() << "ms");
+            NS_LOG_INFO("IterationNum-"<<iterationNum+1-uint16_t(0)<< ", Consumer completed in: " << currentTime.GetMilliSeconds() << "ms");
         else
-            NS_LOG_INFO("IterationNum-"<<iterationNum-uint16_t(0)<< ", Aggregator " << this->thisAddress << " completed in: " << currentTime.GetMilliSeconds() << "ms");
+            NS_LOG_INFO("IterationNum-"<<iterationNum+1-uint16_t(0)<< ", Aggregator " << this->thisAddress << " completed in: " << currentTime.GetMilliSeconds() << "ms");
+        
+        LogComponentDisable("InnetworkAggregationInterface", LOG_LEVEL_ALL);
+
         return false;
     }
 
@@ -240,7 +260,7 @@ namespace ns3 {
             while (!iterQueue.empty()) {
                 // NS_LOG_DEBUG("test....");
                 uint16_t iterNum = iterQueue.front();
-                successIter.insert(iterNum);
+                successIter.push(iterNum);
                 iterQueue.pop();
                 SendResponseVToP (iterChunk[iterNum].vec, iterNum);
                 // clear the iterChunk
@@ -253,10 +273,11 @@ namespace ns3 {
 
             if(this->thisAddress == TraceIPAddress){
                 std::cout << "Print successIter of " <<  TraceIPAddress << std::endl;
-                for (const auto& element : successIter) {
-                    std::cout << element << "-";
-                }
-                std::cout << std::endl;
+                // for (const auto& element : successIter) {
+                //     std::cout << element << "-";
+                // }
+                // std::cout << std::endl;
+                std::cout << successIter << std::endl;
             }
 
 
@@ -311,7 +332,7 @@ namespace ns3 {
         //NS_LOG_INFO("iteration-"<<iterationNum-uint16_t(0));
 
         // Zhuoxu: send ending packet for padding. Otherwise, packet for the last iteration cannot be process because of size(MTU) != size(per quic frame)
-        if (iterationNum == maxIteration - 1){
+        if (iterationNum == maxIteration ){
             std::vector<uint8_t> chunkBuffer = std::vector<uint8_t>(pktlen,0); 
 
             int sentSize = -1;
@@ -578,6 +599,26 @@ namespace ns3 {
             // ns3::Simulator::Schedule(ns3::MilliSeconds(50), &InnetworkAggregationInterface::TraceSingleNodeInfo, this);
             return;
         }        
+    }
+
+    bool InnetworkAggregationInterface::CheckQueueOrder(std::queue<uint16_t> q, uint16_t maxIteration) {
+    std::cout << "In the CheckQueueOrder function: " << std::endl;
+    for (uint16_t i = 0; i < maxIteration; ++i) {
+        if (q.empty() || q.front() != i) {
+            std::cout << "\nExpected: " << i << ", but queue is ";
+            if (q.empty()) {
+                std::cout << "empty.";
+            } else {
+                std::cout << "not empty and front element is " << q.front() << ".";
+            }
+            std::cout << std::endl;
+            return false;
+        }
+        std::cout << q.front() << " ";
+        q.pop();
+    }
+    std::cout << std::endl;
+    return q.empty();
     }
 
 }; /*namespace ns3*/

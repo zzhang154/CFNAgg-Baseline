@@ -3,7 +3,9 @@
 
 #include <cstdint>
 #include <functional>
-#include <unordered_map>
+#include <map>
+#include <queue>
+#include <iostream>
 #include "ns3/object.h"
 #include "ns3/log.h"
 #include "ns3/packet.h"
@@ -22,14 +24,14 @@
 
 #include "ns3/parameter.h"
 #include "ns3/vectorop.h"
-#include <unordered_set>
+#include <set>
 #include "ns3/TCPclient.h"
 #include "ns3/TCPserver.h"
 
 
 // used for datatransfer by nodes
 namespace ns3 {
-    typedef std::unordered_map<std::string, std::vector<uint64_t>> ChildChunkMap; // Zhuoxu: socket name -- chunk unordered_map
+    typedef std::map<std::string, std::vector<uint64_t>> ChildChunkMap; // Zhuoxu: socket name -- chunk map
 
     class InnetworkAggregationInterface : public Object {
             uint8_t aggTreeLevel; // level of nodes in the aggregation tree or topology using the consumer as the root
@@ -41,19 +43,18 @@ namespace ns3 {
             std::ofstream outFile; //save result for server
             Time startTime; // record each start time
 
+
             std::vector<uint64_t> avg; // result
             std::vector<Address> cGroup; // nodes acts as clients with respect to current node
             std::vector<Address> sGroup; // nodes acts as servers with respect to current node
-            // Zhuoxu: what happen if we do not use unordered_map dataset? i.e., use vector instead.
-            std::unordered_map<uint8_t, ReceivedChunk> chunkMap; // chunk counting by chunkNumber and count
-            std::unordered_map<uint16_t, ChildChunkMap> iterChMap;
+            // Zhuoxu: what happen if we do not use map dataset? i.e., use vector instead.
 
-            std::unordered_map <std::string, Ptr<Application>> socketPool;
+            std::map <std::string, Ptr<Application>> socketPool;
             uint8_t currentIndex;
             uint16_t iterationNum;
-            std::unordered_set <uint16_t> successIter;
+            std::queue<uint16_t> successIter;
 
-            std::unordered_map<uint16_t, DataChunk> iterChunk;
+            std::map<uint16_t, DataChunk> iterChunk;
             bool isEnd = false;
             std::string thisAddress;
             int printCount = 0;
@@ -74,7 +75,6 @@ namespace ns3 {
             void SetVSize (uint32_t size);
             //void AvgEnd (uint16_t size, uint16_t iterationNum);
             
-            void ClearChunkMap ();
             void SaveResult (std::vector<uint64_t> &vec );
             void SetOutFile (const std::string fileName);
             void Addr2Str (Address addr, std::string &str);
@@ -87,6 +87,7 @@ namespace ns3 {
             void EnableLoggingComponents();
             void DisableLoggingComponents();
             void TraceSingleNodeInfo();
+            bool CheckQueueOrder(std::queue<uint16_t> q, uint16_t maxIteration);
 
             // Zhuoxu: Todo 
             ns3::Ipv4Address GetIpAddrFromNode (Ptr<Node> node);

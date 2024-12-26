@@ -34,12 +34,11 @@
 #include <fstream>
 #include <queue>
 
-// Zhuoxu: add this in order to use chunkMap
 #include "ns3/parameter.h"
 #include "ns3/vectorop.h"
 // #include "ns3/utils.h"
 #include <string.h>
-#include <unordered_map>
+#include <map>
 
 namespace ns3 {
 /**
@@ -124,7 +123,7 @@ public:
   void CheckChComp(uint16_t iterationNum); 
   void PrintBuffInfo_8(uint8_t* buffer, uint32_t packetSize);
   void PrintState();
-  void SetIterChunkPtr(std::unordered_map<uint16_t, DataChunk>* iterChunk);
+  void SetIterChunkPtr(std::map<uint16_t, DataChunk>* iterChunk);
   int CheckMemory();
   void CallHandleRead();
   void Addr2Str (Address addr, std::string &str);
@@ -183,11 +182,11 @@ private:
   std::queue<uint16_t> compQueue;
 
   // Zhuoxu: add data structure chunkmap here to store data of all the child individully.
-  std::unordered_map<uint16_t, ReceivedChunk> iterChunkMap;
+  std::map<uint16_t, ReceivedChunk> iterChunkMap;
   // Zhuoxu: create a buffer to store the first and second received data.
-  std::unordered_map<std::string, uint16_t> m_iterationMap;
-  std::unordered_map<std::string, uint8_t*> m_bufferMap;
-  std::unordered_map<std::string, uint32_t> m_bufferPtrMap;
+  std::map<std::string, uint16_t> m_iterationMap;
+  std::map<std::string, uint8_t*> m_bufferMap;
+  std::map<std::string, uint32_t> m_bufferPtrMap;
   uint8_t* m_buffer = nullptr;
   uint32_t m_bufferPtr = 0;
   uint32_t m_pktPtr = 0;
@@ -196,7 +195,7 @@ private:
   std::string ipAddressStr;
   uint16_t iterThresh = ITERTHRESH;
 
-  std::unordered_map<uint16_t, DataChunk>* iterChunkPtr;
+  std::map<uint16_t, DataChunk>* iterChunkPtr;
   std::string LocalAddressStr;
 };
 
