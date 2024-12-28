@@ -351,7 +351,7 @@ int
 main (int argc, char *argv[])
 {   
     CommandLine cmd;
-    uint16_t itr = 3000; // has some problem when the iteration number reach 60.
+    uint16_t itr = 400; // has some problem when the iteration number reach 60.
     uint32_t vsize = 200;
     bool topotype = 1;
     cmd.AddValue("itr", "max iteration consumer performed", itr);
@@ -377,7 +377,7 @@ main (int argc, char *argv[])
     LogLevel log_precision = LOG_LEVEL_LOGIC;
     Time::SetResolution (Time::NS);
     // Disable all log levels initially
-    LogComponentDisableAll(LOG_LEVEL_ALL);
+    // LogComponentDisableAll(LOG_LEVEL_ALL);
     
 
     LogComponentEnableAll (LOG_PREFIX_TIME);
@@ -409,9 +409,10 @@ main (int argc, char *argv[])
     // LogComponentEnable("Packet", LOG_LEVEL_DEBUG);
     
     //Ensure that LOG_LEVEL_FUNCTION and other levels are not enabled
-    LogComponentDisable("Consumer", LOG_LEVEL_FUNCTION);
-    LogComponentDisable("Aggregator", LOG_LEVEL_FUNCTION);
-    LogComponentDisable("Producer", LOG_LEVEL_FUNCTION);
+    // LogComponentDisable("Consumer", LOG_LEVEL_FUNCTION);
+    // LogComponentDisable("Aggregator", LOG_LEVEL_FUNCTION);
+    // LogComponentDisable("Producer", LOG_LEVEL_FUNCTION);
+
     // LogComponentDisable("InnetworkAggregationInterface", LOG_LEVEL_FUNCTION);
 
     // Schedule the logging to be enabled at 3.75 seconds
@@ -443,7 +444,7 @@ main (int argc, char *argv[])
     Packet::EnablePrinting ();
     Packet::EnableChecking ();
     // run
-    Simulator::Stop (Seconds (5));
+    Simulator::Stop (Seconds (10));
     Simulator::Run();
     
     //end

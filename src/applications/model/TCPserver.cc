@@ -272,8 +272,8 @@ TCPserver::CheckChComp(uint16_t iterNum){
   if((*iterChunkPtr)[iterNum].chAddr.size() == cGroupSize){
     NS_LOG_DEBUG( this << " All children have collected the data for iteration " << iterNum - uint16_t(0) << " in the m_bindIp: " << ipAddressStr);
 
-    // Zhuoxu: see whether iteration 2862, 2863 has ever completed before.
-    std::cout << "All children have collected the data for iteration " << iterNum - uint16_t(0) << " in server IP: " << this->LocalAddressStr << std::endl;
+    // Zhuoxu: we block this at the moment.
+    // std::cout << "All children have collected the data for iteration " << iterNum - uint16_t(0) << " in server IP: " << this->LocalAddressStr << std::endl;
 
     for (uint16_t i = 0; i < iterChunkMap[iterNum].vec.size(); ++i) {
       (*iterChunkPtr)[iterNum].vec[i] = static_cast<uint16_t>((*iterChunkPtr)[iterNum].vec[i] / uint16_t(cGroupSize));
@@ -296,7 +296,7 @@ TCPserver::CheckChComp(uint16_t iterNum){
     NS_LOG_DEBUG("compQueue: " << ss.str());
     if(LocalAddressStr == TraceIPAddress)
     {
-        std::cout << "compQueue: " << ss.str() << std::endl;
+        std::cout << "compQueue for one test node--" << TraceIPAddress << ' ' << ss.str() << std::endl;
     }
   }
 }
@@ -444,15 +444,17 @@ TCPserver::HandleRead (Ptr<Socket> socket) {
       std::vector<uint64_t> vecTmp (chunkSize, 0);
       uint32_t copyedSize =  packet->CopyData(packetContent,packetSize);
       NS_LOG_DEBUG( this << " Copy data size: " << copyedSize);
-      if (ipAddressStr == "10.1.1.1"){
-        NS_LOG_DEBUG("Print data from " << ipAddressStr << " for iteration- " << m_iteration <<" group");
-        for(int i =0;i<copyedSize;i++){
-          std::cout << static_cast<int>(packetContent[i]) << '|';
-          if(i==copyedSize-1)
-            std::cout << "Ending..." << std::endl;
-        }
-      std::cout;
-      }
+
+      // Zhuoxu: now, we needn't show this anymore. We can cancel the comment once we want to debug received data in the application layer.
+
+      // if (ipAddressStr == "10.1.1.1"){
+      //   NS_LOG_DEBUG("Print data from " << ipAddressStr << " for iteration- " << m_iteration <<" group");
+      //   for(int i =0;i<copyedSize;i++){
+      //     std::cout << static_cast<int>(packetContent[i]) << '|';
+      //     if(i==copyedSize-1)
+      //       std::cout << "Ending..." << std::endl;
+      //   }
+      // }
       // general case: pktContent[i-1], pktContent[i], pktContent[i+1]; So we should consider the general case. In worse case, we need to consider the storage of 3 packets.
 
       while(m_pktPtr < packetSize){

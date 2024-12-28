@@ -152,7 +152,7 @@ namespace ns3 {
 
         NS_LOG_DEBUG("Connection Setting Finishing in: "<< Simulator::Now().GetMilliSeconds() << "ms\n");
 
-        std::cout << "-------Node " << this->thisAddress << " Connection Setting Finishing in: "<< Simulator::Now().GetMilliSeconds() << "ms-----------\n\n";
+        std::cout << "-------Node " << this->thisAddress << " Connection Setting Finishing in: " << Simulator::Now().GetMilliSeconds() << "ms-----------\n\n";
     }
 
     void 
@@ -164,7 +164,7 @@ namespace ns3 {
         }
     }
 
-
+    // Zhuoxu: This function is really important! We should be careful in the quic!
     void 
     InnetworkAggregationInterface::TriggerHandleRead () {
         for (auto item : socketPool) {
@@ -188,7 +188,7 @@ namespace ns3 {
         //check if all the iteration has been collected
         if (successIter.size() == maxIteration - padIter) {
             if (this->sGroup.size() <= 0) {
-                NS_LOG_INFO("Consumer All iteration-"<< maxIteration + 1 << " completed in: " << currentTime.GetMilliSeconds() - 2000<< "ms");
+                NS_LOG_INFO("Consumer All iteration-"<< maxIteration << " completed in: " << currentTime.GetMilliSeconds() - 2000<< "ms");
                 if(CheckQueueOrder(this->successIter, maxIteration)){
                     NS_LOG_INFO("Aggregation Order is correct.");
                 }
@@ -277,6 +277,8 @@ namespace ns3 {
                 //     std::cout << element << "-";
                 // }
                 // std::cout << std::endl;
+
+                
                 std::cout << successIter << std::endl;
             }
 
@@ -285,8 +287,10 @@ namespace ns3 {
             TriggerHandleRead ();
         }
         NS_LOG_DEBUG("fromStr: " << fromStr << ", maxIteration " << maxIteration);
-        if(!isEnd)
-            ns3::Simulator::Schedule(ns3::MilliSeconds(10), &InnetworkAggregationInterface::ReceiveDataFrom, this, fromStr);
+        if(!isEnd){
+            // test if the interval of the millisecond will affect the process?
+            ns3::Simulator::Schedule(ns3::MilliSeconds(4), &InnetworkAggregationInterface::ReceiveDataFrom, this, fromStr);
+        }
     }
 
     void 
@@ -361,12 +365,13 @@ namespace ns3 {
             NS_LOG_DEBUG(this << " client->Send()--sentSize success: " << sentSize << " at iteration "<<iterationNum-uint16_t(0));
             if(thisAddress == TraceIPAddress)
             {
-                LogComponentEnable("InnetworkAggregationInterface", LOG_LEVEL_ALL);
+                // LogComponentEnable("InnetworkAggregationInterface", LOG_LEVEL_ALL);
                 NS_LOG_DEBUG( TraceIPAddress << " client->SendPacket()--sentSize success: " << sentSize << " at iteration "<<iterationNum-uint16_t(0) );
-                TraceSingleNodeInfo();
-                LogComponentDisable("InnetworkAggregationInterface", LOG_LEVEL_ALL);
+                // TraceSingleNodeInfo();
+                // LogComponentDisable("InnetworkAggregationInterface", LOG_LEVEL_ALL);
             }
-            PrintBufferSummary(chunkBuffer);
+            // Zhuoxu: block this currently. Since this will output unneccssary info.
+            // PrintBufferSummary(chunkBuffer);
             if (this->cGroup.size() == 0)
                 ProduceVToP (iterationNum + 1);
 
@@ -377,27 +382,28 @@ namespace ns3 {
             {
                 // LogComponentEnable("InnetworkAggregationInterface", LOG_LEVEL_ALL);
                 std::cout << " client->Send()--sentSize failed: " << sentSize << " at iteration "<<iterationNum-uint16_t(0);
-                if (static_cast<int>(iterationNum) == 2864){
-                    std::cout << " print info for iteration 2864 " << std::endl;
-                    // 使用当前时间作为随机数生成器的种子
-                    std::srand(static_cast<unsigned int>(std::time(nullptr)));
+                // if (static_cast<int>(iterationNum) == 2864){
+                //     std::cout << " print info for iteration 2864 " << std::endl;
+                //     // 使用当前时间作为随机数生成器的种子
+                //     std::srand(static_cast<unsigned int>(std::time(nullptr)));
 
-                    printCount++;
-                    if(printCount % 40 == 0){
-                        std::cout << "printCount: " << printCount << std::endl;
-                        TraceSingleNodeInfo();
-                    }
-                    // // 生成0到10之间的随机整数
-                    // int random_number = std::rand() % 10;
-                    // if(random_number == 1){
-                    //     std::cout << "random_number: " << random_number << std::endl;
-                    //     TraceSingleNodeInfo();
-                    // }
-                }
+                //     printCount++;
+                //     if(printCount % 40 == 0){
+                //         std::cout << "printCount: " << printCount << std::endl;
+                //         TraceSingleNodeInfo();
+                //     }
+                //     // // 生成0到10之间的随机整数
+                //     // int random_number = std::rand() % 10;
+                //     // if(random_number == 1){
+                //     //     std::cout << "random_number: " << random_number << std::endl;
+                //     //     TraceSingleNodeInfo();
+                //     // }
+                // }
                 // LogComponentDisable("InnetworkAggregationInterface", LOG_LEVEL_ALL);
 
-                client->GetSocket()->GetObject<TcpSocketBase>()->GetTxBuffer()->PrintTxBuffer();
-                std::cout << *(client->GetSocket()->GetObject<TcpSocketBase>()->GetTxBuffer()) << std::endl;
+                // Zhuoxu: we don't print the TxBuffer currently, since it is right.
+                // client->GetSocket()->GetObject<TcpSocketBase>()->GetTxBuffer()->PrintTxBuffer();
+                // std::cout << *(client->GetSocket()->GetObject<TcpSocketBase>()->GetTxBuffer()) << std::endl;
                 
                 // std::cout << "10.2.4.2 client->Send()--sentSize failed: " << sentSize << " at iteration "<<iterationNum-uint16_t(0) << std::endl;
                 // TraceSingleNodeInfo();
@@ -436,6 +442,10 @@ namespace ns3 {
             LogComponentDisable("InnetworkAggregationInterface", LOG_LEVEL_ALL);
         }
     }
+    
+
+    // Zhuoxu: why this function will cause output error??? Try to debug it.
+    // Block this currently, since this will output unneccssary info at the moment.
     
     void 
     InnetworkAggregationInterface::PrintBufferSummary(std::vector<uint8_t>& chunkBuffer){
@@ -485,7 +495,7 @@ namespace ns3 {
             Addr2Str (this->sGroup[i], toStr);
             std::vector<uint64_t> initData(chunkSize, static_cast<int>(iterationNum));
             SendResponseVTo (toStr, initData, iterationNum);
-                // std::cout<<"iterationNum:"<<static_cast<int>(j)<<std::endl;
+            // std::cout<<"iterationNum:"<<static_cast<int>(j)<<std::endl;
             }
     }
 
