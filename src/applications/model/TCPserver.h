@@ -116,7 +116,7 @@ public:
 
   // Zhuoxu: relative function w.r.t the interface.cc
   uint16_t GetCompIterNum();
-  std::queue<uint16_t> GetCompIterQueue();
+  std::queue<uint16_t>* GetCompIterQueue();
   void ClearCompQueue();
   void ReleaseMap(uint16_t iterationNum);
   void SetcGroupSize(uint16_t size);

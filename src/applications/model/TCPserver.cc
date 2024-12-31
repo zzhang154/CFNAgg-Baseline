@@ -149,9 +149,9 @@ TCPserver::GetCompIterNum(){
 }
 
 // Zhuoxu: need to return the reference of the unordered_map. Otherwise, it will cause the problem of copying the large.
-std::queue<uint16_t>
-TCPserver::GetCompIterQueue(){
-  return compQueue;
+std::queue<uint16_t>*
+TCPserver::GetCompIterQueue() {
+  return &compQueue;
 }
 
 void TCPserver::ClearCompQueue() {

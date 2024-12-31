@@ -1032,17 +1032,26 @@ operator<<(std::ostream& os, const Packet& packet)
 
 std::string
 Packet::PrintPacket() {
-    // std::cout << "in the PrintToStrPacketBytes function ..." << std::endl;
     uint32_t packetSize = this->GetSize();
+    NS_LOG_DEBUG("Packet size: " << packetSize);
+
+    if (packetSize == 0) {
+        return "Packet is empty.";
+    }
+
     uint8_t* buffer = new uint8_t[packetSize];
     this->CopyData(buffer, packetSize);
 
     std::ostringstream oss;
     oss << "Packet bytes: ";
-    for (uint32_t i = 0; i < 30; ++i) {
+    
+    for (uint32_t i = 0; i < packetSize; ++i) {
         oss << std::hex << std::setw(2) << std::setfill('0') << static_cast<int>(buffer[i]) << " ";
     }
-    delete[] buffer;
+
+    delete[] buffer; // Ensure memory is freed
+    buffer = nullptr; // Set pointer to nullptr after deletion to avoid dangling pointer
+
     return oss.str();
 }
 

@@ -69,17 +69,17 @@ namespace ns3 {
             void CreateSocketPool (std::string cc_name);
             void ReceiveDataFrom (std::string fromStr);
             void ReceiveDataFromAll ();
-            void SendResponseVToP (std::vector<uint64_t> &vec , uint16_t iterationNum);
+            int SendResponseVToP (std::vector<uint64_t> &vec , uint16_t iterationNum);
             void ProduceVToP (uint16_t iterationNum);
-            void SendResponseVTo (std::string toStr, std::vector<uint64_t> &vec, uint16_t iterationNum);
+            int SendResponseVTo (std::string toStr, std::vector<uint64_t> &vec, uint16_t iterationNum);
             void SetVSize (uint32_t size);
             //void AvgEnd (uint16_t size, uint16_t iterationNum);
             
             void SaveResult (std::vector<uint64_t> &vec );
             void SetOutFile (const std::string fileName);
             void Addr2Str (Address addr, std::string &str);
-            void SendPacket (std::string toStr, uint16_t iterationNum, std::vector<uint8_t> &serializeVec);
-            void SendEndPacket (std::string toStr, std::vector<uint8_t> &chunkBuffer);
+            int SendPacket (std::string toStr, uint16_t iterationNum, std::vector<uint8_t> &serializeVec);
+            int SendEndPacket (std::string toStr, std::vector<uint8_t> &chunkBuffer);
             bool PrintCompInfo (uint16_t iterationNum);
             void PrintBufferSummary(std::vector<uint8_t>& chunkBuffer);
             void TriggerHandleRead();

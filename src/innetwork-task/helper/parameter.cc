@@ -19,7 +19,7 @@ namespace ns3 {
     //uint16_t BASESIZE=2000; //the num of uint8_t per one chunk
     uint16_t ITERTHRESH = 30;
     int padIter = 0;
-    std::string TraceIPAddress = "10.2.11.2";
+    std::string TraceIPAddress = "10.2.8.2";
 
 
      void UpdatePktlen() {

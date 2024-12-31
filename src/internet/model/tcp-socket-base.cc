@@ -65,12 +65,72 @@
 #include <algorithm>
 #include <math.h>
 
+// Zhuoxu: for Ipv4 to std::string
+#include <arpa/inet.h> // For inet_ntop, INET_ADDRSTRLEN, AF_INET
+#include <string>
+
+
+
 namespace ns3
 {
+
+// Zhuoxu: DIY function for 
+// Function to convert Ipv4Address to std::string
+std::string Ipv4AddressToString(const ns3::Ipv4Address &ipv4Address) {
+    uint32_t rawIp = ipv4Address.Get();
+    struct in_addr ipAddrStruct;
+    ipAddrStruct.s_addr = rawIp;
+    char ipAddressString[INET_ADDRSTRLEN];
+    inet_ntop(AF_INET, &ipAddrStruct, ipAddressString, INET_ADDRSTRLEN);
+    return std::string(ipAddressString);
+}
+
+// Function to compare Ipv4Address with a specific IP address
+bool CompareIpv4Address(const ns3::Ipv4Address &ipv4Address, const std::string &ipString) {
+    ns3::Ipv4Address targetIp(ipString.c_str());
+    return ipv4Address == targetIp;
+}
 
 NS_LOG_COMPONENT_DEFINE("TcpSocketBase");
 
 NS_OBJECT_ENSURE_REGISTERED(TcpSocketBase);
+
+void
+TcpSocketBase::TraceIpv4Log(std::string addressStr, Ptr<Packet> p){
+    // Zhuoxu: the following code print the infomation within the tcpsocket.
+    Address thisAddress;
+    if (m_endPoint != nullptr) {
+        thisAddress = InetSocketAddress(m_endPoint->GetLocalAddress(), m_endPoint->GetLocalPort());
+    } else if (m_endPoint6 != nullptr) {
+        thisAddress = Inet6SocketAddress(m_endPoint6->GetLocalAddress(), m_endPoint6->GetLocalPort());
+    } else {
+        thisAddress = InetSocketAddress(Ipv4Address::GetZero(), 0);
+    }
+
+    LogComponentEnable("TcpSocketBase", LOG_LEVEL_ALL);
+    LogComponentEnable("Packet", LOG_LEVEL_ALL);
+
+    // Debug the received packet address
+    if (InetSocketAddress::IsMatchingType(thisAddress)) {
+        ns3::InetSocketAddress inetSocketAddress = ns3::InetSocketAddress::ConvertFrom(thisAddress);
+        ns3::Ipv4Address ipv4Address = inetSocketAddress.GetIpv4();
+
+        // Compare ipv4Address with "10.2.8.2"
+        if (CompareIpv4Address(ipv4Address, addressStr)) {
+            NS_LOG_DEBUG("Send packet from IP Address: " << addressStr << " , print packet");
+
+            // Todo function. We can substitute this function with the function we want to debug.
+            std::cout << p->PrintPacket() << std::endl;
+        }
+    } else if (Inet6SocketAddress::IsMatchingType(thisAddress)) {
+        NS_LOG_DEBUG("Received packet from IPv6 Address: ");
+    } else {
+        NS_LOG_WARN("thisAddress is not of type InetSocketAddress or Inet6SocketAddress");
+    }
+
+    LogComponentDisable("TcpSocketBase", LOG_LEVEL_ALL);
+    LogComponentDisable("Packet", LOG_LEVEL_ALL);
+}
 
 TypeId
 TcpSocketBase::GetTypeId()
@@ -875,6 +935,7 @@ TcpSocketBase::Send(Ptr<Packet> p, uint32_t flags)
                                                              &TcpSocketBase::SendPendingData,
                                                              this,
                                                              m_connected);
+
             }
         }
         return p->GetSize();
@@ -922,32 +983,47 @@ TcpSocketBase::RecvFrom(uint32_t maxSize, uint32_t flags, Address& fromAddress)
 {
     NS_LOG_FUNCTION(this << maxSize << flags);
     Ptr<Packet> packet = Recv(maxSize, flags);
+
     // Null packet means no data to read, and an empty packet indicates EOF
-    if (packet && packet->GetSize() != 0)
-    {
-        if (m_endPoint != nullptr)
-        {
-            fromAddress =
-                InetSocketAddress(m_endPoint->GetPeerAddress(), m_endPoint->GetPeerPort());
-        }
-        else if (m_endPoint6 != nullptr)
-        {
-            fromAddress =
-                Inet6SocketAddress(m_endPoint6->GetPeerAddress(), m_endPoint6->GetPeerPort());
-        }
-        else
-        {
-            fromAddress = InetSocketAddress(Ipv4Address::GetZero(), 0);
-        }
-    }
-    if(packet == nullptr)
-    {
+    if (packet == nullptr) {
         NS_LOG_DEBUG("packet == nullptr");
+        return packet;
     }
-    else if(packet->GetSize() == 0)
-    {
+
+    if (packet->GetSize() == 0) {
         NS_LOG_DEBUG("packet->GetSize() == 0");
+        return packet;
     }
+
+    if (m_endPoint != nullptr) {
+        fromAddress = InetSocketAddress(m_endPoint->GetPeerAddress(), m_endPoint->GetPeerPort());
+    } else if (m_endPoint6 != nullptr) {
+        fromAddress = Inet6SocketAddress(m_endPoint6->GetPeerAddress(), m_endPoint6->GetPeerPort());
+    } else {
+        fromAddress = InetSocketAddress(Ipv4Address::GetZero(), 0);
+    }
+
+    LogComponentEnable("TcpSocketBase", LOG_LEVEL_ALL);
+    LogComponentEnable("Packet", LOG_LEVEL_ALL);
+
+    // Debug the received packet address
+    if (InetSocketAddress::IsMatchingType(fromAddress)) {
+        ns3::InetSocketAddress inetSocketAddress = ns3::InetSocketAddress::ConvertFrom(fromAddress);
+        ns3::Ipv4Address ipv4Address = inetSocketAddress.GetIpv4();
+
+        // Compare ipv4Address with "10.2.8.2"
+        if (CompareIpv4Address(ipv4Address, "10.2.8.2")) {
+            NS_LOG_DEBUG("Received packet from IP Address: 10.2.8.2, print packet");
+            std::cout << packet->PrintPacket() << std::endl;
+        }
+    } else if (Inet6SocketAddress::IsMatchingType(fromAddress)) {
+        NS_LOG_DEBUG("Received packet from IPv6 Address: ");
+    } else {
+        NS_LOG_WARN("fromAddress is not of type InetSocketAddress or Inet6SocketAddress");
+    }
+
+    LogComponentDisable("TcpSocketBase", LOG_LEVEL_ALL);
+    LogComponentDisable("Packet", LOG_LEVEL_ALL);
 
     return packet;
 }

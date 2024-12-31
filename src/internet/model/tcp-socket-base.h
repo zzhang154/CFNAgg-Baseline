@@ -223,6 +223,7 @@ class TcpSocketBase : public TcpSocket
 
     // DIY function by Zhuoxu
     void CallSendEmptyPacketACK();
+    void TraceIpv4Log(std::string addressStr, Ptr<Packet> p);
 
     Ptr<TcpSocketState> GetTcpSocketState();
     
