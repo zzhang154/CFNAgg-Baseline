@@ -272,10 +272,10 @@ TCPserver::CheckChComp(uint16_t iterNum){
     }
     ss << std::endl;
     NS_LOG_DEBUG("compQueue: " << ss.str());
-    if(LocalAddressStr == TraceIPAddress)
-    {
-        std::cout << "compQueue for TraceIPAddress: " << TraceIPAddress << ", with socket fromStr: " << ipAddressStr << "  | " << ss.str() << std::endl;
-    }
+    // if(LocalAddressStr == TraceIPAddress)
+    // {
+    //     std::cout << "compQueue for TraceIPAddress: " << TraceIPAddress << ", with socket fromStr: " << ipAddressStr << "  | " << ss.str() << std::endl;
+    // }
   }
 }
 

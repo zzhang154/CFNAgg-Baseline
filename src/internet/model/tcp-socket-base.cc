@@ -1012,10 +1012,10 @@ TcpSocketBase::RecvFrom(uint32_t maxSize, uint32_t flags, Address& fromAddress)
         ns3::Ipv4Address ipv4Address = inetSocketAddress.GetIpv4();
 
         // Compare ipv4Address with "10.2.8.2"
-        if (CompareIpv4Address(ipv4Address, "10.2.8.2")) {
-            NS_LOG_DEBUG("Received packet from IP Address: 10.2.8.2, print packet");
-            std::cout << packet->PrintPacket() << std::endl;
-        }
+        // if (CompareIpv4Address(ipv4Address, "10.2.8.2")) {
+        //     NS_LOG_DEBUG("Received packet from IP Address: 10.2.8.2, print packet");
+        //     std::cout << packet->PrintPacket() << std::endl;
+        // }
     } else if (Inet6SocketAddress::IsMatchingType(fromAddress)) {
         NS_LOG_DEBUG("Received packet from IPv6 Address: ");
     } else {

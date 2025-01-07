@@ -190,7 +190,7 @@ namespace ns3 {
     bool
     InnetworkAggregationInterface::PrintCompInfo(uint16_t iterationNum){
 
-        LogComponentEnable("InnetworkAggregationInterface", LOG_LEVEL_ALL);
+        LogComponentEnable("InnetworkAggregationInterface", LOG_LEVEL_INFO);
 
         Time currentTime = Simulator::Now();
         //check if all the iteration has been collected
@@ -400,7 +400,7 @@ namespace ns3 {
             NS_LOG_DEBUG(this << " client->Send()--sentSize success: " << sentSize << " at iteration "<<iterationNum-uint16_t(0));
             if(thisAddress == TraceIPAddress)
             {
-                LogComponentEnable("InnetworkAggregationInterface", LOG_LEVEL_ALL);
+                LogComponentEnable("InnetworkAggregationInterface", LOG_LEVEL_INFO);
                 NS_LOG_DEBUG( TraceIPAddress << " client->SendPacket()--sentSize success: " << sentSize << " at iteration "<<iterationNum-uint16_t(0) );
                 // TraceSingleNodeInfo();
                 //ZHUOXU:LogComponentDisable("InnetworkAggregationInterface", LOG_LEVEL_ALL);
@@ -424,7 +424,7 @@ namespace ns3 {
             // Zhuoxu-bugfix: Producer behavior
             if (this->cGroup.size() == 0)
                 ns3::Simulator::Schedule(ns3::MilliSeconds(1), &InnetworkAggregationInterface::SendPacket, this, toStr, iterationNum, chunkBuffer, fromStr);
-            // Zhuoxu-bugfix: Aggregator first time send
+            // Zhuoxu-bugfix: Aggregator first time send, but at the same time block the send request for the other children.
             else if (this->cGroup.size() > 0 && this->sGroup.size() > 0 && sendSchedSet.find(iterationNum) == sendSchedSet.end())
             {
                 ns3::Simulator::Schedule(ns3::MilliSeconds(1), &InnetworkAggregationInterface::SendPacket, this, toStr, iterationNum, chunkBuffer, fromStr);
@@ -460,7 +460,7 @@ namespace ns3 {
 
         // Zhuoxu: only check buffer for TraceIPAddress
         if(thisAddress == TraceIPAddress){
-            LogComponentEnable("InnetworkAggregationInterface", LOG_LEVEL_ALL);
+            LogComponentEnable("InnetworkAggregationInterface", LOG_LEVEL_INFO);
             if(sentSize > 0){
                 NS_LOG_DEBUG( this << ' ' << TraceIPAddress << " client->Send() ending packet success --sentSize: " << sentSize << " at iteration " << iterationNum-uint16_t(0));
                 PrintBufferSummary(chunkBuffer);
@@ -691,6 +691,7 @@ namespace ns3 {
         NS_LOG_DEBUG("fromStr: " << fromStr << " current successIter.size(): " << successIter.size());
         NS_LOG_DEBUG("isEnd " << isEnd);
 
+        /*
         if(this->thisAddress == TraceIPAddress){
             std::cout << "Print successIter of " <<  TraceIPAddress << std::endl;
             // for (const auto& element : successIter) {
@@ -699,6 +700,7 @@ namespace ns3 {
             // std::cout << std::endl;
             std::cout << successIter << std::endl;
         }
+        */
         NS_LOG_DEBUG("fromStr: " << fromStr << ", current " << successIter.size());
         // Call handleRead function after the memory has been released. Now we call handleread when each data is processed.
         TriggerHandleRead ();
