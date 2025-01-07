@@ -160,3 +160,539 @@ unwanted output:
 
 
 Todo: 修改一下iteration的轮次，当前5000轮次的时候，ReceiveData间隔为4ms的时候就会出现问题，5ms的时候就不会出现问题。尝试一下
+
+
+12.28:
+
++4.700000000s 76 InnetworkAggregationInterface:PrintAllInfo(): Print Application Table information 
++4.700000000s 76 TCPserver:PrintTable(): 
+iteration: 312  collected child: 
+10.2.1.2----10.2.7.2----10.2.6.2----10.2.5.2----
+iteration: 313  collected child: 
+10.2.1.2----10.2.7.2----10.2.6.2----10.2.5.2----
+iteration: 314  collected child: 
+10.2.1.2----10.2.7.2----10.2.6.2----10.2.5.2----
+iteration: 315  collected child: 
+10.2.1.2----10.2.7.2----10.2.6.2----10.2.5.2----
+iteration: 316  collected child: 
+10.2.1.2----10.2.7.2----10.2.6.2----10.2.5.2----
+iteration: 317  collected child: 
+10.2.1.2----10.2.7.2----10.2.6.2----10.2.5.2----
+iteration: 318  collected child: 
+10.2.1.2----10.2.7.2----10.2.6.2----10.2.5.2----
+iteration: 319  collected child: 
+10.2.1.2----10.2.7.2----10.2.6.2----10.2.5.2----
+iteration: 320  collected child: 
+10.2.1.2----10.2.7.2----10.2.6.2----10.2.5.2----
+iteration: 321  collected child: 
+10.2.1.2----10.2.7.2----10.2.6.2----10.2.5.2----
+iteration: 322  collected child: 
+10.2.1.2----10.2.7.2----10.2.6.2----10.2.5.2----
+iteration: 323  collected child: 
+10.2.1.2----10.2.7.2----10.2.6.2----10.2.5.2----
+iteration: 324  collected child: 
+10.2.1.2----10.2.7.2----10.2.6.2----10.2.5.2----
+iteration: 325  collected child: 
+10.2.1.2----10.2.7.2----10.2.6.2----10.2.5.2----
+iteration: 326  collected child: 
+10.2.1.2----10.2.7.2----10.2.6.2----10.2.5.2----
+iteration: 327  collected child: 
+10.2.1.2----10.2.7.2----10.2.6.2----10.2.5.2----
+iteration: 328  collected child: 
+10.2.1.2----10.2.7.2----10.2.6.2----10.2.5.2----
+iteration: 329  collected child: 
+10.2.1.2----10.2.7.2----10.2.6.2----10.2.5.2----
+iteration: 330  collected child: 
+10.2.1.2----10.2.7.2----10.2.6.2----10.2.5.2----
+iteration: 331  collected child: 
+10.2.1.2----10.2.7.2----10.2.6.2----10.2.5.2----
+iteration: 332  collected child: 
+10.2.1.2----10.2.7.2----10.2.6.2----10.2.5.2----
+iteration: 333  collected child: 
+10.2.1.2----10.2.7.2----10.2.6.2----10.2.5.2----
+iteration: 334  collected child: 
+10.2.1.2----10.2.7.2----10.2.6.2----10.2.5.2----
+iteration: 335  collected child: 
+10.2.1.2----10.2.7.2----10.2.6.2----10.2.5.2----
+iteration: 336  collected child: 
+10.2.1.2----10.2.7.2----10.2.6.2----10.2.5.2----
+iteration: 337  collected child: 
+10.2.1.2----10.2.7.2----10.2.6.2----10.2.5.2----
+iteration: 338  collected child: 
+10.2.1.2----10.2.7.2----10.2.6.2----10.2.5.2----
+iteration: 339  collected child: 
+10.2.1.2----10.2.7.2----10.2.6.2----10.2.5.2----
+iteration: 340  collected child: 
+10.2.1.2----10.2.7.2----10.2.6.2----10.2.5.2----
+iteration: 341  collected child: 
+10.2.1.2----10.2.7.2----10.2.6.2----10.2.5.2----
+iteration: 355  collected child: 
+10.2.8.2----
+iteration: 356  collected child: 
+10.2.8.2----
+iteration: 357  collected child: 
+10.2.8.2----
+iteration: 358  collected child: 
+10.2.8.2----
+iteration: 359  collected child: 
+10.2.8.2----
+iteration: 360  collected child: 
+10.2.8.2----
+iteration: 361  collected child: 
+10.2.8.2----
+iteration: 362  collected child: 
+10.2.8.2----
+iteration: 363  collected child: 
+10.2.8.2----
+iteration: 364  collected child: 
+10.2.8.2----
+iteration: 365  collected child: 
+10.2.8.2----
+iteration: 366  collected child: 
+10.2.8.2----
+iteration: 367  collected child: 
+10.2.8.2----
+iteration: 368  collected child: 
+10.2.8.2----
+iteration: 369  collected child: 
+10.2.8.2----
+iteration: 370  collected child: 
+10.2.8.2----
+iteration: 371  collected child: 
+10.2.8.2----
+iteration: 372  collected child: 
+10.2.8.2----
+iteration: 373  collected child: 
+10.2.8.2----
+iteration: 374  collected child: 
+10.2.8.2----
+iteration: 375  collected child: 
+10.2.8.2----
+iteration: 376  collected child: 
+10.2.8.2----
+iteration: 377  collected child: 
+10.2.8.2----
+iteration: 378  collected child: 
+10.2.8.2----
+iteration: 379  collected child: 
+10.2.8.2----
+iteration: 380  collected child: 
+10.2.8.2----
+iteration: 381  collected child: 
+10.2.8.2----
+iteration: 382  collected child: 
+10.2.8.2----
+iteration: 383  collected child: 
+10.2.8.2----
+iteration: 384  collected child: 
+10.2.8.2----
+
+10.2.8.2的数据发生了乱序。
+
++4.700000000s 72 InnetworkAggregationInterface:PrintAllInfo(): 0x55b7c22f9ce0 In PrintAllInfo. Local ip: 10.2.8.2
++4.700000000s 72 InnetworkAggregationInterface:PrintAllInfo(): Print TxBuffer for Peer ip: 10.2.12.2
++4.700000000s 72 InnetworkAggregationInterface:PrintAllInfo(): Print cwnd: 54740
++4.700000000s 72 TcpTxBuffer:PrintTxBuffer(): m_sentList is empty
++4.700000000s 72 TcpTxBuffer:PrintTxBuffer(): m_appList is empty
++4.700000000s 72 TcpTxBuffer:PrintTxBuffer(): 
++4.700000000s 72 InnetworkAggregationInterface:PrintAllInfo(): Print RxBuffer for Peer ip: 10.1.10.1
++4.700000000s 72 InnetworkAggregationInterface:PrintAllInfo(): +4.700000000s 72 TcpRxBuffer:PrintRxBuffer(): 0x55b7c2479d30 RxBuffer: nextRxSeq=644001 size=0 availBytes=0
++4.700000000s 72 TcpRxBuffer:PrintRxBuffer(): RxBuffer is empty
+
++4.700000000s 72 InnetworkAggregationInterface:PrintAllInfo(): Print RxBuffer for Peer ip: 10.1.6.1
++4.700000000s 72 InnetworkAggregationInterface:PrintAllInfo(): +4.700000000s 72 TcpRxBuffer:PrintRxBuffer(): 0x55b7c246f740 RxBuffer: nextRxSeq=644001 size=0 availBytes=0
++4.700000000s 72 TcpRxBuffer:PrintRxBuffer(): RxBuffer is empty
+
++4.700000000s 72 InnetworkAggregationInterface:PrintAllInfo(): Print RxBuffer for Peer ip: 10.1.7.1
++4.700000000s 72 InnetworkAggregationInterface:PrintAllInfo(): +4.700000000s 72 TcpRxBuffer:PrintRxBuffer(): 0x55b7c24720e0 RxBuffer: nextRxSeq=644001 size=0 availBytes=0
++4.700000000s 72 TcpRxBuffer:PrintRxBuffer(): RxBuffer is empty
+
++4.700000000s 72 InnetworkAggregationInterface:PrintAllInfo(): Print RxBuffer for Peer ip: 10.1.8.1
++4.700000000s 72 InnetworkAggregationInterface:PrintAllInfo(): +4.700000000s 72 TcpRxBuffer:PrintRxBuffer(): 0x55b7c2474a50 RxBuffer: nextRxSeq=644001 size=0 availBytes=0
++4.700000000s 72 TcpRxBuffer:PrintRxBuffer(): RxBuffer is empty
+
++4.700000000s 72 InnetworkAggregationInterface:PrintAllInfo(): Print RxBuffer for Peer ip: 10.1.9.1
++4.700000000s 72 InnetworkAggregationInterface:PrintAllInfo(): +4.700000000s 72 TcpRxBuffer:PrintRxBuffer(): 0x55b7c24773c0 RxBuffer: nextRxSeq=644001 size=0 availBytes=0
++4.700000000s 72 TcpRxBuffer:PrintRxBuffer(): RxBuffer is empty
+
++4.700000000s 72 InnetworkAggregationInterface:PrintAllInfo(): Print Application Table information 
++4.700000000s 72 TCPserver:PrintTable(): 
+
+但是貌似72号节点已经完成了所有的数据传输，那究竟是丢包了还是怎么回事？
+
+
++2.060000000s 76 InnetworkAggregationInterface:ReceiveDataFrom():   [550621, 1610)
+Packet bytes: 03 03 03 03 03 03 03 03 01 81 81 01 00 00 00 00 00 00 81 01 00 00 00 00 00 00 81 01 00 00 
+  [552231, 1610)
+Packet bytes: 03 03 03 03 03 03 03 03 01 82 82 01 00 00 00 00 00 00 82 01 00 00 00 00 00 00 82 01 00 00 
+  [553841, 1610)
+Packet bytes: 03 03 03 03 03 03 03 03 01 83 83 01 00 00 00 00 00 00 83 01 00 00 00 00 00 00 83 01 00 00 
+  [555451, 1610)
+Packet bytes: 03 03 03 03 03 03 03 03 01 84 84 01 00 00 00 00 00 00 84 01 00 00 00 00 00 00 84 01 00 00 
+  [557061, 1610)
+Packet bytes: 03 03 03 03 03 03 03 03 01 85 85 01 00 00 00 00 00 00 85 01 00 00 00 00 00 00 85 01 00 00 
+  [558671, 1610)
+Packet bytes: 03 03 03 03 03 03 03 03 01 86 86 01 00 00 00 00 00 00 86 01 00 00 00 00 00 00 86 01 00 00 
+  [560281, 1610)
+Packet bytes: 03 03 03 03 03 03 03 03 01 87 87 01 00 00 00 00 00 00 87 01 00 00 00 00 00 00 87 01 00 00 
+  [561891, 1610)
+Packet bytes: 03 03 03 03 03 03 03 03 01 88 88 01 00 00 00 00 00 00 88 01 00 00 00 00 00 00 88 01 00 00 
+  [563501, 1610)
+Packet bytes: 03 03 03 03 03 03 03 03 01 89 89 01 00 00 00 00 00 00 89 01 00 00 00 00 00 00 89 01 00 00 
+  [565111, 1610)
+Packet bytes: 03 03 03 03 03 03 03 03 01 8a 8a 01 00 00 00 00 00 00 8a 01 00 00 00 00 00 00 8a 01 00 00 
+  [566721, 1610)
+Packet bytes: 03 03 03 03 03 03 03 03 01 8b 8b 01 00 00 00 00 00 00 8b 01 00 00 00 00 00 00 8b 01 00 00 
+  [568331, 1610)
+Packet bytes: 03 03 03 03 03 03 03 03 01 8c 8c 01 00 00 00 00 00 00 8c 01 00 00 00 00 00 00 8c 01 00 00 
+  [569941, 1610)
+Packet bytes: 03 03 03 03 03 03 03 03 01 8d 8d 01 00 00 00 00 00 00 8d 01 00 00 00 00 00 00 8d 01 00 00 
+  [571551, 1610)
+Packet bytes: 03 03 03 03 03 03 03 03 01 8e 8e 01 00 00 00 00 00 00 8e 01 00 00 00 00 00 00 8e 01 00 00 
+  [573161, 1610)
+Packet bytes: 03 03 03 03 03 03 03 03 01 8f 8f 01 00 00 00 00 00 00 8f 01 00 00 00 00 00 00 8f 01 00 00 
+  [574771, 1610)
+Packet bytes: 03 03 03 03 03 03 03 03 01 38 38 01 00 00 00 00 00 00 38 01 00 00 00 00 00 00 38 01 00 00 
+  [576381, 1610)
+Packet bytes: 03 03 03 03 03 03 03 03 01 39 39 01 00 00 00 00 00 00 39 01 00 00 00 00 00 00 39 01 00 00 
+  [577991, 1610)
+Packet bytes: 03 03 03 03 03 03 03 03 01 3a 3a 01 00 00 00 00 00 00 3a 01 00 00 00 00 00 00 3a 01 00 00 
+  [579601, 1610)
+Packet bytes: 03 03 03 03 03 03 03 03 01 3b 3b 01 00 00 00 00 00 00 3b 01 00 00 00 00 00 00 3b 01 00 00 
+  [581211, 1610)
+Packet bytes: 03 03 03 03 03 03 03 03 01 3c 3c 01 00 00 00 00 00 00 3c 01 00 00 00 00 00 00 3c 01 00 00 
+  [582821, 1610)
+Packet bytes: 03 03 03 03 03 03 03 03 01 3d 3d 01 00 00 00 00 00 00 3d 01 00 00 00 00 00 00 3d 01 00 00 
+  [584431, 1610)
+Packet bytes: 03 03 03 03 03 03 03 03 01 3e 3e 01 00 00 00 00 00 00 3e 01 00 00 00 00 00 00 3e 01 00 00 
+  [586041, 1610)
+Packet bytes: 03 03 03 03 03 03 03 03 01 3f 3f 01 00 00 00 00 00 00 3f 01 00 00 00 00 00 00 3f 01 00 00 
+  [587651, 1610)
+Packet bytes: 03 03 03 03 03 03 03 03 01 40 40 01 00 00 00 00 00 00 40 01 00 00 00 00 00 00 40 01 00 00 
+  [589261, 1610)
+Packet bytes: 03 03 03 03 03 03 03 03 01 41 41 01 00 00 00 00 00 00 41 01 00 00 00 00 00 00 41 01 00 00 
+  [590871, 1610)
+Packet bytes: 03 03 03 03 03 03 03 03 01 42 42 01 00 00 00 00 00 00 42 01 00 00 00 00 00 00 42 01 00 00 
+  [592481, 1610)
+Packet bytes: 03 03 03 03 03 03 03 03 01 43 43 01 00 00 00 00 00 00 43 01 00 00 00 00 00 00 43 01 00 00 
+  [594091, 1610)
+Packet bytes: 03 03 03 03 03 03 03 03 01 44 44 01 00 00 00 00 00 00 44 01 00 00 00 00 00 00 44 01 00 00 
+  [595701, 1610)
+Packet bytes: 03 03 03 03 03 03 03 03 01 45 45 01 00 00 00 00 00 00 45 01 00 00 00 00 00 00 45 01 00 00 
+  [597311, 1610)
+Packet bytes: 03 03 03 03 03 03 03 03 01 46 46 01 00 00 00 00 00 00 46 01 00 00 00 00 00 00 46 01 00 00 
+  [598921, 1610)
+Packet bytes: 03 03 03 03 03 03 03 03 01 47 47 01 00 00 00 00 00 00 47 01 00 00 00 00 00 00 47 01 00 00 
+  [600531, 1610)
+Packet bytes: 03 03 03 03 03 03 03 03 01 48 48 01 00 00 00 00 00 00 48 01 00 00 00 00 00 00 48 01 00 00 
+  [602141, 1610)
+Packet bytes: 03 03 03 03 03 03 03 03 01 49 49 01 00 00 00 00 00 00 49 01 00 00 00 00 00 00 49 01 00 00 
+  [603751, 1610)
+Packet bytes: 03 03 03 03 03 03 03 03 01 4a 4a 01 00 00 00 00 00 00 4a 01 00 00 00 00 00 00 4a 01 00 00 
+  [605361, 1610)
+Packet bytes: 03 03 03 03 03 03 03 03 01 4b 4b 01 00 00 00 00 00 00 4b 01 00 00 00 00 00 00 4b 01 00 00 
+  [606971, 1610)
+Packet bytes: 03 03 03 03 03 03 03 03 01 4c 4c 01 00 00 00 00 00 00 4c 01 00 00 00 00 00 00 4c 01 00 00 
+  [608581, 1610)
+Packet bytes: 03 03 03 03 03 03 03 03 01 4d 4d 01 00 00 00 00 00 00 4d 01 00 00 00 00 00 00 4d 01 00 00 
+  [610191, 1610)
+Packet bytes: 03 03 03 03 03 03 03 03 01 4e 4e 01 00 00 00 00 00 00 4e 01 00 00 00 00 00 00 4e 01 00 00 
+  [611801, 1610)
+Packet bytes: 03 03 03 03 03 03 03 03 01 4f 4f 01 00 00 00 00 00 00 4f 01 00 00 00 00 00 00 4f 01 00 00 
+  [613411, 1610)
+Packet bytes: 03 03 03 03 03 03 03 03 01 50 50 01 00 00 00 00 00 00 50 01 00 00 00 00 00 00 50 01 00 00 
+  [615021, 1610)
+Packet bytes: 03 03 03 03 03 03 03 03 01 51 51 01 00 00 00 00 00 00 51 01 00 00 00 00 00 00 51 01 00 00 
+  [616631, 1610)
+Packet bytes: 03 03 03 03 03 03 03 03 01 52 52 01 00 00 00 00 00 00 52 01 00 00 00 00 00 00 52 01 00 00 
+  [618241, 1610)
+Packet bytes: 03 03 03 03 03 03 03 03 01 53 53 01 00 00 00 00 00 00 53 01 00 00 00 00 00 00 53 01 00 00 
+  [619851, 1610)
+Packet bytes: 03 03 03 03 03 03 03 03 01 54 54 01 00 00 00 00 00 00 54 01 00 00 00 00 00 00 54 01 00 00 
+  [621461, 1610)
+Packet bytes: 03 03 03 03 03 03 03 03 01 55 55 01 00 00 00 00 00 00 55 01 00 00 00 00 00 00 55 01 00 00 
+  [623071, 1610)
+Packet bytes: 03 03 03 03 03 03 03 03 01 56 56 01 00 00 00 00 00 00 56 01 00 00 00 00 00 00 56 01 00 00 
+  [624681, 1610)
+Packet bytes: 03 03 03 03 03 03 03 03 01 57 57 01 00 00 00 00 00 00 57 01 00 00 00 00 00 00 57 01 00 00 
+  [626291, 1610)
+Packet bytes: 03 03 03 03 03 03 03 03 01 58 58 01 00 00 00 00 00 00 58 01 00 00 00 00 00 00 58 01 00 00 
+  [627901, 1610)
+Packet bytes: 03 03 03 03 03 03 03 03 01 59 59 01 00 00 00 00 00 00 59 01 00 00 00 00 00 00 59 01 00 00 
+  [629511, 1610)
+Packet bytes: 03 03 03 03 03 03 03 03 01 5a 5a 01 00 00 00 00 00 00 5a 01 00 00 00 00 00 00 5a 01 00 00 
+  [631121, 1610)
+Packet bytes: 03 03 03 03 03 03 03 03 01 5b 5b 01 00 00 00 00 00 00 5b 01 00 00 00 00 00 00 5b 01 00 00 
+  [632731, 1610)
+Packet bytes: 03 03 03 03 03 03 03 03 01 5c 5c 01 00 00 00 00 00 00 5c 01 00 00 00 00 00 00 5c 01 00 00 
+  [634341, 1610)
+Packet bytes: 03 03 03 03 03 03 03 03 01 5d 5d 01 00 00 00 00 00 00 5d 01 00 00 00 00 00 00 5d 01 00 00 
+  [635951, 1610)
+Packet bytes: 03 03 03 03 03 03 03 03 01 5e 5e 01 00 00 00 00 00 00 5e 01 00 00 00 00 00 00 5e 01 00 00 
+  [637561, 1610)
+Packet bytes: 03 03 03 03 03 03 03 03 01 5f 5f 01 00 00 00 00 00 00 5f 01 00 00 00 00 00 00 5f 01 00 00 
+  [639171, 1610)
+Packet bytes: 03 03 03 03 03 03 03 03 01 60 60 01 00 00 00 00 00 00 60 01 00 00 00 00 00 00 60 01 00 00 
+  [640781, 1610)
+Packet bytes: 03 03 03 03 03 03 03 03 01 61 61 01 00 00 00 00 00 00 61 01 00 00 00 00 00 00 61 01 00 00 
+  [642391, 1610)
+Packet bytes: 03 03 03 03 03 03 03 03 01 62 62 01 00 00 00 00 00 00 62 01 00 00 00 00 00 00 62 01 00 00 
+
+从+2.060000000s 76 InnetworkAggregationInterface:ReceiveDataFrom():   [550621, 1610)的RxBuffer里面来看，应该是出现了乱序的情况，特别是如下两行：
+
+Packet bytes: 03 03 03 03 03 03 03 03 01 8f 8f 01 00 00 00 00 00 00 8f 01 00 00 00 00 00 00 8f 01 00 00 
+  [574771, 1610)
+Packet bytes: 03 03 03 03 03 03 03 03 01 38 38 01 00 00 00 00 00 00 38 01 00 00 00 00 00 00 38 01 00 00 
+  [576381, 1610)
+
+
+定位：
++2.060000000s 76 InnetworkAggregationInterface:ReceiveDataFrom(): iterQueue is empty, checking the RxBuffer content of 10.2.8.2 ...
++2.060000000s 76 InnetworkAggregationInterface:ReceiveDataFrom():   [550621, 1610)
+
+从第一次2.06s的时候，就已经发生了乱序。可以让log日志停留在2.07s
+
+
+Todo for 12.29.
+
+/* Inherit from Socket class: Recv and return the remote's address */
+Ptr<Packet>
+TcpSocketBase::RecvFrom(uint32_t maxSize, uint32_t flags, Address& fromAddress)vb  c 
+
+// Compare ipv4Address with "10.2.8.2"
+        // Zhuoxu: we can now output the iteration number within each packet, or open the log information for 10.2.8.2 only. To see what's happening.
+        // Zhuoxu: we can first print the content of the packet, and then print the iteration number within it.
+
+
+
+查看packet接收的记录：
+37 01 00 00 00 00 00 00 37 01 00 00 00 00 00 00 37 01 00 00 00 00 00 00 37 01 00 00 00 00 00 00 37 01 00 00 00 00 00 00 37 01 00 00 00 00 00 00 37 01 00 00 00 00 00 00 37 01 00 00 00 00 00 00 37 01 00 00 00 00 00 00 37 01 00 00 00 00 00 00 37 01 00 00 00 00 00 00 37 01 00 00 00 00 00 00 03 03 03 03 03 03 03 03 01 63 63 01 00 00 00 00 00 00 63 01 00 00 00 00 00 00 63 01 00 00 00 00 00 00 63 01 00 00 00 00 00 00 63 01 00 00 00 00 00 00 63 01 00 00 00 00 00 00 63 01 00 00 00 00 00 00 63 01
+
+在收包的时候，发现0137包后面紧跟着是0163号包。这里造成了乱序。
+并且Packet size 是 45080，在正常情况下，应该是76 Packet:PrintPacket(): Packet size: 1610。即一个iteration一个包，但不知道为什么这里出现了多个iteration糅杂在一个包里面的情况。建议查看一下packetSend的具体情况。
+
+
+link: 10.2.8.2 -> 10.2.12.2
+
+Todo: trace 10.2.8.2, 观察在其每一次application层触发send操作之后，输出TxBuffer的信息，这里无需输出RxBuffer的信息。
+
+Todo: 检查log日志里面的Print TxBuffer for Peer ip: 10.2.12.2，查看每一个TxBuffer里面具体的变化情况是怎么样的。
+
+
+Log check for 12.30
++2.024000000s 72 InnetworkAggregationInterface:SendPacket(): 10.2.8.2 client->SendPacket()--sentSize success: 1610 at iteration 311
+Trace the node information for 10.2.8.2
+
++2.029000000s 72 InnetworkAggregationInterface:SendPacket(): 10.2.8.2 client->SendPacket()--sentSize success: 1610 at iteration 355
+ client->Send()--sentSize failed: -1 at iteration 312 client->Send()--sentSize failed: -1 at iteration 313 client->Send()--sentSize failed: -1 at iteration 314 client->Send()--sentSize failed: -1 at iteration 315 client->Send()--sentSize failed: -1 at iteration 316 client->Send()--sentSize failed: -1 at iteration 317 client->Send()--sentSize failed: -1 at iteration 318 client->Send()--sentSize failed: -1 at iteration 319 client->Send()--sentSize failed: -1 at iteration 320 client->Send()--sentSize failed: -1 at iteration 321 client->Send()--sentSize failed: -1 at iteration 322 client->Send()--sentSize failed: -1 at iteration 323 client->Send()--sentSize failed: -1 at iteration 324 client->Send()--sentSize failed: -1 at iteration 325 client->Send()--sentSize failed: -1 at iteration 326 client->Send()--sentSize failed: -1 at iteration 327 client->Send()--sentSize failed: -1 at iteration 328 client->Send()--sentSize failed: -1 at iteration 329 client->Send()--sentSize failed: -1 at iteration 330 client->Send()--sentSize failed: -1 at iteration 331 client->Send()--sentSize failed: -1 at iteration 332 client->Send()--sentSize failed: -1 at iteration 333 client->Send()--sentSize failed: -1 at iteration 334 client->Send()--sentSize failed: -1 at iteration 335 client->Send()--sentSize failed: -1 at iteration 336 client->Send()--sentSize failed: -1 at iteration 337 client->Send()--sentSize failed: -1 at iteration 338 client->Send()--sentSize failed: -1 at iteration 339 client->Send()--sentSize failed: -1 at iteration 340 client->Send()--sentSize failed: -1 at iteration 341 client->Send()--sentSize failed: -1 at iteration 342 client->Send()--sentSize failed: -1 at iteration 343 client->Send()--sentSize failed: -1 at iteration 344 client->Send()--sentSize failed: -1 at iteration 345 client->Send()--sentSize failed: -1 at iteration 346 client->Send()--sentSize failed: -1 at iteration 347 client->Send()--sentSize failed: -1 at iteration 348 client->Send()--sentSize failed: -1 at iteration 349 client->Send()--sentSize failed: -1 at iteration 350 client->Send()--sentSize failed: -1 at iteration 351 client->Send()--sentSize failed: -1 at iteration 352 client->Send()--sentSize failed: -1 at iteration 353 client->Send()--sentSize failed: -1 at iteration 354Trace the node information for 10.2.8.2
+
+Todo:
+
+while (!iterQueue.empty()) {
+                // NS_LOG_DEBUG("test....");
+                uint16_t iterNum = iterQueue.front();
+                successIter.push(iterNum);
+                iterQueue.pop();
+                SendResponseVToP (iterChunk[iterNum].vec, iterNum);
+                // clear the iterChunk
+                auto it = iterChunk.find(iterNum);
+                iterChunk.erase(it);
+                isEnd = PrintCompInfo(iterNum);
+                NS_LOG_DEBUG("fromStr: " << fromStr << " current successIter.size(): " << successIter.size());
+                NS_LOG_DEBUG("isEnd " << isEnd);
+            }
+
+
+由于现在问题出现在aggregator上面，而aggregator的send函数不是由自身触发的，应该是由收到的数据触发的。
+因此，要做的事情如下：
+1. Send函数的循环调用要区分是aggregator还是producer，producer可以iterationNum+1来循环调用，但是aggregator不行。aggregator只能通过数据收集齐全来进行触发
+2. Bug存在于pop()和SendResponseVToP的顺序。这里SendResponseVToP应该设置一个返回值，只有当其send成功了，才执行pop操作。否则，就会让后续的iteration在send failed的时候成功send，从而导致了乱序。
+
+Todo:
+//ZHUOXU:LogComponentDisable("InnetworkAggregationInterface", LOG_LEVEL_ALL);
+当调试完没有问题之后，反注释//ZHUOXU即可。
+
+Todo:
+we should check whether this is larger than zero, if it is, then we trigger the handle of next space and the followinghh execution.
+SendResponseVToP (iterChunk[iterNum].vec, iterNum);
+
+需求：需要在InnetworkAggregationInterface::SendPacket该函数中能找到std::queue<uint16_t>* iterQueuePtr = server->GetCompIterQueue();的指针，在send成功的时候，能够释放application table
+
++4.700000000s 0 TCPserver:PrintTable(): 
+iteration: 0  collected child: 
+10.2.12.2----10.2.11.2----
+iteration: 1  collected child: 
+10.2.12.2----10.2.11.2----
+iteration: 2  collected child: 
+10.2.12.2----10.2.11.2----
+iteration: 3  collected child: 
+10.2.12.2----10.2.11.2----
+iteration: 4  collected child: 
+10.2.12.2----10.2.11.2----
+iteration: 5  collected child: 
+10.2.12.2----10.2.11.2----
+iteration: 6  collected child: 
+10.2.12.2----10.2.11.2----
+iteration: 7  collected child: 
+10.2.12.2----10.2.11.2----
+iteration: 8  collected child: 
+10.2.12.2----10.2.11.2----
+iteration: 9  collected child: 
+10.2.12.2----10.2.11.2----
+iteration: 10  collected child: 
+10.2.12.2----10.2.11.2----
+iteration: 11  collected child: 
+10.2.12.2----10.2.11.2----
+iteration: 12  collected child: 
+10.2.12.2----10.2.11.2----
+iteration: 13  collected child: 
+10.2.12.2----10.2.11.2----
+iteration: 14  collected child: 
+10.2.12.2----10.2.11.2----
+iteration: 15  collected child: 
+10.2.12.2----10.2.11.2----
+iteration: 16  collected child: 
+10.2.12.2----10.2.11.2----
+iteration: 17  collected child: 
+10.2.12.2----10.2.11.2----
+iteration: 18  collected child: 
+10.2.12.2----10.2.11.2----
+iteration: 19  collected child: 
+10.2.12.2----10.2.11.2----
+iteration: 20  collected child: 
+10.2.12.2----10.2.11.2----
+iteration: 21  collected child: 
+10.2.12.2----10.2.11.2----
+iteration: 22  collected child: 
+10.2.12.2----10.2.11.2----
+iteration: 23  collected child: 
+10.2.12.2----10.2.11.2----
+iteration: 24  collected child: 
+10.2.12.2----10.2.11.2----
+iteration: 25  collected child: 
+10.2.12.2----10.2.11.2----
+iteration: 26  collected child: 
+10.2.12.2----10.2.11.2----
+iteration: 27  collected child: 
+10.2.12.2----10.2.11.2----
+iteration: 28  collected child: 
+10.2.12.2----10.2.11.2----
+iteration: 29  collected child: 
+10.2.12.2----10.2.11.2----
+
+conclusion: there is sth. wrong with the aggregation operation of the consumer, check it. Is there sth. wrong with the ReceiveDatafrom function?
+
++2.016738897s 0 TCPserver:HandleRead(): Complete iteration: 0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27-28-29-
+
+显示已经完成了30个iteration了，目前的问题应该是ReceiveFrom函数不知道什么原因没有被触发导致complete checking没有触发导致目前的情况。
+如果解决了ReceiveData不被触发的问题的话，程序应该能够跑通。
+
+Print successIter of 10.1.51.1
+Queue elements: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 14 15 16 17 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 147 148 135 136 137 138 139 140 141 142 143 144 145 146 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 199 200 201 202 203 204 205 206 207 208 209 210 211 212 213 214 215 216 217 218 219 220 221 222 223 224 225 226 227 228 229 230 231 232 233 234 235 236 237 238 239 240 241 242 243 244 245 246 247 248 249 250 251 252 253 254 255 256 257 258 259 260 261 262 263 264 265 266 267 268 269 270 271 272 273 274 275 276 277 278 279 280 281 282 283 284 285 286 287 288 289 290 291 292 293 294 295 296 297 298 299 300 301 302 303 304 305 306 307 308 309 310 311 312 313 314 315 316 317 318 319 320 321 322 323 324 325 326 327 328 329 330 331 332 333 334 335 336 337 338 339 340 341 342 343 344 345 346 347 348 349 350 351 352 353 354 355 356 357 358 359 360 361 362 363 364 365 366 367 368 369 370 371 372 373 374 375 376 377 378 379 380 381 382 383 384 385 386 387 388 389 390 391 392 393 394 395 396 397 398 399 
++2.038000000s 0 InnetworkAggregationInterface:UpdateQueue(): fromStr: 10.2.12.2, current 400
+
+应该是aggregator里面出现了乱序
+解决1: 对所有aggregator都进行完成的check，看看具体是哪个agg首次出现了问题
+解决2：只要agg send返回>1的值，就把该iteration的值加入到queue里面，最后打印整个queue的值，查看是否顺序正确。
+
+In the CheckQueueOrder function: 
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 
+Expected: 122, but queue is not empty and front element is 135.
++2.024000000s 68 InnetworkAggregationInterface:PrintCompInfo(): 0x561b82a39c80 ----Aggregator Order is incorrect.
+
+
+问题：
++2.007000000s 68 TCPserver:CheckChComp(): 0x560607a9df80 All children have collected the data for iteration 150 in the m_bindIp: 10.1.43.1
++2.007000000s 68 TCPserver:CheckChComp(): 0x560607a9df80 Printing all members of compQueue with size: 15
++2.007000000s 68 TCPserver:CheckChComp(): compQueue: 121-135-136-137-138-139-140-141-142-143-144-145-146-149-150-
+
+10.1.43.1 到 10.2.4.2 这一条链路上面的数据出现了乱序。
+
+解决问题：
+compQueue也需要使用一个指向interface的指针。
+
+
+Todo:
+2025/1/5:
+将TCPserver.h中的
+std::queue<uint16_t> compQueue 变成interface里面的数据结构，TCPserver里面的数据结构改成指针，全部统一共用一个compQueue即可。
+
+2025/1/5: 目前程序中似乎出现了死锁，程序会一直跑，不停下来
+
+bug:
+TCPclient:Send(): Error while sending -1 bytes to 04-06-0a:02:0b:02:54:37
+已经收到最大轮次399了，但仍然一直在发送，于是卡死在循环里面。这里必须终止发送。
+
++2.024000000s 73 InnetworkAggregationInterface:SendResponseVToP(0x55ea459ccd90, "In the for loop of SendResponseVTo ", 0)
++2.024000000s 73 InnetworkAggregationInterface:SendPacket(): 0x55ea459ccd90 Sends data to socketPool[10.2.11.2] 
++2.024000000s 73 InnetworkAggregationInterface:SendPacket(): print the send buffer of this client ...
++2.024000000s 73 TCPclient:Send(0x55ea45b65690, 1610)
++2.024000000s 73 TCPclient:Send(): Before send, Check the socket state
++2.024000000s 73 TCPclient:CheckSocketState(): Socket state is ESTABLISHED
++2.024000000s 73 TCPclient:LogSocketInfo(): Local IP: 10.2.9.2, Local Port: 1234
++2.024000000s 73 TCPclient:LogSocketInfo(): Peer IP: 10.2.11.2, Peer Port: 14164
++2.024000000s 73 TCPclient:Send(): Error while sending -1 bytes to 04-06-0a:02:0b:02:54:37
++2.024000000s 73 InnetworkAggregationInterface:SendPacket(): 0x55ea459ccd90 client->Send() failed at iteration 105 schedule next send
++2.024000000s 73 InnetworkAggregationInterface:SendPacket(): 0x55ea459ccd90 Sends data to socketPool[10.2.11.2] 
++2.024000000s 73 InnetworkAggregationInterface:SendPacket(): print the send buffer of this client ...
++2.024000000s 73 TCPclient:Send(0x55ea45b65690, 1610)
++2.024000000s 73 TCPclient:Send(): Before send, Check the socket state
++2.024000000s 73 TCPclient:CheckSocketState(): Socket state is ESTABLISHED
++2.024000000s 73 TCPclient:LogSocketInfo(): Local IP: 10.2.9.2, Local Port: 1234
++2.024000000s 73 TCPclient:LogSocketInfo(): Peer IP: 10.2.11.2, Peer Port: 14164
++2.024000000s 73 TCPclient:Send(): Error while sending -1 bytes to 04-06-0a:02:0b:02:54:37
+
+
+2025.1.6---bug:
+存在问题，还要设置一个发送队列，如果iteration已经处于发送队列里面，则不能发送了，否则会重复发送很多东西，最终导致信道爆炸。
+
+详情分析：
++2.005000000s 71 InnetworkAggregationInterface:SendPacket(): 0x559f7becef40 client->Send() failed at iteration 117 schedule next send
+上述log触发了5次，这是因为在发送失败的情况下，compQueue仍然是非空的，但是由于发送失败，因此每个child都会触发，让parent发送一次。这是因为ReceivedDataFrom函数会间隔一段时间就对所有孩子都调用一次。
+
+bug fix: /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/innetwork-task/model/InnetworkAggregationInterface.cc
+
+查看log，现在没有出现程序无穷无尽地跑了，但是出现了死锁，卡在第312轮。
+
+
++2.754000000s 65 InnetworkAggregationInterface:ReceiveDataFrom(): checking the Application Table of 10.1.1.1 content for debug...
++2.754000000s 65 TCPserver:PrintTable(): 
+iteration: 210  collected child: 
+10.1.5.1----10.1.3.1----10.1.2.1----10.1.1.1----
+iteration: 211  collected child: 
+10.1.5.1----10.1.3.1----10.1.2.1----10.1.1.1----
+iteration: 212  collected child: 
+10.1.5.1----10.1.3.1----10.1.2.1----10.1.1.1----
+
+2025/1/7： check 65 InnetworkAggregationInterface节点，查看为什么10.1.4.1的数据没有被收到，是什么原因
+(1) 查看65号的ip地址: 10.2.1.2  ---- agg0
+agg0: pro0 pro1 pro2 pro4 pro44 
+ip---pro44---10.1.45.1
+
+(2) 查看其对应的RxBuffer的内容，并打印出来。
+
+
+ip---agg6---10.2.7.2 存在问题
+
++2.012148624s 71 TCPserver:HandleRead(): Ipv4 address 10.1.40.1, print compQueue with size: 30
++2.012148624s 71 TCPserver:PrintSocketInfo(): Socket info. IP address: 10.2.7.2 and port: 29226
++2.012148624s 71 TCPserver:HandleRead(): Local IP: 10.2.7.2, Local Port: 29226
++2.012148624s 71 TCPserver:HandleRead(): Complete iteration: 244-245-246-247-248-249-250-251-252-253-254-255-256-257-258-259-260-261-262-263-264-265-266-267-268-269-270-271-272-273-
++2.012148624s 71 TCPserver:HandleRead(): 0x5604fd1fcbe0 No memory available for new chunk
++2.012148624s 71 TCPserver:PrintTable(): 
+iteration: 244  collected child: 
+10.1.40.1----10.1.4.1----10.1.37.1----10.1.12.1----10.1.11.1----
+iteration: 245  collected child: 
+10.1.40.1----10.1.4.1----10.1.37.1----10.1.12.1----10.1.11.1----
+
+从log来看，10.2.7.2是收齐了所有孩子数据。似乎是10.2.7.2的ReceivedDataFrom没有被调用？
+
+
++2.012000000s 71 TCPclient:Send(): Error while sending -1 bytes to 04-06-0a:02:0c:02:7d:31
++2.012000000s 71 InnetworkAggregationInterface:SendPacket(): 0x562ce18a8330 client->Send() failed at iteration 244 schedule next send
++2.012000000s 71 InnetworkAggregationInterface:SendPacket(): 10.2.7.2 client->Send()--sentSize failed: -1 at iteration 244
+
+entering the ReceiveDataFrom of TraceIPAddress: 
+对于10.2.7.2，似乎只调用了254次。应该是有什么问题导致
+
+

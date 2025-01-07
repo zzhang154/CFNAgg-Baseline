@@ -39,7 +39,7 @@ namespace ns3 {
 
         ns3::Simulator::Schedule(ns3::MilliSeconds(basetime), &InnetworkAggregationInterface::ProduceVToP, this->nodeInnetworkAggregationInterface, 0);
         
-        ns3::Simulator::Schedule(ns3::MilliSeconds(basetime+2700), &InnetworkAggregationInterface::PrintAllInfo, this->nodeInnetworkAggregationInterface);
+        // ns3::Simulator::Schedule(ns3::MilliSeconds(basetime+2700), &InnetworkAggregationInterface::PrintAllInfo, this->nodeInnetworkAggregationInterface);
     }
 
     Producer::~Producer() {

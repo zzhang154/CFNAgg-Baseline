@@ -123,7 +123,7 @@ TCPserver::GetLost (void) const {
 }
 
 void 
-TCPserver::SetIpAddrStr(std::string ipAddrStr){
+TCPserver::SetPeerAddrStr(std::string ipAddrStr){
   this->ipAddressStr = ipAddrStr;
 }
 
@@ -133,33 +133,11 @@ TCPserver::GetReceived (void) const {
   return m_received;
 }
 
-uint16_t 
-TCPserver::GetCompIterNum(){
-  if (!compQueue.empty())
-  {
-    uint16_t iterNumFromQueue = compQueue.front();
-    NS_LOG_DEBUG(this << " success receive server socket with iteration: " << iterNumFromQueue);
-    compQueue.pop();
-    return iterNumFromQueue;
-  }
-  else{
-    NS_LOG_DEBUG(this << " compQueue.size(): "<<compQueue.size());
-    return UINT16_MAX;
-  }
-}
 
 // Zhuoxu: need to return the reference of the unordered_map. Otherwise, it will cause the problem of copying the large.
 std::queue<uint16_t>*
 TCPserver::GetCompIterQueue() {
   return &compQueue;
-}
-
-void TCPserver::ClearCompQueue() {
-    NS_LOG_FUNCTION(this);
-    while (!compQueue.empty()) {
-        compQueue.pop();
-    }
-    NS_LOG_DEBUG("compQueue has been cleared. compQueue.size(): " << compQueue.size());
 }
 
 void 
@@ -280,12 +258,12 @@ TCPserver::CheckChComp(uint16_t iterNum){
     }
 
     // Zhuoxu: we need to add the code to trigger the interface function.
-    compQueue.push(iterNum);
+    compQueuePtr->push(iterNum);
 
     // Zhuoxu: Some problem here, the size of the compQueue should not be larger than the threshold.
-    NS_LOG_DEBUG(this << " Printing all members of compQueue with size: " << compQueue.size());
+    NS_LOG_DEBUG(this << " Printing all members of compQueue with size: " << compQueuePtr->size());
 
-    std::queue<uint16_t> tempQueue = compQueue; // Create a copy of the queue to iterate through
+    std::queue<uint16_t> tempQueue = *compQueuePtr; // Create a copy of the queue to iterate through
     std::stringstream ss;
     while (!tempQueue.empty()) {
         uint16_t value = tempQueue.front();
@@ -296,7 +274,7 @@ TCPserver::CheckChComp(uint16_t iterNum){
     NS_LOG_DEBUG("compQueue: " << ss.str());
     if(LocalAddressStr == TraceIPAddress)
     {
-        std::cout << "compQueue for one test node--" << TraceIPAddress << ' ' << ss.str() << std::endl;
+        std::cout << "compQueue for TraceIPAddress: " << TraceIPAddress << ", with socket fromStr: " << ipAddressStr << "  | " << ss.str() << std::endl;
     }
   }
 }
@@ -391,7 +369,7 @@ TCPserver::CheckReTransmit(uint8_t* packetContent){
 // Zhuoxu: table[iteration] = DataChunk;
 void
 TCPserver::HandleRead (Ptr<Socket> socket) {
-  NS_LOG_DEBUG("Ipv4 address " << ipAddressStr << ", print compQueue with size: " << compQueue.size());
+  NS_LOG_DEBUG("Ipv4 address " << ipAddressStr << ", print compQueue with size: " << compQueuePtr->size());
   PrintSocketInfo(socket);
 
   Address localAddress;
@@ -408,14 +386,14 @@ TCPserver::HandleRead (Ptr<Socket> socket) {
       NS_LOG_WARN("Unknown local address type");
   }
 
-  std::queue<uint16_t> tempQueue = compQueue; // Create a copy of the queue to iterate through
+  std::queue<uint16_t> tempQueue = *compQueuePtr; // Create a copy of the queue to iterate through
   std::stringstream ss;
   while (!tempQueue.empty()) {
       uint16_t value = tempQueue.front();
       ss << value - uint16_t(0) << "-";
       tempQueue.pop();
   }
-  ss << std::endl;
+  // ss << std::endl;
   NS_LOG_DEBUG("Complete iteration: " << ss.str());
 
   int memState = CheckMemory();
@@ -483,7 +461,7 @@ TCPserver::HandleRead (Ptr<Socket> socket) {
         }
         NS_LOG_DEBUG("after process, m_pktPtr is: " << static_cast<int>(m_pktPtr));
         NS_LOG_DEBUG("after process, m_bufferPtr is: " << static_cast<int>(m_bufferPtrMap[ipAddressStr]));
-        NS_LOG_DEBUG("----------------END PROCESS--------------------\n");
+        NS_LOG_DEBUG("----------------END PROCESS--------------------");
       }
       // Zhuoxu: only print the packet of 10.1.1.1
       // if(ipAddressStr == "10.1.1.1")
@@ -500,7 +478,7 @@ TCPserver::HandleRead (Ptr<Socket> socket) {
   //std::cout<<"TCPserver----"<<GetLocalAddress().GetIpv4()<<"-received---request---from--"<<InetSocketAddress::ConvertFrom(m_peerAddress).GetIpv4()<<std::endl;
   //m_circularBuffer->print();
   this->m_socket = socket;
-  NS_LOG_DEBUG("quit the function...");
+  NS_LOG_DEBUG("quit the function...\n\n");
   // ns3::Simulator::Schedule(ns3::MilliSeconds(10), &TCPserver::HandleRead, this, socket);
 }
 
@@ -548,6 +526,7 @@ void
 TCPserver::CallSendEmptyPacket()
 {
   NS_LOG_FUNCTION (this << " CallSendEmptyPacket");
+  std::cout << std::endl;
   m_socket->GetObject<TcpSocketBase>()->CallSendEmptyPacketACK();
 }
 
@@ -670,6 +649,16 @@ TCPserver::CheckSocketState()
 void
 TCPserver::SetLocalAddressStr(std::string str){
   LocalAddressStr = str;
+}
+
+void 
+TCPserver::SetParams(Ptr<Node> node, uint16_t size, std::map<uint16_t, DataChunk>* iterChunk, std::string peerIpAddrStr, std::string localIpAddrStr, std::queue<uint16_t>* compQueuePtr){
+  m_node = node;
+  cGroupSize = size;
+  iterChunkPtr = iterChunk;
+  this->ipAddressStr = peerIpAddrStr;
+  LocalAddressStr = localIpAddrStr;
+  this->compQueuePtr = compQueuePtr;
 }
 
 } // Namespace ns3

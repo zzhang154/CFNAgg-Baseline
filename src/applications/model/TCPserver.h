@@ -115,9 +115,9 @@ public:
   void SetCongestionControlAlgorithm(std::string cc_name);
 
   // Zhuoxu: relative function w.r.t the interface.cc
-  uint16_t GetCompIterNum();
+
   std::queue<uint16_t>* GetCompIterQueue();
-  void ClearCompQueue();
+
   void ReleaseMap(uint16_t iterationNum);
   void SetcGroupSize(uint16_t size);
   void CheckChComp(uint16_t iterationNum); 
@@ -127,12 +127,13 @@ public:
   int CheckMemory();
   void CallHandleRead();
   void Addr2Str (Address addr, std::string &str);
-  void SetIpAddrStr(std::string ipAddrStr);
+  void SetPeerAddrStr(std::string ipAddrStr);
   void LogSocketInfo();
   void CheckSocketState();
   void PrintTable();
   void CallSendEmptyPacket();
   void SetLocalAddressStr(std::string str);
+  void SetParams(Ptr<Node> node, uint16_t size, std::map<uint16_t, DataChunk>* iterChunk, std::string peerIpAddrStr, std::string localIpAddrStr, std::queue<uint16_t>* compQueuePtr);
 
 protected:
   virtual void DoDispose (void);
@@ -197,6 +198,7 @@ private:
 
   std::map<uint16_t, DataChunk>* iterChunkPtr;
   std::string LocalAddressStr;
+  std::queue<uint16_t>* compQueuePtr; 
 };
 
 } // namespace ns3

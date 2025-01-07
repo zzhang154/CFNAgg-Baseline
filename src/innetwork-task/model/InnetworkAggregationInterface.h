@@ -5,6 +5,7 @@
 #include <functional>
 #include <map>
 #include <queue>
+#include <set>
 #include <iostream>
 #include "ns3/object.h"
 #include "ns3/log.h"
@@ -43,7 +44,6 @@ namespace ns3 {
             std::ofstream outFile; //save result for server
             Time startTime; // record each start time
 
-
             std::vector<uint64_t> avg; // result
             std::vector<Address> cGroup; // nodes acts as clients with respect to current node
             std::vector<Address> sGroup; // nodes acts as servers with respect to current node
@@ -58,7 +58,9 @@ namespace ns3 {
             bool isEnd = false;
             std::string thisAddress;
             int printCount = 0;
-
+            std::queue<uint16_t> compQueue;
+            std::set<uint16_t> sendSuccToPSet;
+            std::map<uint16_t, std::string> sendSchedSet;
 
         public:
             static TypeId GetTypeId (void);
@@ -69,17 +71,17 @@ namespace ns3 {
             void CreateSocketPool (std::string cc_name);
             void ReceiveDataFrom (std::string fromStr);
             void ReceiveDataFromAll ();
-            int SendResponseVToP (std::vector<uint64_t> &vec , uint16_t iterationNum);
+            int SendResponseVToP (std::vector<uint64_t> &vec , uint16_t iterationNum, std::string fromStr = "");
             void ProduceVToP (uint16_t iterationNum);
-            int SendResponseVTo (std::string toStr, std::vector<uint64_t> &vec, uint16_t iterationNum);
+            int SendResponseVTo (std::string toStr, std::vector<uint64_t> &vec, uint16_t iterationNum, std::string fromStr = "");
             void SetVSize (uint32_t size);
             //void AvgEnd (uint16_t size, uint16_t iterationNum);
             
             void SaveResult (std::vector<uint64_t> &vec );
             void SetOutFile (const std::string fileName);
             void Addr2Str (Address addr, std::string &str);
-            int SendPacket (std::string toStr, uint16_t iterationNum, std::vector<uint8_t> &serializeVec);
-            int SendEndPacket (std::string toStr, std::vector<uint8_t> &chunkBuffer);
+            int SendPacket (std::string toStr, uint16_t iterationNum, std::vector<uint8_t> &serializeVec, std::string fromStr = "");
+            int SendEndPacket (std::string toStr, std::vector<uint8_t> &chunkBuffer, std::string fromStr = "");
             bool PrintCompInfo (uint16_t iterationNum);
             void PrintBufferSummary(std::vector<uint8_t>& chunkBuffer);
             void TriggerHandleRead();
@@ -88,6 +90,8 @@ namespace ns3 {
             void DisableLoggingComponents();
             void TraceSingleNodeInfo();
             bool CheckQueueOrder(std::queue<uint16_t> q, uint16_t maxIteration);
+            void UpdateQueue(std::string fromStr);
+            void PrintRxBuffer(std::string chStr);
 
             // Zhuoxu: Todo 
             ns3::Ipv4Address GetIpAddrFromNode (Ptr<Node> node);

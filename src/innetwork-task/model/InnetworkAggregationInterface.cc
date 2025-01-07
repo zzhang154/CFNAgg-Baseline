@@ -33,6 +33,9 @@ namespace ns3 {
     InnetworkAggregationInterface::InnetworkAggregationInterface () {
         //NS_LOG_FUNCTION (this);
         this->printCount = 0;
+        compQueue = std::queue<uint16_t>();
+        // sendSuccToPSet = std::set<uint16_t>();
+        // sendSchedSet = std::set<uint16_t>();
     }
 
     InnetworkAggregationInterface::~InnetworkAggregationInterface () {
@@ -128,16 +131,18 @@ namespace ns3 {
             // Zhuoxu: We only pass the node parameter in this function.
             Ptr<TCPserver> myserver = CreateObject<TCPserver>(node);
             // Zhuoxu: Here, we should defind another set function that pass the address of the IterationChunk to all the servers binded in this node.
-            myserver->SetNode(node);
-            myserver->SetcGroupSize(cGroup.size());
-            myserver->SetIterChunkPtr(&this->iterChunk);
+            // myserver->SetNode(node);
+            // myserver->SetcGroupSize(cGroup.size());
+            // myserver->SetIterChunkPtr(&this->iterChunk);
             myserver->Bind(serverPort);
             // set server IP address
-            myserver->SetIpAddrStr(addrStr);
-            myserver->SetLocalAddressStr(this->thisAddress);
+            // myserver->SetPeerAddrStr(addrStr);
+            // myserver->SetLocalAddressStr(this->thisAddress);
             
             // NS_LOG_DEBUG("Output id for the server: socketPool[" << addrStr << "] " << );
             myserver->GetSocket()->GetObject<TcpSocketBase>()->GetTxAvailable();
+
+            myserver->SetParams(node, cGroup.size(), &this->iterChunk, addrStr, this->thisAddress, &this->compQueue);
 
             // Zhuoxu: socket[] is owned by each node, therefore there won't be any conflict on the same port.
             socketPool[addrStr] = myserver;
@@ -151,12 +156,14 @@ namespace ns3 {
         }
 
         NS_LOG_DEBUG("Connection Setting Finishing in: "<< Simulator::Now().GetMilliSeconds() << "ms\n");
+        NS_LOG_DEBUG( this << "this->address: " << this->thisAddress << " sGroup.size(): " << this->sGroup.size() << " cGroup.size(): " << this->cGroup.size());
 
         std::cout << "-------Node " << this->thisAddress << " Connection Setting Finishing in: " << Simulator::Now().GetMilliSeconds() << "ms-----------\n\n";
     }
 
     void 
     InnetworkAggregationInterface::ReceiveDataFromAll () {
+        NS_LOG_DEBUG("ReceiveDataFromAll: "<< Simulator::Now().GetMilliSeconds() << "ms");
         for (auto item : socketPool) {
             // Zhuoxu: only receive data from the server
             if ( socketPool[item.first]->GetObject<TCPserver>() )
@@ -167,6 +174,7 @@ namespace ns3 {
     // Zhuoxu: This function is really important! We should be careful in the quic!
     void 
     InnetworkAggregationInterface::TriggerHandleRead () {
+        // Zhuoxu: Since we share the memory table, here we should trigger the handle read function of all the servers.
         for (auto item : socketPool) {
             // Zhuoxu: only receive data from the server
             if ( socketPool[item.first]->GetObject<TCPserver>() ){
@@ -190,15 +198,21 @@ namespace ns3 {
             if (this->sGroup.size() <= 0) {
                 NS_LOG_INFO("Consumer All iteration-"<< maxIteration << " completed in: " << currentTime.GetMilliSeconds() - 2000<< "ms");
                 if(CheckQueueOrder(this->successIter, maxIteration)){
-                    NS_LOG_INFO("Aggregation Order is correct.");
+                    NS_LOG_INFO("Consumer Order is correct.");
                 }
                 else{
-                    NS_LOG_INFO("Aggregation Order is incorrect.");
+                    NS_LOG_INFO("Consumer Order is incorrect.");
                 }
                 Simulator::Stop (Seconds(Simulator::Now().GetSeconds() + 0.001));
             }
             else{
                 NS_LOG_INFO("Receive the ending packet. Finish Process.");
+                if(CheckQueueOrder(this->successIter, maxIteration)){
+                    NS_LOG_INFO( this << " ----Aggregator Order is correct.");
+                }
+                else{
+                    NS_LOG_INFO( this << " ----Aggregator Order is incorrect.");
+                }
             }
             return true;
         }
@@ -207,48 +221,58 @@ namespace ns3 {
         else
             NS_LOG_INFO("IterationNum-"<<iterationNum+1-uint16_t(0)<< ", Aggregator " << this->thisAddress << " completed in: " << currentTime.GetMilliSeconds() << "ms");
         
-        LogComponentDisable("InnetworkAggregationInterface", LOG_LEVEL_ALL);
+        // Zhuoxu: We should be really careful here, otherwise, 
+        // LogComponentDisable("InnetworkAggregationInterface", LOG_LEVEL_ALL);
 
         return false;
     }
 
     void 
     InnetworkAggregationInterface::ReceiveDataFrom (std::string fromStr) {
+        if(this->thisAddress == TraceIPAddress){
+            NS_LOG_DEBUG(this << " entering the ReceiveDataFrom of TraceIPAddress: " << this->thisAddress);
+        }
         // first handle read
         Ptr<TCPserver> server;
         server = socketPool[fromStr]->GetObject<TCPserver>();
-
+        
+        if(this->thisAddress == TraceIPAddress){
+            NS_LOG_ERROR("The number of child for " << TraceIPAddress << " is: " << this->cGroup.size() << " and fromStr is: " << fromStr);
+        }
         // Zhuoxu: comment this to see what happen.
         // NS_LOG_DEBUG("Runing the call handle read function in " << fromStr);
         // server->CallHandleRead();
 
         // check if there are any complete iteration.
         // here, we should pass a local vector to record all the finished iteration.
-        std::queue<uint16_t>* iterQueuePtr = server->GetCompIterQueue();
-        if(!iterQueuePtr->empty()){
-            NS_LOG_DEBUG( "fromStr: " << fromStr << ", Size of iterQueue: " << iterQueuePtr->size());
-            if(fromStr == TraceIPAddress){
-                NS_LOG_DEBUG("checking the RxBuffer of " << fromStr << " content for debug...");
-                NS_LOG_DEBUG(server->GetSocket()->GetObject<TcpSocketBase>()->GetRxBuffer()->PrintRxBuffer());
+        // std::queue<uint16_t>* iterQueuePtr = server->GetCompIterQueue();
+        if(!this->compQueue.empty()){
+            NS_LOG_DEBUG( "fromStr: " << fromStr << ", Size of iterQueue: " << this->compQueue.size());
+            if(this->thisAddress == TraceIPAddress){
+                PrintRxBuffer(fromStr);
+                NS_LOG_DEBUG("checking the Application Table of " << this->thisAddress << " content for debug...");
+                server->PrintTable();
             }
         }
         else{
-            if(fromStr == TraceIPAddress){
+            if(this->thisAddress == TraceIPAddress){
                 NS_LOG_DEBUG("iterQueue is empty, checking the RxBuffer content of " << fromStr << " ...");
-                NS_LOG_DEBUG(server->GetSocket()->GetObject<TcpSocketBase>()->GetRxBuffer()->PrintRxBuffer());
+                PrintRxBuffer(fromStr);
+                NS_LOG_DEBUG("checking the Application Table of " << fromStr << " content for debug...");
+                server->PrintTable();
             }
         }
 
         // Solution 1: We first try not to pass the address of the queue of the server, to see if it works. If this not works, then we should pass the address of the queue, which needs to modify the function "TCPserver::GetCompIterQueue()". Here, we just pass the copy of the queue, and clear at once.
-        if(!iterQueuePtr->empty()){
-            // Zhuoxu: we don't call this function currently, we manage the queue via the pointer.
-            // server->ClearCompQueue();
-            
+        if(!this->compQueue.empty()){
+            if(this->thisAddress == TraceIPAddress)
+                NS_LOG_DEBUG("Entering the first block...");
+          
             // Output the log info
 
             // Zhuoxu: add the following code to output the details of "10.2.4.2"
             if(this->thisAddress == TraceIPAddress){
-                std::queue<uint16_t> tempQueue = *iterQueuePtr; // Create a copy of the queue to iterate through
+                std::queue<uint16_t> tempQueue = this->compQueue; // Create a copy of the queue to iterate through
                 std::stringstream ss;
                 while (!tempQueue.empty()) {
                     uint16_t value = tempQueue.front();
@@ -259,44 +283,31 @@ namespace ns3 {
                 NS_LOG_DEBUG("compQueue: " << ss.str());
                 std::cout << "compQueue in ReceiveDataFrom Function: " << ss.str() << std::endl;
             }
-
-            while (!iterQueuePtr->empty()) {
-                // NS_LOG_DEBUG("test....");
-                uint16_t iterNum = iterQueuePtr->front();
-                successIter.push(iterNum);
-                // ToDo: We need to complete a schedule function to make sure that the SendResponseVToP must success, and then iterQueuePtr->pop() can be executed. This order could not be twisted.
-                SendResponseVToP (iterChunk[iterNum].vec, iterNum);
-                iterQueuePtr->pop();
-                // clear the iterChunk
-                auto it = iterChunk.find(iterNum);
-                iterChunk.erase(it);
-                isEnd = PrintCompInfo(iterNum);
-                NS_LOG_DEBUG("fromStr: " << fromStr << " current successIter.size(): " << successIter.size());
-                NS_LOG_DEBUG("isEnd " << isEnd);
+            // 
+            uint16_t iterNum = this->compQueue.front();
+            // if it is aggregator
+            if(this->sGroup.size() > 0)
+                SendResponseVToP (iterChunk[iterNum].vec, iterNum, fromStr);
+            // else if it is consumer
+            else{
+                UpdateQueue(fromStr);
             }
-
+        }
+        else{
             if(this->thisAddress == TraceIPAddress){
-                std::cout << "Print successIter of " <<  TraceIPAddress << std::endl;
-                // for (const auto& element : successIter) {
-                //     std::cout << element << "-";
-                // }
-                // std::cout << std::endl;
-
-                
-                std::cout << successIter << std::endl;
+                NS_LOG_DEBUG("Entering the second block...");
             }
-
-
-            // Call handleRead function after the memory has been released.
-            TriggerHandleRead ();
+            if(!isEnd){
+                if(this->thisAddress == TraceIPAddress)
+                    NS_LOG_DEBUG("Entering the Schedule function...");
+                // test if the interval of the millisecond will affect the process?
+                ns3::Simulator::Schedule(ns3::MilliSeconds(4), &InnetworkAggregationInterface::ReceiveDataFrom, this, fromStr);
+            }
+            else{
+                if(this->thisAddress == TraceIPAddress)
+                    NS_LOG_DEBUG("isEnd is true.");
+            }
         }
-        NS_LOG_DEBUG("fromStr: " << fromStr << ", current " << successIter.size());
-        if(!isEnd){
-            // test if the interval of the millisecond will affect the process?
-            ns3::Simulator::Schedule(ns3::MilliSeconds(4), &InnetworkAggregationInterface::ReceiveDataFrom, this, fromStr);
-        }
-    }
-
     // Zhuoxu: we don't need this currently.
 
     // void 
@@ -306,15 +317,18 @@ namespace ns3 {
     //     else
     //         ns3::Simulator::Schedule(ns3::MilliSeconds(4), &InnetworkAggregationInterface::ScheduleSendResponseVToP, this, vec, iterationNum);
     // }
+    }
 
     int 
-    InnetworkAggregationInterface::SendResponseVToP (std::vector<uint64_t> &avg , uint16_t iterationNum) {
+    InnetworkAggregationInterface::SendResponseVToP (std::vector<uint64_t> &avg , uint16_t iterationNum, std::string fromStr) {
         NS_LOG_FUNCTION (this << " iteration: " << iterationNum);
         int flag = -1;
         for (uint8_t i = 0; i < this->sGroup.size (); ++i) {
             std::string toStr;
             Addr2Str (this->sGroup[i], toStr);
-            flag = SendResponseVTo (toStr, avg, iterationNum);
+            flag = SendResponseVTo (toStr, avg, iterationNum, fromStr);
+            NS_LOG_FUNCTION (this << "SendResponseVTo (toStr, avg, iterationNum, fromStr);");
+            NS_LOG_FUNCTION ("SendResponseVTo(" << toStr << ", avg, " << static_cast<int>(iterationNum) << ", " << fromStr << ") " << static_cast<int>(i));
         }
         return flag;
     }
@@ -322,9 +336,12 @@ namespace ns3 {
     // serialize and slice vec into chunks of k elements, that is k*8 uint8_t/chunk.
     // send data prepare.
     int
-    InnetworkAggregationInterface::SendResponseVTo (std::string toStr, std::vector<uint64_t> &vec, uint16_t iterationNum) {
+    InnetworkAggregationInterface::SendResponseVTo (std::string toStr, std::vector<uint64_t> &vec, uint16_t iterationNum, std::string fromStr) {
         NS_LOG_FUNCTION (this);
         int flag = -1;
+        // Zhuoxu-bugfix: for aggregator, we should check if the children has already called the schedule function.
+        // if (this->sGroup.size() > 0 && sendSuccToPSet.find(iterationNum) != sendSuccToPSet.end())
+        //     return flag;
         //uint16_t iterationNum = 0;
         //Ptr<TCPserver> server = socketPool[toStr]->GetObject<TCPserver>();
         uint32_t pos = 0;
@@ -345,16 +362,19 @@ namespace ns3 {
         chunkBuffer[8] = static_cast<uint8_t>((iterationNum >> 8) & 0xFF); // High byte
         chunkBuffer[9] = static_cast<uint8_t>(iterationNum & 0xFF);
         std::copy(buffer, buffer + BASESIZE, chunkBuffer.data() + 10);
-        flag = SendPacket(toStr, iterationNum, chunkBuffer);
+        flag = SendPacket(toStr, iterationNum, chunkBuffer, fromStr);
+        return flag;
     }
 
-    int 
-    InnetworkAggregationInterface::SendPacket (std::string toStr, uint16_t iterationNum, std::vector<uint8_t> &chunkBuffer){
+
+    // SendPacket function should be able to distinguish leaf node and non-leaf node. Their behavior is different.
+    int
+    InnetworkAggregationInterface::SendPacket (std::string toStr, uint16_t iterationNum, std::vector<uint8_t> &chunkBuffer, std::string fromStr){
         //NS_LOG_INFO("iteration-"<<iterationNum-uint16_t(0));
 
         // Zhuoxu: send ending packet for padding. Otherwise, packet for the last iteration cannot be process because of size(MTU) != size(per quic frame)
         if (iterationNum == maxIteration ){
-            std::vector<uint8_t> chunkBuffer = std::vector<uint8_t>(pktlen,0); 
+            std::vector<uint8_t> chunkBuffer = std::vector<uint8_t>(pktlen,0);
 
             int sentSize = -1;
             for (uint16_t i = 0; i < 10; ++i) {
@@ -364,13 +384,12 @@ namespace ns3 {
             for(int i=10;i<pktlen;i++)
                 chunkBuffer[i] = 9;
 
-            return SendEndPacket (toStr, chunkBuffer);
+            return SendEndPacket (toStr, chunkBuffer, fromStr);
         }
 
         // Zhuoxu: change the producer to client here
         Ptr<TCPclient> client = socketPool[toStr]->GetObject<TCPclient>();
         NS_LOG_DEBUG( this << " Sends data to socketPool["<<toStr<<"] ");
-        NS_LOG_DEBUG( "print the send buffer of this client ...");
         // NS_LOG_DEBUG( client->m_socket->GetObject<QuicSocketBase>()->m_txBuffer->PrintToStr());
 
         // record the time RTT
@@ -383,59 +402,52 @@ namespace ns3 {
             {
                 LogComponentEnable("InnetworkAggregationInterface", LOG_LEVEL_ALL);
                 NS_LOG_DEBUG( TraceIPAddress << " client->SendPacket()--sentSize success: " << sentSize << " at iteration "<<iterationNum-uint16_t(0) );
-                TraceSingleNodeInfo();
+                // TraceSingleNodeInfo();
                 //ZHUOXU:LogComponentDisable("InnetworkAggregationInterface", LOG_LEVEL_ALL);
             }
             // Zhuoxu: block this currently. Since this will output unneccssary info.
             // PrintBufferSummary(chunkBuffer);
+            
             if (this->cGroup.size() == 0)
                 ProduceVToP (iterationNum + 1);
+            // else block for non-leaf node: we should trigger receive data function to check if there is available data to process.
+            else if (this->cGroup.size() > 0){
+                // for aggregator, we should avoid sending multiple packets from different children.
+                // sendSuccToPSet.insert(iterationNum);
+                UpdateQueue(fromStr);
+            }
         }
         else{
             NS_LOG_DEBUG(this << " client->Send() failed at iteration " << iterationNum - uint16_t(0) << " schedule next send");
-            if(thisAddress == TraceIPAddress)
-            {
-                LogComponentEnable("InnetworkAggregationInterface", LOG_LEVEL_ALL);
-                // LogComponentEnable("InnetworkAggregationInterface", LOG_LEVEL_ALL);
-                NS_LOG_DEBUG( TraceIPAddress << " client->Send()--sentSize failed: " << sentSize << " at iteration "<<iterationNum-uint16_t(0) );
-                // if (static_cast<int>(iterationNum) == 2864){
-                //     std::cout << " print info for iteration 2864 " << std::endl;
-                //     // 使用当前时间作为随机数生成器的种子
-                //     std::srand(static_cast<unsigned int>(std::time(nullptr)));
-
-                //     printCount++;
-                //     if(printCount % 40 == 0){
-                //         std::cout << "printCount: " << printCount << std::endl;
-                //         TraceSingleNodeInfo();
-                //     }
-                //     // // 生成0到10之间的随机整数
-                //     // int random_number = std::rand() % 10;
-                //     // if(random_number == 1){
-                //     //     std::cout << "random_number: " << random_number << std::endl;
-                //     //     TraceSingleNodeInfo();
-                //     // }
-                // }
-                // LogComponentDisable("InnetworkAggregationInterface", LOG_LEVEL_ALL);
-
-                // Zhuoxu: we don't print the TxBuffer currently, since it is right.
-                // client->GetSocket()->GetObject<TcpSocketBase>()->GetTxBuffer()->PrintTxBuffer();
-                // std::cout << *(client->GetSocket()->GetObject<TcpSocketBase>()->GetTxBuffer()) << std::endl;
-                
-                // std::cout << "10.2.4.2 client->Send()--sentSize failed: " << sentSize << " at iteration "<<iterationNum-uint16_t(0) << std::endl;
-                // TraceSingleNodeInfo();
-                //ZHUOXU:LogComponentDisable("InnetworkAggregationInterface", LOG_LEVEL_ALL);
-            }
-
             // Zhuoxu: we first try 100ns, to see what happen...
-            ns3::Simulator::Schedule(ns3::MilliSeconds(1), &InnetworkAggregationInterface::SendPacket, this, toStr, iterationNum, chunkBuffer);
+            // Zhuoxu-bugfix: for aggregator, check if the children has already called the schedule function. Just Becareful of the condition that we should care. Besides, we should also distinguish the behavior of producer.
+            // Zhuoxu-bugfix: Producer behavior
+            if (this->cGroup.size() == 0)
+                ns3::Simulator::Schedule(ns3::MilliSeconds(1), &InnetworkAggregationInterface::SendPacket, this, toStr, iterationNum, chunkBuffer, fromStr);
+            // Zhuoxu-bugfix: Aggregator first time send
+            else if (this->cGroup.size() > 0 && this->sGroup.size() > 0 && sendSchedSet.find(iterationNum) == sendSchedSet.end())
+            {
+                ns3::Simulator::Schedule(ns3::MilliSeconds(1), &InnetworkAggregationInterface::SendPacket, this, toStr, iterationNum, chunkBuffer, fromStr);
+                sendSchedSet[iterationNum] = fromStr;
+                if(thisAddress == TraceIPAddress){
+                    NS_LOG_DEBUG( TraceIPAddress << " sendSchedSet.find(iterationNum) == sendSchedSet.end()");
+                }
+            }
+            // Zhuoxu-bugfix: Aggregator non-first time send from the same child
+            else if (this->cGroup.size() > 0 && this->sGroup.size() > 0 && sendSchedSet.find(iterationNum) != sendSchedSet.end() && sendSchedSet[iterationNum] == fromStr)
+            {
+                ns3::Simulator::Schedule(ns3::MilliSeconds(1), &InnetworkAggregationInterface::SendPacket, this, toStr, iterationNum, chunkBuffer, fromStr);
+                if(thisAddress == TraceIPAddress){
+                    NS_LOG_DEBUG( TraceIPAddress << " sendSchedSet[iterationNum] == fromStr");
+                }
+            }
         }
         return sentSize;
-        
         // if it is a producer, then begin the next send call of next iteration.
     }
 
     int 
-    InnetworkAggregationInterface::SendEndPacket (std::string toStr, std::vector<uint8_t> &chunkBuffer){
+    InnetworkAggregationInterface::SendEndPacket (std::string toStr, std::vector<uint8_t> &chunkBuffer, std::string fromStr){
         // Zhuoxu: change the producer to client here
         Ptr<TCPclient> client = socketPool[toStr]->GetObject<TCPclient>();
         NS_LOG_DEBUG( this << " Sends End Packet to socketPool["<<toStr<<"] ");
@@ -455,9 +467,9 @@ namespace ns3 {
             }
             else{
                 NS_LOG_DEBUG( this << " client->Send() ending packet failed at iteration " << iterationNum-uint16_t(0));
-                ns3::Simulator::Schedule(ns3::MilliSeconds(10), &InnetworkAggregationInterface::SendEndPacket, this, toStr, chunkBuffer);
+                ns3::Simulator::Schedule(ns3::MilliSeconds(3), &InnetworkAggregationInterface::SendEndPacket, this, toStr, chunkBuffer, fromStr);
             }
-            LogComponentDisable("InnetworkAggregationInterface", LOG_LEVEL_ALL);
+            // LogComponentDisable("InnetworkAggregationInterface", LOG_LEVEL_ALL);
         }
 
         return sentSize;
@@ -515,7 +527,6 @@ namespace ns3 {
             Addr2Str (this->sGroup[i], toStr);
             std::vector<uint64_t> initData(chunkSize, static_cast<int>(iterationNum));
             SendResponseVTo (toStr, initData, iterationNum);
-            // std::cout<<"iterationNum:"<<static_cast<int>(j)<<std::endl;
             }
     }
 
@@ -545,13 +556,15 @@ namespace ns3 {
         }
     }
 
-    void InnetworkAggregationInterface::Addr2Str (Address addr, std::string &str) {
+    void 
+    InnetworkAggregationInterface::Addr2Str (Address addr, std::string &str) {
     std::stringstream ss;
     ss << Ipv4Address::ConvertFrom (addr);
     str = ss.str();
     }
 
-    uint16_t InnetworkAggregationInterface::HashIpToPort(const std::string& ip) {
+    uint16_t 
+    InnetworkAggregationInterface::HashIpToPort(const std::string& ip) {
     // Use std::hash to hash the IP address string
     std::hash<std::string> hash_fn;
     size_t hash = hash_fn(ip);
@@ -563,7 +576,8 @@ namespace ns3 {
     }
 
     // Zhuoxu: DIY function to print all the buffer and table information.
-    void InnetworkAggregationInterface::PrintAllInfo(){
+    void 
+    InnetworkAggregationInterface::PrintAllInfo(){
         EnableLoggingComponents();
         // Print IP address
         NS_LOG_DEBUG (this << " In PrintAllInfo. Local ip: " << this->thisAddress);
@@ -602,7 +616,8 @@ namespace ns3 {
         DisableLoggingComponents();
     }
 
-    void InnetworkAggregationInterface::EnableLoggingComponents() {
+    void 
+    InnetworkAggregationInterface::EnableLoggingComponents() {
     LogComponentEnable("InnetworkAggregationInterface", LOG_LEVEL_ALL);
     LogComponentEnable("TCPclient", LOG_LEVEL_ALL);
     LogComponentEnable("TCPserver", LOG_LEVEL_ALL);
@@ -612,7 +627,8 @@ namespace ns3 {
     LogComponentEnable("Packet", LOG_LEVEL_DEBUG);
     }
 
-    void InnetworkAggregationInterface::DisableLoggingComponents() {
+    void 
+    InnetworkAggregationInterface::DisableLoggingComponents() {
     LogComponentDisable("InnetworkAggregationInterface", LOG_LEVEL_ALL);
     LogComponentDisable("TCPclient", LOG_LEVEL_ALL);
     LogComponentDisable("TCPserver", LOG_LEVEL_ALL);
@@ -622,7 +638,8 @@ namespace ns3 {
     LogComponentDisable("Packet", LOG_LEVEL_DEBUG);
     }
 
-    void InnetworkAggregationInterface::TraceSingleNodeInfo(){
+    void 
+    InnetworkAggregationInterface::TraceSingleNodeInfo(){
         if(this->thisAddress == TraceIPAddress)
         {
             std::cout << "Trace the node information for " << this->thisAddress << std::endl;
@@ -633,7 +650,8 @@ namespace ns3 {
         }        
     }
 
-    bool InnetworkAggregationInterface::CheckQueueOrder(std::queue<uint16_t> q, uint16_t maxIteration) {
+    bool 
+    InnetworkAggregationInterface::CheckQueueOrder(std::queue<uint16_t> q, uint16_t maxIteration) {
     std::cout << "In the CheckQueueOrder function: " << std::endl;
     for (uint16_t i = 0; i < maxIteration; ++i) {
         if (q.empty() || q.front() != i) {
@@ -651,6 +669,49 @@ namespace ns3 {
     }
     std::cout << std::endl;
     return q.empty();
+    }
+
+    void
+    InnetworkAggregationInterface::UpdateQueue(std::string fromStr){
+        // get queue pointer
+        Ptr<TCPserver> server;
+        server = socketPool[fromStr]->GetObject<TCPserver>();
+        //  = server->GetCompIterQueue();
+
+        uint16_t iterNum = this->compQueue.front();
+        successIter.push(iterNum);
+        // ToDo: We need to complete a schedule function to make sure that the SendResponseVToP must success, and then iterQueuePtr->pop() can be executed. This order could not be twisted.
+        // We should put the pointer of the server socketpool into a queue, to prevent different children node process.
+        NS_LOG_DEBUG( this << " iterQueuePtr->pop();");
+        this->compQueue.pop();
+        // clear the iterChunk
+        auto it = iterChunk.find(iterNum);
+        iterChunk.erase(it);
+        isEnd = PrintCompInfo(iterNum);
+        NS_LOG_DEBUG("fromStr: " << fromStr << " current successIter.size(): " << successIter.size());
+        NS_LOG_DEBUG("isEnd " << isEnd);
+
+        if(this->thisAddress == TraceIPAddress){
+            std::cout << "Print successIter of " <<  TraceIPAddress << std::endl;
+            // for (const auto& element : successIter) {
+            //     std::cout << element << "-";
+            // }
+            // std::cout << std::endl;
+            std::cout << successIter << std::endl;
+        }
+        NS_LOG_DEBUG("fromStr: " << fromStr << ", current " << successIter.size());
+        // Call handleRead function after the memory has been released. Now we call handleread when each data is processed.
+        TriggerHandleRead ();
+        this->ReceiveDataFrom (fromStr);
+    }
+
+    void 
+    InnetworkAggregationInterface::PrintRxBuffer(std::string chStr){
+        Ptr<TCPserver> server = socketPool[chStr]->GetObject<TCPserver>();
+        NS_LOG_DEBUG("checking the RxBuffer of child node: " << chStr << ", this node: " << this->thisAddress << " content for debug...");
+        LogComponentEnable("TcpRxBuffer", LOG_LEVEL_ALL);
+        NS_LOG_DEBUG(server->GetSocket()->GetObject<TcpSocketBase>()->GetRxBuffer()->PrintRxBuffer());
+        LogComponentDisable("TcpRxBuffer", LOG_LEVEL_ALL);
     }
 
 }; /*namespace ns3*/

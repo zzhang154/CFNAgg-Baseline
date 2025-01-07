@@ -59,9 +59,11 @@ namespace ns3 {
         }
     };
 
+    struct CompInfo
+    {
+        std::queue <std::queue<uint16_t>*> compIterQueue;
+    };
     
-    
-
 }; /*namespace ns3*/
 
 #endif /*INNETWORK_TASK_APPDATA_H*/

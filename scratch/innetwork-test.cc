@@ -351,7 +351,7 @@ int
 main (int argc, char *argv[])
 {   
     CommandLine cmd;
-    uint16_t itr = 400; // has some problem when the iteration number reach 60.
+    uint16_t itr = 1000; // has some problem when the iteration number reach 60.
     uint32_t vsize = 200;
     bool topotype = 1;
     cmd.AddValue("itr", "max iteration consumer performed", itr);
@@ -387,22 +387,22 @@ main (int argc, char *argv[])
     LogComponentEnable ("InnetworkAggregationInterface", log_precision);
    
     // Enable logging for the Consumer component
-    // LogComponentEnable("Consumer", LOG_LEVEL_INFO);
-    // LogComponentEnable("Aggregator", LOG_LEVEL_INFO);
-    // LogComponentEnable("Producer", LOG_LEVEL_INFO);
-    // LogComponentEnable("Consumer", LOG_LEVEL_FUNCTION);
+    LogComponentEnable("Consumer", LOG_LEVEL_INFO);
+    LogComponentEnable("Aggregator", LOG_LEVEL_INFO);
+    LogComponentEnable("Producer", LOG_LEVEL_INFO);
+    LogComponentEnable("Consumer", LOG_LEVEL_FUNCTION);
     
 
     // Enable logging debug for some component
-    // LogComponentEnable("Consumer", LOG_LEVEL_DEBUG);
-    // LogComponentEnable("Aggregator", LOG_LEVEL_DEBUG);
-    // LogComponentEnable("Producer", LOG_LEVEL_DEBUG);
+    LogComponentEnable("Consumer", LOG_LEVEL_DEBUG);
+    LogComponentEnable("Aggregator", LOG_LEVEL_DEBUG);
+    LogComponentEnable("Producer", LOG_LEVEL_DEBUG);
     LogComponentDisable("InnetworkAggregationInterface", LOG_LEVEL_FUNCTION);
     LogComponentEnable("InnetworkAggregationInterface", LOG_LEVEL_INFO);
-    // LogComponentEnable("InnetworkAggregationInterface", LOG_LEVEL_DEBUG);
+    LogComponentEnable("InnetworkAggregationInterface", LOG_LEVEL_DEBUG);
 
-    // LogComponentEnable("TCPclient", LOG_LEVEL_ALL);
-    // LogComponentEnable("TCPserver", LOG_LEVEL_ALL);
+    LogComponentEnable("TCPclient", LOG_LEVEL_ALL);
+    LogComponentEnable("TCPserver", LOG_LEVEL_ALL);
     // LogComponentEnable("TcpSocketBase", LOG_LEVEL_ALL);
     // LogComponentEnable("TcpRxBuffer", LOG_LEVEL_ALL);
     // LogComponentEnable("TcpTxBuffer", LOG_LEVEL_ALL);
@@ -444,7 +444,7 @@ main (int argc, char *argv[])
     Packet::EnablePrinting ();
     Packet::EnableChecking ();
     // run
-    Simulator::Stop (Seconds (10));
+    Simulator::Stop (Seconds (2.30));
     Simulator::Run();
     
     //end
