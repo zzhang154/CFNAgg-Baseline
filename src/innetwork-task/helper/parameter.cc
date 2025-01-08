@@ -20,6 +20,7 @@ namespace ns3 {
     uint16_t ITERTHRESH = 30;
     int padIter = 0;
     std::string TraceIPAddress = "10.2.7.2";
+    bool debugFlag = false;
 
     void UpdatePktlen() {
         pktlen = BASESIZE + 10;
