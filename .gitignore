@@ -3,3 +3,4 @@ scratch/tcp-disorder-record.log
 scratch/tcp-testing.log
 scratch/tcp-disorder-record.log
 log/tcp-testing-10k-1ms.log
+log/TCPAgg-debug-record/1/1/1.6-deadlock.log
