@@ -236,9 +236,9 @@ namespace ns3 {
         Ptr<TCPserver> server;
         server = socketPool[fromStr]->GetObject<TCPserver>();
         
-        if(this->thisAddress == TraceIPAddress){
-            NS_LOG_ERROR("The number of child for " << TraceIPAddress << " is: " << this->cGroup.size() << " and fromStr is: " << fromStr);
-        }
+        // if(this->thisAddress == TraceIPAddress){
+        //     NS_LOG_ERROR("The number of child for " << TraceIPAddress << " is: " << this->cGroup.size() << " and fromStr is: " << fromStr);
+        // }
         // Zhuoxu: comment this to see what happen.
         // NS_LOG_DEBUG("Runing the call handle read function in " << fromStr);
         // server->CallHandleRead();
@@ -300,8 +300,8 @@ namespace ns3 {
             if(!isEnd){
                 if(this->thisAddress == TraceIPAddress)
                     NS_LOG_DEBUG("Entering the Schedule function...");
-                // test if the interval of the millisecond will affect the process?
-                ns3::Simulator::Schedule(ns3::MilliSeconds(4), &InnetworkAggregationInterface::ReceiveDataFrom, this, fromStr);
+                // test if the interval of the millisecond will affect the process? Here we try 1ms to see what's happen.
+                ns3::Simulator::Schedule(ns3::MilliSeconds(1), &InnetworkAggregationInterface::ReceiveDataFrom, this, fromStr);
             }
             else{
                 if(this->thisAddress == TraceIPAddress)
@@ -467,7 +467,7 @@ namespace ns3 {
             }
             else{
                 NS_LOG_DEBUG( this << " client->Send() ending packet failed at iteration " << iterationNum-uint16_t(0));
-                ns3::Simulator::Schedule(ns3::MilliSeconds(3), &InnetworkAggregationInterface::SendEndPacket, this, toStr, chunkBuffer, fromStr);
+                ns3::Simulator::Schedule(ns3::MilliSeconds(1), &InnetworkAggregationInterface::SendEndPacket, this, toStr, chunkBuffer, fromStr);
             }
             // LogComponentDisable("InnetworkAggregationInterface", LOG_LEVEL_ALL);
         }
