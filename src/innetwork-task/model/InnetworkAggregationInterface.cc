@@ -232,16 +232,8 @@ namespace ns3 {
         if(this->thisAddress == TraceIPAddress){
             NS_LOG_DEBUG(this << " entering the ReceiveDataFrom of TraceIPAddress: " << this->thisAddress);
         }
-        // first handle read
         Ptr<TCPserver> server;
         server = socketPool[fromStr]->GetObject<TCPserver>();
-        
-        // if(this->thisAddress == TraceIPAddress){
-        //     NS_LOG_ERROR("The number of child for " << TraceIPAddress << " is: " << this->cGroup.size() << " and fromStr is: " << fromStr);
-        // }
-        // Zhuoxu: comment this to see what happen.
-        // NS_LOG_DEBUG("Runing the call handle read function in " << fromStr);
-        // server->CallHandleRead();
 
         // check if there are any complete iteration.
         // here, we should pass a local vector to record all the finished iteration.
@@ -269,7 +261,6 @@ namespace ns3 {
                 NS_LOG_DEBUG("Entering the first block...");
           
             // Output the log info
-
             // Zhuoxu: add the following code to output the details of "10.2.4.2"
             if(this->thisAddress == TraceIPAddress){
                 std::queue<uint16_t> tempQueue = this->compQueue; // Create a copy of the queue to iterate through
@@ -301,7 +292,11 @@ namespace ns3 {
                 if(this->thisAddress == TraceIPAddress)
                     NS_LOG_DEBUG("Entering the Schedule function...");
                 // test if the interval of the millisecond will affect the process? Here we try 1ms to see what's happen.
-                ns3::Simulator::Schedule(ns3::MilliSeconds(1), &InnetworkAggregationInterface::ReceiveDataFrom, this, fromStr);
+                ns3::Simulator::Schedule(ns3::NanoSeconds(300), &InnetworkAggregationInterface::ReceiveDataFrom, this, fromStr);
+                if(!debugFlag){
+                    debugFlag = true;
+                    NS_LOG_INFO("ns3::Simulator::Schedule(ns3::NanoSeconds(300), &InnetworkAggregationInterface::ReceiveDataFrom, this, fromStr);");
+                }
             }
             else{
                 if(this->thisAddress == TraceIPAddress)
