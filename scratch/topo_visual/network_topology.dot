@@ -1,0 +1,41 @@
+digraph NetworkTopology {
+    // Define nodes
+    node [shape=ellipse];
+    pro0; pro1; pro2; pro3; pro4; pro5; pro6; pro7;
+    con0;
+    forwarder0; forwarder1; forwarder2; forwarder3; forwarder4; forwarder5; 
+    forwarder6; forwarder7; forwarder8; forwarder9; forwarder10; forwarder11;
+    forwarder12; forwarder13;
+    agg0; agg1; agg2; agg3; agg4; agg5;
+
+    // Define links with labels for bandwidth, delay, and queue size
+    pro0 -> forwarder0 [label="50Mbps, 1ms, 5000"];
+    pro1 -> forwarder1 [label="50Mbps, 1ms, 5000"];
+    pro2 -> forwarder2 [label="50Mbps, 1ms, 5000"];
+    pro3 -> forwarder3 [label="50Mbps, 1ms, 5000"];
+    pro4 -> forwarder4 [label="50Mbps, 1ms, 5000"];
+    pro5 -> forwarder5 [label="50Mbps, 1ms, 5000"];
+    pro6 -> forwarder6 [label="50Mbps, 1ms, 5000"];
+    pro7 -> forwarder7 [label="50Mbps, 1ms, 5000"];
+    
+    agg0 -> forwarder0 [label="50Mbps, 1ms, 5000"];
+    agg0 -> forwarder1 [label="50Mbps, 1ms, 5000"];
+    agg1 -> forwarder2 [label="50Mbps, 1ms, 5000"];
+    agg1 -> forwarder3 [label="50Mbps, 1ms, 5000"];
+    agg2 -> forwarder4 [label="50Mbps, 1ms, 5000"];
+    agg2 -> forwarder5 [label="50Mbps, 1ms, 5000"];
+    agg3 -> forwarder6 [label="50Mbps, 1ms, 5000"];
+    agg3 -> forwarder7 [label="50Mbps, 1ms, 5000"];
+    agg0 -> forwarder8 [label="50Mbps, 1ms, 5000"];
+    agg1 -> forwarder9 [label="50Mbps, 1ms, 5000"];
+    agg2 -> forwarder10 [label="50Mbps, 1ms, 5000"];
+    agg3 -> forwarder11 [label="50Mbps, 1ms, 5000"];
+    agg4 -> forwarder8 [label="50Mbps, 1ms, 5000"];
+    agg4 -> forwarder9 [label="50Mbps, 1ms, 5000"];
+    agg5 -> forwarder10 [label="50Mbps, 1ms, 5000"];
+    agg5 -> forwarder11 [label="50Mbps, 1ms, 5000"];
+    agg4 -> forwarder12 [label="50Mbps, 1ms, 5000"];
+    agg5 -> forwarder13 [label="50Mbps, 1ms, 5000"];
+    con0 -> forwarder12 [label="50Mbps, 1ms, 5000"];
+    con0 -> forwarder13 [label="50Mbps, 1ms, 5000"];
+}

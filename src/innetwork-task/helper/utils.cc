@@ -2,130 +2,88 @@
 #include <cstring>
 namespace ns3 {
 
-/*
-uint16_t 
-PraseHeader (uint8_t *buffer, std::string &header, uint16_t &dataLen, uint16_t &offset) {
-    // prase dataLen
-    std::memcpy (&dataLen, buffer, sizeof (uint16_t));
-    //std::cout << "[PraseHeader] dataLen = " << dataLen << std::endl;
+NS_LOG_COMPONENT_DEFINE("TracedTimeQueue");
 
-    uint16_t startOff = sizeof (uint16_t);
-    uint16_t len = 0;
-    while (reinterpret_cast<char *> (buffer + startOff + len)[0] != ':' && (len < ( dataLen - startOff))) {
-        ++len;
+// Define fileMutex
+std::mutex fileMutex;
 
-    }
-    header = std::string (reinterpret_cast<const char*> (buffer + startOff), len);
-
-    // prase offset
-    std::memcpy (&offset, buffer + startOff + len + 1, sizeof (uint16_t));
-
-    return startOff + len + 1 + sizeof (uint16_t);
-
+void HelloUtils(){
+    std::cout << "Hello from utils" << std::endl;
 }
 
-void 
-PraseVector (uint8_t *buffer, uint16_t bufferSize, std::vector<uint64_t> &vec) {
-    uint64_t ele;
-    uint8_t type = sizeof (uint64_t);
-    for (uint8_t i = 0; i < (bufferSize / type); ++i) {
-        memcpy (&ele, buffer + i * type, type);
-        vec[i] = ele;
+void WriteToFile(const std::string& filename, const std::string& result) {
+    std::lock_guard<std::mutex> guard(fileMutex);  // Ensure thread-safe access
+    std::ofstream outfile;
 
+    // Open the file in append mode
+    outfile.open(filename, std::ios_base::app);
+    if (!outfile.is_open()) {
+        std::cerr << "Failed to open file: " << filename << std::endl;
+        return;
     }
 
+    // Write the result to the file
+    outfile << result << std::endl;
+
+    // Close the file
+    outfile.close();
 }
 
-void 
-PraseInt16 (uint8_t *buffer, uint16_t &size) {
-    std::memcpy (&size, buffer, sizeof (uint16_t));
-
-}
-
-uint16_t 
-CreateRequestV (uint8_t *buffer, const std::string &header, uint16_t size) {
-    std::string newheader = header + ":";
-    uint16_t bufferSize = newheader. size () + sizeof (uint16_t) + sizeof (uint16_t) + sizeof (uint16_t);
-    uint16_t offset = 0;
-    //uint8_t *buffer = new uint8_t [bufferSize];
-    //write dataLen
-    std::memcpy (buffer, &bufferSize, sizeof (uint16_t));
-    //write key
-    std::memcpy (buffer + sizeof (uint16_t), (uint8_t *)newheader. c_str (), newheader. size ());
-    //write offset 
-    std::memcpy (buffer + sizeof (uint16_t) + + newheader. size (), &offset, sizeof (uint16_t));
-    //write value
-    std::memcpy (buffer + 2* sizeof (uint16_t) + newheader. size (), &size, sizeof (uint16_t));
-
-    return bufferSize;
-}
-
-uint16_t 
-CreatResponseV (uint8_t *buffer, const std::string &header, const std::vector<uint64_t> &vec,
-                    uint16_t offset) {
-    std::string newheader = header + ":";
-    uint16_t vSize = vec. size ();
-    uint8_t step = sizeof (uint64_t);
-    uint16_t end = (vSize - offset < k) ? vSize : (offset + k - 1);
-    uint16_t dataLenOff = sizeof (uint16_t);
-    uint16_t headerOff = dataLenOff + newheader. size ();
-    uint16_t offOff = headerOff + sizeof (uint16_t);
-    uint16_t bufferSize = offOff + step * (end - offset + 1);
-    //uint8_t *buffer = new uint8_t[bufferSize];
-
-    //std::cout << "end = " << end << "bufferSize = " << bufferSize << std::endl;
-    //write dataLen
-    memcpy (buffer, &bufferSize, sizeof (uint16_t));
-    // write key
-    memcpy (buffer + dataLenOff, (uint8_t *)newheader. c_str (), newheader. size ());
-    // write offset
-    memcpy (buffer + headerOff, &offset, sizeof (uint16_t));
-    // write value
-    for (uint16_t i = 0; i < (end - offset + 1); ++i) {
-        memcpy (buffer + offOff + i * step, &vec[offset + i], step);
-
-    }
-    // std::cout << "end = " << end << "bufferSize = " << bufferSize << std::endl;
-    return bufferSize;
-}
-
-uint16_t 
-CreatResponseVK (uint8_t *buffer, const std::string &header, const std::vector<uint64_t> &vec,
-                    uint16_t offset) {
-    std::string newheader = header + ":";
-    uint16_t vSize = vec. size ();
-    uint8_t step = sizeof (uint64_t);
-    uint16_t end = vSize;
-    uint16_t dataLenOff = sizeof (uint16_t);
-    uint16_t headerOff = dataLenOff + newheader. size ();
-    uint16_t offOff = headerOff + sizeof (uint16_t);
-    uint16_t bufferSize = offOff + step * (end);
-    //uint8_t *buffer = new uint8_t[bufferSize];
-
-    //std::cout << "end = " << end << "bufferSize = " << bufferSize << std::endl;
-    //write dataLen
-    std::memcpy (buffer, &bufferSize, sizeof (uint16_t));
-    // write key
-    std::memcpy (buffer + dataLenOff, (uint8_t *)newheader. c_str (), newheader. size ());
-    // write offset
-    std::memcpy (buffer + headerOff, &offset, sizeof (uint16_t));
-    // write value
-    for (uint16_t i = 0; i < end; ++i) {
-        std::memcpy (buffer + offOff + i * step, &vec[i], step);
-
-    }
-    // std::cout << "end = " << end << "bufferSize = " << bufferSize << std::endl;
-    return bufferSize;
-}
-
-
-*/
-
-void 
-Addr2Str (Address addr, std::string &str) {
+void Addr2Str (Address addr, std::string &str) {
     std::stringstream ss;
     ss << Ipv4Address::ConvertFrom (addr);
     str = ss.str();
 }
 
-}; /*namespace ns3*/
+TracedTimeQueue::TracedTimeQueue()
+{
+    // Initialize the trace source
+    m_tracedTimeQueue.ConnectWithoutContext(
+        MakeCallback(&TracedTimeQueue::TimeQueueChanged, this));
+}
+
+void TracedTimeQueue::Push(Time t)
+{
+    m_times.push(t);
+    m_tracedTimeQueue(m_times); // Trigger the trace source
+}
+
+void TracedTimeQueue::Pop()
+{
+    if (!m_times.empty())
+    {
+        m_times.pop();
+        m_tracedTimeQueue(m_times); // Trigger the trace source
+    }
+}
+
+size_t TracedTimeQueue::Size() const
+{
+    return m_times.size();
+}
+
+const std::queue<Time> &TracedTimeQueue::GetTimes() const
+{
+    return m_times;
+}
+
+void TracedTimeQueue::TimeQueueChanged(const std::queue<Time> &times)
+{
+    // This method will be called whenever the traced value changes
+    NS_LOG_INFO( this << " Time queue changed. Current size: " << times.size());
+}
+
+void MyTimeQueueCallback(const std::queue<Time> &times)
+{
+    std::cout << "Time queue changed. New size: " << times.size() << std::endl;
+}
+
+void ValueChangedCallback(std::string context, uint32_t oldValue, uint32_t newValue) {
+    std::cout << "Value changed from " << oldValue << " to " << newValue << " in context: " << context << std::endl;
+}
+
+void TimeChangedCallback(std::string context, Time oldValue, Time newValue) {
+    std::cout << "Time changed from " << oldValue.GetSeconds() << " to " << newValue.GetSeconds() << " in context: " << context << std::endl;
+}
+
+}; /* namespace ns3 */

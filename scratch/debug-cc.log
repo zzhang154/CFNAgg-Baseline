@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/./ns3", line 1918, in <module>
+    main()
+  File "/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/./ns3", line 1865, in main
+    raise Exception("Couldn't find the specified program: %s" % target_to_run)
+Exception: Couldn't find the specified program: scratch/debug.cc
