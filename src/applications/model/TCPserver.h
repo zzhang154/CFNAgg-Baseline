@@ -121,6 +121,7 @@ public:
   void ReleaseMap(uint16_t iterationNum);
   void SetcGroupSize(uint16_t size);
   void CheckChComp(uint16_t iterationNum); 
+  void DoChComp(uint16_t iterationNum);
   void PrintBuffInfo_8(uint8_t* buffer, uint32_t packetSize);
   void PrintState();
   void SetIterChunkPtr(std::map<uint16_t, DataChunk>* iterChunk);
@@ -199,6 +200,9 @@ private:
   std::map<uint16_t, DataChunk>* iterChunkPtr;
   std::string LocalAddressStr;
   std::queue<uint16_t>* compQueuePtr; 
+
+  // TracedValue<Time>;
+
 };
 
 } // namespace ns3

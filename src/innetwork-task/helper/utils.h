@@ -4,30 +4,57 @@
 #include <fstream>
 #include "ns3/packet.h"
 #include "ns3/ipv4-address.h"
-#include "parameter.h"
 #include <cstdint>
+#include <string>
+#include <mutex>
 #include <cstring> 
+#include "ns3/core-module.h"
+#include "ns3/simulator.h"
+#include "ns3/log.h"
+#include <queue>
+#include <iostream>
 
 namespace ns3 {
 
-//void SendData (Ptr<BaseProtocol> transport, uint8_t *buffer, uint16_t len);
+// Function declarations
+void Addr2Str(Address addr, std::string &str);
+void HelloUtils();
+extern std::mutex fileMutex;
+void WriteToFile(const std::string& filename, const std::string& result); 
 
-uint16_t PraseHeader (uint8_t *buffer, std::string &command, uint16_t &dataLen, uint16_t &offset);
+class TracedTimeQueue
+{
+public:
+    TracedTimeQueue();
 
-void PraseVector (uint8_t *buffer, uint16_t bufferSize, std::vector<uint64_t> &vec);
+    // Method to push an element
+    void Push(Time t);
 
-void PraseInt16 (uint8_t *buffer, uint16_t &size);
+    // Method to pop an element
+    void Pop();
 
-uint16_t CreateRequestV (uint8_t *buffer, const std::string &command, uint16_t size);
+    // Method to get the size of the queue
+    size_t Size() const;
 
-uint16_t CreatResponseV (uint8_t *buffer, const std::string &command, const std::vector<uint64_t> &vec, 
-                            uint16_t offset);
+    // Get the underlying queue
+    const std::queue<Time> &GetTimes() const;
 
-uint16_t CreatResponseVK (uint8_t *buffer, const std::string &command, const std::vector<uint64_t> &vec, 
-                            uint16_t offset);
+    // Define a traced callback for the queue
+    TracedCallback<const std::queue<Time>&> m_tracedTimeQueue;
 
-void Addr2Str (Address addr, std::string &str);
+private:
+    // Underlying queue of Time objects
+    std::queue<Time> m_times;
 
-}; /*namespace ns3*/
+    // Callback method
+    void TimeQueueChanged(const std::queue<Time> &times);
+};
 
-#endif /*UTILS_H*/
+// Callback function declarations
+void MyTimeQueueCallback(const std::queue<Time> &times);
+void ValueChangedCallback(std::string context, uint32_t oldValue, uint32_t newValue);
+void TimeChangedCallback(std::string context, Time oldValue, Time newValue);
+
+}; /* namespace ns3 */
+
+#endif /* UTILS_H */

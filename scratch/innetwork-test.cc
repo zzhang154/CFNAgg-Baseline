@@ -47,6 +47,8 @@
 #include <string>
 #include <climits> // For CHAR_BIT
 
+#include "ns3/utils.h"
+
 using namespace ns3;
 
 // Function to get the current working directory
@@ -58,10 +60,18 @@ const std::string currentDir = GetCurrentWorkingDir();
 
 NS_LOG_COMPONENT_DEFINE("innetwork-test");
 
-const std::string Number = "50";
+const std::string Number = "-bin8";
+
+/*
 const std::string routerFilePath = currentDir + "/scratch/config/router" + Number + ".txt";
 const std::string linkFilePath = currentDir + "/scratch/config/link" + Number + ".txt";
 const std::string aggGropuFilePath = currentDir + "/scratch/config/aggtree" + Number + ".txt";
+*/
+
+std::string routerFilePath;
+std::string linkFilePath;
+std::string aggGropuFilePath;
+
 const std::string conName = "con";
 const std::string proName = "pro";
 const std::string fowName = "forwarder";
@@ -127,7 +137,7 @@ void CountRouterNodes(const std::string& filename) {
 }
 
 // read link.txt to create links
-void BuildTopo(const std::string &linkFile,  NodeContainer &consumer, NodeContainer &producer, 
+void BuildTopo(std::string &linkFile,  NodeContainer &consumer, NodeContainer &producer, 
             NodeContainer &forwarder, NodeContainer &aggregator) {
     
     consumer.Create(consumerNum);
@@ -233,7 +243,7 @@ void Createcon (uint16_t port, uint16_t itr, uint8_t rank, uint32_t vsize,
     consumer->SetStopTime (Seconds(stoptime));
 }
 
-void CreateAggGroup (const std::string aggGroupFile, 
+void CreateAggGroup (std::string aggGroupFile, 
                         std::unordered_map<std::string, std::vector<std::string>> &aggGroups) {
     std::ifstream infile (aggGroupFile);
     std::string line;
@@ -270,13 +280,16 @@ void CreateAggTree (std::string &nodeName, std::vector<Address> pa,
         addr = iaddr.GetLocal ();
         cGroup. push_back (addr);
     }
-    std::cout << "current node " << nodeName << std::endl;
+    // std::cout << "current node " << nodeName << std::endl;
 
     if (nodeName. find ("con") != std::string::npos)
         // for each object, we have to specify its connection. So here we pass the address of the parent node and children nodes for construction.
         Createcon(server_port, itr, rank, vsize, pa, cGroup, Names::Find<Node> (nodeName));
     if (nodeName. find ("agg") != std::string::npos)
+    {
         Createagg(server_port, itr, rank, vsize, pa, cGroup, Names::Find<Node> (nodeName));
+        // std::cout << "Createcon--agg node " << nodeName << std::endl;
+    }
     if (nodeName. find ("pro") != std::string::npos)
         Createpro(server_port, itr, rank, vsize, pa, cGroup, Names::Find<Node> (nodeName));
 }
@@ -284,6 +297,8 @@ void CreateAggTree (std::string &nodeName, std::vector<Address> pa,
 void CreateAggTreeTopo (uint16_t itr, uint32_t vsize, uint16_t server_port) {
     // get Aggragator Group
     std::unordered_map<std::string, std::vector<std::string>> aggGroups;
+
+    // std::cout << "aggGropuFilePath: " << aggGropuFilePath << std::endl;
     CreateAggGroup (aggGropuFilePath, aggGroups);
     // create agg tree
 
@@ -347,109 +362,116 @@ void DisableLoggingComponents() {
     LogComponentDisable("Packet", LOG_LEVEL_DEBUG);
 }
 
-int
-main (int argc, char *argv[])
-{   
+int main(int argc, char *argv[]) {
+    HelloUtils();
+    LogComponentEnable("TracedTimeQueue", LOG_LEVEL_ALL);
+    // Create an instance of the custom class
+    TracedTimeQueue tracedTimeQueue;
+
+    // Connect a custom callback to the trace source
+    tracedTimeQueue.m_tracedTimeQueue.ConnectWithoutContext(
+        MakeCallback(&MyTimeQueueCallback));
+
+    // Push and pop elements to trigger the callback
+    tracedTimeQueue.Push(Seconds(1.0));
+    tracedTimeQueue.Push(Seconds(2.0));
+    tracedTimeQueue.Pop();
+
+
     CommandLine cmd;
-    uint16_t itr = 10000; // has some problem when the iteration number reach 60.
-    uint32_t vsize = 200;
+    uint32_t vsize = 150;
     bool topotype = 1;
-    cmd.AddValue("itr", "max iteration consumer performed", itr);
     cmd.AddValue("vsize", "vector size", vsize);
     cmd.AddValue("topotype", "choose test topo type", topotype);
     cmd.AddValue("cc", "choose test congestion control", cc);
     cmd.AddValue("basetime", "set base time", basetime);
     cmd.AddValue("starttime", "set start time", starttime);
     cmd.AddValue("stoptime", "set stop time", stoptime);
-    cmd.Parse (argc, argv);
+    cmd.Parse(argc, argv);
 
     ns3::SetBaseSize(vsize * sizeof(uint8_t) * CHAR_BIT);
 
-    std::cout
-        << "\n\n#################### SIMULATION PARAMETERS ####################\n\n\n";
-    
-    std::cout
-        << "Topotype: "<<topotype<< " Vector Size: "<<vsize<< " Congestion Control Algorithm: "<< cc <<std::endl;
+    std::vector<std::string> prefixFileNames = {"-bin8", "-bin16", "-bin32"}; // Example prefix file names
+    std::vector<uint16_t> iterationNumbers = {10000, 1000, 2000}; // Example iteration numbers
 
-    std::cout
-        << "\n\n#################### SIMULATION SET-UP ####################\n\n\n";
+    const std::string outputFilename = "simulation_results.txt"; // Shared output file
 
-    LogLevel log_precision = LOG_LEVEL_LOGIC;
-    Time::SetResolution (Time::NS);
-    // Disable all log levels initially
-    // LogComponentDisableAll(LOG_LEVEL_ALL);
-    
+    // Set the Time resolution once before the loops
+    Time::SetResolution(Time::NS);
 
-    LogComponentEnableAll (LOG_PREFIX_TIME);
-    LogComponentEnableAll (LOG_PREFIX_FUNC);
-    LogComponentEnableAll (LOG_PREFIX_NODE);
-    
-    LogComponentEnable ("InnetworkAggregationInterface", log_precision);
-   
-    // Enable logging for the Consumer component
-    LogComponentEnable("Consumer", LOG_LEVEL_INFO);
-    LogComponentEnable("Aggregator", LOG_LEVEL_INFO);
-    LogComponentEnable("Producer", LOG_LEVEL_INFO);
-    LogComponentEnable("Consumer", LOG_LEVEL_FUNCTION);
-    
+    for (std::string& prefix : prefixFileNames) {
+        routerFilePath = currentDir + "/scratch/config/router" + prefix + ".txt";
+        linkFilePath = currentDir + "/scratch/config/link" + prefix + ".txt";
+        aggGropuFilePath = currentDir + "/scratch/config/aggtree" + prefix + ".txt";
 
-    // Enable logging debug for some component
-    LogComponentEnable("Consumer", LOG_LEVEL_DEBUG);
-    LogComponentEnable("Aggregator", LOG_LEVEL_DEBUG);
-    LogComponentEnable("Producer", LOG_LEVEL_DEBUG);
-    LogComponentDisable("InnetworkAggregationInterface", LOG_LEVEL_FUNCTION);
-    LogComponentEnable("InnetworkAggregationInterface", LOG_LEVEL_INFO);
-    // LogComponentEnable("InnetworkAggregationInterface", LOG_LEVEL_DEBUG);
+        for (uint16_t itr : iterationNumbers) {
+            std::cout << "\n\n#################### SIMULATION PARAMETERS ####################\n\n\n";
+            std::cout << "Prefix: " << prefix << " Iteration: " << itr << " Vector Size: " << vsize << " Congestion Control Algorithm: " << cc << std::endl;
+            std::cout << "\n\n#################### SIMULATION SET-UP ####################\n\n\n";
 
-    // LogComponentEnable("TCPclient", LOG_LEVEL_ALL);
-    // LogComponentEnable("TCPserver", LOG_LEVEL_ALL);
-    // LogComponentEnable("TcpSocketBase", LOG_LEVEL_ALL);
-    // LogComponentEnable("TcpRxBuffer", LOG_LEVEL_ALL);
-    // LogComponentEnable("TcpTxBuffer", LOG_LEVEL_ALL);
-    // LogComponentEnable("Packet", LOG_LEVEL_DEBUG);
-    
-    //Ensure that LOG_LEVEL_FUNCTION and other levels are not enabled
-    // LogComponentDisable("Consumer", LOG_LEVEL_FUNCTION);
-    // LogComponentDisable("Aggregator", LOG_LEVEL_FUNCTION);
-    // LogComponentDisable("Producer", LOG_LEVEL_FUNCTION);
+            LogLevel log_precision = LOG_LEVEL_LOGIC;
 
-    // LogComponentDisable("InnetworkAggregationInterface", LOG_LEVEL_FUNCTION);
+            LogComponentEnableAll(LOG_PREFIX_TIME);
+            LogComponentEnableAll(LOG_PREFIX_FUNC);
+            LogComponentEnableAll(LOG_PREFIX_NODE);
 
-    // Schedule the logging to be enabled at 3.75 seconds
-    // Simulator::Schedule(Seconds(3.5), &EnableLoggingComponents);
+            LogComponentEnable("InnetworkAggregationInterface", log_precision);
+            LogComponentEnable("Consumer", LOG_LEVEL_ALL);
+            LogComponentEnable("Aggregator", LOG_LEVEL_ALL);
+            LogComponentEnable("Producer", LOG_LEVEL_ALL);
+            
+            LogComponentDisable("InnetworkAggregationInterface", LOG_LEVEL_DEBUG);
+            LogComponentEnable("InnetworkAggregationInterface", LOG_LEVEL_INFO);
 
-    // Schedule the logging to be disabled at 4.0 seconds
-    // Simulator::Schedule(Seconds(3.76), &DisableLoggingComponents);
-    
-    NodeContainer consumer;
-    NodeContainer producer;
-    NodeContainer forwarder;
-    NodeContainer aggregator;
 
-    CountRouterNodes(routerFilePath);
-    BuildTopo(linkFilePath, consumer, producer, forwarder, aggregator);
-    //LogLevel log_precision = LOG_LEVEL_INFO; 
-    uint16_t server_port=1234;
-    if (topotype == 0) {
-        CreateDirectTopo (consumer, producer, itr, vsize, server_port);
+            LogComponentDisable("Consumer", LOG_LEVEL_ALL);
+            LogComponentDisable("Aggregator", LOG_LEVEL_ALL);
+            LogComponentDisable("Producer", LOG_LEVEL_ALL);
+            // LogComponentDisable("InnetworkAggregationInterface", LOG_LEVEL_ALL);
+            LogComponentDisable("TCPclient", LOG_LEVEL_ALL);
+            LogComponentDisable("TCPserver", LOG_LEVEL_ALL);
+            LogComponentDisable("TcpSocketBase", LOG_LEVEL_ALL);
+            LogComponentDisable("TcpRxBuffer", LOG_LEVEL_ALL);
+            LogComponentDisable("TcpTxBuffer", LOG_LEVEL_ALL);
+            LogComponentDisable("Packet", LOG_LEVEL_DEBUG);
 
-    } else {
-        CreateAggTreeTopo (itr, vsize, server_port);
+            // Initialize node containers
+            NodeContainer consumer;
+            NodeContainer producer;
+            NodeContainer forwarder;
+            NodeContainer aggregator;
+
+            // Reset consumer, producer, forwarder, and aggregator counts
+            consumerNum = 0;
+            producerNum = 0;
+            forwarderNum = 0;
+            aggregatorNum = 0;
+
+            CountRouterNodes(routerFilePath);
+            BuildTopo(linkFilePath, consumer, producer, forwarder, aggregator);
+
+            uint16_t server_port = 1234;
+            if (topotype == 0) {
+                CreateDirectTopo(consumer, producer, itr, vsize, server_port);
+            } else {
+                CreateAggTreeTopo(itr, vsize, server_port);
+            }
+
+            Packet::EnablePrinting();
+            Packet::EnableChecking();
+
+            Simulator::Stop(Seconds(15.00));
+            Simulator::Run();
+            Simulator::Destroy();
+            Names::Clear(); // Clear the Names database
+
+            std::string result = "Prefix: " + prefix + ", Iteration: " + std::to_string(itr) + " - Simulation completed successfully.";
+            std::cout << "Prefix: " + prefix + ", Iteration: " + std::to_string(itr) + " - Simulation completed successfully." << std::endl;
+            WriteToFile(outputFilename, result);
+
+            std::cout << "\n#################### SIMULATION END ####################\n\n\n";
+        }
     }
 
-
-    // PointToPointHelper pointToPoint;
-    // pointToPoint.EnablePcapAll  ("/home/hxq/ns-allinone-3.37/ns-3.37/topo/topo");
-
-    Packet::EnablePrinting ();
-    Packet::EnableChecking ();
-    // run
-    Simulator::Stop (Seconds (15.00));
-    Simulator::Run();
-    
-    //end
-    Simulator::Destroy();
-    std::cout
-      << "\n\n#################### SIMULATION END ####################\n\n\n";
     return 0;
 }

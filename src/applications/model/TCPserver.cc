@@ -35,6 +35,8 @@
 #include "seq-ts-header.h"
 #include "TCPserver.h"
 
+// #include "ns3/utilis.h"
+
 namespace ns3 {
 
 NS_LOG_COMPONENT_DEFINE ("TCPserver");
@@ -248,35 +250,47 @@ TCPserver::CheckMemory(){
 void 
 TCPserver::CheckChComp(uint16_t iterNum){
   if((*iterChunkPtr)[iterNum].chAddr.size() == cGroupSize){
-    NS_LOG_DEBUG( this << " All children have collected the data for iteration " << iterNum - uint16_t(0) << " in the m_bindIp: " << ipAddressStr);
-
-    // Zhuoxu: we block this at the moment.
-    // std::cout << "All children have collected the data for iteration " << iterNum - uint16_t(0) << " in server IP: " << this->LocalAddressStr << std::endl;
-
-    for (uint16_t i = 0; i < iterChunkMap[iterNum].vec.size(); ++i) {
-      (*iterChunkPtr)[iterNum].vec[i] = static_cast<uint16_t>((*iterChunkPtr)[iterNum].vec[i] / uint16_t(cGroupSize));
+    // we simulate this for the aggregator and the consumer, to see what happens.
+    if(!debugFlag){
+      debugFlag = true;
+      LogComponentEnable("TCPserver", LOG_LEVEL_INFO);
+      NS_LOG_INFO("ns3::Simulator::Schedule(ns3::MilliSeconds(2), &TCPserver::DoChComp, this, iterNum);");
+      LogComponentDisable("TCPserver", LOG_LEVEL_INFO);
     }
-
-    // Zhuoxu: we need to add the code to trigger the interface function.
-    compQueuePtr->push(iterNum);
-
-    // Zhuoxu: Some problem here, the size of the compQueue should not be larger than the threshold.
-    NS_LOG_DEBUG(this << " Printing all members of compQueue with size: " << compQueuePtr->size());
-
-    std::queue<uint16_t> tempQueue = *compQueuePtr; // Create a copy of the queue to iterate through
-    std::stringstream ss;
-    while (!tempQueue.empty()) {
-        uint16_t value = tempQueue.front();
-        ss << value - uint16_t(0) << "-";
-        tempQueue.pop();
-    }
-    ss << std::endl;
-    NS_LOG_DEBUG("compQueue: " << ss.str());
-    // if(LocalAddressStr == TraceIPAddress)
-    // {
-    //     std::cout << "compQueue for TraceIPAddress: " << TraceIPAddress << ", with socket fromStr: " << ipAddressStr << "  | " << ss.str() << std::endl;
-    // }
+    ns3::Simulator::Schedule(ns3::MilliSeconds(2), &TCPserver::DoChComp, this, iterNum);
+    
   }
+}
+   
+void 
+TCPserver::DoChComp(uint16_t iterNum){
+  NS_LOG_DEBUG( this << " All children have collected the data for iteration " << iterNum - uint16_t(0) << " in the m_bindIp: " << ipAddressStr);
+  // Zhuoxu: we block this at the moment.
+  // std::cout << "All children have collected the data for iteration " << iterNum - uint16_t(0) << " in server IP: " << this->LocalAddressStr << std::endl;
+
+  for (uint16_t i = 0; i < iterChunkMap[iterNum].vec.size(); ++i) {
+    (*iterChunkPtr)[iterNum].vec[i] = static_cast<uint16_t>((*iterChunkPtr)[iterNum].vec[i] / uint16_t(cGroupSize));
+  }
+
+  // Zhuoxu: we need to add the code to trigger the interface function.
+  compQueuePtr->push(iterNum);
+
+  // Zhuoxu: Some problem here, the size of the compQueue should not be larger than the threshold.
+  NS_LOG_DEBUG(this << " Printing all members of compQueue with size: " << compQueuePtr->size());
+
+  std::queue<uint16_t> tempQueue = *compQueuePtr; // Create a copy of the queue to iterate through
+  std::stringstream ss;
+  while (!tempQueue.empty()) {
+      uint16_t value = tempQueue.front();
+      ss << value - uint16_t(0) << "-";
+      tempQueue.pop();
+  }
+  ss << std::endl;
+  NS_LOG_DEBUG("compQueue: " << ss.str());
+  // if(LocalAddressStr == TraceIPAddress)
+  // {
+  //     std::cout << "compQueue for TraceIPAddress: " << TraceIPAddress << ", with socket fromStr: " << ipAddressStr << "  | " << ss.str() << std::endl;
+  // }
 }
 
 void 
@@ -526,7 +540,8 @@ void
 TCPserver::CallSendEmptyPacket()
 {
   NS_LOG_FUNCTION (this << " CallSendEmptyPacket");
-  std::cout << std::endl;
+  // Zhuoxu: extra std::endl comes from this.
+  // std::cout << std::endl;
   m_socket->GetObject<TcpSocketBase>()->CallSendEmptyPacketACK();
 }
 

@@ -3,6 +3,7 @@ build_lib(
   SOURCE_FILES
     helper/parameter.cc
     helper/vectorop.cc
+    helper/utils.cc
     model/aggregator.cc
     model/consumer.cc
     model/InnetworkAggregationInterface.cc
@@ -10,6 +11,7 @@ build_lib(
     
   HEADER_FILES
     helper/parameter.h
+    helper/utils.h
     helper/vectorop.h
     model/aggregator.h
     model/consumer.h
