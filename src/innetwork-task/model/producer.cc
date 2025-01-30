@@ -43,12 +43,12 @@ namespace ns3 {
     }
 
     Producer::~Producer() {
-        NS_LOG_FUNCTION (this);
+        // NS_LOG_FUNCTION (this);
     }
 
     void 
     Producer::DoDispose () {
-        NS_LOG_FUNCTION (this);
+        // NS_LOG_FUNCTION (this);
         Application::DoDispose ();
 
     }

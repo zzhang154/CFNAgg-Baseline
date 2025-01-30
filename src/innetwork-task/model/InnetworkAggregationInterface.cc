@@ -84,7 +84,6 @@ namespace ns3 {
         return addr;
     }
 
-
     // socketPool:
     // <addrString(IPv4),Ptr<Application> 
     void 
@@ -293,10 +292,18 @@ namespace ns3 {
         //Ptr<TCPserver> server = socketPool[toStr]->GetObject<TCPserver>();
         uint32_t pos = 0;
         uint32_t end = vsize*sizeof(uint64_t); //transalte from uint64_t to uint8_t
+
+        // Ensure vsize is correctly defined and has a valid value
+        if (vsize <= 0) {
+            NS_LOG_ERROR("Invalid vsize: " << vsize);
+        return flag;
+    }
+
         uint8_t type = 1;
         //uint8_t *serializeVec = new uint8_t[end]();
         std::vector<uint8_t> serializeVec = std::vector<uint8_t>(end,0);
         //uint8_t *chunkBuffer = new uint8_t[pktlen]();note that: uint16_t pktlen = BASESIZE + 10; So the first 10 position are for chunkNum and type.
+        
         SerializeVector(vec,serializeVec.data());
         std::vector<uint8_t> chunkBuffer = std::vector<uint8_t>(pktlen,0); //Zhuoxu: 
         NS_LOG_DEBUG( this << " pktlen " << pktlen);

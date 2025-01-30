@@ -86,4 +86,32 @@ void TimeChangedCallback(std::string context, Time oldValue, Time newValue) {
     std::cout << "Time changed from " << oldValue.GetSeconds() << " to " << newValue.GetSeconds() << " in context: " << context << std::endl;
 }
 
+// std::string Ipv4AddressToString(ns3::Ipv4Address ipv4Address)
+// {
+//     // Get the raw IPv4 address
+//     uint32_t addr = ipv4Address.Get();
+
+//     /*
+//     // Convert the raw address to a string
+//     std::string addressString = inet_ntoa(addr);
+//     */
+
+//     std::ostringstream oss;
+//     oss << ((addr >> 24) & 0xFF) << "."
+//         << ((addr >> 16) & 0xFF) << "."
+//         << ((addr >> 8) & 0xFF) << "."
+//         << (addr & 0xFF);
+    
+//     return oss.str();
+// }
+
+
+std::string Ipv4AddressToString(ns3::Ipv4Address ipv4Address){
+    // In the relevant function:
+    std::stringstream ss;
+    ss << ipv4Address;
+    return ss.str();
+}
+
+
 }; /* namespace ns3 */

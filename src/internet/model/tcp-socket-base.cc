@@ -69,21 +69,15 @@
 #include <arpa/inet.h> // For inet_ntop, INET_ADDRSTRLEN, AF_INET
 #include <string>
 
+#include <algorithm>
+#include <fstream>
 
+#include <sstream>  // Add this if not already included
 
 namespace ns3
 {
 
 // Zhuoxu: DIY function for 
-// Function to convert Ipv4Address to std::string
-std::string Ipv4AddressToString(const ns3::Ipv4Address &ipv4Address) {
-    uint32_t rawIp = ipv4Address.Get();
-    struct in_addr ipAddrStruct;
-    ipAddrStruct.s_addr = rawIp;
-    char ipAddressString[INET_ADDRSTRLEN];
-    inet_ntop(AF_INET, &ipAddrStruct, ipAddressString, INET_ADDRSTRLEN);
-    return std::string(ipAddressString);
-}
 
 // Function to compare Ipv4Address with a specific IP address
 bool CompareIpv4Address(const ns3::Ipv4Address &ipv4Address, const std::string &ipString) {
@@ -382,6 +376,13 @@ TcpSocketBase::TcpSocketBase()
 
     ok = m_tcb->TraceConnectWithoutContext("RTT", MakeCallback(&TcpSocketBase::UpdateRtt, this));
     NS_ASSERT(ok == true);
+
+    // Zhuoxu: DIY member initialization
+    // Directly get the local Ipv4 address
+    // ns3::Ipv4Address localAddress = GetDesiredLocalAddress();
+    // // this->localAddressStr = Ipv4AddressToString(localAddress);
+    // this->localAddressStr = Ipv4AddressToString(localAddress);
+    // NS_LOG_UNCOND("localAddressStr " << this->localAddressStr);
 }
 
 TcpSocketBase::TcpSocketBase(const TcpSocketBase& sock)
@@ -522,6 +523,7 @@ TcpSocketBase::TcpSocketBase(const TcpSocketBase& sock)
 
 TcpSocketBase::~TcpSocketBase()
 {
+
     NS_LOG_FUNCTION(this);
     m_node = nullptr;
     if (m_endPoint != nullptr)
@@ -901,6 +903,7 @@ int
 TcpSocketBase::Send(Ptr<Packet> p, uint32_t flags)
 {
     NS_LOG_FUNCTION(this << p);
+    // NS_LOG_FUNCTION("Using congestion control strategy: " << m_congestionControl->GetName());
     NS_ABORT_MSG_IF(flags, "use of flags is not supported in TcpSocketBase::Send()");
     if (m_state == ESTABLISHED || m_state == SYN_SENT || m_state == CLOSE_WAIT)
     {
@@ -2320,6 +2323,19 @@ TcpSocketBase::ProcessAck(const SequenceNumber32& ackNumber,
     // Make sure that control reaches the end of this function and there is no
     // return in between
     UpdatePacingRate();
+
+    // Calculate RTT
+    uint32_t ackSeq = ackNumber.GetValue();
+
+    RttEndRecord(ackSeq);
+    // if(this->localAddressStr == "10.1.1.1")
+    //     NS_LOG_UNCOND(this << " Outside, ACK sent from " << m_endPoint->GetPeerAddress()
+    //                     << " to " << this->localAddressStr
+    //                     << " ackSeq " << ackNumber
+    //                     << " at time " << Simulator::Now().GetSeconds()
+    //                     << " scoreboardUpdated " << scoreboardUpdated
+    //                     << " currentDelivered " << currentDelivered
+    //                     << " oldHeadSequence " << oldHeadSequence);
 }
 
 /* Received a packet upon LISTEN state. */
@@ -2835,6 +2851,7 @@ void
 TcpSocketBase::SendEmptyPacket(uint8_t flags)
 {
     NS_LOG_FUNCTION(this << static_cast<uint32_t>(flags));
+    // NS_LOG_FUNCTION("Using congestion control strategy: " << m_congestionControl->GetName());
 
     if (m_endPoint == nullptr && m_endPoint6 == nullptr)
     {
@@ -3340,6 +3357,8 @@ TcpSocketBase::SendDataPacket(SequenceNumber32 seq, uint32_t maxSize, bool withA
         NS_LOG_DEBUG("Send segment of size "
                      << sz << " with remaining data " << remainingData << " via TcpL4Protocol to "
                      << m_endPoint6->GetPeerAddress() << ". Header " << header);
+        // Log IP addresses
+        // NS_LOG_UNCOND("Send segment from " << m_endPoint6->GetLocalAddress() << " to " << m_endPoint6->GetPeerAddress());
     }
 
     // Signal to congestion control whether the cwnd is fully used
@@ -3366,6 +3385,28 @@ TcpSocketBase::SendDataPacket(SequenceNumber32 seq, uint32_t maxSize, bool withA
     }
     // Update highTxMark
     m_tcb->m_highTxMark = std::max(seq + sz, m_tcb->m_highTxMark.Get());
+
+
+    if (m_endPoint)
+    {
+        if (this->localAddressStr.empty())
+        {
+            // Directly get the local Ipv4 address
+            ns3::Ipv4Address localAddress = GetDesiredLocalAddress();
+            this->localAddressStr = Ipv4AddressToString(localAddress);
+            // NS_LOG_UNCOND("localAddressStr " << this->localAddressStr);
+        }
+        // Todo: fix the reason why the first few iterations cannot be output?
+        if(isRetransmission)
+            NS_LOG_UNCOND(this << " SendDataPacket seq: " << seq
+                            << ", from " << this->localAddressStr
+                            << " to " << m_endPoint->GetPeerAddress()
+                            << " isRetransmission " << isRetransmission
+                            << " at time " << Simulator::Now().GetSeconds()
+                            );
+    }
+    RttStartRecord(seq.GetValue(), sz);
+
     return sz;
 }
 
@@ -3645,6 +3686,23 @@ TcpSocketBase::AdvertisedWindowSize(bool scale) const
 void
 TcpSocketBase::ReceivedData(Ptr<Packet> p, const TcpHeader& tcpHeader)
 {
+    UpdateTP(p->GetSize());
+    // NS_LOG_UNCOND("In ReceivedData function, GetPeerAddress: " << m_endPoint->GetPeerAddress());
+    // Ensure m_endPoint is not nullptr before using it
+    if (m_endPoint && this->peerAddressStr.empty())
+    {
+        this->peerAddressStr = Ipv4AddressToString(m_endPoint->GetPeerAddress());
+        // // In the relevant function:
+        // std::stringstream ss;
+        // ss << m_endPoint->GetPeerAddress();
+        // this->peerAddressStr = ss.str();
+    }
+    else 
+    {
+        NS_LOG_WARN("Endpoint is null");
+    }
+
+
     NS_LOG_FUNCTION(this << tcpHeader);
     NS_LOG_DEBUG("Data segment, seq=" << tcpHeader.GetSequenceNumber()
                                       << " pkt size=" << p->GetSize());
@@ -3669,19 +3727,8 @@ TcpSocketBase::ReceivedData(Ptr<Packet> p, const TcpHeader& tcpHeader)
     }
 
     // Retrieve and print the local IP address and port
-    Address localAddress;
-    GetSockName(localAddress);
-    if (InetSocketAddress::IsMatchingType(localAddress))
-    {
-        InetSocketAddress inetLocalAddress = InetSocketAddress::ConvertFrom(localAddress);
-        Ipv4Address localIp = inetLocalAddress.GetIpv4();
-        uint16_t localPort = inetLocalAddress.GetPort();
-        NS_LOG_DEBUG("Local IP: " << localIp << ", Local Port: " << localPort);
-    }
-    else
-    {
-        NS_LOG_WARN("Unknown local address type");
-    }
+    // Zhuoxu: Todo here and add the throughput info.
+
 
     // Notify app to receive if necessary
     NS_LOG_DEBUG("s" << expectedSeq);
@@ -4676,7 +4723,7 @@ TcpSocketBase::UpdateRtt(Time oldValue, Time newValue) const
 void
 TcpSocketBase::SetCongestionControlAlgorithm(Ptr<TcpCongestionOps> algo)
 {
-    NS_LOG_FUNCTION(this << algo);
+    NS_LOG_FUNCTION(this << " cc_name: " << algo);
     m_congestionControl = algo;
     m_congestionControl->Init(m_tcb);
 }
@@ -4822,6 +4869,144 @@ TcpSocketBase::GetHighRxAck() const
 }
 
 // Zhuoxu: DIY function
+void 
+TcpSocketBase::RttStartRecord(uint32_t seq, uint32_t sz)
+{
+    if (isElementInFilter(this->localAddressStr))
+    {
+        // Zhuoxu: block for 2025/1/21
+        if (m_endPoint && sz >= pktlen)
+        {
+            // Log All the needed info
+            // NS_LOG_UNCOND(this << "...Send segment from " << m_endPoint->GetLocalAddress()
+            //               << " to " << m_endPoint->GetPeerAddress()
+            //               << " with sequence number " << seq.GetValue()
+            //               << " and size " << sz
+            //               << " pktlen " << pktlen);
+            // Get the current time and store it with the sequence number
+            Time sendTime = Simulator::Now();
+            m_sendTimestamps[seq] = sendTime;
+            m_sendFlag[seq] = false;
+        }
+    }
+}
+
+void 
+TcpSocketBase::RttEndRecord(uint32_t ackSeq)
+{
+    if (!isElementInFilter(this->localAddressStr))
+        return;
+    
+    if(m_sendFlag[ackSeq])
+        return;
+
+    // Zhuoxu: block for 2025/1/21
+    auto it = m_sendTimestamps.find(ackSeq - pktlen);
+    if (it != m_sendTimestamps.end())
+    {
+        //if(isElementInFilter(this->localAddressStr))
+            // NS_LOG_UNCOND(this << " IP: " << this->localAddressStr << " in RttEndRecord...");
+        Time sendTime = it->second;
+        Time now = Simulator::Now();
+        Time rtt = now - sendTime;
+
+        // Convert sendTime to milliseconds
+        int64_t sendTimeMs = sendTime.GetMilliSeconds();
+        Time sendTimeInMilliseconds = MilliSeconds(sendTimeMs);
+
+        // Convert rtt to milliseconds
+        int64_t rttMs = rtt.GetMilliSeconds();
+        Time rttInMilliseconds = MilliSeconds(rttMs);
+
+        // Store the send timestamp and RTT pair in milliseconds
+        m_packetRttPairs.push_back(std::make_pair(sendTimeInMilliseconds, rttInMilliseconds));
+
+        m_sendFlag[ackSeq] = true;
+
+        // Remove the recorded send timestamp to save memory
+        // m_sendTimestamps.erase(it);
+
+        // Zhuoxu: show m_packetRttPairs table, for debug.
+        /*
+        NS_LOG_UNCOND("ackSeq " << ackSeq << " - ("  << pktlen << ") record into m_packetRttPairs");
+        for (auto it = m_packetRttPairs.begin(); it != m_packetRttPairs.end(); it++)
+        {
+            // // NS_LOG_UNCOND("m_packetRttPairs[" << it->first << "]: " << it->second);
+            // Show in million seconds
+            double sendTimeMs = it->first.GetMilliSeconds();
+            double rttMs = it->second.GetMilliSeconds();
+            NS_LOG_UNCOND("m_packetRttPairs[" << sendTimeMs << " ms]: " << rttMs << " ms");
+        }
+        */
+    }
+}
+
+// Zhuoxu: DIY function
+void 
+TcpSocketBase::UpdateTP(uint32_t pktSize)
+{
+    if (this->localAddressStr.empty())
+    {
+        // Directly get the local Ipv4 address
+        ns3::Ipv4Address localAddress = GetDesiredLocalAddress();
+        this->localAddressStr = Ipv4AddressToString(localAddress);
+        // NS_LOG_UNCOND("localAddressStr " << this->localAddressStr);
+    }
+
+    ns3::Time currentTime = ns3::Simulator::Now();
+    m_tpWind.push(std::make_pair(currentTime, pktSize));
+    pktSum += pktSize;
+
+    while (!m_tpWind.empty() && (currentTime - m_tpWind.front().first) > ns3::MilliSeconds(20))
+    {
+        pktSum -= m_tpWind.front().second;
+        m_tpWind.pop();
+    }
+
+    m_tpRecord.push_back(std::make_pair(currentTime, (pktSum / 8) / 0.02 / 1024));
+
+    // Zhuoxu: Output the log for testing:
+    // if(isElementInFilter(this->localAddressStr))
+    // {
+    //     std::cout << "local address: " << this->localAddressStr << std::endl;
+    //     NS_LOG_UNCOND("Current simulation time: " << currentTime.GetSeconds() << " seconds");
+    //     // Create a copy of the queue to avoid modifying the original queue
+    //     std::queue<std::pair<ns3::Time, uint32_t>> tempQueue = m_tpWind;
+
+    //     std::cout << "Contents of m_tpWind:" << std::endl;
+    //     while (!tempQueue.empty())
+    //     {
+    //         const std::pair<ns3::Time, uint32_t>& element = tempQueue.front();
+    //         std::cout << "Time: " << element.first.GetSeconds() << " s, "
+    //                 << "Packet Size: " << element.second << " bytes" << std::endl;
+    //         tempQueue.pop();
+    //     }
+    //     NS_LOG_UNCOND("TP is: " << (pktSum / 8) / 0.02 / 1024 << " KB/s");
+    // }
+}
+
+Ipv4Address
+TcpSocketBase::GetDesiredLocalAddress(void)
+{
+    Ptr<Node> node = GetNode(); // Retrieve the associated node
+
+    if (node)
+    {
+        Ptr<Ipv4> ipv4 = node->GetObject<Ipv4>(); // Get the Ipv4 object
+        if (ipv4)
+        {
+            // Assuming the desired interface index is 1 and address index is 0
+            Ipv4Address address = ipv4->GetAddress(1, 0).GetLocal();
+            if (address != Ipv4Address::GetLoopback())
+            {
+                return address;
+            }
+        }
+    }
+    return Ipv4Address::GetAny(); // Return a default address if not found
+}
+
+
 TcpSocketBase::TcpStates_t
 TcpSocketBase::GetState() const
 {
@@ -4832,6 +5017,78 @@ Ptr<TcpSocketState>
 TcpSocketBase::GetTcpSocketState(){
     return m_tcb;
 }
+
+void TcpSocketBase::OutputRttData() const
+{
+    if (this->localAddressStr.empty() || !isElementInFilter(this->localAddressStr))
+        return;
+
+    std::string filename;
+    std::ofstream outFile;
+    if (!m_packetRttPairs.empty()){
+        if (!isElementInFilter(this->localAddressStr))
+        return;
+
+        // Output RTT data
+        filename = "./log/rtt/" + GetNodeNameFromIp(this->localAddressStr) + "_rtt.txt";
+        outFile.open(filename);
+        if (outFile.is_open())
+        {
+            // if (!m_packetRttPairs.empty())
+            //     NS_LOG_UNCOND( this << "Address: " << this->localAddressStr 
+            //         << " Peer address: "
+            //         << peerAddressStr
+            //         << " call function OutputRttData");
+            for (const auto& pair : m_packetRttPairs)
+            {
+                // NS_LOG_UNCOND(pair.first.GetMilliSeconds() << " " << pair.second.GetMilliSeconds());
+                outFile << pair.first.GetMilliSeconds() << " " << pair.second.GetMilliSeconds() << "\n";
+            }
+            outFile.close();
+        }
+        else
+        {
+            NS_LOG_UNCOND("Failed to open file for RTT data: " << filename);
+        }
+    }
+
+    if(!m_tpRecord.empty()){
+        // Output Throughput data
+        // currently, we only keep the last record. Since previous record is the same
+        // filename = "./log/tp/" + this->localAddressStr + "+" + this->peerAddressStr + "_TP.txt";
+        filename = "./log/tp/" + GetNodeNameFromIp(this->localAddressStr) + "_TP.txt";
+        outFile.open(filename);
+        if (outFile.is_open())
+        {
+            // if (!m_tpRecord.empty())
+            //     NS_LOG_UNCOND( this << "Address: " << this->localAddressStr 
+            //         << " Peer address: "
+            //         << peerAddressStr
+            //         << " call function OutputTpData");
+            for (const auto& pair : m_tpRecord)
+            {
+                outFile << pair.first.GetMilliSeconds() << " " << pair.second << "\n";
+            }
+            outFile.close();
+        }
+        else
+        {
+            NS_LOG_UNCOND("Failed to open file for Throughput data: " << filename);
+        }
+    }
+
+
+}
+
+void TcpSocketBase::DoDispose()
+{
+    // Output RTT data
+    OutputRttData();
+
+    // Call base class DoDispose
+    TcpSocket::DoDispose();
+}
+
 
 // RttHistory methods
 RttHistory::RttHistory(SequenceNumber32 s, uint32_t c, Time t)
@@ -4849,5 +5106,6 @@ RttHistory::RttHistory(const RttHistory& h)
       retx(h.retx)
 {
 }
+
 
 } // namespace ns3

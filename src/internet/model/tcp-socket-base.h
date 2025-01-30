@@ -34,6 +34,13 @@
 #include <queue>
 #include <stdint.h>
 
+// Zhuoxu: DIY
+#include "ns3/parameter.h"
+#include "ns3/utils.h"
+#include "ns3/ipv4-address.h"
+#include "ns3/ipv4.h"
+#include "ns3/log.h"
+
 namespace ns3
 {
 
@@ -224,6 +231,9 @@ class TcpSocketBase : public TcpSocket
     // DIY function by Zhuoxu
     void CallSendEmptyPacketACK();
     void TraceIpv4Log(std::string addressStr, Ptr<Packet> p);
+    void RttEndRecord(uint32_t ackSeq);
+    void RttStartRecord(uint32_t seq, uint32_t sz);
+    void UpdateTP(uint32_t pktSize);
 
     Ptr<TcpSocketState> GetTcpSocketState();
     
@@ -1285,6 +1295,12 @@ class TcpSocketBase : public TcpSocket
      */
     SequenceNumber32 GetHighRxAck() const;
 
+    // Zhuoxu: DIY function.
+    void OutputRttData() const;
+    void DoDispose();
+    // Declaration of the function to get the desired local address
+    Ipv4Address GetDesiredLocalAddress(void);
+
   protected:
     // Counters and events
     EventId m_retxEvent{};     //!< Retransmission event
@@ -1402,6 +1418,16 @@ class TcpSocketBase : public TcpSocket
     TracedValue<SequenceNumber32> m_ecnCESeq{
         0}; //!< Sequence number of the last received Congestion Experienced
     TracedValue<SequenceNumber32> m_ecnCWRSeq{0}; //!< Sequence number of the last sent CWR
+
+    // Zhuoxu: DIY member for time record
+    std::map<uint32_t, Time> m_sendTimestamps; // Map to store send timestamps
+    std::map<uint32_t, bool> m_sendFlag; // flag to tell whether the ACK for the seq has been received before.
+    std::vector<std::pair<Time, Time>> m_packetRttPairs; // Vector to store send timestamps and RTT pairs
+    std::string localAddressStr; // String to store the IP address of this node
+    std::string peerAddressStr;
+    std::queue<std::pair<Time, uint32_t>> m_tpWind; // Contain Rtt for only 20ms time interval.
+    uint32_t pktSum = 0;
+    std::vector<std::pair<Time, float>> m_tpRecord; // Vector to store timestamp and corresponding throughput.
 };
 
 /**

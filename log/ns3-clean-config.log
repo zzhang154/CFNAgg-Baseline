@@ -22,7 +22,7 @@ Warn about uninitialized values.
 -- Found Git: /bin/git (found version "2.34.1") 
 -- find_external_library: SQLite3 was found.
 -- Found GTK3_GTK: /usr/lib/x86_64-linux-gnu/libgtk-3.so  
--- Found Boost: /usr/include (found version "1.55.0")  
+-- Found Boost: /lib/x86_64-linux-gnu/cmake/Boost-1.74.0/BoostConfig.cmake (found version "1.74.0")  
 -- Found PkgConfig: /bin/pkg-config (found version "0.29.2") 
 -- GSL was found.
 -- Found Sphinx: /bin/sphinx-build  

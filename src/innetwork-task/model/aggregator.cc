@@ -18,7 +18,7 @@ namespace ns3 {
     }
 
     Aggregator::~Aggregator() {
-        NS_LOG_FUNCTION (this);
+        // NS_LOG_FUNCTION (this);
     }
 
     void 
@@ -35,7 +35,7 @@ namespace ns3 {
 
     void 
     Aggregator::DoDispose() {
-        NS_LOG_FUNCTION (this);
+        // NS_LOG_FUNCTION (this);
         Application::DoDispose ();
     }
 

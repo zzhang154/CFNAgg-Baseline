@@ -1,0 +1,2470 @@
+[  0%] Building CXX object scratch/CMakeFiles/scratch_innetwork-test.dir/innetwork-test.cc.o
+[  0%] Linking CXX executable ../../build/scratch/ns3.42-innetwork-test-default
+Hello from utils
+0x7ffd48686d30 Time queue changed. Current size: 1
+Time queue changed. New size: 1
+0x7ffd48686d30 Time queue changed. Current size: 2
+Time queue changed. New size: 2
+0x7ffd48686d30 Time queue changed. Current size: 1
+Time queue changed. New size: 1
+
+
+#################### SIMULATION PARAMETERS ####################
+
+
+Prefix: 10 Iteration: 10000 Vector Size: 150 Congestion Control Algorithm: bbr
+
+
+#################### SIMULATION SET-UP ####################
+
+
+uint32_t consumerNum = 1;
+uint32_t producerNum = 10;
+uint32_t forwarderNum = 8;
+uint32_t aggregatorNum = 10;
+---node1  ip---pro0---10.1.1.1---node2  ip---forwarder0---10.1.1.2
+---node1  ip---pro1---10.1.2.1---node2  ip---forwarder0---10.1.1.2
+---node1  ip---pro2---10.1.3.1---node2  ip---forwarder0---10.1.1.2
+---node1  ip---pro3---10.1.4.1---node2  ip---forwarder0---10.1.1.2
+---node1  ip---pro4---10.1.5.1---node2  ip---forwarder0---10.1.1.2
+---node1  ip---pro5---10.1.6.1---node2  ip---forwarder1---10.1.6.2
+---node1  ip---pro6---10.1.7.1---node2  ip---forwarder1---10.1.6.2
+---node1  ip---pro7---10.1.8.1---node2  ip---forwarder1---10.1.6.2
+---node1  ip---pro8---10.1.9.1---node2  ip---forwarder1---10.1.6.2
+---node1  ip---pro9---10.1.10.1---node2  ip---forwarder1---10.1.6.2
+---node1  ip---con0---10.1.11.1---node2  ip---forwarder2---10.1.11.2
+---node1  ip---forwarder0---10.1.1.2---node2  ip---agg0---10.2.1.2
+---node1  ip---agg0---10.2.1.2---node2  ip---forwarder3---10.2.2.2
+---node1  ip---forwarder1---10.1.6.2---node2  ip---agg1---10.2.3.2
+---node1  ip---agg1---10.2.3.2---node2  ip---forwarder4---10.2.4.2
+---node1  ip---forwarder0---10.1.1.2---node2  ip---agg2---10.2.5.2
+---node1  ip---agg2---10.2.5.2---node2  ip---forwarder5---10.2.6.2
+---node1  ip---forwarder1---10.1.6.2---node2  ip---agg3---10.2.7.2
+---node1  ip---agg3---10.2.7.2---node2  ip---forwarder6---10.2.8.2
+---node1  ip---forwarder0---10.1.1.2---node2  ip---agg4---10.2.9.2
+---node1  ip---agg4---10.2.9.2---node2  ip---forwarder7---10.2.10.2
+---node1  ip---forwarder1---10.1.6.2---node2  ip---agg5---10.2.11.2
+---node1  ip---agg5---10.2.11.2---node2  ip---forwarder3---10.2.2.2
+---node1  ip---forwarder0---10.1.1.2---node2  ip---agg6---10.2.13.2
+---node1  ip---agg6---10.2.13.2---node2  ip---forwarder4---10.2.4.2
+---node1  ip---forwarder1---10.1.6.2---node2  ip---agg7---10.2.15.2
+---node1  ip---agg7---10.2.15.2---node2  ip---forwarder5---10.2.6.2
+---node1  ip---forwarder0---10.1.1.2---node2  ip---agg8---10.2.17.2
+---node1  ip---agg8---10.2.17.2---node2  ip---forwarder6---10.2.8.2
+---node1  ip---forwarder1---10.1.6.2---node2  ip---agg9---10.2.19.2
+---node1  ip---agg9---10.2.19.2---node2  ip---forwarder7---10.2.10.2
+---node1  ip---forwarder2---10.1.11.2---node2  ip---forwarder3---10.2.2.2
+---node1  ip---forwarder3---10.2.2.2---node2  ip---forwarder4---10.2.4.2
+---node1  ip---forwarder3---10.2.2.2---node2  ip---forwarder5---10.2.6.2
+---node1  ip---forwarder3---10.2.2.2---node2  ip---forwarder6---10.2.8.2
+---node1  ip---forwarder3---10.2.2.2---node2  ip---forwarder7---10.2.10.2
+---node1  ip---forwarder4---10.2.4.2---node2  ip---forwarder5---10.2.6.2
+---node1  ip---forwarder4---10.2.4.2---node2  ip---forwarder6---10.2.8.2
+---node1  ip---forwarder4---10.2.4.2---node2  ip---forwarder7---10.2.10.2
+---node1  ip---forwarder5---10.2.6.2---node2  ip---forwarder6---10.2.8.2
+---node1  ip---forwarder5---10.2.6.2---node2  ip---forwarder7---10.2.10.2
+---node1  ip---forwarder6---10.2.8.2---node2  ip---forwarder7---10.2.10.2
++0.000000000s -1 Producer:Producer(0x564cf7e376b0)
++0.000000000s -1 Producer:SetupProducer(0x564cf7e376b0)
++0.000000000s -1 Producer:Producer(0x564cf7d7e4c0)
++0.000000000s -1 Producer:SetupProducer(0x564cf7d7e4c0)
++0.000000000s -1 Producer:Producer(0x564cf7d7ef50)
++0.000000000s -1 Producer:SetupProducer(0x564cf7d7ef50)
++0.000000000s -1 Producer:Producer(0x564cf7d7f9c0)
++0.000000000s -1 Producer:SetupProducer(0x564cf7d7f9c0)
++0.000000000s -1 Producer:Producer(0x564cf7f03a00)
++0.000000000s -1 Producer:SetupProducer(0x564cf7f03a00)
++0.000000000s -1 Aggregator:Aggregator(0x564cf7f045d0)
++0.000000000s -1 Aggregator:SetupAggregator(0x564cf7f045d0)
++0.000000000s -1 Producer:Producer(0x564cf7f04510)
++0.000000000s -1 Producer:SetupProducer(0x564cf7f04510)
++0.000000000s -1 Producer:Producer(0x564cf7f05c20)
++0.000000000s -1 Producer:SetupProducer(0x564cf7f05c20)
++0.000000000s -1 Producer:Producer(0x564cf7f06790)
++0.000000000s -1 Producer:SetupProducer(0x564cf7f06790)
++0.000000000s -1 Producer:Producer(0x564cf7f072a0)
++0.000000000s -1 Producer:SetupProducer(0x564cf7f072a0)
++0.000000000s -1 Producer:Producer(0x564cf7f07d90)
++0.000000000s -1 Producer:SetupProducer(0x564cf7f07d90)
++0.000000000s -1 Aggregator:Aggregator(0x564cf7f08980)
++0.000000000s -1 Aggregator:SetupAggregator(0x564cf7f08980)
++0.000000000s -1 Consumer:Consumer(0x564cf7f088c0)
++0.000000000s -1 Consumer:SetupConsumer(0x564cf7f088c0)
+Routing table for node 0:
+Node: 0, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.11.0       0.0.0.0         255.255.255.0   U     0      -      -   1
+
+
+Routing table for node 1:
+Node: 1, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.1.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+
+
+Routing table for node 2:
+Node: 2, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.2.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+
+
+Routing table for node 3:
+Node: 3, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.3.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+
+
+Routing table for node 4:
+Node: 4, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.4.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+
+
+Routing table for node 5:
+Node: 5, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.5.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+
+
+Routing table for node 6:
+Node: 6, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.6.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+
+
+Routing table for node 7:
+Node: 7, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.7.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+
+
+Routing table for node 8:
+Node: 8, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.8.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+
+
+Routing table for node 9:
+Node: 9, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.9.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+
+
+Routing table for node 10:
+Node: 10, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.10.0       0.0.0.0         255.255.255.0   U     0      -      -   1
+
+
+Routing table for node 11:
+Node: 11, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.1.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+10.1.2.0        0.0.0.0         255.255.255.0   U     0      -      -   2
+10.1.3.0        0.0.0.0         255.255.255.0   U     0      -      -   3
+10.1.4.0        0.0.0.0         255.255.255.0   U     0      -      -   4
+10.1.5.0        0.0.0.0         255.255.255.0   U     0      -      -   5
+10.2.1.0        0.0.0.0         255.255.255.0   U     0      -      -   6
+10.2.5.0        0.0.0.0         255.255.255.0   U     0      -      -   7
+10.2.9.0        0.0.0.0         255.255.255.0   U     0      -      -   8
+10.2.13.0       0.0.0.0         255.255.255.0   U     0      -      -   9
+10.2.17.0       0.0.0.0         255.255.255.0   U     0      -      -   10
+
+
+Routing table for node 12:
+Node: 12, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.6.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+10.1.7.0        0.0.0.0         255.255.255.0   U     0      -      -   2
+10.1.8.0        0.0.0.0         255.255.255.0   U     0      -      -   3
+10.1.9.0        0.0.0.0         255.255.255.0   U     0      -      -   4
+10.1.10.0       0.0.0.0         255.255.255.0   U     0      -      -   5
+10.2.3.0        0.0.0.0         255.255.255.0   U     0      -      -   6
+10.2.7.0        0.0.0.0         255.255.255.0   U     0      -      -   7
+10.2.11.0       0.0.0.0         255.255.255.0   U     0      -      -   8
+10.2.15.0       0.0.0.0         255.255.255.0   U     0      -      -   9
+10.2.19.0       0.0.0.0         255.255.255.0   U     0      -      -   10
+
+
+Routing table for node 13:
+Node: 13, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.11.0       0.0.0.0         255.255.255.0   U     0      -      -   1
+10.1.12.0       0.0.0.0         255.255.255.0   U     0      -      -   2
+
+
+Routing table for node 14:
+Node: 14, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.2.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.12.0       0.0.0.0         255.255.255.0   U     0      -      -   2
+10.1.12.0       0.0.0.0         255.255.255.0   U     0      -      -   3
+10.1.13.0       0.0.0.0         255.255.255.0   U     0      -      -   4
+10.1.14.0       0.0.0.0         255.255.255.0   U     0      -      -   5
+10.1.15.0       0.0.0.0         255.255.255.0   U     0      -      -   6
+10.1.16.0       0.0.0.0         255.255.255.0   U     0      -      -   7
+
+
+Routing table for node 15:
+Node: 15, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.4.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.14.0       0.0.0.0         255.255.255.0   U     0      -      -   2
+10.1.13.0       0.0.0.0         255.255.255.0   U     0      -      -   3
+10.1.17.0       0.0.0.0         255.255.255.0   U     0      -      -   4
+10.1.18.0       0.0.0.0         255.255.255.0   U     0      -      -   5
+10.1.19.0       0.0.0.0         255.255.255.0   U     0      -      -   6
+
+
+Routing table for node 16:
+Node: 16, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.6.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.16.0       0.0.0.0         255.255.255.0   U     0      -      -   2
+10.1.14.0       0.0.0.0         255.255.255.0   U     0      -      -   3
+10.1.17.0       0.0.0.0         255.255.255.0   U     0      -      -   4
+10.1.20.0       0.0.0.0         255.255.255.0   U     0      -      -   5
+10.1.21.0       0.0.0.0         255.255.255.0   U     0      -      -   6
+
+
+Routing table for node 17:
+Node: 17, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.8.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.18.0       0.0.0.0         255.255.255.0   U     0      -      -   2
+10.1.15.0       0.0.0.0         255.255.255.0   U     0      -      -   3
+10.1.18.0       0.0.0.0         255.255.255.0   U     0      -      -   4
+10.1.20.0       0.0.0.0         255.255.255.0   U     0      -      -   5
+10.1.22.0       0.0.0.0         255.255.255.0   U     0      -      -   6
+
+
+Routing table for node 18:
+Node: 18, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.10.0       0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.20.0       0.0.0.0         255.255.255.0   U     0      -      -   2
+10.1.16.0       0.0.0.0         255.255.255.0   U     0      -      -   3
+10.1.19.0       0.0.0.0         255.255.255.0   U     0      -      -   4
+10.1.21.0       0.0.0.0         255.255.255.0   U     0      -      -   5
+10.1.22.0       0.0.0.0         255.255.255.0   U     0      -      -   6
+
+
+Routing table for node 19:
+Node: 19, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.1.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.2.0        0.0.0.0         255.255.255.0   U     0      -      -   2
+
+
+Routing table for node 20:
+Node: 20, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.3.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.4.0        0.0.0.0         255.255.255.0   U     0      -      -   2
+
+
+Routing table for node 21:
+Node: 21, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.5.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.6.0        0.0.0.0         255.255.255.0   U     0      -      -   2
+
+
+Routing table for node 22:
+Node: 22, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.7.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.8.0        0.0.0.0         255.255.255.0   U     0      -      -   2
+
+
+Routing table for node 23:
+Node: 23, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.9.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.10.0       0.0.0.0         255.255.255.0   U     0      -      -   2
+
+
+Routing table for node 24:
+Node: 24, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.11.0       0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.12.0       0.0.0.0         255.255.255.0   U     0      -      -   2
+
+
+Routing table for node 25:
+Node: 25, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.13.0       0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.14.0       0.0.0.0         255.255.255.0   U     0      -      -   2
+
+
+Routing table for node 26:
+Node: 26, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.15.0       0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.16.0       0.0.0.0         255.255.255.0   U     0      -      -   2
+
+
+Routing table for node 27:
+Node: 27, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.17.0       0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.18.0       0.0.0.0         255.255.255.0   U     0      -      -   2
+
+
+Routing table for node 28:
+Node: 28, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.19.0       0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.20.0       0.0.0.0         255.255.255.0   U     0      -      -   2
+
++1.000000000s 0 Consumer:StartApplication(0x564cf7f088c0)
++1.000000000s 1 Producer:StartApplication(0x564cf7e376b0)
++1.000000000s 2 Producer:StartApplication(0x564cf7d7e4c0)
++1.000000000s 3 Producer:StartApplication(0x564cf7d7ef50)
++1.000000000s 4 Producer:StartApplication(0x564cf7d7f9c0)
++1.000000000s 5 Producer:StartApplication(0x564cf7f03a00)
++1.000000000s 6 Producer:StartApplication(0x564cf7f04510)
++1.000000000s 7 Producer:StartApplication(0x564cf7f05c20)
++1.000000000s 8 Producer:StartApplication(0x564cf7f06790)
++1.000000000s 9 Producer:StartApplication(0x564cf7f072a0)
++1.000000000s 10 Producer:StartApplication(0x564cf7f07d90)
++1.000000000s 19 Aggregator:StartApplication(0x564cf7f045d0)
++1.000000000s 20 Aggregator:StartApplication(0x564cf7f08980)
+
+myserver ptr:0x564cf7f4f860
+ CreateSocketPool: socketPool[10.2.1.2] -myserver, serverPort: 17197, cGroup[0]: 10.2.1.2
+myserver ptr:0x564cf7f50730
+ CreateSocketPool: socketPool[10.2.3.2] -myserver, serverPort: 8950, cGroup[1]: 10.2.3.2
+myserver ptr:0x564cf7f76400
+ CreateSocketPool: socketPool[10.1.1.1] -myserver, serverPort: 11362, cGroup[0]: 10.1.1.1
+myserver ptr:0x564cf7f78d40
+ CreateSocketPool: socketPool[10.1.2.1] -myserver, serverPort: 59850, cGroup[1]: 10.1.2.1
+myserver ptr:0x564cf7f7b6a0
+ CreateSocketPool: socketPool[10.1.3.1] -myserver, serverPort: 52647, cGroup[2]: 10.1.3.1
+myserver ptr:0x564cf7f7e070
+ CreateSocketPool: socketPool[10.1.4.1] -myserver, serverPort: 38670, cGroup[3]: 10.1.4.1
+myserver ptr:0x564cf7f80a40
+ CreateSocketPool: socketPool[10.1.5.1] -myserver, serverPort: 52552, cGroup[4]: 10.1.5.1
+myserver ptr:0x564cf7f86f60
+ CreateSocketPool: socketPool[10.1.6.1] -myserver, serverPort: 397, cGroup[0]: 10.1.6.1
+myserver ptr:0x564cf7f898a0
+ CreateSocketPool: socketPool[10.1.7.1] -myserver, serverPort: 62730, cGroup[1]: 10.1.7.1
+myserver ptr:0x564cf7f8c200
+ CreateSocketPool: socketPool[10.1.8.1] -myserver, serverPort: 64995, cGroup[2]: 10.1.8.1
+myserver ptr:0x564cf7f8ebd0
+ CreateSocketPool: socketPool[10.1.9.1] -myserver, serverPort: 14207, cGroup[3]: 10.1.9.1
+myserver ptr:0x564cf7f915a0
+ CreateSocketPool: socketPool[10.1.10.1] -myserver, serverPort: 12276, cGroup[4]: 10.1.10.1
++2.003657281s 19 TCPserver:CheckChComp(): ns3::Simulator::Schedule(ns3::MilliSeconds(2), &TCPserver::DoChComp, this, iterNum);
+Consumer All iteration-10000 completed in: 8101ms
+Consumer:DoDispose(0x564cf7f088c0)
+Consumer:~Consumer(0x564cf7f088c0)
+Producer:DoDispose(0x564cf7e376b0)
+Producer:~Producer(0x564cf7e376b0)
+Producer:DoDispose(0x564cf7d7e4c0)
+Producer:~Producer(0x564cf7d7e4c0)
+Producer:DoDispose(0x564cf7d7ef50)
+Producer:~Producer(0x564cf7d7ef50)
+Producer:DoDispose(0x564cf7d7f9c0)
+Producer:~Producer(0x564cf7d7f9c0)
+Producer:DoDispose(0x564cf7f03a00)
+Producer:~Producer(0x564cf7f03a00)
+Producer:DoDispose(0x564cf7f04510)
+Producer:~Producer(0x564cf7f04510)
+Producer:DoDispose(0x564cf7f05c20)
+Producer:~Producer(0x564cf7f05c20)
+Producer:DoDispose(0x564cf7f06790)
+Producer:~Producer(0x564cf7f06790)
+Producer:DoDispose(0x564cf7f072a0)
+Producer:~Producer(0x564cf7f072a0)
+Producer:DoDispose(0x564cf7f07d90)
+Producer:~Producer(0x564cf7f07d90)
+Aggregator:DoDispose(0x564cf7f045d0)
+Aggregator:~Aggregator(0x564cf7f045d0)
+Aggregator:DoDispose(0x564cf7f08980)
+Aggregator:~Aggregator(0x564cf7f08980)
+Prefix: 10, Iteration: 10000 - Simulation completed successfully.
+
+#################### SIMULATION END ####################
+
+
+
+
+#################### SIMULATION PARAMETERS ####################
+
+
+Prefix: 10 Iteration: 1000 Vector Size: 150 Congestion Control Algorithm: bbr
+
+
+#################### SIMULATION SET-UP ####################
+
+
+uint32_t consumerNum = 1;
+uint32_t producerNum = 10;
+uint32_t forwarderNum = 8;
+uint32_t aggregatorNum = 10;
+---node1  ip---pro0---10.1.1.1---node2  ip---forwarder0---10.1.1.2
+---node1  ip---pro1---10.1.2.1---node2  ip---forwarder0---10.1.1.2
+---node1  ip---pro2---10.1.3.1---node2  ip---forwarder0---10.1.1.2
+---node1  ip---pro3---10.1.4.1---node2  ip---forwarder0---10.1.1.2
+---node1  ip---pro4---10.1.5.1---node2  ip---forwarder0---10.1.1.2
+---node1  ip---pro5---10.1.6.1---node2  ip---forwarder1---10.1.6.2
+---node1  ip---pro6---10.1.7.1---node2  ip---forwarder1---10.1.6.2
+---node1  ip---pro7---10.1.8.1---node2  ip---forwarder1---10.1.6.2
+---node1  ip---pro8---10.1.9.1---node2  ip---forwarder1---10.1.6.2
+---node1  ip---pro9---10.1.10.1---node2  ip---forwarder1---10.1.6.2
+---node1  ip---con0---10.1.11.1---node2  ip---forwarder2---10.1.11.2
+---node1  ip---forwarder0---10.1.1.2---node2  ip---agg0---10.2.1.2
+---node1  ip---agg0---10.2.1.2---node2  ip---forwarder3---10.2.2.2
+---node1  ip---forwarder1---10.1.6.2---node2  ip---agg1---10.2.3.2
+---node1  ip---agg1---10.2.3.2---node2  ip---forwarder4---10.2.4.2
+---node1  ip---forwarder0---10.1.1.2---node2  ip---agg2---10.2.5.2
+---node1  ip---agg2---10.2.5.2---node2  ip---forwarder5---10.2.6.2
+---node1  ip---forwarder1---10.1.6.2---node2  ip---agg3---10.2.7.2
+---node1  ip---agg3---10.2.7.2---node2  ip---forwarder6---10.2.8.2
+---node1  ip---forwarder0---10.1.1.2---node2  ip---agg4---10.2.9.2
+---node1  ip---agg4---10.2.9.2---node2  ip---forwarder7---10.2.10.2
+---node1  ip---forwarder1---10.1.6.2---node2  ip---agg5---10.2.11.2
+---node1  ip---agg5---10.2.11.2---node2  ip---forwarder3---10.2.2.2
+---node1  ip---forwarder0---10.1.1.2---node2  ip---agg6---10.2.13.2
+---node1  ip---agg6---10.2.13.2---node2  ip---forwarder4---10.2.4.2
+---node1  ip---forwarder1---10.1.6.2---node2  ip---agg7---10.2.15.2
+---node1  ip---agg7---10.2.15.2---node2  ip---forwarder5---10.2.6.2
+---node1  ip---forwarder0---10.1.1.2---node2  ip---agg8---10.2.17.2
+---node1  ip---agg8---10.2.17.2---node2  ip---forwarder6---10.2.8.2
+---node1  ip---forwarder1---10.1.6.2---node2  ip---agg9---10.2.19.2
+---node1  ip---agg9---10.2.19.2---node2  ip---forwarder7---10.2.10.2
+---node1  ip---forwarder2---10.1.11.2---node2  ip---forwarder3---10.2.2.2
+---node1  ip---forwarder3---10.2.2.2---node2  ip---forwarder4---10.2.4.2
+---node1  ip---forwarder3---10.2.2.2---node2  ip---forwarder5---10.2.6.2
+---node1  ip---forwarder3---10.2.2.2---node2  ip---forwarder6---10.2.8.2
+---node1  ip---forwarder3---10.2.2.2---node2  ip---forwarder7---10.2.10.2
+---node1  ip---forwarder4---10.2.4.2---node2  ip---forwarder5---10.2.6.2
+---node1  ip---forwarder4---10.2.4.2---node2  ip---forwarder6---10.2.8.2
+---node1  ip---forwarder4---10.2.4.2---node2  ip---forwarder7---10.2.10.2
+---node1  ip---forwarder5---10.2.6.2---node2  ip---forwarder6---10.2.8.2
+---node1  ip---forwarder5---10.2.6.2---node2  ip---forwarder7---10.2.10.2
+---node1  ip---forwarder6---10.2.8.2---node2  ip---forwarder7---10.2.10.2
++0.000000000s -1 Producer:Producer(0x564cf8475280)
++0.000000000s -1 Producer:SetupProducer(0x564cf8475280)
++0.000000000s -1 Producer:Producer(0x564cf8475430)
++0.000000000s -1 Producer:SetupProducer(0x564cf8475430)
++0.000000000s -1 Producer:Producer(0x564cf7ff8800)
++0.000000000s -1 Producer:SetupProducer(0x564cf7ff8800)
++0.000000000s -1 Producer:Producer(0x564cf85a42d0)
++0.000000000s -1 Producer:SetupProducer(0x564cf85a42d0)
++0.000000000s -1 Producer:Producer(0x564cf8360fc0)
++0.000000000s -1 Producer:SetupProducer(0x564cf8360fc0)
++0.000000000s -1 Aggregator:Aggregator(0x564cf8268e40)
++0.000000000s -1 Aggregator:SetupAggregator(0x564cf8268e40)
++0.000000000s -1 Producer:Producer(0x564cf8268d80)
++0.000000000s -1 Producer:SetupProducer(0x564cf8268d80)
++0.000000000s -1 Producer:Producer(0x564cf83e56a0)
++0.000000000s -1 Producer:SetupProducer(0x564cf83e56a0)
++0.000000000s -1 Producer:Producer(0x564cf7fe3be0)
++0.000000000s -1 Producer:SetupProducer(0x564cf7fe3be0)
++0.000000000s -1 Producer:Producer(0x564cf80b84f0)
++0.000000000s -1 Producer:SetupProducer(0x564cf80b84f0)
++0.000000000s -1 Producer:Producer(0x564cf81a3050)
++0.000000000s -1 Producer:SetupProducer(0x564cf81a3050)
++0.000000000s -1 Aggregator:Aggregator(0x564cf8074e70)
++0.000000000s -1 Aggregator:SetupAggregator(0x564cf8074e70)
++0.000000000s -1 Consumer:Consumer(0x564cf8074db0)
++0.000000000s -1 Consumer:SetupConsumer(0x564cf8074db0)
+Routing table for node 0:
+Node: 0, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.11.0       0.0.0.0         255.255.255.0   U     0      -      -   1
+
+
+Routing table for node 1:
+Node: 1, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.1.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+
+
+Routing table for node 2:
+Node: 2, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.2.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+
+
+Routing table for node 3:
+Node: 3, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.3.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+
+
+Routing table for node 4:
+Node: 4, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.4.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+
+
+Routing table for node 5:
+Node: 5, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.5.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+
+
+Routing table for node 6:
+Node: 6, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.6.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+
+
+Routing table for node 7:
+Node: 7, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.7.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+
+
+Routing table for node 8:
+Node: 8, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.8.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+
+
+Routing table for node 9:
+Node: 9, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.9.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+
+
+Routing table for node 10:
+Node: 10, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.10.0       0.0.0.0         255.255.255.0   U     0      -      -   1
+
+
+Routing table for node 11:
+Node: 11, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.1.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+10.1.2.0        0.0.0.0         255.255.255.0   U     0      -      -   2
+10.1.3.0        0.0.0.0         255.255.255.0   U     0      -      -   3
+10.1.4.0        0.0.0.0         255.255.255.0   U     0      -      -   4
+10.1.5.0        0.0.0.0         255.255.255.0   U     0      -      -   5
+10.2.1.0        0.0.0.0         255.255.255.0   U     0      -      -   6
+10.2.5.0        0.0.0.0         255.255.255.0   U     0      -      -   7
+10.2.9.0        0.0.0.0         255.255.255.0   U     0      -      -   8
+10.2.13.0       0.0.0.0         255.255.255.0   U     0      -      -   9
+10.2.17.0       0.0.0.0         255.255.255.0   U     0      -      -   10
+
+
+Routing table for node 12:
+Node: 12, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.6.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+10.1.7.0        0.0.0.0         255.255.255.0   U     0      -      -   2
+10.1.8.0        0.0.0.0         255.255.255.0   U     0      -      -   3
+10.1.9.0        0.0.0.0         255.255.255.0   U     0      -      -   4
+10.1.10.0       0.0.0.0         255.255.255.0   U     0      -      -   5
+10.2.3.0        0.0.0.0         255.255.255.0   U     0      -      -   6
+10.2.7.0        0.0.0.0         255.255.255.0   U     0      -      -   7
+10.2.11.0       0.0.0.0         255.255.255.0   U     0      -      -   8
+10.2.15.0       0.0.0.0         255.255.255.0   U     0      -      -   9
+10.2.19.0       0.0.0.0         255.255.255.0   U     0      -      -   10
+
+
+Routing table for node 13:
+Node: 13, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.11.0       0.0.0.0         255.255.255.0   U     0      -      -   1
+10.1.12.0       0.0.0.0         255.255.255.0   U     0      -      -   2
+
+
+Routing table for node 14:
+Node: 14, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.2.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.12.0       0.0.0.0         255.255.255.0   U     0      -      -   2
+10.1.12.0       0.0.0.0         255.255.255.0   U     0      -      -   3
+10.1.13.0       0.0.0.0         255.255.255.0   U     0      -      -   4
+10.1.14.0       0.0.0.0         255.255.255.0   U     0      -      -   5
+10.1.15.0       0.0.0.0         255.255.255.0   U     0      -      -   6
+10.1.16.0       0.0.0.0         255.255.255.0   U     0      -      -   7
+
+
+Routing table for node 15:
+Node: 15, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.4.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.14.0       0.0.0.0         255.255.255.0   U     0      -      -   2
+10.1.13.0       0.0.0.0         255.255.255.0   U     0      -      -   3
+10.1.17.0       0.0.0.0         255.255.255.0   U     0      -      -   4
+10.1.18.0       0.0.0.0         255.255.255.0   U     0      -      -   5
+10.1.19.0       0.0.0.0         255.255.255.0   U     0      -      -   6
+
+
+Routing table for node 16:
+Node: 16, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.6.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.16.0       0.0.0.0         255.255.255.0   U     0      -      -   2
+10.1.14.0       0.0.0.0         255.255.255.0   U     0      -      -   3
+10.1.17.0       0.0.0.0         255.255.255.0   U     0      -      -   4
+10.1.20.0       0.0.0.0         255.255.255.0   U     0      -      -   5
+10.1.21.0       0.0.0.0         255.255.255.0   U     0      -      -   6
+
+
+Routing table for node 17:
+Node: 17, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.8.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.18.0       0.0.0.0         255.255.255.0   U     0      -      -   2
+10.1.15.0       0.0.0.0         255.255.255.0   U     0      -      -   3
+10.1.18.0       0.0.0.0         255.255.255.0   U     0      -      -   4
+10.1.20.0       0.0.0.0         255.255.255.0   U     0      -      -   5
+10.1.22.0       0.0.0.0         255.255.255.0   U     0      -      -   6
+
+
+Routing table for node 18:
+Node: 18, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.10.0       0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.20.0       0.0.0.0         255.255.255.0   U     0      -      -   2
+10.1.16.0       0.0.0.0         255.255.255.0   U     0      -      -   3
+10.1.19.0       0.0.0.0         255.255.255.0   U     0      -      -   4
+10.1.21.0       0.0.0.0         255.255.255.0   U     0      -      -   5
+10.1.22.0       0.0.0.0         255.255.255.0   U     0      -      -   6
+
+
+Routing table for node 19:
+Node: 19, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.1.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.2.0        0.0.0.0         255.255.255.0   U     0      -      -   2
+
+
+Routing table for node 20:
+Node: 20, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.3.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.4.0        0.0.0.0         255.255.255.0   U     0      -      -   2
+
+
+Routing table for node 21:
+Node: 21, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.5.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.6.0        0.0.0.0         255.255.255.0   U     0      -      -   2
+
+
+Routing table for node 22:
+Node: 22, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.7.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.8.0        0.0.0.0         255.255.255.0   U     0      -      -   2
+
+
+Routing table for node 23:
+Node: 23, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.9.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.10.0       0.0.0.0         255.255.255.0   U     0      -      -   2
+
+
+Routing table for node 24:
+Node: 24, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.11.0       0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.12.0       0.0.0.0         255.255.255.0   U     0      -      -   2
+
+
+Routing table for node 25:
+Node: 25, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.13.0       0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.14.0       0.0.0.0         255.255.255.0   U     0      -      -   2
+
+
+Routing table for node 26:
+Node: 26, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.15.0       0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.16.0       0.0.0.0         255.255.255.0   U     0      -      -   2
+
+
+Routing table for node 27:
+Node: 27, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.17.0       0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.18.0       0.0.0.0         255.255.255.0   U     0      -      -   2
+
+
+Routing table for node 28:
+Node: 28, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.19.0       0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.20.0       0.0.0.0         255.255.255.0   U     0      -      -   2
+
++1.000000000s 0 Consumer:StartApplication(0x564cf8074db0)
++1.000000000s 1 Producer:StartApplication(0x564cf8475280)
++1.000000000s 2 Producer:StartApplication(0x564cf8475430)
++1.000000000s 3 Producer:StartApplication(0x564cf7ff8800)
++1.000000000s 4 Producer:StartApplication(0x564cf85a42d0)
++1.000000000s 5 Producer:StartApplication(0x564cf8360fc0)
++1.000000000s 6 Producer:StartApplication(0x564cf8268d80)
++1.000000000s 7 Producer:StartApplication(0x564cf83e56a0)
++1.000000000s 8 Producer:StartApplication(0x564cf7fe3be0)
++1.000000000s 9 Producer:StartApplication(0x564cf80b84f0)
++1.000000000s 10 Producer:StartApplication(0x564cf81a3050)
++1.000000000s 19 Aggregator:StartApplication(0x564cf8268e40)
++1.000000000s 20 Aggregator:StartApplication(0x564cf8074e70)
+
+myserver ptr:0x564cf839a990
+ CreateSocketPool: socketPool[10.2.1.2] -myserver, serverPort: 17197, cGroup[0]: 10.2.1.2
+myserver ptr:0x564cf82b8fd0
+ CreateSocketPool: socketPool[10.2.3.2] -myserver, serverPort: 8950, cGroup[1]: 10.2.3.2
+myserver ptr:0x564cf849cf40
+ CreateSocketPool: socketPool[10.1.1.1] -myserver, serverPort: 11362, cGroup[0]: 10.1.1.1
+myserver ptr:0x564cf844ade0
+ CreateSocketPool: socketPool[10.1.2.1] -myserver, serverPort: 59850, cGroup[1]: 10.1.2.1
+myserver ptr:0x564cf8564f20
+ CreateSocketPool: socketPool[10.1.3.1] -myserver, serverPort: 52647, cGroup[2]: 10.1.3.1
+myserver ptr:0x564cf822cc00
+ CreateSocketPool: socketPool[10.1.4.1] -myserver, serverPort: 38670, cGroup[3]: 10.1.4.1
+myserver ptr:0x564cf85489f0
+ CreateSocketPool: socketPool[10.1.5.1] -myserver, serverPort: 52552, cGroup[4]: 10.1.5.1
+myserver ptr:0x564cf851b720
+ CreateSocketPool: socketPool[10.1.6.1] -myserver, serverPort: 397, cGroup[0]: 10.1.6.1
+myserver ptr:0x564cf8444580
+ CreateSocketPool: socketPool[10.1.7.1] -myserver, serverPort: 62730, cGroup[1]: 10.1.7.1
+myserver ptr:0x564cf8586a80
+ CreateSocketPool: socketPool[10.1.8.1] -myserver, serverPort: 64995, cGroup[2]: 10.1.8.1
+myserver ptr:0x564cf839bcb0
+ CreateSocketPool: socketPool[10.1.9.1] -myserver, serverPort: 14207, cGroup[3]: 10.1.9.1
+myserver ptr:0x564cf86208d0
+ CreateSocketPool: socketPool[10.1.10.1] -myserver, serverPort: 12276, cGroup[4]: 10.1.10.1
+Consumer All iteration-1000 completed in: 821ms
+Consumer:DoDispose(0x564cf8074db0)
+Consumer:~Consumer(0x564cf8074db0)
+Producer:DoDispose(0x564cf8475280)
+Producer:~Producer(0x564cf8475280)
+Producer:DoDispose(0x564cf8475430)
+Producer:~Producer(0x564cf8475430)
+Producer:DoDispose(0x564cf7ff8800)
+Producer:~Producer(0x564cf7ff8800)
+Producer:DoDispose(0x564cf85a42d0)
+Producer:~Producer(0x564cf85a42d0)
+Producer:DoDispose(0x564cf8360fc0)
+Producer:~Producer(0x564cf8360fc0)
+Producer:DoDispose(0x564cf8268d80)
+Producer:~Producer(0x564cf8268d80)
+Producer:DoDispose(0x564cf83e56a0)
+Producer:~Producer(0x564cf83e56a0)
+Producer:DoDispose(0x564cf7fe3be0)
+Producer:~Producer(0x564cf7fe3be0)
+Producer:DoDispose(0x564cf80b84f0)
+Producer:~Producer(0x564cf80b84f0)
+Producer:DoDispose(0x564cf81a3050)
+Producer:~Producer(0x564cf81a3050)
+Aggregator:DoDispose(0x564cf8268e40)
+Aggregator:~Aggregator(0x564cf8268e40)
+Aggregator:DoDispose(0x564cf8074e70)
+Aggregator:~Aggregator(0x564cf8074e70)
+Prefix: 10, Iteration: 1000 - Simulation completed successfully.
+
+#################### SIMULATION END ####################
+
+
+
+
+#################### SIMULATION PARAMETERS ####################
+
+
+Prefix: 10 Iteration: 2000 Vector Size: 150 Congestion Control Algorithm: bbr
+
+
+#################### SIMULATION SET-UP ####################
+
+
+uint32_t consumerNum = 1;
+uint32_t producerNum = 10;
+uint32_t forwarderNum = 8;
+uint32_t aggregatorNum = 10;
+---node1  ip---pro0---10.1.1.1---node2  ip---forwarder0---10.1.1.2
+---node1  ip---pro1---10.1.2.1---node2  ip---forwarder0---10.1.1.2
+---node1  ip---pro2---10.1.3.1---node2  ip---forwarder0---10.1.1.2
+---node1  ip---pro3---10.1.4.1---node2  ip---forwarder0---10.1.1.2
+---node1  ip---pro4---10.1.5.1---node2  ip---forwarder0---10.1.1.2
+---node1  ip---pro5---10.1.6.1---node2  ip---forwarder1---10.1.6.2
+---node1  ip---pro6---10.1.7.1---node2  ip---forwarder1---10.1.6.2
+---node1  ip---pro7---10.1.8.1---node2  ip---forwarder1---10.1.6.2
+---node1  ip---pro8---10.1.9.1---node2  ip---forwarder1---10.1.6.2
+---node1  ip---pro9---10.1.10.1---node2  ip---forwarder1---10.1.6.2
+---node1  ip---con0---10.1.11.1---node2  ip---forwarder2---10.1.11.2
+---node1  ip---forwarder0---10.1.1.2---node2  ip---agg0---10.2.1.2
+---node1  ip---agg0---10.2.1.2---node2  ip---forwarder3---10.2.2.2
+---node1  ip---forwarder1---10.1.6.2---node2  ip---agg1---10.2.3.2
+---node1  ip---agg1---10.2.3.2---node2  ip---forwarder4---10.2.4.2
+---node1  ip---forwarder0---10.1.1.2---node2  ip---agg2---10.2.5.2
+---node1  ip---agg2---10.2.5.2---node2  ip---forwarder5---10.2.6.2
+---node1  ip---forwarder1---10.1.6.2---node2  ip---agg3---10.2.7.2
+---node1  ip---agg3---10.2.7.2---node2  ip---forwarder6---10.2.8.2
+---node1  ip---forwarder0---10.1.1.2---node2  ip---agg4---10.2.9.2
+---node1  ip---agg4---10.2.9.2---node2  ip---forwarder7---10.2.10.2
+---node1  ip---forwarder1---10.1.6.2---node2  ip---agg5---10.2.11.2
+---node1  ip---agg5---10.2.11.2---node2  ip---forwarder3---10.2.2.2
+---node1  ip---forwarder0---10.1.1.2---node2  ip---agg6---10.2.13.2
+---node1  ip---agg6---10.2.13.2---node2  ip---forwarder4---10.2.4.2
+---node1  ip---forwarder1---10.1.6.2---node2  ip---agg7---10.2.15.2
+---node1  ip---agg7---10.2.15.2---node2  ip---forwarder5---10.2.6.2
+---node1  ip---forwarder0---10.1.1.2---node2  ip---agg8---10.2.17.2
+---node1  ip---agg8---10.2.17.2---node2  ip---forwarder6---10.2.8.2
+---node1  ip---forwarder1---10.1.6.2---node2  ip---agg9---10.2.19.2
+---node1  ip---agg9---10.2.19.2---node2  ip---forwarder7---10.2.10.2
+---node1  ip---forwarder2---10.1.11.2---node2  ip---forwarder3---10.2.2.2
+---node1  ip---forwarder3---10.2.2.2---node2  ip---forwarder4---10.2.4.2
+---node1  ip---forwarder3---10.2.2.2---node2  ip---forwarder5---10.2.6.2
+---node1  ip---forwarder3---10.2.2.2---node2  ip---forwarder6---10.2.8.2
+---node1  ip---forwarder3---10.2.2.2---node2  ip---forwarder7---10.2.10.2
+---node1  ip---forwarder4---10.2.4.2---node2  ip---forwarder5---10.2.6.2
+---node1  ip---forwarder4---10.2.4.2---node2  ip---forwarder6---10.2.8.2
+---node1  ip---forwarder4---10.2.4.2---node2  ip---forwarder7---10.2.10.2
+---node1  ip---forwarder5---10.2.6.2---node2  ip---forwarder6---10.2.8.2
+---node1  ip---forwarder5---10.2.6.2---node2  ip---forwarder7---10.2.10.2
+---node1  ip---forwarder6---10.2.8.2---node2  ip---forwarder7---10.2.10.2
++0.000000000s -1 Producer:Producer(0x564cf833caf0)
++0.000000000s -1 Producer:SetupProducer(0x564cf833caf0)
++0.000000000s -1 Producer:Producer(0x564cf85bd100)
++0.000000000s -1 Producer:SetupProducer(0x564cf85bd100)
++0.000000000s -1 Producer:Producer(0x564cf85bcf50)
++0.000000000s -1 Producer:SetupProducer(0x564cf85bcf50)
++0.000000000s -1 Producer:Producer(0x564cfa8b3060)
++0.000000000s -1 Producer:SetupProducer(0x564cfa8b3060)
++0.000000000s -1 Producer:Producer(0x564cfabd1ed0)
++0.000000000s -1 Producer:SetupProducer(0x564cfabd1ed0)
++0.000000000s -1 Aggregator:Aggregator(0x564cf7dcb290)
++0.000000000s -1 Aggregator:SetupAggregator(0x564cf7dcb290)
++0.000000000s -1 Producer:Producer(0x564cf7dcb1d0)
++0.000000000s -1 Producer:SetupProducer(0x564cf7dcb1d0)
++0.000000000s -1 Producer:Producer(0x564cf8073510)
++0.000000000s -1 Producer:SetupProducer(0x564cf8073510)
++0.000000000s -1 Producer:Producer(0x564cf8197790)
++0.000000000s -1 Producer:SetupProducer(0x564cf8197790)
++0.000000000s -1 Producer:Producer(0x564cf834b0c0)
++0.000000000s -1 Producer:SetupProducer(0x564cf834b0c0)
++0.000000000s -1 Producer:Producer(0x564cf843a880)
++0.000000000s -1 Producer:SetupProducer(0x564cf843a880)
++0.000000000s -1 Aggregator:Aggregator(0x564cf81b1700)
++0.000000000s -1 Aggregator:SetupAggregator(0x564cf81b1700)
++0.000000000s -1 Consumer:Consumer(0x564cf81b1640)
++0.000000000s -1 Consumer:SetupConsumer(0x564cf81b1640)
+Routing table for node 0:
+Node: 0, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.11.0       0.0.0.0         255.255.255.0   U     0      -      -   1
+
+
+Routing table for node 1:
+Node: 1, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.1.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+
+
+Routing table for node 2:
+Node: 2, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.2.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+
+
+Routing table for node 3:
+Node: 3, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.3.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+
+
+Routing table for node 4:
+Node: 4, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.4.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+
+
+Routing table for node 5:
+Node: 5, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.5.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+
+
+Routing table for node 6:
+Node: 6, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.6.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+
+
+Routing table for node 7:
+Node: 7, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.7.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+
+
+Routing table for node 8:
+Node: 8, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.8.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+
+
+Routing table for node 9:
+Node: 9, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.9.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+
+
+Routing table for node 10:
+Node: 10, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.10.0       0.0.0.0         255.255.255.0   U     0      -      -   1
+
+
+Routing table for node 11:
+Node: 11, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.1.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+10.1.2.0        0.0.0.0         255.255.255.0   U     0      -      -   2
+10.1.3.0        0.0.0.0         255.255.255.0   U     0      -      -   3
+10.1.4.0        0.0.0.0         255.255.255.0   U     0      -      -   4
+10.1.5.0        0.0.0.0         255.255.255.0   U     0      -      -   5
+10.2.1.0        0.0.0.0         255.255.255.0   U     0      -      -   6
+10.2.5.0        0.0.0.0         255.255.255.0   U     0      -      -   7
+10.2.9.0        0.0.0.0         255.255.255.0   U     0      -      -   8
+10.2.13.0       0.0.0.0         255.255.255.0   U     0      -      -   9
+10.2.17.0       0.0.0.0         255.255.255.0   U     0      -      -   10
+
+
+Routing table for node 12:
+Node: 12, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.6.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+10.1.7.0        0.0.0.0         255.255.255.0   U     0      -      -   2
+10.1.8.0        0.0.0.0         255.255.255.0   U     0      -      -   3
+10.1.9.0        0.0.0.0         255.255.255.0   U     0      -      -   4
+10.1.10.0       0.0.0.0         255.255.255.0   U     0      -      -   5
+10.2.3.0        0.0.0.0         255.255.255.0   U     0      -      -   6
+10.2.7.0        0.0.0.0         255.255.255.0   U     0      -      -   7
+10.2.11.0       0.0.0.0         255.255.255.0   U     0      -      -   8
+10.2.15.0       0.0.0.0         255.255.255.0   U     0      -      -   9
+10.2.19.0       0.0.0.0         255.255.255.0   U     0      -      -   10
+
+
+Routing table for node 13:
+Node: 13, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.11.0       0.0.0.0         255.255.255.0   U     0      -      -   1
+10.1.12.0       0.0.0.0         255.255.255.0   U     0      -      -   2
+
+
+Routing table for node 14:
+Node: 14, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.2.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.12.0       0.0.0.0         255.255.255.0   U     0      -      -   2
+10.1.12.0       0.0.0.0         255.255.255.0   U     0      -      -   3
+10.1.13.0       0.0.0.0         255.255.255.0   U     0      -      -   4
+10.1.14.0       0.0.0.0         255.255.255.0   U     0      -      -   5
+10.1.15.0       0.0.0.0         255.255.255.0   U     0      -      -   6
+10.1.16.0       0.0.0.0         255.255.255.0   U     0      -      -   7
+
+
+Routing table for node 15:
+Node: 15, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.4.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.14.0       0.0.0.0         255.255.255.0   U     0      -      -   2
+10.1.13.0       0.0.0.0         255.255.255.0   U     0      -      -   3
+10.1.17.0       0.0.0.0         255.255.255.0   U     0      -      -   4
+10.1.18.0       0.0.0.0         255.255.255.0   U     0      -      -   5
+10.1.19.0       0.0.0.0         255.255.255.0   U     0      -      -   6
+
+
+Routing table for node 16:
+Node: 16, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.6.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.16.0       0.0.0.0         255.255.255.0   U     0      -      -   2
+10.1.14.0       0.0.0.0         255.255.255.0   U     0      -      -   3
+10.1.17.0       0.0.0.0         255.255.255.0   U     0      -      -   4
+10.1.20.0       0.0.0.0         255.255.255.0   U     0      -      -   5
+10.1.21.0       0.0.0.0         255.255.255.0   U     0      -      -   6
+
+
+Routing table for node 17:
+Node: 17, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.8.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.18.0       0.0.0.0         255.255.255.0   U     0      -      -   2
+10.1.15.0       0.0.0.0         255.255.255.0   U     0      -      -   3
+10.1.18.0       0.0.0.0         255.255.255.0   U     0      -      -   4
+10.1.20.0       0.0.0.0         255.255.255.0   U     0      -      -   5
+10.1.22.0       0.0.0.0         255.255.255.0   U     0      -      -   6
+
+
+Routing table for node 18:
+Node: 18, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.10.0       0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.20.0       0.0.0.0         255.255.255.0   U     0      -      -   2
+10.1.16.0       0.0.0.0         255.255.255.0   U     0      -      -   3
+10.1.19.0       0.0.0.0         255.255.255.0   U     0      -      -   4
+10.1.21.0       0.0.0.0         255.255.255.0   U     0      -      -   5
+10.1.22.0       0.0.0.0         255.255.255.0   U     0      -      -   6
+
+
+Routing table for node 19:
+Node: 19, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.1.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.2.0        0.0.0.0         255.255.255.0   U     0      -      -   2
+
+
+Routing table for node 20:
+Node: 20, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.3.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.4.0        0.0.0.0         255.255.255.0   U     0      -      -   2
+
+
+Routing table for node 21:
+Node: 21, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.5.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.6.0        0.0.0.0         255.255.255.0   U     0      -      -   2
+
+
+Routing table for node 22:
+Node: 22, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.7.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.8.0        0.0.0.0         255.255.255.0   U     0      -      -   2
+
+
+Routing table for node 23:
+Node: 23, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.9.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.10.0       0.0.0.0         255.255.255.0   U     0      -      -   2
+
+
+Routing table for node 24:
+Node: 24, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.11.0       0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.12.0       0.0.0.0         255.255.255.0   U     0      -      -   2
+
+
+Routing table for node 25:
+Node: 25, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.13.0       0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.14.0       0.0.0.0         255.255.255.0   U     0      -      -   2
+
+
+Routing table for node 26:
+Node: 26, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.15.0       0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.16.0       0.0.0.0         255.255.255.0   U     0      -      -   2
+
+
+Routing table for node 27:
+Node: 27, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.17.0       0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.18.0       0.0.0.0         255.255.255.0   U     0      -      -   2
+
+
+Routing table for node 28:
+Node: 28, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.19.0       0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.20.0       0.0.0.0         255.255.255.0   U     0      -      -   2
+
++1.000000000s 0 Consumer:StartApplication(0x564cf81b1640)
++1.000000000s 1 Producer:StartApplication(0x564cf833caf0)
++1.000000000s 2 Producer:StartApplication(0x564cf85bd100)
++1.000000000s 3 Producer:StartApplication(0x564cf85bcf50)
++1.000000000s 4 Producer:StartApplication(0x564cfa8b3060)
++1.000000000s 5 Producer:StartApplication(0x564cfabd1ed0)
++1.000000000s 6 Producer:StartApplication(0x564cf7dcb1d0)
++1.000000000s 7 Producer:StartApplication(0x564cf8073510)
++1.000000000s 8 Producer:StartApplication(0x564cf8197790)
++1.000000000s 9 Producer:StartApplication(0x564cf834b0c0)
++1.000000000s 10 Producer:StartApplication(0x564cf843a880)
++1.000000000s 19 Aggregator:StartApplication(0x564cf7dcb290)
++1.000000000s 20 Aggregator:StartApplication(0x564cf81b1700)
+
+myserver ptr:0x564cf818a580
+ CreateSocketPool: socketPool[10.2.1.2] -myserver, serverPort: 17197, cGroup[0]: 10.2.1.2
+myserver ptr:0x564cf8676d20
+ CreateSocketPool: socketPool[10.2.3.2] -myserver, serverPort: 8950, cGroup[1]: 10.2.3.2
+myserver ptr:0x564cf8714ef0
+ CreateSocketPool: socketPool[10.1.1.1] -myserver, serverPort: 11362, cGroup[0]: 10.1.1.1
+myserver ptr:0x564cf861a4a0
+ CreateSocketPool: socketPool[10.1.2.1] -myserver, serverPort: 59850, cGroup[1]: 10.1.2.1
+myserver ptr:0x564cf81931d0
+ CreateSocketPool: socketPool[10.1.3.1] -myserver, serverPort: 52647, cGroup[2]: 10.1.3.1
+myserver ptr:0x564cf8009b90
+ CreateSocketPool: socketPool[10.1.4.1] -myserver, serverPort: 38670, cGroup[3]: 10.1.4.1
+myserver ptr:0x564cf80221c0
+ CreateSocketPool: socketPool[10.1.5.1] -myserver, serverPort: 52552, cGroup[4]: 10.1.5.1
+myserver ptr:0x564cf84f50a0
+ CreateSocketPool: socketPool[10.1.6.1] -myserver, serverPort: 397, cGroup[0]: 10.1.6.1
+myserver ptr:0x564cf886c470
+ CreateSocketPool: socketPool[10.1.7.1] -myserver, serverPort: 62730, cGroup[1]: 10.1.7.1
+myserver ptr:0x564cf7d4f590
+ CreateSocketPool: socketPool[10.1.8.1] -myserver, serverPort: 64995, cGroup[2]: 10.1.8.1
+myserver ptr:0x564cf7feb4a0
+ CreateSocketPool: socketPool[10.1.9.1] -myserver, serverPort: 14207, cGroup[3]: 10.1.9.1
+myserver ptr:0x564cf88cebb0
+ CreateSocketPool: socketPool[10.1.10.1] -myserver, serverPort: 12276, cGroup[4]: 10.1.10.1
+Consumer All iteration-2000 completed in: 1630ms
+Consumer:DoDispose(0x564cf81b1640)
+Consumer:~Consumer(0x564cf81b1640)
+Producer:DoDispose(0x564cf833caf0)
+Producer:~Producer(0x564cf833caf0)
+Producer:DoDispose(0x564cf85bd100)
+Producer:~Producer(0x564cf85bd100)
+Producer:DoDispose(0x564cf85bcf50)
+Producer:~Producer(0x564cf85bcf50)
+Producer:DoDispose(0x564cfa8b3060)
+Producer:~Producer(0x564cfa8b3060)
+Producer:DoDispose(0x564cfabd1ed0)
+Producer:~Producer(0x564cfabd1ed0)
+Producer:DoDispose(0x564cf7dcb1d0)
+Producer:~Producer(0x564cf7dcb1d0)
+Producer:DoDispose(0x564cf8073510)
+Producer:~Producer(0x564cf8073510)
+Producer:DoDispose(0x564cf8197790)
+Producer:~Producer(0x564cf8197790)
+Producer:DoDispose(0x564cf834b0c0)
+Producer:~Producer(0x564cf834b0c0)
+Producer:DoDispose(0x564cf843a880)
+Producer:~Producer(0x564cf843a880)
+Aggregator:DoDispose(0x564cf7dcb290)
+Aggregator:~Aggregator(0x564cf7dcb290)
+Aggregator:DoDispose(0x564cf81b1700)
+Aggregator:~Aggregator(0x564cf81b1700)
+Prefix: 10, Iteration: 2000 - Simulation completed successfully.
+
+#################### SIMULATION END ####################
+
+
+
+
+#################### SIMULATION PARAMETERS ####################
+
+
+Prefix: 10 Iteration: 3000 Vector Size: 150 Congestion Control Algorithm: bbr
+
+
+#################### SIMULATION SET-UP ####################
+
+
+uint32_t consumerNum = 1;
+uint32_t producerNum = 10;
+uint32_t forwarderNum = 8;
+uint32_t aggregatorNum = 10;
+---node1  ip---pro0---10.1.1.1---node2  ip---forwarder0---10.1.1.2
+---node1  ip---pro1---10.1.2.1---node2  ip---forwarder0---10.1.1.2
+---node1  ip---pro2---10.1.3.1---node2  ip---forwarder0---10.1.1.2
+---node1  ip---pro3---10.1.4.1---node2  ip---forwarder0---10.1.1.2
+---node1  ip---pro4---10.1.5.1---node2  ip---forwarder0---10.1.1.2
+---node1  ip---pro5---10.1.6.1---node2  ip---forwarder1---10.1.6.2
+---node1  ip---pro6---10.1.7.1---node2  ip---forwarder1---10.1.6.2
+---node1  ip---pro7---10.1.8.1---node2  ip---forwarder1---10.1.6.2
+---node1  ip---pro8---10.1.9.1---node2  ip---forwarder1---10.1.6.2
+---node1  ip---pro9---10.1.10.1---node2  ip---forwarder1---10.1.6.2
+---node1  ip---con0---10.1.11.1---node2  ip---forwarder2---10.1.11.2
+---node1  ip---forwarder0---10.1.1.2---node2  ip---agg0---10.2.1.2
+---node1  ip---agg0---10.2.1.2---node2  ip---forwarder3---10.2.2.2
+---node1  ip---forwarder1---10.1.6.2---node2  ip---agg1---10.2.3.2
+---node1  ip---agg1---10.2.3.2---node2  ip---forwarder4---10.2.4.2
+---node1  ip---forwarder0---10.1.1.2---node2  ip---agg2---10.2.5.2
+---node1  ip---agg2---10.2.5.2---node2  ip---forwarder5---10.2.6.2
+---node1  ip---forwarder1---10.1.6.2---node2  ip---agg3---10.2.7.2
+---node1  ip---agg3---10.2.7.2---node2  ip---forwarder6---10.2.8.2
+---node1  ip---forwarder0---10.1.1.2---node2  ip---agg4---10.2.9.2
+---node1  ip---agg4---10.2.9.2---node2  ip---forwarder7---10.2.10.2
+---node1  ip---forwarder1---10.1.6.2---node2  ip---agg5---10.2.11.2
+---node1  ip---agg5---10.2.11.2---node2  ip---forwarder3---10.2.2.2
+---node1  ip---forwarder0---10.1.1.2---node2  ip---agg6---10.2.13.2
+---node1  ip---agg6---10.2.13.2---node2  ip---forwarder4---10.2.4.2
+---node1  ip---forwarder1---10.1.6.2---node2  ip---agg7---10.2.15.2
+---node1  ip---agg7---10.2.15.2---node2  ip---forwarder5---10.2.6.2
+---node1  ip---forwarder0---10.1.1.2---node2  ip---agg8---10.2.17.2
+---node1  ip---agg8---10.2.17.2---node2  ip---forwarder6---10.2.8.2
+---node1  ip---forwarder1---10.1.6.2---node2  ip---agg9---10.2.19.2
+---node1  ip---agg9---10.2.19.2---node2  ip---forwarder7---10.2.10.2
+---node1  ip---forwarder2---10.1.11.2---node2  ip---forwarder3---10.2.2.2
+---node1  ip---forwarder3---10.2.2.2---node2  ip---forwarder4---10.2.4.2
+---node1  ip---forwarder3---10.2.2.2---node2  ip---forwarder5---10.2.6.2
+---node1  ip---forwarder3---10.2.2.2---node2  ip---forwarder6---10.2.8.2
+---node1  ip---forwarder3---10.2.2.2---node2  ip---forwarder7---10.2.10.2
+---node1  ip---forwarder4---10.2.4.2---node2  ip---forwarder5---10.2.6.2
+---node1  ip---forwarder4---10.2.4.2---node2  ip---forwarder6---10.2.8.2
+---node1  ip---forwarder4---10.2.4.2---node2  ip---forwarder7---10.2.10.2
+---node1  ip---forwarder5---10.2.6.2---node2  ip---forwarder6---10.2.8.2
+---node1  ip---forwarder5---10.2.6.2---node2  ip---forwarder7---10.2.10.2
+---node1  ip---forwarder6---10.2.8.2---node2  ip---forwarder7---10.2.10.2
++0.000000000s -1 Producer:Producer(0x564cf83d31c0)
++0.000000000s -1 Producer:SetupProducer(0x564cf83d31c0)
++0.000000000s -1 Producer:Producer(0x564cf7feff70)
++0.000000000s -1 Producer:SetupProducer(0x564cf7feff70)
++0.000000000s -1 Producer:Producer(0x564cf7ff05e0)
++0.000000000s -1 Producer:SetupProducer(0x564cf7ff05e0)
++0.000000000s -1 Producer:Producer(0x564cf816e620)
++0.000000000s -1 Producer:SetupProducer(0x564cf816e620)
++0.000000000s -1 Producer:Producer(0x564cf8262ac0)
++0.000000000s -1 Producer:SetupProducer(0x564cf8262ac0)
++0.000000000s -1 Aggregator:Aggregator(0x564cf81b18e0)
++0.000000000s -1 Aggregator:SetupAggregator(0x564cf81b18e0)
++0.000000000s -1 Producer:Producer(0x564cf81b1820)
++0.000000000s -1 Producer:SetupProducer(0x564cf81b1820)
++0.000000000s -1 Producer:Producer(0x564cf7d3f790)
++0.000000000s -1 Producer:SetupProducer(0x564cf7d3f790)
++0.000000000s -1 Producer:Producer(0x564cf80c74b0)
++0.000000000s -1 Producer:SetupProducer(0x564cf80c74b0)
++0.000000000s -1 Producer:Producer(0x564cf7d40300)
++0.000000000s -1 Producer:SetupProducer(0x564cf7d40300)
++0.000000000s -1 Producer:Producer(0x564cf854faf0)
++0.000000000s -1 Producer:SetupProducer(0x564cf854faf0)
++0.000000000s -1 Aggregator:Aggregator(0x564cf7fc9810)
++0.000000000s -1 Aggregator:SetupAggregator(0x564cf7fc9810)
++0.000000000s -1 Consumer:Consumer(0x564cf7fc9750)
++0.000000000s -1 Consumer:SetupConsumer(0x564cf7fc9750)
+Routing table for node 0:
+Node: 0, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.11.0       0.0.0.0         255.255.255.0   U     0      -      -   1
+
+
+Routing table for node 1:
+Node: 1, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.1.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+
+
+Routing table for node 2:
+Node: 2, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.2.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+
+
+Routing table for node 3:
+Node: 3, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.3.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+
+
+Routing table for node 4:
+Node: 4, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.4.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+
+
+Routing table for node 5:
+Node: 5, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.5.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+
+
+Routing table for node 6:
+Node: 6, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.6.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+
+
+Routing table for node 7:
+Node: 7, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.7.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+
+
+Routing table for node 8:
+Node: 8, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.8.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+
+
+Routing table for node 9:
+Node: 9, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.9.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+
+
+Routing table for node 10:
+Node: 10, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.10.0       0.0.0.0         255.255.255.0   U     0      -      -   1
+
+
+Routing table for node 11:
+Node: 11, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.1.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+10.1.2.0        0.0.0.0         255.255.255.0   U     0      -      -   2
+10.1.3.0        0.0.0.0         255.255.255.0   U     0      -      -   3
+10.1.4.0        0.0.0.0         255.255.255.0   U     0      -      -   4
+10.1.5.0        0.0.0.0         255.255.255.0   U     0      -      -   5
+10.2.1.0        0.0.0.0         255.255.255.0   U     0      -      -   6
+10.2.5.0        0.0.0.0         255.255.255.0   U     0      -      -   7
+10.2.9.0        0.0.0.0         255.255.255.0   U     0      -      -   8
+10.2.13.0       0.0.0.0         255.255.255.0   U     0      -      -   9
+10.2.17.0       0.0.0.0         255.255.255.0   U     0      -      -   10
+
+
+Routing table for node 12:
+Node: 12, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.6.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+10.1.7.0        0.0.0.0         255.255.255.0   U     0      -      -   2
+10.1.8.0        0.0.0.0         255.255.255.0   U     0      -      -   3
+10.1.9.0        0.0.0.0         255.255.255.0   U     0      -      -   4
+10.1.10.0       0.0.0.0         255.255.255.0   U     0      -      -   5
+10.2.3.0        0.0.0.0         255.255.255.0   U     0      -      -   6
+10.2.7.0        0.0.0.0         255.255.255.0   U     0      -      -   7
+10.2.11.0       0.0.0.0         255.255.255.0   U     0      -      -   8
+10.2.15.0       0.0.0.0         255.255.255.0   U     0      -      -   9
+10.2.19.0       0.0.0.0         255.255.255.0   U     0      -      -   10
+
+
+Routing table for node 13:
+Node: 13, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.11.0       0.0.0.0         255.255.255.0   U     0      -      -   1
+10.1.12.0       0.0.0.0         255.255.255.0   U     0      -      -   2
+
+
+Routing table for node 14:
+Node: 14, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.2.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.12.0       0.0.0.0         255.255.255.0   U     0      -      -   2
+10.1.12.0       0.0.0.0         255.255.255.0   U     0      -      -   3
+10.1.13.0       0.0.0.0         255.255.255.0   U     0      -      -   4
+10.1.14.0       0.0.0.0         255.255.255.0   U     0      -      -   5
+10.1.15.0       0.0.0.0         255.255.255.0   U     0      -      -   6
+10.1.16.0       0.0.0.0         255.255.255.0   U     0      -      -   7
+
+
+Routing table for node 15:
+Node: 15, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.4.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.14.0       0.0.0.0         255.255.255.0   U     0      -      -   2
+10.1.13.0       0.0.0.0         255.255.255.0   U     0      -      -   3
+10.1.17.0       0.0.0.0         255.255.255.0   U     0      -      -   4
+10.1.18.0       0.0.0.0         255.255.255.0   U     0      -      -   5
+10.1.19.0       0.0.0.0         255.255.255.0   U     0      -      -   6
+
+
+Routing table for node 16:
+Node: 16, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.6.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.16.0       0.0.0.0         255.255.255.0   U     0      -      -   2
+10.1.14.0       0.0.0.0         255.255.255.0   U     0      -      -   3
+10.1.17.0       0.0.0.0         255.255.255.0   U     0      -      -   4
+10.1.20.0       0.0.0.0         255.255.255.0   U     0      -      -   5
+10.1.21.0       0.0.0.0         255.255.255.0   U     0      -      -   6
+
+
+Routing table for node 17:
+Node: 17, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.8.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.18.0       0.0.0.0         255.255.255.0   U     0      -      -   2
+10.1.15.0       0.0.0.0         255.255.255.0   U     0      -      -   3
+10.1.18.0       0.0.0.0         255.255.255.0   U     0      -      -   4
+10.1.20.0       0.0.0.0         255.255.255.0   U     0      -      -   5
+10.1.22.0       0.0.0.0         255.255.255.0   U     0      -      -   6
+
+
+Routing table for node 18:
+Node: 18, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.10.0       0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.20.0       0.0.0.0         255.255.255.0   U     0      -      -   2
+10.1.16.0       0.0.0.0         255.255.255.0   U     0      -      -   3
+10.1.19.0       0.0.0.0         255.255.255.0   U     0      -      -   4
+10.1.21.0       0.0.0.0         255.255.255.0   U     0      -      -   5
+10.1.22.0       0.0.0.0         255.255.255.0   U     0      -      -   6
+
+
+Routing table for node 19:
+Node: 19, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.1.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.2.0        0.0.0.0         255.255.255.0   U     0      -      -   2
+
+
+Routing table for node 20:
+Node: 20, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.3.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.4.0        0.0.0.0         255.255.255.0   U     0      -      -   2
+
+
+Routing table for node 21:
+Node: 21, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.5.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.6.0        0.0.0.0         255.255.255.0   U     0      -      -   2
+
+
+Routing table for node 22:
+Node: 22, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.7.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.8.0        0.0.0.0         255.255.255.0   U     0      -      -   2
+
+
+Routing table for node 23:
+Node: 23, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.9.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.10.0       0.0.0.0         255.255.255.0   U     0      -      -   2
+
+
+Routing table for node 24:
+Node: 24, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.11.0       0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.12.0       0.0.0.0         255.255.255.0   U     0      -      -   2
+
+
+Routing table for node 25:
+Node: 25, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.13.0       0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.14.0       0.0.0.0         255.255.255.0   U     0      -      -   2
+
+
+Routing table for node 26:
+Node: 26, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.15.0       0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.16.0       0.0.0.0         255.255.255.0   U     0      -      -   2
+
+
+Routing table for node 27:
+Node: 27, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.17.0       0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.18.0       0.0.0.0         255.255.255.0   U     0      -      -   2
+
+
+Routing table for node 28:
+Node: 28, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.19.0       0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.20.0       0.0.0.0         255.255.255.0   U     0      -      -   2
+
++1.000000000s 0 Consumer:StartApplication(0x564cf7fc9750)
++1.000000000s 1 Producer:StartApplication(0x564cf83d31c0)
++1.000000000s 2 Producer:StartApplication(0x564cf7feff70)
++1.000000000s 3 Producer:StartApplication(0x564cf7ff05e0)
++1.000000000s 4 Producer:StartApplication(0x564cf816e620)
++1.000000000s 5 Producer:StartApplication(0x564cf8262ac0)
++1.000000000s 6 Producer:StartApplication(0x564cf81b1820)
++1.000000000s 7 Producer:StartApplication(0x564cf7d3f790)
++1.000000000s 8 Producer:StartApplication(0x564cf80c74b0)
++1.000000000s 9 Producer:StartApplication(0x564cf7d40300)
++1.000000000s 10 Producer:StartApplication(0x564cf854faf0)
++1.000000000s 19 Aggregator:StartApplication(0x564cf81b18e0)
++1.000000000s 20 Aggregator:StartApplication(0x564cf7fc9810)
+
+myserver ptr:0x564cf8067080
+ CreateSocketPool: socketPool[10.2.1.2] -myserver, serverPort: 17197, cGroup[0]: 10.2.1.2
+myserver ptr:0x564cf807f280
+ CreateSocketPool: socketPool[10.2.3.2] -myserver, serverPort: 8950, cGroup[1]: 10.2.3.2
+myserver ptr:0x564cf810f400
+ CreateSocketPool: socketPool[10.1.1.1] -myserver, serverPort: 11362, cGroup[0]: 10.1.1.1
+myserver ptr:0x564cf818db50
+ CreateSocketPool: socketPool[10.1.2.1] -myserver, serverPort: 59850, cGroup[1]: 10.1.2.1
+myserver ptr:0x564cf8193010
+ CreateSocketPool: socketPool[10.1.3.1] -myserver, serverPort: 52647, cGroup[2]: 10.1.3.1
+myserver ptr:0x564cf7febe30
+ CreateSocketPool: socketPool[10.1.4.1] -myserver, serverPort: 38670, cGroup[3]: 10.1.4.1
+myserver ptr:0x564cf88d5a30
+ CreateSocketPool: socketPool[10.1.5.1] -myserver, serverPort: 52552, cGroup[4]: 10.1.5.1
+myserver ptr:0x564cf8013f90
+ CreateSocketPool: socketPool[10.1.6.1] -myserver, serverPort: 397, cGroup[0]: 10.1.6.1
+myserver ptr:0x564cf8014c80
+ CreateSocketPool: socketPool[10.1.7.1] -myserver, serverPort: 62730, cGroup[1]: 10.1.7.1
+myserver ptr:0x564cf8437f40
+ CreateSocketPool: socketPool[10.1.8.1] -myserver, serverPort: 64995, cGroup[2]: 10.1.8.1
+myserver ptr:0x564cf8689e60
+ CreateSocketPool: socketPool[10.1.9.1] -myserver, serverPort: 14207, cGroup[3]: 10.1.9.1
+myserver ptr:0x564cf7feae70
+ CreateSocketPool: socketPool[10.1.10.1] -myserver, serverPort: 12276, cGroup[4]: 10.1.10.1
+Consumer All iteration-3000 completed in: 2439ms
+Consumer:DoDispose(0x564cf7fc9750)
+Consumer:~Consumer(0x564cf7fc9750)
+Producer:DoDispose(0x564cf83d31c0)
+Producer:~Producer(0x564cf83d31c0)
+Producer:DoDispose(0x564cf7feff70)
+Producer:~Producer(0x564cf7feff70)
+Producer:DoDispose(0x564cf7ff05e0)
+Producer:~Producer(0x564cf7ff05e0)
+Producer:DoDispose(0x564cf816e620)
+Producer:~Producer(0x564cf816e620)
+Producer:DoDispose(0x564cf8262ac0)
+Producer:~Producer(0x564cf8262ac0)
+Producer:DoDispose(0x564cf81b1820)
+Producer:~Producer(0x564cf81b1820)
+Producer:DoDispose(0x564cf7d3f790)
+Producer:~Producer(0x564cf7d3f790)
+Producer:DoDispose(0x564cf80c74b0)
+Producer:~Producer(0x564cf80c74b0)
+Producer:DoDispose(0x564cf7d40300)
+Producer:~Producer(0x564cf7d40300)
+Producer:DoDispose(0x564cf854faf0)
+Producer:~Producer(0x564cf854faf0)
+Aggregator:DoDispose(0x564cf81b18e0)
+Aggregator:~Aggregator(0x564cf81b18e0)
+Aggregator:DoDispose(0x564cf7fc9810)
+Aggregator:~Aggregator(0x564cf7fc9810)
+Prefix: 10, Iteration: 3000 - Simulation completed successfully.
+
+#################### SIMULATION END ####################
+
+
+
+
+#################### SIMULATION PARAMETERS ####################
+
+
+Prefix: 10 Iteration: 4000 Vector Size: 150 Congestion Control Algorithm: bbr
+
+
+#################### SIMULATION SET-UP ####################
+
+
+uint32_t consumerNum = 1;
+uint32_t producerNum = 10;
+uint32_t forwarderNum = 8;
+uint32_t aggregatorNum = 10;
+---node1  ip---pro0---10.1.1.1---node2  ip---forwarder0---10.1.1.2
+---node1  ip---pro1---10.1.2.1---node2  ip---forwarder0---10.1.1.2
+---node1  ip---pro2---10.1.3.1---node2  ip---forwarder0---10.1.1.2
+---node1  ip---pro3---10.1.4.1---node2  ip---forwarder0---10.1.1.2
+---node1  ip---pro4---10.1.5.1---node2  ip---forwarder0---10.1.1.2
+---node1  ip---pro5---10.1.6.1---node2  ip---forwarder1---10.1.6.2
+---node1  ip---pro6---10.1.7.1---node2  ip---forwarder1---10.1.6.2
+---node1  ip---pro7---10.1.8.1---node2  ip---forwarder1---10.1.6.2
+---node1  ip---pro8---10.1.9.1---node2  ip---forwarder1---10.1.6.2
+---node1  ip---pro9---10.1.10.1---node2  ip---forwarder1---10.1.6.2
+---node1  ip---con0---10.1.11.1---node2  ip---forwarder2---10.1.11.2
+---node1  ip---forwarder0---10.1.1.2---node2  ip---agg0---10.2.1.2
+---node1  ip---agg0---10.2.1.2---node2  ip---forwarder3---10.2.2.2
+---node1  ip---forwarder1---10.1.6.2---node2  ip---agg1---10.2.3.2
+---node1  ip---agg1---10.2.3.2---node2  ip---forwarder4---10.2.4.2
+---node1  ip---forwarder0---10.1.1.2---node2  ip---agg2---10.2.5.2
+---node1  ip---agg2---10.2.5.2---node2  ip---forwarder5---10.2.6.2
+---node1  ip---forwarder1---10.1.6.2---node2  ip---agg3---10.2.7.2
+---node1  ip---agg3---10.2.7.2---node2  ip---forwarder6---10.2.8.2
+---node1  ip---forwarder0---10.1.1.2---node2  ip---agg4---10.2.9.2
+---node1  ip---agg4---10.2.9.2---node2  ip---forwarder7---10.2.10.2
+---node1  ip---forwarder1---10.1.6.2---node2  ip---agg5---10.2.11.2
+---node1  ip---agg5---10.2.11.2---node2  ip---forwarder3---10.2.2.2
+---node1  ip---forwarder0---10.1.1.2---node2  ip---agg6---10.2.13.2
+---node1  ip---agg6---10.2.13.2---node2  ip---forwarder4---10.2.4.2
+---node1  ip---forwarder1---10.1.6.2---node2  ip---agg7---10.2.15.2
+---node1  ip---agg7---10.2.15.2---node2  ip---forwarder5---10.2.6.2
+---node1  ip---forwarder0---10.1.1.2---node2  ip---agg8---10.2.17.2
+---node1  ip---agg8---10.2.17.2---node2  ip---forwarder6---10.2.8.2
+---node1  ip---forwarder1---10.1.6.2---node2  ip---agg9---10.2.19.2
+---node1  ip---agg9---10.2.19.2---node2  ip---forwarder7---10.2.10.2
+---node1  ip---forwarder2---10.1.11.2---node2  ip---forwarder3---10.2.2.2
+---node1  ip---forwarder3---10.2.2.2---node2  ip---forwarder4---10.2.4.2
+---node1  ip---forwarder3---10.2.2.2---node2  ip---forwarder5---10.2.6.2
+---node1  ip---forwarder3---10.2.2.2---node2  ip---forwarder6---10.2.8.2
+---node1  ip---forwarder3---10.2.2.2---node2  ip---forwarder7---10.2.10.2
+---node1  ip---forwarder4---10.2.4.2---node2  ip---forwarder5---10.2.6.2
+---node1  ip---forwarder4---10.2.4.2---node2  ip---forwarder6---10.2.8.2
+---node1  ip---forwarder4---10.2.4.2---node2  ip---forwarder7---10.2.10.2
+---node1  ip---forwarder5---10.2.6.2---node2  ip---forwarder6---10.2.8.2
+---node1  ip---forwarder5---10.2.6.2---node2  ip---forwarder7---10.2.10.2
+---node1  ip---forwarder6---10.2.8.2---node2  ip---forwarder7---10.2.10.2
++0.000000000s -1 Producer:Producer(0x564cf8284850)
++0.000000000s -1 Producer:SetupProducer(0x564cf8284850)
++0.000000000s -1 Producer:Producer(0x564cf8260c30)
++0.000000000s -1 Producer:SetupProducer(0x564cf8260c30)
++0.000000000s -1 Producer:Producer(0x564cf7e08ca0)
++0.000000000s -1 Producer:SetupProducer(0x564cf7e08ca0)
++0.000000000s -1 Producer:Producer(0x564cf80c6890)
++0.000000000s -1 Producer:SetupProducer(0x564cf80c6890)
++0.000000000s -1 Producer:Producer(0x564cf80c7380)
++0.000000000s -1 Producer:SetupProducer(0x564cf80c7380)
++0.000000000s -1 Aggregator:Aggregator(0x564cf80f4d00)
++0.000000000s -1 Aggregator:SetupAggregator(0x564cf80f4d00)
++0.000000000s -1 Producer:Producer(0x564cf80f4c40)
++0.000000000s -1 Producer:SetupProducer(0x564cf80f4c40)
++0.000000000s -1 Producer:Producer(0x564cf8134870)
++0.000000000s -1 Producer:SetupProducer(0x564cf8134870)
++0.000000000s -1 Producer:Producer(0x564cf7dc4ca0)
++0.000000000s -1 Producer:SetupProducer(0x564cf7dc4ca0)
++0.000000000s -1 Producer:Producer(0x564cf81ac8a0)
++0.000000000s -1 Producer:SetupProducer(0x564cf81ac8a0)
++0.000000000s -1 Producer:Producer(0x564cf8ada7b0)
++0.000000000s -1 Producer:SetupProducer(0x564cf8ada7b0)
++0.000000000s -1 Aggregator:Aggregator(0x564cf830e120)
++0.000000000s -1 Aggregator:SetupAggregator(0x564cf830e120)
++0.000000000s -1 Consumer:Consumer(0x564cf830e060)
++0.000000000s -1 Consumer:SetupConsumer(0x564cf830e060)
+Routing table for node 0:
+Node: 0, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.11.0       0.0.0.0         255.255.255.0   U     0      -      -   1
+
+
+Routing table for node 1:
+Node: 1, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.1.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+
+
+Routing table for node 2:
+Node: 2, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.2.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+
+
+Routing table for node 3:
+Node: 3, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.3.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+
+
+Routing table for node 4:
+Node: 4, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.4.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+
+
+Routing table for node 5:
+Node: 5, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.5.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+
+
+Routing table for node 6:
+Node: 6, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.6.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+
+
+Routing table for node 7:
+Node: 7, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.7.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+
+
+Routing table for node 8:
+Node: 8, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.8.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+
+
+Routing table for node 9:
+Node: 9, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.9.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+
+
+Routing table for node 10:
+Node: 10, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.10.0       0.0.0.0         255.255.255.0   U     0      -      -   1
+
+
+Routing table for node 11:
+Node: 11, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.1.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+10.1.2.0        0.0.0.0         255.255.255.0   U     0      -      -   2
+10.1.3.0        0.0.0.0         255.255.255.0   U     0      -      -   3
+10.1.4.0        0.0.0.0         255.255.255.0   U     0      -      -   4
+10.1.5.0        0.0.0.0         255.255.255.0   U     0      -      -   5
+10.2.1.0        0.0.0.0         255.255.255.0   U     0      -      -   6
+10.2.5.0        0.0.0.0         255.255.255.0   U     0      -      -   7
+10.2.9.0        0.0.0.0         255.255.255.0   U     0      -      -   8
+10.2.13.0       0.0.0.0         255.255.255.0   U     0      -      -   9
+10.2.17.0       0.0.0.0         255.255.255.0   U     0      -      -   10
+
+
+Routing table for node 12:
+Node: 12, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.6.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+10.1.7.0        0.0.0.0         255.255.255.0   U     0      -      -   2
+10.1.8.0        0.0.0.0         255.255.255.0   U     0      -      -   3
+10.1.9.0        0.0.0.0         255.255.255.0   U     0      -      -   4
+10.1.10.0       0.0.0.0         255.255.255.0   U     0      -      -   5
+10.2.3.0        0.0.0.0         255.255.255.0   U     0      -      -   6
+10.2.7.0        0.0.0.0         255.255.255.0   U     0      -      -   7
+10.2.11.0       0.0.0.0         255.255.255.0   U     0      -      -   8
+10.2.15.0       0.0.0.0         255.255.255.0   U     0      -      -   9
+10.2.19.0       0.0.0.0         255.255.255.0   U     0      -      -   10
+
+
+Routing table for node 13:
+Node: 13, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.11.0       0.0.0.0         255.255.255.0   U     0      -      -   1
+10.1.12.0       0.0.0.0         255.255.255.0   U     0      -      -   2
+
+
+Routing table for node 14:
+Node: 14, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.2.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.12.0       0.0.0.0         255.255.255.0   U     0      -      -   2
+10.1.12.0       0.0.0.0         255.255.255.0   U     0      -      -   3
+10.1.13.0       0.0.0.0         255.255.255.0   U     0      -      -   4
+10.1.14.0       0.0.0.0         255.255.255.0   U     0      -      -   5
+10.1.15.0       0.0.0.0         255.255.255.0   U     0      -      -   6
+10.1.16.0       0.0.0.0         255.255.255.0   U     0      -      -   7
+
+
+Routing table for node 15:
+Node: 15, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.4.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.14.0       0.0.0.0         255.255.255.0   U     0      -      -   2
+10.1.13.0       0.0.0.0         255.255.255.0   U     0      -      -   3
+10.1.17.0       0.0.0.0         255.255.255.0   U     0      -      -   4
+10.1.18.0       0.0.0.0         255.255.255.0   U     0      -      -   5
+10.1.19.0       0.0.0.0         255.255.255.0   U     0      -      -   6
+
+
+Routing table for node 16:
+Node: 16, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.6.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.16.0       0.0.0.0         255.255.255.0   U     0      -      -   2
+10.1.14.0       0.0.0.0         255.255.255.0   U     0      -      -   3
+10.1.17.0       0.0.0.0         255.255.255.0   U     0      -      -   4
+10.1.20.0       0.0.0.0         255.255.255.0   U     0      -      -   5
+10.1.21.0       0.0.0.0         255.255.255.0   U     0      -      -   6
+
+
+Routing table for node 17:
+Node: 17, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.8.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.18.0       0.0.0.0         255.255.255.0   U     0      -      -   2
+10.1.15.0       0.0.0.0         255.255.255.0   U     0      -      -   3
+10.1.18.0       0.0.0.0         255.255.255.0   U     0      -      -   4
+10.1.20.0       0.0.0.0         255.255.255.0   U     0      -      -   5
+10.1.22.0       0.0.0.0         255.255.255.0   U     0      -      -   6
+
+
+Routing table for node 18:
+Node: 18, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.10.0       0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.20.0       0.0.0.0         255.255.255.0   U     0      -      -   2
+10.1.16.0       0.0.0.0         255.255.255.0   U     0      -      -   3
+10.1.19.0       0.0.0.0         255.255.255.0   U     0      -      -   4
+10.1.21.0       0.0.0.0         255.255.255.0   U     0      -      -   5
+10.1.22.0       0.0.0.0         255.255.255.0   U     0      -      -   6
+
+
+Routing table for node 19:
+Node: 19, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.1.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.2.0        0.0.0.0         255.255.255.0   U     0      -      -   2
+
+
+Routing table for node 20:
+Node: 20, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.3.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.4.0        0.0.0.0         255.255.255.0   U     0      -      -   2
+
+
+Routing table for node 21:
+Node: 21, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.5.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.6.0        0.0.0.0         255.255.255.0   U     0      -      -   2
+
+
+Routing table for node 22:
+Node: 22, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.7.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.8.0        0.0.0.0         255.255.255.0   U     0      -      -   2
+
+
+Routing table for node 23:
+Node: 23, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.9.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.10.0       0.0.0.0         255.255.255.0   U     0      -      -   2
+
+
+Routing table for node 24:
+Node: 24, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.11.0       0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.12.0       0.0.0.0         255.255.255.0   U     0      -      -   2
+
+
+Routing table for node 25:
+Node: 25, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.13.0       0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.14.0       0.0.0.0         255.255.255.0   U     0      -      -   2
+
+
+Routing table for node 26:
+Node: 26, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.15.0       0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.16.0       0.0.0.0         255.255.255.0   U     0      -      -   2
+
+
+Routing table for node 27:
+Node: 27, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.17.0       0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.18.0       0.0.0.0         255.255.255.0   U     0      -      -   2
+
+
+Routing table for node 28:
+Node: 28, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.19.0       0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.20.0       0.0.0.0         255.255.255.0   U     0      -      -   2
+
++1.000000000s 0 Consumer:StartApplication(0x564cf830e060)
++1.000000000s 1 Producer:StartApplication(0x564cf8284850)
++1.000000000s 2 Producer:StartApplication(0x564cf8260c30)
++1.000000000s 3 Producer:StartApplication(0x564cf7e08ca0)
++1.000000000s 4 Producer:StartApplication(0x564cf80c6890)
++1.000000000s 5 Producer:StartApplication(0x564cf80c7380)
++1.000000000s 6 Producer:StartApplication(0x564cf80f4c40)
++1.000000000s 7 Producer:StartApplication(0x564cf8134870)
++1.000000000s 8 Producer:StartApplication(0x564cf7dc4ca0)
++1.000000000s 9 Producer:StartApplication(0x564cf81ac8a0)
++1.000000000s 10 Producer:StartApplication(0x564cf8ada7b0)
++1.000000000s 19 Aggregator:StartApplication(0x564cf80f4d00)
++1.000000000s 20 Aggregator:StartApplication(0x564cf830e120)
+
+myserver ptr:0x564cf8161930
+ CreateSocketPool: socketPool[10.2.1.2] -myserver, serverPort: 17197, cGroup[0]: 10.2.1.2
+myserver ptr:0x564cf808f710
+ CreateSocketPool: socketPool[10.2.3.2] -myserver, serverPort: 8950, cGroup[1]: 10.2.3.2
+myserver ptr:0x564cf80559a0
+ CreateSocketPool: socketPool[10.1.1.1] -myserver, serverPort: 11362, cGroup[0]: 10.1.1.1
+myserver ptr:0x564cf83185c0
+ CreateSocketPool: socketPool[10.1.2.1] -myserver, serverPort: 59850, cGroup[1]: 10.1.2.1
+myserver ptr:0x564cf8588e00
+ CreateSocketPool: socketPool[10.1.3.1] -myserver, serverPort: 52647, cGroup[2]: 10.1.3.1
+myserver ptr:0x564cf83d8a00
+ CreateSocketPool: socketPool[10.1.4.1] -myserver, serverPort: 38670, cGroup[3]: 10.1.4.1
+myserver ptr:0x564cf82fb190
+ CreateSocketPool: socketPool[10.1.5.1] -myserver, serverPort: 52552, cGroup[4]: 10.1.5.1
+myserver ptr:0x564cf8493c70
+ CreateSocketPool: socketPool[10.1.6.1] -myserver, serverPort: 397, cGroup[0]: 10.1.6.1
+myserver ptr:0x564cf80770d0
+ CreateSocketPool: socketPool[10.1.7.1] -myserver, serverPort: 62730, cGroup[1]: 10.1.7.1
+myserver ptr:0x564cf8256e40
+ CreateSocketPool: socketPool[10.1.8.1] -myserver, serverPort: 64995, cGroup[2]: 10.1.8.1
+myserver ptr:0x564cf83a1300
+ CreateSocketPool: socketPool[10.1.9.1] -myserver, serverPort: 14207, cGroup[3]: 10.1.9.1
+myserver ptr:0x564cf80b0aa0
+ CreateSocketPool: socketPool[10.1.10.1] -myserver, serverPort: 12276, cGroup[4]: 10.1.10.1
+Consumer All iteration-4000 completed in: 3248ms
+Consumer:DoDispose(0x564cf830e060)
+Consumer:~Consumer(0x564cf830e060)
+Producer:DoDispose(0x564cf8284850)
+Producer:~Producer(0x564cf8284850)
+Producer:DoDispose(0x564cf8260c30)
+Producer:~Producer(0x564cf8260c30)
+Producer:DoDispose(0x564cf7e08ca0)
+Producer:~Producer(0x564cf7e08ca0)
+Producer:DoDispose(0x564cf80c6890)
+Producer:~Producer(0x564cf80c6890)
+Producer:DoDispose(0x564cf80c7380)
+Producer:~Producer(0x564cf80c7380)
+Producer:DoDispose(0x564cf80f4c40)
+Producer:~Producer(0x564cf80f4c40)
+Producer:DoDispose(0x564cf8134870)
+Producer:~Producer(0x564cf8134870)
+Producer:DoDispose(0x564cf7dc4ca0)
+Producer:~Producer(0x564cf7dc4ca0)
+Producer:DoDispose(0x564cf81ac8a0)
+Producer:~Producer(0x564cf81ac8a0)
+Producer:DoDispose(0x564cf8ada7b0)
+Producer:~Producer(0x564cf8ada7b0)
+Aggregator:DoDispose(0x564cf80f4d00)
+Aggregator:~Aggregator(0x564cf80f4d00)
+Aggregator:DoDispose(0x564cf830e120)
+Aggregator:~Aggregator(0x564cf830e120)
+Prefix: 10, Iteration: 4000 - Simulation completed successfully.
+
+#################### SIMULATION END ####################
+
+
+
+
+#################### SIMULATION PARAMETERS ####################
+
+
+Prefix: 10 Iteration: 5000 Vector Size: 150 Congestion Control Algorithm: bbr
+
+
+#################### SIMULATION SET-UP ####################
+
+
+uint32_t consumerNum = 1;
+uint32_t producerNum = 10;
+uint32_t forwarderNum = 8;
+uint32_t aggregatorNum = 10;
+---node1  ip---pro0---10.1.1.1---node2  ip---forwarder0---10.1.1.2
+---node1  ip---pro1---10.1.2.1---node2  ip---forwarder0---10.1.1.2
+---node1  ip---pro2---10.1.3.1---node2  ip---forwarder0---10.1.1.2
+---node1  ip---pro3---10.1.4.1---node2  ip---forwarder0---10.1.1.2
+---node1  ip---pro4---10.1.5.1---node2  ip---forwarder0---10.1.1.2
+---node1  ip---pro5---10.1.6.1---node2  ip---forwarder1---10.1.6.2
+---node1  ip---pro6---10.1.7.1---node2  ip---forwarder1---10.1.6.2
+---node1  ip---pro7---10.1.8.1---node2  ip---forwarder1---10.1.6.2
+---node1  ip---pro8---10.1.9.1---node2  ip---forwarder1---10.1.6.2
+---node1  ip---pro9---10.1.10.1---node2  ip---forwarder1---10.1.6.2
+---node1  ip---con0---10.1.11.1---node2  ip---forwarder2---10.1.11.2
+---node1  ip---forwarder0---10.1.1.2---node2  ip---agg0---10.2.1.2
+---node1  ip---agg0---10.2.1.2---node2  ip---forwarder3---10.2.2.2
+---node1  ip---forwarder1---10.1.6.2---node2  ip---agg1---10.2.3.2
+---node1  ip---agg1---10.2.3.2---node2  ip---forwarder4---10.2.4.2
+---node1  ip---forwarder0---10.1.1.2---node2  ip---agg2---10.2.5.2
+---node1  ip---agg2---10.2.5.2---node2  ip---forwarder5---10.2.6.2
+---node1  ip---forwarder1---10.1.6.2---node2  ip---agg3---10.2.7.2
+---node1  ip---agg3---10.2.7.2---node2  ip---forwarder6---10.2.8.2
+---node1  ip---forwarder0---10.1.1.2---node2  ip---agg4---10.2.9.2
+---node1  ip---agg4---10.2.9.2---node2  ip---forwarder7---10.2.10.2
+---node1  ip---forwarder1---10.1.6.2---node2  ip---agg5---10.2.11.2
+---node1  ip---agg5---10.2.11.2---node2  ip---forwarder3---10.2.2.2
+---node1  ip---forwarder0---10.1.1.2---node2  ip---agg6---10.2.13.2
+---node1  ip---agg6---10.2.13.2---node2  ip---forwarder4---10.2.4.2
+---node1  ip---forwarder1---10.1.6.2---node2  ip---agg7---10.2.15.2
+---node1  ip---agg7---10.2.15.2---node2  ip---forwarder5---10.2.6.2
+---node1  ip---forwarder0---10.1.1.2---node2  ip---agg8---10.2.17.2
+---node1  ip---agg8---10.2.17.2---node2  ip---forwarder6---10.2.8.2
+---node1  ip---forwarder1---10.1.6.2---node2  ip---agg9---10.2.19.2
+---node1  ip---agg9---10.2.19.2---node2  ip---forwarder7---10.2.10.2
+---node1  ip---forwarder2---10.1.11.2---node2  ip---forwarder3---10.2.2.2
+---node1  ip---forwarder3---10.2.2.2---node2  ip---forwarder4---10.2.4.2
+---node1  ip---forwarder3---10.2.2.2---node2  ip---forwarder5---10.2.6.2
+---node1  ip---forwarder3---10.2.2.2---node2  ip---forwarder6---10.2.8.2
+---node1  ip---forwarder3---10.2.2.2---node2  ip---forwarder7---10.2.10.2
+---node1  ip---forwarder4---10.2.4.2---node2  ip---forwarder5---10.2.6.2
+---node1  ip---forwarder4---10.2.4.2---node2  ip---forwarder6---10.2.8.2
+---node1  ip---forwarder4---10.2.4.2---node2  ip---forwarder7---10.2.10.2
+---node1  ip---forwarder5---10.2.6.2---node2  ip---forwarder6---10.2.8.2
+---node1  ip---forwarder5---10.2.6.2---node2  ip---forwarder7---10.2.10.2
+---node1  ip---forwarder6---10.2.8.2---node2  ip---forwarder7---10.2.10.2
++0.000000000s -1 Producer:Producer(0x564cf82d4540)
++0.000000000s -1 Producer:SetupProducer(0x564cf82d4540)
++0.000000000s -1 Producer:Producer(0x564cf88bc380)
++0.000000000s -1 Producer:SetupProducer(0x564cf88bc380)
++0.000000000s -1 Producer:Producer(0x564cf88bc9f0)
++0.000000000s -1 Producer:SetupProducer(0x564cf88bc9f0)
++0.000000000s -1 Producer:Producer(0x564cf85acb60)
++0.000000000s -1 Producer:SetupProducer(0x564cf85acb60)
++0.000000000s -1 Producer:Producer(0x564cf819ccb0)
++0.000000000s -1 Producer:SetupProducer(0x564cf819ccb0)
++0.000000000s -1 Aggregator:Aggregator(0x564cf83bbf50)
++0.000000000s -1 Aggregator:SetupAggregator(0x564cf83bbf50)
++0.000000000s -1 Producer:Producer(0x564cf83bbe90)
++0.000000000s -1 Producer:SetupProducer(0x564cf83bbe90)
++0.000000000s -1 Producer:Producer(0x564cf8155100)
++0.000000000s -1 Producer:SetupProducer(0x564cf8155100)
++0.000000000s -1 Producer:Producer(0x564cf8502e30)
++0.000000000s -1 Producer:SetupProducer(0x564cf8502e30)
++0.000000000s -1 Producer:Producer(0x564cf8204260)
++0.000000000s -1 Producer:SetupProducer(0x564cf8204260)
++0.000000000s -1 Producer:Producer(0x564cf81ae750)
++0.000000000s -1 Producer:SetupProducer(0x564cf81ae750)
++0.000000000s -1 Aggregator:Aggregator(0x564cf81557a0)
++0.000000000s -1 Aggregator:SetupAggregator(0x564cf81557a0)
++0.000000000s -1 Consumer:Consumer(0x564cf81556e0)
++0.000000000s -1 Consumer:SetupConsumer(0x564cf81556e0)
+Routing table for node 0:
+Node: 0, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.11.0       0.0.0.0         255.255.255.0   U     0      -      -   1
+
+
+Routing table for node 1:
+Node: 1, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.1.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+
+
+Routing table for node 2:
+Node: 2, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.2.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+
+
+Routing table for node 3:
+Node: 3, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.3.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+
+
+Routing table for node 4:
+Node: 4, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.4.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+
+
+Routing table for node 5:
+Node: 5, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.5.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+
+
+Routing table for node 6:
+Node: 6, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.6.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+
+
+Routing table for node 7:
+Node: 7, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.7.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+
+
+Routing table for node 8:
+Node: 8, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.8.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+
+
+Routing table for node 9:
+Node: 9, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.9.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+
+
+Routing table for node 10:
+Node: 10, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.10.0       0.0.0.0         255.255.255.0   U     0      -      -   1
+
+
+Routing table for node 11:
+Node: 11, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.1.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+10.1.2.0        0.0.0.0         255.255.255.0   U     0      -      -   2
+10.1.3.0        0.0.0.0         255.255.255.0   U     0      -      -   3
+10.1.4.0        0.0.0.0         255.255.255.0   U     0      -      -   4
+10.1.5.0        0.0.0.0         255.255.255.0   U     0      -      -   5
+10.2.1.0        0.0.0.0         255.255.255.0   U     0      -      -   6
+10.2.5.0        0.0.0.0         255.255.255.0   U     0      -      -   7
+10.2.9.0        0.0.0.0         255.255.255.0   U     0      -      -   8
+10.2.13.0       0.0.0.0         255.255.255.0   U     0      -      -   9
+10.2.17.0       0.0.0.0         255.255.255.0   U     0      -      -   10
+
+
+Routing table for node 12:
+Node: 12, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.6.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+10.1.7.0        0.0.0.0         255.255.255.0   U     0      -      -   2
+10.1.8.0        0.0.0.0         255.255.255.0   U     0      -      -   3
+10.1.9.0        0.0.0.0         255.255.255.0   U     0      -      -   4
+10.1.10.0       0.0.0.0         255.255.255.0   U     0      -      -   5
+10.2.3.0        0.0.0.0         255.255.255.0   U     0      -      -   6
+10.2.7.0        0.0.0.0         255.255.255.0   U     0      -      -   7
+10.2.11.0       0.0.0.0         255.255.255.0   U     0      -      -   8
+10.2.15.0       0.0.0.0         255.255.255.0   U     0      -      -   9
+10.2.19.0       0.0.0.0         255.255.255.0   U     0      -      -   10
+
+
+Routing table for node 13:
+Node: 13, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.1.11.0       0.0.0.0         255.255.255.0   U     0      -      -   1
+10.1.12.0       0.0.0.0         255.255.255.0   U     0      -      -   2
+
+
+Routing table for node 14:
+Node: 14, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.2.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.12.0       0.0.0.0         255.255.255.0   U     0      -      -   2
+10.1.12.0       0.0.0.0         255.255.255.0   U     0      -      -   3
+10.1.13.0       0.0.0.0         255.255.255.0   U     0      -      -   4
+10.1.14.0       0.0.0.0         255.255.255.0   U     0      -      -   5
+10.1.15.0       0.0.0.0         255.255.255.0   U     0      -      -   6
+10.1.16.0       0.0.0.0         255.255.255.0   U     0      -      -   7
+
+
+Routing table for node 15:
+Node: 15, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.4.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.14.0       0.0.0.0         255.255.255.0   U     0      -      -   2
+10.1.13.0       0.0.0.0         255.255.255.0   U     0      -      -   3
+10.1.17.0       0.0.0.0         255.255.255.0   U     0      -      -   4
+10.1.18.0       0.0.0.0         255.255.255.0   U     0      -      -   5
+10.1.19.0       0.0.0.0         255.255.255.0   U     0      -      -   6
+
+
+Routing table for node 16:
+Node: 16, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.6.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.16.0       0.0.0.0         255.255.255.0   U     0      -      -   2
+10.1.14.0       0.0.0.0         255.255.255.0   U     0      -      -   3
+10.1.17.0       0.0.0.0         255.255.255.0   U     0      -      -   4
+10.1.20.0       0.0.0.0         255.255.255.0   U     0      -      -   5
+10.1.21.0       0.0.0.0         255.255.255.0   U     0      -      -   6
+
+
+Routing table for node 17:
+Node: 17, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.8.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.18.0       0.0.0.0         255.255.255.0   U     0      -      -   2
+10.1.15.0       0.0.0.0         255.255.255.0   U     0      -      -   3
+10.1.18.0       0.0.0.0         255.255.255.0   U     0      -      -   4
+10.1.20.0       0.0.0.0         255.255.255.0   U     0      -      -   5
+10.1.22.0       0.0.0.0         255.255.255.0   U     0      -      -   6
+
+
+Routing table for node 18:
+Node: 18, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.10.0       0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.20.0       0.0.0.0         255.255.255.0   U     0      -      -   2
+10.1.16.0       0.0.0.0         255.255.255.0   U     0      -      -   3
+10.1.19.0       0.0.0.0         255.255.255.0   U     0      -      -   4
+10.1.21.0       0.0.0.0         255.255.255.0   U     0      -      -   5
+10.1.22.0       0.0.0.0         255.255.255.0   U     0      -      -   6
+
+
+Routing table for node 19:
+Node: 19, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.1.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.2.0        0.0.0.0         255.255.255.0   U     0      -      -   2
+
+
+Routing table for node 20:
+Node: 20, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.3.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.4.0        0.0.0.0         255.255.255.0   U     0      -      -   2
+
+
+Routing table for node 21:
+Node: 21, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.5.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.6.0        0.0.0.0         255.255.255.0   U     0      -      -   2
+
+
+Routing table for node 22:
+Node: 22, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.7.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.8.0        0.0.0.0         255.255.255.0   U     0      -      -   2
+
+
+Routing table for node 23:
+Node: 23, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.9.0        0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.10.0       0.0.0.0         255.255.255.0   U     0      -      -   2
+
+
+Routing table for node 24:
+Node: 24, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.11.0       0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.12.0       0.0.0.0         255.255.255.0   U     0      -      -   2
+
+
+Routing table for node 25:
+Node: 25, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.13.0       0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.14.0       0.0.0.0         255.255.255.0   U     0      -      -   2
+
+
+Routing table for node 26:
+Node: 26, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.15.0       0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.16.0       0.0.0.0         255.255.255.0   U     0      -      -   2
+
+
+Routing table for node 27:
+Node: 27, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.17.0       0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.18.0       0.0.0.0         255.255.255.0   U     0      -      -   2
+
+
+Routing table for node 28:
+Node: 28, Time: +0s, Local time: +0s, Ipv4StaticRouting table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      -      -   0
+10.2.19.0       0.0.0.0         255.255.255.0   U     0      -      -   1
+10.2.20.0       0.0.0.0         255.255.255.0   U     0      -      -   2
+
++1.000000000s 0 Consumer:StartApplication(0x564cf81556e0)
++1.000000000s 1 Producer:StartApplication(0x564cf82d4540)
++1.000000000s 2 Producer:StartApplication(0x564cf88bc380)
++1.000000000s 3 Producer:StartApplication(0x564cf88bc9f0)
++1.000000000s 4 Producer:StartApplication(0x564cf85acb60)
++1.000000000s 5 Producer:StartApplication(0x564cf819ccb0)
++1.000000000s 6 Producer:StartApplication(0x564cf83bbe90)
++1.000000000s 7 Producer:StartApplication(0x564cf8155100)
++1.000000000s 8 Producer:StartApplication(0x564cf8502e30)
++1.000000000s 9 Producer:StartApplication(0x564cf8204260)
++1.000000000s 10 Producer:StartApplication(0x564cf81ae750)
++1.000000000s 19 Aggregator:StartApplication(0x564cf83bbf50)
++1.000000000s 20 Aggregator:StartApplication(0x564cf81557a0)
+
+myserver ptr:0x564cf804a6e0
+ CreateSocketPool: socketPool[10.2.1.2] -myserver, serverPort: 17197, cGroup[0]: 10.2.1.2
+myserver ptr:0x564cf821bb10
+ CreateSocketPool: socketPool[10.2.3.2] -myserver, serverPort: 8950, cGroup[1]: 10.2.3.2
+myserver ptr:0x564cf860b760
+ CreateSocketPool: socketPool[10.1.1.1] -myserver, serverPort: 11362, cGroup[0]: 10.1.1.1
+myserver ptr:0x564cf85273b0
+ CreateSocketPool: socketPool[10.1.2.1] -myserver, serverPort: 59850, cGroup[1]: 10.1.2.1
+myserver ptr:0x564cf8042ce0
+ CreateSocketPool: socketPool[10.1.3.1] -myserver, serverPort: 52647, cGroup[2]: 10.1.3.1
+myserver ptr:0x564cf8045d50
+ CreateSocketPool: socketPool[10.1.4.1] -myserver, serverPort: 38670, cGroup[3]: 10.1.4.1
+myserver ptr:0x564cf867ffb0
+ CreateSocketPool: socketPool[10.1.5.1] -myserver, serverPort: 52552, cGroup[4]: 10.1.5.1
+myserver ptr:0x564cf855bef0
+ CreateSocketPool: socketPool[10.1.6.1] -myserver, serverPort: 397, cGroup[0]: 10.1.6.1
+myserver ptr:0x564cf80bba40
+ CreateSocketPool: socketPool[10.1.7.1] -myserver, serverPort: 62730, cGroup[1]: 10.1.7.1
+myserver ptr:0x564cf86ca030
+ CreateSocketPool: socketPool[10.1.8.1] -myserver, serverPort: 64995, cGroup[2]: 10.1.8.1
+myserver ptr:0x564cf8549070
+ CreateSocketPool: socketPool[10.1.9.1] -myserver, serverPort: 14207, cGroup[3]: 10.1.9.1
+myserver ptr:0x564cf8588e00
+ CreateSocketPool: socketPool[10.1.10.1] -myserver, serverPort: 12276, cGroup[4]: 10.1.10.1
+Consumer All iteration-5000 completed in: 4057ms
+Consumer:DoDispose(0x564cf81556e0)
+Consumer:~Consumer(0x564cf81556e0)
+Producer:DoDispose(0x564cf82d4540)
+Producer:~Producer(0x564cf82d4540)
+Producer:DoDispose(0x564cf88bc380)
+Producer:~Producer(0x564cf88bc380)
+Producer:DoDispose(0x564cf88bc9f0)
+Producer:~Producer(0x564cf88bc9f0)
+Producer:DoDispose(0x564cf85acb60)
+Producer:~Producer(0x564cf85acb60)
+Producer:DoDispose(0x564cf819ccb0)
+Producer:~Producer(0x564cf819ccb0)
+Producer:DoDispose(0x564cf83bbe90)
+Producer:~Producer(0x564cf83bbe90)
+Producer:DoDispose(0x564cf8155100)
+Producer:~Producer(0x564cf8155100)
+Producer:DoDispose(0x564cf8502e30)
+Producer:~Producer(0x564cf8502e30)
+Producer:DoDispose(0x564cf8204260)
+Producer:~Producer(0x564cf8204260)
+Producer:DoDispose(0x564cf81ae750)
+Producer:~Producer(0x564cf81ae750)
+Aggregator:DoDispose(0x564cf83bbf50)
+Aggregator:~Aggregator(0x564cf83bbf50)
+Aggregator:DoDispose(0x564cf81557a0)
+Aggregator:~Aggregator(0x564cf81557a0)
+Prefix: 10, Iteration: 5000 - Simulation completed successfully.
+
+#################### SIMULATION END ####################
+
+

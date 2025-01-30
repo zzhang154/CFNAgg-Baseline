@@ -4,7 +4,10 @@
 #include <vector>
 #include <string>
 #include <cstdint>
+#include <climits> // Include the climits header for CHAR_BIT
+#include <unordered_set>
 #include "parameter.h"
+#include <unordered_map>
 
 namespace ns3 {
 
@@ -22,16 +25,44 @@ namespace ns3 {
     std::string TraceIPAddress = "10.2.7.2";
     bool debugFlag = false;
 
+    // for other topology, please add the additional ip address to trace.
+
+    std::unordered_set<std::string> ipAddressFilter = {
+        "10.1.1.1",
+        "10.1.2.2"
+    };
+
+    // For ISP-50
+    // std::unordered_set<std::string> ipAddressFilter = {
+    //     "10.1.1.1",
+    //     "10.1.27.1",
+    //     "10.2.1.2",
+    //     "10.2.7.2",
+    //     "10.2.21.2",
+    //     "10.2.31.2",
+    //     "10.1.51.1"
+    // };
+
+    bool isElementInFilter(std::string ip) {
+        return ipAddressFilter.find(ip) != ipAddressFilter.end();
+    }
+
     void UpdatePktlen() {
         pktlen = BASESIZE + 10;
     }
 
     // Example function to change BASESIZE and update pktlen
     void SetBaseSize(uint32_t newBaseSize) {
-        BASESIZE = newBaseSize;
+        BASESIZE = newBaseSize * CHAR_BIT;
         chunkSize = static_cast<uint32_t>(BASESIZE / sizeof(uint64_t));
         UpdatePktlen();
     }
+
+    std::unordered_map<std::string, std::string> ipToNodeName;
+    std::string GetNodeNameFromIp(const std::string& ip) {
+    auto it = ipToNodeName.find(ip);
+    return (it != ipToNodeName.end()) ? it->second : "IP_NOT_FOUND";
+  }
     
 }; /*namespace ns3*/
 

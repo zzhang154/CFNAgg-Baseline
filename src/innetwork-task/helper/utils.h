@@ -3,6 +3,7 @@
 
 #include <fstream>
 #include "ns3/packet.h"
+#include <arpa/inet.h> // for inet_ntoa
 #include "ns3/ipv4-address.h"
 #include <cstdint>
 #include <string>
@@ -13,6 +14,7 @@
 #include "ns3/log.h"
 #include <queue>
 #include <iostream>
+#include <algorithm> // for std::reverse
 
 namespace ns3 {
 
@@ -21,6 +23,8 @@ void Addr2Str(Address addr, std::string &str);
 void HelloUtils();
 extern std::mutex fileMutex;
 void WriteToFile(const std::string& filename, const std::string& result); 
+std::string Ipv4AddressToString(ns3::Ipv4Address ipv4Address);
+std::string reverseString(const std::string &str);
 
 class TracedTimeQueue
 {

@@ -4,6 +4,8 @@
 #include <vector>
 #include <string>
 #include <unordered_set>
+#include <unordered_map>
+#include "ns3/core-module.h"
 
 namespace ns3 {
 
@@ -18,9 +20,16 @@ namespace ns3 {
     //extern uint32_t vsize;
     extern std::string TraceIPAddress;
     extern bool debugFlag;
+    extern std::unordered_set<std::string> ipAddressFilter;
 
     void UpdatePktlen();
     void SetBaseSize(uint32_t newBaseSize);
+    bool isElementInFilter(std::string ip);
+
+    // IpNodeMap
+    extern std::unordered_map<std::string, std::string> ipToNodeName;
+    void BuildIpToNodeMap(); // Populates the map
+    std::string GetNodeNameFromIp(const std::string& ip); // Query function
 
     //struch data chunk
     struct  ReceivedChunk {
@@ -65,6 +74,8 @@ namespace ns3 {
         std::queue <std::queue<uint16_t>*> compIterQueue;
     };
     
-}; /*namespace ns3*/
+}
+
+; /*namespace ns3*/
 
 #endif /*INNETWORK_TASK_APPDATA_H*/

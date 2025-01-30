@@ -60,17 +60,16 @@ namespace ns3 {
         // this->nodeInnetworkAggregationInterface->ReceiveDataFromAll();
         ns3::Simulator::Schedule(ns3::MilliSeconds(basetime+2), &InnetworkAggregationInterface::ReceiveDataFromAll, this->nodeInnetworkAggregationInterface);
         // ns3::Simulator::Schedule(ns3::MilliSeconds(basetime+2700), &InnetworkAggregationInterface::PrintAllInfo, this->nodeInnetworkAggregationInterface);
-
     }
 
     Consumer::~Consumer () {
-        NS_LOG_FUNCTION (this);
+        // NS_LOG_FUNCTION (this);
         //outFile. close ();
     }
 
     void 
     Consumer::DoDispose () {
-        NS_LOG_FUNCTION (this);
+        // NS_LOG_FUNCTION (this);
         Application::DoDispose ();
     }
     

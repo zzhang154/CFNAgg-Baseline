@@ -1,0 +1,14 @@
+con0       agg0       50Mbps       1       1ms       5000
+con0       agg1       50Mbps       1       1ms       5000
+agg0       agg2       50Mbps       1       1ms       5000
+agg0       agg3       50Mbps       1       1ms       5000
+agg1       agg4       50Mbps       1       1ms       5000
+agg1       agg5       50Mbps       1       1ms       5000
+agg2       pro0       50Mbps       1       1ms       5000
+agg2       pro1       50Mbps       1       1ms       5000
+agg3       pro2       50Mbps       1       1ms       5000
+agg3       pro3       50Mbps       1       1ms       5000
+agg4       pro4       50Mbps       1       1ms       5000
+agg4       pro5       50Mbps       1       1ms       5000
+agg5       pro6       50Mbps       1       1ms       5000
+agg5       pro7       50Mbps       1       1ms       5000

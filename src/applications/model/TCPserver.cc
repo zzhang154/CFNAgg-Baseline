@@ -87,7 +87,7 @@ void
 TCPserver::PrintSocketInfo(Ptr<Socket> socket)
 {
     Address localAddress;
-    socket->GetSockName(localAddress);
+    socket->GetObject<TcpSocketBase>()->GetSockName(localAddress);
     InetSocketAddress inetLocalAddress = InetSocketAddress::ConvertFrom(localAddress);
     Ipv4Address localIp = inetLocalAddress.GetIpv4();
     uint16_t localPort = inetLocalAddress.GetPort();
@@ -164,6 +164,7 @@ TCPserver::GetLocalAddress() const {
   Ptr<Node> node=m_node;
   Ptr<Ipv4> ipv4 = node->GetObject<Ipv4> ();
   Ipv4Address local_ip = ipv4->GetAddress (1, 0).GetLocal();
+  NS_LOG_INFO("local ip in the PrintSocketInfo() call: " << local_ip);
   // the m_port info has been changed previously
   return InetSocketAddress{local_ip,m_port}; 
 }
@@ -251,14 +252,15 @@ void
 TCPserver::CheckChComp(uint16_t iterNum){
   if((*iterChunkPtr)[iterNum].chAddr.size() == cGroupSize){
     // we simulate this for the aggregator and the consumer, to see what happens.
+    /*
     if(!debugFlag){
       debugFlag = true;
       LogComponentEnable("TCPserver", LOG_LEVEL_INFO);
       NS_LOG_INFO("ns3::Simulator::Schedule(ns3::MilliSeconds(2), &TCPserver::DoChComp, this, iterNum);");
       LogComponentDisable("TCPserver", LOG_LEVEL_INFO);
     }
+    */
     ns3::Simulator::Schedule(ns3::MilliSeconds(2), &TCPserver::DoChComp, this, iterNum);
-    
   }
 }
    
