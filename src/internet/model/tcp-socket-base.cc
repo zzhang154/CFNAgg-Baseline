@@ -4963,7 +4963,8 @@ TcpSocketBase::UpdateTP(uint32_t pktSize)
         m_tpWind.pop();
     }
 
-    m_tpRecord.push_back(std::make_pair(currentTime, (pktSum / 8) / 0.02 / 1024));
+    m_tpRecord.push_back(std::make_pair(currentTime, (pktSum * 8) / 0.02 / (1024*1024)));
+    // NS_LOG_UNCOND("TP is: " << (pktSum * 8) / 0.02 / (1024*1024) << " Mb/s");
 
     // Zhuoxu: Output the log for testing:
     // if(isElementInFilter(this->localAddressStr))

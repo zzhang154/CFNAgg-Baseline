@@ -1,0 +1,11 @@
+router
+
+pro0
+forwarder0
+forwarder1
+con0
+
+link
+pro0    forwarder0    50Mbps    1    1ms    5000
+forwarder0    forwarder1    50Mbps    1    1ms    5000
+forwarder1    con0    50Mbps    1    1ms    5000

@@ -1,0 +1,27 @@
+router
+
+pro0
+f0
+f1
+f2
+f3
+f4
+f5
+f6
+f7
+f8
+f9
+con0
+
+link
+pro0    f0    50Mbps    1    1ms    5000
+f0    f1    50Mbps    1    1ms    5000
+f1    f2    50Mbps    1    1ms    5000
+f2    f3    50Mbps    1    1ms    5000
+f3    f4    50Mbps    1    1ms    5000
+f4    f5    50Mbps    1    1ms    5000
+f5    f6    50Mbps    1    1ms    5000
+f6    f7    50Mbps    1    1ms    5000
+f7    f8    50Mbps    1    1ms    5000
+f8    f9    50Mbps    1    1ms    5000
+f9    con0    50Mbps    1    1ms    5000

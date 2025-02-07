@@ -75,7 +75,7 @@ def main():
             'input_dir': root_path / 'log' / 'tp',
             'output_dir': script_dir / 'tp',
             'file_suffix': '_TP.txt',
-            'ylabel': 'Throughput (KB/s)',
+            'ylabel': 'Throughput (Mb/s)',
             'title_suffix': 'Throughput',
             'color': 'r'
         }

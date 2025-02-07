@@ -4,6 +4,9 @@ build_lib(
     helper/parameter.cc
     helper/vectorop.cc
     helper/utils.cc
+    helper/setup.cc
+    helper/global.cc
+
     model/aggregator.cc
     model/consumer.cc
     model/InnetworkAggregationInterface.cc
@@ -13,6 +16,9 @@ build_lib(
     helper/parameter.h
     helper/utils.h
     helper/vectorop.h
+    helper/setup.h
+    helper/PacketTraceTag.h
+
     model/aggregator.h
     model/consumer.h
     model/InnetworkAggregationInterface.h

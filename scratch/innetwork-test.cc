@@ -25,38 +25,38 @@
 
 using namespace ns3;
 
-#include "innetwork-test.h"
-
-const std::string currentDir = GetCurrentWorkingDir();
+// #include "innetwork-test.h"
+#include "ns3/setup.h"
 
 NS_LOG_COMPONENT_DEFINE("innetwork-test");
 
-const std::string Number = "-bin8";
+// const std::string currentDir = GetCurrentWorkingDir();
+// const std::string Number = "-bin8";
 
-/*
-const std::string routerFilePath = currentDir + "/scratch/data/router" + Number + ".txt";
-const std::string linkFilePath = currentDir + "/scratch/data/link" + Number + ".txt";
-const std::string aggGroupFilePath = currentDir + "/scratch/data/aggtree" + Number + ".txt";
-*/
+// /*
+// const std::string routerFilePath = currentDir + "/scratch/data/router" + Number + ".txt";
+// const std::string linkFilePath = currentDir + "/scratch/data/link" + Number + ".txt";
+// const std::string aggGroupFilePath = currentDir + "/scratch/data/aggtree" + Number + ".txt";
+// */
 
-std::string routerFilePath;
-std::string linkFilePath;
-std::string aggGroupFilePath;
+// std::string routerFilePath;
+// std::string linkFilePath;
+// std::string aggGroupFilePath;
 
-const std::string conName = "con";
-const std::string proName = "pro";
-const std::string fowName = "forwarder";
-const std::string aggName = "agg";
+// const std::string conName = "con";
+// const std::string proName = "pro";
+// const std::string fowName = "forwarder";
+// const std::string aggName = "agg";
 
-// Zhuoxu: this should be set automatically by the datauration file.
-uint32_t consumerNum;
-uint32_t producerNum;
-uint32_t forwarderNum;
-uint32_t aggregatorNum;
-std::string cc = "bbr";
-uint16_t basetime = 1000;
-uint16_t starttime = 1;
-uint16_t stoptime = 500;//5000
+// // Zhuoxu: this should be set automatically by the datauration file.
+// uint32_t consumerNum;
+// uint32_t producerNum;
+// uint32_t forwarderNum;
+// uint32_t aggregatorNum;
+// std::string cc = "bbr";
+// uint16_t basetime = 1000;
+// uint16_t starttime = 1;
+// uint16_t stoptime = 500;//5000
 
 int main(int argc, char *argv[]) {
     HelloUtils();
@@ -72,7 +72,7 @@ int main(int argc, char *argv[]) {
     tracedTimeQueue.Push(Seconds(1.0));
     tracedTimeQueue.Push(Seconds(2.0));
     tracedTimeQueue.Pop();
-
+                              
     CommandLine cmd;
     uint32_t vsize = 150;
     bool topotype = 1;
@@ -87,10 +87,11 @@ int main(int argc, char *argv[]) {
     SetBaseSize(vsize);
 
     // std::vector<std::string> prefixFileNames = {"-bin8-no", "-bin16-no", "-bin32-no"}; // Example prefix file names
-    std::vector<std::string> prefixFileNames = {"-1-fwd-5-agg"};
-    // std::vector<std::string> prefixFileNames = {"-no-fwd5"};
+    // std::vector<std::string> prefixFileNames = {"-1-fwd-5-agg"};
+    // std::vector<std::string> prefixFileNames = {"50"};
+    std::vector<std::string> prefixFileNames = {"-no-fwd5"};
     // std::vector<uint16_t> iterationNumbers = {1000, 2000, 3000, 4000, 5000, 10000}; // Example iteration numbers
-    std::vector<uint16_t> iterationNumbers = {10000};
+    std::vector<uint16_t> iterationNumbers = {5};
 
     const std::string outputFilename = "simulation_results.txt"; // Shared output file
 

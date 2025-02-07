@@ -1,0 +1,11 @@
+Consolidate compiler generated dependencies of target libinternet-obj
+[  0%] Building CXX object src/internet/CMakeFiles/libinternet-obj.dir/model/tcp-socket-base.cc.o
+/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/internet/model/tcp-socket-base.cc: In member function ‘virtual ns3::Ptr<ns3::Packet> ns3::TcpSocketBase::RecvFrom(uint32_t, uint32_t, ns3::Address&)’:
+/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/internet/model/tcp-socket-base.cc:1015:26: warning: variable ‘ipv4Address’ set but not used [-Wunused-but-set-variable]
+ 1015 |         ns3::Ipv4Address ipv4Address = inetSocketAddress.GetIpv4();
+      |                          ^~~~~~~~~~~
+[  0%] Linking CXX shared library ../../../build/lib/libns3.42-internet-default.so
+msg="Log component "TracedTimeQueue" has already been registered once.", file=/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/core/model/log.cc, line=174
+NS_FATAL, terminating
+terminate called without an active exception
+Command 'build/scratch/ns3.42-debug-default' died with <Signals.SIGABRT: 6>.

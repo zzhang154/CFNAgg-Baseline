@@ -59,10 +59,11 @@ namespace ns3 {
     }
 
     std::unordered_map<std::string, std::string> ipToNodeName;
-    std::string GetNodeNameFromIp(const std::string& ip) {
-    auto it = ipToNodeName.find(ip);
-    return (it != ipToNodeName.end()) ? it->second : "IP_NOT_FOUND";
-  }
+    std::string GetNodeNameFromIp(const std::string& ip) 
+    {
+        auto it = ipToNodeName.find(ip);
+        return (it != ipToNodeName.end()) ? it->second : "IP_NOT_FOUND";
+    }
     
 }; /*namespace ns3*/
 
