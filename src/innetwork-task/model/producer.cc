@@ -43,23 +43,20 @@ namespace ns3 {
     }
 
     Producer::~Producer() {
-        // NS_LOG_FUNCTION (this);
+        NS_LOG_FUNCTION (this);
     }
 
     void 
     Producer::DoDispose () {
-        // NS_LOG_FUNCTION (this);
+        NS_LOG_FUNCTION (this);
         Application::DoDispose ();
-
     }
 
     void 
     Producer::StopApplication () {
-
         ns3::Simulator::Stop();
         NS_LOG_FUNCTION (this);
         //Simulator::Cancel (m_sendEvent);
-
     }
 
 }; /*namespace ns3*/

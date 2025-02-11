@@ -18625,6 +18625,12 @@ src/internet/CMakeFiles/libinternet-obj.dir/model/tcp-cubic.cc.o: CMakeFiles/std
   ../src/core/model/val-array.h \
   ../build/include/ns3/utils.h \
   ../src/innetwork-task/helper/utils.h \
+  ../build/include/ns3/ipv4.h \
+  ../src/internet/model/ipv4.h \
+  ../src/internet/model/ipv4-interface-address.h \
+  ../src/internet/model/ipv4-route.h \
+  ../build/include/ns3/ipv4-interface-address.h \
+  ../src/internet/model/ipv4-interface-address.h \
   /usr/include/arpa/inet.h \
   /usr/include/netinet/in.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
@@ -18649,11 +18655,7 @@ src/internet/CMakeFiles/libinternet-obj.dir/model/tcp-cubic.cc.o: CMakeFiles/std
   /usr/include/x86_64-linux-gnu/bits/in.h \
   /usr/include/endian.h \
   /usr/include/x86_64-linux-gnu/bits/byteswap.h \
-  /usr/include/x86_64-linux-gnu/bits/uintn-identity.h \
-  ../build/include/ns3/ipv4.h \
-  ../src/internet/model/ipv4.h \
-  ../src/internet/model/ipv4-interface-address.h \
-  ../src/internet/model/ipv4-route.h
+  /usr/include/x86_64-linux-gnu/bits/uintn-identity.h
 
 src/internet/CMakeFiles/libinternet-obj.dir/model/tcp-dctcp.cc.o: CMakeFiles/stdlib_pch-default.dir/cmake_pch.hxx \
   ../src/internet/model/tcp-dctcp.cc \
@@ -20924,6 +20926,10 @@ src/internet/CMakeFiles/libinternet-obj.dir/model/tcp-l4-protocol.cc.o: CMakeFil
   ../src/core/model/val-array.h \
   ../build/include/ns3/utils.h \
   ../src/innetwork-task/helper/utils.h \
+  ../build/include/ns3/ipv4.h \
+  ../src/internet/model/ipv4.h \
+  ../build/include/ns3/ipv4-interface-address.h \
+  ../src/internet/model/ipv4-interface-address.h \
   /usr/include/arpa/inet.h \
   /usr/include/netinet/in.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
@@ -20949,8 +20955,6 @@ src/internet/CMakeFiles/libinternet-obj.dir/model/tcp-l4-protocol.cc.o: CMakeFil
   /usr/include/endian.h \
   /usr/include/x86_64-linux-gnu/bits/byteswap.h \
   /usr/include/x86_64-linux-gnu/bits/uintn-identity.h \
-  ../build/include/ns3/ipv4.h \
-  ../src/internet/model/ipv4.h \
   ../src/internet/model/tcp-prr-recovery.h \
   ../src/internet/model/tcp-recovery-ops.h \
   ../src/internet/model/tcp-socket-factory-impl.h \
@@ -24539,6 +24543,12 @@ src/internet/CMakeFiles/libinternet-obj.dir/model/tcp-socket-base.cc.o: CMakeFil
   ../src/core/model/val-array.h \
   ../build/include/ns3/utils.h \
   ../src/innetwork-task/helper/utils.h \
+  ../build/include/ns3/ipv4.h \
+  ../src/internet/model/ipv4.h \
+  ../src/internet/model/ipv4-interface-address.h \
+  ../src/internet/model/ipv4-route.h \
+  ../build/include/ns3/ipv4-interface-address.h \
+  ../src/internet/model/ipv4-interface-address.h \
   ../build/include/ns3/packet.h \
   ../src/network/model/packet.h \
   /usr/include/arpa/inet.h \
@@ -24566,10 +24576,6 @@ src/internet/CMakeFiles/libinternet-obj.dir/model/tcp-socket-base.cc.o: CMakeFil
   /usr/include/endian.h \
   /usr/include/x86_64-linux-gnu/bits/byteswap.h \
   /usr/include/x86_64-linux-gnu/bits/uintn-identity.h \
-  ../build/include/ns3/ipv4.h \
-  ../src/internet/model/ipv4.h \
-  ../src/internet/model/ipv4-interface-address.h \
-  ../src/internet/model/ipv4-route.h \
   ../src/internet/model/ipv4-end-point.h \
   ../src/internet/model/ipv4-interface.h \
   ../build/include/ns3/net-device.h \
@@ -27857,6 +27863,8 @@ src/internet/CMakeFiles/libinternet-obj.dir/model/udp-socket.cc.o: CMakeFiles/st
 ../src/internet/model/tcp-header.cc:
 
 ../src/internet/model/tcp-dctcp.cc:
+
+../build/include/ns3/ipv4-interface-address.h:
 
 ../src/innetwork-task/helper/utils.h:
 

@@ -133,21 +133,21 @@ src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/helper/setup.cc.s: cmake
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/libinnetwork-task-obj.dir/helper/setup.cc.s"
 	cd /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/cmake-cache/src/innetwork-task && /bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/cmake-cache/CMakeFiles/stdlib_pch-default.dir/cmake_pch.hxx -S /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/innetwork-task/helper/setup.cc -o CMakeFiles/libinnetwork-task-obj.dir/helper/setup.cc.s
 
-src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/helper/global.cc.o: src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/flags.make
-src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/helper/global.cc.o: ../src/innetwork-task/helper/global.cc
-src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/helper/global.cc.o: CMakeFiles/stdlib_pch-default.dir/cmake_pch.hxx
-src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/helper/global.cc.o: CMakeFiles/stdlib_pch-default.dir/cmake_pch.hxx.gch
-src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/helper/global.cc.o: src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/cmake-cache/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/helper/global.cc.o"
-	cd /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/cmake-cache/src/innetwork-task && /bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/cmake-cache/CMakeFiles/stdlib_pch-default.dir/cmake_pch.hxx -MD -MT src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/helper/global.cc.o -MF CMakeFiles/libinnetwork-task-obj.dir/helper/global.cc.o.d -o CMakeFiles/libinnetwork-task-obj.dir/helper/global.cc.o -c /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/innetwork-task/helper/global.cc
+src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/helper/global-data.cc.o: src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/flags.make
+src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/helper/global-data.cc.o: ../src/innetwork-task/helper/global-data.cc
+src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/helper/global-data.cc.o: CMakeFiles/stdlib_pch-default.dir/cmake_pch.hxx
+src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/helper/global-data.cc.o: CMakeFiles/stdlib_pch-default.dir/cmake_pch.hxx.gch
+src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/helper/global-data.cc.o: src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/cmake-cache/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/helper/global-data.cc.o"
+	cd /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/cmake-cache/src/innetwork-task && /bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/cmake-cache/CMakeFiles/stdlib_pch-default.dir/cmake_pch.hxx -MD -MT src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/helper/global-data.cc.o -MF CMakeFiles/libinnetwork-task-obj.dir/helper/global-data.cc.o.d -o CMakeFiles/libinnetwork-task-obj.dir/helper/global-data.cc.o -c /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/innetwork-task/helper/global-data.cc
 
-src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/helper/global.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/libinnetwork-task-obj.dir/helper/global.cc.i"
-	cd /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/cmake-cache/src/innetwork-task && /bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/cmake-cache/CMakeFiles/stdlib_pch-default.dir/cmake_pch.hxx -E /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/innetwork-task/helper/global.cc > CMakeFiles/libinnetwork-task-obj.dir/helper/global.cc.i
+src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/helper/global-data.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/libinnetwork-task-obj.dir/helper/global-data.cc.i"
+	cd /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/cmake-cache/src/innetwork-task && /bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/cmake-cache/CMakeFiles/stdlib_pch-default.dir/cmake_pch.hxx -E /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/innetwork-task/helper/global-data.cc > CMakeFiles/libinnetwork-task-obj.dir/helper/global-data.cc.i
 
-src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/helper/global.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/libinnetwork-task-obj.dir/helper/global.cc.s"
-	cd /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/cmake-cache/src/innetwork-task && /bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/cmake-cache/CMakeFiles/stdlib_pch-default.dir/cmake_pch.hxx -S /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/innetwork-task/helper/global.cc -o CMakeFiles/libinnetwork-task-obj.dir/helper/global.cc.s
+src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/helper/global-data.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/libinnetwork-task-obj.dir/helper/global-data.cc.s"
+	cd /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/cmake-cache/src/innetwork-task && /bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/cmake-cache/CMakeFiles/stdlib_pch-default.dir/cmake_pch.hxx -S /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/innetwork-task/helper/global-data.cc -o CMakeFiles/libinnetwork-task-obj.dir/helper/global-data.cc.s
 
 src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/model/aggregator.cc.o: src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/flags.make
 src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/model/aggregator.cc.o: ../src/innetwork-task/model/aggregator.cc
@@ -217,7 +217,7 @@ libinnetwork-task-obj: src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/h
 libinnetwork-task-obj: src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/helper/vectorop.cc.o
 libinnetwork-task-obj: src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/helper/utils.cc.o
 libinnetwork-task-obj: src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/helper/setup.cc.o
-libinnetwork-task-obj: src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/helper/global.cc.o
+libinnetwork-task-obj: src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/helper/global-data.cc.o
 libinnetwork-task-obj: src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/model/aggregator.cc.o
 libinnetwork-task-obj: src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/model/consumer.cc.o
 libinnetwork-task-obj: src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/model/InnetworkAggregationInterface.cc.o

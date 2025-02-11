@@ -1,41 +1,297 @@
-[  0%] Building CXX object src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/helper/setup.cc.o
-/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/innetwork-task/helper/setup.cc: In function ‘void CreateAggTree(std::string&, std::vector<ns3::Address>, std::unordered_map<std::__cxx11::basic_string<char>, std::vector<std::__cxx11::basic_string<char> > >&, uint8_t, uint16_t, uint32_t, uint16_t)’:
-/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/innetwork-task/helper/setup.cc:243:23: warning: unused variable ‘child’ [-Wunused-variable]
-  243 |     for (std::string &child : aggGroups[nodeName]) {
-      |                       ^~~~~
-[  0%] Linking CXX shared library ../../../build/lib/libns3.42-innetwork-task-default.so
+Consolidate compiler generated dependencies of target stdlib_pch_exec
+Consolidate compiler generated dependencies of target stdlib_pch-default
+Consolidate compiler generated dependencies of target raw-sock-creator
+Consolidate compiler generated dependencies of target netmap-device-creator
+Consolidate compiler generated dependencies of target libcore-obj
+Consolidate compiler generated dependencies of target libantenna-obj
+Consolidate compiler generated dependencies of target libstats-obj
+Consolidate compiler generated dependencies of target libconfig-store-obj
+Consolidate compiler generated dependencies of target libnetwork-obj
+Consolidate compiler generated dependencies of target libvirtual-net-device-obj
+Consolidate compiler generated dependencies of target tap-device-creator
+Consolidate compiler generated dependencies of target libbridge-obj
+Consolidate compiler generated dependencies of target libcsma-obj
+Consolidate compiler generated dependencies of target libpoint-to-point-obj
+Consolidate compiler generated dependencies of target libtopology-read-obj
+Consolidate compiler generated dependencies of target libenergy-obj
+Consolidate compiler generated dependencies of target libtraffic-control-obj
+Consolidate compiler generated dependencies of target libfd-net-device-obj
+Consolidate compiler generated dependencies of target libmobility-obj
+Consolidate compiler generated dependencies of target libpropagation-obj
+Consolidate compiler generated dependencies of target libuan-obj
+Consolidate compiler generated dependencies of target libbuildings-obj
+Consolidate compiler generated dependencies of target libspectrum-obj
+Consolidate compiler generated dependencies of target liblr-wpan-obj
+Consolidate compiler generated dependencies of target libinternet-obj
+Consolidate compiler generated dependencies of target libcsma-layout-obj
+Consolidate compiler generated dependencies of target libnix-vector-routing-obj
+Consolidate compiler generated dependencies of target libpoint-to-point-layout-obj
+Consolidate compiler generated dependencies of target libflow-monitor-obj
+Consolidate compiler generated dependencies of target libsixlowpan-obj
+Consolidate compiler generated dependencies of target libtap-bridge-obj
+Consolidate compiler generated dependencies of target libolsr-obj
+Consolidate compiler generated dependencies of target libinternet-apps-obj
+Consolidate compiler generated dependencies of target libwimax-obj
+Consolidate compiler generated dependencies of target libapplications-obj
+Consolidate compiler generated dependencies of target libwifi-obj
+Consolidate compiler generated dependencies of target libaodv-obj
+Consolidate compiler generated dependencies of target libinnetwork-task-obj
+Consolidate compiler generated dependencies of target libmesh-obj
+Consolidate compiler generated dependencies of target libdsdv-obj
+Consolidate compiler generated dependencies of target libdsr-obj
+Consolidate compiler generated dependencies of target liblte-obj
+Consolidate compiler generated dependencies of target libnetanim-obj
+Consolidate compiler generated dependencies of target scratch_innetwork-test
 Hello from utils
-0x7ffd1b5019f0 Time queue changed. Current size: 1
+0x7ffdf43e4110 Time queue changed. Current size: 1
 Time queue changed. New size: 1
-0x7ffd1b5019f0 Time queue changed. Current size: 2
+0x7ffdf43e4110 Time queue changed. Current size: 2
 Time queue changed. New size: 2
-0x7ffd1b5019f0 Time queue changed. Current size: 1
+0x7ffdf43e4110 Time queue changed. Current size: 1
 Time queue changed. New size: 1
 
 
 #################### SIMULATION PARAMETERS ####################
 
 
-Prefix: -no-fwd5 Iteration: 5 Vector Size: 150 Congestion Control Algorithm: bbr
+Prefix: 50 Iteration: 10000 Vector Size: 150 Congestion Control Algorithm: bbr
 
 
 #################### SIMULATION SET-UP ####################
 
 
 uint32_t consumerNum = 1;
-uint32_t producerNum = 1;
-uint32_t forwarderNum = 5;
-uint32_t aggregatorNum = 0;
----node1 ip--- con0 --- 10.1.1.1 , node2 ip--- forwarder0 --- 10.1.1.2
----node1 ip--- forwarder0 --- 10.1.1.2 , node2 ip--- forwarder1 --- 10.1.2.2
----node1 ip--- forwarder1 --- 10.1.2.2 , node2 ip--- forwarder2 --- 10.1.3.2
----node1 ip--- forwarder2 --- 10.1.3.2 , node2 ip--- forwarder3 --- 10.1.4.2
----node1 ip--- forwarder3 --- 10.1.4.2 , node2 ip--- forwarder4 --- 10.1.5.2
----node1 ip--- forwarder4 --- 10.1.5.2 , node2 ip--- pro0 --- 10.1.6.2
-+0.000000000s -1 Consumer:Consumer(0x55b99eade150)
-+0.000000000s -1 Consumer:SetupConsumer(0x55b99eade150)
-+1.000000000s 0 Consumer:StartApplication(0x55b99eade150)
-Prefix: -no-fwd5, Iteration: 5 - Simulation completed successfully.
+uint32_t producerNum = 50;
+uint32_t forwarderNum = 16;
+uint32_t aggregatorNum = 20;
+---node1 ip--- pro0 --- 10.1.1.1 , node2 ip--- forwarder0 --- 10.1.1.2
+---node1 ip--- pro1 --- 10.1.2.1 , node2 ip--- forwarder0 --- 10.1.1.2
+---node1 ip--- pro2 --- 10.1.3.1 , node2 ip--- forwarder0 --- 10.1.1.2
+---node1 ip--- pro3 --- 10.1.4.1 , node2 ip--- forwarder0 --- 10.1.1.2
+---node1 ip--- pro4 --- 10.1.5.1 , node2 ip--- forwarder0 --- 10.1.1.2
+---node1 ip--- pro5 --- 10.1.6.1 , node2 ip--- forwarder1 --- 10.1.6.2
+---node1 ip--- pro6 --- 10.1.7.1 , node2 ip--- forwarder1 --- 10.1.6.2
+---node1 ip--- pro7 --- 10.1.8.1 , node2 ip--- forwarder1 --- 10.1.6.2
+---node1 ip--- pro8 --- 10.1.9.1 , node2 ip--- forwarder1 --- 10.1.6.2
+---node1 ip--- pro9 --- 10.1.10.1 , node2 ip--- forwarder1 --- 10.1.6.2
+---node1 ip--- pro10 --- 10.1.11.1 , node2 ip--- forwarder2 --- 10.1.11.2
+---node1 ip--- pro11 --- 10.1.12.1 , node2 ip--- forwarder2 --- 10.1.11.2
+---node1 ip--- pro12 --- 10.1.13.1 , node2 ip--- forwarder2 --- 10.1.11.2
+---node1 ip--- pro13 --- 10.1.14.1 , node2 ip--- forwarder2 --- 10.1.11.2
+---node1 ip--- pro14 --- 10.1.15.1 , node2 ip--- forwarder2 --- 10.1.11.2
+---node1 ip--- pro15 --- 10.1.16.1 , node2 ip--- forwarder3 --- 10.1.16.2
+---node1 ip--- pro16 --- 10.1.17.1 , node2 ip--- forwarder3 --- 10.1.16.2
+---node1 ip--- pro17 --- 10.1.18.1 , node2 ip--- forwarder3 --- 10.1.16.2
+---node1 ip--- pro18 --- 10.1.19.1 , node2 ip--- forwarder3 --- 10.1.16.2
+---node1 ip--- pro19 --- 10.1.20.1 , node2 ip--- forwarder3 --- 10.1.16.2
+---node1 ip--- pro20 --- 10.1.21.1 , node2 ip--- forwarder4 --- 10.1.21.2
+---node1 ip--- pro21 --- 10.1.22.1 , node2 ip--- forwarder4 --- 10.1.21.2
+---node1 ip--- pro22 --- 10.1.23.1 , node2 ip--- forwarder4 --- 10.1.21.2
+---node1 ip--- pro23 --- 10.1.24.1 , node2 ip--- forwarder4 --- 10.1.21.2
+---node1 ip--- pro24 --- 10.1.25.1 , node2 ip--- forwarder4 --- 10.1.21.2
+---node1 ip--- pro25 --- 10.1.26.1 , node2 ip--- forwarder5 --- 10.1.26.2
+---node1 ip--- pro26 --- 10.1.27.1 , node2 ip--- forwarder5 --- 10.1.26.2
+---node1 ip--- pro27 --- 10.1.28.1 , node2 ip--- forwarder5 --- 10.1.26.2
+---node1 ip--- pro28 --- 10.1.29.1 , node2 ip--- forwarder5 --- 10.1.26.2
+---node1 ip--- pro29 --- 10.1.30.1 , node2 ip--- forwarder5 --- 10.1.26.2
+---node1 ip--- pro30 --- 10.1.31.1 , node2 ip--- forwarder6 --- 10.1.31.2
+---node1 ip--- pro31 --- 10.1.32.1 , node2 ip--- forwarder6 --- 10.1.31.2
+---node1 ip--- pro32 --- 10.1.33.1 , node2 ip--- forwarder6 --- 10.1.31.2
+---node1 ip--- pro33 --- 10.1.34.1 , node2 ip--- forwarder6 --- 10.1.31.2
+---node1 ip--- pro34 --- 10.1.35.1 , node2 ip--- forwarder6 --- 10.1.31.2
+---node1 ip--- pro35 --- 10.1.36.1 , node2 ip--- forwarder7 --- 10.1.36.2
+---node1 ip--- pro36 --- 10.1.37.1 , node2 ip--- forwarder7 --- 10.1.36.2
+---node1 ip--- pro37 --- 10.1.38.1 , node2 ip--- forwarder7 --- 10.1.36.2
+---node1 ip--- pro38 --- 10.1.39.1 , node2 ip--- forwarder7 --- 10.1.36.2
+---node1 ip--- pro39 --- 10.1.40.1 , node2 ip--- forwarder7 --- 10.1.36.2
+---node1 ip--- pro40 --- 10.1.41.1 , node2 ip--- forwarder8 --- 10.1.41.2
+---node1 ip--- pro41 --- 10.1.42.1 , node2 ip--- forwarder8 --- 10.1.41.2
+---node1 ip--- pro42 --- 10.1.43.1 , node2 ip--- forwarder8 --- 10.1.41.2
+---node1 ip--- pro43 --- 10.1.44.1 , node2 ip--- forwarder8 --- 10.1.41.2
+---node1 ip--- pro44 --- 10.1.45.1 , node2 ip--- forwarder8 --- 10.1.41.2
+---node1 ip--- pro45 --- 10.1.46.1 , node2 ip--- forwarder9 --- 10.1.46.2
+---node1 ip--- pro46 --- 10.1.47.1 , node2 ip--- forwarder9 --- 10.1.46.2
+---node1 ip--- pro47 --- 10.1.48.1 , node2 ip--- forwarder9 --- 10.1.46.2
+---node1 ip--- pro48 --- 10.1.49.1 , node2 ip--- forwarder9 --- 10.1.46.2
+---node1 ip--- pro49 --- 10.1.50.1 , node2 ip--- forwarder9 --- 10.1.46.2
+---node1 ip--- con0 --- 10.1.51.1 , node2 ip--- forwarder10 --- 10.1.51.2
+---node1 ip--- forwarder0 --- 10.1.1.2 , node2 ip--- agg0 --- 10.2.1.2
+---node1 ip--- agg0 --- 10.2.1.2 , node2 ip--- forwarder11 --- 10.2.2.2
+---node1 ip--- forwarder1 --- 10.1.6.2 , node2 ip--- agg1 --- 10.2.3.2
+---node1 ip--- agg1 --- 10.2.3.2 , node2 ip--- forwarder12 --- 10.2.4.2
+---node1 ip--- forwarder2 --- 10.1.11.2 , node2 ip--- agg2 --- 10.2.5.2
+---node1 ip--- agg2 --- 10.2.5.2 , node2 ip--- forwarder13 --- 10.2.6.2
+---node1 ip--- forwarder3 --- 10.1.16.2 , node2 ip--- agg3 --- 10.2.7.2
+---node1 ip--- agg3 --- 10.2.7.2 , node2 ip--- forwarder14 --- 10.2.8.2
+---node1 ip--- forwarder4 --- 10.1.21.2 , node2 ip--- agg4 --- 10.2.9.2
+---node1 ip--- agg4 --- 10.2.9.2 , node2 ip--- forwarder15 --- 10.2.10.2
+---node1 ip--- forwarder5 --- 10.1.26.2 , node2 ip--- agg5 --- 10.2.11.2
+---node1 ip--- agg5 --- 10.2.11.2 , node2 ip--- forwarder11 --- 10.2.2.2
+---node1 ip--- forwarder6 --- 10.1.31.2 , node2 ip--- agg6 --- 10.2.13.2
+---node1 ip--- agg6 --- 10.2.13.2 , node2 ip--- forwarder12 --- 10.2.4.2
+---node1 ip--- forwarder7 --- 10.1.36.2 , node2 ip--- agg7 --- 10.2.15.2
+---node1 ip--- agg7 --- 10.2.15.2 , node2 ip--- forwarder13 --- 10.2.6.2
+---node1 ip--- forwarder8 --- 10.1.41.2 , node2 ip--- agg8 --- 10.2.17.2
+---node1 ip--- agg8 --- 10.2.17.2 , node2 ip--- forwarder14 --- 10.2.8.2
+---node1 ip--- forwarder9 --- 10.1.46.2 , node2 ip--- agg9 --- 10.2.19.2
+---node1 ip--- agg9 --- 10.2.19.2 , node2 ip--- forwarder15 --- 10.2.10.2
+---node1 ip--- forwarder0 --- 10.1.1.2 , node2 ip--- agg10 --- 10.2.21.2
+---node1 ip--- agg10 --- 10.2.21.2 , node2 ip--- forwarder11 --- 10.2.2.2
+---node1 ip--- forwarder1 --- 10.1.6.2 , node2 ip--- agg11 --- 10.2.23.2
+---node1 ip--- agg11 --- 10.2.23.2 , node2 ip--- forwarder12 --- 10.2.4.2
+---node1 ip--- forwarder2 --- 10.1.11.2 , node2 ip--- agg12 --- 10.2.25.2
+---node1 ip--- agg12 --- 10.2.25.2 , node2 ip--- forwarder13 --- 10.2.6.2
+---node1 ip--- forwarder3 --- 10.1.16.2 , node2 ip--- agg13 --- 10.2.27.2
+---node1 ip--- agg13 --- 10.2.27.2 , node2 ip--- forwarder14 --- 10.2.8.2
+---node1 ip--- forwarder4 --- 10.1.21.2 , node2 ip--- agg14 --- 10.2.29.2
+---node1 ip--- agg14 --- 10.2.29.2 , node2 ip--- forwarder15 --- 10.2.10.2
+---node1 ip--- forwarder5 --- 10.1.26.2 , node2 ip--- agg15 --- 10.2.31.2
+---node1 ip--- agg15 --- 10.2.31.2 , node2 ip--- forwarder11 --- 10.2.2.2
+---node1 ip--- forwarder6 --- 10.1.31.2 , node2 ip--- agg16 --- 10.2.33.2
+---node1 ip--- agg16 --- 10.2.33.2 , node2 ip--- forwarder12 --- 10.2.4.2
+---node1 ip--- forwarder7 --- 10.1.36.2 , node2 ip--- agg17 --- 10.2.35.2
+---node1 ip--- agg17 --- 10.2.35.2 , node2 ip--- forwarder13 --- 10.2.6.2
+---node1 ip--- forwarder8 --- 10.1.41.2 , node2 ip--- agg18 --- 10.2.37.2
+---node1 ip--- agg18 --- 10.2.37.2 , node2 ip--- forwarder14 --- 10.2.8.2
+---node1 ip--- forwarder9 --- 10.1.46.2 , node2 ip--- agg19 --- 10.2.39.2
+---node1 ip--- agg19 --- 10.2.39.2 , node2 ip--- forwarder15 --- 10.2.10.2
+---node1 ip--- forwarder10 --- 10.1.51.2 , node2 ip--- forwarder11 --- 10.2.2.2
+---node1 ip--- forwarder11 --- 10.2.2.2 , node2 ip--- forwarder12 --- 10.2.4.2
+---node1 ip--- forwarder11 --- 10.2.2.2 , node2 ip--- forwarder13 --- 10.2.6.2
+---node1 ip--- forwarder11 --- 10.2.2.2 , node2 ip--- forwarder14 --- 10.2.8.2
+---node1 ip--- forwarder11 --- 10.2.2.2 , node2 ip--- forwarder15 --- 10.2.10.2
+---node1 ip--- forwarder12 --- 10.2.4.2 , node2 ip--- forwarder13 --- 10.2.6.2
+---node1 ip--- forwarder12 --- 10.2.4.2 , node2 ip--- forwarder14 --- 10.2.8.2
+---node1 ip--- forwarder12 --- 10.2.4.2 , node2 ip--- forwarder15 --- 10.2.10.2
+---node1 ip--- forwarder13 --- 10.2.6.2 , node2 ip--- forwarder14 --- 10.2.8.2
+---node1 ip--- forwarder13 --- 10.2.6.2 , node2 ip--- forwarder15 --- 10.2.10.2
+---node1 ip--- forwarder14 --- 10.2.8.2 , node2 ip--- forwarder15 --- 10.2.10.2
+myserver ptr:0x557c009c3b40
+ CreateSocketPool: socketPool[10.2.21.2] -myserver, serverPort: 42936, cGroup[0]: 10.2.21.2
+myserver ptr:0x557c009c4bf0
+ CreateSocketPool: socketPool[10.2.31.2] -myserver, serverPort: 32348, cGroup[1]: 10.2.31.2
+myserver ptr:0x557c00a803f0
+ CreateSocketPool: socketPool[10.1.1.1] -myserver, serverPort: 11362, cGroup[0]: 10.1.1.1
+myserver ptr:0x557c00a83050
+ CreateSocketPool: socketPool[10.1.2.1] -myserver, serverPort: 59850, cGroup[1]: 10.1.2.1
+myserver ptr:0x557c00a85cd0
+ CreateSocketPool: socketPool[10.1.3.1] -myserver, serverPort: 52647, cGroup[2]: 10.1.3.1
+myserver ptr:0x557c00a889c0
+ CreateSocketPool: socketPool[10.1.4.1] -myserver, serverPort: 38670, cGroup[3]: 10.1.4.1
+myserver ptr:0x557c00a8b6b0
+ CreateSocketPool: socketPool[10.1.5.1] -myserver, serverPort: 52552, cGroup[4]: 10.1.5.1
+myserver ptr:0x557c00a92230
+ CreateSocketPool: socketPool[10.1.6.1] -myserver, serverPort: 397, cGroup[0]: 10.1.6.1
+myserver ptr:0x557c00a94e90
+ CreateSocketPool: socketPool[10.1.7.1] -myserver, serverPort: 62730, cGroup[1]: 10.1.7.1
+myserver ptr:0x557c00a97b10
+ CreateSocketPool: socketPool[10.1.8.1] -myserver, serverPort: 64995, cGroup[2]: 10.1.8.1
+myserver ptr:0x557c00a9a800
+ CreateSocketPool: socketPool[10.1.9.1] -myserver, serverPort: 14207, cGroup[3]: 10.1.9.1
+myserver ptr:0x557c00a9d4f0
+ CreateSocketPool: socketPool[10.1.10.1] -myserver, serverPort: 12276, cGroup[4]: 10.1.10.1
+myserver ptr:0x557c00aa4070
+ CreateSocketPool: socketPool[10.1.11.1] -myserver, serverPort: 56393, cGroup[0]: 10.1.11.1
+myserver ptr:0x557c00aa6cd0
+ CreateSocketPool: socketPool[10.1.12.1] -myserver, serverPort: 15756, cGroup[1]: 10.1.12.1
+myserver ptr:0x557c00aa9950
+ CreateSocketPool: socketPool[10.1.13.1] -myserver, serverPort: 16239, cGroup[2]: 10.1.13.1
+myserver ptr:0x557c00aac640
+ CreateSocketPool: socketPool[10.1.14.1] -myserver, serverPort: 49265, cGroup[3]: 10.1.14.1
+myserver ptr:0x557c00aaf330
+ CreateSocketPool: socketPool[10.1.15.1] -myserver, serverPort: 53337, cGroup[4]: 10.1.15.1
+myserver ptr:0x557c00ab5eb0
+ CreateSocketPool: socketPool[10.1.16.1] -myserver, serverPort: 12404, cGroup[0]: 10.1.16.1
+myserver ptr:0x557c00ab8b10
+ CreateSocketPool: socketPool[10.1.17.1] -myserver, serverPort: 3454, cGroup[1]: 10.1.17.1
+myserver ptr:0x557c00abb790
+ CreateSocketPool: socketPool[10.1.18.1] -myserver, serverPort: 59340, cGroup[2]: 10.1.18.1
+myserver ptr:0x557c00abe480
+ CreateSocketPool: socketPool[10.1.19.1] -myserver, serverPort: 12462, cGroup[3]: 10.1.19.1
+myserver ptr:0x557c00ac1170
+ CreateSocketPool: socketPool[10.1.20.1] -myserver, serverPort: 47951, cGroup[4]: 10.1.20.1
+myserver ptr:0x557c00ac7cf0
+ CreateSocketPool: socketPool[10.1.21.1] -myserver, serverPort: 6644, cGroup[0]: 10.1.21.1
+myserver ptr:0x557c00aca950
+ CreateSocketPool: socketPool[10.1.22.1] -myserver, serverPort: 32625, cGroup[1]: 10.1.22.1
+myserver ptr:0x557c00acd5d0
+ CreateSocketPool: socketPool[10.1.23.1] -myserver, serverPort: 3978, cGroup[2]: 10.1.23.1
+myserver ptr:0x557c00ad02c0
+ CreateSocketPool: socketPool[10.1.24.1] -myserver, serverPort: 47561, cGroup[3]: 10.1.24.1
+myserver ptr:0x557c00ad2fb0
+ CreateSocketPool: socketPool[10.1.25.1] -myserver, serverPort: 46127, cGroup[4]: 10.1.25.1
+myserver ptr:0x557c00ad9b30
+ CreateSocketPool: socketPool[10.1.26.1] -myserver, serverPort: 16171, cGroup[0]: 10.1.26.1
+myserver ptr:0x557c00adc790
+ CreateSocketPool: socketPool[10.1.27.1] -myserver, serverPort: 41211, cGroup[1]: 10.1.27.1
+myserver ptr:0x557c00adf410
+ CreateSocketPool: socketPool[10.1.28.1] -myserver, serverPort: 14077, cGroup[2]: 10.1.28.1
+myserver ptr:0x557c00ae2100
+ CreateSocketPool: socketPool[10.1.29.1] -myserver, serverPort: 44092, cGroup[3]: 10.1.29.1
+myserver ptr:0x557c00ae4df0
+ CreateSocketPool: socketPool[10.1.30.1] -myserver, serverPort: 18418, cGroup[4]: 10.1.30.1
+myserver ptr:0x557c00aeb970
+ CreateSocketPool: socketPool[10.1.31.1] -myserver, serverPort: 1206, cGroup[0]: 10.1.31.1
+myserver ptr:0x557c00aee5d0
+ CreateSocketPool: socketPool[10.1.32.1] -myserver, serverPort: 61302, cGroup[1]: 10.1.32.1
+myserver ptr:0x557c00af1250
+ CreateSocketPool: socketPool[10.1.33.1] -myserver, serverPort: 43075, cGroup[2]: 10.1.33.1
+myserver ptr:0x557c00af3f40
+ CreateSocketPool: socketPool[10.1.34.1] -myserver, serverPort: 58395, cGroup[3]: 10.1.34.1
+myserver ptr:0x557c00af6c30
+ CreateSocketPool: socketPool[10.1.35.1] -myserver, serverPort: 64135, cGroup[4]: 10.1.35.1
+myserver ptr:0x557c00afd7b0
+ CreateSocketPool: socketPool[10.1.36.1] -myserver, serverPort: 15802, cGroup[0]: 10.1.36.1
+myserver ptr:0x557c00b00410
+ CreateSocketPool: socketPool[10.1.37.1] -myserver, serverPort: 19247, cGroup[1]: 10.1.37.1
+myserver ptr:0x557c00b03090
+ CreateSocketPool: socketPool[10.1.38.1] -myserver, serverPort: 4383, cGroup[2]: 10.1.38.1
+myserver ptr:0x557c00b05d80
+ CreateSocketPool: socketPool[10.1.39.1] -myserver, serverPort: 22381, cGroup[3]: 10.1.39.1
+myserver ptr:0x557c00b08a70
+ CreateSocketPool: socketPool[10.1.40.1] -myserver, serverPort: 29226, cGroup[4]: 10.1.40.1
+myserver ptr:0x557c00b0f5f0
+ CreateSocketPool: socketPool[10.1.41.1] -myserver, serverPort: 54906, cGroup[0]: 10.1.41.1
+myserver ptr:0x557c00b12250
+ CreateSocketPool: socketPool[10.1.42.1] -myserver, serverPort: 52067, cGroup[1]: 10.1.42.1
+myserver ptr:0x557c00b14ed0
+ CreateSocketPool: socketPool[10.1.43.1] -myserver, serverPort: 18477, cGroup[2]: 10.1.43.1
+myserver ptr:0x557c00b17bc0
+ CreateSocketPool: socketPool[10.1.44.1] -myserver, serverPort: 35114, cGroup[3]: 10.1.44.1
+myserver ptr:0x557c00b1a8b0
+ CreateSocketPool: socketPool[10.1.45.1] -myserver, serverPort: 21592, cGroup[4]: 10.1.45.1
+myserver ptr:0x557c00b21430
+ CreateSocketPool: socketPool[10.1.46.1] -myserver, serverPort: 16933, cGroup[0]: 10.1.46.1
+myserver ptr:0x557c00b24090
+ CreateSocketPool: socketPool[10.1.47.1] -myserver, serverPort: 16938, cGroup[1]: 10.1.47.1
+myserver ptr:0x557c00b26d10
+ CreateSocketPool: socketPool[10.1.48.1] -myserver, serverPort: 62966, cGroup[2]: 10.1.48.1
+myserver ptr:0x557c00b29a00
+ CreateSocketPool: socketPool[10.1.49.1] -myserver, serverPort: 49371, cGroup[3]: 10.1.49.1
+myserver ptr:0x557c00b2c6f0
+ CreateSocketPool: socketPool[10.1.50.1] -myserver, serverPort: 9141, cGroup[4]: 10.1.50.1
+myserver ptr:0x557c00b33270
+ CreateSocketPool: socketPool[10.2.17.2] -myserver, serverPort: 34700, cGroup[0]: 10.2.17.2
+myserver ptr:0x557c00b35ed0
+ CreateSocketPool: socketPool[10.2.11.2] -myserver, serverPort: 57290, cGroup[1]: 10.2.11.2
+myserver ptr:0x557c00b38b50
+ CreateSocketPool: socketPool[10.2.15.2] -myserver, serverPort: 59614, cGroup[2]: 10.2.15.2
+myserver ptr:0x557c00b3b840
+ CreateSocketPool: socketPool[10.2.9.2] -myserver, serverPort: 14164, cGroup[3]: 10.2.9.2
+myserver ptr:0x557c00b3e530
+ CreateSocketPool: socketPool[10.2.7.2] -myserver, serverPort: 12669, cGroup[4]: 10.2.7.2
+myserver ptr:0x557c00b450b0
+ CreateSocketPool: socketPool[10.2.1.2] -myserver, serverPort: 17197, cGroup[0]: 10.2.1.2
+myserver ptr:0x557c00b47d10
+ CreateSocketPool: socketPool[10.2.3.2] -myserver, serverPort: 8950, cGroup[1]: 10.2.3.2
+myserver ptr:0x557c00b4a990
+ CreateSocketPool: socketPool[10.2.19.2] -myserver, serverPort: 40730, cGroup[2]: 10.2.19.2
+myserver ptr:0x557c00b4d680
+ CreateSocketPool: socketPool[10.2.5.2] -myserver, serverPort: 56183, cGroup[3]: 10.2.5.2
+myserver ptr:0x557c00b50370
+ CreateSocketPool: socketPool[10.2.13.2] -myserver, serverPort: 64855, cGroup[4]: 10.2.13.2
+Consumer All iteration-10000 completed in: 8111ms
+Prefix: 50, Iteration: 10000 - Simulation completed successfully.
 
 #################### SIMULATION END ####################
 

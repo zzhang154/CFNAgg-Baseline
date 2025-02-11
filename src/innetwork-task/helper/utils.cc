@@ -113,5 +113,31 @@ std::string Ipv4AddressToString(ns3::Ipv4Address ipv4Address){
     return ss.str();
 }
 
+ns3::Ipv4Address GetIpAddrFromNode (Ptr<Node> node){
+    Ptr<Ipv4> ipv4 = node->GetObject<Ipv4>();
+    Ipv4InterfaceAddress iaddr = ipv4->GetAddress (1, 0);
+    Ipv4Address addr = iaddr.GetLocal ();
+    return addr;
+}
+
+void EnableLoggingComponents() {
+    LogComponentEnable("InnetworkAggregationInterface", LOG_LEVEL_ALL);
+    LogComponentEnable("TCPclient", LOG_LEVEL_ALL);
+    LogComponentEnable("TCPserver", LOG_LEVEL_ALL);
+    LogComponentEnable("TcpSocketBase", LOG_LEVEL_ALL);
+    LogComponentEnable("TcpRxBuffer", LOG_LEVEL_ALL);
+    LogComponentEnable("TcpTxBuffer", LOG_LEVEL_ALL);
+    LogComponentEnable("Packet", LOG_LEVEL_DEBUG);
+}
+
+void DisableLoggingComponents() {
+    LogComponentDisable("InnetworkAggregationInterface", LOG_LEVEL_ALL);
+    LogComponentDisable("TCPclient", LOG_LEVEL_ALL);
+    LogComponentDisable("TCPserver", LOG_LEVEL_ALL);
+    LogComponentDisable("TcpSocketBase", LOG_LEVEL_ALL);
+    LogComponentDisable("TcpRxBuffer", LOG_LEVEL_ALL);
+    LogComponentDisable("TcpTxBuffer", LOG_LEVEL_ALL);
+    LogComponentDisable("Packet", LOG_LEVEL_DEBUG);
+}
 
 }; /* namespace ns3 */

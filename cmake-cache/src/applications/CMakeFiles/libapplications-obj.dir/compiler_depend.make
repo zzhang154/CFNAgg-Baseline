@@ -2503,6 +2503,26 @@ src/applications/CMakeFiles/libapplications-obj.dir/model/TCPclient.cc.o: CMakeF
   ../build/include/ns3/application.h \
   ../src/network/model/application.h \
   ../src/network/model/node.h \
+  ../build/include/ns3/PacketTraceTag.h \
+  ../src/innetwork-task/helper/PacketTraceTag.h \
+  ../src/innetwork-task/helper/parameter.h \
+  ../src/innetwork-task/helper/utils.h \
+  /usr/include/c++/11/iomanip \
+  /usr/include/c++/11/bits/ios_base.h \
+  /usr/include/c++/11/locale \
+  /usr/include/c++/11/bits/localefwd.h \
+  /usr/include/c++/11/bits/locale_classes.h \
+  /usr/include/c++/11/bits/locale_facets.h \
+  /usr/include/c++/11/bits/locale_facets_nonio.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/time_members.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/messages_members.h \
+  /usr/include/libintl.h \
+  /usr/include/c++/11/bits/codecvt.h \
+  /usr/include/c++/11/bits/locale_facets_nonio.tcc \
+  /usr/include/c++/11/bits/locale_conv.h \
+  /usr/include/c++/11/streambuf \
+  /usr/include/c++/11/bits/stringfwd.h \
+  /usr/include/c++/11/bits/quoted_string.h \
   ../src/applications/model/seq-ts-header.h \
   /usr/include/c++/11/cstdio \
   /usr/include/stdio.h
@@ -3769,7 +3789,25 @@ src/applications/CMakeFiles/libapplications-obj.dir/model/TCPserver.cc.o: CMakeF
   ../build/include/ns3/vectorop.h \
   ../src/innetwork-task/helper/vectorop.h \
   ../src/innetwork-task/helper/utils.h \
-  ../src/innetwork-task/helper/parameter.h
+  ../src/innetwork-task/helper/parameter.h \
+  ../build/include/ns3/PacketTraceTag.h \
+  ../src/innetwork-task/helper/PacketTraceTag.h \
+  /usr/include/c++/11/iomanip \
+  /usr/include/c++/11/bits/ios_base.h \
+  /usr/include/c++/11/locale \
+  /usr/include/c++/11/bits/localefwd.h \
+  /usr/include/c++/11/bits/locale_classes.h \
+  /usr/include/c++/11/bits/locale_facets.h \
+  /usr/include/c++/11/bits/locale_facets_nonio.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/time_members.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/messages_members.h \
+  /usr/include/libintl.h \
+  /usr/include/c++/11/bits/codecvt.h \
+  /usr/include/c++/11/bits/locale_facets_nonio.tcc \
+  /usr/include/c++/11/bits/locale_conv.h \
+  /usr/include/c++/11/streambuf \
+  /usr/include/c++/11/bits/stringfwd.h \
+  /usr/include/c++/11/bits/quoted_string.h
 
 src/applications/CMakeFiles/libapplications-obj.dir/model/application-packet-probe.cc.o: CMakeFiles/stdlib_pch-default.dir/cmake_pch.hxx \
   ../src/applications/model/application-packet-probe.cc \
@@ -7270,9 +7308,35 @@ src/applications/CMakeFiles/libapplications-obj.dir/model/udp-trace-client.cc.o:
 
 /usr/include/c++/11/cstdio:
 
+/usr/include/c++/11/bits/stringfwd.h:
+
+/usr/include/c++/11/bits/locale_conv.h:
+
+/usr/include/c++/11/bits/locale_facets_nonio.tcc:
+
+/usr/include/x86_64-linux-gnu/c++/11/bits/messages_members.h:
+
+/usr/include/x86_64-linux-gnu/c++/11/bits/time_members.h:
+
+/usr/include/c++/11/bits/locale_facets_nonio.h:
+
+/usr/include/c++/11/bits/locale_facets.h:
+
+/usr/include/c++/11/bits/locale_classes.h:
+
+/usr/include/c++/11/bits/localefwd.h:
+
+/usr/include/c++/11/locale:
+
+/usr/include/c++/11/bits/ios_base.h:
+
+../src/innetwork-task/helper/PacketTraceTag.h:
+
 ../build/include/ns3/windowed-filter.h:
 
 ../src/internet/model/udp-socket.h:
+
+/usr/include/libintl.h:
 
 ../build/include/ns3/udp-socket.h:
 
@@ -7800,6 +7864,8 @@ src/applications/CMakeFiles/libapplications-obj.dir/model/udp-trace-client.cc.o:
 
 ../build/include/ns3/neighbor-cache-helper.h:
 
+../build/include/ns3/PacketTraceTag.h:
+
 ../build/include/ns3/ripng-header.h:
 
 ../src/internet/model/global-route-manager-impl.h:
@@ -7906,6 +7972,8 @@ src/applications/CMakeFiles/libapplications-obj.dir/model/udp-trace-client.cc.o:
 
 /usr/include/c++/11/queue:
 
+/usr/include/c++/11/iomanip:
+
 /usr/include/c++/11/bits/shared_ptr_atomic.h:
 
 ../src/applications/helper/on-off-helper.h:
@@ -7933,6 +8001,8 @@ src/applications/CMakeFiles/libapplications-obj.dir/model/udp-trace-client.cc.o:
 ../src/applications/model/udp-trace-client.h:
 
 ../src/applications/model/udp-client.cc:
+
+/usr/include/c++/11/bits/quoted_string.h:
 
 ../src/core/model/make-event.h:
 
@@ -8696,6 +8766,8 @@ src/applications/CMakeFiles/libapplications-obj.dir/model/udp-trace-client.cc.o:
 
 ../src/internet/helper/internet-stack-helper.h:
 
+/usr/include/c++/11/bits/codecvt.h:
+
 ../src/internet/model/tcp-option.h:
 
 ../build/include/ns3/length.h:
@@ -9227,6 +9299,8 @@ CMakeFiles/stdlib_pch-default.dir/cmake_pch.hxx:
 /usr/include/boost/type_traits/detail/yes_no_type.hpp:
 
 /usr/include/boost/mpl/list/aux_/preprocessed/plain/list20.hpp:
+
+/usr/include/c++/11/streambuf:
 
 ../build/include/ns3/time-printer.h:
 

@@ -8,8 +8,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/innetwork-task/helper/global.cc" "src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/helper/global.cc.o" "gcc" "src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/helper/global.cc.o.d"
-  "/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/cmake-cache/CMakeFiles/stdlib_pch-default.dir/cmake_pch.hxx" "src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/helper/global.cc.o" "gcc" "src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/helper/global.cc.o.d"
+  "/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/innetwork-task/helper/global-data.cc" "src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/helper/global-data.cc.o" "gcc" "src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/helper/global-data.cc.o.d"
+  "/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/cmake-cache/CMakeFiles/stdlib_pch-default.dir/cmake_pch.hxx" "src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/helper/global-data.cc.o" "gcc" "src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/helper/global-data.cc.o.d"
   "/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/innetwork-task/helper/parameter.cc" "src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/helper/parameter.cc.o" "gcc" "src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/helper/parameter.cc.o.d"
   "/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/cmake-cache/CMakeFiles/stdlib_pch-default.dir/cmake_pch.hxx" "src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/helper/parameter.cc.o" "gcc" "src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/helper/parameter.cc.o.d"
   "/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/innetwork-task/helper/setup.cc" "src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/helper/setup.cc.o" "gcc" "src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/helper/setup.cc.o.d"

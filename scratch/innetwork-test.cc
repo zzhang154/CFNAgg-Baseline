@@ -22,6 +22,7 @@
 #include "ns3/aggregator.h"
 #include "ns3/parameter.h"
 #include "ns3/utils.h"
+#include "ns3/global-data.h"
 
 using namespace ns3;
 
@@ -87,11 +88,11 @@ int main(int argc, char *argv[]) {
     SetBaseSize(vsize);
 
     // std::vector<std::string> prefixFileNames = {"-bin8-no", "-bin16-no", "-bin32-no"}; // Example prefix file names
-    // std::vector<std::string> prefixFileNames = {"-1-fwd-5-agg"};
-    // std::vector<std::string> prefixFileNames = {"50"};
-    std::vector<std::string> prefixFileNames = {"-no-fwd5"};
+    // std::vector<std::string> prefixFileNames = {"-1-fwd-2-agg"};
+    std::vector<std::string> prefixFileNames = {"50"};
+    // std::vector<std::string> prefixFileNames = {"-no-fwd3"};
     // std::vector<uint16_t> iterationNumbers = {1000, 2000, 3000, 4000, 5000, 10000}; // Example iteration numbers
-    std::vector<uint16_t> iterationNumbers = {5};
+    std::vector<uint16_t> iterationNumbers = {10000};
 
     const std::string outputFilename = "simulation_results.txt"; // Shared output file
 
@@ -114,13 +115,14 @@ int main(int argc, char *argv[]) {
             LogComponentEnableAll(LOG_PREFIX_FUNC);
             LogComponentEnableAll(LOG_PREFIX_NODE);
 
-            LogComponentEnable("InnetworkAggregationInterface", log_precision);
-            LogComponentEnable("Consumer", LOG_LEVEL_ALL);
-            LogComponentEnable("Aggregator", LOG_LEVEL_ALL);
-            LogComponentEnable("Producer", LOG_LEVEL_ALL);
+            // LogComponentEnable("InnetworkAggregationInterface", log_precision);
+            // LogComponentEnable("Consumer", LOG_LEVEL_ALL);
+            // LogComponentEnable("Aggregator", LOG_LEVEL_ALL);
+            // LogComponentEnable("Producer", LOG_LEVEL_ALL);
+            // LogComponentEnable("Setup", LOG_LEVEL_ALL);
             
+            // LogComponentDisable("InnetworkAggregationInterface", LOG_LEVEL_ALL);
             LogComponentDisable("InnetworkAggregationInterface", LOG_LEVEL_ALL);
-            // LogComponentEnable("InnetworkAggregationInterface", LOG_LEVEL_ALL);
  
             // LogComponentEnable("TcpSocketBase", LOG_LEVEL_ALL);
 
@@ -128,12 +130,23 @@ int main(int argc, char *argv[]) {
             // LogComponentDisable("Aggregator", LOG_LEVEL_ALL);
             // LogComponentDisable("Producer", LOG_LEVEL_ALL);
             // // LogComponentDisable("InnetworkAggregationInterface", LOG_LEVEL_ALL);
-            // LogComponentEnable("TCPclient", LOG_LEVEL_ALL);
-            // LogComponentEnable("TCPserver", LOG_LEVEL_ALL);
-            // LogComponentDisable("TcpSocketBase", LOG_LEVEL_ALL);
-            // LogComponentDisable("TcpRxBuffer", LOG_LEVEL_ALL);
-            // LogComponentDisable("TcpTxBuffer", LOG_LEVEL_ALL);
-            // LogComponentDisable("Packet", LOG_LEVEL_DEBUG);
+            LogComponentDisable("TCPclient", LOG_LEVEL_ALL);
+            LogComponentDisable("TCPserver", LOG_LEVEL_ALL);
+            LogComponentDisable("TcpSocketBase", LOG_LEVEL_ALL);
+            LogComponentDisable("TcpRxBuffer", LOG_LEVEL_ALL);
+            LogComponentDisable("TcpTxBuffer", LOG_LEVEL_ALL);
+            LogComponentDisable("Packet", LOG_LEVEL_DEBUG);
+
+            // LogComponentEnable("PointToPointNetDevice", LOG_LEVEL_ALL);
+            // LogComponentEnable("LoopbackNetDevice", LOG_LEVEL_ALL);
+            // LogComponentEnable("Ipv4L3Protocol", LOG_LEVEL_ALL);
+            // LogComponentEnable("Ipv4Interface", LOG_LEVEL_ALL);
+            // LogComponentEnable("Ipv4GlobalRouting", LOG_LEVEL_ALL);
+            // LogComponentEnable("Ipv4ListRouting", LOG_LEVEL_ALL);
+
+            // LogComponentEnable("Ipv4L3Protocol", LOG_LEVEL_ALL);
+            // LogComponentEnable("Ipv4StaticRouting", LOG_LEVEL_ALL);
+            // LogComponentEnable("Ipv4GlobalRouting", LOG_LEVEL_ALL);
 
             // Initialize node containers
             NodeContainer consumer;
@@ -177,8 +190,10 @@ int main(int argc, char *argv[]) {
             WriteToFile(outputFilename, result);
 
             std::cout << "\n#################### SIMULATION END ####################\n\n\n";
+
         }
     }
+    PrintTraceRecord();
 
     return 0;
 }

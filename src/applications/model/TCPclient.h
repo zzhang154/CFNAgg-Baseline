@@ -28,6 +28,7 @@
 #include "ns3/event-id.h"
 #include "ns3/ptr.h"
 #include "ns3/ipv4-address.h"
+#include "ns3/PacketTraceTag.h"
 
 namespace ns3 {
 
@@ -60,13 +61,14 @@ public:
   void SetRemote (Address ip, uint16_t port);
   void SetRemote (Address addr);
   void SetNode (Ptr<Node> node);
-  int Send(const uint8_t* buffer, size_t len);
+  int Send(const uint8_t* buffer, size_t len, bool isProducer);
   void RecvPacket(Ptr<Socket> socket);
   InetSocketAddress GetLocalAddress() const;
   Ptr<Socket> GetSocket();
   void CreateSocket(Ptr<Node> node,uint16_t port);
   uint16_t GetBindPort();
   Address GetBindAddress();
+  Ipv4Address GetIpv4LocalAddress();
   void SetCongestionControlAlgorithm(std::string cc_name);
 
   void connectToserver();
@@ -74,6 +76,7 @@ public:
   void PrintSocketInfo(Ptr<Socket> socket);
   void CheckSocketState();
   void LogSocketInfo();
+  void SetSendTag(PacketTraceTag tag);
 
 protected:
   virtual void DoDispose (void);
@@ -116,6 +119,9 @@ private:
 
   Ptr<Node> m_node = nullptr;
   std::string congestionControlAlgorithm = "reno";
+
+  // Zhuoxu: DIY var
+  PacketTraceTag m_sendTag;
 };
 
 } // namespace ns3

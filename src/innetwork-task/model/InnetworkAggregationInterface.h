@@ -14,20 +14,14 @@
 #include "ns3/ipv4-address.h"
 #include "ns3/internet-module.h"
 #include "ns3/applications-module.h"
-//#include "datainnetwork.h"
-//#include "consumer.h"
-//#include "producer.h"
-//#include "aggregator.h"
-
-
-// #include "/home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/src/innetwork-task/helper/parameter.h"
-// #include "/home/dd/ns-3-quic-agg-zhuoxu/ns-allinone-3.42/ns-3.42/src/innetwork-task/helper/vectorop.h"
 
 #include "ns3/parameter.h"
+#include "ns3/utils.h"
 #include "ns3/vectorop.h"
 #include <set>
 #include "ns3/TCPclient.h"
 #include "ns3/TCPserver.h"
+#include "ns3/PacketTraceTag.h"
 
 
 // used for datatransfer by nodes
@@ -79,22 +73,18 @@ namespace ns3 {
             
             void SaveResult (std::vector<uint64_t> &vec );
             void SetOutFile (const std::string fileName);
-            void Addr2Str (Address addr, std::string &str);
             int SendPacket (std::string toStr, uint16_t iterationNum, std::vector<uint8_t> &serializeVec, std::string fromStr = "");
-            int SendEndPacket (std::string toStr, std::vector<uint8_t> &chunkBuffer, std::string fromStr = "");
             bool PrintCompInfo (uint16_t iterationNum);
-            void PrintBufferSummary(std::vector<uint8_t>& chunkBuffer);
             void TriggerHandleRead();
             void PrintAllInfo();
-            void EnableLoggingComponents();
-            void DisableLoggingComponents();
+            // void EnableLoggingComponents();
+            // void DisableLoggingComponents();
             void TraceSingleNodeInfo();
             bool CheckQueueOrder(std::queue<uint16_t> q, uint16_t maxIteration);
             void UpdateQueue(std::string fromStr);
             void PrintRxBuffer(std::string chStr);
 
             // Zhuoxu: Todo 
-            ns3::Ipv4Address GetIpAddrFromNode (Ptr<Node> node);
             uint16_t HashIpToPort(const std::string& ip);
     };
 

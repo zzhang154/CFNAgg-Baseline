@@ -95,12 +95,6 @@ TCPserver::PrintSocketInfo(Ptr<Socket> socket)
     NS_LOG_INFO("Socket info. IP address: " << localIp << " and port: " << localPort);
 }
 
-void
-TCPserver::SetNode (Ptr<Node> node) {
-  NS_LOG_FUNCTION (this << node);
-  m_node = node;
-}
-
 void 
 TCPserver::SetCongestionControlAlgorithm(std::string cc_name) {
   congestionControlAlgorithm = cc_name;
@@ -416,86 +410,92 @@ TCPserver::HandleRead (Ptr<Socket> socket) {
   if(memState <= 0){
     NS_LOG_DEBUG( this << " No memory available for new chunk");
     PrintTable();
+    return;
   }
-  else{
-    // read from RecvBuffer
-    Ptr<Packet> packet;
-    Address from;
-    // Zhuoxu: also output the value of RxstreamBuffer.
-    while ((memState > 0) && (packet = socket->GetObject<TcpSocketBase>()->RecvFrom (memState * pktlen, 0, from)))
-    {
-      NS_LOG_DEBUG("***********START***********");
-      NS_LOG_DEBUG("memState: " << memState << ", memState * pktlen = " << memState * pktlen);
-      m_peerAddress = from;
-      uint32_t packetSize=packet->GetSize();
-      m_received++; 
-      m_pktPtr = 0;
 
-      // Zhuoxu: if we can let the quic to give us exactly the size of chunkSize data in each quic frame, then we can simplify the code here.
-      // Todo: Check the quic frame size setting.
-      uint8_t* packetContent = new uint8_t[packetSize];
-      m_pktPtr = 0;
-      std::vector<uint64_t> vecTmp (chunkSize, 0);
-      uint32_t copyedSize =  packet->CopyData(packetContent,packetSize);
-      NS_LOG_DEBUG( this << " Copy data size: " << copyedSize);
+  // read from RecvBuffer
+  Ptr<Packet> packet, pktCopy;
+  Address from;
+  bool flag = true;
+  // Zhuoxu: also output the value of RxstreamBuffer.
+  while ((memState > 0) && (packet = socket->GetObject<TcpSocketBase>()->RecvFrom (memState * pktlen, 0, from)))
+  {
+    NS_LOG_DEBUG("***********START***********");
+    NS_LOG_DEBUG("memState: " << memState << ", memState * pktlen = " << memState * pktlen);
+    m_peerAddress = from;
+    uint32_t packetSize = packet->GetSize();
+    m_received++; 
+    m_pktPtr = 0;
+  
 
-      // Zhuoxu: now, we needn't show this anymore. We can cancel the comment once we want to debug received data in the application layer.
+    // Zhuoxu: if we can let the quic to give us exactly the size of chunkSize data in each quic frame, then we can simplify the code here.
+    // Todo: Check the quic frame size setting.
+    uint8_t* packetContent = new uint8_t[packetSize];
+    m_pktPtr = 0;
+    std::vector<uint64_t> vecTmp (chunkSize, 0);
+    uint32_t copyedSize = packet->CopyData(packetContent,packetSize);
+    NS_LOG_DEBUG( this << " Copy data size: " << copyedSize);
 
-      // if (ipAddressStr == "10.1.1.1"){
-      //   NS_LOG_DEBUG("Print data from " << ipAddressStr << " for iteration- " << m_iteration <<" group");
-      //   for(int i =0;i<copyedSize;i++){
-      //     std::cout << static_cast<int>(packetContent[i]) << '|';
-      //     if(i==copyedSize-1)
-      //       std::cout << "Ending..." << std::endl;
-      //   }
-      // }
-      // general case: pktContent[i-1], pktContent[i], pktContent[i+1]; So we should consider the general case. In worse case, we need to consider the storage of 3 packets.
+    // Zhuoxu: now, we needn't show this anymore. We can cancel the comment once we want to debug received data in the application layer.
 
-      while(m_pktPtr < packetSize){
-        NS_LOG_DEBUG("----------------BEGIN PROCESS--------------------");
-        NS_LOG_DEBUG("before process, m_pktPtr is: " << static_cast<int>(m_pktPtr));
-        NS_LOG_DEBUG("before process, m_bufferPtr is: " << static_cast<int>(m_bufferPtr));
-        
-        if(m_buffer == nullptr){
-          m_buffer = new uint8_t[pktlen];
-        }
+    // Zhuoxu: put this function into util.h
+    // if (ipAddressStr == "10.1.1.1"){
+    //   NS_LOG_DEBUG("Print data from " << ipAddressStr << " for iteration- " << m_iteration <<" group");
+    //   for(int i =0;i<copyedSize;i++){
+    //     std::cout << static_cast<int>(packetContent[i]) << '|';
+    //     if(i==copyedSize-1)
+    //       std::cout << "Ending..." << std::endl;
+    //   }
+    // }
 
-        // Copy context from packetContent to buffer
-        while(m_bufferPtr <  pktlen && m_pktPtr < packetSize){
-          m_buffer[m_bufferPtr] = packetContent[m_pktPtr];
-          m_bufferPtr++;
-          m_pktPtr++;
-        }
-        if (m_bufferPtr == pktlen){
-          // pocess the bufferPtr
-          // NS_LOG_DEBUG("Begin process the packet, now the m_bufferPtrMap[ipAddressStr] is: " << m_bufferPtrMap[ipAddressStr] - uint16_t(0));
-          ProcessPerPkt();
-          memState--;
-          m_bufferPtr = 0;
-          delete[] m_buffer;
-          m_buffer = nullptr;
-        }
-        NS_LOG_DEBUG("after process, m_pktPtr is: " << static_cast<int>(m_pktPtr));
-        NS_LOG_DEBUG("after process, m_bufferPtr is: " << static_cast<int>(m_bufferPtrMap[ipAddressStr]));
-        NS_LOG_DEBUG("----------------END PROCESS--------------------");
+    // general case: pktContent[i-1], pktContent[i], pktContent[i+1]; So we should consider the general case. In worse case, we need to consider the storage of 3 packets -- keep this comment.
+
+    while(m_pktPtr < packetSize){
+      NS_LOG_DEBUG("----------------BEGIN PROCESS--------------------");
+      NS_LOG_DEBUG("before process, m_pktPtr is: " << static_cast<int>(m_pktPtr));
+      NS_LOG_DEBUG("before process, m_bufferPtr is: " << static_cast<int>(m_bufferPtr));
+      
+      if(m_buffer == nullptr){
+        m_buffer = new uint8_t[pktlen];
       }
-      // Zhuoxu: only print the packet of 10.1.1.1
-      // if(ipAddressStr == "10.1.1.1")
-      //   PrintBuffInfo_8(packetContent, packetSize);
-      delete[] packetContent;
-      // NS_LOG_DEBUG("delete packetContent");
-      // NS_LOG_DEBUG("TCPserver----"<<GetLocalAddress().GetIpv4()<<"-received---request---from--"<<+
-      ;
-      // PrintState();
-      NS_LOG_DEBUG("#########END###########");
+
+      // Copy context from packetContent to buffer
+      while(m_bufferPtr <  pktlen && m_pktPtr < packetSize){
+        m_buffer[m_bufferPtr] = packetContent[m_pktPtr];
+        m_bufferPtr++;
+        m_pktPtr++;
+      }
+      if (m_bufferPtr == pktlen){
+        // pocess the bufferPtr
+        // NS_LOG_DEBUG("Begin process the packet, now the m_bufferPtrMap[ipAddressStr] is: " << m_bufferPtrMap[ipAddressStr] - uint16_t(0));
+        ProcessPerPkt();
+        memState--;
+        m_bufferPtr = 0;
+        delete[] m_buffer;
+        m_buffer = nullptr;
+      }
+      NS_LOG_DEBUG("after process, m_pktPtr is: " << static_cast<int>(m_pktPtr));
+      NS_LOG_DEBUG("after process, m_bufferPtr is: " << static_cast<int>(m_bufferPtrMap[ipAddressStr]));
+      NS_LOG_DEBUG("----------------END PROCESS--------------------");
     }
-    NS_ASSERT(memState >= 0);
+    // Zhuoxu: only print the packet of 10.1.1.1
+    // if(ipAddressStr == "10.1.1.1")
+    //   PrintBuffInfo_8(packetContent, packetSize);
+    delete[] packetContent;
+    // NS_LOG_DEBUG("delete packetContent");
+    // NS_LOG_DEBUG("TCPserver----"<<GetLocalAddress().GetIpv4()<<"-received---request---from--"<<+
+    ;
+    // PrintState();
+    NS_LOG_DEBUG("#########END###########");
   }
+  NS_ASSERT(memState >= 0);
+
   //std::cout<<"TCPserver----"<<GetLocalAddress().GetIpv4()<<"-received---request---from--"<<InetSocketAddress::ConvertFrom(m_peerAddress).GetIpv4()<<std::endl;
   //m_circularBuffer->print();
   this->m_socket = socket;
   NS_LOG_DEBUG("quit the function...\n\n");
   // ns3::Simulator::Schedule(ns3::MilliSeconds(10), &TCPserver::HandleRead, this, socket);
+
 }
 
 void 
@@ -538,6 +538,7 @@ TCPserver::StartApplication (void)
   NS_LOG_FUNCTION (this);
 }
 
+// Important function to let the system run normally! Don't delte it!
 void 
 TCPserver::CallSendEmptyPacket()
 {
@@ -557,18 +558,6 @@ TCPserver::StopApplication ()
       m_socket->SetRecvCallback (MakeNullCallback<void, Ptr<Socket> > ());
       m_socket = nullptr ;
     }
-}
-
-void 
-TCPserver::RecvPacket(Ptr<Socket> socket) {
-  NS_LOG_FUNCTION (this);
-}
-
-void 
-TCPserver::Addr2Str (Address addr, std::string &str) {
-    std::stringstream ss;
-    ss << Ipv4Address::ConvertFrom (addr);
-    str = ss.str();
 }
 
 void
@@ -663,11 +652,7 @@ TCPserver::CheckSocketState()
     }
 }
 
-void
-TCPserver::SetLocalAddressStr(std::string str){
-  LocalAddressStr = str;
-}
-
+// Zhuoxu: use this function to add info that pass from the interface to TCPserver or TCPclient.
 void 
 TCPserver::SetParams(Ptr<Node> node, uint16_t size, std::map<uint16_t, DataChunk>* iterChunk, std::string peerIpAddrStr, std::string localIpAddrStr, std::queue<uint16_t>* compQueuePtr){
   m_node = node;

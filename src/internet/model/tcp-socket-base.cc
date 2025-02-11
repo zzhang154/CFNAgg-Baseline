@@ -101,8 +101,8 @@ TcpSocketBase::TraceIpv4Log(std::string addressStr, Ptr<Packet> p){
         thisAddress = InetSocketAddress(Ipv4Address::GetZero(), 0);
     }
 
-    LogComponentEnable("TcpSocketBase", LOG_LEVEL_ALL);
-    LogComponentEnable("Packet", LOG_LEVEL_ALL);
+    // LogComponentEnable("TcpSocketBase", LOG_LEVEL_ALL);
+    // LogComponentEnable("Packet", LOG_LEVEL_ALL);
 
     // Debug the received packet address
     if (InetSocketAddress::IsMatchingType(thisAddress)) {
@@ -122,8 +122,8 @@ TcpSocketBase::TraceIpv4Log(std::string addressStr, Ptr<Packet> p){
         NS_LOG_WARN("thisAddress is not of type InetSocketAddress or Inet6SocketAddress");
     }
 
-    LogComponentDisable("TcpSocketBase", LOG_LEVEL_ALL);
-    LogComponentDisable("Packet", LOG_LEVEL_ALL);
+    // LogComponentDisable("TcpSocketBase", LOG_LEVEL_ALL);
+    // LogComponentDisable("Packet", LOG_LEVEL_ALL);
 }
 
 TypeId
@@ -1006,8 +1006,8 @@ TcpSocketBase::RecvFrom(uint32_t maxSize, uint32_t flags, Address& fromAddress)
         fromAddress = InetSocketAddress(Ipv4Address::GetZero(), 0);
     }
 
-    LogComponentEnable("TcpSocketBase", LOG_LEVEL_ALL);
-    LogComponentEnable("Packet", LOG_LEVEL_ALL);
+    // LogComponentEnable("TcpSocketBase", LOG_LEVEL_ALL);
+    // LogComponentEnable("Packet", LOG_LEVEL_ALL);
 
     // Debug the received packet address
     if (InetSocketAddress::IsMatchingType(fromAddress)) {
@@ -1025,8 +1025,8 @@ TcpSocketBase::RecvFrom(uint32_t maxSize, uint32_t flags, Address& fromAddress)
         NS_LOG_WARN("fromAddress is not of type InetSocketAddress or Inet6SocketAddress");
     }
 
-    LogComponentDisable("TcpSocketBase", LOG_LEVEL_ALL);
-    LogComponentDisable("Packet", LOG_LEVEL_ALL);
+    // LogComponentDisable("TcpSocketBase", LOG_LEVEL_ALL);
+    // LogComponentDisable("Packet", LOG_LEVEL_ALL);
 
     return packet;
 }

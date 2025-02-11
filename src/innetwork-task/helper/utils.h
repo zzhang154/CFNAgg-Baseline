@@ -2,18 +2,24 @@
 #define UTILS_H
 
 #include <fstream>
-#include "ns3/packet.h"
-#include <arpa/inet.h> // for inet_ntoa
-#include "ns3/ipv4-address.h"
-#include <cstdint>
+#include <sstream>
 #include <string>
 #include <mutex>
-#include <cstring> 
-#include "ns3/core-module.h"
-#include "ns3/simulator.h"
-#include "ns3/log.h"
 #include <queue>
 #include <iostream>
+#include <cstring>
+
+// Added required NS-3 headers
+#include "ns3/core-module.h"
+#include "ns3/node.h"
+#include "ns3/ipv4.h"
+#include "ns3/ipv4-address.h"
+#include "ns3/ipv4-interface-address.h"
+#include "ns3/simulator.h"
+#include "ns3/log.h"
+#include "ns3/packet.h"
+#include <arpa/inet.h> // for inet_ntoa
+#include <cstdint>
 #include <algorithm> // for std::reverse
 
 namespace ns3 {
@@ -25,6 +31,10 @@ extern std::mutex fileMutex;
 void WriteToFile(const std::string& filename, const std::string& result); 
 std::string Ipv4AddressToString(ns3::Ipv4Address ipv4Address);
 std::string reverseString(const std::string &str);
+ns3::Ipv4Address GetIpAddrFromNode (Ptr<Node> node);
+void EnableLoggingComponents();
+void DisableLoggingComponents();
+
 
 class TracedTimeQueue
 {

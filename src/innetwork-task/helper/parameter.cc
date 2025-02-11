@@ -27,21 +27,21 @@ namespace ns3 {
 
     // for other topology, please add the additional ip address to trace.
 
-    std::unordered_set<std::string> ipAddressFilter = {
-        "10.1.1.1",
-        "10.1.2.2"
-    };
-
-    // For ISP-50
     // std::unordered_set<std::string> ipAddressFilter = {
     //     "10.1.1.1",
-    //     "10.1.27.1",
-    //     "10.2.1.2",
-    //     "10.2.7.2",
-    //     "10.2.21.2",
-    //     "10.2.31.2",
-    //     "10.1.51.1"
+    //     "10.1.2.2"
     // };
+
+    // For ISP-50
+    std::unordered_set<std::string> ipAddressFilter = {
+        "10.1.1.1",
+        "10.1.27.1",
+        "10.2.1.2",
+        "10.2.7.2",
+        "10.2.21.2",
+        "10.2.31.2",
+        "10.1.51.1"
+    };
 
     bool isElementInFilter(std::string ip) {
         return ipAddressFilter.find(ip) != ipAddressFilter.end();
@@ -65,6 +65,13 @@ namespace ns3 {
         return (it != ipToNodeName.end()) ? it->second : "IP_NOT_FOUND";
     }
     
+    // void AddToTraceRecord(PacketTraceTag tag){
+    //     uint16_t iteration = tag.GetIteration();
+    //     std::vector<PacketTraceTag::TraceEntry> trace = tag.GetTrace();
+    //     std::string pro_name = trace[0].nodeName;
+    //     traceRecord[pro_name][iteration] = tag;
+    // }
+
 }; /*namespace ns3*/
 
 #endif /*INNETWORK_TASK_APPDATA_H*/

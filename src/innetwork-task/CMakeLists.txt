@@ -5,7 +5,8 @@ build_lib(
     helper/vectorop.cc
     helper/utils.cc
     helper/setup.cc
-    helper/global.cc
+    helper/global-data.cc
+    
 
     model/aggregator.cc
     model/consumer.cc
@@ -18,6 +19,7 @@ build_lib(
     helper/vectorop.h
     helper/setup.h
     helper/PacketTraceTag.h
+    helper/global-data.h
 
     model/aggregator.h
     model/consumer.h

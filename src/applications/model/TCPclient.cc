@@ -202,14 +202,30 @@ TCPclient::PrintSocketInfo(Ptr<Socket> socket)
     NS_LOG_INFO("Socket created with IP address: " << localIp << " and port: " << localPort);
 }
 
+Ipv4Address 
+TCPclient::GetIpv4LocalAddress(){
+  // Ptr<TcpSocketBase> tcpSocket = m_socket->GetObject<TcpSocketBase>();
+  // // Get local address and port
+  // Address localAddress;
+  // tcpSocket->GetSockName(localAddress);
+  // InetSocketAddress inetLocalAddress = InetSocketAddress::ConvertFrom(localAddress);
+  // Ipv4Address localIp = inetLocalAddress.GetIpv4();
+  // return localIp;
+
+  Ptr<Ipv4> ipv4 = m_node->GetObject<Ipv4> ();
+  Ipv4Address localIp = ipv4->GetAddress(1,0).GetLocal();
+  return localIp;
+}
+
 void
 TCPclient::connectToserver(){}
 
 void
 TCPclient::ReceiveData(){}
 
+
 int
-TCPclient::Send(const uint8_t* buffer, size_t len) {
+TCPclient::Send(const uint8_t* buffer, size_t len, bool isProducer) {
   NS_LOG_FUNCTION (this<<len);
 
   NS_LOG_INFO ("Before send, Check the socket state");
@@ -217,6 +233,12 @@ TCPclient::Send(const uint8_t* buffer, size_t len) {
   NS_ASSERT (m_sendEvent.IsExpired ());
 
   Ptr<Packet> p = Create<ns3::Packet>(buffer,len);
+
+  // agg the tag here.
+  m_sendTag.AddEntry(GetIpv4LocalAddress(),Simulator::Now());
+  // std::cout << "In TCPclient::Send: " << m_sendTag << std::endl;
+  p->AddPacketTag(m_sendTag);
+
   int sentSize = m_socket->Send (p,0);
   if (sentSize >= 0) {
       ++m_sent;
@@ -369,6 +391,14 @@ TCPclient::CheckSocketState()
     {
         NS_LOG_INFO("Socket is not created");
     }
+}
+
+void
+TCPclient::SetSendTag(PacketTraceTag tag)
+{
+  NS_LOG_FUNCTION(this);
+  // Simply copy the tag into the member variable
+  this->m_sendTag = tag;
 }
 
 } // Namespace ns3

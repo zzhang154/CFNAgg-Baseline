@@ -72,6 +72,7 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
     "/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/innetwork-task/helper/vectorop.h"
     "/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/innetwork-task/helper/setup.h"
     "/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/innetwork-task/helper/PacketTraceTag.h"
+    "/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/innetwork-task/helper/global-data.h"
     "/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/innetwork-task/model/aggregator.h"
     "/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/innetwork-task/model/consumer.h"
     "/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/innetwork-task/model/InnetworkAggregationInterface.h"

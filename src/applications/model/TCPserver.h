@@ -35,7 +35,9 @@
 #include <queue>
 
 #include "ns3/parameter.h"
+#include "ns3/utils.h"
 #include "ns3/vectorop.h"
+#include "ns3/PacketTraceTag.h"
 // #include "ns3/utils.h"
 #include <string.h>
 #include <map>
@@ -199,7 +201,9 @@ private:
 
   std::map<uint16_t, DataChunk>* iterChunkPtr;
   std::string LocalAddressStr;
-  std::queue<uint16_t>* compQueuePtr; 
+  std::queue<uint16_t>* compQueuePtr;
+
+  // std::map<uint16_t, PacketTraceTag> traceRecord;
 
   // TracedValue<Time>;
 

@@ -6,6 +6,7 @@
 #include <unordered_set>
 #include <unordered_map>
 #include "ns3/core-module.h"
+// #include "PacketTraceTag.h"
 
 namespace ns3 {
 
@@ -22,6 +23,9 @@ namespace ns3 {
     extern bool debugFlag;
     extern std::unordered_set<std::string> ipAddressFilter;
 
+    // Global trace record: <pro, iter, Tag>
+    // extern std::map<std::string, std::map<uint16_t, PacketTraceTag>> traceRecord;
+
     void UpdatePktlen();
     void SetBaseSize(uint32_t newBaseSize);
     bool isElementInFilter(std::string ip);
@@ -30,6 +34,9 @@ namespace ns3 {
     extern std::unordered_map<std::string, std::string> ipToNodeName;
     void BuildIpToNodeMap(); // Populates the map
     std::string GetNodeNameFromIp(const std::string& ip); // Query function
+
+    // traceRecord management functions
+    // void AddToTraceRecord(PacketTraceTag tag);
 
     //struch data chunk
     struct  ReceivedChunk {

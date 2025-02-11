@@ -17,6 +17,8 @@
 #include <vector>
 #include <string>
 
+#include "ns3/global-data.h"
+
 // Declare the NS-3 logging component if not already done.
 NS_LOG_COMPONENT_DEFINE("Setup");
 
@@ -58,16 +60,23 @@ void PrintRoutingTables() {
     }
 }
 
+/**
+ * @brief Assigns names to nodes in a NodeContainer
+ * @param nodes Container of nodes to name
+ * @param baseName Base name for node naming convention
+ */
 void NameNodes(NodeContainer &nodes, std::string baseName) {
-    // Iterate over all nodes and assign names using baseName and index.
     for (uint32_t i = 0; i < nodes.GetN(); ++i) {
         std::stringstream ss;
         ss << baseName << i;
-        // The following example uses Names::Add.
         Names::Add(ss.str(), nodes.Get(i));
     }
 }
 
+/**
+ * @brief Counts different node types from topology file
+ * @param filename Input file containing node configurations
+ */
 void CountRouterNodes(const std::string& filename) {
     std::ifstream file(filename);
     if (!file.is_open()) {
@@ -76,8 +85,7 @@ void CountRouterNodes(const std::string& filename) {
     }
 
     std::string line;
-    while (std::getline(file, line))
-    {
+    while (std::getline(file, line)) {
         if (line.find("con") == 0) {
             ++consumerNum;
         } else if (line.find("pro") == 0) {
@@ -90,91 +98,115 @@ void CountRouterNodes(const std::string& filename) {
     }
     file.close();
 
-    std::cout << "uint32_t consumerNum = " << consumerNum << ";" << std::endl;
-    std::cout << "uint32_t producerNum = " << producerNum << ";" << std::endl;
-    std::cout << "uint32_t forwarderNum = " << forwarderNum << ";" << std::endl;
-    std::cout << "uint32_t aggregatorNum = " << aggregatorNum << ";" << std::endl;
+    std::cout << "uint32_t consumerNum = " << consumerNum << ";\n"
+              << "uint32_t producerNum = " << producerNum << ";\n"
+              << "uint32_t forwarderNum = " << forwarderNum << ";\n"
+              << "uint32_t aggregatorNum = " << aggregatorNum << ";\n";
 }
 
+/**
+ * @brief Builds network topology from link configuration file
+ * @param linkFile File containing link definitions
+ * @param consumer Container for consumer nodes
+ * @param producer Container for producer nodes
+ * @param forwarder Container for forwarder nodes
+ * @param aggregator Container for aggregator nodes
+ */
 void BuildTopo(std::string &linkFile, NodeContainer &consumer, NodeContainer &producer, 
                NodeContainer &forwarder, NodeContainer &aggregator) {
-    // Create nodes based on counted numbers
+    // Node creation and naming
     consumer.Create(consumerNum);
     producer.Create(producerNum);
     forwarder.Create(forwarderNum);
     aggregator.Create(aggregatorNum);
 
-    // Name nodes using predefined names
     NameNodes(consumer, conName);
     NameNodes(producer, proName);
     NameNodes(forwarder, fowName);
     NameNodes(aggregator, aggName);
 
-    // Install internet stack on all nodes
+    // Network stack installation
     InternetStackHelper stack;
     stack.Install(consumer);
     stack.Install(producer);
     stack.Install(forwarder);
     stack.Install(aggregator);
 
+    // Link configuration
     std::ifstream infile(linkFile);
     std::string line;
     PointToPointHelper p2p;
     Ipv4AddressHelper address;
     uint32_t ia = 1, ic = 1;
 
-    while (std::getline(infile, line))
-    {
+    while (std::getline(infile, line)) {
         std::istringstream iss(line);
         std::string node1, node2, dataRate, delay, queueSize;
         double lossRate;
         if (!(iss >> node1 >> node2 >> dataRate >> lossRate >> delay >> queueSize)) {
-            continue; // Skip lines with errors
+            continue; // Skip malformed lines
         }
+
+        // Configure P2P link parameters
         p2p.SetDeviceAttribute("DataRate", StringValue(dataRate));
         p2p.SetChannelAttribute("Delay", StringValue(delay));
         p2p.SetQueue("ns3::DropTailQueue", "MaxSize", StringValue(queueSize + "p"));
 
+        // Node validation
         if (Names::Find<Node>(node1) == nullptr || Names::Find<Node>(node2) == nullptr) {
-            std::cout << "Name does not exist, node1 : " << node1 << " node2 : " << node2 << std::endl;
+            std::cout << "Invalid node names: " << node1 << " - " << node2 << std::endl;
+            continue;
         }
 
+        // Device installation and IP assignment
         NodeContainer n1n2 = NodeContainer(Names::Find<Node>(node1), Names::Find<Node>(node2));
         NetDeviceContainer d1d2 = p2p.Install(n1n2);
 
         std::string ipBaseAddr;
         if (node1.find("agg") != std::string::npos || node2.find("agg") != std::string::npos) {
-            ipBaseAddr = "10.2." + std::to_string(ia) + ".0";
-            ++ia;
+            ipBaseAddr = "10.2." + std::to_string(ia++) + ".0";
         } else {
-            ipBaseAddr = "10.1." + std::to_string(ic) + ".0";
-            ++ic;
+            ipBaseAddr = "10.1." + std::to_string(ic++) + ".0";
         }
+
         address.SetBase(Ipv4Address(ipBaseAddr.c_str()), "255.255.255.0");
         address.Assign(d1d2);
+
+        // Store IP-to-Node mappings
         Ipv4Address node1Addr = n1n2.Get(0)->GetObject<Ipv4>()->GetAddress(1,0).GetLocal();
         Ipv4Address node2Addr = n1n2.Get(1)->GetObject<Ipv4>()->GetAddress(1,0).GetLocal();
         std::cout << "---node1 ip--- " << node1 << " --- " << node1Addr
                   << " , node2 ip--- " << node2 << " --- " << node2Addr << std::endl;
-        // Assuming ipToNodeName is defined elsewhere
         ipToNodeName[Ipv4AddressToString(node1Addr)] = node1;
         ipToNodeName[Ipv4AddressToString(node2Addr)] = node2;
     }
+
+    // Finalize network setup
     Ipv4GlobalRoutingHelper::PopulateRoutingTables();
     p2p.EnablePcapAll("/home/dd/wiresharkRecordFile/");
     infile.close();
-
-    // Now install the forwarder trace callbacks so that each forwarder updates packet tags when forwarding.
-    InstallForwarderTraceCallbacks(forwarder);
+    InstallForwarderPromiscCallbacks(forwarder);
+    InstallForwarderPromiscCallbacks(aggregator);
+    InstallForwarderPromiscCallbacks(consumer);
 }
 
-// -----------------------------------------------------------------------------
+// *****************************************************************************
 // Application Creation Functions Implementation
-// -----------------------------------------------------------------------------
+// *****************************************************************************
+/**
+ * @brief Creates and sets up a Producer application.
+ * @param port The port number.
+ * @param itr Number of iterations.
+ * @param rank Rank of the node.
+ * @param vsize Vector size parameter.
+ * @param sGroup Source group addresses.
+ * @param cGroup Consumer group addresses.
+ * @param node The node to install the application on.
+ */
 void Createpro(uint16_t port, uint16_t itr, uint8_t rank, uint32_t vsize, 
                std::vector<Address> &sGroup, std::vector<Address> &cGroup, Ptr<Node> node) {
+    NS_LOG_INFO("Createpro: Setting up Producer application on node " << Names::FindName(node));
     Ptr<Producer> producer = CreateObject<Producer>();
-    // Clear consumer group addresses
     cGroup.clear();
     node->AddApplication(producer);
     producer->SetupProducer(port, itr, rank, vsize, sGroup, cGroup, basetime, cc);
@@ -182,15 +214,19 @@ void Createpro(uint16_t port, uint16_t itr, uint8_t rank, uint32_t vsize,
     producer->SetStopTime(Seconds(stoptime));
 }
 
+/**
+ * @brief Creates and sets up an Aggregator application.
+ * @param port The port number.
+ * @param itr Number of iterations.
+ * @param rank Rank of the node.
+ * @param vsize Vector size parameter.
+ * @param sGroup Source group addresses.
+ * @param cGroup Consumer group addresses.
+ * @param node The node to install the application on.
+ */
 void Createagg(uint16_t port, uint16_t itr, uint8_t rank, uint32_t vsize, 
                std::vector<Address> &sGroup, std::vector<Address> &cGroup, Ptr<Node> node) {
-    std::cout << "in Createagg ..." << std::endl;
-    Ptr<Ipv4> ipv4 = node->GetObject<Ipv4>();
-    if (ipv4) {
-        for (uint32_t i = 0; i < ipv4->GetNInterfaces(); ++i) {
-            // Optionally print or process non-loopback interfaces here.
-        }
-    }
+    NS_LOG_INFO("Createagg: Setting up Aggregator application on node " << Names::FindName(node));
     Ptr<Aggregator> aggregator = CreateObject<Aggregator>();
     node->AddApplication(aggregator);
     aggregator->SetupAggregator(port, itr, rank, vsize, sGroup, cGroup, basetime, cc);
@@ -198,8 +234,19 @@ void Createagg(uint16_t port, uint16_t itr, uint8_t rank, uint32_t vsize,
     aggregator->SetStopTime(Seconds(stoptime));
 }
 
+/**
+ * @brief Creates and sets up a Consumer application.
+ * @param port The port number.
+ * @param itr Number of iterations.
+ * @param rank Rank of the node.
+ * @param vsize Vector size parameter.
+ * @param sGroup Source group addresses.
+ * @param cGroup Consumer group addresses.
+ * @param node The node to install the application on.
+ */
 void Createcon(uint16_t port, uint16_t itr, uint8_t rank, uint32_t vsize, 
                std::vector<Address> &sGroup, std::vector<Address> &cGroup, Ptr<Node> node) {
+    NS_LOG_INFO("Createcon: Setting up Consumer application on node " << Names::FindName(node));
     Ptr<Consumer> consumer = CreateObject<Consumer>();
     node->AddApplication(consumer);
     consumer->SetupConsumer(port, itr, rank, vsize, sGroup, cGroup, basetime, cc);
@@ -207,17 +254,21 @@ void Createcon(uint16_t port, uint16_t itr, uint8_t rank, uint32_t vsize,
     consumer->SetStopTime(Seconds(stoptime));
 }
 
+/**
+ * @brief Reads an aggregator group file and creates aggregator groups.
+ * @param aggGroupFile The file containing aggregator groups.
+ * @param aggGroups A mapping from aggregator node names to child node names.
+ */
 void CreateAggGroup(std::string aggGroupFile, 
                     std::unordered_map<std::string, std::vector<std::string>> &aggGroups) {
+    NS_LOG_INFO("CreateAggGroup: Reading aggregator group file " << aggGroupFile);
     std::ifstream infile(aggGroupFile);
     std::string line;
-    while (std::getline(infile, line))
-    {
+    while (std::getline(infile, line)) {
         std::istringstream iss(line);
         std::vector<std::string> nodes;
         std::string nodeName, childName;
         iss >> nodeName;
-        // Delete ':' at the end of nodeName if present.
         if (!nodeName.empty() && nodeName.back() == ':') {
             nodeName.pop_back();
         }
@@ -228,30 +279,57 @@ void CreateAggGroup(std::string aggGroupFile,
     }
 }
 
+/**
+ * @brief Recursively builds the aggregator tree topology.
+ * @param nodeName The name of the current node.
+ * @param pa Parent node addresses.
+ * @param aggGroups Mapping of aggregator groups.
+ * @param rank Rank of the node.
+ * @param itr Number of iterations.
+ * @param vsize Vector size parameter.
+ * @param server_port The server port.
+ */
 void CreateAggTree(std::string &nodeName, std::vector<Address> pa,
                    std::unordered_map<std::string, std::vector<std::string>> &aggGroups,
                    uint8_t rank, uint16_t itr, uint32_t vsize, uint16_t server_port) {
+    NS_LOG_INFO("CreateAggTree: Processing node " << nodeName);
     std::vector<Address> sGroup;
-    Ptr<Ipv4> ipv4 = Names::Find<Node>(nodeName)->GetObject<Ipv4>();
+    Ptr<Node> node = Names::Find<Node>(nodeName);
+    Ptr<Ipv4> ipv4 = node->GetObject<Ipv4>();
     Ipv4InterfaceAddress iaddr = ipv4->GetAddress(1, 0);
     Ipv4Address addr = iaddr.GetLocal();
     sGroup.push_back(addr);
-    
-    std::vector<Address> cGroup;  // Child nodes addresses.
 
-    // Process children from the aggregator group mapping.
-    for (std::string &child : aggGroups[nodeName]) {
-        // You can add additional processing as needed.
+    std::vector<Address> cGroup;
+    auto it = aggGroups.find(nodeName);
+    if (it != aggGroups.end()) {
+        for (std::string &child : it->second) {
+            Ptr<Node> childNode = Names::Find<Node>(child);
+            if (childNode != nullptr) {
+                Ptr<Ipv4> childIpv4 = childNode->GetObject<Ipv4>();
+                if (childIpv4) {
+                    Ipv4InterfaceAddress childAddr = childIpv4->GetAddress(1, 0);
+                    cGroup.push_back(childAddr.GetLocal());
+                }
+                CreateAggTree(child, sGroup, aggGroups, rank, itr, vsize, server_port);
+            }
+        }
     }
 
     if (nodeName.find("con") != std::string::npos)
-        Createcon(server_port, itr, rank, vsize, pa, cGroup, Names::Find<Node>(nodeName));
+        Createcon(server_port, itr, rank, vsize, pa, cGroup, node);
     else if (nodeName.find("agg") != std::string::npos)
-        Createagg(server_port, itr, rank, vsize, pa, cGroup, Names::Find<Node>(nodeName));
+        Createagg(server_port, itr, rank, vsize, pa, cGroup, node);
     else if (nodeName.find("pro") != std::string::npos)
-        Createpro(server_port, itr, rank, vsize, pa, cGroup, Names::Find<Node>(nodeName));
+        Createpro(server_port, itr, rank, vsize, pa, cGroup, node);
 }
 
+/**
+ * @brief Creates the full aggregator tree topology.
+ * @param itr Number of iterations.
+ * @param vsize Vector size parameter.
+ * @param server_port The server port.
+ */
 void CreateAggTreeTopo(uint16_t itr, uint32_t vsize, uint16_t server_port) {
     std::unordered_map<std::string, std::vector<std::string>> aggGroups;
     CreateAggGroup(aggGroupFilePath, aggGroups);
@@ -260,6 +338,14 @@ void CreateAggTreeTopo(uint16_t itr, uint32_t vsize, uint16_t server_port) {
     CreateAggTree(root, emptyVector, aggGroups, 0, itr, vsize, server_port);
 }
 
+/**
+ * @brief Creates a direct topology connecting consumer and producer nodes.
+ * @param cons Container for consumer nodes.
+ * @param pros Container for producer nodes.
+ * @param itr Number of iterations.
+ * @param vsize Vector size parameter.
+ * @param server_port The server port.
+ */
 void CreateDirectTopo(NodeContainer &cons, NodeContainer &pros, uint16_t itr, 
                       uint32_t vsize, uint16_t server_port) {
     std::vector<Address> consumers;
@@ -284,9 +370,9 @@ void CreateDirectTopo(NodeContainer &cons, NodeContainer &pros, uint16_t itr,
     consumer->SetStopTime(Seconds(stoptime));
 }
 
-// -----------------------------------------------------------------------------
+// *****************************************************************************
 // Logging Control Functions Implementation
-// -----------------------------------------------------------------------------
+// *********************************************************************************
 void EnableLoggingComponents() {
     LogComponentEnable("TCPclient", LOG_LEVEL_ALL);
     LogComponentEnable("TCPserver", LOG_LEVEL_ALL);
@@ -306,147 +392,161 @@ void DisableLoggingComponents() {
 }
 
 
-/**
- * Functor: ForwarderTraceFunctor
- * Description:
- *   A functor that encapsulates the ForwardingTraceCallback with a captured NetDevice.
- */
-class ForwarderTraceFunctor 
-{
-public:
-  explicit ForwarderTraceFunctor(ns3::Ptr<ns3::NetDevice> dev)
-    : m_dev(dev)
-  {
-  }
-  void operator()(ns3::Ptr<const ns3::Packet> packet) const
-  {
-    ForwardingTraceCallback(packet, m_dev);
-  }
-private:
-  ns3::Ptr<ns3::NetDevice> m_dev;
-};
+// *****************************************************************************
+// Forwarder and Trace Callback Functions Implementation
+// *********************************************************************************
 
 /**
- * Function: ForwardingTraceCallback
- * Description:
- *    The trace callback to update the PacketTraceTag on a packet at a forwarder.
- *    This function accepts both the packet (from the trace source) and the NetDevice,
- *    which is pre-bound via MakeBoundCallback.
+ * @brief Callback for generic packet forwarding events.
+ * @param packet The packet being forwarded.
+ * @param dev The NetDevice on which the packet is forwarded.
  */
-void ForwardingTraceCallback(ns3::Ptr<const ns3::Packet> packet, ns3::Ptr<ns3::NetDevice> dev)
-{
-    // Make a copy of the packet to work on modifying its tags.
-    ns3::Ptr<ns3::Packet> pktCopy = packet->Copy();
+void ForwardingTraceCallback(Ptr<const Packet> packet, Ptr<NetDevice> dev) {
+    NS_LOG_INFO("ForwardingTraceCallback: Device " << dev->GetInstanceTypeId().GetName()
+                << " forwarded a packet at time " << Simulator::Now());
+}
 
-    ns3::PacketTraceTag tag;
-    if (pktCopy->PeekPacketTag(tag))
-    {
-        // Obtain the node from the device.
-        ns3::Ptr<ns3::Node> node = dev->GetNode();
-        ns3::Ptr<ns3::Ipv4> ipv4 = node->GetObject<ns3::Ipv4>();
-        if (ipv4)
-        {
-            // For simplicity, we use interface 0; adjust if necessary.
-            ns3::Ipv4Address nodeIp = ipv4->GetAddress(0, 0).GetLocal();
-            // Append the forwarder's IP and the current simulation time to the tag.
-            tag.AddEntry(nodeIp, ns3::Simulator::Now());
-            // Remove the old tag and attach the updated tag.
-            pktCopy->RemovePacketTag(tag);
-            pktCopy->AddPacketTag(tag);
-            NS_LOG_INFO("Forwarder " << nodeIp << " updated packet trace: " << tag);
+/**
+ * @brief IP-layer Rx callback for forwarder nodes.
+ * @param packet The received packet.
+ * @param ipv4 The IPv4 object of the node.
+ * @param interface The interface index.
+ */
+void ForwarderIpRxCallback(Ptr<const Packet> packet, Ptr<Ipv4> ipv4, uint32_t interface) {
+    NS_LOG_INFO("ForwarderIpRxCallback: Node " << Names::FindName(ipv4->GetObject<Node>())
+                << " receives packet on interface " << interface
+                << " at time " << Simulator::Now());
+}
+
+/**
+ * @brief Installs the IP-layer Rx trace callback on all forwarder nodes.
+ * @param forwarder Container of forwarder nodes.
+ */
+void InstallForwarderIpTraceCallbacks(NodeContainer &forwarder) {
+    NS_LOG_INFO("Installing IP Rx trace callbacks on forwarder nodes...");
+    for (uint32_t i = 0; i < forwarder.GetN(); ++i) {
+        Ptr<Node> node = forwarder.Get(i);
+        Ptr<Ipv4> ipv4 = node->GetObject<Ipv4>();
+        if (ipv4) {
+            ipv4->TraceConnectWithoutContext("Rx", MakeCallback(&ForwarderIpRxCallback));
         }
     }
 }
 
+/**
+ * @brief IP-layer Tx callback for forwarder nodes.
+ * @param packet The packet being transmitted.
+ * @param ipv4 The IPv4 object of the node.
+ * @param interface The interface index.
+ */
+void ForwarderIpTxCallback(Ptr<const Packet> packet, Ptr<Ipv4> ipv4, uint32_t interface) {
+    Ptr<Packet> pkt = packet->Copy();
+    Ipv4Header ipHeader;
+    pkt->PeekHeader(ipHeader);
+    Ipv4Address receiver = ipHeader.GetDestination();
 
-// void ForwarderRxCallback(Ptr<const Packet> packet, Ptr<Ipv4> ipv4, uint32_t interface) {
-//     // 检查数据包是否包含 PacketTraceTag
-//     PacketTraceTag tag;
-//     if (packet->PeekPacketTag(tag)) {
-//         // 获取当前节点的 IP 地址和名称
-//         Ipv4Address addr = ipv4->GetAddress(interface, 0).GetLocal();
-//         std::string nodeName = Names::FindName(ipv4->GetObject<Node>());
-        
-//         // 添加当前节点的信息到标签
-//         tag.AddEntry(addr, Simulator::Now());
-        
-//         // 输出信息
-//         std::cout << "Forwarder Node [" << nodeName << "] received packet at " 
-//                   << Simulator::Now() << " with trace: " << tag << std::endl;
-        
-//         // 更新标签（如果需要继续传递）
-//         const_cast<Packet*>(packet.Get())->ReplacePacketTag(tag);
-//     }
-//     else
-//     {
-//         std::cout << "Forwarder Node received packet without trace tag." << std::endl;
-//     }
-// }
-
-// This callback is invoked each time a packet is received on the forwarder node’s device.
-bool
-ForwarderRxCallback (Ptr<NetDevice> device, Ptr<const Packet> packet,
-                     uint16_t protocol, const Address &sender)
-{
-  std::cout << "Entering the ForwarderRxCallback" << std::endl;
-
-  // Make a (non-const) copy of the packet if you plan to modify its tag.
-  Ptr<Packet> pkt = packet->Copy ();
-  
-  ns3::PacketTraceTag tag;
-  if (pkt->PeekPacketTag (tag))
-    {
-      // Optionally, add a new trace entry.
-      // Here we assume that the device has an Ipv4 object installed.
-      Ptr<Ipv4> ipv4 = device->GetNode ()->GetObject<Ipv4> ();
-      Ipv4Address myAddr = ipv4->GetAddress (1, 0).GetLocal ();
-      tag.AddEntry (myAddr, Simulator::Now ());
-      
-      // Output the tag info to std::cout.
-      std::cout << "Forwarder node " << Names::FindName (device->GetNode ())
-                << " received packet with tag: " << tag << std::endl;
-      
-      // (Optionally) remove and re-add the tag if you wish to update the packet.
-      pkt->RemovePacketTag (tag);
-      pkt->AddPacketTag (tag);
-    }
-  else
-    {
-      std::cout << "Forwarder node " << Names::FindName (device->GetNode ())
-                << " received packet without PacketTraceTag" << std::endl;
-    }
-  // Return true to indicate that the packet should be further processed.
-  return true;
+    Ptr<Node> node = ipv4->GetObject<Node>();
+    std::string nodeName = Names::FindName(node);
+    NS_LOG_INFO("ForwarderIpTxCallback: Node " << nodeName 
+                << " transmits packet to " << receiver 
+                << " at time " << Simulator::Now());
 }
 
-
+/**
+ * @brief Installs the IP-layer Tx trace callback on all forwarder nodes.
+ * @param forwarder Container of forwarder nodes.
+ */
+void InstallForwarderIpTxTraceCallbacks(NodeContainer &forwarder) {
+    NS_LOG_INFO("Installing IP Tx trace callbacks on forwarder nodes...");
+    for (uint32_t i = 0; i < forwarder.GetN(); ++i) {
+        Ptr<Node> node = forwarder.Get(i);
+        Ptr<Ipv4> ipv4 = node->GetObject<Ipv4>();
+        if (ipv4) {
+            ipv4->TraceConnectWithoutContext("Tx", MakeCallback(&ForwarderIpTxCallback));
+        }
+    }
+}
 
 /**
- * Function: InstallForwarderTraceCallbacks
- * Description:
- *    Installs trace callbacks on all NetDevices in the given NodeContainer.
- *    This uses ns3::MakeBoundCallback to bind the dev parameter to ForwardingTraceCallback.
+ * @brief Promiscuous-mode callback for forwarder NetDevices.
+ * @param device The NetDevice that received the packet.
+ * @param packet The received packet.
+ * @param protocol The protocol number.
+ * @param sender The sender's address.
+ * @param receiver The intended recipient's address.
+ * @param packetType The packet type.
+ * @return true Always returns true to indicate the packet has been handled.
  */
-void InstallForwarderTraceCallbacks(ns3::NodeContainer &forwarder)
+
+bool ForwarderPromiscRxCallback(Ptr<NetDevice> device, Ptr<const Packet> packet,
+                                uint16_t protocol, const Address &sender,
+                                const Address &receiver, NetDevice::PacketType packetType)
 {
-    for (uint32_t i = 0; i < forwarder.GetN(); i++)
-    {
+    // 1. Create a mutable copy of the original packet
+    Ptr<Packet> pktCopy = packet->Copy();
+    
+    // 2. Remove existing tag from the COPY
+    PacketTraceTag tag;
+    if (pktCopy->RemovePacketTag(tag)) {
+        // 3. Modify the tag contents
+        Ptr<Node> node = device->GetNode();
+        Ptr<Ipv4> ipv4 = node->GetObject<Ipv4>();
+        if (ipv4) {
+            Ipv4Address nodeIp = ipv4->GetAddress(1, 0).GetLocal();
+            tag.AddEntry(nodeIp, Simulator::Now());
+            
+            // --- Custom Log Start ---
+            // Create a copy to peek into the IP header
+            Ipv4Header ipHeader;
+            if (pktCopy->PeekHeader(ipHeader)) {
+                Ipv4Address dest = ipHeader.GetDestination();
+                std::string nodeName = Names::FindName(node);
+                NS_LOG_INFO("ForwarderPromiscRxCallback: Node " << nodeName 
+                            << " updates tag and transmits packet to " << dest 
+                            << " at time " << Simulator::Now());
+            }
+            // Log the current tag info
+            NS_LOG_INFO("ForwarderPromiscRxCallback: Updated PacketTraceTag: " << tag);
 
-        // Ptr<Node> node = forwarder.Get(i);
-        // Ptr<Ipv4L3Protocol> ipv4 = node->GetObject<Ipv4L3Protocol>();
-        
-        // // 绑定 IPv4 层的接收回调
-        // ipv4->TraceConnectWithoutContext("Rx", MakeCallback(&ForwarderRxCallback));
+            // --- Custom Log End ---
 
-        
-        Ptr<Node> node = forwarder.Get (i);
-        // For each net device installed on the forwarder node...
-        for (uint32_t j = 0; j < node->GetNDevices (); ++j)
-        {
-            Ptr<NetDevice> nd = node->GetDevice (j);
-            // Set the callback; this makes the device call ForwarderRxCallback
-            nd->SetReceiveCallback (MakeCallback (&ForwarderRxCallback));
+            // Store the log in the global data structure
+            AddToTraceRecord(tag);
+            
+            /* Zhuoxu: No nned to do this at now
+            // 4. Add modified tag back to the COPY
+            modifiedPacket->AddPacketTag(tag);
+            
+            // 5. Transmit the modified packet instead of original
+            device->Send(modifiedPacket, receiver, protocol);
+            
+            // 6. Return false to suppress original packet processing
+            return false;
+            */
         }
-        
+    }
+    // 7. Return true to allow original packet processing if no modifications
+    return true;
+}
+
+/**
+ * @brief Installs promiscuous-mode callbacks on all forwarder nodes.
+ * @param forwarder Container of forwarder nodes.
+ */
+void InstallForwarderPromiscCallbacks(NodeContainer &forwarder) {
+    NS_LOG_INFO("Installing promiscuous callbacks on forwarder nodes...");
+    for (uint32_t i = 0; i < forwarder.GetN(); ++i) {
+        Ptr<Node> node = forwarder.Get(i);
+        for (uint32_t j = 0; j < node->GetNDevices(); ++j) {
+            Ptr<NetDevice> nd = node->GetDevice(j);
+            NS_LOG_INFO("Setting promiscuous callback on device " 
+                        << nd->GetInstanceTypeId().GetName()
+                        << ", name id: " << Names::FindName(nd->GetNode()));
+            nd->SetPromiscReceiveCallback(
+                MakeCallback<bool, Ptr<NetDevice>, Ptr<const Packet>,
+                             uint16_t, const Address&, const Address&,
+                             NetDevice::PacketType>(&ForwarderPromiscRxCallback)
+            );
+        }
     }
 }

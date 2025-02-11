@@ -1,7 +1,11 @@
-src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/helper/global.cc.o: \
- /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/innetwork-task/helper/global.cc \
+src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/helper/global-data.cc.o: \
+ /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/innetwork-task/helper/global-data.cc \
  /usr/include/stdc-predef.h \
- /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/innetwork-task/helper/setup.h \
+ /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/innetwork-task/helper/global-data.h \
+ /usr/include/c++/11/map /usr/include/c++/11/string \
+ /usr/include/c++/11/cstdint \
+ /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/include/ns3/PacketTraceTag.h \
+ /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/innetwork-task/helper/PacketTraceTag.h \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/include/ns3/core-module.h \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/include/ns3/int64x64-128.h \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/core/model/int64x64-128.h \
@@ -16,8 +20,7 @@ src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/helper/global.cc.o: \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/core/helper/csv-reader.h \
  /usr/include/c++/11/cstddef \
  /usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h \
- /usr/include/c++/11/cstdint /usr/include/c++/11/fstream \
- /usr/include/c++/11/istream /usr/include/c++/11/string \
+ /usr/include/c++/11/fstream /usr/include/c++/11/istream \
  /usr/include/c++/11/vector \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/include/ns3/event-garbage-collector.h \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/core/helper/event-garbage-collector.h \
@@ -668,7 +671,6 @@ src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/helper/global.cc.o: \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/core/model/make-event.h \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/include/ns3/map-scheduler.h \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/core/model/map-scheduler.h \
- /usr/include/c++/11/map \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/include/ns3/math.h \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/core/model/math.h \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/include/ns3/names.h \
@@ -798,15 +800,10 @@ src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/helper/global.cc.o: \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/include/ns3/matrix-array.h \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/core/model/matrix-array.h \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/core/model/val-array.h \
- /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/include/ns3/network-module.h \
- /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/include/ns3/application-container.h \
- /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/network/helper/application-container.h \
- /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/include/ns3/application.h \
- /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/network/model/application.h \
- /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/network/model/node.h \
- /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/network/model/net-device.h \
- /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/network/model/address.h \
+ /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/include/ns3/tag.h \
+ /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/network/model/tag.h \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/network/model/tag-buffer.h \
+ /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/include/ns3/packet.h \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/network/model/packet.h \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/network/model/buffer.h \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/network/model/byte-tag-list.h \
@@ -826,18 +823,79 @@ src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/helper/global.cc.o: \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/network/utils/mac8-address.h \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/include/ns3/ipv4-address.h \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/network/utils/ipv4-address.h \
+ /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/innetwork-task/helper/parameter.h \
+ /usr/include/c++/11/unordered_set /usr/include/c++/11/ext/alloc_traits.h \
+ /usr/include/c++/11/bits/hashtable.h \
+ /usr/include/c++/11/bits/unordered_set.h \
+ /usr/include/c++/11/bits/range_access.h \
+ /usr/include/c++/11/bits/erase_if.h \
+ /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/innetwork-task/helper/utils.h \
+ /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/include/ns3/node.h \
+ /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/network/model/node.h \
+ /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/network/model/net-device.h \
+ /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/network/model/address.h \
+ /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/network/model/packet.h \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/include/ns3/ipv6-address.h \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/network/utils/ipv6-address.h \
+ /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/include/ns3/ipv4.h \
+ /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/internet/model/ipv4.h \
+ /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/internet/model/ipv4-interface-address.h \
+ /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/internet/model/ipv4-route.h \
+ /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/include/ns3/socket.h \
+ /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/network/model/socket.h \
+ /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/include/ns3/inet-socket-address.h \
+ /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/network/utils/inet-socket-address.h \
+ /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/include/ns3/inet6-socket-address.h \
+ /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/network/utils/inet6-socket-address.h \
+ /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/include/ns3/ipv4-interface-address.h \
+ /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/internet/model/ipv4-interface-address.h \
+ /usr/include/arpa/inet.h /usr/include/netinet/in.h \
+ /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
+ /usr/include/x86_64-linux-gnu/sys/socket.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_iovec.h \
+ /usr/include/x86_64-linux-gnu/bits/socket.h \
+ /usr/include/x86_64-linux-gnu/bits/socket_type.h \
+ /usr/include/x86_64-linux-gnu/bits/sockaddr.h \
+ /usr/include/x86_64-linux-gnu/asm/socket.h \
+ /usr/include/asm-generic/socket.h /usr/include/linux/posix_types.h \
+ /usr/include/linux/stddef.h \
+ /usr/include/x86_64-linux-gnu/asm/posix_types.h \
+ /usr/include/x86_64-linux-gnu/asm/posix_types_64.h \
+ /usr/include/asm-generic/posix_types.h \
+ /usr/include/x86_64-linux-gnu/asm/bitsperlong.h \
+ /usr/include/asm-generic/bitsperlong.h \
+ /usr/include/x86_64-linux-gnu/asm/sockios.h \
+ /usr/include/asm-generic/sockios.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_osockaddr.h \
+ /usr/include/x86_64-linux-gnu/bits/socket2.h \
+ /usr/include/x86_64-linux-gnu/bits/in.h /usr/include/endian.h \
+ /usr/include/x86_64-linux-gnu/bits/byteswap.h \
+ /usr/include/x86_64-linux-gnu/bits/uintn-identity.h \
+ /usr/include/c++/11/iomanip /usr/include/c++/11/bits/ios_base.h \
+ /usr/include/c++/11/locale /usr/include/c++/11/bits/localefwd.h \
+ /usr/include/c++/11/bits/locale_classes.h \
+ /usr/include/c++/11/bits/locale_facets.h \
+ /usr/include/c++/11/bits/locale_facets_nonio.h \
+ /usr/include/x86_64-linux-gnu/c++/11/bits/time_members.h \
+ /usr/include/x86_64-linux-gnu/c++/11/bits/messages_members.h \
+ /usr/include/libintl.h /usr/include/c++/11/bits/codecvt.h \
+ /usr/include/c++/11/bits/locale_facets_nonio.tcc \
+ /usr/include/c++/11/bits/locale_conv.h /usr/include/c++/11/streambuf \
+ /usr/include/c++/11/bits/stringfwd.h \
+ /usr/include/c++/11/bits/quoted_string.h \
+ /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/innetwork-task/helper/setup.h \
+ /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/include/ns3/network-module.h \
+ /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/include/ns3/application-container.h \
+ /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/network/helper/application-container.h \
+ /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/include/ns3/application.h \
+ /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/network/model/application.h \
+ /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/network/model/node.h \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/include/ns3/application-helper.h \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/network/helper/application-helper.h \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/network/helper/application-container.h \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/network/helper/node-container.h \
- /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/include/ns3/node.h \
- /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/network/model/node.h \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/include/ns3/delay-jitter-estimation.h \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/network/helper/delay-jitter-estimation.h \
- /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/include/ns3/packet.h \
- /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/network/model/packet.h \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/include/ns3/net-device-container.h \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/network/helper/net-device-container.h \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/include/ns3/net-device.h \
@@ -886,16 +944,8 @@ src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/helper/global.cc.o: \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/network/model/packet-tag-list.h \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/include/ns3/socket-factory.h \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/network/model/socket-factory.h \
- /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/include/ns3/socket.h \
- /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/network/model/socket.h \
- /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/include/ns3/inet-socket-address.h \
- /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/network/utils/inet-socket-address.h \
- /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/include/ns3/inet6-socket-address.h \
- /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/network/utils/inet6-socket-address.h \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/include/ns3/tag-buffer.h \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/network/model/tag-buffer.h \
- /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/include/ns3/tag.h \
- /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/network/model/tag.h \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/include/ns3/trailer.h \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/network/model/trailer.h \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/include/ns3/header-serialization-test.h \
@@ -1001,10 +1051,6 @@ src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/helper/global.cc.o: \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/internet/helper/internet-stack-helper.h \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/internet/helper/internet-trace-helper.h \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/internet/helper/ipv4-interface-container.h \
- /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/include/ns3/ipv4.h \
- /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/internet/model/ipv4.h \
- /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/internet/model/ipv4-interface-address.h \
- /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/internet/model/ipv4-route.h \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/internet/helper/ipv6-interface-container.h \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/include/ns3/ipv6.h \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/internet/model/ipv6.h \
@@ -1112,8 +1158,6 @@ src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/helper/global.cc.o: \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/internet/model/ipv4-global-routing.h \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/include/ns3/ipv4-header.h \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/internet/model/ipv4-header.h \
- /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/include/ns3/ipv4-interface-address.h \
- /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/internet/model/ipv4-interface-address.h \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/include/ns3/ipv4-packet-filter.h \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/internet/model/ipv4-packet-filter.h \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/include/ns3/packet-filter.h \
@@ -1217,35 +1261,8 @@ src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/helper/global.cc.o: \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/internet/model/tcp-socket.h \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/include/ns3/parameter.h \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/innetwork-task/helper/parameter.h \
- /usr/include/c++/11/unordered_set /usr/include/c++/11/ext/alloc_traits.h \
- /usr/include/c++/11/bits/hashtable.h \
- /usr/include/c++/11/bits/unordered_set.h \
- /usr/include/c++/11/bits/range_access.h \
- /usr/include/c++/11/bits/erase_if.h \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/include/ns3/utils.h \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/innetwork-task/helper/utils.h \
- /usr/include/arpa/inet.h /usr/include/netinet/in.h \
- /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
- /usr/include/x86_64-linux-gnu/sys/socket.h \
- /usr/include/x86_64-linux-gnu/bits/types/struct_iovec.h \
- /usr/include/x86_64-linux-gnu/bits/socket.h \
- /usr/include/x86_64-linux-gnu/bits/socket_type.h \
- /usr/include/x86_64-linux-gnu/bits/sockaddr.h \
- /usr/include/x86_64-linux-gnu/asm/socket.h \
- /usr/include/asm-generic/socket.h /usr/include/linux/posix_types.h \
- /usr/include/linux/stddef.h \
- /usr/include/x86_64-linux-gnu/asm/posix_types.h \
- /usr/include/x86_64-linux-gnu/asm/posix_types_64.h \
- /usr/include/asm-generic/posix_types.h \
- /usr/include/x86_64-linux-gnu/asm/bitsperlong.h \
- /usr/include/asm-generic/bitsperlong.h \
- /usr/include/x86_64-linux-gnu/asm/sockios.h \
- /usr/include/asm-generic/sockios.h \
- /usr/include/x86_64-linux-gnu/bits/types/struct_osockaddr.h \
- /usr/include/x86_64-linux-gnu/bits/socket2.h \
- /usr/include/x86_64-linux-gnu/bits/in.h /usr/include/endian.h \
- /usr/include/x86_64-linux-gnu/bits/byteswap.h \
- /usr/include/x86_64-linux-gnu/bits/uintn-identity.h \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/include/ns3/tcp-dctcp.h \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/internet/model/tcp-dctcp.h \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/internet/model/tcp-linux-reno.h \
@@ -1384,8 +1401,6 @@ src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/helper/global.cc.o: \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/applications/model/TCPserver.h \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/include/ns3/vectorop.h \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/innetwork-task/helper/vectorop.h \
- /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/innetwork-task/helper/utils.h \
- /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/innetwork-task/helper/parameter.h \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/include/ns3/TCPclient.h \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/applications/model/TCPclient.h \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/include/ns3/consumer.h \
@@ -1396,6 +1411,4 @@ src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/helper/global.cc.o: \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/include/ns3/aggregator.h \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/innetwork-task/model/aggregator.h \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/include/ns3/InnetworkAggregationInterface.h \
- /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/innetwork-task/model/InnetworkAggregationInterface.h \
- /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/include/ns3/PacketTraceTag.h \
- /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/innetwork-task/helper/PacketTraceTag.h
+ /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/innetwork-task/model/InnetworkAggregationInterface.h

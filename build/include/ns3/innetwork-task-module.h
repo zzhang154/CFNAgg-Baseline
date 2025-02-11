@@ -8,6 +8,7 @@
     #include <ns3/vectorop.h>
     #include <ns3/setup.h>
     #include <ns3/PacketTraceTag.h>
+    #include <ns3/global-data.h>
     #include <ns3/aggregator.h>
     #include <ns3/consumer.h>
     #include <ns3/InnetworkAggregationInterface.h>

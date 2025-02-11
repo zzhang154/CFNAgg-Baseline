@@ -16,7 +16,7 @@ CXX_FLAGS = -Os -g -DNDEBUG -fPIC   -fno-semantic-interposition -fdiagnostics-co
 
 # PCH options: src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/helper/setup.cc.o_OPTIONS = -Winvalid-pch;-include;/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/cmake-cache/CMakeFiles/stdlib_pch-default.dir/cmake_pch.hxx
 
-# PCH options: src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/helper/global.cc.o_OPTIONS = -Winvalid-pch;-include;/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/cmake-cache/CMakeFiles/stdlib_pch-default.dir/cmake_pch.hxx
+# PCH options: src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/helper/global-data.cc.o_OPTIONS = -Winvalid-pch;-include;/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/cmake-cache/CMakeFiles/stdlib_pch-default.dir/cmake_pch.hxx
 
 # PCH options: src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/model/aggregator.cc.o_OPTIONS = -Winvalid-pch;-include;/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/cmake-cache/CMakeFiles/stdlib_pch-default.dir/cmake_pch.hxx
 

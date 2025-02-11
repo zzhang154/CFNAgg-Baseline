@@ -75,15 +75,6 @@ namespace ns3 {
         this->vsize = size;
     }
 
-    ns3::Ipv4Address
-    InnetworkAggregationInterface::GetIpAddrFromNode (Ptr<Node> node){
-        NS_LOG_FUNCTION (this);
-        Ptr<Ipv4> ipv4 = node->GetObject<Ipv4>();
-        Ipv4InterfaceAddress iaddr = ipv4->GetAddress (1, 0);
-        Ipv4Address addr = iaddr.GetLocal ();
-        return addr;
-    }
-
     // socketPool:
     // <addrString(IPv4),Ptr<Application> 
     void 
@@ -129,17 +120,10 @@ namespace ns3 {
             
             // Zhuoxu: We only pass the node parameter in this function.
             Ptr<TCPserver> myserver = CreateObject<TCPserver>(node);
-            // Zhuoxu: Here, we should defind another set function that pass the address of the IterationChunk to all the servers binded in this node.
-            // myserver->SetNode(node);
-            // myserver->SetcGroupSize(cGroup.size());
-            // myserver->SetIterChunkPtr(&this->iterChunk);
             myserver->Bind(serverPort);
-            // set server IP address
-            // myserver->SetPeerAddrStr(addrStr);
-            // myserver->SetLocalAddressStr(this->thisAddress);
             
             // NS_LOG_DEBUG("Output id for the server: socketPool[" << addrStr << "] " << );
-            myserver->GetSocket()->GetObject<TcpSocketBase>()->GetTxAvailable();
+            // access to TxBuffer --- myserver->GetSocket()->GetObject<TcpSocketBase>()->GetTxAvailable();
 
             myserver->SetParams(node, cGroup.size(), &this->iterChunk, addrStr, this->thisAddress, &this->compQueue);
 
@@ -155,7 +139,7 @@ namespace ns3 {
         }
 
         NS_LOG_DEBUG("Connection Setting Finishing in: "<< Simulator::Now().GetMilliSeconds() << "ms\n");
-        NS_LOG_DEBUG( this << "this->address: " << this->thisAddress << " sGroup.size(): " << this->sGroup.size() << " cGroup.size(): " << this->cGroup.size());
+        NS_LOG_DEBUG( this << " this->address: " << this->thisAddress << " sGroup.size(): " << this->sGroup.size() << " cGroup.size(): " << this->cGroup.size());
 
         NS_LOG_DEBUG( "-------Node " << this->thisAddress << " Connection Setting Finishing in: " << Simulator::Now().GetMilliSeconds() << "ms-----------\n");
     }
@@ -248,21 +232,11 @@ namespace ns3 {
             }
         }
         else{
-            
-            if(!isEnd){
-                
-                // test if the interval of the millisecond will affect the process? Here we try 1ms to see what's happen.
-                ns3::Simulator::Schedule(ns3::NanoSeconds(300), &InnetworkAggregationInterface::ReceiveDataFrom, this, fromStr);
-            }
+            if(isEnd)
+                return;
+            // test if the interval of the millisecond will affect the process? Here we try 1ms to see what's happen.
+            ns3::Simulator::Schedule(ns3::NanoSeconds(300), &InnetworkAggregationInterface::ReceiveDataFrom, this, fromStr);
         }
-    // Zhuoxu: we don't need this currently.
-    // void 
-    // InnetworkAggregationInterface::ScheduleSendResponseVToP (std::vector<uint64_t> &vec , uint16_t iterationNum){
-    //     if(SendResponseVToP (iterChunk[iterNum].vec, iterNum) > 0)
-    //         return;
-    //     else
-    //         ns3::Simulator::Schedule(ns3::MilliSeconds(4), &InnetworkAggregationInterface::ScheduleSendResponseVToP, this, vec, iterationNum);
-    // }
     }
 
     int 
@@ -296,8 +270,8 @@ namespace ns3 {
         // Ensure vsize is correctly defined and has a valid value
         if (vsize <= 0) {
             NS_LOG_ERROR("Invalid vsize: " << vsize);
-        return flag;
-    }
+            return flag;
+        }
 
         uint8_t type = 1;
         //uint8_t *serializeVec = new uint8_t[end]();
@@ -323,22 +297,8 @@ namespace ns3 {
     // SendPacket function should be able to distinguish leaf node and non-leaf node. Their behavior is different.
     int
     InnetworkAggregationInterface::SendPacket (std::string toStr, uint16_t iterationNum, std::vector<uint8_t> &chunkBuffer, std::string fromStr){
-        //NS_LOG_INFO("iteration-"<<iterationNum-uint16_t(0));
+        NS_LOG_INFO(this<<"iteration-"<<iterationNum-uint16_t(0));
 
-        // Zhuoxu: send ending packet for padding. Otherwise, packet for the last iteration cannot be process because of size(MTU) != size(per quic frame)
-        if (iterationNum == maxIteration ){
-            std::vector<uint8_t> chunkBuffer = std::vector<uint8_t>(pktlen,0);
-
-            int sentSize = -1;
-            for (uint16_t i = 0; i < 10; ++i) {
-                chunkBuffer[i] = 7;
-            }
-
-            for(int i=10;i<pktlen;i++)
-                chunkBuffer[i] = 9;
-
-            return SendEndPacket (toStr, chunkBuffer, fromStr);
-        }
 
         // Zhuoxu: change the producer to client here
         Ptr<TCPclient> client = socketPool[toStr]->GetObject<TCPclient>();
@@ -347,7 +307,26 @@ namespace ns3 {
 
         // record the time RTT
         // 在这里获取是否
-        int sentSize = client->Send(chunkBuffer.data(),pktlen);
+        int sentSize;
+        // if(this->cGroup.size() == 0)
+        // {
+        //     PacketTraceTag tag;
+        //     tag.SetIteration(iterationNum);
+        //     client->SetSendTag(tag);
+        //     // Producer code
+        //     sentSize = client->Send(chunkBuffer.data(),pktlen,true);
+        // }
+        // else
+        //     sentSize = client->Send(chunkBuffer.data(),pktlen,false);
+
+        // create tag for the packet
+        PacketTraceTag tag;
+        tag.SetIteration(iterationNum);
+        client->SetSendTag(tag);
+        // Producer code
+        sentSize = client->Send(chunkBuffer.data(),pktlen,true);
+
+        
         // determine if the sent operation success
         if(sentSize > 0){
             NS_LOG_DEBUG(this << " client->Send()--sentSize success: " << sentSize << " at iteration "<<iterationNum-uint16_t(0));
@@ -392,22 +371,7 @@ namespace ns3 {
         // if it is a producer, then begin the next send call of next iteration.
     }
 
-    int
-    InnetworkAggregationInterface::SendEndPacket (std::string toStr, std::vector<uint8_t> &chunkBuffer, std::string fromStr){
-        // Zhuoxu: change the producer to client here
-        Ptr<TCPclient> client = socketPool[toStr]->GetObject<TCPclient>();
-        NS_LOG_DEBUG( this << " Sends End Packet to socketPool["<<toStr<<"] ");
-
-        // Zhuoxu: for debug
-        std::cout << "\n Sends End Packet from " << thisAddress << " to " << toStr << std::endl;
-
-        int sentSize = client->Send(chunkBuffer.data(),pktlen);
-        // determine if the sent operation success
-
-        // Zhuoxu: only check buffer for TraceIPAddress
-        return sentSize;
-    }
-
+    // Zhuoxu: producers send the data.
     void 
     InnetworkAggregationInterface::ProduceVToP (uint16_t iterationNum){
         if(iterationNum == this->maxIteration)
@@ -444,13 +408,6 @@ namespace ns3 {
         if (!outFile.is_open()) {
             NS_LOG_INFO ("Failed to open file" << fileName);
         }
-    }
-
-    void 
-    InnetworkAggregationInterface::Addr2Str (Address addr, std::string &str) {
-    std::stringstream ss;
-    ss << Ipv4Address::ConvertFrom (addr);
-    str = ss.str();
     }
 
     uint16_t 
@@ -503,29 +460,7 @@ namespace ns3 {
             }
         }
 
-        DisableLoggingComponents();
-    }
-
-    void 
-    InnetworkAggregationInterface::EnableLoggingComponents() {
-    LogComponentEnable("InnetworkAggregationInterface", LOG_LEVEL_ALL);
-    LogComponentEnable("TCPclient", LOG_LEVEL_ALL);
-    LogComponentEnable("TCPserver", LOG_LEVEL_ALL);
-    LogComponentEnable("TcpSocketBase", LOG_LEVEL_ALL);
-    LogComponentEnable("TcpRxBuffer", LOG_LEVEL_ALL);
-    LogComponentEnable("TcpTxBuffer", LOG_LEVEL_ALL);
-    LogComponentEnable("Packet", LOG_LEVEL_DEBUG);
-    }
-
-    void 
-    InnetworkAggregationInterface::DisableLoggingComponents() {
-    LogComponentDisable("InnetworkAggregationInterface", LOG_LEVEL_ALL);
-    LogComponentDisable("TCPclient", LOG_LEVEL_ALL);
-    LogComponentDisable("TCPserver", LOG_LEVEL_ALL);
-    LogComponentDisable("TcpSocketBase", LOG_LEVEL_ALL);
-    LogComponentDisable("TcpRxBuffer", LOG_LEVEL_ALL);
-    LogComponentDisable("TcpTxBuffer", LOG_LEVEL_ALL);
-    LogComponentDisable("Packet", LOG_LEVEL_DEBUG);
+        // DisableLoggingComponents();
     }
 
     void 

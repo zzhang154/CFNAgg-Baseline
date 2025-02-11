@@ -333,6 +333,7 @@ void
 PointToPointNetDevice::Receive(Ptr<Packet> packet)
 {
     NS_LOG_FUNCTION(this << packet);
+    // std::cout << "PointToPointNetDevice::Receive(Ptr<Packet> packet)" << std::endl;
     uint16_t protocol = 0;
 
     if (m_receiveErrorModel && m_receiveErrorModel->IsCorrupt(packet))

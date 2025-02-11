@@ -15,6 +15,7 @@
 #include <string>
 #include <utility>
 #include <iostream>
+#include <iomanip>
 
 namespace ns3 {
 
@@ -173,10 +174,11 @@ public:
    */
   virtual void Print (std::ostream &os) const
   {
-    os << "Iteration: " << m_iteration << " Trace: ";
+    os << "\nIteration: " << m_iteration << " Trace:\n";
     for (std::vector<TraceEntry>::const_iterator it = m_trace.begin (); it != m_trace.end (); ++it)
       {
-        os << it->nodeName << "(" << it->addr << ")@" << it->t.GetSeconds () << " ";
+        os << it->nodeName << "(" << it->addr << ")@"
+          << std::fixed << std::setprecision(6) << it->t.GetSeconds () << "s\n";
       }
   }
   
@@ -185,7 +187,7 @@ public:
    *
    * \param iteration The iteration number to set.
    */
-  void SetIteration (uint32_t iteration)
+  void SetIteration (uint16_t iteration)
   {
     m_iteration = iteration;
   }
@@ -231,8 +233,9 @@ public:
     return m_trace;
   }
 
+
 private:
-  uint32_t m_iteration;               ///< Iteration number for grouping packets.
+  uint16_t m_iteration;               ///< Iteration number for grouping packets.
   std::vector<TraceEntry> m_trace;     ///< Vector of trace entries.
 }; // class PacketTraceTag
 

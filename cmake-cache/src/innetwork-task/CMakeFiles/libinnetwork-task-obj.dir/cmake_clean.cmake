@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/libinnetwork-task-obj.dir/helper/global.cc.o"
-  "CMakeFiles/libinnetwork-task-obj.dir/helper/global.cc.o.d"
+  "CMakeFiles/libinnetwork-task-obj.dir/helper/global-data.cc.o"
+  "CMakeFiles/libinnetwork-task-obj.dir/helper/global-data.cc.o.d"
   "CMakeFiles/libinnetwork-task-obj.dir/helper/parameter.cc.o"
   "CMakeFiles/libinnetwork-task-obj.dir/helper/parameter.cc.o.d"
   "CMakeFiles/libinnetwork-task-obj.dir/helper/setup.cc.o"

@@ -190,29 +190,29 @@ libinnetwork-task/fast:
 	cd /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/cmake-cache && $(MAKE) $(MAKESILENT) -f src/innetwork-task/CMakeFiles/libinnetwork-task.dir/build.make src/innetwork-task/CMakeFiles/libinnetwork-task.dir/build
 .PHONY : libinnetwork-task/fast
 
-helper/global.o: helper/global.cc.o
-.PHONY : helper/global.o
+helper/global-data.o: helper/global-data.cc.o
+.PHONY : helper/global-data.o
 
 # target to build an object file
-helper/global.cc.o:
-	cd /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/cmake-cache && $(MAKE) $(MAKESILENT) -f src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/build.make src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/helper/global.cc.o
-.PHONY : helper/global.cc.o
+helper/global-data.cc.o:
+	cd /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/cmake-cache && $(MAKE) $(MAKESILENT) -f src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/build.make src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/helper/global-data.cc.o
+.PHONY : helper/global-data.cc.o
 
-helper/global.i: helper/global.cc.i
-.PHONY : helper/global.i
+helper/global-data.i: helper/global-data.cc.i
+.PHONY : helper/global-data.i
 
 # target to preprocess a source file
-helper/global.cc.i:
-	cd /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/cmake-cache && $(MAKE) $(MAKESILENT) -f src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/build.make src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/helper/global.cc.i
-.PHONY : helper/global.cc.i
+helper/global-data.cc.i:
+	cd /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/cmake-cache && $(MAKE) $(MAKESILENT) -f src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/build.make src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/helper/global-data.cc.i
+.PHONY : helper/global-data.cc.i
 
-helper/global.s: helper/global.cc.s
-.PHONY : helper/global.s
+helper/global-data.s: helper/global-data.cc.s
+.PHONY : helper/global-data.s
 
 # target to generate assembly for a file
-helper/global.cc.s:
-	cd /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/cmake-cache && $(MAKE) $(MAKESILENT) -f src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/build.make src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/helper/global.cc.s
-.PHONY : helper/global.cc.s
+helper/global-data.cc.s:
+	cd /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/cmake-cache && $(MAKE) $(MAKESILENT) -f src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/build.make src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/helper/global-data.cc.s
+.PHONY : helper/global-data.cc.s
 
 helper/parameter.o: helper/parameter.cc.o
 .PHONY : helper/parameter.o
@@ -420,9 +420,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... libinnetwork-task"
 	@echo "... libinnetwork-task-obj"
-	@echo "... helper/global.o"
-	@echo "... helper/global.i"
-	@echo "... helper/global.s"
+	@echo "... helper/global-data.o"
+	@echo "... helper/global-data.i"
+	@echo "... helper/global-data.s"
 	@echo "... helper/parameter.o"
 	@echo "... helper/parameter.i"
 	@echo "... helper/parameter.s"

@@ -1448,6 +1448,24 @@ scratch/CMakeFiles/scratch_innetwork-test.dir/innetwork-test.cc.o: CMakeFiles/st
   ../src/innetwork-task/helper/vectorop.h \
   ../src/innetwork-task/helper/utils.h \
   ../src/innetwork-task/helper/parameter.h \
+  ../build/include/ns3/PacketTraceTag.h \
+  ../src/innetwork-task/helper/PacketTraceTag.h \
+  /usr/include/c++/11/iomanip \
+  /usr/include/c++/11/bits/ios_base.h \
+  /usr/include/c++/11/locale \
+  /usr/include/c++/11/bits/localefwd.h \
+  /usr/include/c++/11/bits/locale_classes.h \
+  /usr/include/c++/11/bits/locale_facets.h \
+  /usr/include/c++/11/bits/locale_facets_nonio.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/time_members.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/messages_members.h \
+  /usr/include/libintl.h \
+  /usr/include/c++/11/bits/codecvt.h \
+  /usr/include/c++/11/bits/locale_facets_nonio.tcc \
+  /usr/include/c++/11/bits/locale_conv.h \
+  /usr/include/c++/11/streambuf \
+  /usr/include/c++/11/bits/stringfwd.h \
+  /usr/include/c++/11/bits/quoted_string.h \
   ../build/include/ns3/TCPclient.h \
   ../src/applications/model/TCPclient.h \
   ../build/include/ns3/consumer.h \
@@ -1459,13 +1477,11 @@ scratch/CMakeFiles/scratch_innetwork-test.dir/innetwork-test.cc.o: CMakeFiles/st
   ../src/innetwork-task/model/aggregator.h \
   ../build/include/ns3/InnetworkAggregationInterface.h \
   ../src/innetwork-task/model/InnetworkAggregationInterface.h \
+  ../build/include/ns3/global-data.h \
+  ../src/innetwork-task/helper/global-data.h \
   ../build/include/ns3/setup.h \
-  ../src/innetwork-task/helper/setup.h \
-  ../build/include/ns3/PacketTraceTag.h \
-  ../src/innetwork-task/helper/PacketTraceTag.h
+  ../src/innetwork-task/helper/setup.h
 
-
-../src/innetwork-task/helper/PacketTraceTag.h:
 
 ../build/include/ns3/setup.h:
 
@@ -1481,6 +1497,26 @@ scratch/CMakeFiles/scratch_innetwork-test.dir/innetwork-test.cc.o: CMakeFiles/st
 
 ../src/applications/model/TCPclient.h:
 
+/usr/include/c++/11/bits/locale_conv.h:
+
+/usr/include/c++/11/bits/locale_facets_nonio.tcc:
+
+/usr/include/x86_64-linux-gnu/c++/11/bits/messages_members.h:
+
+/usr/include/x86_64-linux-gnu/c++/11/bits/time_members.h:
+
+/usr/include/c++/11/bits/locale_facets_nonio.h:
+
+/usr/include/c++/11/bits/locale_facets.h:
+
+/usr/include/c++/11/bits/locale_classes.h:
+
+/usr/include/c++/11/locale:
+
+/usr/include/c++/11/bits/ios_base.h:
+
+../src/innetwork-task/helper/PacketTraceTag.h:
+
 ../src/innetwork-task/helper/vectorop.h:
 
 ../src/applications/model/udp-echo-server.h:
@@ -1492,6 +1528,8 @@ scratch/CMakeFiles/scratch_innetwork-test.dir/innetwork-test.cc.o: CMakeFiles/st
 ../build/include/ns3/three-gpp-http-server.h:
 
 ../src/applications/model/three-gpp-http-header.h:
+
+/usr/include/c++/11/bits/stringfwd.h:
 
 ../build/include/ns3/three-gpp-http-client.h:
 
@@ -1556,6 +1594,8 @@ scratch/CMakeFiles/scratch_innetwork-test.dir/innetwork-test.cc.o: CMakeFiles/st
 ../build/include/ns3/point-to-point-module.h:
 
 ../build/include/ns3/windowed-filter.h:
+
+/usr/include/libintl.h:
 
 ../build/include/ns3/udp-socket.h:
 
@@ -1943,6 +1983,8 @@ scratch/CMakeFiles/scratch_innetwork-test.dir/innetwork-test.cc.o: CMakeFiles/st
 
 /usr/include/boost/mpl/list/aux_/empty.hpp:
 
+../build/include/ns3/global-data.h:
+
 /usr/include/boost/preprocessor/repetition/enum_params.hpp:
 
 ../src/internet/model/tcp-htcp.h:
@@ -2276,6 +2318,8 @@ scratch/CMakeFiles/scratch_innetwork-test.dir/innetwork-test.cc.o: CMakeFiles/st
 /usr/include/c++/11/utility:
 
 ../build/include/ns3/callback.h:
+
+/usr/include/c++/11/iomanip:
 
 /usr/include/c++/11/bits/shared_ptr_atomic.h:
 
@@ -2845,6 +2889,8 @@ CMakeFiles/stdlib_pch_exec.dir/cmake_pch.hxx:
 
 /usr/include/c++/11/thread:
 
+/usr/include/c++/11/bits/quoted_string.h:
+
 ../src/core/model/make-event.h:
 
 ../src/network/utils/packet-socket-address.h:
@@ -2984,6 +3030,8 @@ CMakeFiles/stdlib_pch_exec.dir/cmake_pch.hxx:
 /usr/include/boost/type_traits/detail/yes_no_type.hpp:
 
 /usr/include/boost/mpl/list/aux_/preprocessed/plain/list20.hpp:
+
+/usr/include/c++/11/streambuf:
 
 ../build/include/ns3/time-printer.h:
 
@@ -3166,6 +3214,8 @@ CMakeFiles/stdlib_pch_exec.dir/cmake_pch.hxx:
 /usr/include/boost/preprocessor/config/config.hpp:
 
 /usr/include/boost/preprocessor/empty.hpp:
+
+/usr/include/c++/11/bits/codecvt.h:
 
 ../src/internet/model/tcp-option.h:
 
@@ -3705,6 +3755,8 @@ CMakeFiles/stdlib_pch_exec.dir/cmake_pch.hxx:
 
 ../src/network/helper/delay-jitter-estimation.h:
 
+/usr/include/c++/11/bits/localefwd.h:
+
 ../build/include/ns3/flow-id-tag.h:
 
 ../build/include/ns3/net-device-container.h:
@@ -3982,6 +4034,8 @@ CMakeFiles/stdlib_pch_exec.dir/cmake_pch.hxx:
 /usr/include/c++/11/semaphore:
 
 ../src/internet/helper/ipv6-address-helper.h:
+
+../src/innetwork-task/helper/global-data.h:
 
 ../build/include/ns3/ipv6-interface-container.h:
 
