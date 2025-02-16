@@ -146,6 +146,7 @@ void BuildTopo(std::string &linkFile, NodeContainer &consumer, NodeContainer &pr
         if (!(iss >> node1 >> node2 >> dataRate >> lossRate >> delay >> queueSize)) {
             continue; // Skip malformed lines
         }
+        std::cout << "lossRate: " << lossRate << std::endl;
 
         // Configure P2P link parameters
         p2p.SetDeviceAttribute("DataRate", StringValue(dataRate));
@@ -176,7 +177,7 @@ void BuildTopo(std::string &linkFile, NodeContainer &consumer, NodeContainer &pr
         Ipv4Address node1Addr = n1n2.Get(0)->GetObject<Ipv4>()->GetAddress(1,0).GetLocal();
         Ipv4Address node2Addr = n1n2.Get(1)->GetObject<Ipv4>()->GetAddress(1,0).GetLocal();
         std::cout << "---node1 ip--- " << node1 << " --- " << node1Addr
-                  << " , node2 ip--- " << node2 << " --- " << node2Addr << std::endl;
+                  << ", node2 ip--- " << node2 << " --- " << node2Addr << std::endl;
         ipToNodeName[Ipv4AddressToString(node1Addr)] = node1;
         ipToNodeName[Ipv4AddressToString(node2Addr)] = node2;
     }
@@ -322,6 +323,10 @@ void CreateAggTree(std::string &nodeName, std::vector<Address> pa,
         Createagg(server_port, itr, rank, vsize, pa, cGroup, node);
     else if (nodeName.find("pro") != std::string::npos)
         Createpro(server_port, itr, rank, vsize, pa, cGroup, node);
+    else if (nodeName.find("for") != std::string::npos){
+        node->SetAttribute("IpForward", BooleanValue(true));
+        std::cout << "node->SetAttribute(IpForward, BooleanValue(true));";
+    }
 }
 
 /**
@@ -547,6 +552,13 @@ void InstallForwarderPromiscCallbacks(NodeContainer &forwarder) {
                              uint16_t, const Address&, const Address&,
                              NetDevice::PacketType>(&ForwarderPromiscRxCallback)
             );
+        }
+        Ptr<Ipv4> ipv4 = node->GetObject<Ipv4>();
+        if (ipv4) {
+            ipv4->SetAttribute("IpForward", BooleanValue(true));  // Enable forwarding
+            NS_LOG_UNCOND("Enabled IP forwarding on node: " << node->GetId());
+        } else {
+            NS_LOG_ERROR("Node " << node->GetId() << " has no IPv4 stack installed!");
         }
     }
 }

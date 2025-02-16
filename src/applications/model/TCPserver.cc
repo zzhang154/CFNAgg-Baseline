@@ -417,6 +417,7 @@ TCPserver::HandleRead (Ptr<Socket> socket) {
   Ptr<Packet> packet, pktCopy;
   Address from;
   bool flag = true;
+  LogSocketInfo(); // Zhuoxu: for debug
   // Zhuoxu: also output the value of RxstreamBuffer.
   while ((memState > 0) && (packet = socket->GetObject<TcpSocketBase>()->RecvFrom (memState * pktlen, 0, from)))
   {

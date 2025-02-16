@@ -77,3 +77,4 @@ PointToPointNetDevice::Receive(Ptr<Packet> packet)
     uint16_t protocol = 0;
 
 Here, I add a std::cout to output the information when the packet is transfered via the device.
+

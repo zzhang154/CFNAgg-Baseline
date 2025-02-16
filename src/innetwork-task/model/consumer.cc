@@ -47,7 +47,7 @@ namespace ns3 {
         this->cc_name = cc_name;
         this->nodeInnetworkAggregationInterface = CreateObject<InnetworkAggregationInterface> ();
         this->nodeInnetworkAggregationInterface->SetupInnetworkAggregationInterface (port, itr, rank, sGroup, cGroup, GetNode (), false);
-        this->nodeInnetworkAggregationInterface->SetOutFile (fileName);
+        // this->nodeInnetworkAggregationInterface->SetOutFile (fileName);
         this->nodeInnetworkAggregationInterface->SetVSize (vsize);
     }
 

@@ -166,3 +166,49 @@ In address: 10.2.27.2
 In address: 10.2.27.2
 In address: 10.2.27.2
 why the destructor will be called multiple times.
+
+Todo 2025/2/15:
+1. OutputRttData should be able to record all the children's record of a given node.
+But currently, it seems that the tcp-socket cannot output the peer address correctly.
+// if (localAddressStr == "10.2.17.2")
+    // {
+    //     NS_LOG_UNCOND(this
+    //         << " localAddressStr: " << this->localAddressStr
+    //         << " peerAddressStr: " << this->peerAddressStr
+    //         << " at time: " << Simulator::Now().GetSeconds()
+    //     );
+    // }
+
+Partial solve:
+Ipv4 address doesn't match, when the TCPclient create a tcp-socket-base object and do the connection.
+For example, conversion "10.2.3.2" to "10.2.4.1". So, in order to solve this problem, a table called "std::unordered_map<std::string, std::string> NewToOldIpMap;" is created in the "parameter.h" in order to do the transform.
+
+(1). But why con0 has the forwarder10 as its children?
+Ans: cannot solve the problem currently, we found that 
+ The tp filename is: ./log/tp/con00+forwarder10_TP.txt
+ The tp filename is: ./log/tp/con01+forwarder10_TP.txt
+ The two sockets connected to consumer have the same ip address. So, we have to use a global variable "int conCount = 0;" defined in the "parameter.cc" to distinguish different children?
+
+ But in the later exp, how can we distinguish multiple flows?
+
+ Original Client IP: 102.102.102.102 | Socket Peer IP: 10.1.6.1
+0x55d9cd154e40 Verified Addresses:
+  Local: 10.2.3.2
+  Peer:  10.1.6.1
+  Time:  2.00507
+
+  It seems that packet->PeekHeader(tcpHeader) cannot even solve the problem. Maybe tomorrow let the gpt to optimize the client and server code?
+
+2. How to activate the loss rate on the link?
+in "setup.cc" file, 
+std::istringstream iss(line);
+        std::string node1, node2, dataRate, delay, queueSize;
+        double lossRate;
+        if (!(iss >> node1 >> node2 >> dataRate >> lossRate >> delay >> queueSize)) {
+            continue; // Skip malformed lines
+        }
+        std::cout << "lossRate: " << lossRate << std::endl;
+
+It seems very strange. How can we unify all the links？
+
+3. Optimize code strcuture for "TCPserver.cc" and "TCPclient.cc"

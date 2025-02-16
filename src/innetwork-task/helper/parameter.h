@@ -22,6 +22,7 @@ namespace ns3 {
     extern std::string TraceIPAddress;
     extern bool debugFlag;
     extern std::unordered_set<std::string> ipAddressFilter;
+    extern int conCount;
 
     // Global trace record: <pro, iter, Tag>
     // extern std::map<std::string, std::map<uint16_t, PacketTraceTag>> traceRecord;
@@ -32,8 +33,11 @@ namespace ns3 {
 
     // IpNodeMap
     extern std::unordered_map<std::string, std::string> ipToNodeName;
+    extern std::unordered_map<std::string, std::string> NewToOldIpMap;
     void BuildIpToNodeMap(); // Populates the map
     std::string GetNodeNameFromIp(const std::string& ip); // Query function
+    void PrintIpToNodeMap();
+    void PrintNewToOldIpMap();
 
     // traceRecord management functions
     // void AddToTraceRecord(PacketTraceTag tag);

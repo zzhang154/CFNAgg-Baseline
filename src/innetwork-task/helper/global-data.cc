@@ -106,6 +106,8 @@ namespace ns3 {
         }
         
         ofs.close();
+        // Clear the global trace record
+        traceRecord.clear();
         NS_LOG_INFO("PrintTraceRecord: Trace record written to trace_record.log");
     }
 

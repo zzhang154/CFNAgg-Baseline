@@ -35,6 +35,7 @@
 
 #include <ns3/tcp-socket-factory.h>
 #include <ns3/callback.h>
+#include "ns3/parameter.h"
 
 namespace ns3 {
 
@@ -75,6 +76,9 @@ TCPclient::SetRemote (Address ip, uint16_t port) {
   m_peerIp = ip;
   m_peerPort = port;
   m_peerAddress = InetSocketAddress(Ipv4Address::ConvertFrom(m_peerIp),m_peerPort);
+  NS_LOG_DEBUG( this
+          << InetSocketAddress::ConvertFrom(m_peerAddress).GetIpv4() << " "
+          << InetSocketAddress::ConvertFrom(m_peerAddress).GetPort() );
 }
 
 void
@@ -97,10 +101,26 @@ TCPclient::SetCongestionControlAlgorithm(std::string cc_name) {
 
 InetSocketAddress 
 TCPclient::GetLocalAddress() const {
-    Ptr<Node> node=m_node;
-    Ptr<Ipv4> ipv4 = node->GetObject<Ipv4> ();
-    Ipv4Address local_ip = ipv4->GetAddress (1, 0).GetLocal();
-    return InetSocketAddress{local_ip,m_bindPort}; 
+    Ptr<Node> node = m_node;
+    Ptr<Ipv4> ipv4 = node->GetObject<Ipv4>();
+    Ipv4Address peerIp = InetSocketAddress::ConvertFrom(m_peerAddress).GetIpv4();
+
+    // Use routing to find the correct interface for the peer
+    Ptr<Ipv4RoutingProtocol> routing = ipv4->GetRoutingProtocol();
+    Ipv4Header header;
+    header.SetDestination(peerIp);
+    Socket::SocketErrno errno_;
+    Ptr<Ipv4Route> route = routing->RouteOutput(nullptr, header, 0, errno_);
+
+    if (route && route->GetOutputDevice()) {
+        int32_t interfaceIdx = ipv4->GetInterfaceForDevice(route->GetOutputDevice());
+        Ipv4Address localIp = ipv4->GetAddress(interfaceIdx, 0).GetLocal();
+        NS_LOG_INFO("Local IP determined via routing: " << localIp);
+        return InetSocketAddress(localIp, m_bindPort);
+    } else {
+        NS_FATAL_ERROR("No route to peer " << peerIp);
+        return InetSocketAddress(Ipv4Address::GetAny(), m_bindPort);
+    }
 }
 
 
@@ -187,6 +207,7 @@ TCPclient::Bind (uint16_t port) {
   CheckSocketState();
   // make sure that the "LogSocketInfo()" can only be called after the socket is binded.
   LogSocketInfo();
+  SetIpTable();
 }
 
 
@@ -300,6 +321,31 @@ void TCPclient::RecvPacket(Ptr<Socket> socket){
     if (!m_running) {return ;}
 }
 
+void TCPclient::SetIpTable(){
+    Ptr<Node> node=m_node;
+    Ptr<Ipv4> ipv4 = node->GetObject<Ipv4> ();
+    Ipv4Address local_ip = ipv4->GetAddress (1, 0).GetLocal();
+
+    Ptr<TcpSocketBase> tcpSocket = m_socket->GetObject<TcpSocketBase>();
+    Address localAddress;
+    tcpSocket->GetSockName(localAddress);
+    InetSocketAddress inetLocalAddress = InetSocketAddress::ConvertFrom(localAddress);
+    Ipv4Address tcpSocket_ip = inetLocalAddress.GetIpv4();
+
+    NS_LOG_INFO("local_ip: " << local_ip << " tcpSocket_ip: " << tcpSocket_ip);
+
+    if (tcpSocket_ip != local_ip) {
+      std::stringstream ssNew, ssOld;
+      ssNew << tcpSocket_ip;
+      ssOld << local_ip;
+      std::string new_ip_str = ssNew.str();
+      std::string old_ip_str = ssOld.str();
+      NewToOldIpMap[new_ip_str] = old_ip_str;
+      std::cout << "tcpSocket_ip != local_ip" << std::endl;
+      PrintIpToNodeMap();
+      PrintNewToOldIpMap();
+  }
+}
 
 void
 TCPclient::LogSocketInfo()

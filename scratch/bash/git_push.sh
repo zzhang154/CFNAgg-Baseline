@@ -13,12 +13,8 @@ fi
 git add .
 
 # Commit the changes
-git commit -m "TCP-Agg v-10.1-debug:
-(1) Finish the trace of packet path via modifying the forwarder's callback function, see 'setup.cc' file.
-
-(2) For every application node, we add the tag in TCPclient->send().
-
-(3) Fix the bug of TP unit computation error before.
+git commit -m "TCP-Agg v-10.2-debug:
+(1) Partial solve the problem of throughput trace problem. But there are still some bugs for the consumer nodes.
 "
 
 # Rename current branch to tcp-baseline (if needed)

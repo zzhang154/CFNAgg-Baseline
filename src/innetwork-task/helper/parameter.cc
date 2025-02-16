@@ -8,6 +8,7 @@
 #include <unordered_set>
 #include "parameter.h"
 #include <unordered_map>
+#include <iostream>
 
 namespace ns3 {
 
@@ -24,6 +25,7 @@ namespace ns3 {
     int padIter = 0;
     std::string TraceIPAddress = "10.2.7.2";
     bool debugFlag = false;
+    int conCount = 0;
 
     // for other topology, please add the additional ip address to trace.
 
@@ -59,10 +61,26 @@ namespace ns3 {
     }
 
     std::unordered_map<std::string, std::string> ipToNodeName;
+    std::unordered_map<std::string, std::string> NewToOldIpMap;
     std::string GetNodeNameFromIp(const std::string& ip) 
     {
         auto it = ipToNodeName.find(ip);
         return (it != ipToNodeName.end()) ? it->second : "IP_NOT_FOUND";
+    }
+
+    void PrintIpToNodeMap()
+    {
+        std::cout << "Printing ipToNodeName:" << std::endl;
+        for (auto &pair : ipToNodeName) {
+            std::cout << "IP: " << pair.first << " -> NodeName: " << pair.second << std::endl;
+        }
+    }
+
+    void PrintNewToOldIpMap() {
+        std::cout << "NewToOldIpMap contents:" << std::endl;
+        for (auto &entry : NewToOldIpMap) {
+            std::cout << "New IP: " << entry.first << " -> Old IP: " << entry.second << std::endl;
+        }
     }
     
     // void AddToTraceRecord(PacketTraceTag tag){

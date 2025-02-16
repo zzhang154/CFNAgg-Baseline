@@ -1,0 +1,79 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"install",
+			"build_lib"
+		],
+		"files" : 
+		[
+			"build-support/custom-modules/ns3-module-macros.cmake",
+			"src/lr-wpan/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 1
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 1,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 481,
+				"parent" : 1
+			}
+		]
+	},
+	"installers" : 
+	[
+		{
+			"backtrace" : 2,
+			"component" : "Unspecified",
+			"destination" : "lib",
+			"paths" : 
+			[
+				"lib/libns3.42-lr-wpan-debug.so"
+			],
+			"targetId" : "liblr-wpan::@45be7a455a5f76cbc3d2",
+			"targetIndex" : 40,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 2,
+			"component" : "Unspecified",
+			"destination" : "include/ns3",
+			"paths" : 
+			[
+				"src/lr-wpan/helper/lr-wpan-helper.h",
+				"src/lr-wpan/model/lr-wpan-constants.h",
+				"src/lr-wpan/model/lr-wpan-csmaca.h",
+				"src/lr-wpan/model/lr-wpan-error-model.h",
+				"src/lr-wpan/model/lr-wpan-fields.h",
+				"src/lr-wpan/model/lr-wpan-interference-helper.h",
+				"src/lr-wpan/model/lr-wpan-lqi-tag.h",
+				"src/lr-wpan/model/lr-wpan-mac-header.h",
+				"src/lr-wpan/model/lr-wpan-mac-pl-headers.h",
+				"src/lr-wpan/model/lr-wpan-mac-trailer.h",
+				"src/lr-wpan/model/lr-wpan-mac-base.h",
+				"src/lr-wpan/model/lr-wpan-mac.h",
+				"src/lr-wpan/model/lr-wpan-net-device.h",
+				"src/lr-wpan/model/lr-wpan-phy.h",
+				"src/lr-wpan/model/lr-wpan-spectrum-signal-parameters.h",
+				"src/lr-wpan/model/lr-wpan-spectrum-value-helper.h",
+				"build/include/ns3/lr-wpan-module.h"
+			],
+			"type" : "file"
+		}
+	],
+	"paths" : 
+	{
+		"build" : "src/lr-wpan",
+		"source" : "src/lr-wpan"
+	}
+}

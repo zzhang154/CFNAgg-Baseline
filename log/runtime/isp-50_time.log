@@ -1,0 +1,2034 @@
+Consolidate compiler generated dependencies of target libinternet-obj
+[  0%] Building CXX object src/internet/CMakeFiles/libinternet-obj.dir/model/tcp-socket-base.cc.o
+/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/internet/model/tcp-socket-base.cc: In member function ‘virtual ns3::Ptr<ns3::Packet> ns3::TcpSocketBase::RecvFrom(uint32_t, uint32_t, ns3::Address&)’:
+/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/internet/model/tcp-socket-base.cc:1015:26: warning: variable ‘ipv4Address’ set but not used [-Wunused-but-set-variable]
+ 1015 |         ns3::Ipv4Address ipv4Address = inetSocketAddress.GetIpv4();
+      |                          ^~~~~~~~~~~
+[  0%] Linking CXX shared library ../../../build/lib/libns3.42-internet-default.so
+Consolidate compiler generated dependencies of target libinnetwork-task-obj
+[  0%] Building CXX object scratch/CMakeFiles/scratch_innetwork-test.dir/innetwork-test.cc.o
+[  0%] Linking CXX executable ../../build/scratch/ns3.42-innetwork-test-default
+Hello from utils
+0x7fff922023e0 Time queue changed. Current size: 1
+Time queue changed. New size: 1
+0x7fff922023e0 Time queue changed. Current size: 2
+Time queue changed. New size: 2
+0x7fff922023e0 Time queue changed. Current size: 1
+Time queue changed. New size: 1
+
+
+#################### SIMULATION PARAMETERS ####################
+
+
+Prefix: 100 Iteration: 1000 Vector Size: 150 Congestion Control Algorithm: bbr
+
+
+#################### SIMULATION SET-UP ####################
+
+
+uint32_t consumerNum = 1;
+uint32_t producerNum = 100;
+uint32_t forwarderNum = 26;
+uint32_t aggregatorNum = 50;
+---node1 ip--- pro0 --- 10.1.1.1 , node2 ip--- forwarder0 --- 10.1.1.2
+---node1 ip--- pro1 --- 10.1.2.1 , node2 ip--- forwarder0 --- 10.1.1.2
+---node1 ip--- pro2 --- 10.1.3.1 , node2 ip--- forwarder0 --- 10.1.1.2
+---node1 ip--- pro3 --- 10.1.4.1 , node2 ip--- forwarder0 --- 10.1.1.2
+---node1 ip--- pro4 --- 10.1.5.1 , node2 ip--- forwarder0 --- 10.1.1.2
+---node1 ip--- pro5 --- 10.1.6.1 , node2 ip--- forwarder1 --- 10.1.6.2
+---node1 ip--- pro6 --- 10.1.7.1 , node2 ip--- forwarder1 --- 10.1.6.2
+---node1 ip--- pro7 --- 10.1.8.1 , node2 ip--- forwarder1 --- 10.1.6.2
+---node1 ip--- pro8 --- 10.1.9.1 , node2 ip--- forwarder1 --- 10.1.6.2
+---node1 ip--- pro9 --- 10.1.10.1 , node2 ip--- forwarder1 --- 10.1.6.2
+---node1 ip--- pro10 --- 10.1.11.1 , node2 ip--- forwarder2 --- 10.1.11.2
+---node1 ip--- pro11 --- 10.1.12.1 , node2 ip--- forwarder2 --- 10.1.11.2
+---node1 ip--- pro12 --- 10.1.13.1 , node2 ip--- forwarder2 --- 10.1.11.2
+---node1 ip--- pro13 --- 10.1.14.1 , node2 ip--- forwarder2 --- 10.1.11.2
+---node1 ip--- pro14 --- 10.1.15.1 , node2 ip--- forwarder2 --- 10.1.11.2
+---node1 ip--- pro15 --- 10.1.16.1 , node2 ip--- forwarder3 --- 10.1.16.2
+---node1 ip--- pro16 --- 10.1.17.1 , node2 ip--- forwarder3 --- 10.1.16.2
+---node1 ip--- pro17 --- 10.1.18.1 , node2 ip--- forwarder3 --- 10.1.16.2
+---node1 ip--- pro18 --- 10.1.19.1 , node2 ip--- forwarder3 --- 10.1.16.2
+---node1 ip--- pro19 --- 10.1.20.1 , node2 ip--- forwarder3 --- 10.1.16.2
+---node1 ip--- pro20 --- 10.1.21.1 , node2 ip--- forwarder4 --- 10.1.21.2
+---node1 ip--- pro21 --- 10.1.22.1 , node2 ip--- forwarder4 --- 10.1.21.2
+---node1 ip--- pro22 --- 10.1.23.1 , node2 ip--- forwarder4 --- 10.1.21.2
+---node1 ip--- pro23 --- 10.1.24.1 , node2 ip--- forwarder4 --- 10.1.21.2
+---node1 ip--- pro24 --- 10.1.25.1 , node2 ip--- forwarder4 --- 10.1.21.2
+---node1 ip--- pro25 --- 10.1.26.1 , node2 ip--- forwarder5 --- 10.1.26.2
+---node1 ip--- pro26 --- 10.1.27.1 , node2 ip--- forwarder5 --- 10.1.26.2
+---node1 ip--- pro27 --- 10.1.28.1 , node2 ip--- forwarder5 --- 10.1.26.2
+---node1 ip--- pro28 --- 10.1.29.1 , node2 ip--- forwarder5 --- 10.1.26.2
+---node1 ip--- pro29 --- 10.1.30.1 , node2 ip--- forwarder5 --- 10.1.26.2
+---node1 ip--- pro30 --- 10.1.31.1 , node2 ip--- forwarder6 --- 10.1.31.2
+---node1 ip--- pro31 --- 10.1.32.1 , node2 ip--- forwarder6 --- 10.1.31.2
+---node1 ip--- pro32 --- 10.1.33.1 , node2 ip--- forwarder6 --- 10.1.31.2
+---node1 ip--- pro33 --- 10.1.34.1 , node2 ip--- forwarder6 --- 10.1.31.2
+---node1 ip--- pro34 --- 10.1.35.1 , node2 ip--- forwarder6 --- 10.1.31.2
+---node1 ip--- pro35 --- 10.1.36.1 , node2 ip--- forwarder7 --- 10.1.36.2
+---node1 ip--- pro36 --- 10.1.37.1 , node2 ip--- forwarder7 --- 10.1.36.2
+---node1 ip--- pro37 --- 10.1.38.1 , node2 ip--- forwarder7 --- 10.1.36.2
+---node1 ip--- pro38 --- 10.1.39.1 , node2 ip--- forwarder7 --- 10.1.36.2
+---node1 ip--- pro39 --- 10.1.40.1 , node2 ip--- forwarder7 --- 10.1.36.2
+---node1 ip--- pro40 --- 10.1.41.1 , node2 ip--- forwarder8 --- 10.1.41.2
+---node1 ip--- pro41 --- 10.1.42.1 , node2 ip--- forwarder8 --- 10.1.41.2
+---node1 ip--- pro42 --- 10.1.43.1 , node2 ip--- forwarder8 --- 10.1.41.2
+---node1 ip--- pro43 --- 10.1.44.1 , node2 ip--- forwarder8 --- 10.1.41.2
+---node1 ip--- pro44 --- 10.1.45.1 , node2 ip--- forwarder8 --- 10.1.41.2
+---node1 ip--- pro45 --- 10.1.46.1 , node2 ip--- forwarder9 --- 10.1.46.2
+---node1 ip--- pro46 --- 10.1.47.1 , node2 ip--- forwarder9 --- 10.1.46.2
+---node1 ip--- pro47 --- 10.1.48.1 , node2 ip--- forwarder9 --- 10.1.46.2
+---node1 ip--- pro48 --- 10.1.49.1 , node2 ip--- forwarder9 --- 10.1.46.2
+---node1 ip--- pro49 --- 10.1.50.1 , node2 ip--- forwarder9 --- 10.1.46.2
+---node1 ip--- pro50 --- 10.1.51.1 , node2 ip--- forwarder10 --- 10.1.51.2
+---node1 ip--- pro51 --- 10.1.52.1 , node2 ip--- forwarder10 --- 10.1.51.2
+---node1 ip--- pro52 --- 10.1.53.1 , node2 ip--- forwarder10 --- 10.1.51.2
+---node1 ip--- pro53 --- 10.1.54.1 , node2 ip--- forwarder10 --- 10.1.51.2
+---node1 ip--- pro54 --- 10.1.55.1 , node2 ip--- forwarder10 --- 10.1.51.2
+---node1 ip--- pro55 --- 10.1.56.1 , node2 ip--- forwarder11 --- 10.1.56.2
+---node1 ip--- pro56 --- 10.1.57.1 , node2 ip--- forwarder11 --- 10.1.56.2
+---node1 ip--- pro57 --- 10.1.58.1 , node2 ip--- forwarder11 --- 10.1.56.2
+---node1 ip--- pro58 --- 10.1.59.1 , node2 ip--- forwarder11 --- 10.1.56.2
+---node1 ip--- pro59 --- 10.1.60.1 , node2 ip--- forwarder11 --- 10.1.56.2
+---node1 ip--- pro60 --- 10.1.61.1 , node2 ip--- forwarder12 --- 10.1.61.2
+---node1 ip--- pro61 --- 10.1.62.1 , node2 ip--- forwarder12 --- 10.1.61.2
+---node1 ip--- pro62 --- 10.1.63.1 , node2 ip--- forwarder12 --- 10.1.61.2
+---node1 ip--- pro63 --- 10.1.64.1 , node2 ip--- forwarder12 --- 10.1.61.2
+---node1 ip--- pro64 --- 10.1.65.1 , node2 ip--- forwarder12 --- 10.1.61.2
+---node1 ip--- pro65 --- 10.1.66.1 , node2 ip--- forwarder13 --- 10.1.66.2
+---node1 ip--- pro66 --- 10.1.67.1 , node2 ip--- forwarder13 --- 10.1.66.2
+---node1 ip--- pro67 --- 10.1.68.1 , node2 ip--- forwarder13 --- 10.1.66.2
+---node1 ip--- pro68 --- 10.1.69.1 , node2 ip--- forwarder13 --- 10.1.66.2
+---node1 ip--- pro69 --- 10.1.70.1 , node2 ip--- forwarder13 --- 10.1.66.2
+---node1 ip--- pro70 --- 10.1.71.1 , node2 ip--- forwarder14 --- 10.1.71.2
+---node1 ip--- pro71 --- 10.1.72.1 , node2 ip--- forwarder14 --- 10.1.71.2
+---node1 ip--- pro72 --- 10.1.73.1 , node2 ip--- forwarder14 --- 10.1.71.2
+---node1 ip--- pro73 --- 10.1.74.1 , node2 ip--- forwarder14 --- 10.1.71.2
+---node1 ip--- pro74 --- 10.1.75.1 , node2 ip--- forwarder14 --- 10.1.71.2
+---node1 ip--- pro75 --- 10.1.76.1 , node2 ip--- forwarder15 --- 10.1.76.2
+---node1 ip--- pro76 --- 10.1.77.1 , node2 ip--- forwarder15 --- 10.1.76.2
+---node1 ip--- pro77 --- 10.1.78.1 , node2 ip--- forwarder15 --- 10.1.76.2
+---node1 ip--- pro78 --- 10.1.79.1 , node2 ip--- forwarder15 --- 10.1.76.2
+---node1 ip--- pro79 --- 10.1.80.1 , node2 ip--- forwarder15 --- 10.1.76.2
+---node1 ip--- pro80 --- 10.1.81.1 , node2 ip--- forwarder16 --- 10.1.81.2
+---node1 ip--- pro81 --- 10.1.82.1 , node2 ip--- forwarder16 --- 10.1.81.2
+---node1 ip--- pro82 --- 10.1.83.1 , node2 ip--- forwarder16 --- 10.1.81.2
+---node1 ip--- pro83 --- 10.1.84.1 , node2 ip--- forwarder16 --- 10.1.81.2
+---node1 ip--- pro84 --- 10.1.85.1 , node2 ip--- forwarder16 --- 10.1.81.2
+---node1 ip--- pro85 --- 10.1.86.1 , node2 ip--- forwarder17 --- 10.1.86.2
+---node1 ip--- pro86 --- 10.1.87.1 , node2 ip--- forwarder17 --- 10.1.86.2
+---node1 ip--- pro87 --- 10.1.88.1 , node2 ip--- forwarder17 --- 10.1.86.2
+---node1 ip--- pro88 --- 10.1.89.1 , node2 ip--- forwarder17 --- 10.1.86.2
+---node1 ip--- pro89 --- 10.1.90.1 , node2 ip--- forwarder17 --- 10.1.86.2
+---node1 ip--- pro90 --- 10.1.91.1 , node2 ip--- forwarder18 --- 10.1.91.2
+---node1 ip--- pro91 --- 10.1.92.1 , node2 ip--- forwarder18 --- 10.1.91.2
+---node1 ip--- pro92 --- 10.1.93.1 , node2 ip--- forwarder18 --- 10.1.91.2
+---node1 ip--- pro93 --- 10.1.94.1 , node2 ip--- forwarder18 --- 10.1.91.2
+---node1 ip--- pro94 --- 10.1.95.1 , node2 ip--- forwarder18 --- 10.1.91.2
+---node1 ip--- pro95 --- 10.1.96.1 , node2 ip--- forwarder19 --- 10.1.96.2
+---node1 ip--- pro96 --- 10.1.97.1 , node2 ip--- forwarder19 --- 10.1.96.2
+---node1 ip--- pro97 --- 10.1.98.1 , node2 ip--- forwarder19 --- 10.1.96.2
+---node1 ip--- pro98 --- 10.1.99.1 , node2 ip--- forwarder19 --- 10.1.96.2
+---node1 ip--- pro99 --- 10.1.100.1 , node2 ip--- forwarder19 --- 10.1.96.2
+---node1 ip--- con0 --- 10.1.101.1 , node2 ip--- forwarder20 --- 10.1.101.2
+---node1 ip--- forwarder0 --- 10.1.1.2 , node2 ip--- agg0 --- 10.2.1.2
+---node1 ip--- agg0 --- 10.2.1.2 , node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder1 --- 10.1.6.2 , node2 ip--- agg1 --- 10.2.3.2
+---node1 ip--- agg1 --- 10.2.3.2 , node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder2 --- 10.1.11.2 , node2 ip--- agg2 --- 10.2.5.2
+---node1 ip--- agg2 --- 10.2.5.2 , node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder3 --- 10.1.16.2 , node2 ip--- agg3 --- 10.2.7.2
+---node1 ip--- agg3 --- 10.2.7.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder4 --- 10.1.21.2 , node2 ip--- agg4 --- 10.2.9.2
+---node1 ip--- agg4 --- 10.2.9.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder5 --- 10.1.26.2 , node2 ip--- agg5 --- 10.2.11.2
+---node1 ip--- agg5 --- 10.2.11.2 , node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder6 --- 10.1.31.2 , node2 ip--- agg6 --- 10.2.13.2
+---node1 ip--- agg6 --- 10.2.13.2 , node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder7 --- 10.1.36.2 , node2 ip--- agg7 --- 10.2.15.2
+---node1 ip--- agg7 --- 10.2.15.2 , node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder8 --- 10.1.41.2 , node2 ip--- agg8 --- 10.2.17.2
+---node1 ip--- agg8 --- 10.2.17.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder9 --- 10.1.46.2 , node2 ip--- agg9 --- 10.2.19.2
+---node1 ip--- agg9 --- 10.2.19.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder10 --- 10.1.51.2 , node2 ip--- agg10 --- 10.2.21.2
+---node1 ip--- agg10 --- 10.2.21.2 , node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder11 --- 10.1.56.2 , node2 ip--- agg11 --- 10.2.23.2
+---node1 ip--- agg11 --- 10.2.23.2 , node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder12 --- 10.1.61.2 , node2 ip--- agg12 --- 10.2.25.2
+---node1 ip--- agg12 --- 10.2.25.2 , node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder13 --- 10.1.66.2 , node2 ip--- agg13 --- 10.2.27.2
+---node1 ip--- agg13 --- 10.2.27.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder14 --- 10.1.71.2 , node2 ip--- agg14 --- 10.2.29.2
+---node1 ip--- agg14 --- 10.2.29.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder15 --- 10.1.76.2 , node2 ip--- agg15 --- 10.2.31.2
+---node1 ip--- agg15 --- 10.2.31.2 , node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder16 --- 10.1.81.2 , node2 ip--- agg16 --- 10.2.33.2
+---node1 ip--- agg16 --- 10.2.33.2 , node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder17 --- 10.1.86.2 , node2 ip--- agg17 --- 10.2.35.2
+---node1 ip--- agg17 --- 10.2.35.2 , node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder18 --- 10.1.91.2 , node2 ip--- agg18 --- 10.2.37.2
+---node1 ip--- agg18 --- 10.2.37.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder19 --- 10.1.96.2 , node2 ip--- agg19 --- 10.2.39.2
+---node1 ip--- agg19 --- 10.2.39.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder0 --- 10.1.1.2 , node2 ip--- agg20 --- 10.2.41.2
+---node1 ip--- agg20 --- 10.2.41.2 , node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder1 --- 10.1.6.2 , node2 ip--- agg21 --- 10.2.43.2
+---node1 ip--- agg21 --- 10.2.43.2 , node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder2 --- 10.1.11.2 , node2 ip--- agg22 --- 10.2.45.2
+---node1 ip--- agg22 --- 10.2.45.2 , node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder3 --- 10.1.16.2 , node2 ip--- agg23 --- 10.2.47.2
+---node1 ip--- agg23 --- 10.2.47.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder4 --- 10.1.21.2 , node2 ip--- agg24 --- 10.2.49.2
+---node1 ip--- agg24 --- 10.2.49.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder5 --- 10.1.26.2 , node2 ip--- agg25 --- 10.2.51.2
+---node1 ip--- agg25 --- 10.2.51.2 , node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder6 --- 10.1.31.2 , node2 ip--- agg26 --- 10.2.53.2
+---node1 ip--- agg26 --- 10.2.53.2 , node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder7 --- 10.1.36.2 , node2 ip--- agg27 --- 10.2.55.2
+---node1 ip--- agg27 --- 10.2.55.2 , node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder8 --- 10.1.41.2 , node2 ip--- agg28 --- 10.2.57.2
+---node1 ip--- agg28 --- 10.2.57.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder9 --- 10.1.46.2 , node2 ip--- agg29 --- 10.2.59.2
+---node1 ip--- agg29 --- 10.2.59.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder10 --- 10.1.51.2 , node2 ip--- agg30 --- 10.2.61.2
+---node1 ip--- agg30 --- 10.2.61.2 , node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder11 --- 10.1.56.2 , node2 ip--- agg31 --- 10.2.63.2
+---node1 ip--- agg31 --- 10.2.63.2 , node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder12 --- 10.1.61.2 , node2 ip--- agg32 --- 10.2.65.2
+---node1 ip--- agg32 --- 10.2.65.2 , node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder13 --- 10.1.66.2 , node2 ip--- agg33 --- 10.2.67.2
+---node1 ip--- agg33 --- 10.2.67.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder14 --- 10.1.71.2 , node2 ip--- agg34 --- 10.2.69.2
+---node1 ip--- agg34 --- 10.2.69.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder15 --- 10.1.76.2 , node2 ip--- agg35 --- 10.2.71.2
+---node1 ip--- agg35 --- 10.2.71.2 , node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder16 --- 10.1.81.2 , node2 ip--- agg36 --- 10.2.73.2
+---node1 ip--- agg36 --- 10.2.73.2 , node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder17 --- 10.1.86.2 , node2 ip--- agg37 --- 10.2.75.2
+---node1 ip--- agg37 --- 10.2.75.2 , node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder18 --- 10.1.91.2 , node2 ip--- agg38 --- 10.2.77.2
+---node1 ip--- agg38 --- 10.2.77.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder19 --- 10.1.96.2 , node2 ip--- agg39 --- 10.2.79.2
+---node1 ip--- agg39 --- 10.2.79.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder0 --- 10.1.1.2 , node2 ip--- agg40 --- 10.2.81.2
+---node1 ip--- agg40 --- 10.2.81.2 , node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder1 --- 10.1.6.2 , node2 ip--- agg41 --- 10.2.83.2
+---node1 ip--- agg41 --- 10.2.83.2 , node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder2 --- 10.1.11.2 , node2 ip--- agg42 --- 10.2.85.2
+---node1 ip--- agg42 --- 10.2.85.2 , node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder3 --- 10.1.16.2 , node2 ip--- agg43 --- 10.2.87.2
+---node1 ip--- agg43 --- 10.2.87.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder4 --- 10.1.21.2 , node2 ip--- agg44 --- 10.2.89.2
+---node1 ip--- agg44 --- 10.2.89.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder5 --- 10.1.26.2 , node2 ip--- agg45 --- 10.2.91.2
+---node1 ip--- agg45 --- 10.2.91.2 , node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder6 --- 10.1.31.2 , node2 ip--- agg46 --- 10.2.93.2
+---node1 ip--- agg46 --- 10.2.93.2 , node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder7 --- 10.1.36.2 , node2 ip--- agg47 --- 10.2.95.2
+---node1 ip--- agg47 --- 10.2.95.2 , node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder8 --- 10.1.41.2 , node2 ip--- agg48 --- 10.2.97.2
+---node1 ip--- agg48 --- 10.2.97.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder9 --- 10.1.46.2 , node2 ip--- agg49 --- 10.2.99.2
+---node1 ip--- agg49 --- 10.2.99.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder20 --- 10.1.101.2 , node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder21 --- 10.2.2.2 , node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder21 --- 10.2.2.2 , node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder21 --- 10.2.2.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder21 --- 10.2.2.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder22 --- 10.2.4.2 , node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder22 --- 10.2.4.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder22 --- 10.2.4.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder23 --- 10.2.6.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder23 --- 10.2.6.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder24 --- 10.2.8.2 , node2 ip--- forwarder25 --- 10.2.10.2
++2.413000000s 127 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.1.2 completed processing
++2.413000000s 128 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.3.2 completed processing
++2.413000000s 129 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.5.2 completed processing
++2.413000000s 130 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.7.2 completed processing
++2.413000000s 131 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.9.2 completed processing
++2.413000000s 132 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.11.2 completed processing
++2.413000000s 133 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.13.2 completed processing
++2.413000000s 134 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.15.2 completed processing
++2.413000000s 135 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.17.2 completed processing
++2.413000000s 136 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.19.2 completed processing
++2.413000000s 137 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.21.2 completed processing
++2.413000000s 138 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.23.2 completed processing
++2.413000000s 139 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.25.2 completed processing
++2.413000000s 140 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.27.2 completed processing
++2.413000000s 141 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.29.2 completed processing
++2.413000000s 142 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.31.2 completed processing
++2.413000000s 143 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.33.2 completed processing
++2.413000000s 144 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.35.2 completed processing
++2.413000000s 145 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.37.2 completed processing
++2.413000000s 146 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.39.2 completed processing
++2.421000000s 149 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.45.2 completed processing
++2.426000000s 147 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.41.2 completed processing
++2.426000000s 152 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.51.2 completed processing
++2.426000000s 157 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.61.2 completed processing
++2.435000000s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer completed all iterations in 435ms
+Prefix: 100, Iteration: 1000 - Simulation completed successfully.
+
+#################### SIMULATION END ####################
+
+
+
+
+#################### SIMULATION PARAMETERS ####################
+
+
+Prefix: 100 Iteration: 2000 Vector Size: 150 Congestion Control Algorithm: bbr
+
+
+#################### SIMULATION SET-UP ####################
+
+
+uint32_t consumerNum = 1;
+uint32_t producerNum = 100;
+uint32_t forwarderNum = 26;
+uint32_t aggregatorNum = 50;
+---node1 ip--- pro0 --- 10.1.1.1 , node2 ip--- forwarder0 --- 10.1.1.2
+---node1 ip--- pro1 --- 10.1.2.1 , node2 ip--- forwarder0 --- 10.1.1.2
+---node1 ip--- pro2 --- 10.1.3.1 , node2 ip--- forwarder0 --- 10.1.1.2
+---node1 ip--- pro3 --- 10.1.4.1 , node2 ip--- forwarder0 --- 10.1.1.2
+---node1 ip--- pro4 --- 10.1.5.1 , node2 ip--- forwarder0 --- 10.1.1.2
+---node1 ip--- pro5 --- 10.1.6.1 , node2 ip--- forwarder1 --- 10.1.6.2
+---node1 ip--- pro6 --- 10.1.7.1 , node2 ip--- forwarder1 --- 10.1.6.2
+---node1 ip--- pro7 --- 10.1.8.1 , node2 ip--- forwarder1 --- 10.1.6.2
+---node1 ip--- pro8 --- 10.1.9.1 , node2 ip--- forwarder1 --- 10.1.6.2
+---node1 ip--- pro9 --- 10.1.10.1 , node2 ip--- forwarder1 --- 10.1.6.2
+---node1 ip--- pro10 --- 10.1.11.1 , node2 ip--- forwarder2 --- 10.1.11.2
+---node1 ip--- pro11 --- 10.1.12.1 , node2 ip--- forwarder2 --- 10.1.11.2
+---node1 ip--- pro12 --- 10.1.13.1 , node2 ip--- forwarder2 --- 10.1.11.2
+---node1 ip--- pro13 --- 10.1.14.1 , node2 ip--- forwarder2 --- 10.1.11.2
+---node1 ip--- pro14 --- 10.1.15.1 , node2 ip--- forwarder2 --- 10.1.11.2
+---node1 ip--- pro15 --- 10.1.16.1 , node2 ip--- forwarder3 --- 10.1.16.2
+---node1 ip--- pro16 --- 10.1.17.1 , node2 ip--- forwarder3 --- 10.1.16.2
+---node1 ip--- pro17 --- 10.1.18.1 , node2 ip--- forwarder3 --- 10.1.16.2
+---node1 ip--- pro18 --- 10.1.19.1 , node2 ip--- forwarder3 --- 10.1.16.2
+---node1 ip--- pro19 --- 10.1.20.1 , node2 ip--- forwarder3 --- 10.1.16.2
+---node1 ip--- pro20 --- 10.1.21.1 , node2 ip--- forwarder4 --- 10.1.21.2
+---node1 ip--- pro21 --- 10.1.22.1 , node2 ip--- forwarder4 --- 10.1.21.2
+---node1 ip--- pro22 --- 10.1.23.1 , node2 ip--- forwarder4 --- 10.1.21.2
+---node1 ip--- pro23 --- 10.1.24.1 , node2 ip--- forwarder4 --- 10.1.21.2
+---node1 ip--- pro24 --- 10.1.25.1 , node2 ip--- forwarder4 --- 10.1.21.2
+---node1 ip--- pro25 --- 10.1.26.1 , node2 ip--- forwarder5 --- 10.1.26.2
+---node1 ip--- pro26 --- 10.1.27.1 , node2 ip--- forwarder5 --- 10.1.26.2
+---node1 ip--- pro27 --- 10.1.28.1 , node2 ip--- forwarder5 --- 10.1.26.2
+---node1 ip--- pro28 --- 10.1.29.1 , node2 ip--- forwarder5 --- 10.1.26.2
+---node1 ip--- pro29 --- 10.1.30.1 , node2 ip--- forwarder5 --- 10.1.26.2
+---node1 ip--- pro30 --- 10.1.31.1 , node2 ip--- forwarder6 --- 10.1.31.2
+---node1 ip--- pro31 --- 10.1.32.1 , node2 ip--- forwarder6 --- 10.1.31.2
+---node1 ip--- pro32 --- 10.1.33.1 , node2 ip--- forwarder6 --- 10.1.31.2
+---node1 ip--- pro33 --- 10.1.34.1 , node2 ip--- forwarder6 --- 10.1.31.2
+---node1 ip--- pro34 --- 10.1.35.1 , node2 ip--- forwarder6 --- 10.1.31.2
+---node1 ip--- pro35 --- 10.1.36.1 , node2 ip--- forwarder7 --- 10.1.36.2
+---node1 ip--- pro36 --- 10.1.37.1 , node2 ip--- forwarder7 --- 10.1.36.2
+---node1 ip--- pro37 --- 10.1.38.1 , node2 ip--- forwarder7 --- 10.1.36.2
+---node1 ip--- pro38 --- 10.1.39.1 , node2 ip--- forwarder7 --- 10.1.36.2
+---node1 ip--- pro39 --- 10.1.40.1 , node2 ip--- forwarder7 --- 10.1.36.2
+---node1 ip--- pro40 --- 10.1.41.1 , node2 ip--- forwarder8 --- 10.1.41.2
+---node1 ip--- pro41 --- 10.1.42.1 , node2 ip--- forwarder8 --- 10.1.41.2
+---node1 ip--- pro42 --- 10.1.43.1 , node2 ip--- forwarder8 --- 10.1.41.2
+---node1 ip--- pro43 --- 10.1.44.1 , node2 ip--- forwarder8 --- 10.1.41.2
+---node1 ip--- pro44 --- 10.1.45.1 , node2 ip--- forwarder8 --- 10.1.41.2
+---node1 ip--- pro45 --- 10.1.46.1 , node2 ip--- forwarder9 --- 10.1.46.2
+---node1 ip--- pro46 --- 10.1.47.1 , node2 ip--- forwarder9 --- 10.1.46.2
+---node1 ip--- pro47 --- 10.1.48.1 , node2 ip--- forwarder9 --- 10.1.46.2
+---node1 ip--- pro48 --- 10.1.49.1 , node2 ip--- forwarder9 --- 10.1.46.2
+---node1 ip--- pro49 --- 10.1.50.1 , node2 ip--- forwarder9 --- 10.1.46.2
+---node1 ip--- pro50 --- 10.1.51.1 , node2 ip--- forwarder10 --- 10.1.51.2
+---node1 ip--- pro51 --- 10.1.52.1 , node2 ip--- forwarder10 --- 10.1.51.2
+---node1 ip--- pro52 --- 10.1.53.1 , node2 ip--- forwarder10 --- 10.1.51.2
+---node1 ip--- pro53 --- 10.1.54.1 , node2 ip--- forwarder10 --- 10.1.51.2
+---node1 ip--- pro54 --- 10.1.55.1 , node2 ip--- forwarder10 --- 10.1.51.2
+---node1 ip--- pro55 --- 10.1.56.1 , node2 ip--- forwarder11 --- 10.1.56.2
+---node1 ip--- pro56 --- 10.1.57.1 , node2 ip--- forwarder11 --- 10.1.56.2
+---node1 ip--- pro57 --- 10.1.58.1 , node2 ip--- forwarder11 --- 10.1.56.2
+---node1 ip--- pro58 --- 10.1.59.1 , node2 ip--- forwarder11 --- 10.1.56.2
+---node1 ip--- pro59 --- 10.1.60.1 , node2 ip--- forwarder11 --- 10.1.56.2
+---node1 ip--- pro60 --- 10.1.61.1 , node2 ip--- forwarder12 --- 10.1.61.2
+---node1 ip--- pro61 --- 10.1.62.1 , node2 ip--- forwarder12 --- 10.1.61.2
+---node1 ip--- pro62 --- 10.1.63.1 , node2 ip--- forwarder12 --- 10.1.61.2
+---node1 ip--- pro63 --- 10.1.64.1 , node2 ip--- forwarder12 --- 10.1.61.2
+---node1 ip--- pro64 --- 10.1.65.1 , node2 ip--- forwarder12 --- 10.1.61.2
+---node1 ip--- pro65 --- 10.1.66.1 , node2 ip--- forwarder13 --- 10.1.66.2
+---node1 ip--- pro66 --- 10.1.67.1 , node2 ip--- forwarder13 --- 10.1.66.2
+---node1 ip--- pro67 --- 10.1.68.1 , node2 ip--- forwarder13 --- 10.1.66.2
+---node1 ip--- pro68 --- 10.1.69.1 , node2 ip--- forwarder13 --- 10.1.66.2
+---node1 ip--- pro69 --- 10.1.70.1 , node2 ip--- forwarder13 --- 10.1.66.2
+---node1 ip--- pro70 --- 10.1.71.1 , node2 ip--- forwarder14 --- 10.1.71.2
+---node1 ip--- pro71 --- 10.1.72.1 , node2 ip--- forwarder14 --- 10.1.71.2
+---node1 ip--- pro72 --- 10.1.73.1 , node2 ip--- forwarder14 --- 10.1.71.2
+---node1 ip--- pro73 --- 10.1.74.1 , node2 ip--- forwarder14 --- 10.1.71.2
+---node1 ip--- pro74 --- 10.1.75.1 , node2 ip--- forwarder14 --- 10.1.71.2
+---node1 ip--- pro75 --- 10.1.76.1 , node2 ip--- forwarder15 --- 10.1.76.2
+---node1 ip--- pro76 --- 10.1.77.1 , node2 ip--- forwarder15 --- 10.1.76.2
+---node1 ip--- pro77 --- 10.1.78.1 , node2 ip--- forwarder15 --- 10.1.76.2
+---node1 ip--- pro78 --- 10.1.79.1 , node2 ip--- forwarder15 --- 10.1.76.2
+---node1 ip--- pro79 --- 10.1.80.1 , node2 ip--- forwarder15 --- 10.1.76.2
+---node1 ip--- pro80 --- 10.1.81.1 , node2 ip--- forwarder16 --- 10.1.81.2
+---node1 ip--- pro81 --- 10.1.82.1 , node2 ip--- forwarder16 --- 10.1.81.2
+---node1 ip--- pro82 --- 10.1.83.1 , node2 ip--- forwarder16 --- 10.1.81.2
+---node1 ip--- pro83 --- 10.1.84.1 , node2 ip--- forwarder16 --- 10.1.81.2
+---node1 ip--- pro84 --- 10.1.85.1 , node2 ip--- forwarder16 --- 10.1.81.2
+---node1 ip--- pro85 --- 10.1.86.1 , node2 ip--- forwarder17 --- 10.1.86.2
+---node1 ip--- pro86 --- 10.1.87.1 , node2 ip--- forwarder17 --- 10.1.86.2
+---node1 ip--- pro87 --- 10.1.88.1 , node2 ip--- forwarder17 --- 10.1.86.2
+---node1 ip--- pro88 --- 10.1.89.1 , node2 ip--- forwarder17 --- 10.1.86.2
+---node1 ip--- pro89 --- 10.1.90.1 , node2 ip--- forwarder17 --- 10.1.86.2
+---node1 ip--- pro90 --- 10.1.91.1 , node2 ip--- forwarder18 --- 10.1.91.2
+---node1 ip--- pro91 --- 10.1.92.1 , node2 ip--- forwarder18 --- 10.1.91.2
+---node1 ip--- pro92 --- 10.1.93.1 , node2 ip--- forwarder18 --- 10.1.91.2
+---node1 ip--- pro93 --- 10.1.94.1 , node2 ip--- forwarder18 --- 10.1.91.2
+---node1 ip--- pro94 --- 10.1.95.1 , node2 ip--- forwarder18 --- 10.1.91.2
+---node1 ip--- pro95 --- 10.1.96.1 , node2 ip--- forwarder19 --- 10.1.96.2
+---node1 ip--- pro96 --- 10.1.97.1 , node2 ip--- forwarder19 --- 10.1.96.2
+---node1 ip--- pro97 --- 10.1.98.1 , node2 ip--- forwarder19 --- 10.1.96.2
+---node1 ip--- pro98 --- 10.1.99.1 , node2 ip--- forwarder19 --- 10.1.96.2
+---node1 ip--- pro99 --- 10.1.100.1 , node2 ip--- forwarder19 --- 10.1.96.2
+---node1 ip--- con0 --- 10.1.101.1 , node2 ip--- forwarder20 --- 10.1.101.2
+---node1 ip--- forwarder0 --- 10.1.1.2 , node2 ip--- agg0 --- 10.2.1.2
+---node1 ip--- agg0 --- 10.2.1.2 , node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder1 --- 10.1.6.2 , node2 ip--- agg1 --- 10.2.3.2
+---node1 ip--- agg1 --- 10.2.3.2 , node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder2 --- 10.1.11.2 , node2 ip--- agg2 --- 10.2.5.2
+---node1 ip--- agg2 --- 10.2.5.2 , node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder3 --- 10.1.16.2 , node2 ip--- agg3 --- 10.2.7.2
+---node1 ip--- agg3 --- 10.2.7.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder4 --- 10.1.21.2 , node2 ip--- agg4 --- 10.2.9.2
+---node1 ip--- agg4 --- 10.2.9.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder5 --- 10.1.26.2 , node2 ip--- agg5 --- 10.2.11.2
+---node1 ip--- agg5 --- 10.2.11.2 , node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder6 --- 10.1.31.2 , node2 ip--- agg6 --- 10.2.13.2
+---node1 ip--- agg6 --- 10.2.13.2 , node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder7 --- 10.1.36.2 , node2 ip--- agg7 --- 10.2.15.2
+---node1 ip--- agg7 --- 10.2.15.2 , node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder8 --- 10.1.41.2 , node2 ip--- agg8 --- 10.2.17.2
+---node1 ip--- agg8 --- 10.2.17.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder9 --- 10.1.46.2 , node2 ip--- agg9 --- 10.2.19.2
+---node1 ip--- agg9 --- 10.2.19.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder10 --- 10.1.51.2 , node2 ip--- agg10 --- 10.2.21.2
+---node1 ip--- agg10 --- 10.2.21.2 , node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder11 --- 10.1.56.2 , node2 ip--- agg11 --- 10.2.23.2
+---node1 ip--- agg11 --- 10.2.23.2 , node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder12 --- 10.1.61.2 , node2 ip--- agg12 --- 10.2.25.2
+---node1 ip--- agg12 --- 10.2.25.2 , node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder13 --- 10.1.66.2 , node2 ip--- agg13 --- 10.2.27.2
+---node1 ip--- agg13 --- 10.2.27.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder14 --- 10.1.71.2 , node2 ip--- agg14 --- 10.2.29.2
+---node1 ip--- agg14 --- 10.2.29.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder15 --- 10.1.76.2 , node2 ip--- agg15 --- 10.2.31.2
+---node1 ip--- agg15 --- 10.2.31.2 , node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder16 --- 10.1.81.2 , node2 ip--- agg16 --- 10.2.33.2
+---node1 ip--- agg16 --- 10.2.33.2 , node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder17 --- 10.1.86.2 , node2 ip--- agg17 --- 10.2.35.2
+---node1 ip--- agg17 --- 10.2.35.2 , node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder18 --- 10.1.91.2 , node2 ip--- agg18 --- 10.2.37.2
+---node1 ip--- agg18 --- 10.2.37.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder19 --- 10.1.96.2 , node2 ip--- agg19 --- 10.2.39.2
+---node1 ip--- agg19 --- 10.2.39.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder0 --- 10.1.1.2 , node2 ip--- agg20 --- 10.2.41.2
+---node1 ip--- agg20 --- 10.2.41.2 , node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder1 --- 10.1.6.2 , node2 ip--- agg21 --- 10.2.43.2
+---node1 ip--- agg21 --- 10.2.43.2 , node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder2 --- 10.1.11.2 , node2 ip--- agg22 --- 10.2.45.2
+---node1 ip--- agg22 --- 10.2.45.2 , node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder3 --- 10.1.16.2 , node2 ip--- agg23 --- 10.2.47.2
+---node1 ip--- agg23 --- 10.2.47.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder4 --- 10.1.21.2 , node2 ip--- agg24 --- 10.2.49.2
+---node1 ip--- agg24 --- 10.2.49.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder5 --- 10.1.26.2 , node2 ip--- agg25 --- 10.2.51.2
+---node1 ip--- agg25 --- 10.2.51.2 , node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder6 --- 10.1.31.2 , node2 ip--- agg26 --- 10.2.53.2
+---node1 ip--- agg26 --- 10.2.53.2 , node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder7 --- 10.1.36.2 , node2 ip--- agg27 --- 10.2.55.2
+---node1 ip--- agg27 --- 10.2.55.2 , node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder8 --- 10.1.41.2 , node2 ip--- agg28 --- 10.2.57.2
+---node1 ip--- agg28 --- 10.2.57.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder9 --- 10.1.46.2 , node2 ip--- agg29 --- 10.2.59.2
+---node1 ip--- agg29 --- 10.2.59.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder10 --- 10.1.51.2 , node2 ip--- agg30 --- 10.2.61.2
+---node1 ip--- agg30 --- 10.2.61.2 , node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder11 --- 10.1.56.2 , node2 ip--- agg31 --- 10.2.63.2
+---node1 ip--- agg31 --- 10.2.63.2 , node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder12 --- 10.1.61.2 , node2 ip--- agg32 --- 10.2.65.2
+---node1 ip--- agg32 --- 10.2.65.2 , node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder13 --- 10.1.66.2 , node2 ip--- agg33 --- 10.2.67.2
+---node1 ip--- agg33 --- 10.2.67.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder14 --- 10.1.71.2 , node2 ip--- agg34 --- 10.2.69.2
+---node1 ip--- agg34 --- 10.2.69.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder15 --- 10.1.76.2 , node2 ip--- agg35 --- 10.2.71.2
+---node1 ip--- agg35 --- 10.2.71.2 , node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder16 --- 10.1.81.2 , node2 ip--- agg36 --- 10.2.73.2
+---node1 ip--- agg36 --- 10.2.73.2 , node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder17 --- 10.1.86.2 , node2 ip--- agg37 --- 10.2.75.2
+---node1 ip--- agg37 --- 10.2.75.2 , node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder18 --- 10.1.91.2 , node2 ip--- agg38 --- 10.2.77.2
+---node1 ip--- agg38 --- 10.2.77.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder19 --- 10.1.96.2 , node2 ip--- agg39 --- 10.2.79.2
+---node1 ip--- agg39 --- 10.2.79.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder0 --- 10.1.1.2 , node2 ip--- agg40 --- 10.2.81.2
+---node1 ip--- agg40 --- 10.2.81.2 , node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder1 --- 10.1.6.2 , node2 ip--- agg41 --- 10.2.83.2
+---node1 ip--- agg41 --- 10.2.83.2 , node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder2 --- 10.1.11.2 , node2 ip--- agg42 --- 10.2.85.2
+---node1 ip--- agg42 --- 10.2.85.2 , node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder3 --- 10.1.16.2 , node2 ip--- agg43 --- 10.2.87.2
+---node1 ip--- agg43 --- 10.2.87.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder4 --- 10.1.21.2 , node2 ip--- agg44 --- 10.2.89.2
+---node1 ip--- agg44 --- 10.2.89.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder5 --- 10.1.26.2 , node2 ip--- agg45 --- 10.2.91.2
+---node1 ip--- agg45 --- 10.2.91.2 , node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder6 --- 10.1.31.2 , node2 ip--- agg46 --- 10.2.93.2
+---node1 ip--- agg46 --- 10.2.93.2 , node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder7 --- 10.1.36.2 , node2 ip--- agg47 --- 10.2.95.2
+---node1 ip--- agg47 --- 10.2.95.2 , node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder8 --- 10.1.41.2 , node2 ip--- agg48 --- 10.2.97.2
+---node1 ip--- agg48 --- 10.2.97.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder9 --- 10.1.46.2 , node2 ip--- agg49 --- 10.2.99.2
+---node1 ip--- agg49 --- 10.2.99.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder20 --- 10.1.101.2 , node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder21 --- 10.2.2.2 , node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder21 --- 10.2.2.2 , node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder21 --- 10.2.2.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder21 --- 10.2.2.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder22 --- 10.2.4.2 , node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder22 --- 10.2.4.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder22 --- 10.2.4.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder23 --- 10.2.6.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder23 --- 10.2.6.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder24 --- 10.2.8.2 , node2 ip--- forwarder25 --- 10.2.10.2
++2.413000000s 127 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.1.2 completed iteration 1000 at 2413ms
++2.413000000s 128 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.3.2 completed iteration 1000 at 2413ms
++2.413000000s 129 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.5.2 completed iteration 1000 at 2413ms
++2.413000000s 130 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.7.2 completed iteration 1000 at 2413ms
++2.413000000s 131 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.9.2 completed iteration 1000 at 2413ms
++2.413000000s 132 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.11.2 completed iteration 1000 at 2413ms
++2.413000000s 133 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.13.2 completed iteration 1000 at 2413ms
++2.413000000s 134 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.15.2 completed iteration 1000 at 2413ms
++2.413000000s 135 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.17.2 completed iteration 1000 at 2413ms
++2.413000000s 136 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.19.2 completed iteration 1000 at 2413ms
++2.413000000s 137 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.21.2 completed iteration 1000 at 2413ms
++2.413000000s 138 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.23.2 completed iteration 1000 at 2413ms
++2.413000000s 139 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.25.2 completed iteration 1000 at 2413ms
++2.413000000s 140 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.27.2 completed iteration 1000 at 2413ms
++2.413000000s 141 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.29.2 completed iteration 1000 at 2413ms
++2.413000000s 142 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.31.2 completed iteration 1000 at 2413ms
++2.413000000s 143 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.33.2 completed iteration 1000 at 2413ms
++2.413000000s 144 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.35.2 completed iteration 1000 at 2413ms
++2.413000000s 145 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.37.2 completed iteration 1000 at 2413ms
++2.413000000s 146 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.39.2 completed iteration 1000 at 2413ms
++2.421000000s 149 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.45.2 completed iteration 1000 at 2421ms
++2.426000000s 147 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.41.2 completed iteration 1000 at 2426ms
++2.426000000s 152 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.51.2 completed iteration 1000 at 2426ms
++2.426000000s 157 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.61.2 completed iteration 1000 at 2426ms
++2.436000000s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.1.101.1 completed iteration 1000 at 2436ms
++2.817000000s 127 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.1.2 completed processing
++2.817000000s 128 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.3.2 completed processing
++2.817000000s 129 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.5.2 completed processing
++2.817000000s 130 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.7.2 completed processing
++2.817000000s 131 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.9.2 completed processing
++2.817000000s 132 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.11.2 completed processing
++2.817000000s 133 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.13.2 completed processing
++2.817000000s 134 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.15.2 completed processing
++2.817000000s 135 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.17.2 completed processing
++2.817000000s 136 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.19.2 completed processing
++2.817000000s 137 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.21.2 completed processing
++2.817000000s 138 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.23.2 completed processing
++2.817000000s 139 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.25.2 completed processing
++2.817000000s 140 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.27.2 completed processing
++2.817000000s 141 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.29.2 completed processing
++2.817000000s 142 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.31.2 completed processing
++2.817000000s 143 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.33.2 completed processing
++2.817000000s 144 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.35.2 completed processing
++2.817000000s 145 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.37.2 completed processing
++2.817000000s 146 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.39.2 completed processing
++2.825000000s 149 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.45.2 completed processing
++2.830000000s 157 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.61.2 completed processing
++2.831000000s 147 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.41.2 completed processing
++2.831000000s 152 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.51.2 completed processing
++2.840000000s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer completed all iterations in 840ms
+Prefix: 100, Iteration: 2000 - Simulation completed successfully.
+
+#################### SIMULATION END ####################
+
+
+
+
+#################### SIMULATION PARAMETERS ####################
+
+
+Prefix: 100 Iteration: 3000 Vector Size: 150 Congestion Control Algorithm: bbr
+
+
+#################### SIMULATION SET-UP ####################
+
+
+uint32_t consumerNum = 1;
+uint32_t producerNum = 100;
+uint32_t forwarderNum = 26;
+uint32_t aggregatorNum = 50;
+---node1 ip--- pro0 --- 10.1.1.1 , node2 ip--- forwarder0 --- 10.1.1.2
+---node1 ip--- pro1 --- 10.1.2.1 , node2 ip--- forwarder0 --- 10.1.1.2
+---node1 ip--- pro2 --- 10.1.3.1 , node2 ip--- forwarder0 --- 10.1.1.2
+---node1 ip--- pro3 --- 10.1.4.1 , node2 ip--- forwarder0 --- 10.1.1.2
+---node1 ip--- pro4 --- 10.1.5.1 , node2 ip--- forwarder0 --- 10.1.1.2
+---node1 ip--- pro5 --- 10.1.6.1 , node2 ip--- forwarder1 --- 10.1.6.2
+---node1 ip--- pro6 --- 10.1.7.1 , node2 ip--- forwarder1 --- 10.1.6.2
+---node1 ip--- pro7 --- 10.1.8.1 , node2 ip--- forwarder1 --- 10.1.6.2
+---node1 ip--- pro8 --- 10.1.9.1 , node2 ip--- forwarder1 --- 10.1.6.2
+---node1 ip--- pro9 --- 10.1.10.1 , node2 ip--- forwarder1 --- 10.1.6.2
+---node1 ip--- pro10 --- 10.1.11.1 , node2 ip--- forwarder2 --- 10.1.11.2
+---node1 ip--- pro11 --- 10.1.12.1 , node2 ip--- forwarder2 --- 10.1.11.2
+---node1 ip--- pro12 --- 10.1.13.1 , node2 ip--- forwarder2 --- 10.1.11.2
+---node1 ip--- pro13 --- 10.1.14.1 , node2 ip--- forwarder2 --- 10.1.11.2
+---node1 ip--- pro14 --- 10.1.15.1 , node2 ip--- forwarder2 --- 10.1.11.2
+---node1 ip--- pro15 --- 10.1.16.1 , node2 ip--- forwarder3 --- 10.1.16.2
+---node1 ip--- pro16 --- 10.1.17.1 , node2 ip--- forwarder3 --- 10.1.16.2
+---node1 ip--- pro17 --- 10.1.18.1 , node2 ip--- forwarder3 --- 10.1.16.2
+---node1 ip--- pro18 --- 10.1.19.1 , node2 ip--- forwarder3 --- 10.1.16.2
+---node1 ip--- pro19 --- 10.1.20.1 , node2 ip--- forwarder3 --- 10.1.16.2
+---node1 ip--- pro20 --- 10.1.21.1 , node2 ip--- forwarder4 --- 10.1.21.2
+---node1 ip--- pro21 --- 10.1.22.1 , node2 ip--- forwarder4 --- 10.1.21.2
+---node1 ip--- pro22 --- 10.1.23.1 , node2 ip--- forwarder4 --- 10.1.21.2
+---node1 ip--- pro23 --- 10.1.24.1 , node2 ip--- forwarder4 --- 10.1.21.2
+---node1 ip--- pro24 --- 10.1.25.1 , node2 ip--- forwarder4 --- 10.1.21.2
+---node1 ip--- pro25 --- 10.1.26.1 , node2 ip--- forwarder5 --- 10.1.26.2
+---node1 ip--- pro26 --- 10.1.27.1 , node2 ip--- forwarder5 --- 10.1.26.2
+---node1 ip--- pro27 --- 10.1.28.1 , node2 ip--- forwarder5 --- 10.1.26.2
+---node1 ip--- pro28 --- 10.1.29.1 , node2 ip--- forwarder5 --- 10.1.26.2
+---node1 ip--- pro29 --- 10.1.30.1 , node2 ip--- forwarder5 --- 10.1.26.2
+---node1 ip--- pro30 --- 10.1.31.1 , node2 ip--- forwarder6 --- 10.1.31.2
+---node1 ip--- pro31 --- 10.1.32.1 , node2 ip--- forwarder6 --- 10.1.31.2
+---node1 ip--- pro32 --- 10.1.33.1 , node2 ip--- forwarder6 --- 10.1.31.2
+---node1 ip--- pro33 --- 10.1.34.1 , node2 ip--- forwarder6 --- 10.1.31.2
+---node1 ip--- pro34 --- 10.1.35.1 , node2 ip--- forwarder6 --- 10.1.31.2
+---node1 ip--- pro35 --- 10.1.36.1 , node2 ip--- forwarder7 --- 10.1.36.2
+---node1 ip--- pro36 --- 10.1.37.1 , node2 ip--- forwarder7 --- 10.1.36.2
+---node1 ip--- pro37 --- 10.1.38.1 , node2 ip--- forwarder7 --- 10.1.36.2
+---node1 ip--- pro38 --- 10.1.39.1 , node2 ip--- forwarder7 --- 10.1.36.2
+---node1 ip--- pro39 --- 10.1.40.1 , node2 ip--- forwarder7 --- 10.1.36.2
+---node1 ip--- pro40 --- 10.1.41.1 , node2 ip--- forwarder8 --- 10.1.41.2
+---node1 ip--- pro41 --- 10.1.42.1 , node2 ip--- forwarder8 --- 10.1.41.2
+---node1 ip--- pro42 --- 10.1.43.1 , node2 ip--- forwarder8 --- 10.1.41.2
+---node1 ip--- pro43 --- 10.1.44.1 , node2 ip--- forwarder8 --- 10.1.41.2
+---node1 ip--- pro44 --- 10.1.45.1 , node2 ip--- forwarder8 --- 10.1.41.2
+---node1 ip--- pro45 --- 10.1.46.1 , node2 ip--- forwarder9 --- 10.1.46.2
+---node1 ip--- pro46 --- 10.1.47.1 , node2 ip--- forwarder9 --- 10.1.46.2
+---node1 ip--- pro47 --- 10.1.48.1 , node2 ip--- forwarder9 --- 10.1.46.2
+---node1 ip--- pro48 --- 10.1.49.1 , node2 ip--- forwarder9 --- 10.1.46.2
+---node1 ip--- pro49 --- 10.1.50.1 , node2 ip--- forwarder9 --- 10.1.46.2
+---node1 ip--- pro50 --- 10.1.51.1 , node2 ip--- forwarder10 --- 10.1.51.2
+---node1 ip--- pro51 --- 10.1.52.1 , node2 ip--- forwarder10 --- 10.1.51.2
+---node1 ip--- pro52 --- 10.1.53.1 , node2 ip--- forwarder10 --- 10.1.51.2
+---node1 ip--- pro53 --- 10.1.54.1 , node2 ip--- forwarder10 --- 10.1.51.2
+---node1 ip--- pro54 --- 10.1.55.1 , node2 ip--- forwarder10 --- 10.1.51.2
+---node1 ip--- pro55 --- 10.1.56.1 , node2 ip--- forwarder11 --- 10.1.56.2
+---node1 ip--- pro56 --- 10.1.57.1 , node2 ip--- forwarder11 --- 10.1.56.2
+---node1 ip--- pro57 --- 10.1.58.1 , node2 ip--- forwarder11 --- 10.1.56.2
+---node1 ip--- pro58 --- 10.1.59.1 , node2 ip--- forwarder11 --- 10.1.56.2
+---node1 ip--- pro59 --- 10.1.60.1 , node2 ip--- forwarder11 --- 10.1.56.2
+---node1 ip--- pro60 --- 10.1.61.1 , node2 ip--- forwarder12 --- 10.1.61.2
+---node1 ip--- pro61 --- 10.1.62.1 , node2 ip--- forwarder12 --- 10.1.61.2
+---node1 ip--- pro62 --- 10.1.63.1 , node2 ip--- forwarder12 --- 10.1.61.2
+---node1 ip--- pro63 --- 10.1.64.1 , node2 ip--- forwarder12 --- 10.1.61.2
+---node1 ip--- pro64 --- 10.1.65.1 , node2 ip--- forwarder12 --- 10.1.61.2
+---node1 ip--- pro65 --- 10.1.66.1 , node2 ip--- forwarder13 --- 10.1.66.2
+---node1 ip--- pro66 --- 10.1.67.1 , node2 ip--- forwarder13 --- 10.1.66.2
+---node1 ip--- pro67 --- 10.1.68.1 , node2 ip--- forwarder13 --- 10.1.66.2
+---node1 ip--- pro68 --- 10.1.69.1 , node2 ip--- forwarder13 --- 10.1.66.2
+---node1 ip--- pro69 --- 10.1.70.1 , node2 ip--- forwarder13 --- 10.1.66.2
+---node1 ip--- pro70 --- 10.1.71.1 , node2 ip--- forwarder14 --- 10.1.71.2
+---node1 ip--- pro71 --- 10.1.72.1 , node2 ip--- forwarder14 --- 10.1.71.2
+---node1 ip--- pro72 --- 10.1.73.1 , node2 ip--- forwarder14 --- 10.1.71.2
+---node1 ip--- pro73 --- 10.1.74.1 , node2 ip--- forwarder14 --- 10.1.71.2
+---node1 ip--- pro74 --- 10.1.75.1 , node2 ip--- forwarder14 --- 10.1.71.2
+---node1 ip--- pro75 --- 10.1.76.1 , node2 ip--- forwarder15 --- 10.1.76.2
+---node1 ip--- pro76 --- 10.1.77.1 , node2 ip--- forwarder15 --- 10.1.76.2
+---node1 ip--- pro77 --- 10.1.78.1 , node2 ip--- forwarder15 --- 10.1.76.2
+---node1 ip--- pro78 --- 10.1.79.1 , node2 ip--- forwarder15 --- 10.1.76.2
+---node1 ip--- pro79 --- 10.1.80.1 , node2 ip--- forwarder15 --- 10.1.76.2
+---node1 ip--- pro80 --- 10.1.81.1 , node2 ip--- forwarder16 --- 10.1.81.2
+---node1 ip--- pro81 --- 10.1.82.1 , node2 ip--- forwarder16 --- 10.1.81.2
+---node1 ip--- pro82 --- 10.1.83.1 , node2 ip--- forwarder16 --- 10.1.81.2
+---node1 ip--- pro83 --- 10.1.84.1 , node2 ip--- forwarder16 --- 10.1.81.2
+---node1 ip--- pro84 --- 10.1.85.1 , node2 ip--- forwarder16 --- 10.1.81.2
+---node1 ip--- pro85 --- 10.1.86.1 , node2 ip--- forwarder17 --- 10.1.86.2
+---node1 ip--- pro86 --- 10.1.87.1 , node2 ip--- forwarder17 --- 10.1.86.2
+---node1 ip--- pro87 --- 10.1.88.1 , node2 ip--- forwarder17 --- 10.1.86.2
+---node1 ip--- pro88 --- 10.1.89.1 , node2 ip--- forwarder17 --- 10.1.86.2
+---node1 ip--- pro89 --- 10.1.90.1 , node2 ip--- forwarder17 --- 10.1.86.2
+---node1 ip--- pro90 --- 10.1.91.1 , node2 ip--- forwarder18 --- 10.1.91.2
+---node1 ip--- pro91 --- 10.1.92.1 , node2 ip--- forwarder18 --- 10.1.91.2
+---node1 ip--- pro92 --- 10.1.93.1 , node2 ip--- forwarder18 --- 10.1.91.2
+---node1 ip--- pro93 --- 10.1.94.1 , node2 ip--- forwarder18 --- 10.1.91.2
+---node1 ip--- pro94 --- 10.1.95.1 , node2 ip--- forwarder18 --- 10.1.91.2
+---node1 ip--- pro95 --- 10.1.96.1 , node2 ip--- forwarder19 --- 10.1.96.2
+---node1 ip--- pro96 --- 10.1.97.1 , node2 ip--- forwarder19 --- 10.1.96.2
+---node1 ip--- pro97 --- 10.1.98.1 , node2 ip--- forwarder19 --- 10.1.96.2
+---node1 ip--- pro98 --- 10.1.99.1 , node2 ip--- forwarder19 --- 10.1.96.2
+---node1 ip--- pro99 --- 10.1.100.1 , node2 ip--- forwarder19 --- 10.1.96.2
+---node1 ip--- con0 --- 10.1.101.1 , node2 ip--- forwarder20 --- 10.1.101.2
+---node1 ip--- forwarder0 --- 10.1.1.2 , node2 ip--- agg0 --- 10.2.1.2
+---node1 ip--- agg0 --- 10.2.1.2 , node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder1 --- 10.1.6.2 , node2 ip--- agg1 --- 10.2.3.2
+---node1 ip--- agg1 --- 10.2.3.2 , node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder2 --- 10.1.11.2 , node2 ip--- agg2 --- 10.2.5.2
+---node1 ip--- agg2 --- 10.2.5.2 , node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder3 --- 10.1.16.2 , node2 ip--- agg3 --- 10.2.7.2
+---node1 ip--- agg3 --- 10.2.7.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder4 --- 10.1.21.2 , node2 ip--- agg4 --- 10.2.9.2
+---node1 ip--- agg4 --- 10.2.9.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder5 --- 10.1.26.2 , node2 ip--- agg5 --- 10.2.11.2
+---node1 ip--- agg5 --- 10.2.11.2 , node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder6 --- 10.1.31.2 , node2 ip--- agg6 --- 10.2.13.2
+---node1 ip--- agg6 --- 10.2.13.2 , node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder7 --- 10.1.36.2 , node2 ip--- agg7 --- 10.2.15.2
+---node1 ip--- agg7 --- 10.2.15.2 , node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder8 --- 10.1.41.2 , node2 ip--- agg8 --- 10.2.17.2
+---node1 ip--- agg8 --- 10.2.17.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder9 --- 10.1.46.2 , node2 ip--- agg9 --- 10.2.19.2
+---node1 ip--- agg9 --- 10.2.19.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder10 --- 10.1.51.2 , node2 ip--- agg10 --- 10.2.21.2
+---node1 ip--- agg10 --- 10.2.21.2 , node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder11 --- 10.1.56.2 , node2 ip--- agg11 --- 10.2.23.2
+---node1 ip--- agg11 --- 10.2.23.2 , node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder12 --- 10.1.61.2 , node2 ip--- agg12 --- 10.2.25.2
+---node1 ip--- agg12 --- 10.2.25.2 , node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder13 --- 10.1.66.2 , node2 ip--- agg13 --- 10.2.27.2
+---node1 ip--- agg13 --- 10.2.27.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder14 --- 10.1.71.2 , node2 ip--- agg14 --- 10.2.29.2
+---node1 ip--- agg14 --- 10.2.29.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder15 --- 10.1.76.2 , node2 ip--- agg15 --- 10.2.31.2
+---node1 ip--- agg15 --- 10.2.31.2 , node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder16 --- 10.1.81.2 , node2 ip--- agg16 --- 10.2.33.2
+---node1 ip--- agg16 --- 10.2.33.2 , node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder17 --- 10.1.86.2 , node2 ip--- agg17 --- 10.2.35.2
+---node1 ip--- agg17 --- 10.2.35.2 , node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder18 --- 10.1.91.2 , node2 ip--- agg18 --- 10.2.37.2
+---node1 ip--- agg18 --- 10.2.37.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder19 --- 10.1.96.2 , node2 ip--- agg19 --- 10.2.39.2
+---node1 ip--- agg19 --- 10.2.39.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder0 --- 10.1.1.2 , node2 ip--- agg20 --- 10.2.41.2
+---node1 ip--- agg20 --- 10.2.41.2 , node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder1 --- 10.1.6.2 , node2 ip--- agg21 --- 10.2.43.2
+---node1 ip--- agg21 --- 10.2.43.2 , node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder2 --- 10.1.11.2 , node2 ip--- agg22 --- 10.2.45.2
+---node1 ip--- agg22 --- 10.2.45.2 , node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder3 --- 10.1.16.2 , node2 ip--- agg23 --- 10.2.47.2
+---node1 ip--- agg23 --- 10.2.47.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder4 --- 10.1.21.2 , node2 ip--- agg24 --- 10.2.49.2
+---node1 ip--- agg24 --- 10.2.49.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder5 --- 10.1.26.2 , node2 ip--- agg25 --- 10.2.51.2
+---node1 ip--- agg25 --- 10.2.51.2 , node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder6 --- 10.1.31.2 , node2 ip--- agg26 --- 10.2.53.2
+---node1 ip--- agg26 --- 10.2.53.2 , node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder7 --- 10.1.36.2 , node2 ip--- agg27 --- 10.2.55.2
+---node1 ip--- agg27 --- 10.2.55.2 , node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder8 --- 10.1.41.2 , node2 ip--- agg28 --- 10.2.57.2
+---node1 ip--- agg28 --- 10.2.57.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder9 --- 10.1.46.2 , node2 ip--- agg29 --- 10.2.59.2
+---node1 ip--- agg29 --- 10.2.59.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder10 --- 10.1.51.2 , node2 ip--- agg30 --- 10.2.61.2
+---node1 ip--- agg30 --- 10.2.61.2 , node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder11 --- 10.1.56.2 , node2 ip--- agg31 --- 10.2.63.2
+---node1 ip--- agg31 --- 10.2.63.2 , node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder12 --- 10.1.61.2 , node2 ip--- agg32 --- 10.2.65.2
+---node1 ip--- agg32 --- 10.2.65.2 , node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder13 --- 10.1.66.2 , node2 ip--- agg33 --- 10.2.67.2
+---node1 ip--- agg33 --- 10.2.67.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder14 --- 10.1.71.2 , node2 ip--- agg34 --- 10.2.69.2
+---node1 ip--- agg34 --- 10.2.69.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder15 --- 10.1.76.2 , node2 ip--- agg35 --- 10.2.71.2
+---node1 ip--- agg35 --- 10.2.71.2 , node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder16 --- 10.1.81.2 , node2 ip--- agg36 --- 10.2.73.2
+---node1 ip--- agg36 --- 10.2.73.2 , node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder17 --- 10.1.86.2 , node2 ip--- agg37 --- 10.2.75.2
+---node1 ip--- agg37 --- 10.2.75.2 , node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder18 --- 10.1.91.2 , node2 ip--- agg38 --- 10.2.77.2
+---node1 ip--- agg38 --- 10.2.77.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder19 --- 10.1.96.2 , node2 ip--- agg39 --- 10.2.79.2
+---node1 ip--- agg39 --- 10.2.79.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder0 --- 10.1.1.2 , node2 ip--- agg40 --- 10.2.81.2
+---node1 ip--- agg40 --- 10.2.81.2 , node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder1 --- 10.1.6.2 , node2 ip--- agg41 --- 10.2.83.2
+---node1 ip--- agg41 --- 10.2.83.2 , node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder2 --- 10.1.11.2 , node2 ip--- agg42 --- 10.2.85.2
+---node1 ip--- agg42 --- 10.2.85.2 , node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder3 --- 10.1.16.2 , node2 ip--- agg43 --- 10.2.87.2
+---node1 ip--- agg43 --- 10.2.87.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder4 --- 10.1.21.2 , node2 ip--- agg44 --- 10.2.89.2
+---node1 ip--- agg44 --- 10.2.89.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder5 --- 10.1.26.2 , node2 ip--- agg45 --- 10.2.91.2
+---node1 ip--- agg45 --- 10.2.91.2 , node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder6 --- 10.1.31.2 , node2 ip--- agg46 --- 10.2.93.2
+---node1 ip--- agg46 --- 10.2.93.2 , node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder7 --- 10.1.36.2 , node2 ip--- agg47 --- 10.2.95.2
+---node1 ip--- agg47 --- 10.2.95.2 , node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder8 --- 10.1.41.2 , node2 ip--- agg48 --- 10.2.97.2
+---node1 ip--- agg48 --- 10.2.97.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder9 --- 10.1.46.2 , node2 ip--- agg49 --- 10.2.99.2
+---node1 ip--- agg49 --- 10.2.99.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder20 --- 10.1.101.2 , node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder21 --- 10.2.2.2 , node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder21 --- 10.2.2.2 , node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder21 --- 10.2.2.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder21 --- 10.2.2.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder22 --- 10.2.4.2 , node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder22 --- 10.2.4.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder22 --- 10.2.4.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder23 --- 10.2.6.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder23 --- 10.2.6.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder24 --- 10.2.8.2 , node2 ip--- forwarder25 --- 10.2.10.2
++2.413000000s 127 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.1.2 completed iteration 1000 at 2413ms
++2.413000000s 128 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.3.2 completed iteration 1000 at 2413ms
++2.413000000s 129 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.5.2 completed iteration 1000 at 2413ms
++2.413000000s 130 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.7.2 completed iteration 1000 at 2413ms
++2.413000000s 131 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.9.2 completed iteration 1000 at 2413ms
++2.413000000s 132 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.11.2 completed iteration 1000 at 2413ms
++2.413000000s 133 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.13.2 completed iteration 1000 at 2413ms
++2.413000000s 134 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.15.2 completed iteration 1000 at 2413ms
++2.413000000s 135 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.17.2 completed iteration 1000 at 2413ms
++2.413000000s 136 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.19.2 completed iteration 1000 at 2413ms
++2.413000000s 137 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.21.2 completed iteration 1000 at 2413ms
++2.413000000s 138 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.23.2 completed iteration 1000 at 2413ms
++2.413000000s 139 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.25.2 completed iteration 1000 at 2413ms
++2.413000000s 140 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.27.2 completed iteration 1000 at 2413ms
++2.413000000s 141 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.29.2 completed iteration 1000 at 2413ms
++2.413000000s 142 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.31.2 completed iteration 1000 at 2413ms
++2.413000000s 143 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.33.2 completed iteration 1000 at 2413ms
++2.413000000s 144 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.35.2 completed iteration 1000 at 2413ms
++2.413000000s 145 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.37.2 completed iteration 1000 at 2413ms
++2.413000000s 146 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.39.2 completed iteration 1000 at 2413ms
++2.421000000s 149 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.45.2 completed iteration 1000 at 2421ms
++2.426000000s 147 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.41.2 completed iteration 1000 at 2426ms
++2.426000000s 152 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.51.2 completed iteration 1000 at 2426ms
++2.426000000s 157 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.61.2 completed iteration 1000 at 2426ms
++2.436000000s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.1.101.1 completed iteration 1000 at 2436ms
++2.817000000s 127 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.1.2 completed iteration 2000 at 2817ms
++2.817000000s 128 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.3.2 completed iteration 2000 at 2817ms
++2.817000000s 129 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.5.2 completed iteration 2000 at 2817ms
++2.817000000s 130 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.7.2 completed iteration 2000 at 2817ms
++2.817000000s 131 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.9.2 completed iteration 2000 at 2817ms
++2.817000000s 132 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.11.2 completed iteration 2000 at 2817ms
++2.817000000s 133 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.13.2 completed iteration 2000 at 2817ms
++2.817000000s 134 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.15.2 completed iteration 2000 at 2817ms
++2.817000000s 135 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.17.2 completed iteration 2000 at 2817ms
++2.817000000s 136 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.19.2 completed iteration 2000 at 2817ms
++2.817000000s 137 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.21.2 completed iteration 2000 at 2817ms
++2.817000000s 138 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.23.2 completed iteration 2000 at 2817ms
++2.817000000s 139 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.25.2 completed iteration 2000 at 2817ms
++2.817000000s 140 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.27.2 completed iteration 2000 at 2817ms
++2.817000000s 141 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.29.2 completed iteration 2000 at 2817ms
++2.817000000s 142 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.31.2 completed iteration 2000 at 2817ms
++2.817000000s 143 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.33.2 completed iteration 2000 at 2817ms
++2.817000000s 144 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.35.2 completed iteration 2000 at 2817ms
++2.817000000s 145 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.37.2 completed iteration 2000 at 2817ms
++2.817000000s 146 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.39.2 completed iteration 2000 at 2817ms
++2.825000000s 149 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.45.2 completed iteration 2000 at 2825ms
++2.830000000s 157 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.61.2 completed iteration 2000 at 2830ms
++2.831000000s 147 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.41.2 completed iteration 2000 at 2831ms
++2.831000000s 152 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.51.2 completed iteration 2000 at 2831ms
++2.840000000s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.1.101.1 completed iteration 2000 at 2840ms
++3.222000000s 127 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.1.2 completed processing
++3.222000000s 128 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.3.2 completed processing
++3.222000000s 129 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.5.2 completed processing
++3.222000000s 130 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.7.2 completed processing
++3.222000000s 131 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.9.2 completed processing
++3.222000000s 132 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.11.2 completed processing
++3.222000000s 133 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.13.2 completed processing
++3.222000000s 134 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.15.2 completed processing
++3.222000000s 135 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.17.2 completed processing
++3.222000000s 136 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.19.2 completed processing
++3.222000000s 137 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.21.2 completed processing
++3.222000000s 138 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.23.2 completed processing
++3.222000000s 139 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.25.2 completed processing
++3.222000000s 140 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.27.2 completed processing
++3.222000000s 141 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.29.2 completed processing
++3.222000000s 142 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.31.2 completed processing
++3.222000000s 143 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.33.2 completed processing
++3.222000000s 144 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.35.2 completed processing
++3.222000000s 145 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.37.2 completed processing
++3.222000000s 146 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.39.2 completed processing
++3.230000000s 149 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.45.2 completed processing
++3.235000000s 147 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.41.2 completed processing
++3.235000000s 152 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.51.2 completed processing
++3.235000000s 157 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.61.2 completed processing
++3.244000000s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer completed all iterations in 1244ms
+Prefix: 100, Iteration: 3000 - Simulation completed successfully.
+
+#################### SIMULATION END ####################
+
+
+
+
+#################### SIMULATION PARAMETERS ####################
+
+
+Prefix: 100 Iteration: 4000 Vector Size: 150 Congestion Control Algorithm: bbr
+
+
+#################### SIMULATION SET-UP ####################
+
+
+uint32_t consumerNum = 1;
+uint32_t producerNum = 100;
+uint32_t forwarderNum = 26;
+uint32_t aggregatorNum = 50;
+---node1 ip--- pro0 --- 10.1.1.1 , node2 ip--- forwarder0 --- 10.1.1.2
+---node1 ip--- pro1 --- 10.1.2.1 , node2 ip--- forwarder0 --- 10.1.1.2
+---node1 ip--- pro2 --- 10.1.3.1 , node2 ip--- forwarder0 --- 10.1.1.2
+---node1 ip--- pro3 --- 10.1.4.1 , node2 ip--- forwarder0 --- 10.1.1.2
+---node1 ip--- pro4 --- 10.1.5.1 , node2 ip--- forwarder0 --- 10.1.1.2
+---node1 ip--- pro5 --- 10.1.6.1 , node2 ip--- forwarder1 --- 10.1.6.2
+---node1 ip--- pro6 --- 10.1.7.1 , node2 ip--- forwarder1 --- 10.1.6.2
+---node1 ip--- pro7 --- 10.1.8.1 , node2 ip--- forwarder1 --- 10.1.6.2
+---node1 ip--- pro8 --- 10.1.9.1 , node2 ip--- forwarder1 --- 10.1.6.2
+---node1 ip--- pro9 --- 10.1.10.1 , node2 ip--- forwarder1 --- 10.1.6.2
+---node1 ip--- pro10 --- 10.1.11.1 , node2 ip--- forwarder2 --- 10.1.11.2
+---node1 ip--- pro11 --- 10.1.12.1 , node2 ip--- forwarder2 --- 10.1.11.2
+---node1 ip--- pro12 --- 10.1.13.1 , node2 ip--- forwarder2 --- 10.1.11.2
+---node1 ip--- pro13 --- 10.1.14.1 , node2 ip--- forwarder2 --- 10.1.11.2
+---node1 ip--- pro14 --- 10.1.15.1 , node2 ip--- forwarder2 --- 10.1.11.2
+---node1 ip--- pro15 --- 10.1.16.1 , node2 ip--- forwarder3 --- 10.1.16.2
+---node1 ip--- pro16 --- 10.1.17.1 , node2 ip--- forwarder3 --- 10.1.16.2
+---node1 ip--- pro17 --- 10.1.18.1 , node2 ip--- forwarder3 --- 10.1.16.2
+---node1 ip--- pro18 --- 10.1.19.1 , node2 ip--- forwarder3 --- 10.1.16.2
+---node1 ip--- pro19 --- 10.1.20.1 , node2 ip--- forwarder3 --- 10.1.16.2
+---node1 ip--- pro20 --- 10.1.21.1 , node2 ip--- forwarder4 --- 10.1.21.2
+---node1 ip--- pro21 --- 10.1.22.1 , node2 ip--- forwarder4 --- 10.1.21.2
+---node1 ip--- pro22 --- 10.1.23.1 , node2 ip--- forwarder4 --- 10.1.21.2
+---node1 ip--- pro23 --- 10.1.24.1 , node2 ip--- forwarder4 --- 10.1.21.2
+---node1 ip--- pro24 --- 10.1.25.1 , node2 ip--- forwarder4 --- 10.1.21.2
+---node1 ip--- pro25 --- 10.1.26.1 , node2 ip--- forwarder5 --- 10.1.26.2
+---node1 ip--- pro26 --- 10.1.27.1 , node2 ip--- forwarder5 --- 10.1.26.2
+---node1 ip--- pro27 --- 10.1.28.1 , node2 ip--- forwarder5 --- 10.1.26.2
+---node1 ip--- pro28 --- 10.1.29.1 , node2 ip--- forwarder5 --- 10.1.26.2
+---node1 ip--- pro29 --- 10.1.30.1 , node2 ip--- forwarder5 --- 10.1.26.2
+---node1 ip--- pro30 --- 10.1.31.1 , node2 ip--- forwarder6 --- 10.1.31.2
+---node1 ip--- pro31 --- 10.1.32.1 , node2 ip--- forwarder6 --- 10.1.31.2
+---node1 ip--- pro32 --- 10.1.33.1 , node2 ip--- forwarder6 --- 10.1.31.2
+---node1 ip--- pro33 --- 10.1.34.1 , node2 ip--- forwarder6 --- 10.1.31.2
+---node1 ip--- pro34 --- 10.1.35.1 , node2 ip--- forwarder6 --- 10.1.31.2
+---node1 ip--- pro35 --- 10.1.36.1 , node2 ip--- forwarder7 --- 10.1.36.2
+---node1 ip--- pro36 --- 10.1.37.1 , node2 ip--- forwarder7 --- 10.1.36.2
+---node1 ip--- pro37 --- 10.1.38.1 , node2 ip--- forwarder7 --- 10.1.36.2
+---node1 ip--- pro38 --- 10.1.39.1 , node2 ip--- forwarder7 --- 10.1.36.2
+---node1 ip--- pro39 --- 10.1.40.1 , node2 ip--- forwarder7 --- 10.1.36.2
+---node1 ip--- pro40 --- 10.1.41.1 , node2 ip--- forwarder8 --- 10.1.41.2
+---node1 ip--- pro41 --- 10.1.42.1 , node2 ip--- forwarder8 --- 10.1.41.2
+---node1 ip--- pro42 --- 10.1.43.1 , node2 ip--- forwarder8 --- 10.1.41.2
+---node1 ip--- pro43 --- 10.1.44.1 , node2 ip--- forwarder8 --- 10.1.41.2
+---node1 ip--- pro44 --- 10.1.45.1 , node2 ip--- forwarder8 --- 10.1.41.2
+---node1 ip--- pro45 --- 10.1.46.1 , node2 ip--- forwarder9 --- 10.1.46.2
+---node1 ip--- pro46 --- 10.1.47.1 , node2 ip--- forwarder9 --- 10.1.46.2
+---node1 ip--- pro47 --- 10.1.48.1 , node2 ip--- forwarder9 --- 10.1.46.2
+---node1 ip--- pro48 --- 10.1.49.1 , node2 ip--- forwarder9 --- 10.1.46.2
+---node1 ip--- pro49 --- 10.1.50.1 , node2 ip--- forwarder9 --- 10.1.46.2
+---node1 ip--- pro50 --- 10.1.51.1 , node2 ip--- forwarder10 --- 10.1.51.2
+---node1 ip--- pro51 --- 10.1.52.1 , node2 ip--- forwarder10 --- 10.1.51.2
+---node1 ip--- pro52 --- 10.1.53.1 , node2 ip--- forwarder10 --- 10.1.51.2
+---node1 ip--- pro53 --- 10.1.54.1 , node2 ip--- forwarder10 --- 10.1.51.2
+---node1 ip--- pro54 --- 10.1.55.1 , node2 ip--- forwarder10 --- 10.1.51.2
+---node1 ip--- pro55 --- 10.1.56.1 , node2 ip--- forwarder11 --- 10.1.56.2
+---node1 ip--- pro56 --- 10.1.57.1 , node2 ip--- forwarder11 --- 10.1.56.2
+---node1 ip--- pro57 --- 10.1.58.1 , node2 ip--- forwarder11 --- 10.1.56.2
+---node1 ip--- pro58 --- 10.1.59.1 , node2 ip--- forwarder11 --- 10.1.56.2
+---node1 ip--- pro59 --- 10.1.60.1 , node2 ip--- forwarder11 --- 10.1.56.2
+---node1 ip--- pro60 --- 10.1.61.1 , node2 ip--- forwarder12 --- 10.1.61.2
+---node1 ip--- pro61 --- 10.1.62.1 , node2 ip--- forwarder12 --- 10.1.61.2
+---node1 ip--- pro62 --- 10.1.63.1 , node2 ip--- forwarder12 --- 10.1.61.2
+---node1 ip--- pro63 --- 10.1.64.1 , node2 ip--- forwarder12 --- 10.1.61.2
+---node1 ip--- pro64 --- 10.1.65.1 , node2 ip--- forwarder12 --- 10.1.61.2
+---node1 ip--- pro65 --- 10.1.66.1 , node2 ip--- forwarder13 --- 10.1.66.2
+---node1 ip--- pro66 --- 10.1.67.1 , node2 ip--- forwarder13 --- 10.1.66.2
+---node1 ip--- pro67 --- 10.1.68.1 , node2 ip--- forwarder13 --- 10.1.66.2
+---node1 ip--- pro68 --- 10.1.69.1 , node2 ip--- forwarder13 --- 10.1.66.2
+---node1 ip--- pro69 --- 10.1.70.1 , node2 ip--- forwarder13 --- 10.1.66.2
+---node1 ip--- pro70 --- 10.1.71.1 , node2 ip--- forwarder14 --- 10.1.71.2
+---node1 ip--- pro71 --- 10.1.72.1 , node2 ip--- forwarder14 --- 10.1.71.2
+---node1 ip--- pro72 --- 10.1.73.1 , node2 ip--- forwarder14 --- 10.1.71.2
+---node1 ip--- pro73 --- 10.1.74.1 , node2 ip--- forwarder14 --- 10.1.71.2
+---node1 ip--- pro74 --- 10.1.75.1 , node2 ip--- forwarder14 --- 10.1.71.2
+---node1 ip--- pro75 --- 10.1.76.1 , node2 ip--- forwarder15 --- 10.1.76.2
+---node1 ip--- pro76 --- 10.1.77.1 , node2 ip--- forwarder15 --- 10.1.76.2
+---node1 ip--- pro77 --- 10.1.78.1 , node2 ip--- forwarder15 --- 10.1.76.2
+---node1 ip--- pro78 --- 10.1.79.1 , node2 ip--- forwarder15 --- 10.1.76.2
+---node1 ip--- pro79 --- 10.1.80.1 , node2 ip--- forwarder15 --- 10.1.76.2
+---node1 ip--- pro80 --- 10.1.81.1 , node2 ip--- forwarder16 --- 10.1.81.2
+---node1 ip--- pro81 --- 10.1.82.1 , node2 ip--- forwarder16 --- 10.1.81.2
+---node1 ip--- pro82 --- 10.1.83.1 , node2 ip--- forwarder16 --- 10.1.81.2
+---node1 ip--- pro83 --- 10.1.84.1 , node2 ip--- forwarder16 --- 10.1.81.2
+---node1 ip--- pro84 --- 10.1.85.1 , node2 ip--- forwarder16 --- 10.1.81.2
+---node1 ip--- pro85 --- 10.1.86.1 , node2 ip--- forwarder17 --- 10.1.86.2
+---node1 ip--- pro86 --- 10.1.87.1 , node2 ip--- forwarder17 --- 10.1.86.2
+---node1 ip--- pro87 --- 10.1.88.1 , node2 ip--- forwarder17 --- 10.1.86.2
+---node1 ip--- pro88 --- 10.1.89.1 , node2 ip--- forwarder17 --- 10.1.86.2
+---node1 ip--- pro89 --- 10.1.90.1 , node2 ip--- forwarder17 --- 10.1.86.2
+---node1 ip--- pro90 --- 10.1.91.1 , node2 ip--- forwarder18 --- 10.1.91.2
+---node1 ip--- pro91 --- 10.1.92.1 , node2 ip--- forwarder18 --- 10.1.91.2
+---node1 ip--- pro92 --- 10.1.93.1 , node2 ip--- forwarder18 --- 10.1.91.2
+---node1 ip--- pro93 --- 10.1.94.1 , node2 ip--- forwarder18 --- 10.1.91.2
+---node1 ip--- pro94 --- 10.1.95.1 , node2 ip--- forwarder18 --- 10.1.91.2
+---node1 ip--- pro95 --- 10.1.96.1 , node2 ip--- forwarder19 --- 10.1.96.2
+---node1 ip--- pro96 --- 10.1.97.1 , node2 ip--- forwarder19 --- 10.1.96.2
+---node1 ip--- pro97 --- 10.1.98.1 , node2 ip--- forwarder19 --- 10.1.96.2
+---node1 ip--- pro98 --- 10.1.99.1 , node2 ip--- forwarder19 --- 10.1.96.2
+---node1 ip--- pro99 --- 10.1.100.1 , node2 ip--- forwarder19 --- 10.1.96.2
+---node1 ip--- con0 --- 10.1.101.1 , node2 ip--- forwarder20 --- 10.1.101.2
+---node1 ip--- forwarder0 --- 10.1.1.2 , node2 ip--- agg0 --- 10.2.1.2
+---node1 ip--- agg0 --- 10.2.1.2 , node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder1 --- 10.1.6.2 , node2 ip--- agg1 --- 10.2.3.2
+---node1 ip--- agg1 --- 10.2.3.2 , node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder2 --- 10.1.11.2 , node2 ip--- agg2 --- 10.2.5.2
+---node1 ip--- agg2 --- 10.2.5.2 , node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder3 --- 10.1.16.2 , node2 ip--- agg3 --- 10.2.7.2
+---node1 ip--- agg3 --- 10.2.7.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder4 --- 10.1.21.2 , node2 ip--- agg4 --- 10.2.9.2
+---node1 ip--- agg4 --- 10.2.9.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder5 --- 10.1.26.2 , node2 ip--- agg5 --- 10.2.11.2
+---node1 ip--- agg5 --- 10.2.11.2 , node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder6 --- 10.1.31.2 , node2 ip--- agg6 --- 10.2.13.2
+---node1 ip--- agg6 --- 10.2.13.2 , node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder7 --- 10.1.36.2 , node2 ip--- agg7 --- 10.2.15.2
+---node1 ip--- agg7 --- 10.2.15.2 , node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder8 --- 10.1.41.2 , node2 ip--- agg8 --- 10.2.17.2
+---node1 ip--- agg8 --- 10.2.17.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder9 --- 10.1.46.2 , node2 ip--- agg9 --- 10.2.19.2
+---node1 ip--- agg9 --- 10.2.19.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder10 --- 10.1.51.2 , node2 ip--- agg10 --- 10.2.21.2
+---node1 ip--- agg10 --- 10.2.21.2 , node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder11 --- 10.1.56.2 , node2 ip--- agg11 --- 10.2.23.2
+---node1 ip--- agg11 --- 10.2.23.2 , node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder12 --- 10.1.61.2 , node2 ip--- agg12 --- 10.2.25.2
+---node1 ip--- agg12 --- 10.2.25.2 , node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder13 --- 10.1.66.2 , node2 ip--- agg13 --- 10.2.27.2
+---node1 ip--- agg13 --- 10.2.27.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder14 --- 10.1.71.2 , node2 ip--- agg14 --- 10.2.29.2
+---node1 ip--- agg14 --- 10.2.29.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder15 --- 10.1.76.2 , node2 ip--- agg15 --- 10.2.31.2
+---node1 ip--- agg15 --- 10.2.31.2 , node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder16 --- 10.1.81.2 , node2 ip--- agg16 --- 10.2.33.2
+---node1 ip--- agg16 --- 10.2.33.2 , node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder17 --- 10.1.86.2 , node2 ip--- agg17 --- 10.2.35.2
+---node1 ip--- agg17 --- 10.2.35.2 , node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder18 --- 10.1.91.2 , node2 ip--- agg18 --- 10.2.37.2
+---node1 ip--- agg18 --- 10.2.37.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder19 --- 10.1.96.2 , node2 ip--- agg19 --- 10.2.39.2
+---node1 ip--- agg19 --- 10.2.39.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder0 --- 10.1.1.2 , node2 ip--- agg20 --- 10.2.41.2
+---node1 ip--- agg20 --- 10.2.41.2 , node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder1 --- 10.1.6.2 , node2 ip--- agg21 --- 10.2.43.2
+---node1 ip--- agg21 --- 10.2.43.2 , node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder2 --- 10.1.11.2 , node2 ip--- agg22 --- 10.2.45.2
+---node1 ip--- agg22 --- 10.2.45.2 , node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder3 --- 10.1.16.2 , node2 ip--- agg23 --- 10.2.47.2
+---node1 ip--- agg23 --- 10.2.47.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder4 --- 10.1.21.2 , node2 ip--- agg24 --- 10.2.49.2
+---node1 ip--- agg24 --- 10.2.49.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder5 --- 10.1.26.2 , node2 ip--- agg25 --- 10.2.51.2
+---node1 ip--- agg25 --- 10.2.51.2 , node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder6 --- 10.1.31.2 , node2 ip--- agg26 --- 10.2.53.2
+---node1 ip--- agg26 --- 10.2.53.2 , node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder7 --- 10.1.36.2 , node2 ip--- agg27 --- 10.2.55.2
+---node1 ip--- agg27 --- 10.2.55.2 , node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder8 --- 10.1.41.2 , node2 ip--- agg28 --- 10.2.57.2
+---node1 ip--- agg28 --- 10.2.57.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder9 --- 10.1.46.2 , node2 ip--- agg29 --- 10.2.59.2
+---node1 ip--- agg29 --- 10.2.59.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder10 --- 10.1.51.2 , node2 ip--- agg30 --- 10.2.61.2
+---node1 ip--- agg30 --- 10.2.61.2 , node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder11 --- 10.1.56.2 , node2 ip--- agg31 --- 10.2.63.2
+---node1 ip--- agg31 --- 10.2.63.2 , node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder12 --- 10.1.61.2 , node2 ip--- agg32 --- 10.2.65.2
+---node1 ip--- agg32 --- 10.2.65.2 , node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder13 --- 10.1.66.2 , node2 ip--- agg33 --- 10.2.67.2
+---node1 ip--- agg33 --- 10.2.67.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder14 --- 10.1.71.2 , node2 ip--- agg34 --- 10.2.69.2
+---node1 ip--- agg34 --- 10.2.69.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder15 --- 10.1.76.2 , node2 ip--- agg35 --- 10.2.71.2
+---node1 ip--- agg35 --- 10.2.71.2 , node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder16 --- 10.1.81.2 , node2 ip--- agg36 --- 10.2.73.2
+---node1 ip--- agg36 --- 10.2.73.2 , node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder17 --- 10.1.86.2 , node2 ip--- agg37 --- 10.2.75.2
+---node1 ip--- agg37 --- 10.2.75.2 , node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder18 --- 10.1.91.2 , node2 ip--- agg38 --- 10.2.77.2
+---node1 ip--- agg38 --- 10.2.77.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder19 --- 10.1.96.2 , node2 ip--- agg39 --- 10.2.79.2
+---node1 ip--- agg39 --- 10.2.79.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder0 --- 10.1.1.2 , node2 ip--- agg40 --- 10.2.81.2
+---node1 ip--- agg40 --- 10.2.81.2 , node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder1 --- 10.1.6.2 , node2 ip--- agg41 --- 10.2.83.2
+---node1 ip--- agg41 --- 10.2.83.2 , node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder2 --- 10.1.11.2 , node2 ip--- agg42 --- 10.2.85.2
+---node1 ip--- agg42 --- 10.2.85.2 , node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder3 --- 10.1.16.2 , node2 ip--- agg43 --- 10.2.87.2
+---node1 ip--- agg43 --- 10.2.87.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder4 --- 10.1.21.2 , node2 ip--- agg44 --- 10.2.89.2
+---node1 ip--- agg44 --- 10.2.89.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder5 --- 10.1.26.2 , node2 ip--- agg45 --- 10.2.91.2
+---node1 ip--- agg45 --- 10.2.91.2 , node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder6 --- 10.1.31.2 , node2 ip--- agg46 --- 10.2.93.2
+---node1 ip--- agg46 --- 10.2.93.2 , node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder7 --- 10.1.36.2 , node2 ip--- agg47 --- 10.2.95.2
+---node1 ip--- agg47 --- 10.2.95.2 , node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder8 --- 10.1.41.2 , node2 ip--- agg48 --- 10.2.97.2
+---node1 ip--- agg48 --- 10.2.97.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder9 --- 10.1.46.2 , node2 ip--- agg49 --- 10.2.99.2
+---node1 ip--- agg49 --- 10.2.99.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder20 --- 10.1.101.2 , node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder21 --- 10.2.2.2 , node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder21 --- 10.2.2.2 , node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder21 --- 10.2.2.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder21 --- 10.2.2.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder22 --- 10.2.4.2 , node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder22 --- 10.2.4.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder22 --- 10.2.4.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder23 --- 10.2.6.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder23 --- 10.2.6.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder24 --- 10.2.8.2 , node2 ip--- forwarder25 --- 10.2.10.2
++2.413000000s 127 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.1.2 completed iteration 1000 at 2413ms
++2.413000000s 128 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.3.2 completed iteration 1000 at 2413ms
++2.413000000s 129 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.5.2 completed iteration 1000 at 2413ms
++2.413000000s 130 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.7.2 completed iteration 1000 at 2413ms
++2.413000000s 131 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.9.2 completed iteration 1000 at 2413ms
++2.413000000s 132 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.11.2 completed iteration 1000 at 2413ms
++2.413000000s 133 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.13.2 completed iteration 1000 at 2413ms
++2.413000000s 134 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.15.2 completed iteration 1000 at 2413ms
++2.413000000s 135 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.17.2 completed iteration 1000 at 2413ms
++2.413000000s 136 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.19.2 completed iteration 1000 at 2413ms
++2.413000000s 137 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.21.2 completed iteration 1000 at 2413ms
++2.413000000s 138 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.23.2 completed iteration 1000 at 2413ms
++2.413000000s 139 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.25.2 completed iteration 1000 at 2413ms
++2.413000000s 140 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.27.2 completed iteration 1000 at 2413ms
++2.413000000s 141 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.29.2 completed iteration 1000 at 2413ms
++2.413000000s 142 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.31.2 completed iteration 1000 at 2413ms
++2.413000000s 143 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.33.2 completed iteration 1000 at 2413ms
++2.413000000s 144 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.35.2 completed iteration 1000 at 2413ms
++2.413000000s 145 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.37.2 completed iteration 1000 at 2413ms
++2.413000000s 146 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.39.2 completed iteration 1000 at 2413ms
++2.421000000s 149 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.45.2 completed iteration 1000 at 2421ms
++2.426000000s 147 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.41.2 completed iteration 1000 at 2426ms
++2.426000000s 152 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.51.2 completed iteration 1000 at 2426ms
++2.426000000s 157 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.61.2 completed iteration 1000 at 2426ms
++2.436000000s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.1.101.1 completed iteration 1000 at 2436ms
++2.817000000s 127 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.1.2 completed iteration 2000 at 2817ms
++2.817000000s 128 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.3.2 completed iteration 2000 at 2817ms
++2.817000000s 129 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.5.2 completed iteration 2000 at 2817ms
++2.817000000s 130 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.7.2 completed iteration 2000 at 2817ms
++2.817000000s 131 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.9.2 completed iteration 2000 at 2817ms
++2.817000000s 132 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.11.2 completed iteration 2000 at 2817ms
++2.817000000s 133 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.13.2 completed iteration 2000 at 2817ms
++2.817000000s 134 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.15.2 completed iteration 2000 at 2817ms
++2.817000000s 135 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.17.2 completed iteration 2000 at 2817ms
++2.817000000s 136 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.19.2 completed iteration 2000 at 2817ms
++2.817000000s 137 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.21.2 completed iteration 2000 at 2817ms
++2.817000000s 138 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.23.2 completed iteration 2000 at 2817ms
++2.817000000s 139 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.25.2 completed iteration 2000 at 2817ms
++2.817000000s 140 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.27.2 completed iteration 2000 at 2817ms
++2.817000000s 141 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.29.2 completed iteration 2000 at 2817ms
++2.817000000s 142 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.31.2 completed iteration 2000 at 2817ms
++2.817000000s 143 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.33.2 completed iteration 2000 at 2817ms
++2.817000000s 144 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.35.2 completed iteration 2000 at 2817ms
++2.817000000s 145 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.37.2 completed iteration 2000 at 2817ms
++2.817000000s 146 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.39.2 completed iteration 2000 at 2817ms
++2.825000000s 149 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.45.2 completed iteration 2000 at 2825ms
++2.830000000s 157 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.61.2 completed iteration 2000 at 2830ms
++2.831000000s 147 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.41.2 completed iteration 2000 at 2831ms
++2.831000000s 152 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.51.2 completed iteration 2000 at 2831ms
++2.840000000s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.1.101.1 completed iteration 2000 at 2840ms
++3.222000000s 127 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.1.2 completed iteration 3000 at 3222ms
++3.222000000s 128 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.3.2 completed iteration 3000 at 3222ms
++3.222000000s 129 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.5.2 completed iteration 3000 at 3222ms
++3.222000000s 130 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.7.2 completed iteration 3000 at 3222ms
++3.222000000s 131 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.9.2 completed iteration 3000 at 3222ms
++3.222000000s 132 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.11.2 completed iteration 3000 at 3222ms
++3.222000000s 133 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.13.2 completed iteration 3000 at 3222ms
++3.222000000s 134 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.15.2 completed iteration 3000 at 3222ms
++3.222000000s 135 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.17.2 completed iteration 3000 at 3222ms
++3.222000000s 136 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.19.2 completed iteration 3000 at 3222ms
++3.222000000s 137 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.21.2 completed iteration 3000 at 3222ms
++3.222000000s 138 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.23.2 completed iteration 3000 at 3222ms
++3.222000000s 139 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.25.2 completed iteration 3000 at 3222ms
++3.222000000s 140 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.27.2 completed iteration 3000 at 3222ms
++3.222000000s 141 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.29.2 completed iteration 3000 at 3222ms
++3.222000000s 142 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.31.2 completed iteration 3000 at 3222ms
++3.222000000s 143 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.33.2 completed iteration 3000 at 3222ms
++3.222000000s 144 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.35.2 completed iteration 3000 at 3222ms
++3.222000000s 145 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.37.2 completed iteration 3000 at 3222ms
++3.222000000s 146 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.39.2 completed iteration 3000 at 3222ms
++3.230000000s 149 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.45.2 completed iteration 3000 at 3230ms
++3.235000000s 147 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.41.2 completed iteration 3000 at 3235ms
++3.235000000s 152 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.51.2 completed iteration 3000 at 3235ms
++3.235000000s 157 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.61.2 completed iteration 3000 at 3235ms
++3.245000000s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.1.101.1 completed iteration 3000 at 3245ms
++3.626000000s 127 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.1.2 completed processing
++3.626000000s 128 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.3.2 completed processing
++3.626000000s 129 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.5.2 completed processing
++3.626000000s 130 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.7.2 completed processing
++3.626000000s 131 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.9.2 completed processing
++3.626000000s 132 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.11.2 completed processing
++3.626000000s 133 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.13.2 completed processing
++3.626000000s 134 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.15.2 completed processing
++3.626000000s 135 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.17.2 completed processing
++3.626000000s 136 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.19.2 completed processing
++3.626000000s 137 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.21.2 completed processing
++3.626000000s 138 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.23.2 completed processing
++3.626000000s 139 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.25.2 completed processing
++3.626000000s 140 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.27.2 completed processing
++3.626000000s 141 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.29.2 completed processing
++3.626000000s 142 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.31.2 completed processing
++3.626000000s 143 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.33.2 completed processing
++3.626000000s 144 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.35.2 completed processing
++3.626000000s 145 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.37.2 completed processing
++3.626000000s 146 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.39.2 completed processing
++3.634000000s 149 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.45.2 completed processing
++3.639000000s 157 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.61.2 completed processing
++3.640000000s 147 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.41.2 completed processing
++3.640000000s 152 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.51.2 completed processing
++3.649000000s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer completed all iterations in 1649ms
+Prefix: 100, Iteration: 4000 - Simulation completed successfully.
+
+#################### SIMULATION END ####################
+
+
+
+
+#################### SIMULATION PARAMETERS ####################
+
+
+Prefix: 100 Iteration: 5000 Vector Size: 150 Congestion Control Algorithm: bbr
+
+
+#################### SIMULATION SET-UP ####################
+
+
+uint32_t consumerNum = 1;
+uint32_t producerNum = 100;
+uint32_t forwarderNum = 26;
+uint32_t aggregatorNum = 50;
+---node1 ip--- pro0 --- 10.1.1.1 , node2 ip--- forwarder0 --- 10.1.1.2
+---node1 ip--- pro1 --- 10.1.2.1 , node2 ip--- forwarder0 --- 10.1.1.2
+---node1 ip--- pro2 --- 10.1.3.1 , node2 ip--- forwarder0 --- 10.1.1.2
+---node1 ip--- pro3 --- 10.1.4.1 , node2 ip--- forwarder0 --- 10.1.1.2
+---node1 ip--- pro4 --- 10.1.5.1 , node2 ip--- forwarder0 --- 10.1.1.2
+---node1 ip--- pro5 --- 10.1.6.1 , node2 ip--- forwarder1 --- 10.1.6.2
+---node1 ip--- pro6 --- 10.1.7.1 , node2 ip--- forwarder1 --- 10.1.6.2
+---node1 ip--- pro7 --- 10.1.8.1 , node2 ip--- forwarder1 --- 10.1.6.2
+---node1 ip--- pro8 --- 10.1.9.1 , node2 ip--- forwarder1 --- 10.1.6.2
+---node1 ip--- pro9 --- 10.1.10.1 , node2 ip--- forwarder1 --- 10.1.6.2
+---node1 ip--- pro10 --- 10.1.11.1 , node2 ip--- forwarder2 --- 10.1.11.2
+---node1 ip--- pro11 --- 10.1.12.1 , node2 ip--- forwarder2 --- 10.1.11.2
+---node1 ip--- pro12 --- 10.1.13.1 , node2 ip--- forwarder2 --- 10.1.11.2
+---node1 ip--- pro13 --- 10.1.14.1 , node2 ip--- forwarder2 --- 10.1.11.2
+---node1 ip--- pro14 --- 10.1.15.1 , node2 ip--- forwarder2 --- 10.1.11.2
+---node1 ip--- pro15 --- 10.1.16.1 , node2 ip--- forwarder3 --- 10.1.16.2
+---node1 ip--- pro16 --- 10.1.17.1 , node2 ip--- forwarder3 --- 10.1.16.2
+---node1 ip--- pro17 --- 10.1.18.1 , node2 ip--- forwarder3 --- 10.1.16.2
+---node1 ip--- pro18 --- 10.1.19.1 , node2 ip--- forwarder3 --- 10.1.16.2
+---node1 ip--- pro19 --- 10.1.20.1 , node2 ip--- forwarder3 --- 10.1.16.2
+---node1 ip--- pro20 --- 10.1.21.1 , node2 ip--- forwarder4 --- 10.1.21.2
+---node1 ip--- pro21 --- 10.1.22.1 , node2 ip--- forwarder4 --- 10.1.21.2
+---node1 ip--- pro22 --- 10.1.23.1 , node2 ip--- forwarder4 --- 10.1.21.2
+---node1 ip--- pro23 --- 10.1.24.1 , node2 ip--- forwarder4 --- 10.1.21.2
+---node1 ip--- pro24 --- 10.1.25.1 , node2 ip--- forwarder4 --- 10.1.21.2
+---node1 ip--- pro25 --- 10.1.26.1 , node2 ip--- forwarder5 --- 10.1.26.2
+---node1 ip--- pro26 --- 10.1.27.1 , node2 ip--- forwarder5 --- 10.1.26.2
+---node1 ip--- pro27 --- 10.1.28.1 , node2 ip--- forwarder5 --- 10.1.26.2
+---node1 ip--- pro28 --- 10.1.29.1 , node2 ip--- forwarder5 --- 10.1.26.2
+---node1 ip--- pro29 --- 10.1.30.1 , node2 ip--- forwarder5 --- 10.1.26.2
+---node1 ip--- pro30 --- 10.1.31.1 , node2 ip--- forwarder6 --- 10.1.31.2
+---node1 ip--- pro31 --- 10.1.32.1 , node2 ip--- forwarder6 --- 10.1.31.2
+---node1 ip--- pro32 --- 10.1.33.1 , node2 ip--- forwarder6 --- 10.1.31.2
+---node1 ip--- pro33 --- 10.1.34.1 , node2 ip--- forwarder6 --- 10.1.31.2
+---node1 ip--- pro34 --- 10.1.35.1 , node2 ip--- forwarder6 --- 10.1.31.2
+---node1 ip--- pro35 --- 10.1.36.1 , node2 ip--- forwarder7 --- 10.1.36.2
+---node1 ip--- pro36 --- 10.1.37.1 , node2 ip--- forwarder7 --- 10.1.36.2
+---node1 ip--- pro37 --- 10.1.38.1 , node2 ip--- forwarder7 --- 10.1.36.2
+---node1 ip--- pro38 --- 10.1.39.1 , node2 ip--- forwarder7 --- 10.1.36.2
+---node1 ip--- pro39 --- 10.1.40.1 , node2 ip--- forwarder7 --- 10.1.36.2
+---node1 ip--- pro40 --- 10.1.41.1 , node2 ip--- forwarder8 --- 10.1.41.2
+---node1 ip--- pro41 --- 10.1.42.1 , node2 ip--- forwarder8 --- 10.1.41.2
+---node1 ip--- pro42 --- 10.1.43.1 , node2 ip--- forwarder8 --- 10.1.41.2
+---node1 ip--- pro43 --- 10.1.44.1 , node2 ip--- forwarder8 --- 10.1.41.2
+---node1 ip--- pro44 --- 10.1.45.1 , node2 ip--- forwarder8 --- 10.1.41.2
+---node1 ip--- pro45 --- 10.1.46.1 , node2 ip--- forwarder9 --- 10.1.46.2
+---node1 ip--- pro46 --- 10.1.47.1 , node2 ip--- forwarder9 --- 10.1.46.2
+---node1 ip--- pro47 --- 10.1.48.1 , node2 ip--- forwarder9 --- 10.1.46.2
+---node1 ip--- pro48 --- 10.1.49.1 , node2 ip--- forwarder9 --- 10.1.46.2
+---node1 ip--- pro49 --- 10.1.50.1 , node2 ip--- forwarder9 --- 10.1.46.2
+---node1 ip--- pro50 --- 10.1.51.1 , node2 ip--- forwarder10 --- 10.1.51.2
+---node1 ip--- pro51 --- 10.1.52.1 , node2 ip--- forwarder10 --- 10.1.51.2
+---node1 ip--- pro52 --- 10.1.53.1 , node2 ip--- forwarder10 --- 10.1.51.2
+---node1 ip--- pro53 --- 10.1.54.1 , node2 ip--- forwarder10 --- 10.1.51.2
+---node1 ip--- pro54 --- 10.1.55.1 , node2 ip--- forwarder10 --- 10.1.51.2
+---node1 ip--- pro55 --- 10.1.56.1 , node2 ip--- forwarder11 --- 10.1.56.2
+---node1 ip--- pro56 --- 10.1.57.1 , node2 ip--- forwarder11 --- 10.1.56.2
+---node1 ip--- pro57 --- 10.1.58.1 , node2 ip--- forwarder11 --- 10.1.56.2
+---node1 ip--- pro58 --- 10.1.59.1 , node2 ip--- forwarder11 --- 10.1.56.2
+---node1 ip--- pro59 --- 10.1.60.1 , node2 ip--- forwarder11 --- 10.1.56.2
+---node1 ip--- pro60 --- 10.1.61.1 , node2 ip--- forwarder12 --- 10.1.61.2
+---node1 ip--- pro61 --- 10.1.62.1 , node2 ip--- forwarder12 --- 10.1.61.2
+---node1 ip--- pro62 --- 10.1.63.1 , node2 ip--- forwarder12 --- 10.1.61.2
+---node1 ip--- pro63 --- 10.1.64.1 , node2 ip--- forwarder12 --- 10.1.61.2
+---node1 ip--- pro64 --- 10.1.65.1 , node2 ip--- forwarder12 --- 10.1.61.2
+---node1 ip--- pro65 --- 10.1.66.1 , node2 ip--- forwarder13 --- 10.1.66.2
+---node1 ip--- pro66 --- 10.1.67.1 , node2 ip--- forwarder13 --- 10.1.66.2
+---node1 ip--- pro67 --- 10.1.68.1 , node2 ip--- forwarder13 --- 10.1.66.2
+---node1 ip--- pro68 --- 10.1.69.1 , node2 ip--- forwarder13 --- 10.1.66.2
+---node1 ip--- pro69 --- 10.1.70.1 , node2 ip--- forwarder13 --- 10.1.66.2
+---node1 ip--- pro70 --- 10.1.71.1 , node2 ip--- forwarder14 --- 10.1.71.2
+---node1 ip--- pro71 --- 10.1.72.1 , node2 ip--- forwarder14 --- 10.1.71.2
+---node1 ip--- pro72 --- 10.1.73.1 , node2 ip--- forwarder14 --- 10.1.71.2
+---node1 ip--- pro73 --- 10.1.74.1 , node2 ip--- forwarder14 --- 10.1.71.2
+---node1 ip--- pro74 --- 10.1.75.1 , node2 ip--- forwarder14 --- 10.1.71.2
+---node1 ip--- pro75 --- 10.1.76.1 , node2 ip--- forwarder15 --- 10.1.76.2
+---node1 ip--- pro76 --- 10.1.77.1 , node2 ip--- forwarder15 --- 10.1.76.2
+---node1 ip--- pro77 --- 10.1.78.1 , node2 ip--- forwarder15 --- 10.1.76.2
+---node1 ip--- pro78 --- 10.1.79.1 , node2 ip--- forwarder15 --- 10.1.76.2
+---node1 ip--- pro79 --- 10.1.80.1 , node2 ip--- forwarder15 --- 10.1.76.2
+---node1 ip--- pro80 --- 10.1.81.1 , node2 ip--- forwarder16 --- 10.1.81.2
+---node1 ip--- pro81 --- 10.1.82.1 , node2 ip--- forwarder16 --- 10.1.81.2
+---node1 ip--- pro82 --- 10.1.83.1 , node2 ip--- forwarder16 --- 10.1.81.2
+---node1 ip--- pro83 --- 10.1.84.1 , node2 ip--- forwarder16 --- 10.1.81.2
+---node1 ip--- pro84 --- 10.1.85.1 , node2 ip--- forwarder16 --- 10.1.81.2
+---node1 ip--- pro85 --- 10.1.86.1 , node2 ip--- forwarder17 --- 10.1.86.2
+---node1 ip--- pro86 --- 10.1.87.1 , node2 ip--- forwarder17 --- 10.1.86.2
+---node1 ip--- pro87 --- 10.1.88.1 , node2 ip--- forwarder17 --- 10.1.86.2
+---node1 ip--- pro88 --- 10.1.89.1 , node2 ip--- forwarder17 --- 10.1.86.2
+---node1 ip--- pro89 --- 10.1.90.1 , node2 ip--- forwarder17 --- 10.1.86.2
+---node1 ip--- pro90 --- 10.1.91.1 , node2 ip--- forwarder18 --- 10.1.91.2
+---node1 ip--- pro91 --- 10.1.92.1 , node2 ip--- forwarder18 --- 10.1.91.2
+---node1 ip--- pro92 --- 10.1.93.1 , node2 ip--- forwarder18 --- 10.1.91.2
+---node1 ip--- pro93 --- 10.1.94.1 , node2 ip--- forwarder18 --- 10.1.91.2
+---node1 ip--- pro94 --- 10.1.95.1 , node2 ip--- forwarder18 --- 10.1.91.2
+---node1 ip--- pro95 --- 10.1.96.1 , node2 ip--- forwarder19 --- 10.1.96.2
+---node1 ip--- pro96 --- 10.1.97.1 , node2 ip--- forwarder19 --- 10.1.96.2
+---node1 ip--- pro97 --- 10.1.98.1 , node2 ip--- forwarder19 --- 10.1.96.2
+---node1 ip--- pro98 --- 10.1.99.1 , node2 ip--- forwarder19 --- 10.1.96.2
+---node1 ip--- pro99 --- 10.1.100.1 , node2 ip--- forwarder19 --- 10.1.96.2
+---node1 ip--- con0 --- 10.1.101.1 , node2 ip--- forwarder20 --- 10.1.101.2
+---node1 ip--- forwarder0 --- 10.1.1.2 , node2 ip--- agg0 --- 10.2.1.2
+---node1 ip--- agg0 --- 10.2.1.2 , node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder1 --- 10.1.6.2 , node2 ip--- agg1 --- 10.2.3.2
+---node1 ip--- agg1 --- 10.2.3.2 , node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder2 --- 10.1.11.2 , node2 ip--- agg2 --- 10.2.5.2
+---node1 ip--- agg2 --- 10.2.5.2 , node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder3 --- 10.1.16.2 , node2 ip--- agg3 --- 10.2.7.2
+---node1 ip--- agg3 --- 10.2.7.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder4 --- 10.1.21.2 , node2 ip--- agg4 --- 10.2.9.2
+---node1 ip--- agg4 --- 10.2.9.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder5 --- 10.1.26.2 , node2 ip--- agg5 --- 10.2.11.2
+---node1 ip--- agg5 --- 10.2.11.2 , node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder6 --- 10.1.31.2 , node2 ip--- agg6 --- 10.2.13.2
+---node1 ip--- agg6 --- 10.2.13.2 , node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder7 --- 10.1.36.2 , node2 ip--- agg7 --- 10.2.15.2
+---node1 ip--- agg7 --- 10.2.15.2 , node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder8 --- 10.1.41.2 , node2 ip--- agg8 --- 10.2.17.2
+---node1 ip--- agg8 --- 10.2.17.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder9 --- 10.1.46.2 , node2 ip--- agg9 --- 10.2.19.2
+---node1 ip--- agg9 --- 10.2.19.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder10 --- 10.1.51.2 , node2 ip--- agg10 --- 10.2.21.2
+---node1 ip--- agg10 --- 10.2.21.2 , node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder11 --- 10.1.56.2 , node2 ip--- agg11 --- 10.2.23.2
+---node1 ip--- agg11 --- 10.2.23.2 , node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder12 --- 10.1.61.2 , node2 ip--- agg12 --- 10.2.25.2
+---node1 ip--- agg12 --- 10.2.25.2 , node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder13 --- 10.1.66.2 , node2 ip--- agg13 --- 10.2.27.2
+---node1 ip--- agg13 --- 10.2.27.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder14 --- 10.1.71.2 , node2 ip--- agg14 --- 10.2.29.2
+---node1 ip--- agg14 --- 10.2.29.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder15 --- 10.1.76.2 , node2 ip--- agg15 --- 10.2.31.2
+---node1 ip--- agg15 --- 10.2.31.2 , node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder16 --- 10.1.81.2 , node2 ip--- agg16 --- 10.2.33.2
+---node1 ip--- agg16 --- 10.2.33.2 , node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder17 --- 10.1.86.2 , node2 ip--- agg17 --- 10.2.35.2
+---node1 ip--- agg17 --- 10.2.35.2 , node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder18 --- 10.1.91.2 , node2 ip--- agg18 --- 10.2.37.2
+---node1 ip--- agg18 --- 10.2.37.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder19 --- 10.1.96.2 , node2 ip--- agg19 --- 10.2.39.2
+---node1 ip--- agg19 --- 10.2.39.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder0 --- 10.1.1.2 , node2 ip--- agg20 --- 10.2.41.2
+---node1 ip--- agg20 --- 10.2.41.2 , node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder1 --- 10.1.6.2 , node2 ip--- agg21 --- 10.2.43.2
+---node1 ip--- agg21 --- 10.2.43.2 , node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder2 --- 10.1.11.2 , node2 ip--- agg22 --- 10.2.45.2
+---node1 ip--- agg22 --- 10.2.45.2 , node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder3 --- 10.1.16.2 , node2 ip--- agg23 --- 10.2.47.2
+---node1 ip--- agg23 --- 10.2.47.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder4 --- 10.1.21.2 , node2 ip--- agg24 --- 10.2.49.2
+---node1 ip--- agg24 --- 10.2.49.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder5 --- 10.1.26.2 , node2 ip--- agg25 --- 10.2.51.2
+---node1 ip--- agg25 --- 10.2.51.2 , node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder6 --- 10.1.31.2 , node2 ip--- agg26 --- 10.2.53.2
+---node1 ip--- agg26 --- 10.2.53.2 , node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder7 --- 10.1.36.2 , node2 ip--- agg27 --- 10.2.55.2
+---node1 ip--- agg27 --- 10.2.55.2 , node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder8 --- 10.1.41.2 , node2 ip--- agg28 --- 10.2.57.2
+---node1 ip--- agg28 --- 10.2.57.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder9 --- 10.1.46.2 , node2 ip--- agg29 --- 10.2.59.2
+---node1 ip--- agg29 --- 10.2.59.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder10 --- 10.1.51.2 , node2 ip--- agg30 --- 10.2.61.2
+---node1 ip--- agg30 --- 10.2.61.2 , node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder11 --- 10.1.56.2 , node2 ip--- agg31 --- 10.2.63.2
+---node1 ip--- agg31 --- 10.2.63.2 , node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder12 --- 10.1.61.2 , node2 ip--- agg32 --- 10.2.65.2
+---node1 ip--- agg32 --- 10.2.65.2 , node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder13 --- 10.1.66.2 , node2 ip--- agg33 --- 10.2.67.2
+---node1 ip--- agg33 --- 10.2.67.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder14 --- 10.1.71.2 , node2 ip--- agg34 --- 10.2.69.2
+---node1 ip--- agg34 --- 10.2.69.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder15 --- 10.1.76.2 , node2 ip--- agg35 --- 10.2.71.2
+---node1 ip--- agg35 --- 10.2.71.2 , node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder16 --- 10.1.81.2 , node2 ip--- agg36 --- 10.2.73.2
+---node1 ip--- agg36 --- 10.2.73.2 , node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder17 --- 10.1.86.2 , node2 ip--- agg37 --- 10.2.75.2
+---node1 ip--- agg37 --- 10.2.75.2 , node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder18 --- 10.1.91.2 , node2 ip--- agg38 --- 10.2.77.2
+---node1 ip--- agg38 --- 10.2.77.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder19 --- 10.1.96.2 , node2 ip--- agg39 --- 10.2.79.2
+---node1 ip--- agg39 --- 10.2.79.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder0 --- 10.1.1.2 , node2 ip--- agg40 --- 10.2.81.2
+---node1 ip--- agg40 --- 10.2.81.2 , node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder1 --- 10.1.6.2 , node2 ip--- agg41 --- 10.2.83.2
+---node1 ip--- agg41 --- 10.2.83.2 , node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder2 --- 10.1.11.2 , node2 ip--- agg42 --- 10.2.85.2
+---node1 ip--- agg42 --- 10.2.85.2 , node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder3 --- 10.1.16.2 , node2 ip--- agg43 --- 10.2.87.2
+---node1 ip--- agg43 --- 10.2.87.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder4 --- 10.1.21.2 , node2 ip--- agg44 --- 10.2.89.2
+---node1 ip--- agg44 --- 10.2.89.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder5 --- 10.1.26.2 , node2 ip--- agg45 --- 10.2.91.2
+---node1 ip--- agg45 --- 10.2.91.2 , node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder6 --- 10.1.31.2 , node2 ip--- agg46 --- 10.2.93.2
+---node1 ip--- agg46 --- 10.2.93.2 , node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder7 --- 10.1.36.2 , node2 ip--- agg47 --- 10.2.95.2
+---node1 ip--- agg47 --- 10.2.95.2 , node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder8 --- 10.1.41.2 , node2 ip--- agg48 --- 10.2.97.2
+---node1 ip--- agg48 --- 10.2.97.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder9 --- 10.1.46.2 , node2 ip--- agg49 --- 10.2.99.2
+---node1 ip--- agg49 --- 10.2.99.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder20 --- 10.1.101.2 , node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder21 --- 10.2.2.2 , node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder21 --- 10.2.2.2 , node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder21 --- 10.2.2.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder21 --- 10.2.2.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder22 --- 10.2.4.2 , node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder22 --- 10.2.4.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder22 --- 10.2.4.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder23 --- 10.2.6.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder23 --- 10.2.6.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder24 --- 10.2.8.2 , node2 ip--- forwarder25 --- 10.2.10.2
++2.413000000s 127 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.1.2 completed iteration 1000 at 2413ms
++2.413000000s 128 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.3.2 completed iteration 1000 at 2413ms
++2.413000000s 129 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.5.2 completed iteration 1000 at 2413ms
++2.413000000s 130 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.7.2 completed iteration 1000 at 2413ms
++2.413000000s 131 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.9.2 completed iteration 1000 at 2413ms
++2.413000000s 132 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.11.2 completed iteration 1000 at 2413ms
++2.413000000s 133 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.13.2 completed iteration 1000 at 2413ms
++2.413000000s 134 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.15.2 completed iteration 1000 at 2413ms
++2.413000000s 135 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.17.2 completed iteration 1000 at 2413ms
++2.413000000s 136 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.19.2 completed iteration 1000 at 2413ms
++2.413000000s 137 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.21.2 completed iteration 1000 at 2413ms
++2.413000000s 138 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.23.2 completed iteration 1000 at 2413ms
++2.413000000s 139 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.25.2 completed iteration 1000 at 2413ms
++2.413000000s 140 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.27.2 completed iteration 1000 at 2413ms
++2.413000000s 141 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.29.2 completed iteration 1000 at 2413ms
++2.413000000s 142 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.31.2 completed iteration 1000 at 2413ms
++2.413000000s 143 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.33.2 completed iteration 1000 at 2413ms
++2.413000000s 144 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.35.2 completed iteration 1000 at 2413ms
++2.413000000s 145 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.37.2 completed iteration 1000 at 2413ms
++2.413000000s 146 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.39.2 completed iteration 1000 at 2413ms
++2.421000000s 149 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.45.2 completed iteration 1000 at 2421ms
++2.426000000s 147 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.41.2 completed iteration 1000 at 2426ms
++2.426000000s 152 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.51.2 completed iteration 1000 at 2426ms
++2.426000000s 157 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.61.2 completed iteration 1000 at 2426ms
++2.436000000s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.1.101.1 completed iteration 1000 at 2436ms
++2.817000000s 127 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.1.2 completed iteration 2000 at 2817ms
++2.817000000s 128 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.3.2 completed iteration 2000 at 2817ms
++2.817000000s 129 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.5.2 completed iteration 2000 at 2817ms
++2.817000000s 130 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.7.2 completed iteration 2000 at 2817ms
++2.817000000s 131 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.9.2 completed iteration 2000 at 2817ms
++2.817000000s 132 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.11.2 completed iteration 2000 at 2817ms
++2.817000000s 133 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.13.2 completed iteration 2000 at 2817ms
++2.817000000s 134 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.15.2 completed iteration 2000 at 2817ms
++2.817000000s 135 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.17.2 completed iteration 2000 at 2817ms
++2.817000000s 136 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.19.2 completed iteration 2000 at 2817ms
++2.817000000s 137 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.21.2 completed iteration 2000 at 2817ms
++2.817000000s 138 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.23.2 completed iteration 2000 at 2817ms
++2.817000000s 139 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.25.2 completed iteration 2000 at 2817ms
++2.817000000s 140 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.27.2 completed iteration 2000 at 2817ms
++2.817000000s 141 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.29.2 completed iteration 2000 at 2817ms
++2.817000000s 142 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.31.2 completed iteration 2000 at 2817ms
++2.817000000s 143 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.33.2 completed iteration 2000 at 2817ms
++2.817000000s 144 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.35.2 completed iteration 2000 at 2817ms
++2.817000000s 145 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.37.2 completed iteration 2000 at 2817ms
++2.817000000s 146 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.39.2 completed iteration 2000 at 2817ms
++2.825000000s 149 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.45.2 completed iteration 2000 at 2825ms
++2.830000000s 157 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.61.2 completed iteration 2000 at 2830ms
++2.831000000s 147 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.41.2 completed iteration 2000 at 2831ms
++2.831000000s 152 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.51.2 completed iteration 2000 at 2831ms
++2.840000000s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.1.101.1 completed iteration 2000 at 2840ms
++3.222000000s 127 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.1.2 completed iteration 3000 at 3222ms
++3.222000000s 128 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.3.2 completed iteration 3000 at 3222ms
++3.222000000s 129 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.5.2 completed iteration 3000 at 3222ms
++3.222000000s 130 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.7.2 completed iteration 3000 at 3222ms
++3.222000000s 131 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.9.2 completed iteration 3000 at 3222ms
++3.222000000s 132 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.11.2 completed iteration 3000 at 3222ms
++3.222000000s 133 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.13.2 completed iteration 3000 at 3222ms
++3.222000000s 134 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.15.2 completed iteration 3000 at 3222ms
++3.222000000s 135 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.17.2 completed iteration 3000 at 3222ms
++3.222000000s 136 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.19.2 completed iteration 3000 at 3222ms
++3.222000000s 137 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.21.2 completed iteration 3000 at 3222ms
++3.222000000s 138 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.23.2 completed iteration 3000 at 3222ms
++3.222000000s 139 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.25.2 completed iteration 3000 at 3222ms
++3.222000000s 140 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.27.2 completed iteration 3000 at 3222ms
++3.222000000s 141 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.29.2 completed iteration 3000 at 3222ms
++3.222000000s 142 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.31.2 completed iteration 3000 at 3222ms
++3.222000000s 143 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.33.2 completed iteration 3000 at 3222ms
++3.222000000s 144 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.35.2 completed iteration 3000 at 3222ms
++3.222000000s 145 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.37.2 completed iteration 3000 at 3222ms
++3.222000000s 146 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.39.2 completed iteration 3000 at 3222ms
++3.230000000s 149 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.45.2 completed iteration 3000 at 3230ms
++3.235000000s 147 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.41.2 completed iteration 3000 at 3235ms
++3.235000000s 152 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.51.2 completed iteration 3000 at 3235ms
++3.235000000s 157 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.61.2 completed iteration 3000 at 3235ms
++3.245000000s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.1.101.1 completed iteration 3000 at 3245ms
++3.626000000s 127 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.1.2 completed iteration 4000 at 3626ms
++3.626000000s 128 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.3.2 completed iteration 4000 at 3626ms
++3.626000000s 129 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.5.2 completed iteration 4000 at 3626ms
++3.626000000s 130 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.7.2 completed iteration 4000 at 3626ms
++3.626000000s 131 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.9.2 completed iteration 4000 at 3626ms
++3.626000000s 132 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.11.2 completed iteration 4000 at 3626ms
++3.626000000s 133 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.13.2 completed iteration 4000 at 3626ms
++3.626000000s 134 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.15.2 completed iteration 4000 at 3626ms
++3.626000000s 135 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.17.2 completed iteration 4000 at 3626ms
++3.626000000s 136 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.19.2 completed iteration 4000 at 3626ms
++3.626000000s 137 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.21.2 completed iteration 4000 at 3626ms
++3.626000000s 138 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.23.2 completed iteration 4000 at 3626ms
++3.626000000s 139 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.25.2 completed iteration 4000 at 3626ms
++3.626000000s 140 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.27.2 completed iteration 4000 at 3626ms
++3.626000000s 141 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.29.2 completed iteration 4000 at 3626ms
++3.626000000s 142 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.31.2 completed iteration 4000 at 3626ms
++3.626000000s 143 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.33.2 completed iteration 4000 at 3626ms
++3.626000000s 144 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.35.2 completed iteration 4000 at 3626ms
++3.626000000s 145 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.37.2 completed iteration 4000 at 3626ms
++3.626000000s 146 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.39.2 completed iteration 4000 at 3626ms
++3.634000000s 149 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.45.2 completed iteration 4000 at 3634ms
++3.639000000s 157 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.61.2 completed iteration 4000 at 3639ms
++3.640000000s 147 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.41.2 completed iteration 4000 at 3640ms
++3.640000000s 152 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.51.2 completed iteration 4000 at 3640ms
++3.649000000s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.1.101.1 completed iteration 4000 at 3649ms
++4.031000000s 127 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.1.2 completed processing
++4.031000000s 128 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.3.2 completed processing
++4.031000000s 129 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.5.2 completed processing
++4.031000000s 130 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.7.2 completed processing
++4.031000000s 131 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.9.2 completed processing
++4.031000000s 132 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.11.2 completed processing
++4.031000000s 133 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.13.2 completed processing
++4.031000000s 134 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.15.2 completed processing
++4.031000000s 135 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.17.2 completed processing
++4.031000000s 136 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.19.2 completed processing
++4.031000000s 137 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.21.2 completed processing
++4.031000000s 138 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.23.2 completed processing
++4.031000000s 139 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.25.2 completed processing
++4.031000000s 140 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.27.2 completed processing
++4.031000000s 141 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.29.2 completed processing
++4.031000000s 142 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.31.2 completed processing
++4.031000000s 143 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.33.2 completed processing
++4.031000000s 144 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.35.2 completed processing
++4.031000000s 145 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.37.2 completed processing
++4.031000000s 146 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.39.2 completed processing
++4.039000000s 149 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.45.2 completed processing
++4.044000000s 147 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.41.2 completed processing
++4.044000000s 152 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.51.2 completed processing
++4.044000000s 157 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.61.2 completed processing
++4.053000000s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer completed all iterations in 2053ms
+Prefix: 100, Iteration: 5000 - Simulation completed successfully.
+
+#################### SIMULATION END ####################
+
+
+
+
+#################### SIMULATION PARAMETERS ####################
+
+
+Prefix: 100 Iteration: 10000 Vector Size: 150 Congestion Control Algorithm: bbr
+
+
+#################### SIMULATION SET-UP ####################
+
+
+uint32_t consumerNum = 1;
+uint32_t producerNum = 100;
+uint32_t forwarderNum = 26;
+uint32_t aggregatorNum = 50;
+---node1 ip--- pro0 --- 10.1.1.1 , node2 ip--- forwarder0 --- 10.1.1.2
+---node1 ip--- pro1 --- 10.1.2.1 , node2 ip--- forwarder0 --- 10.1.1.2
+---node1 ip--- pro2 --- 10.1.3.1 , node2 ip--- forwarder0 --- 10.1.1.2
+---node1 ip--- pro3 --- 10.1.4.1 , node2 ip--- forwarder0 --- 10.1.1.2
+---node1 ip--- pro4 --- 10.1.5.1 , node2 ip--- forwarder0 --- 10.1.1.2
+---node1 ip--- pro5 --- 10.1.6.1 , node2 ip--- forwarder1 --- 10.1.6.2
+---node1 ip--- pro6 --- 10.1.7.1 , node2 ip--- forwarder1 --- 10.1.6.2
+---node1 ip--- pro7 --- 10.1.8.1 , node2 ip--- forwarder1 --- 10.1.6.2
+---node1 ip--- pro8 --- 10.1.9.1 , node2 ip--- forwarder1 --- 10.1.6.2
+---node1 ip--- pro9 --- 10.1.10.1 , node2 ip--- forwarder1 --- 10.1.6.2
+---node1 ip--- pro10 --- 10.1.11.1 , node2 ip--- forwarder2 --- 10.1.11.2
+---node1 ip--- pro11 --- 10.1.12.1 , node2 ip--- forwarder2 --- 10.1.11.2
+---node1 ip--- pro12 --- 10.1.13.1 , node2 ip--- forwarder2 --- 10.1.11.2
+---node1 ip--- pro13 --- 10.1.14.1 , node2 ip--- forwarder2 --- 10.1.11.2
+---node1 ip--- pro14 --- 10.1.15.1 , node2 ip--- forwarder2 --- 10.1.11.2
+---node1 ip--- pro15 --- 10.1.16.1 , node2 ip--- forwarder3 --- 10.1.16.2
+---node1 ip--- pro16 --- 10.1.17.1 , node2 ip--- forwarder3 --- 10.1.16.2
+---node1 ip--- pro17 --- 10.1.18.1 , node2 ip--- forwarder3 --- 10.1.16.2
+---node1 ip--- pro18 --- 10.1.19.1 , node2 ip--- forwarder3 --- 10.1.16.2
+---node1 ip--- pro19 --- 10.1.20.1 , node2 ip--- forwarder3 --- 10.1.16.2
+---node1 ip--- pro20 --- 10.1.21.1 , node2 ip--- forwarder4 --- 10.1.21.2
+---node1 ip--- pro21 --- 10.1.22.1 , node2 ip--- forwarder4 --- 10.1.21.2
+---node1 ip--- pro22 --- 10.1.23.1 , node2 ip--- forwarder4 --- 10.1.21.2
+---node1 ip--- pro23 --- 10.1.24.1 , node2 ip--- forwarder4 --- 10.1.21.2
+---node1 ip--- pro24 --- 10.1.25.1 , node2 ip--- forwarder4 --- 10.1.21.2
+---node1 ip--- pro25 --- 10.1.26.1 , node2 ip--- forwarder5 --- 10.1.26.2
+---node1 ip--- pro26 --- 10.1.27.1 , node2 ip--- forwarder5 --- 10.1.26.2
+---node1 ip--- pro27 --- 10.1.28.1 , node2 ip--- forwarder5 --- 10.1.26.2
+---node1 ip--- pro28 --- 10.1.29.1 , node2 ip--- forwarder5 --- 10.1.26.2
+---node1 ip--- pro29 --- 10.1.30.1 , node2 ip--- forwarder5 --- 10.1.26.2
+---node1 ip--- pro30 --- 10.1.31.1 , node2 ip--- forwarder6 --- 10.1.31.2
+---node1 ip--- pro31 --- 10.1.32.1 , node2 ip--- forwarder6 --- 10.1.31.2
+---node1 ip--- pro32 --- 10.1.33.1 , node2 ip--- forwarder6 --- 10.1.31.2
+---node1 ip--- pro33 --- 10.1.34.1 , node2 ip--- forwarder6 --- 10.1.31.2
+---node1 ip--- pro34 --- 10.1.35.1 , node2 ip--- forwarder6 --- 10.1.31.2
+---node1 ip--- pro35 --- 10.1.36.1 , node2 ip--- forwarder7 --- 10.1.36.2
+---node1 ip--- pro36 --- 10.1.37.1 , node2 ip--- forwarder7 --- 10.1.36.2
+---node1 ip--- pro37 --- 10.1.38.1 , node2 ip--- forwarder7 --- 10.1.36.2
+---node1 ip--- pro38 --- 10.1.39.1 , node2 ip--- forwarder7 --- 10.1.36.2
+---node1 ip--- pro39 --- 10.1.40.1 , node2 ip--- forwarder7 --- 10.1.36.2
+---node1 ip--- pro40 --- 10.1.41.1 , node2 ip--- forwarder8 --- 10.1.41.2
+---node1 ip--- pro41 --- 10.1.42.1 , node2 ip--- forwarder8 --- 10.1.41.2
+---node1 ip--- pro42 --- 10.1.43.1 , node2 ip--- forwarder8 --- 10.1.41.2
+---node1 ip--- pro43 --- 10.1.44.1 , node2 ip--- forwarder8 --- 10.1.41.2
+---node1 ip--- pro44 --- 10.1.45.1 , node2 ip--- forwarder8 --- 10.1.41.2
+---node1 ip--- pro45 --- 10.1.46.1 , node2 ip--- forwarder9 --- 10.1.46.2
+---node1 ip--- pro46 --- 10.1.47.1 , node2 ip--- forwarder9 --- 10.1.46.2
+---node1 ip--- pro47 --- 10.1.48.1 , node2 ip--- forwarder9 --- 10.1.46.2
+---node1 ip--- pro48 --- 10.1.49.1 , node2 ip--- forwarder9 --- 10.1.46.2
+---node1 ip--- pro49 --- 10.1.50.1 , node2 ip--- forwarder9 --- 10.1.46.2
+---node1 ip--- pro50 --- 10.1.51.1 , node2 ip--- forwarder10 --- 10.1.51.2
+---node1 ip--- pro51 --- 10.1.52.1 , node2 ip--- forwarder10 --- 10.1.51.2
+---node1 ip--- pro52 --- 10.1.53.1 , node2 ip--- forwarder10 --- 10.1.51.2
+---node1 ip--- pro53 --- 10.1.54.1 , node2 ip--- forwarder10 --- 10.1.51.2
+---node1 ip--- pro54 --- 10.1.55.1 , node2 ip--- forwarder10 --- 10.1.51.2
+---node1 ip--- pro55 --- 10.1.56.1 , node2 ip--- forwarder11 --- 10.1.56.2
+---node1 ip--- pro56 --- 10.1.57.1 , node2 ip--- forwarder11 --- 10.1.56.2
+---node1 ip--- pro57 --- 10.1.58.1 , node2 ip--- forwarder11 --- 10.1.56.2
+---node1 ip--- pro58 --- 10.1.59.1 , node2 ip--- forwarder11 --- 10.1.56.2
+---node1 ip--- pro59 --- 10.1.60.1 , node2 ip--- forwarder11 --- 10.1.56.2
+---node1 ip--- pro60 --- 10.1.61.1 , node2 ip--- forwarder12 --- 10.1.61.2
+---node1 ip--- pro61 --- 10.1.62.1 , node2 ip--- forwarder12 --- 10.1.61.2
+---node1 ip--- pro62 --- 10.1.63.1 , node2 ip--- forwarder12 --- 10.1.61.2
+---node1 ip--- pro63 --- 10.1.64.1 , node2 ip--- forwarder12 --- 10.1.61.2
+---node1 ip--- pro64 --- 10.1.65.1 , node2 ip--- forwarder12 --- 10.1.61.2
+---node1 ip--- pro65 --- 10.1.66.1 , node2 ip--- forwarder13 --- 10.1.66.2
+---node1 ip--- pro66 --- 10.1.67.1 , node2 ip--- forwarder13 --- 10.1.66.2
+---node1 ip--- pro67 --- 10.1.68.1 , node2 ip--- forwarder13 --- 10.1.66.2
+---node1 ip--- pro68 --- 10.1.69.1 , node2 ip--- forwarder13 --- 10.1.66.2
+---node1 ip--- pro69 --- 10.1.70.1 , node2 ip--- forwarder13 --- 10.1.66.2
+---node1 ip--- pro70 --- 10.1.71.1 , node2 ip--- forwarder14 --- 10.1.71.2
+---node1 ip--- pro71 --- 10.1.72.1 , node2 ip--- forwarder14 --- 10.1.71.2
+---node1 ip--- pro72 --- 10.1.73.1 , node2 ip--- forwarder14 --- 10.1.71.2
+---node1 ip--- pro73 --- 10.1.74.1 , node2 ip--- forwarder14 --- 10.1.71.2
+---node1 ip--- pro74 --- 10.1.75.1 , node2 ip--- forwarder14 --- 10.1.71.2
+---node1 ip--- pro75 --- 10.1.76.1 , node2 ip--- forwarder15 --- 10.1.76.2
+---node1 ip--- pro76 --- 10.1.77.1 , node2 ip--- forwarder15 --- 10.1.76.2
+---node1 ip--- pro77 --- 10.1.78.1 , node2 ip--- forwarder15 --- 10.1.76.2
+---node1 ip--- pro78 --- 10.1.79.1 , node2 ip--- forwarder15 --- 10.1.76.2
+---node1 ip--- pro79 --- 10.1.80.1 , node2 ip--- forwarder15 --- 10.1.76.2
+---node1 ip--- pro80 --- 10.1.81.1 , node2 ip--- forwarder16 --- 10.1.81.2
+---node1 ip--- pro81 --- 10.1.82.1 , node2 ip--- forwarder16 --- 10.1.81.2
+---node1 ip--- pro82 --- 10.1.83.1 , node2 ip--- forwarder16 --- 10.1.81.2
+---node1 ip--- pro83 --- 10.1.84.1 , node2 ip--- forwarder16 --- 10.1.81.2
+---node1 ip--- pro84 --- 10.1.85.1 , node2 ip--- forwarder16 --- 10.1.81.2
+---node1 ip--- pro85 --- 10.1.86.1 , node2 ip--- forwarder17 --- 10.1.86.2
+---node1 ip--- pro86 --- 10.1.87.1 , node2 ip--- forwarder17 --- 10.1.86.2
+---node1 ip--- pro87 --- 10.1.88.1 , node2 ip--- forwarder17 --- 10.1.86.2
+---node1 ip--- pro88 --- 10.1.89.1 , node2 ip--- forwarder17 --- 10.1.86.2
+---node1 ip--- pro89 --- 10.1.90.1 , node2 ip--- forwarder17 --- 10.1.86.2
+---node1 ip--- pro90 --- 10.1.91.1 , node2 ip--- forwarder18 --- 10.1.91.2
+---node1 ip--- pro91 --- 10.1.92.1 , node2 ip--- forwarder18 --- 10.1.91.2
+---node1 ip--- pro92 --- 10.1.93.1 , node2 ip--- forwarder18 --- 10.1.91.2
+---node1 ip--- pro93 --- 10.1.94.1 , node2 ip--- forwarder18 --- 10.1.91.2
+---node1 ip--- pro94 --- 10.1.95.1 , node2 ip--- forwarder18 --- 10.1.91.2
+---node1 ip--- pro95 --- 10.1.96.1 , node2 ip--- forwarder19 --- 10.1.96.2
+---node1 ip--- pro96 --- 10.1.97.1 , node2 ip--- forwarder19 --- 10.1.96.2
+---node1 ip--- pro97 --- 10.1.98.1 , node2 ip--- forwarder19 --- 10.1.96.2
+---node1 ip--- pro98 --- 10.1.99.1 , node2 ip--- forwarder19 --- 10.1.96.2
+---node1 ip--- pro99 --- 10.1.100.1 , node2 ip--- forwarder19 --- 10.1.96.2
+---node1 ip--- con0 --- 10.1.101.1 , node2 ip--- forwarder20 --- 10.1.101.2
+---node1 ip--- forwarder0 --- 10.1.1.2 , node2 ip--- agg0 --- 10.2.1.2
+---node1 ip--- agg0 --- 10.2.1.2 , node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder1 --- 10.1.6.2 , node2 ip--- agg1 --- 10.2.3.2
+---node1 ip--- agg1 --- 10.2.3.2 , node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder2 --- 10.1.11.2 , node2 ip--- agg2 --- 10.2.5.2
+---node1 ip--- agg2 --- 10.2.5.2 , node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder3 --- 10.1.16.2 , node2 ip--- agg3 --- 10.2.7.2
+---node1 ip--- agg3 --- 10.2.7.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder4 --- 10.1.21.2 , node2 ip--- agg4 --- 10.2.9.2
+---node1 ip--- agg4 --- 10.2.9.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder5 --- 10.1.26.2 , node2 ip--- agg5 --- 10.2.11.2
+---node1 ip--- agg5 --- 10.2.11.2 , node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder6 --- 10.1.31.2 , node2 ip--- agg6 --- 10.2.13.2
+---node1 ip--- agg6 --- 10.2.13.2 , node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder7 --- 10.1.36.2 , node2 ip--- agg7 --- 10.2.15.2
+---node1 ip--- agg7 --- 10.2.15.2 , node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder8 --- 10.1.41.2 , node2 ip--- agg8 --- 10.2.17.2
+---node1 ip--- agg8 --- 10.2.17.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder9 --- 10.1.46.2 , node2 ip--- agg9 --- 10.2.19.2
+---node1 ip--- agg9 --- 10.2.19.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder10 --- 10.1.51.2 , node2 ip--- agg10 --- 10.2.21.2
+---node1 ip--- agg10 --- 10.2.21.2 , node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder11 --- 10.1.56.2 , node2 ip--- agg11 --- 10.2.23.2
+---node1 ip--- agg11 --- 10.2.23.2 , node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder12 --- 10.1.61.2 , node2 ip--- agg12 --- 10.2.25.2
+---node1 ip--- agg12 --- 10.2.25.2 , node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder13 --- 10.1.66.2 , node2 ip--- agg13 --- 10.2.27.2
+---node1 ip--- agg13 --- 10.2.27.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder14 --- 10.1.71.2 , node2 ip--- agg14 --- 10.2.29.2
+---node1 ip--- agg14 --- 10.2.29.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder15 --- 10.1.76.2 , node2 ip--- agg15 --- 10.2.31.2
+---node1 ip--- agg15 --- 10.2.31.2 , node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder16 --- 10.1.81.2 , node2 ip--- agg16 --- 10.2.33.2
+---node1 ip--- agg16 --- 10.2.33.2 , node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder17 --- 10.1.86.2 , node2 ip--- agg17 --- 10.2.35.2
+---node1 ip--- agg17 --- 10.2.35.2 , node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder18 --- 10.1.91.2 , node2 ip--- agg18 --- 10.2.37.2
+---node1 ip--- agg18 --- 10.2.37.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder19 --- 10.1.96.2 , node2 ip--- agg19 --- 10.2.39.2
+---node1 ip--- agg19 --- 10.2.39.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder0 --- 10.1.1.2 , node2 ip--- agg20 --- 10.2.41.2
+---node1 ip--- agg20 --- 10.2.41.2 , node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder1 --- 10.1.6.2 , node2 ip--- agg21 --- 10.2.43.2
+---node1 ip--- agg21 --- 10.2.43.2 , node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder2 --- 10.1.11.2 , node2 ip--- agg22 --- 10.2.45.2
+---node1 ip--- agg22 --- 10.2.45.2 , node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder3 --- 10.1.16.2 , node2 ip--- agg23 --- 10.2.47.2
+---node1 ip--- agg23 --- 10.2.47.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder4 --- 10.1.21.2 , node2 ip--- agg24 --- 10.2.49.2
+---node1 ip--- agg24 --- 10.2.49.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder5 --- 10.1.26.2 , node2 ip--- agg25 --- 10.2.51.2
+---node1 ip--- agg25 --- 10.2.51.2 , node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder6 --- 10.1.31.2 , node2 ip--- agg26 --- 10.2.53.2
+---node1 ip--- agg26 --- 10.2.53.2 , node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder7 --- 10.1.36.2 , node2 ip--- agg27 --- 10.2.55.2
+---node1 ip--- agg27 --- 10.2.55.2 , node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder8 --- 10.1.41.2 , node2 ip--- agg28 --- 10.2.57.2
+---node1 ip--- agg28 --- 10.2.57.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder9 --- 10.1.46.2 , node2 ip--- agg29 --- 10.2.59.2
+---node1 ip--- agg29 --- 10.2.59.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder10 --- 10.1.51.2 , node2 ip--- agg30 --- 10.2.61.2
+---node1 ip--- agg30 --- 10.2.61.2 , node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder11 --- 10.1.56.2 , node2 ip--- agg31 --- 10.2.63.2
+---node1 ip--- agg31 --- 10.2.63.2 , node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder12 --- 10.1.61.2 , node2 ip--- agg32 --- 10.2.65.2
+---node1 ip--- agg32 --- 10.2.65.2 , node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder13 --- 10.1.66.2 , node2 ip--- agg33 --- 10.2.67.2
+---node1 ip--- agg33 --- 10.2.67.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder14 --- 10.1.71.2 , node2 ip--- agg34 --- 10.2.69.2
+---node1 ip--- agg34 --- 10.2.69.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder15 --- 10.1.76.2 , node2 ip--- agg35 --- 10.2.71.2
+---node1 ip--- agg35 --- 10.2.71.2 , node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder16 --- 10.1.81.2 , node2 ip--- agg36 --- 10.2.73.2
+---node1 ip--- agg36 --- 10.2.73.2 , node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder17 --- 10.1.86.2 , node2 ip--- agg37 --- 10.2.75.2
+---node1 ip--- agg37 --- 10.2.75.2 , node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder18 --- 10.1.91.2 , node2 ip--- agg38 --- 10.2.77.2
+---node1 ip--- agg38 --- 10.2.77.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder19 --- 10.1.96.2 , node2 ip--- agg39 --- 10.2.79.2
+---node1 ip--- agg39 --- 10.2.79.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder0 --- 10.1.1.2 , node2 ip--- agg40 --- 10.2.81.2
+---node1 ip--- agg40 --- 10.2.81.2 , node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder1 --- 10.1.6.2 , node2 ip--- agg41 --- 10.2.83.2
+---node1 ip--- agg41 --- 10.2.83.2 , node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder2 --- 10.1.11.2 , node2 ip--- agg42 --- 10.2.85.2
+---node1 ip--- agg42 --- 10.2.85.2 , node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder3 --- 10.1.16.2 , node2 ip--- agg43 --- 10.2.87.2
+---node1 ip--- agg43 --- 10.2.87.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder4 --- 10.1.21.2 , node2 ip--- agg44 --- 10.2.89.2
+---node1 ip--- agg44 --- 10.2.89.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder5 --- 10.1.26.2 , node2 ip--- agg45 --- 10.2.91.2
+---node1 ip--- agg45 --- 10.2.91.2 , node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder6 --- 10.1.31.2 , node2 ip--- agg46 --- 10.2.93.2
+---node1 ip--- agg46 --- 10.2.93.2 , node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder7 --- 10.1.36.2 , node2 ip--- agg47 --- 10.2.95.2
+---node1 ip--- agg47 --- 10.2.95.2 , node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder8 --- 10.1.41.2 , node2 ip--- agg48 --- 10.2.97.2
+---node1 ip--- agg48 --- 10.2.97.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder9 --- 10.1.46.2 , node2 ip--- agg49 --- 10.2.99.2
+---node1 ip--- agg49 --- 10.2.99.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder20 --- 10.1.101.2 , node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder21 --- 10.2.2.2 , node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder21 --- 10.2.2.2 , node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder21 --- 10.2.2.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder21 --- 10.2.2.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder22 --- 10.2.4.2 , node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder22 --- 10.2.4.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder22 --- 10.2.4.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder23 --- 10.2.6.2 , node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder23 --- 10.2.6.2 , node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder24 --- 10.2.8.2 , node2 ip--- forwarder25 --- 10.2.10.2
++2.413000000s 127 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.1.2 completed iteration 1000 at 2413ms
++2.413000000s 128 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.3.2 completed iteration 1000 at 2413ms
++2.413000000s 129 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.5.2 completed iteration 1000 at 2413ms
++2.413000000s 130 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.7.2 completed iteration 1000 at 2413ms
++2.413000000s 131 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.9.2 completed iteration 1000 at 2413ms
++2.413000000s 132 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.11.2 completed iteration 1000 at 2413ms
++2.413000000s 133 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.13.2 completed iteration 1000 at 2413ms
++2.413000000s 134 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.15.2 completed iteration 1000 at 2413ms
++2.413000000s 135 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.17.2 completed iteration 1000 at 2413ms
++2.413000000s 136 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.19.2 completed iteration 1000 at 2413ms
++2.413000000s 137 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.21.2 completed iteration 1000 at 2413ms
++2.413000000s 138 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.23.2 completed iteration 1000 at 2413ms
++2.413000000s 139 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.25.2 completed iteration 1000 at 2413ms
++2.413000000s 140 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.27.2 completed iteration 1000 at 2413ms
++2.413000000s 141 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.29.2 completed iteration 1000 at 2413ms
++2.413000000s 142 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.31.2 completed iteration 1000 at 2413ms
++2.413000000s 143 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.33.2 completed iteration 1000 at 2413ms
++2.413000000s 144 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.35.2 completed iteration 1000 at 2413ms
++2.413000000s 145 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.37.2 completed iteration 1000 at 2413ms
++2.413000000s 146 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.39.2 completed iteration 1000 at 2413ms
++2.421000000s 149 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.45.2 completed iteration 1000 at 2421ms
++2.426000000s 147 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.41.2 completed iteration 1000 at 2426ms
++2.426000000s 152 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.51.2 completed iteration 1000 at 2426ms
++2.426000000s 157 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.61.2 completed iteration 1000 at 2426ms
++2.436000000s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.1.101.1 completed iteration 1000 at 2436ms
++2.817000000s 127 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.1.2 completed iteration 2000 at 2817ms
++2.817000000s 128 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.3.2 completed iteration 2000 at 2817ms
++2.817000000s 129 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.5.2 completed iteration 2000 at 2817ms
++2.817000000s 130 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.7.2 completed iteration 2000 at 2817ms
++2.817000000s 131 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.9.2 completed iteration 2000 at 2817ms
++2.817000000s 132 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.11.2 completed iteration 2000 at 2817ms
++2.817000000s 133 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.13.2 completed iteration 2000 at 2817ms
++2.817000000s 134 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.15.2 completed iteration 2000 at 2817ms
++2.817000000s 135 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.17.2 completed iteration 2000 at 2817ms
++2.817000000s 136 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.19.2 completed iteration 2000 at 2817ms
++2.817000000s 137 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.21.2 completed iteration 2000 at 2817ms
++2.817000000s 138 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.23.2 completed iteration 2000 at 2817ms
++2.817000000s 139 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.25.2 completed iteration 2000 at 2817ms
++2.817000000s 140 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.27.2 completed iteration 2000 at 2817ms
++2.817000000s 141 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.29.2 completed iteration 2000 at 2817ms
++2.817000000s 142 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.31.2 completed iteration 2000 at 2817ms
++2.817000000s 143 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.33.2 completed iteration 2000 at 2817ms
++2.817000000s 144 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.35.2 completed iteration 2000 at 2817ms
++2.817000000s 145 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.37.2 completed iteration 2000 at 2817ms
++2.817000000s 146 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.39.2 completed iteration 2000 at 2817ms
++2.825000000s 149 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.45.2 completed iteration 2000 at 2825ms
++2.830000000s 157 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.61.2 completed iteration 2000 at 2830ms
++2.831000000s 147 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.41.2 completed iteration 2000 at 2831ms
++2.831000000s 152 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.51.2 completed iteration 2000 at 2831ms
++2.840000000s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.1.101.1 completed iteration 2000 at 2840ms
++3.222000000s 127 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.1.2 completed iteration 3000 at 3222ms
++3.222000000s 128 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.3.2 completed iteration 3000 at 3222ms
++3.222000000s 129 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.5.2 completed iteration 3000 at 3222ms
++3.222000000s 130 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.7.2 completed iteration 3000 at 3222ms
++3.222000000s 131 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.9.2 completed iteration 3000 at 3222ms
++3.222000000s 132 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.11.2 completed iteration 3000 at 3222ms
++3.222000000s 133 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.13.2 completed iteration 3000 at 3222ms
++3.222000000s 134 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.15.2 completed iteration 3000 at 3222ms
++3.222000000s 135 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.17.2 completed iteration 3000 at 3222ms
++3.222000000s 136 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.19.2 completed iteration 3000 at 3222ms
++3.222000000s 137 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.21.2 completed iteration 3000 at 3222ms
++3.222000000s 138 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.23.2 completed iteration 3000 at 3222ms
++3.222000000s 139 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.25.2 completed iteration 3000 at 3222ms
++3.222000000s 140 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.27.2 completed iteration 3000 at 3222ms
++3.222000000s 141 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.29.2 completed iteration 3000 at 3222ms
++3.222000000s 142 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.31.2 completed iteration 3000 at 3222ms
++3.222000000s 143 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.33.2 completed iteration 3000 at 3222ms
++3.222000000s 144 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.35.2 completed iteration 3000 at 3222ms
++3.222000000s 145 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.37.2 completed iteration 3000 at 3222ms
++3.222000000s 146 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.39.2 completed iteration 3000 at 3222ms
++3.230000000s 149 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.45.2 completed iteration 3000 at 3230ms
++3.235000000s 147 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.41.2 completed iteration 3000 at 3235ms
++3.235000000s 152 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.51.2 completed iteration 3000 at 3235ms
++3.235000000s 157 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.61.2 completed iteration 3000 at 3235ms
++3.245000000s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.1.101.1 completed iteration 3000 at 3245ms
++3.626000000s 127 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.1.2 completed iteration 4000 at 3626ms
++3.626000000s 128 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.3.2 completed iteration 4000 at 3626ms
++3.626000000s 129 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.5.2 completed iteration 4000 at 3626ms
++3.626000000s 130 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.7.2 completed iteration 4000 at 3626ms
++3.626000000s 131 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.9.2 completed iteration 4000 at 3626ms
++3.626000000s 132 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.11.2 completed iteration 4000 at 3626ms
++3.626000000s 133 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.13.2 completed iteration 4000 at 3626ms
++3.626000000s 134 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.15.2 completed iteration 4000 at 3626ms
++3.626000000s 135 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.17.2 completed iteration 4000 at 3626ms
++3.626000000s 136 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.19.2 completed iteration 4000 at 3626ms
++3.626000000s 137 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.21.2 completed iteration 4000 at 3626ms
++3.626000000s 138 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.23.2 completed iteration 4000 at 3626ms
++3.626000000s 139 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.25.2 completed iteration 4000 at 3626ms
++3.626000000s 140 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.27.2 completed iteration 4000 at 3626ms
++3.626000000s 141 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.29.2 completed iteration 4000 at 3626ms
++3.626000000s 142 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.31.2 completed iteration 4000 at 3626ms
++3.626000000s 143 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.33.2 completed iteration 4000 at 3626ms
++3.626000000s 144 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.35.2 completed iteration 4000 at 3626ms
++3.626000000s 145 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.37.2 completed iteration 4000 at 3626ms
++3.626000000s 146 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.39.2 completed iteration 4000 at 3626ms
++3.634000000s 149 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.45.2 completed iteration 4000 at 3634ms
++3.639000000s 157 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.61.2 completed iteration 4000 at 3639ms
++3.640000000s 147 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.41.2 completed iteration 4000 at 3640ms
++3.640000000s 152 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.51.2 completed iteration 4000 at 3640ms
++3.649000000s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.1.101.1 completed iteration 4000 at 3649ms
++4.031000000s 127 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.1.2 completed iteration 5000 at 4031ms
++4.031000000s 128 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.3.2 completed iteration 5000 at 4031ms
++4.031000000s 129 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.5.2 completed iteration 5000 at 4031ms
++4.031000000s 130 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.7.2 completed iteration 5000 at 4031ms
++4.031000000s 131 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.9.2 completed iteration 5000 at 4031ms
++4.031000000s 132 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.11.2 completed iteration 5000 at 4031ms
++4.031000000s 133 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.13.2 completed iteration 5000 at 4031ms
++4.031000000s 134 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.15.2 completed iteration 5000 at 4031ms
++4.031000000s 135 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.17.2 completed iteration 5000 at 4031ms
++4.031000000s 136 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.19.2 completed iteration 5000 at 4031ms
++4.031000000s 137 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.21.2 completed iteration 5000 at 4031ms
++4.031000000s 138 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.23.2 completed iteration 5000 at 4031ms
++4.031000000s 139 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.25.2 completed iteration 5000 at 4031ms
++4.031000000s 140 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.27.2 completed iteration 5000 at 4031ms
++4.031000000s 141 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.29.2 completed iteration 5000 at 4031ms
++4.031000000s 142 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.31.2 completed iteration 5000 at 4031ms
++4.031000000s 143 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.33.2 completed iteration 5000 at 4031ms
++4.031000000s 144 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.35.2 completed iteration 5000 at 4031ms
++4.031000000s 145 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.37.2 completed iteration 5000 at 4031ms
++4.031000000s 146 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.39.2 completed iteration 5000 at 4031ms
++4.039000000s 149 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.45.2 completed iteration 5000 at 4039ms
++4.044000000s 147 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.41.2 completed iteration 5000 at 4044ms
++4.044000000s 152 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.51.2 completed iteration 5000 at 4044ms
++4.044000000s 157 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.61.2 completed iteration 5000 at 4044ms
++4.054000000s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.1.101.1 completed iteration 5000 at 4054ms
++4.435000000s 127 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.1.2 completed iteration 6000 at 4435ms
++4.435000000s 128 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.3.2 completed iteration 6000 at 4435ms
++4.435000000s 129 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.5.2 completed iteration 6000 at 4435ms
++4.435000000s 130 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.7.2 completed iteration 6000 at 4435ms
++4.435000000s 131 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.9.2 completed iteration 6000 at 4435ms
++4.435000000s 132 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.11.2 completed iteration 6000 at 4435ms
++4.435000000s 133 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.13.2 completed iteration 6000 at 4435ms
++4.435000000s 134 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.15.2 completed iteration 6000 at 4435ms
++4.435000000s 135 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.17.2 completed iteration 6000 at 4435ms
++4.435000000s 136 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.19.2 completed iteration 6000 at 4435ms
++4.435000000s 137 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.21.2 completed iteration 6000 at 4435ms
++4.435000000s 138 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.23.2 completed iteration 6000 at 4435ms
++4.435000000s 139 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.25.2 completed iteration 6000 at 4435ms
++4.435000000s 140 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.27.2 completed iteration 6000 at 4435ms
++4.435000000s 141 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.29.2 completed iteration 6000 at 4435ms
++4.435000000s 142 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.31.2 completed iteration 6000 at 4435ms
++4.435000000s 143 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.33.2 completed iteration 6000 at 4435ms
++4.435000000s 144 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.35.2 completed iteration 6000 at 4435ms
++4.435000000s 145 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.37.2 completed iteration 6000 at 4435ms
++4.435000000s 146 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.39.2 completed iteration 6000 at 4435ms
++4.443000000s 149 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.45.2 completed iteration 6000 at 4443ms
++4.448000000s 157 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.61.2 completed iteration 6000 at 4448ms
++4.449000000s 147 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.41.2 completed iteration 6000 at 4449ms
++4.449000000s 152 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.51.2 completed iteration 6000 at 4449ms
++4.458000000s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.1.101.1 completed iteration 6000 at 4458ms
++4.840000000s 127 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.1.2 completed iteration 7000 at 4840ms
++4.840000000s 128 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.3.2 completed iteration 7000 at 4840ms
++4.840000000s 129 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.5.2 completed iteration 7000 at 4840ms
++4.840000000s 130 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.7.2 completed iteration 7000 at 4840ms
++4.840000000s 131 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.9.2 completed iteration 7000 at 4840ms
++4.840000000s 132 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.11.2 completed iteration 7000 at 4840ms
++4.840000000s 133 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.13.2 completed iteration 7000 at 4840ms
++4.840000000s 134 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.15.2 completed iteration 7000 at 4840ms
++4.840000000s 135 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.17.2 completed iteration 7000 at 4840ms
++4.840000000s 136 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.19.2 completed iteration 7000 at 4840ms
++4.840000000s 137 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.21.2 completed iteration 7000 at 4840ms
++4.840000000s 138 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.23.2 completed iteration 7000 at 4840ms
++4.840000000s 139 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.25.2 completed iteration 7000 at 4840ms
++4.840000000s 140 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.27.2 completed iteration 7000 at 4840ms
++4.840000000s 141 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.29.2 completed iteration 7000 at 4840ms
++4.840000000s 142 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.31.2 completed iteration 7000 at 4840ms
++4.840000000s 143 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.33.2 completed iteration 7000 at 4840ms
++4.840000000s 144 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.35.2 completed iteration 7000 at 4840ms
++4.840000000s 145 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.37.2 completed iteration 7000 at 4840ms
++4.840000000s 146 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.39.2 completed iteration 7000 at 4840ms
++4.848000000s 149 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.45.2 completed iteration 7000 at 4848ms
++4.853000000s 147 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.41.2 completed iteration 7000 at 4853ms
++4.853000000s 152 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.51.2 completed iteration 7000 at 4853ms
++4.853000000s 157 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.61.2 completed iteration 7000 at 4853ms
++4.863000000s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.1.101.1 completed iteration 7000 at 4863ms
++5.244000000s 127 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.1.2 completed iteration 8000 at 5244ms
++5.244000000s 128 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.3.2 completed iteration 8000 at 5244ms
++5.244000000s 129 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.5.2 completed iteration 8000 at 5244ms
++5.244000000s 130 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.7.2 completed iteration 8000 at 5244ms
++5.244000000s 131 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.9.2 completed iteration 8000 at 5244ms
++5.244000000s 132 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.11.2 completed iteration 8000 at 5244ms
++5.244000000s 133 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.13.2 completed iteration 8000 at 5244ms
++5.244000000s 134 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.15.2 completed iteration 8000 at 5244ms
++5.244000000s 135 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.17.2 completed iteration 8000 at 5244ms
++5.244000000s 136 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.19.2 completed iteration 8000 at 5244ms
++5.244000000s 137 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.21.2 completed iteration 8000 at 5244ms
++5.244000000s 138 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.23.2 completed iteration 8000 at 5244ms
++5.244000000s 139 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.25.2 completed iteration 8000 at 5244ms
++5.244000000s 140 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.27.2 completed iteration 8000 at 5244ms
++5.244000000s 141 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.29.2 completed iteration 8000 at 5244ms
++5.244000000s 142 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.31.2 completed iteration 8000 at 5244ms
++5.244000000s 143 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.33.2 completed iteration 8000 at 5244ms
++5.244000000s 144 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.35.2 completed iteration 8000 at 5244ms
++5.244000000s 145 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.37.2 completed iteration 8000 at 5244ms
++5.244000000s 146 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.39.2 completed iteration 8000 at 5244ms
++5.252000000s 149 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.45.2 completed iteration 8000 at 5252ms
++5.257000000s 157 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.61.2 completed iteration 8000 at 5257ms
++5.258000000s 147 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.41.2 completed iteration 8000 at 5258ms
++5.258000000s 152 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.51.2 completed iteration 8000 at 5258ms
++5.267000000s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.1.101.1 completed iteration 8000 at 5267ms
++5.649000000s 127 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.1.2 completed iteration 9000 at 5649ms
++5.649000000s 128 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.3.2 completed iteration 9000 at 5649ms
++5.649000000s 129 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.5.2 completed iteration 9000 at 5649ms
++5.649000000s 130 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.7.2 completed iteration 9000 at 5649ms
++5.649000000s 131 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.9.2 completed iteration 9000 at 5649ms
++5.649000000s 132 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.11.2 completed iteration 9000 at 5649ms
++5.649000000s 133 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.13.2 completed iteration 9000 at 5649ms
++5.649000000s 134 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.15.2 completed iteration 9000 at 5649ms
++5.649000000s 135 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.17.2 completed iteration 9000 at 5649ms
++5.649000000s 136 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.19.2 completed iteration 9000 at 5649ms
++5.649000000s 137 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.21.2 completed iteration 9000 at 5649ms
++5.649000000s 138 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.23.2 completed iteration 9000 at 5649ms
++5.649000000s 139 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.25.2 completed iteration 9000 at 5649ms
++5.649000000s 140 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.27.2 completed iteration 9000 at 5649ms
++5.649000000s 141 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.29.2 completed iteration 9000 at 5649ms
++5.649000000s 142 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.31.2 completed iteration 9000 at 5649ms
++5.649000000s 143 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.33.2 completed iteration 9000 at 5649ms
++5.649000000s 144 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.35.2 completed iteration 9000 at 5649ms
++5.649000000s 145 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.37.2 completed iteration 9000 at 5649ms
++5.649000000s 146 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.39.2 completed iteration 9000 at 5649ms
++5.657000000s 149 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.45.2 completed iteration 9000 at 5657ms
++5.662000000s 147 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.41.2 completed iteration 9000 at 5662ms
++5.662000000s 152 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.51.2 completed iteration 9000 at 5662ms
++5.662000000s 157 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.61.2 completed iteration 9000 at 5662ms
++5.672000000s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.1.101.1 completed iteration 9000 at 5672ms
++6.053000000s 127 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.1.2 completed processing
++6.053000000s 128 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.3.2 completed processing
++6.053000000s 129 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.5.2 completed processing
++6.053000000s 130 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.7.2 completed processing
++6.053000000s 131 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.9.2 completed processing
++6.053000000s 132 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.11.2 completed processing
++6.053000000s 133 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.13.2 completed processing
++6.053000000s 134 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.15.2 completed processing
++6.053000000s 135 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.17.2 completed processing
++6.053000000s 136 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.19.2 completed processing
++6.053000000s 137 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.21.2 completed processing
++6.053000000s 138 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.23.2 completed processing
++6.053000000s 139 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.25.2 completed processing
++6.053000000s 140 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.27.2 completed processing
++6.053000000s 141 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.29.2 completed processing
++6.053000000s 142 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.31.2 completed processing
++6.053000000s 143 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.33.2 completed processing
++6.053000000s 144 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.35.2 completed processing
++6.053000000s 145 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.37.2 completed processing
++6.053000000s 146 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.39.2 completed processing
++6.061000000s 149 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.45.2 completed processing
++6.066000000s 157 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.61.2 completed processing
++6.067000000s 147 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.41.2 completed processing
++6.067000000s 152 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.51.2 completed processing
++6.076000000s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer completed all iterations in 4076ms
+Prefix: 100, Iteration: 10000 - Simulation completed successfully.
+
+#################### SIMULATION END ####################
+
+

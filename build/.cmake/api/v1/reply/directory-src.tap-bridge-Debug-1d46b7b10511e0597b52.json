@@ -1,0 +1,92 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"install",
+			"build_lib",
+			"build_exec"
+		],
+		"files" : 
+		[
+			"build-support/custom-modules/ns3-module-macros.cmake",
+			"src/tap-bridge/CMakeLists.txt",
+			"build-support/custom-modules/ns3-executables.cmake"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 1
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 21,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 481,
+				"parent" : 1
+			},
+			{
+				"command" : 2,
+				"file" : 1,
+				"line" : 37,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 2,
+				"line" : 146,
+				"parent" : 3
+			}
+		]
+	},
+	"installers" : 
+	[
+		{
+			"backtrace" : 2,
+			"component" : "Unspecified",
+			"destination" : "lib",
+			"paths" : 
+			[
+				"lib/libns3.42-tap-bridge-debug.so"
+			],
+			"targetId" : "libtap-bridge::@41c2f7889af4d596f671",
+			"targetIndex" : 68,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 2,
+			"component" : "Unspecified",
+			"destination" : "include/ns3",
+			"paths" : 
+			[
+				"src/tap-bridge/helper/tap-bridge-helper.h",
+				"src/tap-bridge/model/tap-bridge.h",
+				"src/tap-bridge/model/tap-encode-decode.h",
+				"build/include/ns3/tap-bridge-module.h"
+			],
+			"type" : "file"
+		},
+		{
+			"backtrace" : 4,
+			"component" : "Unspecified",
+			"destination" : "libexec/ns3",
+			"paths" : 
+			[
+				"src/tap-bridge/ns3.42-tap-creator-debug"
+			],
+			"targetId" : "tap-creator::@41c2f7889af4d596f671",
+			"targetIndex" : 96,
+			"type" : "target"
+		}
+	],
+	"paths" : 
+	{
+		"build" : "src/tap-bridge",
+		"source" : "src/tap-bridge"
+	}
+}

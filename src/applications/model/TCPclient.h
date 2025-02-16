@@ -78,6 +78,9 @@ public:
   void LogSocketInfo();
   void SetSendTag(PacketTraceTag tag);
 
+  void SetIpTable();
+  
+  
 protected:
   virtual void DoDispose (void);
 

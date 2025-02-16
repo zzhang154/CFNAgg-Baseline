@@ -1296,7 +1296,7 @@ class TcpSocketBase : public TcpSocket
     SequenceNumber32 GetHighRxAck() const;
 
     // Zhuoxu: DIY function.
-    void OutputRttData() const;
+    void OutputRttData();
     void DoDispose();
     // Declaration of the function to get the desired local address
     Ipv4Address GetDesiredLocalAddress(void);

@@ -1,0 +1,1 @@
+/usr/bin/g++-9 -g CMakeFiles/stdlib_pch_exec.dir/build-support/empty-main.cc.o -o ns3.42-stdlib_pch_exec-debug   -L/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/lib 

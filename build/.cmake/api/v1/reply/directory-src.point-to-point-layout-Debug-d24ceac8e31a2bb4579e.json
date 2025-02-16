@@ -1,0 +1,66 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"install",
+			"build_lib"
+		],
+		"files" : 
+		[
+			"build-support/custom-modules/ns3-module-macros.cmake",
+			"src/point-to-point-layout/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 1
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 1,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 481,
+				"parent" : 1
+			}
+		]
+	},
+	"installers" : 
+	[
+		{
+			"backtrace" : 2,
+			"component" : "Unspecified",
+			"destination" : "lib",
+			"paths" : 
+			[
+				"lib/libns3.42-point-to-point-layout-debug.so"
+			],
+			"targetId" : "libpoint-to-point-layout::@f2be237e8973ad8e8738",
+			"targetIndex" : 57,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 2,
+			"component" : "Unspecified",
+			"destination" : "include/ns3",
+			"paths" : 
+			[
+				"src/point-to-point-layout/model/point-to-point-dumbbell.h",
+				"src/point-to-point-layout/model/point-to-point-grid.h",
+				"src/point-to-point-layout/model/point-to-point-star.h",
+				"build/include/ns3/point-to-point-layout-module.h"
+			],
+			"type" : "file"
+		}
+	],
+	"paths" : 
+	{
+		"build" : "src/point-to-point-layout",
+		"source" : "src/point-to-point-layout"
+	}
+}

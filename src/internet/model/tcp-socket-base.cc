@@ -73,6 +73,7 @@
 #include <fstream>
 
 #include <sstream>  // Add this if not already included
+#include "ns3/ipv6-address.h"
 
 namespace ns3
 {
@@ -3689,6 +3690,8 @@ TcpSocketBase::ReceivedData(Ptr<Packet> p, const TcpHeader& tcpHeader)
     UpdateTP(p->GetSize());
     // NS_LOG_UNCOND("In ReceivedData function, GetPeerAddress: " << m_endPoint->GetPeerAddress());
     // Ensure m_endPoint is not nullptr before using it
+
+    /*
     if (m_endPoint && this->peerAddressStr.empty())
     {
         this->peerAddressStr = Ipv4AddressToString(m_endPoint->GetPeerAddress());
@@ -3701,6 +3704,63 @@ TcpSocketBase::ReceivedData(Ptr<Packet> p, const TcpHeader& tcpHeader)
     {
         NS_LOG_WARN("Endpoint is null");
     }
+    */
+
+    // Get LOCAL address
+    Ptr<Ipv4> ipv4 = GetNode()->GetObject<Ipv4>();
+    if (ipv4 && ipv4->GetNInterfaces() > 1) {
+        std::stringstream localSS;
+        localSS << ipv4->GetAddress(1, 0).GetLocal();
+        this->localAddressStr = localSS.str();
+    } else {
+        this->localAddressStr = "IP_NOT_FOUND";
+    }
+
+    // Get PEER address
+    std::stringstream peerSS;
+    if (m_endPoint) {
+        Ipv4Address peerAddr = m_endPoint->GetPeerAddress();
+        peerSS << peerAddr;
+        
+        // Verify routing
+        Socket::SocketErrno sockerr;
+        Ptr<Ipv4Route> route = ipv4->GetRoutingProtocol()->RouteOutput(
+            Ptr<Packet>(), Ipv4Header(), nullptr, sockerr);
+        
+        if (route && route->GetGateway() != Ipv4Address::GetZero()) {
+            peerSS.str("");
+            peerSS << route->GetGateway();
+        }
+        
+        this->peerAddressStr = peerSS.str();
+    }
+    else if (m_endPoint6) {
+        std::stringstream peer6SS;
+        peer6SS << m_endPoint6->GetPeerAddress();
+        this->peerAddressStr = peer6SS.str();
+    }
+    else {
+        this->peerAddressStr = "IP_NOT_FOUND";
+    }
+
+    // Debug output
+    if (localAddressStr != "10.1.51.1") {
+        Ipv4Header ipv4Header;
+        p->PeekHeader(ipv4Header); // Peek without removing the header
+        Ipv4Address originalClientIp = ipv4Header.GetSource();
+
+        // Debug output
+        NS_LOG_UNCOND("Original Client IP: " << originalClientIp 
+                    << " | Socket Peer IP: " << peerAddressStr);
+
+        NS_LOG_UNCOND(this << " Verified Addresses:\n"
+            << "  Local: " << localAddressStr << "\n"
+            << "  Peer:  " << peerAddressStr << "\n"
+            << "  Time:  " << Simulator::Now().GetSeconds());
+        // PrintIpToNodeMap();
+        // PrintNewToOldIpMap();
+    }
+
 
 
     NS_LOG_FUNCTION(this << tcpHeader);
@@ -5019,7 +5079,7 @@ TcpSocketBase::GetTcpSocketState(){
     return m_tcb;
 }
 
-void TcpSocketBase::OutputRttData() const
+void TcpSocketBase::OutputRttData()
 {
     if (this->localAddressStr.empty() || !isElementInFilter(this->localAddressStr))
         return;
@@ -5032,6 +5092,7 @@ void TcpSocketBase::OutputRttData() const
 
         // Output RTT data
         filename = "./log/rtt/" + GetNodeNameFromIp(this->localAddressStr) + "_rtt.txt";
+        std::cout << " The rtt filename is: " << filename << std::endl;
         outFile.open(filename);
         if (outFile.is_open())
         {
@@ -5057,7 +5118,24 @@ void TcpSocketBase::OutputRttData() const
         // Output Throughput data
         // currently, we only keep the last record. Since previous record is the same
         // filename = "./log/tp/" + this->localAddressStr + "+" + this->peerAddressStr + "_TP.txt";
-        filename = "./log/tp/" + GetNodeNameFromIp(this->localAddressStr) + "_TP.txt";
+        if(this->peerAddressStr.empty())
+            return;
+        
+        if(NewToOldIpMap.find(this->peerAddressStr) != NewToOldIpMap.end())
+            this->peerAddressStr = NewToOldIpMap[this->peerAddressStr];
+        
+        
+
+        std::string localName = GetNodeNameFromIp(this->localAddressStr);
+        std::string peerName = GetNodeNameFromIp(this->peerAddressStr);
+        filename = "./log/tp/" + localName + "+" + peerName + "_TP.txt";
+        // If the base filename contains "con", then insert the counter.
+        if (filename.find("con") != std::string::npos)
+        {
+            filename = "./log/tp/" + localName + std::to_string(ns3::conCount++) + "+" + peerName + "_TP.txt";
+        }
+
+        std::cout << " The tp filename is: " << filename << std::endl;
         outFile.open(filename);
         if (outFile.is_open())
         {
@@ -5077,12 +5155,19 @@ void TcpSocketBase::OutputRttData() const
             NS_LOG_UNCOND("Failed to open file for Throughput data: " << filename);
         }
     }
-
-
 }
 
 void TcpSocketBase::DoDispose()
 {
+    if (localAddressStr == "10.2.21.2")
+    {
+        NS_LOG_UNCOND( this
+            << " In DoDispose, localAddressStr: " << this->localAddressStr
+            << " peerAddressStr: " << this->peerAddressStr
+            << " at time: " << Simulator::Now().GetSeconds()
+        );
+    }
+
     // Output RTT data
     OutputRttData();
 
