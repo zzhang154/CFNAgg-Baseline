@@ -9,6 +9,7 @@ set(OLD_GLOB
   "/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/scratch/bash"
   "/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/scratch/data"
   "/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/scratch/data.txt"
+  "/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/scratch/debug-cc.log"
   "/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/scratch/debug_test"
   "/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/scratch/innetwork-test.cc"
   "/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/scratch/innetwork-test.h"

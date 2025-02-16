@@ -35,6 +35,19 @@ void Addr2Str (Address addr, std::string &str) {
     str = ss.str();
 }
 
+std::string
+QueueToString(const std::queue<uint16_t>& queue)
+{
+  std::queue<uint16_t> tmp(queue);
+  std::ostringstream oss;
+  while (!tmp.empty()) {
+      // Subtracting uint16_t(0) is for formatting, if needed.
+      oss << (tmp.front() - uint16_t(0)) << "-";
+      tmp.pop();
+  }
+  return oss.str();
+}
+
 TracedTimeQueue::TracedTimeQueue()
 {
     // Initialize the trace source

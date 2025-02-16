@@ -13,8 +13,8 @@ fi
 git add .
 
 # Commit the changes
-git commit -m "TCP-Agg v-10.2-debug:
-(1) Partial solve the problem of throughput trace problem. But there are still some bugs for the consumer nodes.
+git commit -m "TCP-Agg v-11.0-release:
+(1) optimize the 'TCPclient' and 'TCPserver'.
 "
 
 # Rename current branch to tcp-baseline (if needed)

@@ -1,450 +1,250 @@
-/* -*- Mode:C++; c-file-style:"gnu"; indent-tabs-mode:nil; -*- */
-/*
- * Copyright (c) 2007,2008,2009 INRIA, UDCAST
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License version 2 as
- * published by the Free Software Foundation;
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
- *
- * Author: Amine Ismail <amine.ismail@sophia.inria.fr>
- *                      <amine.ismail@udcast.com>
- */
-#include "ns3/log.h"
-#include "ns3/ipv4-address.h"
-#include "ns3/nstime.h"
-#include "ns3/inet-socket-address.h"
-#include "ns3/inet6-socket-address.h"
-#include "ns3/socket.h"
-#include "ns3/simulator.h"
-#include "ns3/socket-factory.h"
-#include "ns3/packet.h"
-#include "ns3/uinteger.h"
 #include "TCPclient.h"
-#include "seq-ts-header.h"
-#include <cstdlib>
-#include <cstdio>
-
-#include <ns3/tcp-socket-factory.h>
-#include <ns3/callback.h>
-#include "ns3/parameter.h"
+#include "ns3/log.h"
+#include "ns3/simulator.h"
+#include "ns3/socket.h"
+#include "ns3/tcp-socket-factory.h"
+#include "ns3/inet-socket-address.h"
+#include "ns3/seq-ts-header.h"
 
 namespace ns3 {
 
-NS_LOG_COMPONENT_DEFINE ("TCPclient");
+NS_LOG_COMPONENT_DEFINE("TCPclient");
+NS_OBJECT_ENSURE_REGISTERED(TCPclient);
 
-NS_OBJECT_ENSURE_REGISTERED (TCPclient);
-
-TypeId
-TCPclient::GetTypeId (void)
+TypeId TCPclient::GetTypeId(void)
 {
-  static TypeId tid = TypeId ("ns3::TCPclient")
-    .SetParent<Application> ()
-    .SetGroupName ("Applications")
-    .AddConstructor<TCPclient> ()
-  ;
-  return tid;
+    static TypeId tid = TypeId("ns3::TCPclient")
+        .SetParent<Application>()
+        .SetGroupName("Applications")
+        .AddConstructor<TCPclient>();
+    return tid;
 }
 
-TCPclient::TCPclient () {
-  NS_LOG_FUNCTION (this);
-  m_sent = 0;
-  m_rcount = 0;
-  m_socket = nullptr ;
-  m_lastUsedStream = 1;
-  m_numStreams = 1;
-  m_sendEvent = EventId ();
-}
+TCPclient::TCPclient() : m_count(0), m_rcount(0), m_sent(0) {}
 
-TCPclient::~TCPclient () {
-  NS_LOG_FUNCTION (this);
-  m_socket = nullptr;
-  m_node = nullptr;
-}
+TCPclient::~TCPclient() = default;
 
-void
-TCPclient::SetRemote (Address ip, uint16_t port) {
-  NS_LOG_FUNCTION (this << Ipv4Address::ConvertFrom(ip) << port);
-  m_peerIp = ip;
-  m_peerPort = port;
-  m_peerAddress = InetSocketAddress(Ipv4Address::ConvertFrom(m_peerIp),m_peerPort);
-  NS_LOG_DEBUG( this
-          << InetSocketAddress::ConvertFrom(m_peerAddress).GetIpv4() << " "
-          << InetSocketAddress::ConvertFrom(m_peerAddress).GetPort() );
-}
-
-void
-TCPclient::SetRemote (Address addr) {
-  NS_LOG_FUNCTION (this << addr);
-  m_peerAddress = addr;
-}
-
-void
-TCPclient::SetNode (Ptr<Node> node) {
-  NS_LOG_FUNCTION (this << node);
-  m_node = node;
-}
-
-void 
-TCPclient::SetCongestionControlAlgorithm(std::string cc_name) {
-  congestionControlAlgorithm = cc_name;
-}
-
-
-InetSocketAddress 
-TCPclient::GetLocalAddress() const {
-    Ptr<Node> node = m_node;
-    Ptr<Ipv4> ipv4 = node->GetObject<Ipv4>();
-    Ipv4Address peerIp = InetSocketAddress::ConvertFrom(m_peerAddress).GetIpv4();
-
-    // Use routing to find the correct interface for the peer
-    Ptr<Ipv4RoutingProtocol> routing = ipv4->GetRoutingProtocol();
-    Ipv4Header header;
-    header.SetDestination(peerIp);
-    Socket::SocketErrno errno_;
-    Ptr<Ipv4Route> route = routing->RouteOutput(nullptr, header, 0, errno_);
-
-    if (route && route->GetOutputDevice()) {
-        int32_t interfaceIdx = ipv4->GetInterfaceForDevice(route->GetOutputDevice());
-        Ipv4Address localIp = ipv4->GetAddress(interfaceIdx, 0).GetLocal();
-        NS_LOG_INFO("Local IP determined via routing: " << localIp);
-        return InetSocketAddress(localIp, m_bindPort);
-    } else {
-        NS_FATAL_ERROR("No route to peer " << peerIp);
-        return InetSocketAddress(Ipv4Address::GetAny(), m_bindPort);
-    }
-}
-
-
-Ptr<Socket> 
-TCPclient::GetSocket() {
-  return m_socket;
-}
-
-uint16_t 
-TCPclient::GetBindPort() {
-  return m_bindPort;
-}
-
-Address 
-TCPclient::GetBindAddress() {
-  m_bindIp=GetLocalAddress().GetIpv4();
-  return m_bindIp;
-}
-
-
-void
-TCPclient::DoDispose (void) {
-  NS_LOG_FUNCTION (this);
-
-  m_socket = nullptr;
-  m_node = nullptr;
-  //p = nullptr;
-  Application::DoDispose ();
-}
-
-void 
-TCPclient::StartApplication() {
-    m_running=true;
-    NS_LOG_INFO ("client start application success");
-}
-
-void 
-TCPclient::StopApplication() {
-  //p = nullptr;
-  m_running=false;
-  NS_LOG_FUNCTION (this);
-  Simulator::Cancel (m_sendEvent);
-  if (m_socket != nullptr )
-    {
-      m_socket->Close ();
-      m_socket = nullptr ;
-    }
-}
-
-void 
-TCPclient::Bind (uint16_t port) {
-  NS_LOG_FUNCTION (this<<port);
-  m_running=true;
-  m_bindPort = port;
-
-  if(m_node == nullptr)
-      NS_LOG_DEBUG(this << " m_node is nullptr");
-  else
-      NS_LOG_DEBUG(this << " m_node is not nullptr");
-      
-  if (m_socket == nullptr ) {
-    m_socket = Socket::CreateSocket(m_node, TcpSocketFactory::GetTypeId());
-
-    if (!m_socket) {
-        NS_FATAL_ERROR("m_socket not found!");
-        return;
-    }
-
-    //bind port to socket
-    InetSocketAddress local = GetLocalAddress();
-    if (m_socket->GetObject<TcpSocketBase>()->Bind (local) == -1) {
-      NS_FATAL_ERROR ("Failed to bind socket");
-    }
-    m_socket->GetObject<TcpSocketBase>()->Connect(InetSocketAddress::ConvertFrom(m_peerAddress));
-
-    NS_LOG_DEBUG("Create Socket, m_node: " << m_node << " m_bindPort: " << static_cast<int>(m_bindPort));
-    NS_LOG_DEBUG( "m_socket->Connect(InetSocketAddress::ConvertFrom(m_peerAddress)); "
-          << InetSocketAddress::ConvertFrom(m_peerAddress).GetIpv4() << " "
-          << InetSocketAddress::ConvertFrom(m_peerAddress).GetPort() );
-  }
-  m_socket->SetRecvCallback (MakeCallback(&TCPclient::HandleRead,this));
-  m_socket->SetAllowBroadcast (true);
-  // Check the state of the socket
-  CheckSocketState();
-  // make sure that the "LogSocketInfo()" can only be called after the socket is binded.
-  LogSocketInfo();
-  SetIpTable();
-}
-
-
-void
-TCPclient::PrintSocketInfo(Ptr<Socket> socket)
+// Configuration methods implementation
+void TCPclient::SetRemote(Address ip, uint16_t port)
 {
-    Address localAddress;
-    socket->GetSockName(localAddress);
-    InetSocketAddress inetLocalAddress = InetSocketAddress::ConvertFrom(localAddress);
-    Ipv4Address localIp = inetLocalAddress.GetIpv4();
-    uint16_t localPort = inetLocalAddress.GetPort();
-
-    NS_LOG_INFO("Socket created with IP address: " << localIp << " and port: " << localPort);
+    NS_LOG_FUNCTION(this << ip << port);
+    m_peerIp = ip;
+    m_peerPort = port;
+    m_peerAddress = InetSocketAddress(Ipv4Address::ConvertFrom(m_peerIp), m_peerPort);
 }
 
-Ipv4Address 
-TCPclient::GetIpv4LocalAddress(){
-  // Ptr<TcpSocketBase> tcpSocket = m_socket->GetObject<TcpSocketBase>();
-  // // Get local address and port
-  // Address localAddress;
-  // tcpSocket->GetSockName(localAddress);
-  // InetSocketAddress inetLocalAddress = InetSocketAddress::ConvertFrom(localAddress);
-  // Ipv4Address localIp = inetLocalAddress.GetIpv4();
-  // return localIp;
-
-  Ptr<Ipv4> ipv4 = m_node->GetObject<Ipv4> ();
-  Ipv4Address localIp = ipv4->GetAddress(1,0).GetLocal();
-  return localIp;
+void TCPclient::SetRemote(Address addr)
+{
+    NS_LOG_FUNCTION(this << addr);
+    m_peerAddress = addr;
 }
 
-void
-TCPclient::connectToserver(){}
-
-void
-TCPclient::ReceiveData(){}
-
-
-int
-TCPclient::Send(const uint8_t* buffer, size_t len, bool isProducer) {
-  NS_LOG_FUNCTION (this<<len);
-
-  NS_LOG_INFO ("Before send, Check the socket state");
-  CheckSocketState();
-  NS_ASSERT (m_sendEvent.IsExpired ());
-
-  Ptr<Packet> p = Create<ns3::Packet>(buffer,len);
-
-  // agg the tag here.
-  m_sendTag.AddEntry(GetIpv4LocalAddress(),Simulator::Now());
-  // std::cout << "In TCPclient::Send: " << m_sendTag << std::endl;
-  p->AddPacketTag(m_sendTag);
-
-  int sentSize = m_socket->Send (p,0);
-  if (sentSize >= 0) {
-      ++m_sent;
-      NS_LOG_INFO ("TraceDelay TX " << sentSize << " bytes to " << m_peerAddress<< " Uid: " << p->GetUid () << " Time: " << (Simulator::Now ()).GetSeconds ());
-  }
-  else {
-      LogSocketInfo();
-      NS_LOG_INFO ("Error while sending " << sentSize << " bytes to " << m_peerAddress );
-  }
-
-  m_lastUsedStream++;
-  if (m_lastUsedStream > m_numStreams) {
-      m_lastUsedStream = 1;
-  }
-  /*std::cout<<"socket state after TCPclient::Send-------"<<"TCPclient----"<<GetLocalAddress().GetIpv4()
-  <<"----state:"<<m_socket->GetObject<QuicSocketBase>()->GetSocketState()<<"---with conID---"
-  <<m_socket->GetObject<QuicSocketBase>()->GetConnectionId()
-  <<"--at--time--"<<Simulator::Now()<<std::endl;*/
-  return sentSize;
+void TCPclient::SetNode(Ptr<Node> node)
+{
+    NS_LOG_FUNCTION(this << node);
+    m_node = node;
 }
 
-void 
-TCPclient::HandleRead (Ptr<Socket> socket) {
-  NS_LOG_FUNCTION (this);
-  if (!m_running) {return ;}
-  Address from;
-  bool isReading=true;
-  uint32_t totalReceive = 0;
-  
-  //uint8_t zero=0;
-  while (isReading) {  
-    Ptr<Packet> packet = socket->RecvFrom (from);
-    if(!packet){    
-      isReading =false;
-      break;
-    }
-    uint32_t packetSize=packet->GetSize () ;
-    packet->RemoveAllPacketTags ();
-    packet->RemoveAllByteTags ();
-    m_peerAddress = from;
+void TCPclient::SetCongestionControlAlgorithm(std::string cc_name)
+{
+    NS_LOG_FUNCTION(this << cc_name);
+    congestionControlAlgorithm = cc_name;
+}
 
-    totalReceive = totalReceive +packetSize;
-    m_rcount ++;
-    NS_LOG_FUNCTION (this << socket <<packetSize);
+void TCPclient::SetSendTag(PacketTraceTag tag)
+{
+    NS_LOG_FUNCTION(this);
+    m_sendTag = tag;
+}
 
-    uint8_t* packetContent = new uint8_t[packetSize];
-    uint32_t copyedSize =  packet->CopyData(packetContent,packetSize);
-    delete [] packetContent;
-    packet = nullptr;
-  }
-    std::cout<<"TCPclient---"<<GetLocalAddress().GetIpv4()<<"-received---response---from--"<<InetSocketAddress::ConvertFrom(m_peerAddress).GetIpv4()<<std::endl;
-    std::cout<<"total received---packet--num---"<<m_rcount<<" Total Receive: "<<totalReceive<<std::endl;
-    //m_circularBuffer->print();
-    this->m_socket = socket;
+// Socket management implementation
+void TCPclient::Bind(uint16_t port)
+{
+    NS_LOG_FUNCTION(this << port);
+    m_running = true;
+    m_bindPort = port;
+
+    if(!m_socket) {
+        m_socket = Socket::CreateSocket(m_node, TcpSocketFactory::GetTypeId());
+        InetSocketAddress local = GetLocalAddress();
         
+        if(m_socket->Bind(local) == -1) {
+            NS_FATAL_ERROR("Failed to bind socket");
+        }
+        
+        m_socket->Connect(InetSocketAddress::ConvertFrom(m_peerAddress));
+        m_socket->SetRecvCallback(MakeCallback(&TCPclient::HandleRead, this));
+        m_socket->SetAllowBroadcast(true);
+    }
+
+    CheckSocketState();
+    LogSocketInfo();
+    SetIpTable();
 }
 
-void TCPclient::RecvPacket(Ptr<Socket> socket){
-    if (!m_running) {return ;}
+// Data transmission implementation
+int TCPclient::Send(const uint8_t* buffer, size_t len, bool isProducer)
+{
+    NS_LOG_FUNCTION(this << len);
+    NS_ASSERT(m_sendEvent.IsExpired());
+
+    Ptr<Packet> p = Create<Packet>(buffer, len);
+    m_sendTag.AddEntry(GetIpv4LocalAddress(), Simulator::Now());
+    p->AddPacketTag(m_sendTag);
+
+    int sentSize = m_socket->Send(p);
+    if(sentSize >= 0) {
+        NS_LOG_INFO("Sent " << sentSize << " bytes to " << m_peerAddress);
+        ++m_sent;
+    } else {
+        NS_LOG_WARN("Failed to send " << len << " bytes to " << m_peerAddress);
+    }
+
+    m_lastUsedStream = (m_lastUsedStream % m_numStreams) + 1;
+    return sentSize;
 }
 
-void TCPclient::SetIpTable(){
+void TCPclient::CreateSocket(Ptr<Node> node, uint16_t port)
+{
+    NS_LOG_FUNCTION(this << node << port);
+    m_node = node;
+    m_bindPort = port;
+    Bind(port);
+}
+
+// Packet reception implementation
+void TCPclient::HandleRead(Ptr<Socket> socket)
+{
+    NS_LOG_FUNCTION(this << socket);
+    if(!m_running) return;
+
+    Address from;
+    Ptr<Packet> packet;
+    uint32_t totalReceive = 0;
+
+    while((packet = socket->RecvFrom(from))) {
+        uint32_t packetSize = packet->GetSize();
+        packet->RemoveAllPacketTags();
+        packet->RemoveAllByteTags();
+        
+        uint8_t* packetContent = new uint8_t[packetSize];
+        packet->CopyData(packetContent, packetSize);
+        delete[] packetContent;
+
+        totalReceive += packetSize;
+        m_rcount++;
+    }
+
+    NS_LOG_INFO("Received " << totalReceive << " bytes from " << 
+                InetSocketAddress::ConvertFrom(from).GetIpv4());
+}
+
+void TCPclient::RecvPacket(Ptr<Socket> socket)
+{
+    NS_LOG_FUNCTION(this << socket);
+    // Actual handling done in HandleRead()
+}
+
+InetSocketAddress
+TCPclient::GetLocalAddress() const {
     Ptr<Node> node=m_node;
     Ptr<Ipv4> ipv4 = node->GetObject<Ipv4> ();
     Ipv4Address local_ip = ipv4->GetAddress (1, 0).GetLocal();
+    return InetSocketAddress{local_ip,m_bindPort}; 
+}
 
-    Ptr<TcpSocketBase> tcpSocket = m_socket->GetObject<TcpSocketBase>();
+Ipv4Address TCPclient::GetIpv4LocalAddress()
+{
+    Ptr<Ipv4> ipv4 = m_node->GetObject<Ipv4>();
+    return ipv4->GetAddress(1, 0).GetLocal();
+}
+
+Address TCPclient::GetBindAddress()
+{
+    return InetSocketAddress(GetIpv4LocalAddress(), m_bindPort);
+}
+
+// Debugging utilities implementation
+void TCPclient::PrintSocketInfo(Ptr<Socket> socket)
+{
+    NS_LOG_FUNCTION(this << socket);
     Address localAddress;
-    tcpSocket->GetSockName(localAddress);
-    InetSocketAddress inetLocalAddress = InetSocketAddress::ConvertFrom(localAddress);
-    Ipv4Address tcpSocket_ip = inetLocalAddress.GetIpv4();
+    socket->GetSockName(localAddress);
+    InetSocketAddress inetLocal = InetSocketAddress::ConvertFrom(localAddress);
+    NS_LOG_INFO("Socket IP: " << inetLocal.GetIpv4() << " Port: " << inetLocal.GetPort());
+}
 
-    NS_LOG_INFO("local_ip: " << local_ip << " tcpSocket_ip: " << tcpSocket_ip);
+void TCPclient::SetIpTable() {
+  // Get node's IP and socket's bound IP
+  Ipv4Address local_ip = m_node->GetObject<Ipv4>()->GetAddress(1, 0).GetLocal();
+  Address socketAddress;
+  m_socket->GetObject<TcpSocketBase>()->GetSockName(socketAddress);
+  Ipv4Address tcp_ip = InetSocketAddress::ConvertFrom(socketAddress).GetIpv4();
 
-    if (tcpSocket_ip != local_ip) {
-      std::stringstream ssNew, ssOld;
-      ssNew << tcpSocket_ip;
-      ssOld << local_ip;
-      std::string new_ip_str = ssNew.str();
-      std::string old_ip_str = ssOld.str();
-      NewToOldIpMap[new_ip_str] = old_ip_str;
-      std::cout << "tcpSocket_ip != local_ip" << std::endl;
-      PrintIpToNodeMap();
-      PrintNewToOldIpMap();
+  NS_LOG_INFO("IPs - Local: " << local_ip << " Socket: " << tcp_ip);
+
+  if (tcp_ip != local_ip) {
+      // Convert IPs to strings using stringstream
+      std::stringstream ss;
+      ss << tcp_ip;  // Convert socket IP
+      std::string new_ip = ss.str();
+      ss.str("");    // Clear stream
+      ss << local_ip;// Convert local IP
+      NewToOldIpMap[new_ip] = ss.str();
+      
+      NS_LOG_DEBUG("IP mismatch detected");
+      // PrintIpToNodeMap();
+      // PrintNewToOldIpMap();
   }
 }
 
-void
-TCPclient::LogSocketInfo()
+void TCPclient::LogSocketInfo()
 {
-    Ptr<TcpSocketBase> tcpSocket = m_socket->GetObject<TcpSocketBase>();
-    if (tcpSocket != nullptr)
-    {
-        // Get local address and port
-        Address localAddress;
-        tcpSocket->GetSockName(localAddress);
-        InetSocketAddress inetLocalAddress = InetSocketAddress::ConvertFrom(localAddress);
-        Ipv4Address localIp = inetLocalAddress.GetIpv4();
-        uint16_t localPort = inetLocalAddress.GetPort();
-
-        // Get peer address and port
-        Address peerAddress;
-        tcpSocket->GetPeerName(peerAddress);
-        InetSocketAddress inetPeerAddress = InetSocketAddress::ConvertFrom(peerAddress);
-        Ipv4Address peerIp = inetPeerAddress.GetIpv4();
-        uint16_t peerPort = inetPeerAddress.GetPort();
-
-        NS_LOG_INFO("Local IP: " << localIp << ", Local Port: " << localPort);
-        NS_LOG_INFO("Peer IP: " << peerIp << ", Peer Port: " << peerPort);
-    }
-    else
-    {
-        NS_LOG_INFO("TcpSocketBase is null");
+    if(Ptr<TcpSocketBase> tcpSocket = m_socket->GetObject<TcpSocketBase>()) {
+        Address local, peer;
+        m_socket->GetSockName(local);
+        m_socket->GetPeerName(peer);
+        
+        NS_LOG_INFO("Local: " << InetSocketAddress::ConvertFrom(local).GetIpv4() << ":" <<
+                    InetSocketAddress::ConvertFrom(local).GetPort());
+        NS_LOG_INFO("Peer: " << InetSocketAddress::ConvertFrom(peer).GetIpv4() << ":" <<
+                    InetSocketAddress::ConvertFrom(peer).GetPort());
     }
 }
 
-void
-TCPclient::CheckSocketState()
+void TCPclient::CheckSocketState()
 {
-    // NS_LOG_INFO (this);
-    if (m_socket != nullptr)
-    {
-        Ptr<TcpSocketBase> tcpSocket = m_socket->GetObject<TcpSocketBase>();
-        if (tcpSocket != nullptr)
-        {
-            TcpSocket::TcpStates_t state = tcpSocket->GetState();
-            // NS_LOG_INFO("Socket state: " << TcpSocket::TcpStateName[state]);
-
-            switch (state)
-            {
-            case TcpSocket::CLOSED:
-                NS_LOG_INFO("Socket state is CLOSED");
-                break;
-            case TcpSocket::LISTEN:
-                NS_LOG_INFO("Socket state is LISTEN");
-                break;
-            case TcpSocket::SYN_SENT:
-                NS_LOG_INFO("Socket state is SYN_SENT");
-                break;
-            case TcpSocket::SYN_RCVD:
-                NS_LOG_INFO("Socket state is SYN_RCVD");
-                break;
-            case TcpSocket::ESTABLISHED:
-                NS_LOG_INFO("Socket state is ESTABLISHED");
-                break;
-            case TcpSocket::CLOSE_WAIT:
-                NS_LOG_INFO("Socket state is CLOSE_WAIT");
-                break;
-            case TcpSocket::LAST_ACK:
-                NS_LOG_INFO("Socket state is LAST_ACK");
-                break;
-            case TcpSocket::FIN_WAIT_1:
-                NS_LOG_INFO("Socket state is FIN_WAIT_1");
-                break;
-            case TcpSocket::FIN_WAIT_2:
-                NS_LOG_INFO("Socket state is FIN_WAIT_2");
-                break;
-            case TcpSocket::CLOSING:
-                NS_LOG_INFO("Socket state is CLOSING");
-                break;
-            case TcpSocket::TIME_WAIT:
-                NS_LOG_INFO("Socket state is TIME_WAIT");
-                break;
-            default:
-                NS_LOG_INFO("Socket state is UNKNOWN");
-                break;
-            }
-        }
-        else
-        {
-            NS_LOG_INFO("Socket is not a TcpSocketBase or m_tcb is null");
-        }
-    }
-    else
-    {
-        NS_LOG_INFO("Socket is not created");
+    if(m_socket && m_socket->GetObject<TcpSocketBase>()) {
+        TcpSocket::TcpStates_t state = m_socket->GetObject<TcpSocketBase>()->GetState();
+        NS_LOG_INFO("Socket state: " << TcpSocket::TcpStateName[state]);
     }
 }
 
-void
-TCPclient::SetSendTag(PacketTraceTag tag)
+// Application lifecycle management
+void TCPclient::StartApplication()
 {
-  NS_LOG_FUNCTION(this);
-  // Simply copy the tag into the member variable
-  this->m_sendTag = tag;
+    NS_LOG_FUNCTION(this);
+    m_running = true;
 }
 
-} // Namespace ns3
+void TCPclient::StopApplication()
+{
+    NS_LOG_FUNCTION(this);
+    m_running = false;
+    Simulator::Cancel(m_sendEvent);
+    
+    if(m_socket) {
+        m_socket->Close();
+        m_socket = nullptr;
+    }
+}
+
+void TCPclient::DoDispose()
+{
+    NS_LOG_FUNCTION(this);
+    m_socket = nullptr;
+    m_node = nullptr;
+    Application::DoDispose();
+}
+
+} // namespace ns3

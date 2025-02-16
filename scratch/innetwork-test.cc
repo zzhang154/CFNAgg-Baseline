@@ -92,7 +92,7 @@ int main(int argc, char *argv[]) {
     std::vector<std::string> prefixFileNames = {"50"};
     // std::vector<std::string> prefixFileNames = {"-no-fwd3"};
     // std::vector<uint16_t> iterationNumbers = {1000, 2000, 3000, 4000, 5000, 10000}; // Example iteration numbers
-    std::vector<uint16_t> iterationNumbers = {10};
+    std::vector<uint16_t> iterationNumbers = {30};
 
     const std::string outputFilename = "simulation_results.txt"; // Shared output file
 
@@ -123,7 +123,7 @@ int main(int argc, char *argv[]) {
             
             LogComponentDisable("InnetworkAggregationInterface", LOG_LEVEL_ALL);
             LogComponentEnable("InnetworkAggregationInterface", LOG_LEVEL_INFO);
-            LogComponentEnable("InnetworkAggregationInterface", LOG_LEVEL_ALL);
+            // LogComponentEnable("InnetworkAggregationInterface", LOG_LEVEL_ALL);
  
             // LogComponentEnable("TcpSocketBase", LOG_LEVEL_ALL);
 
@@ -131,8 +131,8 @@ int main(int argc, char *argv[]) {
             // LogComponentDisable("Aggregator", LOG_LEVEL_ALL);
             // LogComponentDisable("Producer", LOG_LEVEL_ALL);
             // // LogComponentDisable("InnetworkAggregationInterface", LOG_LEVEL_ALL);
-            LogComponentEnable("TCPclient", LOG_LEVEL_ALL);
-            // LogComponentEnable("TCPserver", LOG_LEVEL_INFO);
+            LogComponentDisable("TCPclient", LOG_LEVEL_ALL);
+            LogComponentDisable("TCPserver", LOG_LEVEL_ALL);
             LogComponentDisable("TcpSocketBase", LOG_LEVEL_ALL);
             LogComponentDisable("TcpRxBuffer", LOG_LEVEL_ALL);
             LogComponentDisable("TcpTxBuffer", LOG_LEVEL_ALL);

@@ -370,7 +370,7 @@ void InnetworkAggregationInterface::PrintAllInfo() {
     for (auto& entry : socketPool) {
         if (Ptr<TCPserver> server = entry.second->GetObject<TCPserver>()) {
             NS_LOG_DEBUG("Printing table for server " << entry.first);
-            server->PrintTable();
+            server->PrintAppTable();
             break;
         }
     }

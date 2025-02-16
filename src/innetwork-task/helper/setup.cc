@@ -556,7 +556,7 @@ void InstallForwarderPromiscCallbacks(NodeContainer &forwarder) {
         Ptr<Ipv4> ipv4 = node->GetObject<Ipv4>();
         if (ipv4) {
             ipv4->SetAttribute("IpForward", BooleanValue(true));  // Enable forwarding
-            NS_LOG_UNCOND("Enabled IP forwarding on node: " << node->GetId());
+            NS_LOG_INFO("Enabled IP forwarding on node: " << node->GetId());
         } else {
             NS_LOG_ERROR("Node " << node->GetId() << " has no IPv4 stack installed!");
         }

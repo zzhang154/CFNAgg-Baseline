@@ -3750,10 +3750,10 @@ TcpSocketBase::ReceivedData(Ptr<Packet> p, const TcpHeader& tcpHeader)
         Ipv4Address originalClientIp = ipv4Header.GetSource();
 
         // Debug output
-        NS_LOG_UNCOND("Original Client IP: " << originalClientIp 
+        NS_LOG_DEBUG("Original Client IP: " << originalClientIp 
                     << " | Socket Peer IP: " << peerAddressStr);
 
-        NS_LOG_UNCOND(this << " Verified Addresses:\n"
+        NS_LOG_DEBUG(this << " Verified Addresses:\n"
             << "  Local: " << localAddressStr << "\n"
             << "  Peer:  " << peerAddressStr << "\n"
             << "  Time:  " << Simulator::Now().GetSeconds());
@@ -5132,7 +5132,7 @@ void TcpSocketBase::OutputRttData()
         // If the base filename contains "con", then insert the counter.
         if (filename.find("con") != std::string::npos)
         {
-            filename = "./log/tp/" + localName + std::to_string(ns3::conCount++) + "+" + peerName + "_TP.txt";
+            filename = "./log/tp/" + localName + "_" + std::to_string(ns3::conCount++) + "+" + peerName + "_TP.txt";
         }
 
         std::cout << " The tp filename is: " << filename << std::endl;

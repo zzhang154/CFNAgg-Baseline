@@ -29,6 +29,8 @@ void Addr2Str(Address addr, std::string &str);
 void HelloUtils();
 extern std::mutex fileMutex;
 void WriteToFile(const std::string& filename, const std::string& result); 
+std::string QueueToString(const std::queue<uint16_t>& queue);
+
 std::string Ipv4AddressToString(ns3::Ipv4Address ipv4Address);
 std::string reverseString(const std::string &str);
 ns3::Ipv4Address GetIpAddrFromNode (Ptr<Node> node);
