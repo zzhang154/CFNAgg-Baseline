@@ -1,20 +1,135 @@
-Consolidate compiler generated dependencies of target libapplications-obj
 [  0%] Building CXX object src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/helper/setup.cc.o
 [  0%] Linking CXX shared library ../../../build/lib/libns3.42-innetwork-task-default.so
 Consolidate compiler generated dependencies of target scratch_innetwork-test
+[  0%] Building CXX object scratch/CMakeFiles/scratch_innetwork-test.dir/innetwork-test.cc.o
+[  0%] Linking CXX executable ../../build/scratch/ns3.42-innetwork-test-default
 Hello from utils
-0x7ffd2aeb4a80 Time queue changed. Current size: 1
+0x7ffed3087f90 Time queue changed. Current size: 1
 Time queue changed. New size: 1
-0x7ffd2aeb4a80 Time queue changed. Current size: 2
+0x7ffed3087f90 Time queue changed. Current size: 2
 Time queue changed. New size: 2
-0x7ffd2aeb4a80 Time queue changed. Current size: 1
+0x7ffed3087f90 Time queue changed. Current size: 1
 Time queue changed. New size: 1
+---- Starting simulation with SndBufSize/RcvBufSize = 20000 bytes ----
 
 
 #################### SIMULATION PARAMETERS ####################
 
 
-Prefix: 50 Iteration: 30 Vector Size: 150 Congestion Control Algorithm: bbr
+Prefix: 10 Iteration: 10000 Vector Size: 150 Congestion Control Algorithm: bbr
+
+
+#################### SIMULATION SET-UP ####################
+
+
+uint32_t consumerNum = 1;
+uint32_t producerNum = 10;
+uint32_t forwarderNum = 8;
+uint32_t aggregatorNum = 10;
+---node1 ip--- pro0 --- 10.1.1.1, node2 ip--- forwarder0 --- 10.1.1.2
+---node1 ip--- pro1 --- 10.1.2.1, node2 ip--- forwarder0 --- 10.1.1.2
+---node1 ip--- pro2 --- 10.1.3.1, node2 ip--- forwarder0 --- 10.1.1.2
+---node1 ip--- pro3 --- 10.1.4.1, node2 ip--- forwarder0 --- 10.1.1.2
+---node1 ip--- pro4 --- 10.1.5.1, node2 ip--- forwarder0 --- 10.1.1.2
+---node1 ip--- pro5 --- 10.1.6.1, node2 ip--- forwarder1 --- 10.1.6.2
+---node1 ip--- pro6 --- 10.1.7.1, node2 ip--- forwarder1 --- 10.1.6.2
+---node1 ip--- pro7 --- 10.1.8.1, node2 ip--- forwarder1 --- 10.1.6.2
+---node1 ip--- pro8 --- 10.1.9.1, node2 ip--- forwarder1 --- 10.1.6.2
+---node1 ip--- pro9 --- 10.1.10.1, node2 ip--- forwarder1 --- 10.1.6.2
+---node1 ip--- con0 --- 10.1.11.1, node2 ip--- forwarder2 --- 10.1.11.2
+---node1 ip--- forwarder0 --- 10.1.1.2, node2 ip--- agg0 --- 10.2.1.2
+---node1 ip--- agg0 --- 10.2.1.2, node2 ip--- forwarder3 --- 10.2.2.2
+---node1 ip--- forwarder1 --- 10.1.6.2, node2 ip--- agg1 --- 10.2.3.2
+---node1 ip--- agg1 --- 10.2.3.2, node2 ip--- forwarder4 --- 10.2.4.2
+---node1 ip--- forwarder0 --- 10.1.1.2, node2 ip--- agg2 --- 10.2.5.2
+---node1 ip--- agg2 --- 10.2.5.2, node2 ip--- forwarder5 --- 10.2.6.2
+---node1 ip--- forwarder1 --- 10.1.6.2, node2 ip--- agg3 --- 10.2.7.2
+---node1 ip--- agg3 --- 10.2.7.2, node2 ip--- forwarder6 --- 10.2.8.2
+---node1 ip--- forwarder0 --- 10.1.1.2, node2 ip--- agg4 --- 10.2.9.2
+---node1 ip--- agg4 --- 10.2.9.2, node2 ip--- forwarder7 --- 10.2.10.2
+---node1 ip--- forwarder1 --- 10.1.6.2, node2 ip--- agg5 --- 10.2.11.2
+---node1 ip--- agg5 --- 10.2.11.2, node2 ip--- forwarder3 --- 10.2.2.2
+---node1 ip--- forwarder0 --- 10.1.1.2, node2 ip--- agg6 --- 10.2.13.2
+---node1 ip--- agg6 --- 10.2.13.2, node2 ip--- forwarder4 --- 10.2.4.2
+---node1 ip--- forwarder1 --- 10.1.6.2, node2 ip--- agg7 --- 10.2.15.2
+---node1 ip--- agg7 --- 10.2.15.2, node2 ip--- forwarder5 --- 10.2.6.2
+---node1 ip--- forwarder0 --- 10.1.1.2, node2 ip--- agg8 --- 10.2.17.2
+---node1 ip--- agg8 --- 10.2.17.2, node2 ip--- forwarder6 --- 10.2.8.2
+---node1 ip--- forwarder1 --- 10.1.6.2, node2 ip--- agg9 --- 10.2.19.2
+---node1 ip--- agg9 --- 10.2.19.2, node2 ip--- forwarder7 --- 10.2.10.2
+---node1 ip--- forwarder2 --- 10.1.11.2, node2 ip--- forwarder3 --- 10.2.2.2
+---node1 ip--- forwarder3 --- 10.2.2.2, node2 ip--- forwarder4 --- 10.2.4.2
+---node1 ip--- forwarder3 --- 10.2.2.2, node2 ip--- forwarder5 --- 10.2.6.2
+---node1 ip--- forwarder3 --- 10.2.2.2, node2 ip--- forwarder6 --- 10.2.8.2
+---node1 ip--- forwarder3 --- 10.2.2.2, node2 ip--- forwarder7 --- 10.2.10.2
+---node1 ip--- forwarder4 --- 10.2.4.2, node2 ip--- forwarder5 --- 10.2.6.2
+---node1 ip--- forwarder4 --- 10.2.4.2, node2 ip--- forwarder6 --- 10.2.8.2
+---node1 ip--- forwarder4 --- 10.2.4.2, node2 ip--- forwarder7 --- 10.2.10.2
+---node1 ip--- forwarder5 --- 10.2.6.2, node2 ip--- forwarder6 --- 10.2.8.2
+---node1 ip--- forwarder5 --- 10.2.6.2, node2 ip--- forwarder7 --- 10.2.10.2
+---node1 ip--- forwarder6 --- 10.2.8.2, node2 ip--- forwarder7 --- 10.2.10.2
+0x55f65e0f0560 SendDataPacket seq: 1, size 1210, from 10.1.1.1 to 10.2.1.2 isRetransmission true at time 2.018
+0x55f65e0f0560 SendDataPacket seq: 1, size 1210, from 10.1.1.1 to 10.2.1.2 isRetransmission true at time 2.054
+0x55f65e0f0560 SendDataPacket seq: 1, size 1210, from 10.1.1.1 to 10.2.1.2 isRetransmission true at time 2.126
+0x55f65e0f0560 SendDataPacket seq: 1, size 1210, from 10.1.1.1 to 10.2.1.2 isRetransmission true at time 2.27
+0x55f65e0f0560 SendDataPacket seq: 1, size 1210, from 10.1.1.1 to 10.2.1.2 isRetransmission true at time 2.558
+0x55f65e0f0560 SendDataPacket seq: 1, size 1210, from 10.1.1.1 to 10.2.1.2 isRetransmission true at time 3.134
+0x55f65e0f0560 SendDataPacket seq: 1, size 1210, from 10.1.1.1 to 10.2.1.2 isRetransmission true at time 4.286
+0x55f65e0f0560 SendDataPacket seq: 1, size 1210, from 10.1.1.1 to 10.2.1.2 isRetransmission true at time 6.59
+0x55f65e0f0560 SendDataPacket seq: 1, size 1210, from 10.1.1.1 to 10.2.1.2 isRetransmission true at time 11.198
+0x55f65e0f0560 SendDataPacket seq: 1, size 1210, from 10.1.1.1 to 10.2.1.2 isRetransmission true at time 20.414
+0x55f65e0f0560 SendDataPacket seq: 1, size 1210, from 10.1.1.1 to 10.2.1.2 isRetransmission true at time 38.846
+0x55f65e0f0560 SendDataPacket seq: 1, size 1210, from 10.1.1.1 to 10.2.1.2 isRetransmission true at time 75.71
+0x55f65e0f0560 SendDataPacket seq: 1, size 1210, from 10.1.1.1 to 10.2.1.2 isRetransmission true at time 135.71
+0x55f65e0f0560 SendDataPacket seq: 1, size 1210, from 10.1.1.1 to 10.2.1.2 isRetransmission true at time 195.71
+ The tp filename is: ./log/tp/agg0+pro1_TP.txt
+ The tp filename is: ./log/tp/agg0+pro2_TP.txt
+ The tp filename is: ./log/tp/agg0+pro3_TP.txt
+ The tp filename is: ./log/tp/agg0+pro4_TP.txt
+Prefix: 10, Iteration: 10000 - Simulation completed successfully.
+Printing ipToNodeName:
+IP: 10.2.19.2 -> NodeName: agg9
+IP: 10.2.17.2 -> NodeName: agg8
+IP: 10.2.11.2 -> NodeName: agg5
+IP: 10.2.9.2 -> NodeName: agg4
+IP: 10.2.8.2 -> NodeName: forwarder6
+IP: 10.2.6.2 -> NodeName: forwarder5
+IP: 10.2.5.2 -> NodeName: agg2
+IP: 10.2.4.2 -> NodeName: forwarder4
+IP: 10.2.3.2 -> NodeName: agg1
+IP: 10.2.2.2 -> NodeName: forwarder3
+IP: 10.2.1.2 -> NodeName: agg0
+IP: 10.1.8.1 -> NodeName: pro7
+IP: 10.1.4.1 -> NodeName: pro3
+IP: 10.2.13.2 -> NodeName: agg6
+IP: 10.1.11.2 -> NodeName: forwarder2
+IP: 10.1.2.1 -> NodeName: pro1
+IP: 10.1.1.1 -> NodeName: pro0
+IP: 10.1.1.2 -> NodeName: forwarder0
+IP: 10.1.3.1 -> NodeName: pro2
+IP: 10.2.10.2 -> NodeName: forwarder7
+IP: 10.1.6.1 -> NodeName: pro5
+IP: 10.2.7.2 -> NodeName: agg3
+IP: 10.1.5.1 -> NodeName: pro4
+IP: 10.2.15.2 -> NodeName: agg7
+IP: 10.1.6.2 -> NodeName: forwarder1
+IP: 10.1.7.1 -> NodeName: pro6
+IP: 10.1.10.1 -> NodeName: pro9
+IP: 10.1.9.1 -> NodeName: pro8
+IP: 10.1.11.1 -> NodeName: con0
+NewToOldIpMap contents:
+New IP: 10.2.4.1 -> Old IP: 10.2.3.2
+New IP: 10.2.2.1 -> Old IP: 10.2.1.2
+
+#################### SIMULATION END ####################
+
+
+
+
+#################### SIMULATION PARAMETERS ####################
+
+
+Prefix: 50 Iteration: 10000 Vector Size: 150 Congestion Control Algorithm: bbr
 
 
 #################### SIMULATION SET-UP ####################
@@ -24,252 +139,1809 @@ uint32_t consumerNum = 1;
 uint32_t producerNum = 50;
 uint32_t forwarderNum = 16;
 uint32_t aggregatorNum = 20;
-lossRate: 1
 ---node1 ip--- pro0 --- 10.1.1.1, node2 ip--- forwarder0 --- 10.1.1.2
-lossRate: 1
 ---node1 ip--- pro1 --- 10.1.2.1, node2 ip--- forwarder0 --- 10.1.1.2
-lossRate: 1
 ---node1 ip--- pro2 --- 10.1.3.1, node2 ip--- forwarder0 --- 10.1.1.2
-lossRate: 1
 ---node1 ip--- pro3 --- 10.1.4.1, node2 ip--- forwarder0 --- 10.1.1.2
-lossRate: 1
 ---node1 ip--- pro4 --- 10.1.5.1, node2 ip--- forwarder0 --- 10.1.1.2
-lossRate: 1
 ---node1 ip--- pro5 --- 10.1.6.1, node2 ip--- forwarder1 --- 10.1.6.2
-lossRate: 1
 ---node1 ip--- pro6 --- 10.1.7.1, node2 ip--- forwarder1 --- 10.1.6.2
-lossRate: 1
 ---node1 ip--- pro7 --- 10.1.8.1, node2 ip--- forwarder1 --- 10.1.6.2
-lossRate: 1
 ---node1 ip--- pro8 --- 10.1.9.1, node2 ip--- forwarder1 --- 10.1.6.2
-lossRate: 1
 ---node1 ip--- pro9 --- 10.1.10.1, node2 ip--- forwarder1 --- 10.1.6.2
-lossRate: 1
 ---node1 ip--- pro10 --- 10.1.11.1, node2 ip--- forwarder2 --- 10.1.11.2
-lossRate: 1
 ---node1 ip--- pro11 --- 10.1.12.1, node2 ip--- forwarder2 --- 10.1.11.2
-lossRate: 1
 ---node1 ip--- pro12 --- 10.1.13.1, node2 ip--- forwarder2 --- 10.1.11.2
-lossRate: 1
 ---node1 ip--- pro13 --- 10.1.14.1, node2 ip--- forwarder2 --- 10.1.11.2
-lossRate: 1
 ---node1 ip--- pro14 --- 10.1.15.1, node2 ip--- forwarder2 --- 10.1.11.2
-lossRate: 1
 ---node1 ip--- pro15 --- 10.1.16.1, node2 ip--- forwarder3 --- 10.1.16.2
-lossRate: 1
 ---node1 ip--- pro16 --- 10.1.17.1, node2 ip--- forwarder3 --- 10.1.16.2
-lossRate: 1
 ---node1 ip--- pro17 --- 10.1.18.1, node2 ip--- forwarder3 --- 10.1.16.2
-lossRate: 1
 ---node1 ip--- pro18 --- 10.1.19.1, node2 ip--- forwarder3 --- 10.1.16.2
-lossRate: 1
 ---node1 ip--- pro19 --- 10.1.20.1, node2 ip--- forwarder3 --- 10.1.16.2
-lossRate: 1
 ---node1 ip--- pro20 --- 10.1.21.1, node2 ip--- forwarder4 --- 10.1.21.2
-lossRate: 1
 ---node1 ip--- pro21 --- 10.1.22.1, node2 ip--- forwarder4 --- 10.1.21.2
-lossRate: 1
 ---node1 ip--- pro22 --- 10.1.23.1, node2 ip--- forwarder4 --- 10.1.21.2
-lossRate: 1
 ---node1 ip--- pro23 --- 10.1.24.1, node2 ip--- forwarder4 --- 10.1.21.2
-lossRate: 1
 ---node1 ip--- pro24 --- 10.1.25.1, node2 ip--- forwarder4 --- 10.1.21.2
-lossRate: 1
 ---node1 ip--- pro25 --- 10.1.26.1, node2 ip--- forwarder5 --- 10.1.26.2
-lossRate: 1
 ---node1 ip--- pro26 --- 10.1.27.1, node2 ip--- forwarder5 --- 10.1.26.2
-lossRate: 1
 ---node1 ip--- pro27 --- 10.1.28.1, node2 ip--- forwarder5 --- 10.1.26.2
-lossRate: 1
 ---node1 ip--- pro28 --- 10.1.29.1, node2 ip--- forwarder5 --- 10.1.26.2
-lossRate: 1
 ---node1 ip--- pro29 --- 10.1.30.1, node2 ip--- forwarder5 --- 10.1.26.2
-lossRate: 1
 ---node1 ip--- pro30 --- 10.1.31.1, node2 ip--- forwarder6 --- 10.1.31.2
-lossRate: 1
 ---node1 ip--- pro31 --- 10.1.32.1, node2 ip--- forwarder6 --- 10.1.31.2
-lossRate: 1
 ---node1 ip--- pro32 --- 10.1.33.1, node2 ip--- forwarder6 --- 10.1.31.2
-lossRate: 1
 ---node1 ip--- pro33 --- 10.1.34.1, node2 ip--- forwarder6 --- 10.1.31.2
-lossRate: 1
 ---node1 ip--- pro34 --- 10.1.35.1, node2 ip--- forwarder6 --- 10.1.31.2
-lossRate: 1
 ---node1 ip--- pro35 --- 10.1.36.1, node2 ip--- forwarder7 --- 10.1.36.2
-lossRate: 1
 ---node1 ip--- pro36 --- 10.1.37.1, node2 ip--- forwarder7 --- 10.1.36.2
-lossRate: 1
 ---node1 ip--- pro37 --- 10.1.38.1, node2 ip--- forwarder7 --- 10.1.36.2
-lossRate: 1
 ---node1 ip--- pro38 --- 10.1.39.1, node2 ip--- forwarder7 --- 10.1.36.2
-lossRate: 1
 ---node1 ip--- pro39 --- 10.1.40.1, node2 ip--- forwarder7 --- 10.1.36.2
-lossRate: 1
 ---node1 ip--- pro40 --- 10.1.41.1, node2 ip--- forwarder8 --- 10.1.41.2
-lossRate: 1
 ---node1 ip--- pro41 --- 10.1.42.1, node2 ip--- forwarder8 --- 10.1.41.2
-lossRate: 1
 ---node1 ip--- pro42 --- 10.1.43.1, node2 ip--- forwarder8 --- 10.1.41.2
-lossRate: 1
 ---node1 ip--- pro43 --- 10.1.44.1, node2 ip--- forwarder8 --- 10.1.41.2
-lossRate: 1
 ---node1 ip--- pro44 --- 10.1.45.1, node2 ip--- forwarder8 --- 10.1.41.2
-lossRate: 1
 ---node1 ip--- pro45 --- 10.1.46.1, node2 ip--- forwarder9 --- 10.1.46.2
-lossRate: 1
 ---node1 ip--- pro46 --- 10.1.47.1, node2 ip--- forwarder9 --- 10.1.46.2
-lossRate: 1
 ---node1 ip--- pro47 --- 10.1.48.1, node2 ip--- forwarder9 --- 10.1.46.2
-lossRate: 1
 ---node1 ip--- pro48 --- 10.1.49.1, node2 ip--- forwarder9 --- 10.1.46.2
-lossRate: 1
 ---node1 ip--- pro49 --- 10.1.50.1, node2 ip--- forwarder9 --- 10.1.46.2
-lossRate: 1
 ---node1 ip--- con0 --- 10.1.51.1, node2 ip--- forwarder10 --- 10.1.51.2
-lossRate: 2
 ---node1 ip--- forwarder0 --- 10.1.1.2, node2 ip--- agg0 --- 10.2.1.2
-lossRate: 2
 ---node1 ip--- agg0 --- 10.2.1.2, node2 ip--- forwarder11 --- 10.2.2.2
-lossRate: 2
 ---node1 ip--- forwarder1 --- 10.1.6.2, node2 ip--- agg1 --- 10.2.3.2
-lossRate: 2
 ---node1 ip--- agg1 --- 10.2.3.2, node2 ip--- forwarder12 --- 10.2.4.2
-lossRate: 2
 ---node1 ip--- forwarder2 --- 10.1.11.2, node2 ip--- agg2 --- 10.2.5.2
-lossRate: 2
 ---node1 ip--- agg2 --- 10.2.5.2, node2 ip--- forwarder13 --- 10.2.6.2
-lossRate: 2
 ---node1 ip--- forwarder3 --- 10.1.16.2, node2 ip--- agg3 --- 10.2.7.2
-lossRate: 2
 ---node1 ip--- agg3 --- 10.2.7.2, node2 ip--- forwarder14 --- 10.2.8.2
-lossRate: 2
 ---node1 ip--- forwarder4 --- 10.1.21.2, node2 ip--- agg4 --- 10.2.9.2
-lossRate: 2
 ---node1 ip--- agg4 --- 10.2.9.2, node2 ip--- forwarder15 --- 10.2.10.2
-lossRate: 2
 ---node1 ip--- forwarder5 --- 10.1.26.2, node2 ip--- agg5 --- 10.2.11.2
-lossRate: 2
 ---node1 ip--- agg5 --- 10.2.11.2, node2 ip--- forwarder11 --- 10.2.2.2
-lossRate: 2
 ---node1 ip--- forwarder6 --- 10.1.31.2, node2 ip--- agg6 --- 10.2.13.2
-lossRate: 2
 ---node1 ip--- agg6 --- 10.2.13.2, node2 ip--- forwarder12 --- 10.2.4.2
-lossRate: 2
 ---node1 ip--- forwarder7 --- 10.1.36.2, node2 ip--- agg7 --- 10.2.15.2
-lossRate: 2
 ---node1 ip--- agg7 --- 10.2.15.2, node2 ip--- forwarder13 --- 10.2.6.2
-lossRate: 2
 ---node1 ip--- forwarder8 --- 10.1.41.2, node2 ip--- agg8 --- 10.2.17.2
-lossRate: 2
 ---node1 ip--- agg8 --- 10.2.17.2, node2 ip--- forwarder14 --- 10.2.8.2
-lossRate: 2
 ---node1 ip--- forwarder9 --- 10.1.46.2, node2 ip--- agg9 --- 10.2.19.2
-lossRate: 2
 ---node1 ip--- agg9 --- 10.2.19.2, node2 ip--- forwarder15 --- 10.2.10.2
-lossRate: 2
 ---node1 ip--- forwarder0 --- 10.1.1.2, node2 ip--- agg10 --- 10.2.21.2
-lossRate: 2
 ---node1 ip--- agg10 --- 10.2.21.2, node2 ip--- forwarder11 --- 10.2.2.2
-lossRate: 2
 ---node1 ip--- forwarder1 --- 10.1.6.2, node2 ip--- agg11 --- 10.2.23.2
-lossRate: 2
 ---node1 ip--- agg11 --- 10.2.23.2, node2 ip--- forwarder12 --- 10.2.4.2
-lossRate: 2
 ---node1 ip--- forwarder2 --- 10.1.11.2, node2 ip--- agg12 --- 10.2.25.2
-lossRate: 2
 ---node1 ip--- agg12 --- 10.2.25.2, node2 ip--- forwarder13 --- 10.2.6.2
-lossRate: 2
 ---node1 ip--- forwarder3 --- 10.1.16.2, node2 ip--- agg13 --- 10.2.27.2
-lossRate: 2
 ---node1 ip--- agg13 --- 10.2.27.2, node2 ip--- forwarder14 --- 10.2.8.2
-lossRate: 2
 ---node1 ip--- forwarder4 --- 10.1.21.2, node2 ip--- agg14 --- 10.2.29.2
-lossRate: 2
 ---node1 ip--- agg14 --- 10.2.29.2, node2 ip--- forwarder15 --- 10.2.10.2
-lossRate: 2
 ---node1 ip--- forwarder5 --- 10.1.26.2, node2 ip--- agg15 --- 10.2.31.2
-lossRate: 2
 ---node1 ip--- agg15 --- 10.2.31.2, node2 ip--- forwarder11 --- 10.2.2.2
-lossRate: 2
 ---node1 ip--- forwarder6 --- 10.1.31.2, node2 ip--- agg16 --- 10.2.33.2
-lossRate: 2
 ---node1 ip--- agg16 --- 10.2.33.2, node2 ip--- forwarder12 --- 10.2.4.2
-lossRate: 2
 ---node1 ip--- forwarder7 --- 10.1.36.2, node2 ip--- agg17 --- 10.2.35.2
-lossRate: 2
 ---node1 ip--- agg17 --- 10.2.35.2, node2 ip--- forwarder13 --- 10.2.6.2
-lossRate: 2
 ---node1 ip--- forwarder8 --- 10.1.41.2, node2 ip--- agg18 --- 10.2.37.2
-lossRate: 2
 ---node1 ip--- agg18 --- 10.2.37.2, node2 ip--- forwarder14 --- 10.2.8.2
-lossRate: 2
 ---node1 ip--- forwarder9 --- 10.1.46.2, node2 ip--- agg19 --- 10.2.39.2
-lossRate: 2
 ---node1 ip--- agg19 --- 10.2.39.2, node2 ip--- forwarder15 --- 10.2.10.2
-lossRate: 1
 ---node1 ip--- forwarder10 --- 10.1.51.2, node2 ip--- forwarder11 --- 10.2.2.2
-lossRate: 1
 ---node1 ip--- forwarder11 --- 10.2.2.2, node2 ip--- forwarder12 --- 10.2.4.2
-lossRate: 1
 ---node1 ip--- forwarder11 --- 10.2.2.2, node2 ip--- forwarder13 --- 10.2.6.2
-lossRate: 1
 ---node1 ip--- forwarder11 --- 10.2.2.2, node2 ip--- forwarder14 --- 10.2.8.2
-lossRate: 1
 ---node1 ip--- forwarder11 --- 10.2.2.2, node2 ip--- forwarder15 --- 10.2.10.2
-lossRate: 1
 ---node1 ip--- forwarder12 --- 10.2.4.2, node2 ip--- forwarder13 --- 10.2.6.2
-lossRate: 1
 ---node1 ip--- forwarder12 --- 10.2.4.2, node2 ip--- forwarder14 --- 10.2.8.2
-lossRate: 1
 ---node1 ip--- forwarder12 --- 10.2.4.2, node2 ip--- forwarder15 --- 10.2.10.2
-lossRate: 1
 ---node1 ip--- forwarder13 --- 10.2.6.2, node2 ip--- forwarder14 --- 10.2.8.2
-lossRate: 1
 ---node1 ip--- forwarder13 --- 10.2.6.2, node2 ip--- forwarder15 --- 10.2.10.2
-lossRate: 1
 ---node1 ip--- forwarder14 --- 10.2.8.2, node2 ip--- forwarder15 --- 10.2.10.2
-+2.020000000s 67 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.1.2 completed processing
-+2.020000000s 68 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.3.2 completed processing
-+2.020000000s 69 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.5.2 completed processing
-+2.020000000s 70 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.7.2 completed processing
-+2.020000000s 71 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.9.2 completed processing
-+2.020000000s 72 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.11.2 completed processing
-+2.020000000s 73 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.13.2 completed processing
-+2.020000000s 74 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.15.2 completed processing
-+2.020000000s 75 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.17.2 completed processing
-+2.020000000s 76 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.19.2 completed processing
-+2.029000000s 77 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.21.2 completed processing
-+2.029000000s 78 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.23.2 completed processing
-+2.043000000s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer completed all iterations in 43ms
+0x55f65e64a800 SendDataPacket seq: 1, size 1210, from 10.1.1.1 to 10.2.1.2 isRetransmission true at time 4.02404
+0x55f65e64a800 SendDataPacket seq: 1, size 1210, from 10.1.1.1 to 10.2.1.2 isRetransmission true at time 4.06004
+0x55f65e64a800 SendDataPacket seq: 1, size 1210, from 10.1.1.1 to 10.2.1.2 isRetransmission true at time 4.13204
+0x55f65e64a800 SendDataPacket seq: 1, size 1210, from 10.1.1.1 to 10.2.1.2 isRetransmission true at time 4.27604
+0x55f65e64a800 SendDataPacket seq: 1, size 1210, from 10.1.1.1 to 10.2.1.2 isRetransmission true at time 4.56404
+0x55f65e64a800 SendDataPacket seq: 1, size 1210, from 10.1.1.1 to 10.2.1.2 isRetransmission true at time 5.14004
+0x55f65e64a800 SendDataPacket seq: 1, size 1210, from 10.1.1.1 to 10.2.1.2 isRetransmission true at time 6.29204
+0x55f65e64a800 SendDataPacket seq: 1, size 1210, from 10.1.1.1 to 10.2.1.2 isRetransmission true at time 8.59604
+0x55f65e64a800 SendDataPacket seq: 1, size 1210, from 10.1.1.1 to 10.2.1.2 isRetransmission true at time 13.204
+0x55f65e64a800 SendDataPacket seq: 1, size 1210, from 10.1.1.1 to 10.2.1.2 isRetransmission true at time 22.42
+0x55f65e64a800 SendDataPacket seq: 1, size 1210, from 10.1.1.1 to 10.2.1.2 isRetransmission true at time 40.852
+0x55f65e64a800 SendDataPacket seq: 1, size 1210, from 10.1.1.1 to 10.2.1.2 isRetransmission true at time 77.716
+0x55f65e64a800 SendDataPacket seq: 1, size 1210, from 10.1.1.1 to 10.2.1.2 isRetransmission true at time 137.716
+0x55f65e64a800 SendDataPacket seq: 1, size 1210, from 10.1.1.1 to 10.2.1.2 isRetransmission true at time 197.716
  The tp filename is: ./log/tp/con0_0+forwarder10_TP.txt
- The tp filename is: ./log/tp/con0_1+forwarder10_TP.txt
- The rtt filename is: ./log/rtt/pro0_rtt.txt
- The rtt filename is: ./log/rtt/pro26_rtt.txt
- The rtt filename is: ./log/rtt/agg0_rtt.txt
- The tp filename is: ./log/tp/agg0+pro0_TP.txt
  The tp filename is: ./log/tp/agg0+pro1_TP.txt
  The tp filename is: ./log/tp/agg0+pro2_TP.txt
  The tp filename is: ./log/tp/agg0+pro3_TP.txt
  The tp filename is: ./log/tp/agg0+pro4_TP.txt
- The rtt filename is: ./log/rtt/agg3_rtt.txt
  The tp filename is: ./log/tp/agg3+pro15_TP.txt
  The tp filename is: ./log/tp/agg3+pro16_TP.txt
  The tp filename is: ./log/tp/agg3+pro17_TP.txt
  The tp filename is: ./log/tp/agg3+pro18_TP.txt
  The tp filename is: ./log/tp/agg3+pro19_TP.txt
-0x5579d4b46a70 In DoDispose, localAddressStr: 10.2.21.2 peerAddressStr:  at time: 4.087
- The rtt filename is: ./log/rtt/agg10_rtt.txt
-0x5579d4b4ab60 In DoDispose, localAddressStr: 10.2.21.2 peerAddressStr: 10.2.1.2 at time: 4.087
- The tp filename is: ./log/tp/agg10+agg0_TP.txt
-0x5579d4b556d0 In DoDispose, localAddressStr: 10.2.21.2 peerAddressStr: 10.2.12.1 at time: 4.087
+0x55f65e7b66d0 In DoDispose, localAddressStr: 10.2.21.2 peerAddressStr: 10.2.12.1 at time: 200
  The tp filename is: ./log/tp/agg10+agg5_TP.txt
-0x5579d4b4d6c0 In DoDispose, localAddressStr: 10.2.21.2 peerAddressStr: 10.2.4.1 at time: 4.087
+0x55f65e7ae6c0 In DoDispose, localAddressStr: 10.2.21.2 peerAddressStr: 10.2.4.1 at time: 200
  The tp filename is: ./log/tp/agg10+agg1_TP.txt
-0x5579d4b50170 In DoDispose, localAddressStr: 10.2.21.2 peerAddressStr: 10.2.8.1 at time: 4.087
+0x55f65e7b1170 In DoDispose, localAddressStr: 10.2.21.2 peerAddressStr: 10.2.8.1 at time: 200
  The tp filename is: ./log/tp/agg10+agg3_TP.txt
-0x5579d4b52c20 In DoDispose, localAddressStr: 10.2.21.2 peerAddressStr: 10.2.16.1 at time: 4.087
+0x55f65e7b3c20 In DoDispose, localAddressStr: 10.2.21.2 peerAddressStr: 10.2.16.1 at time: 200
  The tp filename is: ./log/tp/agg10+agg7_TP.txt
-Prefix: 50, Iteration: 30 - Simulation completed successfully.
+Prefix: 50, Iteration: 10000 - Simulation completed successfully.
+Printing ipToNodeName:
+IP: 10.2.35.2 -> NodeName: agg17
+IP: 10.2.33.2 -> NodeName: agg16
+IP: 10.2.31.2 -> NodeName: agg15
+IP: 10.2.29.2 -> NodeName: agg14
+IP: 10.2.25.2 -> NodeName: agg12
+IP: 10.2.21.2 -> NodeName: agg10
+IP: 10.1.51.2 -> NodeName: forwarder10
+IP: 10.1.51.1 -> NodeName: con0
+IP: 10.1.50.1 -> NodeName: pro49
+IP: 10.2.27.2 -> NodeName: agg13
+IP: 10.1.49.1 -> NodeName: pro48
+IP: 10.1.48.1 -> NodeName: pro47
+IP: 10.1.46.1 -> NodeName: pro45
+IP: 10.1.45.1 -> NodeName: pro44
+IP: 10.1.44.1 -> NodeName: pro43
+IP: 10.1.43.1 -> NodeName: pro42
+IP: 10.1.41.2 -> NodeName: forwarder8
+IP: 10.1.41.1 -> NodeName: pro40
+IP: 10.1.40.1 -> NodeName: pro39
+IP: 10.1.38.1 -> NodeName: pro37
+IP: 10.1.37.1 -> NodeName: pro36
+IP: 10.2.19.2 -> NodeName: agg9
+IP: 10.2.5.2 -> NodeName: agg2
+IP: 10.1.28.1 -> NodeName: pro27
+IP: 10.2.39.2 -> NodeName: agg19
+IP: 10.2.17.2 -> NodeName: agg8
+IP: 10.1.25.1 -> NodeName: pro24
+IP: 10.2.11.2 -> NodeName: agg5
+IP: 10.1.47.1 -> NodeName: pro46
+IP: 10.1.20.1 -> NodeName: pro19
+IP: 10.2.9.2 -> NodeName: agg4
+IP: 10.2.3.2 -> NodeName: agg1
+IP: 10.1.4.1 -> NodeName: pro3
+IP: 10.2.8.2 -> NodeName: forwarder14
+IP: 10.2.6.2 -> NodeName: forwarder13
+IP: 10.2.4.2 -> NodeName: forwarder12
+IP: 10.1.21.2 -> NodeName: forwarder4
+IP: 10.2.2.2 -> NodeName: forwarder11
+IP: 10.2.15.2 -> NodeName: agg7
+IP: 10.1.36.2 -> NodeName: forwarder7
+IP: 10.1.7.1 -> NodeName: pro6
+IP: 10.2.1.2 -> NodeName: agg0
+IP: 10.1.2.1 -> NodeName: pro1
+IP: 10.1.26.2 -> NodeName: forwarder5
+IP: 10.1.23.1 -> NodeName: pro22
+IP: 10.1.8.1 -> NodeName: pro7
+IP: 10.1.30.1 -> NodeName: pro29
+IP: 10.2.13.2 -> NodeName: agg6
+IP: 10.1.10.1 -> NodeName: pro9
+IP: 10.1.11.2 -> NodeName: forwarder2
+IP: 10.1.1.1 -> NodeName: pro0
+IP: 10.1.1.2 -> NodeName: forwarder0
+IP: 10.2.23.2 -> NodeName: agg11
+IP: 10.1.3.1 -> NodeName: pro2
+IP: 10.1.9.1 -> NodeName: pro8
+IP: 10.1.17.1 -> NodeName: pro16
+IP: 10.2.7.2 -> NodeName: agg3
+IP: 10.2.10.2 -> NodeName: forwarder15
+IP: 10.1.5.1 -> NodeName: pro4
+IP: 10.1.29.1 -> NodeName: pro28
+IP: 10.1.6.2 -> NodeName: forwarder1
+IP: 10.1.46.2 -> NodeName: forwarder9
+IP: 10.1.11.1 -> NodeName: pro10
+IP: 10.1.26.1 -> NodeName: pro25
+IP: 10.1.31.1 -> NodeName: pro30
+IP: 10.1.12.1 -> NodeName: pro11
+IP: 10.1.21.1 -> NodeName: pro20
+IP: 10.1.13.1 -> NodeName: pro12
+IP: 10.1.16.2 -> NodeName: forwarder3
+IP: 10.1.14.1 -> NodeName: pro13
+IP: 10.1.15.1 -> NodeName: pro14
+IP: 10.1.16.1 -> NodeName: pro15
+IP: 10.1.42.1 -> NodeName: pro41
+IP: 10.1.36.1 -> NodeName: pro35
+IP: 10.1.18.1 -> NodeName: pro17
+IP: 10.1.19.1 -> NodeName: pro18
+IP: 10.1.22.1 -> NodeName: pro21
+IP: 10.1.39.1 -> NodeName: pro38
+IP: 10.1.6.1 -> NodeName: pro5
+IP: 10.1.24.1 -> NodeName: pro23
+IP: 10.1.27.1 -> NodeName: pro26
+IP: 10.1.33.1 -> NodeName: pro32
+IP: 10.1.31.2 -> NodeName: forwarder6
+IP: 10.1.32.1 -> NodeName: pro31
+IP: 10.2.37.2 -> NodeName: agg18
+IP: 10.1.34.1 -> NodeName: pro33
+IP: 10.1.35.1 -> NodeName: pro34
+NewToOldIpMap contents:
+New IP: 10.2.24.1 -> Old IP: 10.2.23.2
+New IP: 10.2.22.1 -> Old IP: 10.2.21.2
+New IP: 10.2.20.1 -> Old IP: 10.2.19.2
+New IP: 10.2.18.1 -> Old IP: 10.2.17.2
+New IP: 10.2.16.1 -> Old IP: 10.2.15.2
+New IP: 10.2.14.1 -> Old IP: 10.2.13.2
+New IP: 10.2.12.1 -> Old IP: 10.2.11.2
+New IP: 10.2.10.1 -> Old IP: 10.2.9.2
+New IP: 10.2.8.1 -> Old IP: 10.2.7.2
+New IP: 10.2.6.1 -> Old IP: 10.2.5.2
+New IP: 10.2.4.1 -> Old IP: 10.2.3.2
+New IP: 10.2.2.1 -> Old IP: 10.2.1.2
+
+#################### SIMULATION END ####################
+
+
+
+
+#################### SIMULATION PARAMETERS ####################
+
+
+Prefix: 100 Iteration: 10000 Vector Size: 150 Congestion Control Algorithm: bbr
+
+
+#################### SIMULATION SET-UP ####################
+
+
+uint32_t consumerNum = 1;
+uint32_t producerNum = 100;
+uint32_t forwarderNum = 26;
+uint32_t aggregatorNum = 50;
+---node1 ip--- pro0 --- 10.1.1.1, node2 ip--- forwarder0 --- 10.1.1.2
+---node1 ip--- pro1 --- 10.1.2.1, node2 ip--- forwarder0 --- 10.1.1.2
+---node1 ip--- pro2 --- 10.1.3.1, node2 ip--- forwarder0 --- 10.1.1.2
+---node1 ip--- pro3 --- 10.1.4.1, node2 ip--- forwarder0 --- 10.1.1.2
+---node1 ip--- pro4 --- 10.1.5.1, node2 ip--- forwarder0 --- 10.1.1.2
+---node1 ip--- pro5 --- 10.1.6.1, node2 ip--- forwarder1 --- 10.1.6.2
+---node1 ip--- pro6 --- 10.1.7.1, node2 ip--- forwarder1 --- 10.1.6.2
+---node1 ip--- pro7 --- 10.1.8.1, node2 ip--- forwarder1 --- 10.1.6.2
+---node1 ip--- pro8 --- 10.1.9.1, node2 ip--- forwarder1 --- 10.1.6.2
+---node1 ip--- pro9 --- 10.1.10.1, node2 ip--- forwarder1 --- 10.1.6.2
+---node1 ip--- pro10 --- 10.1.11.1, node2 ip--- forwarder2 --- 10.1.11.2
+---node1 ip--- pro11 --- 10.1.12.1, node2 ip--- forwarder2 --- 10.1.11.2
+---node1 ip--- pro12 --- 10.1.13.1, node2 ip--- forwarder2 --- 10.1.11.2
+---node1 ip--- pro13 --- 10.1.14.1, node2 ip--- forwarder2 --- 10.1.11.2
+---node1 ip--- pro14 --- 10.1.15.1, node2 ip--- forwarder2 --- 10.1.11.2
+---node1 ip--- pro15 --- 10.1.16.1, node2 ip--- forwarder3 --- 10.1.16.2
+---node1 ip--- pro16 --- 10.1.17.1, node2 ip--- forwarder3 --- 10.1.16.2
+---node1 ip--- pro17 --- 10.1.18.1, node2 ip--- forwarder3 --- 10.1.16.2
+---node1 ip--- pro18 --- 10.1.19.1, node2 ip--- forwarder3 --- 10.1.16.2
+---node1 ip--- pro19 --- 10.1.20.1, node2 ip--- forwarder3 --- 10.1.16.2
+---node1 ip--- pro20 --- 10.1.21.1, node2 ip--- forwarder4 --- 10.1.21.2
+---node1 ip--- pro21 --- 10.1.22.1, node2 ip--- forwarder4 --- 10.1.21.2
+---node1 ip--- pro22 --- 10.1.23.1, node2 ip--- forwarder4 --- 10.1.21.2
+---node1 ip--- pro23 --- 10.1.24.1, node2 ip--- forwarder4 --- 10.1.21.2
+---node1 ip--- pro24 --- 10.1.25.1, node2 ip--- forwarder4 --- 10.1.21.2
+---node1 ip--- pro25 --- 10.1.26.1, node2 ip--- forwarder5 --- 10.1.26.2
+---node1 ip--- pro26 --- 10.1.27.1, node2 ip--- forwarder5 --- 10.1.26.2
+---node1 ip--- pro27 --- 10.1.28.1, node2 ip--- forwarder5 --- 10.1.26.2
+---node1 ip--- pro28 --- 10.1.29.1, node2 ip--- forwarder5 --- 10.1.26.2
+---node1 ip--- pro29 --- 10.1.30.1, node2 ip--- forwarder5 --- 10.1.26.2
+---node1 ip--- pro30 --- 10.1.31.1, node2 ip--- forwarder6 --- 10.1.31.2
+---node1 ip--- pro31 --- 10.1.32.1, node2 ip--- forwarder6 --- 10.1.31.2
+---node1 ip--- pro32 --- 10.1.33.1, node2 ip--- forwarder6 --- 10.1.31.2
+---node1 ip--- pro33 --- 10.1.34.1, node2 ip--- forwarder6 --- 10.1.31.2
+---node1 ip--- pro34 --- 10.1.35.1, node2 ip--- forwarder6 --- 10.1.31.2
+---node1 ip--- pro35 --- 10.1.36.1, node2 ip--- forwarder7 --- 10.1.36.2
+---node1 ip--- pro36 --- 10.1.37.1, node2 ip--- forwarder7 --- 10.1.36.2
+---node1 ip--- pro37 --- 10.1.38.1, node2 ip--- forwarder7 --- 10.1.36.2
+---node1 ip--- pro38 --- 10.1.39.1, node2 ip--- forwarder7 --- 10.1.36.2
+---node1 ip--- pro39 --- 10.1.40.1, node2 ip--- forwarder7 --- 10.1.36.2
+---node1 ip--- pro40 --- 10.1.41.1, node2 ip--- forwarder8 --- 10.1.41.2
+---node1 ip--- pro41 --- 10.1.42.1, node2 ip--- forwarder8 --- 10.1.41.2
+---node1 ip--- pro42 --- 10.1.43.1, node2 ip--- forwarder8 --- 10.1.41.2
+---node1 ip--- pro43 --- 10.1.44.1, node2 ip--- forwarder8 --- 10.1.41.2
+---node1 ip--- pro44 --- 10.1.45.1, node2 ip--- forwarder8 --- 10.1.41.2
+---node1 ip--- pro45 --- 10.1.46.1, node2 ip--- forwarder9 --- 10.1.46.2
+---node1 ip--- pro46 --- 10.1.47.1, node2 ip--- forwarder9 --- 10.1.46.2
+---node1 ip--- pro47 --- 10.1.48.1, node2 ip--- forwarder9 --- 10.1.46.2
+---node1 ip--- pro48 --- 10.1.49.1, node2 ip--- forwarder9 --- 10.1.46.2
+---node1 ip--- pro49 --- 10.1.50.1, node2 ip--- forwarder9 --- 10.1.46.2
+---node1 ip--- pro50 --- 10.1.51.1, node2 ip--- forwarder10 --- 10.1.51.2
+---node1 ip--- pro51 --- 10.1.52.1, node2 ip--- forwarder10 --- 10.1.51.2
+---node1 ip--- pro52 --- 10.1.53.1, node2 ip--- forwarder10 --- 10.1.51.2
+---node1 ip--- pro53 --- 10.1.54.1, node2 ip--- forwarder10 --- 10.1.51.2
+---node1 ip--- pro54 --- 10.1.55.1, node2 ip--- forwarder10 --- 10.1.51.2
+---node1 ip--- pro55 --- 10.1.56.1, node2 ip--- forwarder11 --- 10.1.56.2
+---node1 ip--- pro56 --- 10.1.57.1, node2 ip--- forwarder11 --- 10.1.56.2
+---node1 ip--- pro57 --- 10.1.58.1, node2 ip--- forwarder11 --- 10.1.56.2
+---node1 ip--- pro58 --- 10.1.59.1, node2 ip--- forwarder11 --- 10.1.56.2
+---node1 ip--- pro59 --- 10.1.60.1, node2 ip--- forwarder11 --- 10.1.56.2
+---node1 ip--- pro60 --- 10.1.61.1, node2 ip--- forwarder12 --- 10.1.61.2
+---node1 ip--- pro61 --- 10.1.62.1, node2 ip--- forwarder12 --- 10.1.61.2
+---node1 ip--- pro62 --- 10.1.63.1, node2 ip--- forwarder12 --- 10.1.61.2
+---node1 ip--- pro63 --- 10.1.64.1, node2 ip--- forwarder12 --- 10.1.61.2
+---node1 ip--- pro64 --- 10.1.65.1, node2 ip--- forwarder12 --- 10.1.61.2
+---node1 ip--- pro65 --- 10.1.66.1, node2 ip--- forwarder13 --- 10.1.66.2
+---node1 ip--- pro66 --- 10.1.67.1, node2 ip--- forwarder13 --- 10.1.66.2
+---node1 ip--- pro67 --- 10.1.68.1, node2 ip--- forwarder13 --- 10.1.66.2
+---node1 ip--- pro68 --- 10.1.69.1, node2 ip--- forwarder13 --- 10.1.66.2
+---node1 ip--- pro69 --- 10.1.70.1, node2 ip--- forwarder13 --- 10.1.66.2
+---node1 ip--- pro70 --- 10.1.71.1, node2 ip--- forwarder14 --- 10.1.71.2
+---node1 ip--- pro71 --- 10.1.72.1, node2 ip--- forwarder14 --- 10.1.71.2
+---node1 ip--- pro72 --- 10.1.73.1, node2 ip--- forwarder14 --- 10.1.71.2
+---node1 ip--- pro73 --- 10.1.74.1, node2 ip--- forwarder14 --- 10.1.71.2
+---node1 ip--- pro74 --- 10.1.75.1, node2 ip--- forwarder14 --- 10.1.71.2
+---node1 ip--- pro75 --- 10.1.76.1, node2 ip--- forwarder15 --- 10.1.76.2
+---node1 ip--- pro76 --- 10.1.77.1, node2 ip--- forwarder15 --- 10.1.76.2
+---node1 ip--- pro77 --- 10.1.78.1, node2 ip--- forwarder15 --- 10.1.76.2
+---node1 ip--- pro78 --- 10.1.79.1, node2 ip--- forwarder15 --- 10.1.76.2
+---node1 ip--- pro79 --- 10.1.80.1, node2 ip--- forwarder15 --- 10.1.76.2
+---node1 ip--- pro80 --- 10.1.81.1, node2 ip--- forwarder16 --- 10.1.81.2
+---node1 ip--- pro81 --- 10.1.82.1, node2 ip--- forwarder16 --- 10.1.81.2
+---node1 ip--- pro82 --- 10.1.83.1, node2 ip--- forwarder16 --- 10.1.81.2
+---node1 ip--- pro83 --- 10.1.84.1, node2 ip--- forwarder16 --- 10.1.81.2
+---node1 ip--- pro84 --- 10.1.85.1, node2 ip--- forwarder16 --- 10.1.81.2
+---node1 ip--- pro85 --- 10.1.86.1, node2 ip--- forwarder17 --- 10.1.86.2
+---node1 ip--- pro86 --- 10.1.87.1, node2 ip--- forwarder17 --- 10.1.86.2
+---node1 ip--- pro87 --- 10.1.88.1, node2 ip--- forwarder17 --- 10.1.86.2
+---node1 ip--- pro88 --- 10.1.89.1, node2 ip--- forwarder17 --- 10.1.86.2
+---node1 ip--- pro89 --- 10.1.90.1, node2 ip--- forwarder17 --- 10.1.86.2
+---node1 ip--- pro90 --- 10.1.91.1, node2 ip--- forwarder18 --- 10.1.91.2
+---node1 ip--- pro91 --- 10.1.92.1, node2 ip--- forwarder18 --- 10.1.91.2
+---node1 ip--- pro92 --- 10.1.93.1, node2 ip--- forwarder18 --- 10.1.91.2
+---node1 ip--- pro93 --- 10.1.94.1, node2 ip--- forwarder18 --- 10.1.91.2
+---node1 ip--- pro94 --- 10.1.95.1, node2 ip--- forwarder18 --- 10.1.91.2
+---node1 ip--- pro95 --- 10.1.96.1, node2 ip--- forwarder19 --- 10.1.96.2
+---node1 ip--- pro96 --- 10.1.97.1, node2 ip--- forwarder19 --- 10.1.96.2
+---node1 ip--- pro97 --- 10.1.98.1, node2 ip--- forwarder19 --- 10.1.96.2
+---node1 ip--- pro98 --- 10.1.99.1, node2 ip--- forwarder19 --- 10.1.96.2
+---node1 ip--- pro99 --- 10.1.100.1, node2 ip--- forwarder19 --- 10.1.96.2
+---node1 ip--- con0 --- 10.1.101.1, node2 ip--- forwarder20 --- 10.1.101.2
+---node1 ip--- forwarder0 --- 10.1.1.2, node2 ip--- agg0 --- 10.2.1.2
+---node1 ip--- agg0 --- 10.2.1.2, node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder1 --- 10.1.6.2, node2 ip--- agg1 --- 10.2.3.2
+---node1 ip--- agg1 --- 10.2.3.2, node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder2 --- 10.1.11.2, node2 ip--- agg2 --- 10.2.5.2
+---node1 ip--- agg2 --- 10.2.5.2, node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder3 --- 10.1.16.2, node2 ip--- agg3 --- 10.2.7.2
+---node1 ip--- agg3 --- 10.2.7.2, node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder4 --- 10.1.21.2, node2 ip--- agg4 --- 10.2.9.2
+---node1 ip--- agg4 --- 10.2.9.2, node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder5 --- 10.1.26.2, node2 ip--- agg5 --- 10.2.11.2
+---node1 ip--- agg5 --- 10.2.11.2, node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder6 --- 10.1.31.2, node2 ip--- agg6 --- 10.2.13.2
+---node1 ip--- agg6 --- 10.2.13.2, node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder7 --- 10.1.36.2, node2 ip--- agg7 --- 10.2.15.2
+---node1 ip--- agg7 --- 10.2.15.2, node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder8 --- 10.1.41.2, node2 ip--- agg8 --- 10.2.17.2
+---node1 ip--- agg8 --- 10.2.17.2, node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder9 --- 10.1.46.2, node2 ip--- agg9 --- 10.2.19.2
+---node1 ip--- agg9 --- 10.2.19.2, node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder10 --- 10.1.51.2, node2 ip--- agg10 --- 10.2.21.2
+---node1 ip--- agg10 --- 10.2.21.2, node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder11 --- 10.1.56.2, node2 ip--- agg11 --- 10.2.23.2
+---node1 ip--- agg11 --- 10.2.23.2, node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder12 --- 10.1.61.2, node2 ip--- agg12 --- 10.2.25.2
+---node1 ip--- agg12 --- 10.2.25.2, node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder13 --- 10.1.66.2, node2 ip--- agg13 --- 10.2.27.2
+---node1 ip--- agg13 --- 10.2.27.2, node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder14 --- 10.1.71.2, node2 ip--- agg14 --- 10.2.29.2
+---node1 ip--- agg14 --- 10.2.29.2, node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder15 --- 10.1.76.2, node2 ip--- agg15 --- 10.2.31.2
+---node1 ip--- agg15 --- 10.2.31.2, node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder16 --- 10.1.81.2, node2 ip--- agg16 --- 10.2.33.2
+---node1 ip--- agg16 --- 10.2.33.2, node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder17 --- 10.1.86.2, node2 ip--- agg17 --- 10.2.35.2
+---node1 ip--- agg17 --- 10.2.35.2, node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder18 --- 10.1.91.2, node2 ip--- agg18 --- 10.2.37.2
+---node1 ip--- agg18 --- 10.2.37.2, node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder19 --- 10.1.96.2, node2 ip--- agg19 --- 10.2.39.2
+---node1 ip--- agg19 --- 10.2.39.2, node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder0 --- 10.1.1.2, node2 ip--- agg20 --- 10.2.41.2
+---node1 ip--- agg20 --- 10.2.41.2, node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder1 --- 10.1.6.2, node2 ip--- agg21 --- 10.2.43.2
+---node1 ip--- agg21 --- 10.2.43.2, node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder2 --- 10.1.11.2, node2 ip--- agg22 --- 10.2.45.2
+---node1 ip--- agg22 --- 10.2.45.2, node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder3 --- 10.1.16.2, node2 ip--- agg23 --- 10.2.47.2
+---node1 ip--- agg23 --- 10.2.47.2, node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder4 --- 10.1.21.2, node2 ip--- agg24 --- 10.2.49.2
+---node1 ip--- agg24 --- 10.2.49.2, node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder5 --- 10.1.26.2, node2 ip--- agg25 --- 10.2.51.2
+---node1 ip--- agg25 --- 10.2.51.2, node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder6 --- 10.1.31.2, node2 ip--- agg26 --- 10.2.53.2
+---node1 ip--- agg26 --- 10.2.53.2, node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder7 --- 10.1.36.2, node2 ip--- agg27 --- 10.2.55.2
+---node1 ip--- agg27 --- 10.2.55.2, node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder8 --- 10.1.41.2, node2 ip--- agg28 --- 10.2.57.2
+---node1 ip--- agg28 --- 10.2.57.2, node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder9 --- 10.1.46.2, node2 ip--- agg29 --- 10.2.59.2
+---node1 ip--- agg29 --- 10.2.59.2, node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder10 --- 10.1.51.2, node2 ip--- agg30 --- 10.2.61.2
+---node1 ip--- agg30 --- 10.2.61.2, node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder11 --- 10.1.56.2, node2 ip--- agg31 --- 10.2.63.2
+---node1 ip--- agg31 --- 10.2.63.2, node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder12 --- 10.1.61.2, node2 ip--- agg32 --- 10.2.65.2
+---node1 ip--- agg32 --- 10.2.65.2, node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder13 --- 10.1.66.2, node2 ip--- agg33 --- 10.2.67.2
+---node1 ip--- agg33 --- 10.2.67.2, node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder14 --- 10.1.71.2, node2 ip--- agg34 --- 10.2.69.2
+---node1 ip--- agg34 --- 10.2.69.2, node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder15 --- 10.1.76.2, node2 ip--- agg35 --- 10.2.71.2
+---node1 ip--- agg35 --- 10.2.71.2, node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder16 --- 10.1.81.2, node2 ip--- agg36 --- 10.2.73.2
+---node1 ip--- agg36 --- 10.2.73.2, node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder17 --- 10.1.86.2, node2 ip--- agg37 --- 10.2.75.2
+---node1 ip--- agg37 --- 10.2.75.2, node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder18 --- 10.1.91.2, node2 ip--- agg38 --- 10.2.77.2
+---node1 ip--- agg38 --- 10.2.77.2, node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder19 --- 10.1.96.2, node2 ip--- agg39 --- 10.2.79.2
+---node1 ip--- agg39 --- 10.2.79.2, node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder0 --- 10.1.1.2, node2 ip--- agg40 --- 10.2.81.2
+---node1 ip--- agg40 --- 10.2.81.2, node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder1 --- 10.1.6.2, node2 ip--- agg41 --- 10.2.83.2
+---node1 ip--- agg41 --- 10.2.83.2, node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder2 --- 10.1.11.2, node2 ip--- agg42 --- 10.2.85.2
+---node1 ip--- agg42 --- 10.2.85.2, node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder3 --- 10.1.16.2, node2 ip--- agg43 --- 10.2.87.2
+---node1 ip--- agg43 --- 10.2.87.2, node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder4 --- 10.1.21.2, node2 ip--- agg44 --- 10.2.89.2
+---node1 ip--- agg44 --- 10.2.89.2, node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder5 --- 10.1.26.2, node2 ip--- agg45 --- 10.2.91.2
+---node1 ip--- agg45 --- 10.2.91.2, node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder6 --- 10.1.31.2, node2 ip--- agg46 --- 10.2.93.2
+---node1 ip--- agg46 --- 10.2.93.2, node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder7 --- 10.1.36.2, node2 ip--- agg47 --- 10.2.95.2
+---node1 ip--- agg47 --- 10.2.95.2, node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder8 --- 10.1.41.2, node2 ip--- agg48 --- 10.2.97.2
+---node1 ip--- agg48 --- 10.2.97.2, node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder9 --- 10.1.46.2, node2 ip--- agg49 --- 10.2.99.2
+---node1 ip--- agg49 --- 10.2.99.2, node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder20 --- 10.1.101.2, node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder21 --- 10.2.2.2, node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder21 --- 10.2.2.2, node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder21 --- 10.2.2.2, node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder21 --- 10.2.2.2, node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder22 --- 10.2.4.2, node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder22 --- 10.2.4.2, node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder22 --- 10.2.4.2, node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder23 --- 10.2.6.2, node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder23 --- 10.2.6.2, node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder24 --- 10.2.8.2, node2 ip--- forwarder25 --- 10.2.10.2
+0x55f65f50d440 SendDataPacket seq: 1, size 1210, from 10.1.1.1 to 10.2.1.2 isRetransmission true at time 37.024
+0x55f65f50d440 SendDataPacket seq: 1, size 1210, from 10.1.1.1 to 10.2.1.2 isRetransmission true at time 91.06
+0x55f65f50d440 SendDataPacket seq: 1, size 1210, from 10.1.1.1 to 10.2.1.2 isRetransmission true at time 151.06
+ The tp filename is: ./log/tp/agg0+pro1_TP.txt
+ The tp filename is: ./log/tp/agg0+pro2_TP.txt
+ The tp filename is: ./log/tp/agg0+pro3_TP.txt
+ The tp filename is: ./log/tp/agg0+pro4_TP.txt
+ The tp filename is: ./log/tp/agg3+pro15_TP.txt
+ The tp filename is: ./log/tp/agg3+pro16_TP.txt
+ The tp filename is: ./log/tp/agg3+pro17_TP.txt
+ The tp filename is: ./log/tp/agg3+pro18_TP.txt
+ The tp filename is: ./log/tp/agg3+pro19_TP.txt
+0x55f65f721980 In DoDispose, localAddressStr: 10.2.21.2 peerAddressStr: 10.1.51.1 at time: 200
+ The tp filename is: ./log/tp/agg10+pro50_TP.txt
+0x55f65f724480 In DoDispose, localAddressStr: 10.2.21.2 peerAddressStr: 10.1.52.1 at time: 200
+ The tp filename is: ./log/tp/agg10+pro51_TP.txt
+0x55f65f726f30 In DoDispose, localAddressStr: 10.2.21.2 peerAddressStr: 10.1.53.1 at time: 200
+ The tp filename is: ./log/tp/agg10+pro52_TP.txt
+0x55f65f7299e0 In DoDispose, localAddressStr: 10.2.21.2 peerAddressStr: 10.1.54.1 at time: 200
+ The tp filename is: ./log/tp/agg10+pro53_TP.txt
+0x55f65f72c490 In DoDispose, localAddressStr: 10.2.21.2 peerAddressStr: 10.1.55.1 at time: 200
+ The tp filename is: ./log/tp/agg10+pro54_TP.txt
+ The tp filename is: ./log/tp/agg15+pro75_TP.txt
+ The tp filename is: ./log/tp/agg15+pro76_TP.txt
+ The tp filename is: ./log/tp/agg15+pro77_TP.txt
+ The tp filename is: ./log/tp/agg15+pro78_TP.txt
+ The tp filename is: ./log/tp/agg15+pro79_TP.txt
+Prefix: 100, Iteration: 10000 - Simulation completed successfully.
+Printing ipToNodeName:
+IP: 10.2.99.2 -> NodeName: agg49
+IP: 10.2.95.2 -> NodeName: agg47
+IP: 10.2.91.2 -> NodeName: agg45
+IP: 10.2.89.2 -> NodeName: agg44
+IP: 10.2.87.2 -> NodeName: agg43
+IP: 10.2.81.2 -> NodeName: agg40
+IP: 10.2.79.2 -> NodeName: agg39
+IP: 10.2.77.2 -> NodeName: agg38
+IP: 10.2.69.2 -> NodeName: agg34
+IP: 10.2.65.2 -> NodeName: agg32
+IP: 10.2.61.2 -> NodeName: agg30
+IP: 10.2.55.2 -> NodeName: agg27
+IP: 10.2.51.2 -> NodeName: agg25
+IP: 10.2.49.2 -> NodeName: agg24
+IP: 10.2.45.2 -> NodeName: agg22
+IP: 10.2.41.2 -> NodeName: agg20
+IP: 10.1.101.2 -> NodeName: forwarder20
+IP: 10.1.100.1 -> NodeName: pro99
+IP: 10.1.98.1 -> NodeName: pro97
+IP: 10.1.97.1 -> NodeName: pro96
+IP: 10.1.92.1 -> NodeName: pro91
+IP: 10.1.90.1 -> NodeName: pro89
+IP: 10.1.88.1 -> NodeName: pro87
+IP: 10.2.73.2 -> NodeName: agg36
+IP: 10.1.35.1 -> NodeName: pro34
+IP: 10.2.37.2 -> NodeName: agg18
+IP: 10.1.31.2 -> NodeName: forwarder6
+IP: 10.1.33.1 -> NodeName: pro32
+IP: 10.1.94.1 -> NodeName: pro93
+IP: 10.1.52.1 -> NodeName: pro51
+IP: 10.1.24.1 -> NodeName: pro23
+IP: 10.1.39.1 -> NodeName: pro38
+IP: 10.1.27.1 -> NodeName: pro26
+IP: 10.1.22.1 -> NodeName: pro21
+IP: 10.1.19.1 -> NodeName: pro18
+IP: 10.2.83.2 -> NodeName: agg41
+IP: 10.1.71.2 -> NodeName: forwarder14
+IP: 10.1.36.1 -> NodeName: pro35
+IP: 10.2.57.2 -> NodeName: agg28
+IP: 10.1.16.1 -> NodeName: pro15
+IP: 10.1.15.1 -> NodeName: pro14
+IP: 10.1.14.1 -> NodeName: pro13
+IP: 10.1.16.2 -> NodeName: forwarder3
+IP: 10.1.99.1 -> NodeName: pro98
+IP: 10.1.13.1 -> NodeName: pro12
+IP: 10.1.12.1 -> NodeName: pro11
+IP: 10.1.96.2 -> NodeName: forwarder19
+IP: 10.1.86.1 -> NodeName: pro85
+IP: 10.1.42.1 -> NodeName: pro41
+IP: 10.1.31.1 -> NodeName: pro30
+IP: 10.2.43.2 -> NodeName: agg21
+IP: 10.1.26.1 -> NodeName: pro25
+IP: 10.1.55.1 -> NodeName: pro54
+IP: 10.2.59.2 -> NodeName: agg29
+IP: 10.1.6.2 -> NodeName: forwarder1
+IP: 10.1.86.2 -> NodeName: forwarder17
+IP: 10.1.29.1 -> NodeName: pro28
+IP: 10.1.5.1 -> NodeName: pro4
+IP: 10.2.10.2 -> NodeName: forwarder25
+IP: 10.2.7.2 -> NodeName: agg3
+IP: 10.1.56.1 -> NodeName: pro55
+IP: 10.2.67.2 -> NodeName: agg33
+IP: 10.1.87.1 -> NodeName: pro86
+IP: 10.2.23.2 -> NodeName: agg11
+IP: 10.1.1.2 -> NodeName: forwarder0
+IP: 10.1.91.2 -> NodeName: forwarder18
+IP: 10.1.11.2 -> NodeName: forwarder2
+IP: 10.1.68.1 -> NodeName: pro67
+IP: 10.1.10.1 -> NodeName: pro9
+IP: 10.2.63.2 -> NodeName: agg31
+IP: 10.2.13.2 -> NodeName: agg6
+IP: 10.1.30.1 -> NodeName: pro29
+IP: 10.1.8.1 -> NodeName: pro7
+IP: 10.1.23.1 -> NodeName: pro22
+IP: 10.1.2.1 -> NodeName: pro1
+IP: 10.1.89.1 -> NodeName: pro88
+IP: 10.1.56.2 -> NodeName: forwarder11
+IP: 10.1.66.1 -> NodeName: pro65
+IP: 10.2.1.2 -> NodeName: agg0
+IP: 10.1.36.2 -> NodeName: forwarder7
+IP: 10.1.57.1 -> NodeName: pro56
+IP: 10.2.15.2 -> NodeName: agg7
+IP: 10.1.9.1 -> NodeName: pro8
+IP: 10.1.21.2 -> NodeName: forwarder4
+IP: 10.2.4.2 -> NodeName: forwarder22
+IP: 10.1.59.1 -> NodeName: pro58
+IP: 10.1.73.1 -> NodeName: pro72
+IP: 10.2.6.2 -> NodeName: forwarder23
+IP: 10.1.69.1 -> NodeName: pro68
+IP: 10.1.4.1 -> NodeName: pro3
+IP: 10.1.26.2 -> NodeName: forwarder5
+IP: 10.1.74.1 -> NodeName: pro73
+IP: 10.1.96.1 -> NodeName: pro95
+IP: 10.2.3.2 -> NodeName: agg1
+IP: 10.2.9.2 -> NodeName: agg4
+IP: 10.1.71.1 -> NodeName: pro70
+IP: 10.1.84.1 -> NodeName: pro83
+IP: 10.1.20.1 -> NodeName: pro19
+IP: 10.1.47.1 -> NodeName: pro46
+IP: 10.2.11.2 -> NodeName: agg5
+IP: 10.2.17.2 -> NodeName: agg8
+IP: 10.2.39.2 -> NodeName: agg19
+IP: 10.1.28.1 -> NodeName: pro27
+IP: 10.1.95.1 -> NodeName: pro94
+IP: 10.1.21.1 -> NodeName: pro20
+IP: 10.2.5.2 -> NodeName: agg2
+IP: 10.2.19.2 -> NodeName: agg9
+IP: 10.2.97.2 -> NodeName: agg48
+IP: 10.2.53.2 -> NodeName: agg26
+IP: 10.1.37.1 -> NodeName: pro36
+IP: 10.1.65.1 -> NodeName: pro64
+IP: 10.1.17.1 -> NodeName: pro16
+IP: 10.2.8.2 -> NodeName: forwarder24
+IP: 10.1.38.1 -> NodeName: pro37
+IP: 10.1.62.1 -> NodeName: pro61
+IP: 10.1.40.1 -> NodeName: pro39
+IP: 10.1.43.1 -> NodeName: pro42
+IP: 10.1.44.1 -> NodeName: pro43
+IP: 10.2.47.2 -> NodeName: agg23
+IP: 10.1.45.1 -> NodeName: pro44
+IP: 10.1.46.1 -> NodeName: pro45
+IP: 10.1.49.1 -> NodeName: pro48
+IP: 10.2.27.2 -> NodeName: agg13
+IP: 10.1.18.1 -> NodeName: pro17
+IP: 10.1.50.1 -> NodeName: pro49
+IP: 10.1.7.1 -> NodeName: pro6
+IP: 10.1.51.1 -> NodeName: pro50
+IP: 10.2.71.2 -> NodeName: agg35
+IP: 10.1.51.2 -> NodeName: forwarder10
+IP: 10.1.6.1 -> NodeName: pro5
+IP: 10.2.21.2 -> NodeName: agg10
+IP: 10.1.32.1 -> NodeName: pro31
+IP: 10.2.25.2 -> NodeName: agg12
+IP: 10.1.60.1 -> NodeName: pro59
+IP: 10.1.91.1 -> NodeName: pro90
+IP: 10.2.29.2 -> NodeName: agg14
+IP: 10.2.93.2 -> NodeName: agg46
+IP: 10.1.48.1 -> NodeName: pro47
+IP: 10.2.31.2 -> NodeName: agg15
+IP: 10.1.1.1 -> NodeName: pro0
+IP: 10.1.66.2 -> NodeName: forwarder13
+IP: 10.2.33.2 -> NodeName: agg16
+IP: 10.1.61.1 -> NodeName: pro60
+IP: 10.2.35.2 -> NodeName: agg17
+IP: 10.1.101.1 -> NodeName: con0
+IP: 10.1.53.1 -> NodeName: pro52
+IP: 10.1.3.1 -> NodeName: pro2
+IP: 10.1.81.1 -> NodeName: pro80
+IP: 10.1.93.1 -> NodeName: pro92
+IP: 10.1.54.1 -> NodeName: pro53
+IP: 10.1.64.1 -> NodeName: pro63
+IP: 10.1.58.1 -> NodeName: pro57
+IP: 10.1.46.2 -> NodeName: forwarder9
+IP: 10.1.61.2 -> NodeName: forwarder12
+IP: 10.1.63.1 -> NodeName: pro62
+IP: 10.1.80.1 -> NodeName: pro79
+IP: 10.1.41.2 -> NodeName: forwarder8
+IP: 10.1.67.1 -> NodeName: pro66
+IP: 10.2.2.2 -> NodeName: forwarder21
+IP: 10.1.72.1 -> NodeName: pro71
+IP: 10.1.34.1 -> NodeName: pro33
+IP: 10.1.75.1 -> NodeName: pro74
+IP: 10.2.75.2 -> NodeName: agg37
+IP: 10.1.41.1 -> NodeName: pro40
+IP: 10.1.70.1 -> NodeName: pro69
+IP: 10.1.76.1 -> NodeName: pro75
+IP: 10.1.83.1 -> NodeName: pro82
+IP: 10.1.76.2 -> NodeName: forwarder15
+IP: 10.1.77.1 -> NodeName: pro76
+IP: 10.1.78.1 -> NodeName: pro77
+IP: 10.1.79.1 -> NodeName: pro78
+IP: 10.2.85.2 -> NodeName: agg42
+IP: 10.1.11.1 -> NodeName: pro10
+IP: 10.1.81.2 -> NodeName: forwarder16
+IP: 10.1.82.1 -> NodeName: pro81
+IP: 10.1.25.1 -> NodeName: pro24
+IP: 10.1.85.1 -> NodeName: pro84
+NewToOldIpMap contents:
+New IP: 10.2.62.1 -> Old IP: 10.2.61.2
+New IP: 10.2.52.1 -> Old IP: 10.2.51.2
+New IP: 10.2.46.1 -> Old IP: 10.2.45.2
+New IP: 10.2.42.1 -> Old IP: 10.2.41.2
+New IP: 10.2.40.1 -> Old IP: 10.2.39.2
+New IP: 10.2.34.1 -> Old IP: 10.2.33.2
+New IP: 10.2.30.1 -> Old IP: 10.2.29.2
+New IP: 10.2.28.1 -> Old IP: 10.2.27.2
+New IP: 10.2.4.1 -> Old IP: 10.2.3.2
+New IP: 10.2.6.1 -> Old IP: 10.2.5.2
+New IP: 10.2.2.1 -> Old IP: 10.2.1.2
+New IP: 10.2.8.1 -> Old IP: 10.2.7.2
+New IP: 10.2.36.1 -> Old IP: 10.2.35.2
+New IP: 10.2.32.1 -> Old IP: 10.2.31.2
+New IP: 10.2.10.1 -> Old IP: 10.2.9.2
+New IP: 10.2.14.1 -> Old IP: 10.2.13.2
+New IP: 10.2.16.1 -> Old IP: 10.2.15.2
+New IP: 10.2.18.1 -> Old IP: 10.2.17.2
+New IP: 10.2.26.1 -> Old IP: 10.2.25.2
+New IP: 10.2.12.1 -> Old IP: 10.2.11.2
+New IP: 10.2.20.1 -> Old IP: 10.2.19.2
+New IP: 10.2.38.1 -> Old IP: 10.2.37.2
+New IP: 10.2.22.1 -> Old IP: 10.2.21.2
+New IP: 10.2.24.1 -> Old IP: 10.2.23.2
+
+#################### SIMULATION END ####################
+
+
+---- Starting simulation with SndBufSize/RcvBufSize = 24000 bytes ----
+
+
+#################### SIMULATION PARAMETERS ####################
+
+
+Prefix: 10 Iteration: 10000 Vector Size: 150 Congestion Control Algorithm: bbr
+
+
+#################### SIMULATION SET-UP ####################
+
+
+uint32_t consumerNum = 1;
+uint32_t producerNum = 10;
+uint32_t forwarderNum = 8;
+uint32_t aggregatorNum = 10;
+---node1 ip--- pro0 --- 10.1.1.1, node2 ip--- forwarder0 --- 10.1.1.2
+---node1 ip--- pro1 --- 10.1.2.1, node2 ip--- forwarder0 --- 10.1.1.2
+---node1 ip--- pro2 --- 10.1.3.1, node2 ip--- forwarder0 --- 10.1.1.2
+---node1 ip--- pro3 --- 10.1.4.1, node2 ip--- forwarder0 --- 10.1.1.2
+---node1 ip--- pro4 --- 10.1.5.1, node2 ip--- forwarder0 --- 10.1.1.2
+---node1 ip--- pro5 --- 10.1.6.1, node2 ip--- forwarder1 --- 10.1.6.2
+---node1 ip--- pro6 --- 10.1.7.1, node2 ip--- forwarder1 --- 10.1.6.2
+---node1 ip--- pro7 --- 10.1.8.1, node2 ip--- forwarder1 --- 10.1.6.2
+---node1 ip--- pro8 --- 10.1.9.1, node2 ip--- forwarder1 --- 10.1.6.2
+---node1 ip--- pro9 --- 10.1.10.1, node2 ip--- forwarder1 --- 10.1.6.2
+---node1 ip--- con0 --- 10.1.11.1, node2 ip--- forwarder2 --- 10.1.11.2
+---node1 ip--- forwarder0 --- 10.1.1.2, node2 ip--- agg0 --- 10.2.1.2
+---node1 ip--- agg0 --- 10.2.1.2, node2 ip--- forwarder3 --- 10.2.2.2
+---node1 ip--- forwarder1 --- 10.1.6.2, node2 ip--- agg1 --- 10.2.3.2
+---node1 ip--- agg1 --- 10.2.3.2, node2 ip--- forwarder4 --- 10.2.4.2
+---node1 ip--- forwarder0 --- 10.1.1.2, node2 ip--- agg2 --- 10.2.5.2
+---node1 ip--- agg2 --- 10.2.5.2, node2 ip--- forwarder5 --- 10.2.6.2
+---node1 ip--- forwarder1 --- 10.1.6.2, node2 ip--- agg3 --- 10.2.7.2
+---node1 ip--- agg3 --- 10.2.7.2, node2 ip--- forwarder6 --- 10.2.8.2
+---node1 ip--- forwarder0 --- 10.1.1.2, node2 ip--- agg4 --- 10.2.9.2
+---node1 ip--- agg4 --- 10.2.9.2, node2 ip--- forwarder7 --- 10.2.10.2
+---node1 ip--- forwarder1 --- 10.1.6.2, node2 ip--- agg5 --- 10.2.11.2
+---node1 ip--- agg5 --- 10.2.11.2, node2 ip--- forwarder3 --- 10.2.2.2
+---node1 ip--- forwarder0 --- 10.1.1.2, node2 ip--- agg6 --- 10.2.13.2
+---node1 ip--- agg6 --- 10.2.13.2, node2 ip--- forwarder4 --- 10.2.4.2
+---node1 ip--- forwarder1 --- 10.1.6.2, node2 ip--- agg7 --- 10.2.15.2
+---node1 ip--- agg7 --- 10.2.15.2, node2 ip--- forwarder5 --- 10.2.6.2
+---node1 ip--- forwarder0 --- 10.1.1.2, node2 ip--- agg8 --- 10.2.17.2
+---node1 ip--- agg8 --- 10.2.17.2, node2 ip--- forwarder6 --- 10.2.8.2
+---node1 ip--- forwarder1 --- 10.1.6.2, node2 ip--- agg9 --- 10.2.19.2
+---node1 ip--- agg9 --- 10.2.19.2, node2 ip--- forwarder7 --- 10.2.10.2
+---node1 ip--- forwarder2 --- 10.1.11.2, node2 ip--- forwarder3 --- 10.2.2.2
+---node1 ip--- forwarder3 --- 10.2.2.2, node2 ip--- forwarder4 --- 10.2.4.2
+---node1 ip--- forwarder3 --- 10.2.2.2, node2 ip--- forwarder5 --- 10.2.6.2
+---node1 ip--- forwarder3 --- 10.2.2.2, node2 ip--- forwarder6 --- 10.2.8.2
+---node1 ip--- forwarder3 --- 10.2.2.2, node2 ip--- forwarder7 --- 10.2.10.2
+---node1 ip--- forwarder4 --- 10.2.4.2, node2 ip--- forwarder5 --- 10.2.6.2
+---node1 ip--- forwarder4 --- 10.2.4.2, node2 ip--- forwarder6 --- 10.2.8.2
+---node1 ip--- forwarder4 --- 10.2.4.2, node2 ip--- forwarder7 --- 10.2.10.2
+---node1 ip--- forwarder5 --- 10.2.6.2, node2 ip--- forwarder6 --- 10.2.8.2
+---node1 ip--- forwarder5 --- 10.2.6.2, node2 ip--- forwarder7 --- 10.2.10.2
+---node1 ip--- forwarder6 --- 10.2.8.2, node2 ip--- forwarder7 --- 10.2.10.2
+0x55f65ffd9650 SendDataPacket seq: 1, size 1210, from 10.1.1.1 to 10.2.1.2 isRetransmission true at time 16.024
+0x55f65ffd9650 SendDataPacket seq: 1, size 1210, from 10.1.1.1 to 10.2.1.2 isRetransmission true at time 34.06
+0x55f65ffd9650 SendDataPacket seq: 1, size 1210, from 10.1.1.1 to 10.2.1.2 isRetransmission true at time 70.132
+0x55f65ffd9650 SendDataPacket seq: 1, size 1210, from 10.1.1.1 to 10.2.1.2 isRetransmission true at time 130.132
+0x55f65ffd9650 SendDataPacket seq: 1, size 1210, from 10.1.1.1 to 10.2.1.2 isRetransmission true at time 190.132
+ The tp filename is: ./log/tp/agg0+pro1_TP.txt
+ The tp filename is: ./log/tp/agg0+pro2_TP.txt
+ The tp filename is: ./log/tp/agg0+pro3_TP.txt
+ The tp filename is: ./log/tp/agg0+pro4_TP.txt
+Prefix: 10, Iteration: 10000 - Simulation completed successfully.
+Printing ipToNodeName:
+IP: 10.2.99.2 -> NodeName: agg49
+IP: 10.2.95.2 -> NodeName: agg47
+IP: 10.2.91.2 -> NodeName: agg45
+IP: 10.2.89.2 -> NodeName: agg44
+IP: 10.2.87.2 -> NodeName: agg43
+IP: 10.2.81.2 -> NodeName: agg40
+IP: 10.2.79.2 -> NodeName: agg39
+IP: 10.2.77.2 -> NodeName: agg38
+IP: 10.2.69.2 -> NodeName: agg34
+IP: 10.2.65.2 -> NodeName: agg32
+IP: 10.2.61.2 -> NodeName: agg30
+IP: 10.2.55.2 -> NodeName: agg27
+IP: 10.2.51.2 -> NodeName: agg25
+IP: 10.2.49.2 -> NodeName: agg24
+IP: 10.2.45.2 -> NodeName: agg22
+IP: 10.2.41.2 -> NodeName: agg20
+IP: 10.1.101.2 -> NodeName: forwarder20
+IP: 10.1.100.1 -> NodeName: pro99
+IP: 10.1.98.1 -> NodeName: pro97
+IP: 10.1.97.1 -> NodeName: pro96
+IP: 10.1.92.1 -> NodeName: pro91
+IP: 10.1.90.1 -> NodeName: pro89
+IP: 10.1.88.1 -> NodeName: pro87
+IP: 10.2.73.2 -> NodeName: agg36
+IP: 10.1.35.1 -> NodeName: pro34
+IP: 10.2.37.2 -> NodeName: agg18
+IP: 10.1.31.2 -> NodeName: forwarder6
+IP: 10.1.33.1 -> NodeName: pro32
+IP: 10.1.94.1 -> NodeName: pro93
+IP: 10.1.52.1 -> NodeName: pro51
+IP: 10.1.24.1 -> NodeName: pro23
+IP: 10.1.39.1 -> NodeName: pro38
+IP: 10.1.27.1 -> NodeName: pro26
+IP: 10.1.22.1 -> NodeName: pro21
+IP: 10.1.19.1 -> NodeName: pro18
+IP: 10.2.83.2 -> NodeName: agg41
+IP: 10.1.71.2 -> NodeName: forwarder14
+IP: 10.1.36.1 -> NodeName: pro35
+IP: 10.2.57.2 -> NodeName: agg28
+IP: 10.1.16.1 -> NodeName: pro15
+IP: 10.1.15.1 -> NodeName: pro14
+IP: 10.1.14.1 -> NodeName: pro13
+IP: 10.1.16.2 -> NodeName: forwarder3
+IP: 10.1.99.1 -> NodeName: pro98
+IP: 10.1.13.1 -> NodeName: pro12
+IP: 10.1.12.1 -> NodeName: pro11
+IP: 10.1.96.2 -> NodeName: forwarder19
+IP: 10.1.86.1 -> NodeName: pro85
+IP: 10.1.42.1 -> NodeName: pro41
+IP: 10.1.31.1 -> NodeName: pro30
+IP: 10.2.43.2 -> NodeName: agg21
+IP: 10.1.26.1 -> NodeName: pro25
+IP: 10.1.55.1 -> NodeName: pro54
+IP: 10.2.59.2 -> NodeName: agg29
+IP: 10.1.6.2 -> NodeName: forwarder1
+IP: 10.1.86.2 -> NodeName: forwarder17
+IP: 10.1.29.1 -> NodeName: pro28
+IP: 10.1.5.1 -> NodeName: pro4
+IP: 10.2.10.2 -> NodeName: forwarder7
+IP: 10.2.7.2 -> NodeName: agg3
+IP: 10.1.56.1 -> NodeName: pro55
+IP: 10.2.67.2 -> NodeName: agg33
+IP: 10.1.87.1 -> NodeName: pro86
+IP: 10.2.23.2 -> NodeName: agg11
+IP: 10.1.1.2 -> NodeName: forwarder0
+IP: 10.1.91.2 -> NodeName: forwarder18
+IP: 10.1.11.2 -> NodeName: forwarder2
+IP: 10.1.68.1 -> NodeName: pro67
+IP: 10.1.10.1 -> NodeName: pro9
+IP: 10.2.63.2 -> NodeName: agg31
+IP: 10.2.13.2 -> NodeName: agg6
+IP: 10.1.30.1 -> NodeName: pro29
+IP: 10.1.8.1 -> NodeName: pro7
+IP: 10.1.23.1 -> NodeName: pro22
+IP: 10.1.2.1 -> NodeName: pro1
+IP: 10.1.89.1 -> NodeName: pro88
+IP: 10.1.56.2 -> NodeName: forwarder11
+IP: 10.1.66.1 -> NodeName: pro65
+IP: 10.2.1.2 -> NodeName: agg0
+IP: 10.1.36.2 -> NodeName: forwarder7
+IP: 10.1.57.1 -> NodeName: pro56
+IP: 10.2.15.2 -> NodeName: agg7
+IP: 10.1.9.1 -> NodeName: pro8
+IP: 10.1.21.2 -> NodeName: forwarder4
+IP: 10.2.4.2 -> NodeName: forwarder4
+IP: 10.1.59.1 -> NodeName: pro58
+IP: 10.1.73.1 -> NodeName: pro72
+IP: 10.2.6.2 -> NodeName: forwarder5
+IP: 10.1.69.1 -> NodeName: pro68
+IP: 10.1.4.1 -> NodeName: pro3
+IP: 10.1.26.2 -> NodeName: forwarder5
+IP: 10.1.74.1 -> NodeName: pro73
+IP: 10.1.96.1 -> NodeName: pro95
+IP: 10.2.3.2 -> NodeName: agg1
+IP: 10.2.9.2 -> NodeName: agg4
+IP: 10.1.71.1 -> NodeName: pro70
+IP: 10.1.84.1 -> NodeName: pro83
+IP: 10.1.20.1 -> NodeName: pro19
+IP: 10.1.47.1 -> NodeName: pro46
+IP: 10.2.11.2 -> NodeName: agg5
+IP: 10.2.17.2 -> NodeName: agg8
+IP: 10.2.39.2 -> NodeName: agg19
+IP: 10.1.28.1 -> NodeName: pro27
+IP: 10.1.95.1 -> NodeName: pro94
+IP: 10.1.21.1 -> NodeName: pro20
+IP: 10.2.5.2 -> NodeName: agg2
+IP: 10.2.19.2 -> NodeName: agg9
+IP: 10.2.97.2 -> NodeName: agg48
+IP: 10.2.53.2 -> NodeName: agg26
+IP: 10.1.37.1 -> NodeName: pro36
+IP: 10.1.65.1 -> NodeName: pro64
+IP: 10.1.17.1 -> NodeName: pro16
+IP: 10.2.8.2 -> NodeName: forwarder6
+IP: 10.1.38.1 -> NodeName: pro37
+IP: 10.1.62.1 -> NodeName: pro61
+IP: 10.1.40.1 -> NodeName: pro39
+IP: 10.1.43.1 -> NodeName: pro42
+IP: 10.1.44.1 -> NodeName: pro43
+IP: 10.2.47.2 -> NodeName: agg23
+IP: 10.1.45.1 -> NodeName: pro44
+IP: 10.1.46.1 -> NodeName: pro45
+IP: 10.1.49.1 -> NodeName: pro48
+IP: 10.2.27.2 -> NodeName: agg13
+IP: 10.1.18.1 -> NodeName: pro17
+IP: 10.1.50.1 -> NodeName: pro49
+IP: 10.1.7.1 -> NodeName: pro6
+IP: 10.1.51.1 -> NodeName: pro50
+IP: 10.2.71.2 -> NodeName: agg35
+IP: 10.1.51.2 -> NodeName: forwarder10
+IP: 10.1.6.1 -> NodeName: pro5
+IP: 10.2.21.2 -> NodeName: agg10
+IP: 10.1.32.1 -> NodeName: pro31
+IP: 10.2.25.2 -> NodeName: agg12
+IP: 10.1.60.1 -> NodeName: pro59
+IP: 10.1.91.1 -> NodeName: pro90
+IP: 10.2.29.2 -> NodeName: agg14
+IP: 10.2.93.2 -> NodeName: agg46
+IP: 10.1.48.1 -> NodeName: pro47
+IP: 10.2.31.2 -> NodeName: agg15
+IP: 10.1.1.1 -> NodeName: pro0
+IP: 10.1.66.2 -> NodeName: forwarder13
+IP: 10.2.33.2 -> NodeName: agg16
+IP: 10.1.61.1 -> NodeName: pro60
+IP: 10.2.35.2 -> NodeName: agg17
+IP: 10.1.101.1 -> NodeName: con0
+IP: 10.1.53.1 -> NodeName: pro52
+IP: 10.1.3.1 -> NodeName: pro2
+IP: 10.1.81.1 -> NodeName: pro80
+IP: 10.1.93.1 -> NodeName: pro92
+IP: 10.1.54.1 -> NodeName: pro53
+IP: 10.1.64.1 -> NodeName: pro63
+IP: 10.1.58.1 -> NodeName: pro57
+IP: 10.1.46.2 -> NodeName: forwarder9
+IP: 10.1.61.2 -> NodeName: forwarder12
+IP: 10.1.63.1 -> NodeName: pro62
+IP: 10.1.80.1 -> NodeName: pro79
+IP: 10.1.41.2 -> NodeName: forwarder8
+IP: 10.1.67.1 -> NodeName: pro66
+IP: 10.2.2.2 -> NodeName: forwarder3
+IP: 10.1.72.1 -> NodeName: pro71
+IP: 10.1.34.1 -> NodeName: pro33
+IP: 10.1.75.1 -> NodeName: pro74
+IP: 10.2.75.2 -> NodeName: agg37
+IP: 10.1.41.1 -> NodeName: pro40
+IP: 10.1.70.1 -> NodeName: pro69
+IP: 10.1.76.1 -> NodeName: pro75
+IP: 10.1.83.1 -> NodeName: pro82
+IP: 10.1.76.2 -> NodeName: forwarder15
+IP: 10.1.77.1 -> NodeName: pro76
+IP: 10.1.78.1 -> NodeName: pro77
+IP: 10.1.79.1 -> NodeName: pro78
+IP: 10.2.85.2 -> NodeName: agg42
+IP: 10.1.11.1 -> NodeName: con0
+IP: 10.1.81.2 -> NodeName: forwarder16
+IP: 10.1.82.1 -> NodeName: pro81
+IP: 10.1.25.1 -> NodeName: pro24
+IP: 10.1.85.1 -> NodeName: pro84
+NewToOldIpMap contents:
+New IP: 10.2.62.1 -> Old IP: 10.2.61.2
+New IP: 10.2.52.1 -> Old IP: 10.2.51.2
+New IP: 10.2.46.1 -> Old IP: 10.2.45.2
+New IP: 10.2.42.1 -> Old IP: 10.2.41.2
+New IP: 10.2.40.1 -> Old IP: 10.2.39.2
+New IP: 10.2.34.1 -> Old IP: 10.2.33.2
+New IP: 10.2.30.1 -> Old IP: 10.2.29.2
+New IP: 10.2.28.1 -> Old IP: 10.2.27.2
+New IP: 10.2.4.1 -> Old IP: 10.2.3.2
+New IP: 10.2.6.1 -> Old IP: 10.2.5.2
+New IP: 10.2.2.1 -> Old IP: 10.2.1.2
+New IP: 10.2.8.1 -> Old IP: 10.2.7.2
+New IP: 10.2.36.1 -> Old IP: 10.2.35.2
+New IP: 10.2.32.1 -> Old IP: 10.2.31.2
+New IP: 10.2.10.1 -> Old IP: 10.2.9.2
+New IP: 10.2.14.1 -> Old IP: 10.2.13.2
+New IP: 10.2.16.1 -> Old IP: 10.2.15.2
+New IP: 10.2.18.1 -> Old IP: 10.2.17.2
+New IP: 10.2.26.1 -> Old IP: 10.2.25.2
+New IP: 10.2.12.1 -> Old IP: 10.2.11.2
+New IP: 10.2.20.1 -> Old IP: 10.2.19.2
+New IP: 10.2.38.1 -> Old IP: 10.2.37.2
+New IP: 10.2.22.1 -> Old IP: 10.2.21.2
+New IP: 10.2.24.1 -> Old IP: 10.2.23.2
+
+#################### SIMULATION END ####################
+
+
+
+
+#################### SIMULATION PARAMETERS ####################
+
+
+Prefix: 50 Iteration: 10000 Vector Size: 150 Congestion Control Algorithm: bbr
+
+
+#################### SIMULATION SET-UP ####################
+
+
+uint32_t consumerNum = 1;
+uint32_t producerNum = 50;
+uint32_t forwarderNum = 16;
+uint32_t aggregatorNum = 20;
+---node1 ip--- pro0 --- 10.1.1.1, node2 ip--- forwarder0 --- 10.1.1.2
+---node1 ip--- pro1 --- 10.1.2.1, node2 ip--- forwarder0 --- 10.1.1.2
+---node1 ip--- pro2 --- 10.1.3.1, node2 ip--- forwarder0 --- 10.1.1.2
+---node1 ip--- pro3 --- 10.1.4.1, node2 ip--- forwarder0 --- 10.1.1.2
+---node1 ip--- pro4 --- 10.1.5.1, node2 ip--- forwarder0 --- 10.1.1.2
+---node1 ip--- pro5 --- 10.1.6.1, node2 ip--- forwarder1 --- 10.1.6.2
+---node1 ip--- pro6 --- 10.1.7.1, node2 ip--- forwarder1 --- 10.1.6.2
+---node1 ip--- pro7 --- 10.1.8.1, node2 ip--- forwarder1 --- 10.1.6.2
+---node1 ip--- pro8 --- 10.1.9.1, node2 ip--- forwarder1 --- 10.1.6.2
+---node1 ip--- pro9 --- 10.1.10.1, node2 ip--- forwarder1 --- 10.1.6.2
+---node1 ip--- pro10 --- 10.1.11.1, node2 ip--- forwarder2 --- 10.1.11.2
+---node1 ip--- pro11 --- 10.1.12.1, node2 ip--- forwarder2 --- 10.1.11.2
+---node1 ip--- pro12 --- 10.1.13.1, node2 ip--- forwarder2 --- 10.1.11.2
+---node1 ip--- pro13 --- 10.1.14.1, node2 ip--- forwarder2 --- 10.1.11.2
+---node1 ip--- pro14 --- 10.1.15.1, node2 ip--- forwarder2 --- 10.1.11.2
+---node1 ip--- pro15 --- 10.1.16.1, node2 ip--- forwarder3 --- 10.1.16.2
+---node1 ip--- pro16 --- 10.1.17.1, node2 ip--- forwarder3 --- 10.1.16.2
+---node1 ip--- pro17 --- 10.1.18.1, node2 ip--- forwarder3 --- 10.1.16.2
+---node1 ip--- pro18 --- 10.1.19.1, node2 ip--- forwarder3 --- 10.1.16.2
+---node1 ip--- pro19 --- 10.1.20.1, node2 ip--- forwarder3 --- 10.1.16.2
+---node1 ip--- pro20 --- 10.1.21.1, node2 ip--- forwarder4 --- 10.1.21.2
+---node1 ip--- pro21 --- 10.1.22.1, node2 ip--- forwarder4 --- 10.1.21.2
+---node1 ip--- pro22 --- 10.1.23.1, node2 ip--- forwarder4 --- 10.1.21.2
+---node1 ip--- pro23 --- 10.1.24.1, node2 ip--- forwarder4 --- 10.1.21.2
+---node1 ip--- pro24 --- 10.1.25.1, node2 ip--- forwarder4 --- 10.1.21.2
+---node1 ip--- pro25 --- 10.1.26.1, node2 ip--- forwarder5 --- 10.1.26.2
+---node1 ip--- pro26 --- 10.1.27.1, node2 ip--- forwarder5 --- 10.1.26.2
+---node1 ip--- pro27 --- 10.1.28.1, node2 ip--- forwarder5 --- 10.1.26.2
+---node1 ip--- pro28 --- 10.1.29.1, node2 ip--- forwarder5 --- 10.1.26.2
+---node1 ip--- pro29 --- 10.1.30.1, node2 ip--- forwarder5 --- 10.1.26.2
+---node1 ip--- pro30 --- 10.1.31.1, node2 ip--- forwarder6 --- 10.1.31.2
+---node1 ip--- pro31 --- 10.1.32.1, node2 ip--- forwarder6 --- 10.1.31.2
+---node1 ip--- pro32 --- 10.1.33.1, node2 ip--- forwarder6 --- 10.1.31.2
+---node1 ip--- pro33 --- 10.1.34.1, node2 ip--- forwarder6 --- 10.1.31.2
+---node1 ip--- pro34 --- 10.1.35.1, node2 ip--- forwarder6 --- 10.1.31.2
+---node1 ip--- pro35 --- 10.1.36.1, node2 ip--- forwarder7 --- 10.1.36.2
+---node1 ip--- pro36 --- 10.1.37.1, node2 ip--- forwarder7 --- 10.1.36.2
+---node1 ip--- pro37 --- 10.1.38.1, node2 ip--- forwarder7 --- 10.1.36.2
+---node1 ip--- pro38 --- 10.1.39.1, node2 ip--- forwarder7 --- 10.1.36.2
+---node1 ip--- pro39 --- 10.1.40.1, node2 ip--- forwarder7 --- 10.1.36.2
+---node1 ip--- pro40 --- 10.1.41.1, node2 ip--- forwarder8 --- 10.1.41.2
+---node1 ip--- pro41 --- 10.1.42.1, node2 ip--- forwarder8 --- 10.1.41.2
+---node1 ip--- pro42 --- 10.1.43.1, node2 ip--- forwarder8 --- 10.1.41.2
+---node1 ip--- pro43 --- 10.1.44.1, node2 ip--- forwarder8 --- 10.1.41.2
+---node1 ip--- pro44 --- 10.1.45.1, node2 ip--- forwarder8 --- 10.1.41.2
+---node1 ip--- pro45 --- 10.1.46.1, node2 ip--- forwarder9 --- 10.1.46.2
+---node1 ip--- pro46 --- 10.1.47.1, node2 ip--- forwarder9 --- 10.1.46.2
+---node1 ip--- pro47 --- 10.1.48.1, node2 ip--- forwarder9 --- 10.1.46.2
+---node1 ip--- pro48 --- 10.1.49.1, node2 ip--- forwarder9 --- 10.1.46.2
+---node1 ip--- pro49 --- 10.1.50.1, node2 ip--- forwarder9 --- 10.1.46.2
+---node1 ip--- con0 --- 10.1.51.1, node2 ip--- forwarder10 --- 10.1.51.2
+---node1 ip--- forwarder0 --- 10.1.1.2, node2 ip--- agg0 --- 10.2.1.2
+---node1 ip--- agg0 --- 10.2.1.2, node2 ip--- forwarder11 --- 10.2.2.2
+---node1 ip--- forwarder1 --- 10.1.6.2, node2 ip--- agg1 --- 10.2.3.2
+---node1 ip--- agg1 --- 10.2.3.2, node2 ip--- forwarder12 --- 10.2.4.2
+---node1 ip--- forwarder2 --- 10.1.11.2, node2 ip--- agg2 --- 10.2.5.2
+---node1 ip--- agg2 --- 10.2.5.2, node2 ip--- forwarder13 --- 10.2.6.2
+---node1 ip--- forwarder3 --- 10.1.16.2, node2 ip--- agg3 --- 10.2.7.2
+---node1 ip--- agg3 --- 10.2.7.2, node2 ip--- forwarder14 --- 10.2.8.2
+---node1 ip--- forwarder4 --- 10.1.21.2, node2 ip--- agg4 --- 10.2.9.2
+---node1 ip--- agg4 --- 10.2.9.2, node2 ip--- forwarder15 --- 10.2.10.2
+---node1 ip--- forwarder5 --- 10.1.26.2, node2 ip--- agg5 --- 10.2.11.2
+---node1 ip--- agg5 --- 10.2.11.2, node2 ip--- forwarder11 --- 10.2.2.2
+---node1 ip--- forwarder6 --- 10.1.31.2, node2 ip--- agg6 --- 10.2.13.2
+---node1 ip--- agg6 --- 10.2.13.2, node2 ip--- forwarder12 --- 10.2.4.2
+---node1 ip--- forwarder7 --- 10.1.36.2, node2 ip--- agg7 --- 10.2.15.2
+---node1 ip--- agg7 --- 10.2.15.2, node2 ip--- forwarder13 --- 10.2.6.2
+---node1 ip--- forwarder8 --- 10.1.41.2, node2 ip--- agg8 --- 10.2.17.2
+---node1 ip--- agg8 --- 10.2.17.2, node2 ip--- forwarder14 --- 10.2.8.2
+---node1 ip--- forwarder9 --- 10.1.46.2, node2 ip--- agg9 --- 10.2.19.2
+---node1 ip--- agg9 --- 10.2.19.2, node2 ip--- forwarder15 --- 10.2.10.2
+---node1 ip--- forwarder0 --- 10.1.1.2, node2 ip--- agg10 --- 10.2.21.2
+---node1 ip--- agg10 --- 10.2.21.2, node2 ip--- forwarder11 --- 10.2.2.2
+---node1 ip--- forwarder1 --- 10.1.6.2, node2 ip--- agg11 --- 10.2.23.2
+---node1 ip--- agg11 --- 10.2.23.2, node2 ip--- forwarder12 --- 10.2.4.2
+---node1 ip--- forwarder2 --- 10.1.11.2, node2 ip--- agg12 --- 10.2.25.2
+---node1 ip--- agg12 --- 10.2.25.2, node2 ip--- forwarder13 --- 10.2.6.2
+---node1 ip--- forwarder3 --- 10.1.16.2, node2 ip--- agg13 --- 10.2.27.2
+---node1 ip--- agg13 --- 10.2.27.2, node2 ip--- forwarder14 --- 10.2.8.2
+---node1 ip--- forwarder4 --- 10.1.21.2, node2 ip--- agg14 --- 10.2.29.2
+---node1 ip--- agg14 --- 10.2.29.2, node2 ip--- forwarder15 --- 10.2.10.2
+---node1 ip--- forwarder5 --- 10.1.26.2, node2 ip--- agg15 --- 10.2.31.2
+---node1 ip--- agg15 --- 10.2.31.2, node2 ip--- forwarder11 --- 10.2.2.2
+---node1 ip--- forwarder6 --- 10.1.31.2, node2 ip--- agg16 --- 10.2.33.2
+---node1 ip--- agg16 --- 10.2.33.2, node2 ip--- forwarder12 --- 10.2.4.2
+---node1 ip--- forwarder7 --- 10.1.36.2, node2 ip--- agg17 --- 10.2.35.2
+---node1 ip--- agg17 --- 10.2.35.2, node2 ip--- forwarder13 --- 10.2.6.2
+---node1 ip--- forwarder8 --- 10.1.41.2, node2 ip--- agg18 --- 10.2.37.2
+---node1 ip--- agg18 --- 10.2.37.2, node2 ip--- forwarder14 --- 10.2.8.2
+---node1 ip--- forwarder9 --- 10.1.46.2, node2 ip--- agg19 --- 10.2.39.2
+---node1 ip--- agg19 --- 10.2.39.2, node2 ip--- forwarder15 --- 10.2.10.2
+---node1 ip--- forwarder10 --- 10.1.51.2, node2 ip--- forwarder11 --- 10.2.2.2
+---node1 ip--- forwarder11 --- 10.2.2.2, node2 ip--- forwarder12 --- 10.2.4.2
+---node1 ip--- forwarder11 --- 10.2.2.2, node2 ip--- forwarder13 --- 10.2.6.2
+---node1 ip--- forwarder11 --- 10.2.2.2, node2 ip--- forwarder14 --- 10.2.8.2
+---node1 ip--- forwarder11 --- 10.2.2.2, node2 ip--- forwarder15 --- 10.2.10.2
+---node1 ip--- forwarder12 --- 10.2.4.2, node2 ip--- forwarder13 --- 10.2.6.2
+---node1 ip--- forwarder12 --- 10.2.4.2, node2 ip--- forwarder14 --- 10.2.8.2
+---node1 ip--- forwarder12 --- 10.2.4.2, node2 ip--- forwarder15 --- 10.2.10.2
+---node1 ip--- forwarder13 --- 10.2.6.2, node2 ip--- forwarder14 --- 10.2.8.2
+---node1 ip--- forwarder13 --- 10.2.6.2, node2 ip--- forwarder15 --- 10.2.10.2
+---node1 ip--- forwarder14 --- 10.2.8.2, node2 ip--- forwarder15 --- 10.2.10.2
+0x55f65e133480 SendDataPacket seq: 1, size 1210, from 10.1.1.1 to 10.2.1.2 isRetransmission true at time 4.02404
+0x55f65e133480 SendDataPacket seq: 1, size 1210, from 10.1.1.1 to 10.2.1.2 isRetransmission true at time 4.06004
+0x55f65e133480 SendDataPacket seq: 1, size 1210, from 10.1.1.1 to 10.2.1.2 isRetransmission true at time 4.13204
+0x55f65e133480 SendDataPacket seq: 1, size 1210, from 10.1.1.1 to 10.2.1.2 isRetransmission true at time 4.27604
+0x55f65e133480 SendDataPacket seq: 1, size 1210, from 10.1.1.1 to 10.2.1.2 isRetransmission true at time 4.56404
+0x55f65e133480 SendDataPacket seq: 1, size 1210, from 10.1.1.1 to 10.2.1.2 isRetransmission true at time 5.14004
+0x55f65e133480 SendDataPacket seq: 1, size 1210, from 10.1.1.1 to 10.2.1.2 isRetransmission true at time 6.29204
+0x55f65e133480 SendDataPacket seq: 1, size 1210, from 10.1.1.1 to 10.2.1.2 isRetransmission true at time 8.59604
+0x55f65e133480 SendDataPacket seq: 1, size 1210, from 10.1.1.1 to 10.2.1.2 isRetransmission true at time 13.204
+0x55f65e133480 SendDataPacket seq: 1, size 1210, from 10.1.1.1 to 10.2.1.2 isRetransmission true at time 22.42
+0x55f65e133480 SendDataPacket seq: 1, size 1210, from 10.1.1.1 to 10.2.1.2 isRetransmission true at time 40.852
+0x55f65e133480 SendDataPacket seq: 1, size 1210, from 10.1.1.1 to 10.2.1.2 isRetransmission true at time 77.716
+0x55f65e133480 SendDataPacket seq: 1, size 1210, from 10.1.1.1 to 10.2.1.2 isRetransmission true at time 137.716
+0x55f65e133480 SendDataPacket seq: 1, size 1210, from 10.1.1.1 to 10.2.1.2 isRetransmission true at time 197.716
+ The tp filename is: ./log/tp/con0_1+forwarder10_TP.txt
+ The tp filename is: ./log/tp/agg0+pro1_TP.txt
+ The tp filename is: ./log/tp/agg0+pro2_TP.txt
+ The tp filename is: ./log/tp/agg0+pro3_TP.txt
+ The tp filename is: ./log/tp/agg0+pro4_TP.txt
+ The tp filename is: ./log/tp/agg3+pro15_TP.txt
+ The tp filename is: ./log/tp/agg3+pro16_TP.txt
+ The tp filename is: ./log/tp/agg3+pro17_TP.txt
+ The tp filename is: ./log/tp/agg3+pro18_TP.txt
+ The tp filename is: ./log/tp/agg3+pro19_TP.txt
+0x55f65e1fcdc0 In DoDispose, localAddressStr: 10.2.21.2 peerAddressStr: 10.2.12.1 at time: 200
+ The tp filename is: ./log/tp/agg10+agg5_TP.txt
+0x55f65fdd9f30 In DoDispose, localAddressStr: 10.2.21.2 peerAddressStr: 10.2.4.1 at time: 200
+ The tp filename is: ./log/tp/agg10+agg1_TP.txt
+0x55f65fddc9e0 In DoDispose, localAddressStr: 10.2.21.2 peerAddressStr: 10.2.8.1 at time: 200
+ The tp filename is: ./log/tp/agg10+agg3_TP.txt
+0x55f66012c270 In DoDispose, localAddressStr: 10.2.21.2 peerAddressStr: 10.2.16.1 at time: 200
+ The tp filename is: ./log/tp/agg10+agg7_TP.txt
+Prefix: 50, Iteration: 10000 - Simulation completed successfully.
+Printing ipToNodeName:
+IP: 10.2.99.2 -> NodeName: agg49
+IP: 10.2.95.2 -> NodeName: agg47
+IP: 10.2.91.2 -> NodeName: agg45
+IP: 10.2.89.2 -> NodeName: agg44
+IP: 10.2.87.2 -> NodeName: agg43
+IP: 10.2.81.2 -> NodeName: agg40
+IP: 10.2.79.2 -> NodeName: agg39
+IP: 10.2.77.2 -> NodeName: agg38
+IP: 10.2.69.2 -> NodeName: agg34
+IP: 10.2.65.2 -> NodeName: agg32
+IP: 10.2.61.2 -> NodeName: agg30
+IP: 10.2.55.2 -> NodeName: agg27
+IP: 10.2.51.2 -> NodeName: agg25
+IP: 10.2.49.2 -> NodeName: agg24
+IP: 10.2.45.2 -> NodeName: agg22
+IP: 10.2.41.2 -> NodeName: agg20
+IP: 10.1.101.2 -> NodeName: forwarder20
+IP: 10.1.100.1 -> NodeName: pro99
+IP: 10.1.98.1 -> NodeName: pro97
+IP: 10.1.97.1 -> NodeName: pro96
+IP: 10.1.92.1 -> NodeName: pro91
+IP: 10.1.90.1 -> NodeName: pro89
+IP: 10.1.88.1 -> NodeName: pro87
+IP: 10.2.73.2 -> NodeName: agg36
+IP: 10.1.35.1 -> NodeName: pro34
+IP: 10.2.37.2 -> NodeName: agg18
+IP: 10.1.31.2 -> NodeName: forwarder6
+IP: 10.1.33.1 -> NodeName: pro32
+IP: 10.1.94.1 -> NodeName: pro93
+IP: 10.1.52.1 -> NodeName: pro51
+IP: 10.1.24.1 -> NodeName: pro23
+IP: 10.1.39.1 -> NodeName: pro38
+IP: 10.1.27.1 -> NodeName: pro26
+IP: 10.1.22.1 -> NodeName: pro21
+IP: 10.1.19.1 -> NodeName: pro18
+IP: 10.2.83.2 -> NodeName: agg41
+IP: 10.1.71.2 -> NodeName: forwarder14
+IP: 10.1.36.1 -> NodeName: pro35
+IP: 10.2.57.2 -> NodeName: agg28
+IP: 10.1.16.1 -> NodeName: pro15
+IP: 10.1.15.1 -> NodeName: pro14
+IP: 10.1.14.1 -> NodeName: pro13
+IP: 10.1.16.2 -> NodeName: forwarder3
+IP: 10.1.99.1 -> NodeName: pro98
+IP: 10.1.13.1 -> NodeName: pro12
+IP: 10.1.12.1 -> NodeName: pro11
+IP: 10.1.96.2 -> NodeName: forwarder19
+IP: 10.1.86.1 -> NodeName: pro85
+IP: 10.1.42.1 -> NodeName: pro41
+IP: 10.1.31.1 -> NodeName: pro30
+IP: 10.2.43.2 -> NodeName: agg21
+IP: 10.1.26.1 -> NodeName: pro25
+IP: 10.1.55.1 -> NodeName: pro54
+IP: 10.2.59.2 -> NodeName: agg29
+IP: 10.1.6.2 -> NodeName: forwarder1
+IP: 10.1.86.2 -> NodeName: forwarder17
+IP: 10.1.29.1 -> NodeName: pro28
+IP: 10.1.5.1 -> NodeName: pro4
+IP: 10.2.10.2 -> NodeName: forwarder15
+IP: 10.2.7.2 -> NodeName: agg3
+IP: 10.1.56.1 -> NodeName: pro55
+IP: 10.2.67.2 -> NodeName: agg33
+IP: 10.1.87.1 -> NodeName: pro86
+IP: 10.2.23.2 -> NodeName: agg11
+IP: 10.1.1.2 -> NodeName: forwarder0
+IP: 10.1.91.2 -> NodeName: forwarder18
+IP: 10.1.11.2 -> NodeName: forwarder2
+IP: 10.1.68.1 -> NodeName: pro67
+IP: 10.1.10.1 -> NodeName: pro9
+IP: 10.2.63.2 -> NodeName: agg31
+IP: 10.2.13.2 -> NodeName: agg6
+IP: 10.1.30.1 -> NodeName: pro29
+IP: 10.1.8.1 -> NodeName: pro7
+IP: 10.1.23.1 -> NodeName: pro22
+IP: 10.1.2.1 -> NodeName: pro1
+IP: 10.1.89.1 -> NodeName: pro88
+IP: 10.1.56.2 -> NodeName: forwarder11
+IP: 10.1.66.1 -> NodeName: pro65
+IP: 10.2.1.2 -> NodeName: agg0
+IP: 10.1.36.2 -> NodeName: forwarder7
+IP: 10.1.57.1 -> NodeName: pro56
+IP: 10.2.15.2 -> NodeName: agg7
+IP: 10.1.9.1 -> NodeName: pro8
+IP: 10.1.21.2 -> NodeName: forwarder4
+IP: 10.2.4.2 -> NodeName: forwarder12
+IP: 10.1.59.1 -> NodeName: pro58
+IP: 10.1.73.1 -> NodeName: pro72
+IP: 10.2.6.2 -> NodeName: forwarder13
+IP: 10.1.69.1 -> NodeName: pro68
+IP: 10.1.4.1 -> NodeName: pro3
+IP: 10.1.26.2 -> NodeName: forwarder5
+IP: 10.1.74.1 -> NodeName: pro73
+IP: 10.1.96.1 -> NodeName: pro95
+IP: 10.2.3.2 -> NodeName: agg1
+IP: 10.2.9.2 -> NodeName: agg4
+IP: 10.1.71.1 -> NodeName: pro70
+IP: 10.1.84.1 -> NodeName: pro83
+IP: 10.1.20.1 -> NodeName: pro19
+IP: 10.1.47.1 -> NodeName: pro46
+IP: 10.2.11.2 -> NodeName: agg5
+IP: 10.2.17.2 -> NodeName: agg8
+IP: 10.2.39.2 -> NodeName: agg19
+IP: 10.1.28.1 -> NodeName: pro27
+IP: 10.1.95.1 -> NodeName: pro94
+IP: 10.1.21.1 -> NodeName: pro20
+IP: 10.2.5.2 -> NodeName: agg2
+IP: 10.2.19.2 -> NodeName: agg9
+IP: 10.2.97.2 -> NodeName: agg48
+IP: 10.2.53.2 -> NodeName: agg26
+IP: 10.1.37.1 -> NodeName: pro36
+IP: 10.1.65.1 -> NodeName: pro64
+IP: 10.1.17.1 -> NodeName: pro16
+IP: 10.2.8.2 -> NodeName: forwarder14
+IP: 10.1.38.1 -> NodeName: pro37
+IP: 10.1.62.1 -> NodeName: pro61
+IP: 10.1.40.1 -> NodeName: pro39
+IP: 10.1.43.1 -> NodeName: pro42
+IP: 10.1.44.1 -> NodeName: pro43
+IP: 10.2.47.2 -> NodeName: agg23
+IP: 10.1.45.1 -> NodeName: pro44
+IP: 10.1.46.1 -> NodeName: pro45
+IP: 10.1.49.1 -> NodeName: pro48
+IP: 10.2.27.2 -> NodeName: agg13
+IP: 10.1.18.1 -> NodeName: pro17
+IP: 10.1.50.1 -> NodeName: pro49
+IP: 10.1.7.1 -> NodeName: pro6
+IP: 10.1.51.1 -> NodeName: con0
+IP: 10.2.71.2 -> NodeName: agg35
+IP: 10.1.51.2 -> NodeName: forwarder10
+IP: 10.1.6.1 -> NodeName: pro5
+IP: 10.2.21.2 -> NodeName: agg10
+IP: 10.1.32.1 -> NodeName: pro31
+IP: 10.2.25.2 -> NodeName: agg12
+IP: 10.1.60.1 -> NodeName: pro59
+IP: 10.1.91.1 -> NodeName: pro90
+IP: 10.2.29.2 -> NodeName: agg14
+IP: 10.2.93.2 -> NodeName: agg46
+IP: 10.1.48.1 -> NodeName: pro47
+IP: 10.2.31.2 -> NodeName: agg15
+IP: 10.1.1.1 -> NodeName: pro0
+IP: 10.1.66.2 -> NodeName: forwarder13
+IP: 10.2.33.2 -> NodeName: agg16
+IP: 10.1.61.1 -> NodeName: pro60
+IP: 10.2.35.2 -> NodeName: agg17
+IP: 10.1.101.1 -> NodeName: con0
+IP: 10.1.53.1 -> NodeName: pro52
+IP: 10.1.3.1 -> NodeName: pro2
+IP: 10.1.81.1 -> NodeName: pro80
+IP: 10.1.93.1 -> NodeName: pro92
+IP: 10.1.54.1 -> NodeName: pro53
+IP: 10.1.64.1 -> NodeName: pro63
+IP: 10.1.58.1 -> NodeName: pro57
+IP: 10.1.46.2 -> NodeName: forwarder9
+IP: 10.1.61.2 -> NodeName: forwarder12
+IP: 10.1.63.1 -> NodeName: pro62
+IP: 10.1.80.1 -> NodeName: pro79
+IP: 10.1.41.2 -> NodeName: forwarder8
+IP: 10.1.67.1 -> NodeName: pro66
+IP: 10.2.2.2 -> NodeName: forwarder11
+IP: 10.1.72.1 -> NodeName: pro71
+IP: 10.1.34.1 -> NodeName: pro33
+IP: 10.1.75.1 -> NodeName: pro74
+IP: 10.2.75.2 -> NodeName: agg37
+IP: 10.1.41.1 -> NodeName: pro40
+IP: 10.1.70.1 -> NodeName: pro69
+IP: 10.1.76.1 -> NodeName: pro75
+IP: 10.1.83.1 -> NodeName: pro82
+IP: 10.1.76.2 -> NodeName: forwarder15
+IP: 10.1.77.1 -> NodeName: pro76
+IP: 10.1.78.1 -> NodeName: pro77
+IP: 10.1.79.1 -> NodeName: pro78
+IP: 10.2.85.2 -> NodeName: agg42
+IP: 10.1.11.1 -> NodeName: pro10
+IP: 10.1.81.2 -> NodeName: forwarder16
+IP: 10.1.82.1 -> NodeName: pro81
+IP: 10.1.25.1 -> NodeName: pro24
+IP: 10.1.85.1 -> NodeName: pro84
+NewToOldIpMap contents:
+New IP: 10.2.62.1 -> Old IP: 10.2.61.2
+New IP: 10.2.52.1 -> Old IP: 10.2.51.2
+New IP: 10.2.46.1 -> Old IP: 10.2.45.2
+New IP: 10.2.42.1 -> Old IP: 10.2.41.2
+New IP: 10.2.40.1 -> Old IP: 10.2.39.2
+New IP: 10.2.34.1 -> Old IP: 10.2.33.2
+New IP: 10.2.30.1 -> Old IP: 10.2.29.2
+New IP: 10.2.28.1 -> Old IP: 10.2.27.2
+New IP: 10.2.4.1 -> Old IP: 10.2.3.2
+New IP: 10.2.6.1 -> Old IP: 10.2.5.2
+New IP: 10.2.2.1 -> Old IP: 10.2.1.2
+New IP: 10.2.8.1 -> Old IP: 10.2.7.2
+New IP: 10.2.36.1 -> Old IP: 10.2.35.2
+New IP: 10.2.32.1 -> Old IP: 10.2.31.2
+New IP: 10.2.10.1 -> Old IP: 10.2.9.2
+New IP: 10.2.14.1 -> Old IP: 10.2.13.2
+New IP: 10.2.16.1 -> Old IP: 10.2.15.2
+New IP: 10.2.18.1 -> Old IP: 10.2.17.2
+New IP: 10.2.26.1 -> Old IP: 10.2.25.2
+New IP: 10.2.12.1 -> Old IP: 10.2.11.2
+New IP: 10.2.20.1 -> Old IP: 10.2.19.2
+New IP: 10.2.38.1 -> Old IP: 10.2.37.2
+New IP: 10.2.22.1 -> Old IP: 10.2.21.2
+New IP: 10.2.24.1 -> Old IP: 10.2.23.2
+
+#################### SIMULATION END ####################
+
+
+
+
+#################### SIMULATION PARAMETERS ####################
+
+
+Prefix: 100 Iteration: 10000 Vector Size: 150 Congestion Control Algorithm: bbr
+
+
+#################### SIMULATION SET-UP ####################
+
+
+uint32_t consumerNum = 1;
+uint32_t producerNum = 100;
+uint32_t forwarderNum = 26;
+uint32_t aggregatorNum = 50;
+---node1 ip--- pro0 --- 10.1.1.1, node2 ip--- forwarder0 --- 10.1.1.2
+---node1 ip--- pro1 --- 10.1.2.1, node2 ip--- forwarder0 --- 10.1.1.2
+---node1 ip--- pro2 --- 10.1.3.1, node2 ip--- forwarder0 --- 10.1.1.2
+---node1 ip--- pro3 --- 10.1.4.1, node2 ip--- forwarder0 --- 10.1.1.2
+---node1 ip--- pro4 --- 10.1.5.1, node2 ip--- forwarder0 --- 10.1.1.2
+---node1 ip--- pro5 --- 10.1.6.1, node2 ip--- forwarder1 --- 10.1.6.2
+---node1 ip--- pro6 --- 10.1.7.1, node2 ip--- forwarder1 --- 10.1.6.2
+---node1 ip--- pro7 --- 10.1.8.1, node2 ip--- forwarder1 --- 10.1.6.2
+---node1 ip--- pro8 --- 10.1.9.1, node2 ip--- forwarder1 --- 10.1.6.2
+---node1 ip--- pro9 --- 10.1.10.1, node2 ip--- forwarder1 --- 10.1.6.2
+---node1 ip--- pro10 --- 10.1.11.1, node2 ip--- forwarder2 --- 10.1.11.2
+---node1 ip--- pro11 --- 10.1.12.1, node2 ip--- forwarder2 --- 10.1.11.2
+---node1 ip--- pro12 --- 10.1.13.1, node2 ip--- forwarder2 --- 10.1.11.2
+---node1 ip--- pro13 --- 10.1.14.1, node2 ip--- forwarder2 --- 10.1.11.2
+---node1 ip--- pro14 --- 10.1.15.1, node2 ip--- forwarder2 --- 10.1.11.2
+---node1 ip--- pro15 --- 10.1.16.1, node2 ip--- forwarder3 --- 10.1.16.2
+---node1 ip--- pro16 --- 10.1.17.1, node2 ip--- forwarder3 --- 10.1.16.2
+---node1 ip--- pro17 --- 10.1.18.1, node2 ip--- forwarder3 --- 10.1.16.2
+---node1 ip--- pro18 --- 10.1.19.1, node2 ip--- forwarder3 --- 10.1.16.2
+---node1 ip--- pro19 --- 10.1.20.1, node2 ip--- forwarder3 --- 10.1.16.2
+---node1 ip--- pro20 --- 10.1.21.1, node2 ip--- forwarder4 --- 10.1.21.2
+---node1 ip--- pro21 --- 10.1.22.1, node2 ip--- forwarder4 --- 10.1.21.2
+---node1 ip--- pro22 --- 10.1.23.1, node2 ip--- forwarder4 --- 10.1.21.2
+---node1 ip--- pro23 --- 10.1.24.1, node2 ip--- forwarder4 --- 10.1.21.2
+---node1 ip--- pro24 --- 10.1.25.1, node2 ip--- forwarder4 --- 10.1.21.2
+---node1 ip--- pro25 --- 10.1.26.1, node2 ip--- forwarder5 --- 10.1.26.2
+---node1 ip--- pro26 --- 10.1.27.1, node2 ip--- forwarder5 --- 10.1.26.2
+---node1 ip--- pro27 --- 10.1.28.1, node2 ip--- forwarder5 --- 10.1.26.2
+---node1 ip--- pro28 --- 10.1.29.1, node2 ip--- forwarder5 --- 10.1.26.2
+---node1 ip--- pro29 --- 10.1.30.1, node2 ip--- forwarder5 --- 10.1.26.2
+---node1 ip--- pro30 --- 10.1.31.1, node2 ip--- forwarder6 --- 10.1.31.2
+---node1 ip--- pro31 --- 10.1.32.1, node2 ip--- forwarder6 --- 10.1.31.2
+---node1 ip--- pro32 --- 10.1.33.1, node2 ip--- forwarder6 --- 10.1.31.2
+---node1 ip--- pro33 --- 10.1.34.1, node2 ip--- forwarder6 --- 10.1.31.2
+---node1 ip--- pro34 --- 10.1.35.1, node2 ip--- forwarder6 --- 10.1.31.2
+---node1 ip--- pro35 --- 10.1.36.1, node2 ip--- forwarder7 --- 10.1.36.2
+---node1 ip--- pro36 --- 10.1.37.1, node2 ip--- forwarder7 --- 10.1.36.2
+---node1 ip--- pro37 --- 10.1.38.1, node2 ip--- forwarder7 --- 10.1.36.2
+---node1 ip--- pro38 --- 10.1.39.1, node2 ip--- forwarder7 --- 10.1.36.2
+---node1 ip--- pro39 --- 10.1.40.1, node2 ip--- forwarder7 --- 10.1.36.2
+---node1 ip--- pro40 --- 10.1.41.1, node2 ip--- forwarder8 --- 10.1.41.2
+---node1 ip--- pro41 --- 10.1.42.1, node2 ip--- forwarder8 --- 10.1.41.2
+---node1 ip--- pro42 --- 10.1.43.1, node2 ip--- forwarder8 --- 10.1.41.2
+---node1 ip--- pro43 --- 10.1.44.1, node2 ip--- forwarder8 --- 10.1.41.2
+---node1 ip--- pro44 --- 10.1.45.1, node2 ip--- forwarder8 --- 10.1.41.2
+---node1 ip--- pro45 --- 10.1.46.1, node2 ip--- forwarder9 --- 10.1.46.2
+---node1 ip--- pro46 --- 10.1.47.1, node2 ip--- forwarder9 --- 10.1.46.2
+---node1 ip--- pro47 --- 10.1.48.1, node2 ip--- forwarder9 --- 10.1.46.2
+---node1 ip--- pro48 --- 10.1.49.1, node2 ip--- forwarder9 --- 10.1.46.2
+---node1 ip--- pro49 --- 10.1.50.1, node2 ip--- forwarder9 --- 10.1.46.2
+---node1 ip--- pro50 --- 10.1.51.1, node2 ip--- forwarder10 --- 10.1.51.2
+---node1 ip--- pro51 --- 10.1.52.1, node2 ip--- forwarder10 --- 10.1.51.2
+---node1 ip--- pro52 --- 10.1.53.1, node2 ip--- forwarder10 --- 10.1.51.2
+---node1 ip--- pro53 --- 10.1.54.1, node2 ip--- forwarder10 --- 10.1.51.2
+---node1 ip--- pro54 --- 10.1.55.1, node2 ip--- forwarder10 --- 10.1.51.2
+---node1 ip--- pro55 --- 10.1.56.1, node2 ip--- forwarder11 --- 10.1.56.2
+---node1 ip--- pro56 --- 10.1.57.1, node2 ip--- forwarder11 --- 10.1.56.2
+---node1 ip--- pro57 --- 10.1.58.1, node2 ip--- forwarder11 --- 10.1.56.2
+---node1 ip--- pro58 --- 10.1.59.1, node2 ip--- forwarder11 --- 10.1.56.2
+---node1 ip--- pro59 --- 10.1.60.1, node2 ip--- forwarder11 --- 10.1.56.2
+---node1 ip--- pro60 --- 10.1.61.1, node2 ip--- forwarder12 --- 10.1.61.2
+---node1 ip--- pro61 --- 10.1.62.1, node2 ip--- forwarder12 --- 10.1.61.2
+---node1 ip--- pro62 --- 10.1.63.1, node2 ip--- forwarder12 --- 10.1.61.2
+---node1 ip--- pro63 --- 10.1.64.1, node2 ip--- forwarder12 --- 10.1.61.2
+---node1 ip--- pro64 --- 10.1.65.1, node2 ip--- forwarder12 --- 10.1.61.2
+---node1 ip--- pro65 --- 10.1.66.1, node2 ip--- forwarder13 --- 10.1.66.2
+---node1 ip--- pro66 --- 10.1.67.1, node2 ip--- forwarder13 --- 10.1.66.2
+---node1 ip--- pro67 --- 10.1.68.1, node2 ip--- forwarder13 --- 10.1.66.2
+---node1 ip--- pro68 --- 10.1.69.1, node2 ip--- forwarder13 --- 10.1.66.2
+---node1 ip--- pro69 --- 10.1.70.1, node2 ip--- forwarder13 --- 10.1.66.2
+---node1 ip--- pro70 --- 10.1.71.1, node2 ip--- forwarder14 --- 10.1.71.2
+---node1 ip--- pro71 --- 10.1.72.1, node2 ip--- forwarder14 --- 10.1.71.2
+---node1 ip--- pro72 --- 10.1.73.1, node2 ip--- forwarder14 --- 10.1.71.2
+---node1 ip--- pro73 --- 10.1.74.1, node2 ip--- forwarder14 --- 10.1.71.2
+---node1 ip--- pro74 --- 10.1.75.1, node2 ip--- forwarder14 --- 10.1.71.2
+---node1 ip--- pro75 --- 10.1.76.1, node2 ip--- forwarder15 --- 10.1.76.2
+---node1 ip--- pro76 --- 10.1.77.1, node2 ip--- forwarder15 --- 10.1.76.2
+---node1 ip--- pro77 --- 10.1.78.1, node2 ip--- forwarder15 --- 10.1.76.2
+---node1 ip--- pro78 --- 10.1.79.1, node2 ip--- forwarder15 --- 10.1.76.2
+---node1 ip--- pro79 --- 10.1.80.1, node2 ip--- forwarder15 --- 10.1.76.2
+---node1 ip--- pro80 --- 10.1.81.1, node2 ip--- forwarder16 --- 10.1.81.2
+---node1 ip--- pro81 --- 10.1.82.1, node2 ip--- forwarder16 --- 10.1.81.2
+---node1 ip--- pro82 --- 10.1.83.1, node2 ip--- forwarder16 --- 10.1.81.2
+---node1 ip--- pro83 --- 10.1.84.1, node2 ip--- forwarder16 --- 10.1.81.2
+---node1 ip--- pro84 --- 10.1.85.1, node2 ip--- forwarder16 --- 10.1.81.2
+---node1 ip--- pro85 --- 10.1.86.1, node2 ip--- forwarder17 --- 10.1.86.2
+---node1 ip--- pro86 --- 10.1.87.1, node2 ip--- forwarder17 --- 10.1.86.2
+---node1 ip--- pro87 --- 10.1.88.1, node2 ip--- forwarder17 --- 10.1.86.2
+---node1 ip--- pro88 --- 10.1.89.1, node2 ip--- forwarder17 --- 10.1.86.2
+---node1 ip--- pro89 --- 10.1.90.1, node2 ip--- forwarder17 --- 10.1.86.2
+---node1 ip--- pro90 --- 10.1.91.1, node2 ip--- forwarder18 --- 10.1.91.2
+---node1 ip--- pro91 --- 10.1.92.1, node2 ip--- forwarder18 --- 10.1.91.2
+---node1 ip--- pro92 --- 10.1.93.1, node2 ip--- forwarder18 --- 10.1.91.2
+---node1 ip--- pro93 --- 10.1.94.1, node2 ip--- forwarder18 --- 10.1.91.2
+---node1 ip--- pro94 --- 10.1.95.1, node2 ip--- forwarder18 --- 10.1.91.2
+---node1 ip--- pro95 --- 10.1.96.1, node2 ip--- forwarder19 --- 10.1.96.2
+---node1 ip--- pro96 --- 10.1.97.1, node2 ip--- forwarder19 --- 10.1.96.2
+---node1 ip--- pro97 --- 10.1.98.1, node2 ip--- forwarder19 --- 10.1.96.2
+---node1 ip--- pro98 --- 10.1.99.1, node2 ip--- forwarder19 --- 10.1.96.2
+---node1 ip--- pro99 --- 10.1.100.1, node2 ip--- forwarder19 --- 10.1.96.2
+---node1 ip--- con0 --- 10.1.101.1, node2 ip--- forwarder20 --- 10.1.101.2
+---node1 ip--- forwarder0 --- 10.1.1.2, node2 ip--- agg0 --- 10.2.1.2
+---node1 ip--- agg0 --- 10.2.1.2, node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder1 --- 10.1.6.2, node2 ip--- agg1 --- 10.2.3.2
+---node1 ip--- agg1 --- 10.2.3.2, node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder2 --- 10.1.11.2, node2 ip--- agg2 --- 10.2.5.2
+---node1 ip--- agg2 --- 10.2.5.2, node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder3 --- 10.1.16.2, node2 ip--- agg3 --- 10.2.7.2
+---node1 ip--- agg3 --- 10.2.7.2, node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder4 --- 10.1.21.2, node2 ip--- agg4 --- 10.2.9.2
+---node1 ip--- agg4 --- 10.2.9.2, node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder5 --- 10.1.26.2, node2 ip--- agg5 --- 10.2.11.2
+---node1 ip--- agg5 --- 10.2.11.2, node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder6 --- 10.1.31.2, node2 ip--- agg6 --- 10.2.13.2
+---node1 ip--- agg6 --- 10.2.13.2, node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder7 --- 10.1.36.2, node2 ip--- agg7 --- 10.2.15.2
+---node1 ip--- agg7 --- 10.2.15.2, node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder8 --- 10.1.41.2, node2 ip--- agg8 --- 10.2.17.2
+---node1 ip--- agg8 --- 10.2.17.2, node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder9 --- 10.1.46.2, node2 ip--- agg9 --- 10.2.19.2
+---node1 ip--- agg9 --- 10.2.19.2, node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder10 --- 10.1.51.2, node2 ip--- agg10 --- 10.2.21.2
+---node1 ip--- agg10 --- 10.2.21.2, node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder11 --- 10.1.56.2, node2 ip--- agg11 --- 10.2.23.2
+---node1 ip--- agg11 --- 10.2.23.2, node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder12 --- 10.1.61.2, node2 ip--- agg12 --- 10.2.25.2
+---node1 ip--- agg12 --- 10.2.25.2, node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder13 --- 10.1.66.2, node2 ip--- agg13 --- 10.2.27.2
+---node1 ip--- agg13 --- 10.2.27.2, node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder14 --- 10.1.71.2, node2 ip--- agg14 --- 10.2.29.2
+---node1 ip--- agg14 --- 10.2.29.2, node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder15 --- 10.1.76.2, node2 ip--- agg15 --- 10.2.31.2
+---node1 ip--- agg15 --- 10.2.31.2, node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder16 --- 10.1.81.2, node2 ip--- agg16 --- 10.2.33.2
+---node1 ip--- agg16 --- 10.2.33.2, node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder17 --- 10.1.86.2, node2 ip--- agg17 --- 10.2.35.2
+---node1 ip--- agg17 --- 10.2.35.2, node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder18 --- 10.1.91.2, node2 ip--- agg18 --- 10.2.37.2
+---node1 ip--- agg18 --- 10.2.37.2, node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder19 --- 10.1.96.2, node2 ip--- agg19 --- 10.2.39.2
+---node1 ip--- agg19 --- 10.2.39.2, node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder0 --- 10.1.1.2, node2 ip--- agg20 --- 10.2.41.2
+---node1 ip--- agg20 --- 10.2.41.2, node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder1 --- 10.1.6.2, node2 ip--- agg21 --- 10.2.43.2
+---node1 ip--- agg21 --- 10.2.43.2, node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder2 --- 10.1.11.2, node2 ip--- agg22 --- 10.2.45.2
+---node1 ip--- agg22 --- 10.2.45.2, node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder3 --- 10.1.16.2, node2 ip--- agg23 --- 10.2.47.2
+---node1 ip--- agg23 --- 10.2.47.2, node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder4 --- 10.1.21.2, node2 ip--- agg24 --- 10.2.49.2
+---node1 ip--- agg24 --- 10.2.49.2, node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder5 --- 10.1.26.2, node2 ip--- agg25 --- 10.2.51.2
+---node1 ip--- agg25 --- 10.2.51.2, node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder6 --- 10.1.31.2, node2 ip--- agg26 --- 10.2.53.2
+---node1 ip--- agg26 --- 10.2.53.2, node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder7 --- 10.1.36.2, node2 ip--- agg27 --- 10.2.55.2
+---node1 ip--- agg27 --- 10.2.55.2, node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder8 --- 10.1.41.2, node2 ip--- agg28 --- 10.2.57.2
+---node1 ip--- agg28 --- 10.2.57.2, node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder9 --- 10.1.46.2, node2 ip--- agg29 --- 10.2.59.2
+---node1 ip--- agg29 --- 10.2.59.2, node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder10 --- 10.1.51.2, node2 ip--- agg30 --- 10.2.61.2
+---node1 ip--- agg30 --- 10.2.61.2, node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder11 --- 10.1.56.2, node2 ip--- agg31 --- 10.2.63.2
+---node1 ip--- agg31 --- 10.2.63.2, node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder12 --- 10.1.61.2, node2 ip--- agg32 --- 10.2.65.2
+---node1 ip--- agg32 --- 10.2.65.2, node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder13 --- 10.1.66.2, node2 ip--- agg33 --- 10.2.67.2
+---node1 ip--- agg33 --- 10.2.67.2, node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder14 --- 10.1.71.2, node2 ip--- agg34 --- 10.2.69.2
+---node1 ip--- agg34 --- 10.2.69.2, node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder15 --- 10.1.76.2, node2 ip--- agg35 --- 10.2.71.2
+---node1 ip--- agg35 --- 10.2.71.2, node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder16 --- 10.1.81.2, node2 ip--- agg36 --- 10.2.73.2
+---node1 ip--- agg36 --- 10.2.73.2, node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder17 --- 10.1.86.2, node2 ip--- agg37 --- 10.2.75.2
+---node1 ip--- agg37 --- 10.2.75.2, node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder18 --- 10.1.91.2, node2 ip--- agg38 --- 10.2.77.2
+---node1 ip--- agg38 --- 10.2.77.2, node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder19 --- 10.1.96.2, node2 ip--- agg39 --- 10.2.79.2
+---node1 ip--- agg39 --- 10.2.79.2, node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder0 --- 10.1.1.2, node2 ip--- agg40 --- 10.2.81.2
+---node1 ip--- agg40 --- 10.2.81.2, node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder1 --- 10.1.6.2, node2 ip--- agg41 --- 10.2.83.2
+---node1 ip--- agg41 --- 10.2.83.2, node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder2 --- 10.1.11.2, node2 ip--- agg42 --- 10.2.85.2
+---node1 ip--- agg42 --- 10.2.85.2, node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder3 --- 10.1.16.2, node2 ip--- agg43 --- 10.2.87.2
+---node1 ip--- agg43 --- 10.2.87.2, node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder4 --- 10.1.21.2, node2 ip--- agg44 --- 10.2.89.2
+---node1 ip--- agg44 --- 10.2.89.2, node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder5 --- 10.1.26.2, node2 ip--- agg45 --- 10.2.91.2
+---node1 ip--- agg45 --- 10.2.91.2, node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder6 --- 10.1.31.2, node2 ip--- agg46 --- 10.2.93.2
+---node1 ip--- agg46 --- 10.2.93.2, node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder7 --- 10.1.36.2, node2 ip--- agg47 --- 10.2.95.2
+---node1 ip--- agg47 --- 10.2.95.2, node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder8 --- 10.1.41.2, node2 ip--- agg48 --- 10.2.97.2
+---node1 ip--- agg48 --- 10.2.97.2, node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder9 --- 10.1.46.2, node2 ip--- agg49 --- 10.2.99.2
+---node1 ip--- agg49 --- 10.2.99.2, node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder20 --- 10.1.101.2, node2 ip--- forwarder21 --- 10.2.2.2
+---node1 ip--- forwarder21 --- 10.2.2.2, node2 ip--- forwarder22 --- 10.2.4.2
+---node1 ip--- forwarder21 --- 10.2.2.2, node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder21 --- 10.2.2.2, node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder21 --- 10.2.2.2, node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder22 --- 10.2.4.2, node2 ip--- forwarder23 --- 10.2.6.2
+---node1 ip--- forwarder22 --- 10.2.4.2, node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder22 --- 10.2.4.2, node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder23 --- 10.2.6.2, node2 ip--- forwarder24 --- 10.2.8.2
+---node1 ip--- forwarder23 --- 10.2.6.2, node2 ip--- forwarder25 --- 10.2.10.2
+---node1 ip--- forwarder24 --- 10.2.8.2, node2 ip--- forwarder25 --- 10.2.10.2
+0x55f65e3cce90 SendDataPacket seq: 1, size 1210, from 10.1.1.1 to 10.2.1.2 isRetransmission true at time 2.018
+0x55f65e3cce90 SendDataPacket seq: 1, size 1210, from 10.1.1.1 to 10.2.1.2 isRetransmission true at time 2.054
+0x55f65e3cce90 SendDataPacket seq: 1, size 1210, from 10.1.1.1 to 10.2.1.2 isRetransmission true at time 2.126
+0x55f65e3cce90 SendDataPacket seq: 1, size 1210, from 10.1.1.1 to 10.2.1.2 isRetransmission true at time 2.27
+0x55f65e3cce90 SendDataPacket seq: 1, size 1210, from 10.1.1.1 to 10.2.1.2 isRetransmission true at time 2.558
+0x55f65e3cce90 SendDataPacket seq: 1, size 1210, from 10.1.1.1 to 10.2.1.2 isRetransmission true at time 3.134
+0x55f65e3cce90 SendDataPacket seq: 1, size 1210, from 10.1.1.1 to 10.2.1.2 isRetransmission true at time 4.286
+0x55f65e3cce90 SendDataPacket seq: 1, size 1210, from 10.1.1.1 to 10.2.1.2 isRetransmission true at time 6.59
+0x55f65e3cce90 SendDataPacket seq: 1, size 1210, from 10.1.1.1 to 10.2.1.2 isRetransmission true at time 11.198
+0x55f65e3cce90 SendDataPacket seq: 1, size 1210, from 10.1.1.1 to 10.2.1.2 isRetransmission true at time 20.414
+0x55f65e3cce90 SendDataPacket seq: 1, size 1210, from 10.1.1.1 to 10.2.1.2 isRetransmission true at time 38.846
+0x55f65e3cce90 SendDataPacket seq: 1, size 1210, from 10.1.1.1 to 10.2.1.2 isRetransmission true at time 75.71
+0x55f65e3cce90 SendDataPacket seq: 1, size 1210, from 10.1.1.1 to 10.2.1.2 isRetransmission true at time 135.71
+0x55f65e3cce90 SendDataPacket seq: 1, size 1210, from 10.1.1.1 to 10.2.1.2 isRetransmission true at time 195.71
+ The tp filename is: ./log/tp/agg0+pro1_TP.txt
+ The tp filename is: ./log/tp/agg0+pro2_TP.txt
+ The tp filename is: ./log/tp/agg0+pro3_TP.txt
+ The tp filename is: ./log/tp/agg0+pro4_TP.txt
+ The tp filename is: ./log/tp/agg3+pro15_TP.txt
+ The tp filename is: ./log/tp/agg3+pro16_TP.txt
+ The tp filename is: ./log/tp/agg3+pro17_TP.txt
+ The tp filename is: ./log/tp/agg3+pro18_TP.txt
+ The tp filename is: ./log/tp/agg3+pro19_TP.txt
+0x55f65e867500 In DoDispose, localAddressStr: 10.2.21.2 peerAddressStr: 10.1.51.1 at time: 200
+ The tp filename is: ./log/tp/agg10+pro50_TP.txt
+0x55f65e86a000 In DoDispose, localAddressStr: 10.2.21.2 peerAddressStr: 10.1.52.1 at time: 200
+ The tp filename is: ./log/tp/agg10+pro51_TP.txt
+0x55f65e86cab0 In DoDispose, localAddressStr: 10.2.21.2 peerAddressStr: 10.1.53.1 at time: 200
+ The tp filename is: ./log/tp/agg10+pro52_TP.txt
+0x55f65e86f560 In DoDispose, localAddressStr: 10.2.21.2 peerAddressStr: 10.1.54.1 at time: 200
+ The tp filename is: ./log/tp/agg10+pro53_TP.txt
+0x55f65e872010 In DoDispose, localAddressStr: 10.2.21.2 peerAddressStr: 10.1.55.1 at time: 200
+ The tp filename is: ./log/tp/agg10+pro54_TP.txt
+ The tp filename is: ./log/tp/agg15+pro75_TP.txt
+ The tp filename is: ./log/tp/agg15+pro76_TP.txt
+ The tp filename is: ./log/tp/agg15+pro77_TP.txt
+ The tp filename is: ./log/tp/agg15+pro78_TP.txt
+ The tp filename is: ./log/tp/agg15+pro79_TP.txt
+Prefix: 100, Iteration: 10000 - Simulation completed successfully.
+Printing ipToNodeName:
+IP: 10.2.99.2 -> NodeName: agg49
+IP: 10.2.95.2 -> NodeName: agg47
+IP: 10.2.91.2 -> NodeName: agg45
+IP: 10.2.89.2 -> NodeName: agg44
+IP: 10.2.87.2 -> NodeName: agg43
+IP: 10.2.81.2 -> NodeName: agg40
+IP: 10.2.79.2 -> NodeName: agg39
+IP: 10.2.77.2 -> NodeName: agg38
+IP: 10.2.69.2 -> NodeName: agg34
+IP: 10.2.65.2 -> NodeName: agg32
+IP: 10.2.61.2 -> NodeName: agg30
+IP: 10.2.55.2 -> NodeName: agg27
+IP: 10.2.51.2 -> NodeName: agg25
+IP: 10.2.49.2 -> NodeName: agg24
+IP: 10.2.45.2 -> NodeName: agg22
+IP: 10.2.41.2 -> NodeName: agg20
+IP: 10.1.101.2 -> NodeName: forwarder20
+IP: 10.1.100.1 -> NodeName: pro99
+IP: 10.1.98.1 -> NodeName: pro97
+IP: 10.1.97.1 -> NodeName: pro96
+IP: 10.1.92.1 -> NodeName: pro91
+IP: 10.1.90.1 -> NodeName: pro89
+IP: 10.1.88.1 -> NodeName: pro87
+IP: 10.2.73.2 -> NodeName: agg36
+IP: 10.1.35.1 -> NodeName: pro34
+IP: 10.2.37.2 -> NodeName: agg18
+IP: 10.1.31.2 -> NodeName: forwarder6
+IP: 10.1.33.1 -> NodeName: pro32
+IP: 10.1.94.1 -> NodeName: pro93
+IP: 10.1.52.1 -> NodeName: pro51
+IP: 10.1.24.1 -> NodeName: pro23
+IP: 10.1.39.1 -> NodeName: pro38
+IP: 10.1.27.1 -> NodeName: pro26
+IP: 10.1.22.1 -> NodeName: pro21
+IP: 10.1.19.1 -> NodeName: pro18
+IP: 10.2.83.2 -> NodeName: agg41
+IP: 10.1.71.2 -> NodeName: forwarder14
+IP: 10.1.36.1 -> NodeName: pro35
+IP: 10.2.57.2 -> NodeName: agg28
+IP: 10.1.16.1 -> NodeName: pro15
+IP: 10.1.15.1 -> NodeName: pro14
+IP: 10.1.14.1 -> NodeName: pro13
+IP: 10.1.16.2 -> NodeName: forwarder3
+IP: 10.1.99.1 -> NodeName: pro98
+IP: 10.1.13.1 -> NodeName: pro12
+IP: 10.1.12.1 -> NodeName: pro11
+IP: 10.1.96.2 -> NodeName: forwarder19
+IP: 10.1.86.1 -> NodeName: pro85
+IP: 10.1.42.1 -> NodeName: pro41
+IP: 10.1.31.1 -> NodeName: pro30
+IP: 10.2.43.2 -> NodeName: agg21
+IP: 10.1.26.1 -> NodeName: pro25
+IP: 10.1.55.1 -> NodeName: pro54
+IP: 10.2.59.2 -> NodeName: agg29
+IP: 10.1.6.2 -> NodeName: forwarder1
+IP: 10.1.86.2 -> NodeName: forwarder17
+IP: 10.1.29.1 -> NodeName: pro28
+IP: 10.1.5.1 -> NodeName: pro4
+IP: 10.2.10.2 -> NodeName: forwarder25
+IP: 10.2.7.2 -> NodeName: agg3
+IP: 10.1.56.1 -> NodeName: pro55
+IP: 10.2.67.2 -> NodeName: agg33
+IP: 10.1.87.1 -> NodeName: pro86
+IP: 10.2.23.2 -> NodeName: agg11
+IP: 10.1.1.2 -> NodeName: forwarder0
+IP: 10.1.91.2 -> NodeName: forwarder18
+IP: 10.1.11.2 -> NodeName: forwarder2
+IP: 10.1.68.1 -> NodeName: pro67
+IP: 10.1.10.1 -> NodeName: pro9
+IP: 10.2.63.2 -> NodeName: agg31
+IP: 10.2.13.2 -> NodeName: agg6
+IP: 10.1.30.1 -> NodeName: pro29
+IP: 10.1.8.1 -> NodeName: pro7
+IP: 10.1.23.1 -> NodeName: pro22
+IP: 10.1.2.1 -> NodeName: pro1
+IP: 10.1.89.1 -> NodeName: pro88
+IP: 10.1.56.2 -> NodeName: forwarder11
+IP: 10.1.66.1 -> NodeName: pro65
+IP: 10.2.1.2 -> NodeName: agg0
+IP: 10.1.36.2 -> NodeName: forwarder7
+IP: 10.1.57.1 -> NodeName: pro56
+IP: 10.2.15.2 -> NodeName: agg7
+IP: 10.1.9.1 -> NodeName: pro8
+IP: 10.1.21.2 -> NodeName: forwarder4
+IP: 10.2.4.2 -> NodeName: forwarder22
+IP: 10.1.59.1 -> NodeName: pro58
+IP: 10.1.73.1 -> NodeName: pro72
+IP: 10.2.6.2 -> NodeName: forwarder23
+IP: 10.1.69.1 -> NodeName: pro68
+IP: 10.1.4.1 -> NodeName: pro3
+IP: 10.1.26.2 -> NodeName: forwarder5
+IP: 10.1.74.1 -> NodeName: pro73
+IP: 10.1.96.1 -> NodeName: pro95
+IP: 10.2.3.2 -> NodeName: agg1
+IP: 10.2.9.2 -> NodeName: agg4
+IP: 10.1.71.1 -> NodeName: pro70
+IP: 10.1.84.1 -> NodeName: pro83
+IP: 10.1.20.1 -> NodeName: pro19
+IP: 10.1.47.1 -> NodeName: pro46
+IP: 10.2.11.2 -> NodeName: agg5
+IP: 10.2.17.2 -> NodeName: agg8
+IP: 10.2.39.2 -> NodeName: agg19
+IP: 10.1.28.1 -> NodeName: pro27
+IP: 10.1.95.1 -> NodeName: pro94
+IP: 10.1.21.1 -> NodeName: pro20
+IP: 10.2.5.2 -> NodeName: agg2
+IP: 10.2.19.2 -> NodeName: agg9
+IP: 10.2.97.2 -> NodeName: agg48
+IP: 10.2.53.2 -> NodeName: agg26
+IP: 10.1.37.1 -> NodeName: pro36
+IP: 10.1.65.1 -> NodeName: pro64
+IP: 10.1.17.1 -> NodeName: pro16
+IP: 10.2.8.2 -> NodeName: forwarder24
+IP: 10.1.38.1 -> NodeName: pro37
+IP: 10.1.62.1 -> NodeName: pro61
+IP: 10.1.40.1 -> NodeName: pro39
+IP: 10.1.43.1 -> NodeName: pro42
+IP: 10.1.44.1 -> NodeName: pro43
+IP: 10.2.47.2 -> NodeName: agg23
+IP: 10.1.45.1 -> NodeName: pro44
+IP: 10.1.46.1 -> NodeName: pro45
+IP: 10.1.49.1 -> NodeName: pro48
+IP: 10.2.27.2 -> NodeName: agg13
+IP: 10.1.18.1 -> NodeName: pro17
+IP: 10.1.50.1 -> NodeName: pro49
+IP: 10.1.7.1 -> NodeName: pro6
+IP: 10.1.51.1 -> NodeName: pro50
+IP: 10.2.71.2 -> NodeName: agg35
+IP: 10.1.51.2 -> NodeName: forwarder10
+IP: 10.1.6.1 -> NodeName: pro5
+IP: 10.2.21.2 -> NodeName: agg10
+IP: 10.1.32.1 -> NodeName: pro31
+IP: 10.2.25.2 -> NodeName: agg12
+IP: 10.1.60.1 -> NodeName: pro59
+IP: 10.1.91.1 -> NodeName: pro90
+IP: 10.2.29.2 -> NodeName: agg14
+IP: 10.2.93.2 -> NodeName: agg46
+IP: 10.1.48.1 -> NodeName: pro47
+IP: 10.2.31.2 -> NodeName: agg15
+IP: 10.1.1.1 -> NodeName: pro0
+IP: 10.1.66.2 -> NodeName: forwarder13
+IP: 10.2.33.2 -> NodeName: agg16
+IP: 10.1.61.1 -> NodeName: pro60
+IP: 10.2.35.2 -> NodeName: agg17
+IP: 10.1.101.1 -> NodeName: con0
+IP: 10.1.53.1 -> NodeName: pro52
+IP: 10.1.3.1 -> NodeName: pro2
+IP: 10.1.81.1 -> NodeName: pro80
+IP: 10.1.93.1 -> NodeName: pro92
+IP: 10.1.54.1 -> NodeName: pro53
+IP: 10.1.64.1 -> NodeName: pro63
+IP: 10.1.58.1 -> NodeName: pro57
+IP: 10.1.46.2 -> NodeName: forwarder9
+IP: 10.1.61.2 -> NodeName: forwarder12
+IP: 10.1.63.1 -> NodeName: pro62
+IP: 10.1.80.1 -> NodeName: pro79
+IP: 10.1.41.2 -> NodeName: forwarder8
+IP: 10.1.67.1 -> NodeName: pro66
+IP: 10.2.2.2 -> NodeName: forwarder21
+IP: 10.1.72.1 -> NodeName: pro71
+IP: 10.1.34.1 -> NodeName: pro33
+IP: 10.1.75.1 -> NodeName: pro74
+IP: 10.2.75.2 -> NodeName: agg37
+IP: 10.1.41.1 -> NodeName: pro40
+IP: 10.1.70.1 -> NodeName: pro69
+IP: 10.1.76.1 -> NodeName: pro75
+IP: 10.1.83.1 -> NodeName: pro82
+IP: 10.1.76.2 -> NodeName: forwarder15
+IP: 10.1.77.1 -> NodeName: pro76
+IP: 10.1.78.1 -> NodeName: pro77
+IP: 10.1.79.1 -> NodeName: pro78
+IP: 10.2.85.2 -> NodeName: agg42
+IP: 10.1.11.1 -> NodeName: pro10
+IP: 10.1.81.2 -> NodeName: forwarder16
+IP: 10.1.82.1 -> NodeName: pro81
+IP: 10.1.25.1 -> NodeName: pro24
+IP: 10.1.85.1 -> NodeName: pro84
+NewToOldIpMap contents:
+New IP: 10.2.62.1 -> Old IP: 10.2.61.2
+New IP: 10.2.52.1 -> Old IP: 10.2.51.2
+New IP: 10.2.46.1 -> Old IP: 10.2.45.2
+New IP: 10.2.42.1 -> Old IP: 10.2.41.2
+New IP: 10.2.40.1 -> Old IP: 10.2.39.2
+New IP: 10.2.34.1 -> Old IP: 10.2.33.2
+New IP: 10.2.30.1 -> Old IP: 10.2.29.2
+New IP: 10.2.28.1 -> Old IP: 10.2.27.2
+New IP: 10.2.4.1 -> Old IP: 10.2.3.2
+New IP: 10.2.6.1 -> Old IP: 10.2.5.2
+New IP: 10.2.2.1 -> Old IP: 10.2.1.2
+New IP: 10.2.8.1 -> Old IP: 10.2.7.2
+New IP: 10.2.36.1 -> Old IP: 10.2.35.2
+New IP: 10.2.32.1 -> Old IP: 10.2.31.2
+New IP: 10.2.10.1 -> Old IP: 10.2.9.2
+New IP: 10.2.14.1 -> Old IP: 10.2.13.2
+New IP: 10.2.16.1 -> Old IP: 10.2.15.2
+New IP: 10.2.18.1 -> Old IP: 10.2.17.2
+New IP: 10.2.26.1 -> Old IP: 10.2.25.2
+New IP: 10.2.12.1 -> Old IP: 10.2.11.2
+New IP: 10.2.20.1 -> Old IP: 10.2.19.2
+New IP: 10.2.38.1 -> Old IP: 10.2.37.2
+New IP: 10.2.22.1 -> Old IP: 10.2.21.2
+New IP: 10.2.24.1 -> Old IP: 10.2.23.2
 
 #################### SIMULATION END ####################
 

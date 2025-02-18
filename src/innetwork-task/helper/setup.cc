@@ -142,11 +142,10 @@ void BuildTopo(std::string &linkFile, NodeContainer &consumer, NodeContainer &pr
     while (std::getline(infile, line)) {
         std::istringstream iss(line);
         std::string node1, node2, dataRate, delay, queueSize;
-        double lossRate;
-        if (!(iss >> node1 >> node2 >> dataRate >> lossRate >> delay >> queueSize)) {
+        double linkCost;
+        if (!(iss >> node1 >> node2 >> dataRate >> linkCost >> delay >> queueSize)) {
             continue; // Skip malformed lines
         }
-        std::cout << "lossRate: " << lossRate << std::endl;
 
         // Configure P2P link parameters
         p2p.SetDeviceAttribute("DataRate", StringValue(dataRate));
@@ -180,6 +179,16 @@ void BuildTopo(std::string &linkFile, NodeContainer &consumer, NodeContainer &pr
                   << ", node2 ip--- " << node2 << " --- " << node2Addr << std::endl;
         ipToNodeName[Ipv4AddressToString(node1Addr)] = node1;
         ipToNodeName[Ipv4AddressToString(node2Addr)] = node2;
+
+        // test for link loss rate.
+        // If either node is agg10, attach an error model with 1% loss rate.
+        if (node1 == "pro0" || node2 == "pro0") {
+            Ptr<RateErrorModel> errorModel = CreateObject<RateErrorModel>();
+            // 1% loss rate: 0.01 probability
+            errorModel->SetAttribute("ErrorRate", DoubleValue(0.01));
+            d1d2.Get(0)->SetAttribute("ReceiveErrorModel", PointerValue(errorModel));
+            d1d2.Get(1)->SetAttribute("ReceiveErrorModel", PointerValue(errorModel));
+        }
     }
 
     // Finalize network setup

@@ -3387,8 +3387,8 @@ TcpSocketBase::SendDataPacket(SequenceNumber32 seq, uint32_t maxSize, bool withA
     // Update highTxMark
     m_tcb->m_highTxMark = std::max(seq + sz, m_tcb->m_highTxMark.Get());
 
-
-    if (m_endPoint)
+    // DIY function: output retransmission info
+    if(isRetransmission)
     {
         if (this->localAddressStr.empty())
         {
@@ -3397,15 +3397,15 @@ TcpSocketBase::SendDataPacket(SequenceNumber32 seq, uint32_t maxSize, bool withA
             this->localAddressStr = Ipv4AddressToString(localAddress);
             // NS_LOG_UNCOND("localAddressStr " << this->localAddressStr);
         }
-        // Todo: fix the reason why the first few iterations cannot be output?
-        if(isRetransmission)
-            NS_LOG_UNCOND(this << " SendDataPacket seq: " << seq
-                            << ", from " << this->localAddressStr
-                            << " to " << m_endPoint->GetPeerAddress()
-                            << " isRetransmission " << isRetransmission
-                            << " at time " << Simulator::Now().GetSeconds()
-                            );
+        NS_LOG_UNCOND(this << " SendDataPacket seq: " << seq
+                        << ", size " << sz
+                        << ", from " << this->localAddressStr
+                        << " to " << m_endPoint->GetPeerAddress()
+                        << " isRetransmission " << isRetransmission
+                        << " at time " << Simulator::Now().GetSeconds()
+                        );
     }
+
     RttStartRecord(seq.GetValue(), sz);
 
     return sz;

@@ -13,8 +13,8 @@ fi
 git add .
 
 # Commit the changes
-git commit -m "TCP-Agg v-11.0-release:
-(1) optimize the 'TCPclient' and 'TCPserver'.
+git commit -m "TCP-Agg v-12.0-mirror:
+(1) Keep the mirror break point in 2025/02/18. In case there are bugs in the following days.
 "
 
 # Rename current branch to tcp-baseline (if needed)

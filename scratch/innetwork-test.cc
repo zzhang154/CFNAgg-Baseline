@@ -89,112 +89,124 @@ int main(int argc, char *argv[]) {
 
     // std::vector<std::string> prefixFileNames = {"-bin8-no", "-bin16-no", "-bin32-no"}; // Example prefix file names
     // std::vector<std::string> prefixFileNames = {"-1-fwd-2-agg"};
-    std::vector<std::string> prefixFileNames = {"50"};
+    std::vector<std::string> prefixFileNames = {"10", "50", "100"};
     // std::vector<std::string> prefixFileNames = {"-no-fwd3"};
     // std::vector<uint16_t> iterationNumbers = {1000, 2000, 3000, 4000, 5000, 10000}; // Example iteration numbers
-    std::vector<uint16_t> iterationNumbers = {30};
+    std::vector<uint16_t> iterationNumbers = {10000};
+    // Example buffer sizes (in bytes)
+    std::vector<uint32_t> bufferSizes = {20000, 24000};
 
     const std::string outputFilename = "simulation_results.txt"; // Shared output file
 
     // Set the Time resolution once before the loops
     Time::SetResolution(Time::NS);
 
-    for (std::string& prefix : prefixFileNames) {
-        routerFilePath = currentDir + "/scratch/data/router" + prefix + ".txt";
-        linkFilePath = currentDir + "/scratch/data/link" + prefix + ".txt";
-        aggGroupFilePath = currentDir + "/scratch/data/aggtree" + prefix + ".txt";
+    for (uint32_t bufSize : bufferSizes) {
+        // Set the default attributes before creating any TCP sockets.
+        Config::SetDefault("ns3::TcpSocket::SndBufSize", UintegerValue(bufSize));
+        Config::SetDefault("ns3::TcpSocket::RcvBufSize", UintegerValue(bufSize));
 
-        for (uint16_t itr : iterationNumbers) {
-            std::cout << "\n\n#################### SIMULATION PARAMETERS ####################\n\n\n";
-            std::cout << "Prefix: " << prefix << " Iteration: " << itr << " Vector Size: " << vsize << " Congestion Control Algorithm: " << cc << std::endl;
-            std::cout << "\n\n#################### SIMULATION SET-UP ####################\n\n\n";
+    std::cout << "---- Starting simulation with SndBufSize/RcvBufSize = " << bufSize << " bytes ----" << std::endl;
 
-            LogLevel log_precision = LOG_LEVEL_LOGIC;
+        for (std::string& prefix : prefixFileNames) {
+            routerFilePath = currentDir + "/scratch/data/router" + prefix + ".txt";
+            linkFilePath = currentDir + "/scratch/data/link" + prefix + ".txt";
+            aggGroupFilePath = currentDir + "/scratch/data/aggtree" + prefix + ".txt";
 
-            LogComponentEnableAll(LOG_PREFIX_TIME);
-            LogComponentEnableAll(LOG_PREFIX_FUNC);
-            LogComponentEnableAll(LOG_PREFIX_NODE);
+            for (uint16_t itr : iterationNumbers) {
+                std::cout << "\n\n#################### SIMULATION PARAMETERS ####################\n\n\n";
+                std::cout << "Prefix: " << prefix << " Iteration: " << itr << " Vector Size: " << vsize << " Congestion Control Algorithm: " << cc << std::endl;
+                std::cout << "\n\n#################### SIMULATION SET-UP ####################\n\n\n";
 
-            LogComponentEnable("InnetworkAggregationInterface", log_precision);
-            // LogComponentEnable("Consumer", LOG_LEVEL_ALL);
-            // LogComponentEnable("Aggregator", LOG_LEVEL_ALL);
-            // LogComponentEnable("Producer", LOG_LEVEL_ALL);
-            // LogComponentEnable("Setup", LOG_LEVEL_ALL);
-            
-            LogComponentDisable("InnetworkAggregationInterface", LOG_LEVEL_ALL);
-            LogComponentEnable("InnetworkAggregationInterface", LOG_LEVEL_INFO);
-            // LogComponentEnable("InnetworkAggregationInterface", LOG_LEVEL_ALL);
- 
-            // LogComponentEnable("TcpSocketBase", LOG_LEVEL_ALL);
+                LogLevel log_precision = LOG_LEVEL_LOGIC;
 
-            // LogComponentDisable("Consumer", LOG_LEVEL_ALL);
-            // LogComponentDisable("Aggregator", LOG_LEVEL_ALL);
-            // LogComponentDisable("Producer", LOG_LEVEL_ALL);
-            // // LogComponentDisable("InnetworkAggregationInterface", LOG_LEVEL_ALL);
-            LogComponentDisable("TCPclient", LOG_LEVEL_ALL);
-            LogComponentDisable("TCPserver", LOG_LEVEL_ALL);
-            LogComponentDisable("TcpSocketBase", LOG_LEVEL_ALL);
-            LogComponentDisable("TcpRxBuffer", LOG_LEVEL_ALL);
-            LogComponentDisable("TcpTxBuffer", LOG_LEVEL_ALL);
-            LogComponentDisable("Packet", LOG_LEVEL_DEBUG);
+                LogComponentEnableAll(LOG_PREFIX_TIME);
+                LogComponentEnableAll(LOG_PREFIX_FUNC);
+                LogComponentEnableAll(LOG_PREFIX_NODE);
 
-            // LogComponentEnable("PointToPointNetDevice", LOG_LEVEL_ALL);
-            // LogComponentEnable("LoopbackNetDevice", LOG_LEVEL_ALL);
-            // LogComponentEnable("Ipv4L3Protocol", LOG_LEVEL_ALL);
-            // LogComponentEnable("Ipv4Interface", LOG_LEVEL_ALL);
-            // LogComponentEnable("Ipv4GlobalRouting", LOG_LEVEL_ALL);
-            // LogComponentEnable("Ipv4ListRouting", LOG_LEVEL_ALL);
+                LogComponentEnable("InnetworkAggregationInterface", log_precision);
+                // LogComponentEnable("Consumer", LOG_LEVEL_ALL);
+                // LogComponentEnable("Aggregator", LOG_LEVEL_ALL);
+                // LogComponentEnable("Producer", LOG_LEVEL_ALL);
+                // LogComponentEnable("Setup", LOG_LEVEL_ALL);
+                
+                LogComponentDisable("InnetworkAggregationInterface", LOG_LEVEL_ALL);
+                LogComponentEnable("InnetworkAggregationInterface", LOG_LEVEL_INFO);
+                // LogComponentEnable("InnetworkAggregationInterface", LOG_LEVEL_ALL);
+    
+                // LogComponentEnable("TcpSocketBase", LOG_LEVEL_ALL);
 
-            // LogComponentEnable("Ipv4L3Protocol", LOG_LEVEL_ALL);
-            // LogComponentEnable("Ipv4StaticRouting", LOG_LEVEL_ALL);
-            // LogComponentEnable("Ipv4GlobalRouting", LOG_LEVEL_ALL);
+                // LogComponentDisable("Consumer", LOG_LEVEL_ALL);
+                // LogComponentDisable("Aggregator", LOG_LEVEL_ALL);
+                // LogComponentDisable("Producer", LOG_LEVEL_ALL);
+                // // LogComponentDisable("InnetworkAggregationInterface", LOG_LEVEL_ALL);
+                LogComponentDisable("TCPclient", LOG_LEVEL_ALL);
+                LogComponentDisable("TCPserver", LOG_LEVEL_ALL);
+                LogComponentDisable("TcpSocketBase", LOG_LEVEL_ALL);
+                LogComponentDisable("TcpRxBuffer", LOG_LEVEL_ALL);
+                LogComponentDisable("TcpTxBuffer", LOG_LEVEL_ALL);
+                LogComponentDisable("Packet", LOG_LEVEL_DEBUG);
 
-            // Initialize node containers
-            NodeContainer consumer;
-            NodeContainer producer;
-            NodeContainer forwarder;
-            NodeContainer aggregator;
+                // LogComponentEnable("PointToPointNetDevice", LOG_LEVEL_ALL);
+                // LogComponentEnable("LoopbackNetDevice", LOG_LEVEL_ALL);
+                // LogComponentEnable("Ipv4L3Protocol", LOG_LEVEL_ALL);
+                // LogComponentEnable("Ipv4Interface", LOG_LEVEL_ALL);
+                // LogComponentEnable("Ipv4GlobalRouting", LOG_LEVEL_ALL);
+                // LogComponentEnable("Ipv4ListRouting", LOG_LEVEL_ALL);
 
-            // Reset consumer, producer, forwarder, and aggregator counts
-            consumerNum = 0;
-            producerNum = 0;
-            forwarderNum = 0;
-            aggregatorNum = 0;
+                // LogComponentEnable("Ipv4L3Protocol", LOG_LEVEL_ALL);
+                // LogComponentEnable("Ipv4StaticRouting", LOG_LEVEL_ALL);
+                // LogComponentEnable("Ipv4GlobalRouting", LOG_LEVEL_ALL);
 
-            CountRouterNodes(routerFilePath);
-            BuildTopo(linkFilePath, consumer, producer, forwarder, aggregator);
+                // Initialize node containers
+                NodeContainer consumer;
+                NodeContainer producer;
+                NodeContainer forwarder;
+                NodeContainer aggregator;
 
-            uint16_t server_port = 1234;
-            if (topotype == 0) {
-                CreateDirectTopo(consumer, producer, itr, vsize, server_port);
-            } else {
-                CreateAggTreeTopo(itr, vsize, server_port);
+                // Reset consumer, producer, forwarder, and aggregator counts
+                consumerNum = 0;
+                producerNum = 0;
+                forwarderNum = 0;
+                aggregatorNum = 0;
+
+                CountRouterNodes(routerFilePath);
+                BuildTopo(linkFilePath, consumer, producer, forwarder, aggregator);
+
+                uint16_t server_port = 1234;
+                if (topotype == 0) {
+                    CreateDirectTopo(consumer, producer, itr, vsize, server_port);
+                } else {
+                    CreateAggTreeTopo(itr, vsize, server_port);
+                }
+
+                Packet::EnablePrinting();
+                Packet::EnableChecking();
+
+                // Populate routing tables
+                Ipv4GlobalRoutingHelper::PopulateRoutingTables();
+
+                // Zhuoxu: we don't need this currently.
+                // Print routing tables
+                // PrintRoutingTables();
+
+                Simulator::Stop(Seconds(200.0));
+                Simulator::Run();
+                Simulator::Destroy();
+                Names::Clear(); // Clear the Names database
+
+                std::string result = "Prefix: " + prefix + ", Iteration: " + std::to_string(itr) + " - Simulation completed successfully.";
+                std::cout << "Prefix: " + prefix + ", Iteration: " + std::to_string(itr) + " - Simulation completed successfully." << std::endl;
+                WriteToFile(outputFilename, result);
+
+                // Print debug info
+                // PrintIpToNodeMap();
+                PrintNewToOldIpMap();
+                PrintTraceRecord();
+                std::cout << "\n#################### SIMULATION END ####################\n\n\n";
+
             }
-
-            Packet::EnablePrinting();
-            Packet::EnableChecking();
-
-            // Populate routing tables
-            Ipv4GlobalRoutingHelper::PopulateRoutingTables();
-
-            // Zhuoxu: we don't need this currently.
-            // Print routing tables
-            // PrintRoutingTables();
-
-            Simulator::Stop(Seconds(15.0));
-            Simulator::Run();
-            Simulator::Destroy();
-            Names::Clear(); // Clear the Names database
-
-            std::string result = "Prefix: " + prefix + ", Iteration: " + std::to_string(itr) + " - Simulation completed successfully.";
-            std::cout << "Prefix: " + prefix + ", Iteration: " + std::to_string(itr) + " - Simulation completed successfully." << std::endl;
-            WriteToFile(outputFilename, result);
-
-            std::cout << "\n#################### SIMULATION END ####################\n\n\n";
-
         }
     }
-    PrintTraceRecord();
-
     return 0;
 }

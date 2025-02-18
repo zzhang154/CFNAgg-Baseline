@@ -200,15 +200,24 @@ Ans: cannot solve the problem currently, we found that
   It seems that packet->PeekHeader(tcpHeader) cannot even solve the problem. Maybe tomorrow let the gpt to optimize the client and server code?
 
 2. How to activate the loss rate on the link?
-in "setup.cc" file, 
-std::istringstream iss(line);
-        std::string node1, node2, dataRate, delay, queueSize;
-        double lossRate;
-        if (!(iss >> node1 >> node2 >> dataRate >> lossRate >> delay >> queueSize)) {
-            continue; // Skip malformed lines
-        }
-        std::cout << "lossRate: " << lossRate << std::endl;
+// Node validation and Device installation
+if (Names::Find<Node>(node1) == nullptr || Names::Find<Node>(node2) == nullptr) {
+    std::cout << "Invalid node names: " << node1 << " - " << node2 << std::endl;
+    continue;
+}
 
-It seems very strange. How can we unify all the links？
+NodeContainer n1n2 = NodeContainer(Names::Find<Node>(node1), Names::Find<Node>(node2));
+NetDeviceContainer d1d2 = p2p.Install(n1n2);
 
-3. Optimize code strcuture for "TCPserver.cc" and "TCPclient.cc"
+// If either node is agg10, attach an error model with 1% loss rate.
+if (node1 == "agg10" || node2 == "agg10") {
+    Ptr<RateErrorModel> errorModel = CreateObject<RateErrorModel>();
+    // 1% loss rate: 0.01 probability
+    errorModel->SetAttribute("ErrorRate", DoubleValue(0.01));
+    d1d2.Get(0)->SetAttribute("ReceiveErrorModel", PointerValue(errorModel));
+    d1d2.Get(1)->SetAttribute("ReceiveErrorModel", PointerValue(errorModel));
+}
+
+BUG: The system cannot work under the packet loss?
+
+3. Optimize code strcuture for "TCPserver.cc" and "TCPclient.cc" (√)
