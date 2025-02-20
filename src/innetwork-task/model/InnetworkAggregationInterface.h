@@ -23,6 +23,7 @@
 #include "ns3/TCPclient.h"
 #include "ns3/TCPserver.h"
 #include "ns3/PacketTraceTag.h"
+#include "ns3/global-data.h"
 
 namespace ns3 {
 

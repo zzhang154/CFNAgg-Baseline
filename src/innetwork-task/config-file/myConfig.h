@@ -11,7 +11,12 @@ public:
   // Existing getters
   static const std::vector<uint16_t>& GetIterationNumbers();
   static const std::vector<uint32_t>& GetBufferSizes();
-  static double GetLossRate();
+
+  // Updated loss rate: now a vector, with a current value.
+  static const std::vector<double>& GetLossRates();
+  static void SetCurrentLossRate(double lr);
+  static double GetLossRate(); // returns the current loss rate
+
   static std::string GetCongestionControl();
 
   // New getter for vector size.
@@ -20,14 +25,16 @@ public:
   // New getters for topology file prefix generation:
   static const std::vector<std::string>& GetTopoTypes();
   static const std::vector<uint16_t>& GetTopoScales();
-  // Generate final file name prefixes based on topo types and scales.
+  // Generate final file name prefixes based on topo types, scales, and constraints.
   static std::vector<std::string> GetFileNames();
 
 private:
   // Existing members
   static std::vector<uint16_t> m_iterationNumbers;
   static std::vector<uint32_t> m_bufferSizes;
-  static double m_lossRate;
+  static std::vector<double> m_lossRates;
+  static double m_currentLossRate; // holds the current loss rate in simulation
+
   static std::string m_congestionControl;
 
   // New member for vector size.
@@ -36,6 +43,9 @@ private:
   // New members for topology parameters
   static std::vector<std::string> m_topoTypes;
   static std::vector<uint16_t> m_topoScales;
+
+  // New member: constraints, if provided.
+  static std::vector<uint16_t> m_constraints;
 };
 
 #endif // MYCONFIG_H

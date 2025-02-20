@@ -1471,14 +1471,14 @@ scratch/CMakeFiles/scratch_innetwork-test.dir/innetwork-test.cc.o: CMakeFiles/st
   ../build/include/ns3/consumer.h \
   ../src/innetwork-task/model/consumer.h \
   ../src/innetwork-task/model/InnetworkAggregationInterface.h \
+  ../build/include/ns3/global-data.h \
+  ../src/innetwork-task/helper/global-data.h \
   ../build/include/ns3/producer.h \
   ../src/innetwork-task/model/producer.h \
   ../build/include/ns3/aggregator.h \
   ../src/innetwork-task/model/aggregator.h \
   ../build/include/ns3/InnetworkAggregationInterface.h \
   ../src/innetwork-task/model/InnetworkAggregationInterface.h \
-  ../build/include/ns3/global-data.h \
-  ../src/innetwork-task/helper/global-data.h \
   ../build/include/ns3/setup.h \
   ../src/innetwork-task/helper/setup.h \
   ../build/include/ns3/myConfig.h \

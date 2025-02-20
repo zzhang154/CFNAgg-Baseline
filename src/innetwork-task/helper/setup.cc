@@ -186,7 +186,7 @@ void BuildTopo(std::string &linkFile, NodeContainer &consumer, NodeContainer &pr
             int targetDeviceIndex = (node1 == "pro0") ? 1 : 0; // pro0 is sender → apply loss to receiver
 
             Ptr<RateErrorModel> em = CreateObject<RateErrorModel>();
-            em->SetAttribute("ErrorRate", DoubleValue(MyConfig::GetLossRate()));  // 1% loss rate
+            em->SetAttribute("ErrorRate", DoubleValue(MyConfig::GetLossRate()));
             em->SetAttribute("ErrorUnit", EnumValue(RateErrorModel::ERROR_UNIT_PACKET));
 
             // Apply error model to the receiver's device (non-pro0 side)

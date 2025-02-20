@@ -12,7 +12,7 @@ It seems that now, the plain AIMD, NewReno, bbr, Qbic perform the same.
 Ask deepseek if there is anyother different scheme that can be implemented as a baseline method.
 Continuely testing for different cc strategy, find one that is better than now or is worse. Not let the two curve overlap with each other.
 
-3. Baseline:
+3. Baseline (Must to do on 2025/02/20, also ask Yitong, if it can)
 Without aggregation, config the aggregation tree just directly from consumer to producers. To see what is happening. The only thing to change is just to make a new aggregation tree.
 But if we do this, we should set one bottleneck. Otherwise if there is no bottleneck, then the performance will be low? 
 
@@ -23,10 +23,13 @@ In this way, do we need to change the link cost in order to degrade the performa
 Maybe the baseline probe can leave Yixiang to do.
 
 
-
 5. BUG FIX:
 preivously, why the namespace cannot be used, the reason is because 
 #ifndef MYCONFIG_H
 #define MYCONFIG_H
 // MYCONFIG_H
 should be match with the namespace using
+
+
+6. straggler exp:
+Can extent more graph. i.e., the number of straggle and which link? producer straggler? consumer straggle? forwarder bottleneck straggler? In this categories, we can derive more graph.

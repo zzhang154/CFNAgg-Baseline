@@ -9,15 +9,15 @@ using boost::property_tree::ptree;
 
 std::vector<uint16_t> MyConfig::m_iterationNumbers;
 std::vector<uint32_t> MyConfig::m_bufferSizes;
-double MyConfig::m_lossRate = 0.0;
+std::vector<double> MyConfig::m_lossRates;
+double MyConfig::m_currentLossRate = 0.0;
 std::string MyConfig::m_congestionControl;
 
-// New member for vector size.
 uint32_t MyConfig::m_vectorSize = 150;
 
-// New members for topology parameters
 std::vector<std::string> MyConfig::m_topoTypes;
 std::vector<uint16_t> MyConfig::m_topoScales;
+std::vector<uint16_t> MyConfig::m_constraints;  // new constraints vector
 
 void MyConfig::Load(const std::string &filename) {
     ptree pt;
@@ -43,7 +43,18 @@ void MyConfig::Load(const std::string &filename) {
           ssBuf.ignore();
     }
     
-    m_lossRate = pt.get<double>("Simulation.lossRate");
+    // Load lossRates as a vector (comma separated)
+    std::string lossRateStr = pt.get<std::string>("Simulation.lossRate");
+    std::istringstream ssLoss(lossRateStr);
+    double lr;
+    while (ssLoss >> lr) {
+      m_lossRates.push_back(lr);
+      if (ssLoss.peek() == ',')
+          ssLoss.ignore();
+    }
+    if (!m_lossRates.empty())
+      m_currentLossRate = m_lossRates[0];
+
     m_congestionControl = pt.get<std::string>("Simulation.congestionControl");
 
     // Load vector size
@@ -54,7 +65,6 @@ void MyConfig::Load(const std::string &filename) {
     std::istringstream ssTypes(topoTypesStr);
     std::string typeToken;
     while (std::getline(ssTypes, typeToken, ',')) {
-        // trim and convert to lowercase
         typeToken.erase(remove_if(typeToken.begin(), typeToken.end(), ::isspace), typeToken.end());
         std::transform(typeToken.begin(), typeToken.end(), typeToken.begin(), ::tolower);
         if (!typeToken.empty()) {
@@ -70,6 +80,20 @@ void MyConfig::Load(const std::string &filename) {
       if (ssScales.peek() == ',')
           ssScales.ignore();
     }
+    
+    // New: load optional constrain values from Topology section.
+    std::string constrainStr = pt.get<std::string>("Topology.constrain", "");
+    if (!constrainStr.empty()) {
+        std::istringstream ssConstrain(constrainStr);
+        while (ssConstrain.good()) {
+            uint16_t c;
+            ssConstrain >> c;
+            if (!ssConstrain.fail())
+                m_constraints.push_back(c);
+            if (ssConstrain.peek() == ',')
+                ssConstrain.ignore();
+        }
+    }
 }
 
 const std::vector<uint16_t>& MyConfig::GetIterationNumbers() {
@@ -80,8 +104,16 @@ const std::vector<uint32_t>& MyConfig::GetBufferSizes() {
     return m_bufferSizes;
 }
 
+const std::vector<double>& MyConfig::GetLossRates() {
+    return m_lossRates;
+}
+
+void MyConfig::SetCurrentLossRate(double lr) {
+    m_currentLossRate = lr;
+}
+
 double MyConfig::GetLossRate() {
-    return m_lossRate;
+    return m_currentLossRate;
 }
 
 std::string MyConfig::GetCongestionControl() {
@@ -105,7 +137,12 @@ std::vector<std::string> MyConfig::GetFileNames() {
     // Generate cross product of topo types and scales.
     for (const auto &type : m_topoTypes) {
         for (auto scale : m_topoScales) {
-            prefixes.push_back(type + "-" + std::to_string(scale));
+            std::string base = type + "-" + std::to_string(scale);
+            prefixes.push_back(base); // basic filename, e.g., "isp-50"
+            // If constraints exist, generate additional prefixes with "-c<value>" suffix.
+            for (auto constr : m_constraints) {
+                prefixes.push_back(base + "-c" + std::to_string(constr));
+            }
         }
     }
     return prefixes;

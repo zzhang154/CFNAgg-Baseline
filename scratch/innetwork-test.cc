@@ -79,7 +79,10 @@ int main(int argc, char *argv[]) {
         Config::SetDefault("ns3::TcpSocket::SndBufSize", UintegerValue(bufSize));
         Config::SetDefault("ns3::TcpSocket::RcvBufSize", UintegerValue(bufSize));
 
-    std::cout << "\n---- Starting simulation with vsize " << vsize << std::endl;
+    std::cout << "\n---- Starting simulation with vsize " << vsize << std::flush;
+        // New loop: for each loss rate
+        for (double lossRate : MyConfig::GetLossRates()) {
+            MyConfig::SetCurrentLossRate(lossRate); // Set the current loss rate for simulation
 
         for (std::string& fileName : FileNames) {
             currentFileName = fileName;
@@ -89,13 +92,14 @@ int main(int argc, char *argv[]) {
             aggGroupFilePath = currentDir + "/scratch/data/aggtree/" + "aggtree-" + fileName + ".txt";
 
             for (uint16_t itr : iterationNumbers) {
-                // Output the configuration details.
-                std::cout << "\n#################### SIMULATION CONFIG ####################\n\n";
+                // Output configuration details.
+                std::cout << "\n#################### SIMULATION CONFIG ####################\n\n" << std::flush;
+                
                 std::cout << "FileName: " << fileName 
                           << "\nIteration: " << itr 
                           << "\nCongestion Control: " << MyConfig::GetCongestionControl() 
                           << "\nbufSize: " << bufSize 
-                          << "\nlossRate: " << MyConfig::GetLossRate()
+                          << "\nlossRate: " << MyConfig::GetLossRate()    // This now reflects the current lossRate.
                           << "\nVector Size: " << vsize
                           << "\n\n#################### SIMULATION START ####################\n\n" << std::flush;
 
@@ -168,18 +172,18 @@ int main(int argc, char *argv[]) {
                 // Print routing tables
                 // PrintRoutingTables();
 
-                Simulator::Stop(Seconds(100.00));
+                Simulator::Stop(Seconds(5000.00));
                 Simulator::Run();
                 Simulator::Destroy();
                 Names::Clear(); // Clear the Names database
 
                 // Print debug info
-                // PrintIpToNodeMap();
+                PrintIpToNodeMap();
                 PrintNewToOldIpMap();
                 PrintTraceRecord(fileName);
-                std::cout << "\n#################### SIMULATION END ####################\n\n\n\n\n";
-
+                std::cout << "\n#################### SIMULATION END ####################\n\n\n\n" << std::flush;
             }
+        }
         }
     }
     return 0;

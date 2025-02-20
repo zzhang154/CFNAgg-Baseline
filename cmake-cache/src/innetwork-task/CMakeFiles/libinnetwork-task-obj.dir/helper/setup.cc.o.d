@@ -1405,6 +1405,8 @@ src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/helper/setup.cc.o: \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/include/ns3/consumer.h \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/innetwork-task/model/consumer.h \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/innetwork-task/model/InnetworkAggregationInterface.h \
+ /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/include/ns3/global-data.h \
+ /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/innetwork-task/helper/global-data.h \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/include/ns3/producer.h \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/innetwork-task/model/producer.h \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/include/ns3/aggregator.h \
@@ -1413,6 +1415,4 @@ src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/helper/setup.cc.o: \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/innetwork-task/model/InnetworkAggregationInterface.h \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/include/ns3/myConfig.h \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/innetwork-task/config-file/myConfig.h \
- /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/innetwork-task/helper/PacketTraceTag.h \
- /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/include/ns3/global-data.h \
- /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/innetwork-task/helper/global-data.h
+ /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/innetwork-task/helper/PacketTraceTag.h

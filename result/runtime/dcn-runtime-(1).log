@@ -1,0 +1,559 @@
+nohup: ignoring input
+Consolidate compiler generated dependencies of target stdlib_pch-default
+Consolidate compiler generated dependencies of target stdlib_pch_exec
+Consolidate compiler generated dependencies of target raw-sock-creator
+Consolidate compiler generated dependencies of target netmap-device-creator
+Consolidate compiler generated dependencies of target libcore-obj
+Consolidate compiler generated dependencies of target libantenna-obj
+Consolidate compiler generated dependencies of target libstats-obj
+Consolidate compiler generated dependencies of target libconfig-store-obj
+Consolidate compiler generated dependencies of target libnetwork-obj
+Consolidate compiler generated dependencies of target tap-device-creator
+Consolidate compiler generated dependencies of target libvirtual-net-device-obj
+Consolidate compiler generated dependencies of target libbridge-obj
+Consolidate compiler generated dependencies of target libpoint-to-point-obj
+Consolidate compiler generated dependencies of target libtopology-read-obj
+Consolidate compiler generated dependencies of target libcsma-obj
+Consolidate compiler generated dependencies of target libfd-net-device-obj
+Consolidate compiler generated dependencies of target libmobility-obj
+Consolidate compiler generated dependencies of target libenergy-obj
+Consolidate compiler generated dependencies of target libtraffic-control-obj
+Consolidate compiler generated dependencies of target libpropagation-obj
+Consolidate compiler generated dependencies of target libuan-obj
+Consolidate compiler generated dependencies of target libbuildings-obj
+Consolidate compiler generated dependencies of target libspectrum-obj
+Consolidate compiler generated dependencies of target liblr-wpan-obj
+Consolidate compiler generated dependencies of target libinternet-obj
+Consolidate compiler generated dependencies of target libcsma-layout-obj
+Consolidate compiler generated dependencies of target libpoint-to-point-layout-obj
+Consolidate compiler generated dependencies of target libtap-bridge-obj
+Consolidate compiler generated dependencies of target libolsr-obj
+Consolidate compiler generated dependencies of target libnix-vector-routing-obj
+Consolidate compiler generated dependencies of target libsixlowpan-obj
+Consolidate compiler generated dependencies of target libinternet-apps-obj
+Consolidate compiler generated dependencies of target libflow-monitor-obj
+Consolidate compiler generated dependencies of target libapplications-obj
+Consolidate compiler generated dependencies of target libwimax-obj
+Consolidate compiler generated dependencies of target libwifi-obj
+Consolidate compiler generated dependencies of target libinnetwork-task-obj
+Consolidate compiler generated dependencies of target libaodv-obj
+Consolidate compiler generated dependencies of target liblte-obj
+Consolidate compiler generated dependencies of target libmesh-obj
+Consolidate compiler generated dependencies of target libdsdv-obj
+Consolidate compiler generated dependencies of target libdsr-obj
+Consolidate compiler generated dependencies of target libnetanim-obj
+Consolidate compiler generated dependencies of target scratch_innetwork-test
+Hello from utils
+0x7ffd4f12e9a0 Time queue changed. Current size: 1
+Time queue changed. New size: 1
+0x7ffd4f12e9a0 Time queue changed. Current size: 2
+Time queue changed. New size: 2
+0x7ffd4f12e9a0 Time queue changed. Current size: 1
+Time queue changed. New size: 1
+
+---- Starting simulation with vsize 150
+#################### SIMULATION CONFIG ####################
+
+FileName: dcn-10
+Iteration: 10000
+Congestion Control: ns3::TcpCubic
+bufSize: 16384
+lossRate: 0
+Vector Size: 150
+
+#################### SIMULATION START ####################
+
+Using congestion control strategy: TcpCubic
++2.851000000s 24 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.1.1 completed iteration 1000 at 2851ms
++2.859000000s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.1.57.1 completed iteration 1000 at 2859ms
++3.698000000s 24 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.1.1 completed iteration 2000 at 3698ms
++3.706000000s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.1.57.1 completed iteration 2000 at 3706ms
++4.536000000s 24 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.1.1 completed iteration 3000 at 4536ms
++4.544000000s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.1.57.1 completed iteration 3000 at 4544ms
++5.383000000s 24 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.1.1 completed iteration 4000 at 5383ms
++5.391000000s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.1.57.1 completed iteration 4000 at 5391ms
++6.230000000s 24 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.1.1 completed iteration 5000 at 6230ms
++6.238000000s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.1.57.1 completed iteration 5000 at 6238ms
++7.076000000s 24 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.1.1 completed iteration 6000 at 7076ms
++7.084000000s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.1.57.1 completed iteration 6000 at 7084ms
++7.923000000s 24 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.1.1 completed iteration 7000 at 7923ms
++7.931000000s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.1.57.1 completed iteration 7000 at 7931ms
++8.770000000s 24 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.1.1 completed iteration 8000 at 8770ms
++8.778000000s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.1.57.1 completed iteration 8000 at 8778ms
++9.617000000s 24 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.1.1 completed iteration 9000 at 9617ms
++9.625000000s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.1.57.1 completed iteration 9000 at 9625ms
++10.464000000s 24 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.1.1 completed processing
++10.472000000s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer completed all iterations -- 10000 in 8472ms -- dcn-10
+uint32_t consumerNum = 1;
+uint32_t producerNum = 10;
+uint32_t forwarderNum = 13;
+uint32_t aggregatorNum = 12;
+Printing ipToNodeName:
+IP: 10.2.13.1 -> NodeName: agg11
+IP: 10.1.57.2 -> NodeName: forwarder12
+IP: 10.1.57.1 -> NodeName: con0
+IP: 10.2.12.2 -> NodeName: forwarder11
+IP: 10.2.12.1 -> NodeName: agg10
+IP: 10.2.11.2 -> NodeName: forwarder10
+IP: 10.2.11.1 -> NodeName: agg9
+IP: 10.1.10.1 -> NodeName: pro9
+IP: 10.1.5.1 -> NodeName: pro4
+IP: 10.2.4.1 -> NodeName: agg2
+IP: 10.1.6.1 -> NodeName: pro5
+IP: 10.2.10.2 -> NodeName: forwarder9
+IP: 10.1.9.1 -> NodeName: pro8
+IP: 10.1.3.1 -> NodeName: pro2
+IP: 10.2.7.2 -> NodeName: forwarder6
+IP: 10.1.1.2 -> NodeName: forwarder0
+IP: 10.1.1.1 -> NodeName: pro0
+IP: 10.2.8.1 -> NodeName: agg6
+IP: 10.2.2.2 -> NodeName: forwarder1
+IP: 10.2.1.1 -> NodeName: agg0
+IP: 10.1.8.1 -> NodeName: pro7
+IP: 10.2.3.1 -> NodeName: agg1
+IP: 10.2.4.2 -> NodeName: forwarder3
+IP: 10.1.7.1 -> NodeName: pro6
+IP: 10.2.5.2 -> NodeName: forwarder4
+IP: 10.2.6.1 -> NodeName: agg4
+IP: 10.1.2.1 -> NodeName: pro1
+IP: 10.2.6.2 -> NodeName: forwarder5
+IP: 10.2.7.1 -> NodeName: agg5
+IP: 10.2.8.2 -> NodeName: forwarder7
+IP: 10.2.5.1 -> NodeName: agg3
+IP: 10.2.9.1 -> NodeName: agg7
+IP: 10.1.4.1 -> NodeName: pro3
+IP: 10.2.3.2 -> NodeName: forwarder2
+IP: 10.2.9.2 -> NodeName: forwarder8
+IP: 10.2.10.1 -> NodeName: agg8
+NewToOldIpMap contents:
+New IP: 10.2.2.1 -> Old IP: 10.2.1.1
+
+#################### SIMULATION END ####################
+
+
+
+
+#################### SIMULATION CONFIG ####################
+
+FileName: dcn-50
+Iteration: 10000
+Congestion Control: ns3::TcpCubic
+bufSize: 16384
+lossRate: 0
+Vector Size: 150
+
+#################### SIMULATION START ####################
+
+Using congestion control strategy: TcpCubic
++3.231000000s 72 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.1.1 completed iteration 1000 at 3231ms
++3.231000000s 73 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.3.1 completed iteration 1000 at 3231ms
++3.233000000s 74 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.5.1 completed iteration 1000 at 3233ms
++3.241000000s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.1.101.1 completed iteration 1000 at 3241ms
++4.435000000s 72 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.1.1 completed iteration 2000 at 4435ms
++4.443000000s 74 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.5.1 completed iteration 2000 at 4443ms
++4.448000000s 73 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.3.1 completed iteration 2000 at 4448ms
++4.456000000s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.1.101.1 completed iteration 2000 at 4456ms
++5.645000000s 72 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.1.1 completed iteration 3000 at 5645ms
++5.651000000s 74 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.5.1 completed iteration 3000 at 5651ms
++5.661000000s 73 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.3.1 completed iteration 3000 at 5661ms
++5.669000000s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.1.101.1 completed iteration 3000 at 5669ms
++6.857000000s 72 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.1.1 completed iteration 4000 at 6857ms
++6.859000000s 74 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.5.1 completed iteration 4000 at 6859ms
++6.879000000s 73 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.3.1 completed iteration 4000 at 6879ms
++6.887000000s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.1.101.1 completed iteration 4000 at 6887ms
++8.065000000s 74 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.5.1 completed iteration 5000 at 8065ms
++8.072000000s 72 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.1.1 completed iteration 5000 at 8072ms
++8.097000000s 73 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.3.1 completed iteration 5000 at 8097ms
++8.105000000s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.1.101.1 completed iteration 5000 at 8105ms
++9.275000000s 74 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.5.1 completed iteration 6000 at 9275ms
++9.277000000s 72 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.1.1 completed iteration 6000 at 9277ms
++9.303000000s 73 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.3.1 completed iteration 6000 at 9303ms
++9.311000000s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.1.101.1 completed iteration 6000 at 9311ms
++10.481000000s 72 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.1.1 completed iteration 7000 at 10481ms
++10.485000000s 74 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.5.1 completed iteration 7000 at 10485ms
++10.507000000s 73 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.3.1 completed iteration 7000 at 10507ms
++10.515000000s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.1.101.1 completed iteration 7000 at 10515ms
++11.685000000s 72 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.1.1 completed iteration 8000 at 11685ms
++11.695000000s 74 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.5.1 completed iteration 8000 at 11695ms
++11.712000000s 73 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.3.1 completed iteration 8000 at 11712ms
++11.720000000s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.1.101.1 completed iteration 8000 at 11720ms
++12.890000000s 72 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.1.1 completed iteration 9000 at 12890ms
++12.901000000s 74 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.5.1 completed iteration 9000 at 12901ms
++12.915000000s 73 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.3.1 completed iteration 9000 at 12915ms
++12.923000000s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.1.101.1 completed iteration 9000 at 12923ms
++14.089000000s 72 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.1.1 completed processing
++14.108000000s 74 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.5.1 completed processing
++14.114000000s 73 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.3.1 completed processing
++14.122000000s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer completed all iterations -- 10000 in 12122ms -- dcn-50
+uint32_t consumerNum = 1;
+uint32_t producerNum = 50;
+uint32_t forwarderNum = 21;
+uint32_t aggregatorNum = 16;
+Printing ipToNodeName:
+IP: 10.2.21.1 -> NodeName: agg15
+IP: 10.2.19.2 -> NodeName: forwarder18
+IP: 10.2.19.1 -> NodeName: agg13
+IP: 10.2.18.2 -> NodeName: forwarder17
+IP: 10.2.17.1 -> NodeName: agg11
+IP: 10.2.16.2 -> NodeName: forwarder15
+IP: 10.2.16.1 -> NodeName: agg10
+IP: 10.2.15.2 -> NodeName: forwarder14
+IP: 10.2.14.2 -> NodeName: forwarder13
+IP: 10.2.14.1 -> NodeName: agg8
+IP: 10.1.50.1 -> NodeName: pro49
+IP: 10.1.49.1 -> NodeName: pro48
+IP: 10.1.48.1 -> NodeName: pro47
+IP: 10.1.44.1 -> NodeName: pro43
+IP: 10.1.43.1 -> NodeName: pro42
+IP: 10.1.41.2 -> NodeName: forwarder8
+IP: 10.1.41.1 -> NodeName: pro40
+IP: 10.1.38.1 -> NodeName: pro37
+IP: 10.1.37.1 -> NodeName: pro36
+IP: 10.1.42.1 -> NodeName: pro41
+IP: 10.1.36.1 -> NodeName: pro35
+IP: 10.1.33.1 -> NodeName: pro32
+IP: 10.1.32.1 -> NodeName: pro31
+IP: 10.1.31.2 -> NodeName: forwarder6
+IP: 10.2.18.1 -> NodeName: agg12
+IP: 10.2.10.1 -> NodeName: agg8
+IP: 10.2.9.2 -> NodeName: forwarder8
+IP: 10.2.20.2 -> NodeName: forwarder19
+IP: 10.2.3.2 -> NodeName: forwarder2
+IP: 10.1.4.1 -> NodeName: pro3
+IP: 10.2.13.2 -> NodeName: forwarder12
+IP: 10.1.30.1 -> NodeName: pro29
+IP: 10.2.9.1 -> NodeName: agg4
+IP: 10.2.5.1 -> NodeName: agg2
+IP: 10.2.8.2 -> NodeName: forwarder7
+IP: 10.1.11.1 -> NodeName: pro10
+IP: 10.2.6.2 -> NodeName: forwarder5
+IP: 10.1.2.1 -> NodeName: pro1
+IP: 10.2.15.1 -> NodeName: agg9
+IP: 10.1.22.1 -> NodeName: pro21
+IP: 10.2.6.1 -> NodeName: agg4
+IP: 10.1.7.1 -> NodeName: pro6
+IP: 10.1.101.1 -> NodeName: con0
+IP: 10.1.28.1 -> NodeName: pro27
+IP: 10.2.4.2 -> NodeName: forwarder3
+IP: 10.1.21.2 -> NodeName: forwarder4
+IP: 10.1.35.1 -> NodeName: pro34
+IP: 10.2.3.1 -> NodeName: agg1
+IP: 10.2.2.2 -> NodeName: forwarder1
+IP: 10.1.8.1 -> NodeName: pro7
+IP: 10.1.23.1 -> NodeName: pro22
+IP: 10.1.46.1 -> NodeName: pro45
+IP: 10.2.8.1 -> NodeName: agg6
+IP: 10.1.1.1 -> NodeName: pro0
+IP: 10.1.1.2 -> NodeName: forwarder0
+IP: 10.2.20.1 -> NodeName: agg14
+IP: 10.1.3.1 -> NodeName: pro2
+IP: 10.1.9.1 -> NodeName: pro8
+IP: 10.1.101.2 -> NodeName: forwarder20
+IP: 10.1.17.1 -> NodeName: pro16
+IP: 10.2.7.2 -> NodeName: forwarder6
+IP: 10.2.10.2 -> NodeName: forwarder9
+IP: 10.1.45.1 -> NodeName: pro44
+IP: 10.2.4.1 -> NodeName: agg2
+IP: 10.1.12.1 -> NodeName: pro11
+IP: 10.1.21.1 -> NodeName: pro20
+IP: 10.1.5.1 -> NodeName: pro4
+IP: 10.1.29.1 -> NodeName: pro28
+IP: 10.1.10.1 -> NodeName: pro9
+IP: 10.2.11.2 -> NodeName: forwarder10
+IP: 10.1.47.1 -> NodeName: pro46
+IP: 10.1.20.1 -> NodeName: pro19
+IP: 10.1.34.1 -> NodeName: pro33
+IP: 10.2.12.1 -> NodeName: agg6
+IP: 10.2.5.2 -> NodeName: forwarder4
+IP: 10.2.12.2 -> NodeName: forwarder11
+IP: 10.1.57.1 -> NodeName: con0
+IP: 10.2.7.1 -> NodeName: agg3
+IP: 10.1.27.1 -> NodeName: pro26
+IP: 10.1.57.2 -> NodeName: forwarder12
+IP: 10.1.40.1 -> NodeName: pro39
+IP: 10.2.13.1 -> NodeName: agg7
+IP: 10.1.11.2 -> NodeName: forwarder2
+IP: 10.2.1.1 -> NodeName: agg0
+IP: 10.1.13.1 -> NodeName: pro12
+IP: 10.1.14.1 -> NodeName: pro13
+IP: 10.1.15.1 -> NodeName: pro14
+IP: 10.1.16.1 -> NodeName: pro15
+IP: 10.1.18.1 -> NodeName: pro17
+IP: 10.1.19.1 -> NodeName: pro18
+IP: 10.1.39.1 -> NodeName: pro38
+IP: 10.1.6.1 -> NodeName: pro5
+IP: 10.2.11.1 -> NodeName: agg5
+IP: 10.1.24.1 -> NodeName: pro23
+IP: 10.2.17.2 -> NodeName: forwarder16
+IP: 10.1.25.1 -> NodeName: pro24
+IP: 10.1.31.1 -> NodeName: pro30
+IP: 10.1.26.1 -> NodeName: pro25
+NewToOldIpMap contents:
+New IP: 10.2.6.1 -> Old IP: 10.2.5.1
+New IP: 10.2.4.1 -> Old IP: 10.2.3.1
+New IP: 10.2.2.1 -> Old IP: 10.2.1.1
+
+#################### SIMULATION END ####################
+
+
+
+
+#################### SIMULATION CONFIG ####################
+
+FileName: dcn-100
+Iteration: 10000
+Congestion Control: ns3::TcpCubic
+bufSize: 16384
+lossRate: 0
+Vector Size: 150
+
+#################### SIMULATION START ####################
+
+Using congestion control strategy: TcpCubic
++2.851000000s 122 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.1.1 completed iteration 1000 at 2851ms
++2.851000000s 123 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.3.1 completed iteration 1000 at 2851ms
++2.851000000s 124 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.5.1 completed iteration 1000 at 2851ms
++2.851000000s 125 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.7.1 completed iteration 1000 at 2851ms
++2.851000000s 126 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.9.1 completed iteration 1000 at 2851ms
++2.859000000s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.1.151.1 completed iteration 1000 at 2859ms
++3.698000000s 122 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.1.1 completed iteration 2000 at 3698ms
++3.698000000s 123 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.3.1 completed iteration 2000 at 3698ms
++3.698000000s 124 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.5.1 completed iteration 2000 at 3698ms
++3.698000000s 125 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.7.1 completed iteration 2000 at 3698ms
++3.698000000s 126 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.9.1 completed iteration 2000 at 3698ms
++3.706000000s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.1.151.1 completed iteration 2000 at 3706ms
++4.536000000s 122 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.1.1 completed iteration 3000 at 4536ms
++4.536000000s 123 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.3.1 completed iteration 3000 at 4536ms
++4.536000000s 124 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.5.1 completed iteration 3000 at 4536ms
++4.536000000s 125 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.7.1 completed iteration 3000 at 4536ms
++4.536000000s 126 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.9.1 completed iteration 3000 at 4536ms
++4.544000000s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.1.151.1 completed iteration 3000 at 4544ms
++5.383000000s 122 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.1.1 completed iteration 4000 at 5383ms
++5.383000000s 123 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.3.1 completed iteration 4000 at 5383ms
++5.383000000s 124 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.5.1 completed iteration 4000 at 5383ms
++5.383000000s 125 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.7.1 completed iteration 4000 at 5383ms
++5.383000000s 126 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.9.1 completed iteration 4000 at 5383ms
++5.391000000s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.1.151.1 completed iteration 4000 at 5391ms
++6.230000000s 122 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.1.1 completed iteration 5000 at 6230ms
++6.230000000s 123 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.3.1 completed iteration 5000 at 6230ms
++6.230000000s 124 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.5.1 completed iteration 5000 at 6230ms
++6.230000000s 125 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.7.1 completed iteration 5000 at 6230ms
++6.230000000s 126 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.9.1 completed iteration 5000 at 6230ms
++6.238000000s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.1.151.1 completed iteration 5000 at 6238ms
++7.076000000s 122 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.1.1 completed iteration 6000 at 7076ms
++7.076000000s 123 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.3.1 completed iteration 6000 at 7076ms
++7.076000000s 124 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.5.1 completed iteration 6000 at 7076ms
++7.076000000s 125 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.7.1 completed iteration 6000 at 7076ms
++7.076000000s 126 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.9.1 completed iteration 6000 at 7076ms
++7.084000000s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.1.151.1 completed iteration 6000 at 7084ms
++7.923000000s 122 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.1.1 completed iteration 7000 at 7923ms
++7.923000000s 123 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.3.1 completed iteration 7000 at 7923ms
++7.923000000s 124 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.5.1 completed iteration 7000 at 7923ms
++7.923000000s 125 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.7.1 completed iteration 7000 at 7923ms
++7.923000000s 126 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.9.1 completed iteration 7000 at 7923ms
++7.931000000s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.1.151.1 completed iteration 7000 at 7931ms
++8.770000000s 122 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.1.1 completed iteration 8000 at 8770ms
++8.770000000s 123 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.3.1 completed iteration 8000 at 8770ms
++8.770000000s 124 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.5.1 completed iteration 8000 at 8770ms
++8.770000000s 125 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.7.1 completed iteration 8000 at 8770ms
++8.770000000s 126 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.9.1 completed iteration 8000 at 8770ms
++8.778000000s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.1.151.1 completed iteration 8000 at 8778ms
++9.617000000s 122 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.1.1 completed iteration 9000 at 9617ms
++9.617000000s 123 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.3.1 completed iteration 9000 at 9617ms
++9.617000000s 124 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.5.1 completed iteration 9000 at 9617ms
++9.617000000s 125 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.7.1 completed iteration 9000 at 9617ms
++9.617000000s 126 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.9.1 completed iteration 9000 at 9617ms
++9.625000000s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.1.151.1 completed iteration 9000 at 9625ms
++10.464000000s 122 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.1.1 completed processing
++10.464000000s 123 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.3.1 completed processing
++10.464000000s 124 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.5.1 completed processing
++10.464000000s 125 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.7.1 completed processing
++10.464000000s 126 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.2.9.1 completed processing
++10.472000000s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer completed all iterations -- 10000 in 8472ms -- dcn-100
+uint32_t consumerNum = 1;
+uint32_t producerNum = 100;
+uint32_t forwarderNum = 21;
+uint32_t aggregatorNum = 16;
+Printing ipToNodeName:
+IP: 10.1.151.2 -> NodeName: forwarder20
+IP: 10.1.151.1 -> NodeName: con0
+IP: 10.1.100.1 -> NodeName: pro99
+IP: 10.1.97.1 -> NodeName: pro96
+IP: 10.1.92.1 -> NodeName: pro91
+IP: 10.1.91.1 -> NodeName: pro90
+IP: 10.1.90.1 -> NodeName: pro89
+IP: 10.1.88.1 -> NodeName: pro87
+IP: 10.1.87.1 -> NodeName: pro86
+IP: 10.1.83.1 -> NodeName: pro82
+IP: 10.1.82.1 -> NodeName: pro81
+IP: 10.1.26.1 -> NodeName: pro25
+IP: 10.1.85.1 -> NodeName: pro84
+IP: 10.1.25.1 -> NodeName: pro24
+IP: 10.2.17.2 -> NodeName: forwarder16
+IP: 10.1.24.1 -> NodeName: pro23
+IP: 10.1.6.1 -> NodeName: pro5
+IP: 10.1.39.1 -> NodeName: pro38
+IP: 10.1.19.1 -> NodeName: pro18
+IP: 10.1.16.1 -> NodeName: pro15
+IP: 10.1.14.1 -> NodeName: pro13
+IP: 10.1.99.1 -> NodeName: pro98
+IP: 10.1.13.1 -> NodeName: pro12
+IP: 10.1.68.1 -> NodeName: pro67
+IP: 10.2.13.1 -> NodeName: agg7
+IP: 10.1.11.2 -> NodeName: forwarder2
+IP: 10.2.7.1 -> NodeName: agg3
+IP: 10.1.94.1 -> NodeName: pro93
+IP: 10.1.52.1 -> NodeName: pro51
+IP: 10.1.57.1 -> NodeName: pro56
+IP: 10.2.12.2 -> NodeName: forwarder11
+IP: 10.1.20.1 -> NodeName: pro19
+IP: 10.1.47.1 -> NodeName: pro46
+IP: 10.2.11.2 -> NodeName: forwarder10
+IP: 10.1.10.1 -> NodeName: pro9
+IP: 10.1.29.1 -> NodeName: pro28
+IP: 10.1.5.1 -> NodeName: pro4
+IP: 10.1.95.1 -> NodeName: pro94
+IP: 10.2.5.2 -> NodeName: forwarder4
+IP: 10.1.21.1 -> NodeName: pro20
+IP: 10.2.11.1 -> NodeName: agg5
+IP: 10.1.40.1 -> NodeName: pro39
+IP: 10.1.62.1 -> NodeName: pro61
+IP: 10.1.12.1 -> NodeName: pro11
+IP: 10.2.4.1 -> NodeName: agg2
+IP: 10.1.45.1 -> NodeName: pro44
+IP: 10.2.10.2 -> NodeName: forwarder9
+IP: 10.2.7.2 -> NodeName: forwarder6
+IP: 10.1.101.2 -> NodeName: forwarder20
+IP: 10.1.56.1 -> NodeName: pro55
+IP: 10.2.20.1 -> NodeName: agg14
+IP: 10.1.1.2 -> NodeName: forwarder0
+IP: 10.1.1.1 -> NodeName: pro0
+IP: 10.1.46.1 -> NodeName: pro45
+IP: 10.2.1.1 -> NodeName: agg0
+IP: 10.1.23.1 -> NodeName: pro22
+IP: 10.1.8.1 -> NodeName: pro7
+IP: 10.1.35.1 -> NodeName: pro34
+IP: 10.1.9.1 -> NodeName: pro8
+IP: 10.1.21.2 -> NodeName: forwarder2
+IP: 10.2.4.2 -> NodeName: forwarder3
+IP: 10.1.59.1 -> NodeName: pro58
+IP: 10.1.28.1 -> NodeName: pro27
+IP: 10.1.81.1 -> NodeName: pro80
+IP: 10.1.3.1 -> NodeName: pro2
+IP: 10.2.6.1 -> NodeName: agg4
+IP: 10.1.27.1 -> NodeName: pro26
+IP: 10.1.22.1 -> NodeName: pro21
+IP: 10.2.15.1 -> NodeName: agg9
+IP: 10.1.2.1 -> NodeName: pro1
+IP: 10.1.73.1 -> NodeName: pro72
+IP: 10.2.6.2 -> NodeName: forwarder5
+IP: 10.1.69.1 -> NodeName: pro68
+IP: 10.1.84.1 -> NodeName: pro83
+IP: 10.1.71.1 -> NodeName: pro70
+IP: 10.1.81.2 -> NodeName: forwarder8
+IP: 10.1.11.1 -> NodeName: pro10
+IP: 10.1.55.1 -> NodeName: pro54
+IP: 10.1.89.1 -> NodeName: pro88
+IP: 10.1.66.1 -> NodeName: pro65
+IP: 10.2.9.1 -> NodeName: agg4
+IP: 10.1.57.2 -> NodeName: forwarder12
+IP: 10.2.13.2 -> NodeName: forwarder12
+IP: 10.1.4.1 -> NodeName: pro3
+IP: 10.1.74.1 -> NodeName: pro73
+IP: 10.1.96.1 -> NodeName: pro95
+IP: 10.2.3.2 -> NodeName: forwarder2
+IP: 10.2.20.2 -> NodeName: forwarder19
+IP: 10.2.9.2 -> NodeName: forwarder8
+IP: 10.2.10.1 -> NodeName: agg8
+IP: 10.1.30.1 -> NodeName: pro29
+IP: 10.2.18.1 -> NodeName: agg12
+IP: 10.1.31.2 -> NodeName: forwarder6
+IP: 10.1.32.1 -> NodeName: pro31
+IP: 10.2.8.1 -> NodeName: agg6
+IP: 10.1.33.1 -> NodeName: pro32
+IP: 10.1.36.1 -> NodeName: pro35
+IP: 10.1.86.1 -> NodeName: pro85
+IP: 10.1.31.1 -> NodeName: pro30
+IP: 10.1.42.1 -> NodeName: pro41
+IP: 10.1.37.1 -> NodeName: pro36
+IP: 10.1.65.1 -> NodeName: pro64
+IP: 10.1.17.1 -> NodeName: pro16
+IP: 10.2.8.2 -> NodeName: forwarder7
+IP: 10.1.38.1 -> NodeName: pro37
+IP: 10.1.43.1 -> NodeName: pro42
+IP: 10.1.44.1 -> NodeName: pro43
+IP: 10.1.48.1 -> NodeName: pro47
+IP: 10.1.49.1 -> NodeName: pro48
+IP: 10.1.18.1 -> NodeName: pro17
+IP: 10.2.3.1 -> NodeName: agg1
+IP: 10.1.50.1 -> NodeName: pro49
+IP: 10.2.12.1 -> NodeName: agg6
+IP: 10.2.14.1 -> NodeName: agg8
+IP: 10.2.2.2 -> NodeName: forwarder1
+IP: 10.1.72.1 -> NodeName: pro71
+IP: 10.2.14.2 -> NodeName: forwarder13
+IP: 10.1.101.1 -> NodeName: con0
+IP: 10.1.53.1 -> NodeName: pro52
+IP: 10.2.15.2 -> NodeName: forwarder14
+IP: 10.2.16.1 -> NodeName: agg10
+IP: 10.2.16.2 -> NodeName: forwarder15
+IP: 10.1.58.1 -> NodeName: pro57
+IP: 10.1.15.1 -> NodeName: pro14
+IP: 10.2.17.1 -> NodeName: agg11
+IP: 10.1.63.1 -> NodeName: pro62
+IP: 10.1.98.1 -> NodeName: pro97
+IP: 10.2.18.2 -> NodeName: forwarder17
+IP: 10.2.19.1 -> NodeName: agg13
+IP: 10.2.19.2 -> NodeName: forwarder18
+IP: 10.2.21.1 -> NodeName: agg15
+IP: 10.1.7.1 -> NodeName: pro6
+IP: 10.1.51.1 -> NodeName: pro50
+IP: 10.1.93.1 -> NodeName: pro92
+IP: 10.1.54.1 -> NodeName: pro53
+IP: 10.1.64.1 -> NodeName: pro63
+IP: 10.1.60.1 -> NodeName: pro59
+IP: 10.1.61.1 -> NodeName: pro60
+IP: 10.1.61.2 -> NodeName: forwarder6
+IP: 10.1.80.1 -> NodeName: pro79
+IP: 10.1.41.2 -> NodeName: forwarder4
+IP: 10.1.67.1 -> NodeName: pro66
+IP: 10.1.34.1 -> NodeName: pro33
+IP: 10.1.75.1 -> NodeName: pro74
+IP: 10.1.41.1 -> NodeName: pro40
+IP: 10.1.70.1 -> NodeName: pro69
+IP: 10.1.76.1 -> NodeName: pro75
+IP: 10.1.77.1 -> NodeName: pro76
+IP: 10.1.78.1 -> NodeName: pro77
+IP: 10.2.5.1 -> NodeName: agg2
+IP: 10.1.79.1 -> NodeName: pro78
+NewToOldIpMap contents:
+New IP: 10.2.10.1 -> Old IP: 10.2.9.1
+New IP: 10.2.8.1 -> Old IP: 10.2.7.1
+New IP: 10.2.6.1 -> Old IP: 10.2.5.1
+New IP: 10.2.4.1 -> Old IP: 10.2.3.1
+New IP: 10.2.2.1 -> Old IP: 10.2.1.1
+
+#################### SIMULATION END ####################
+
+
+
+
+#################### SIMULATION CONFIG ####################
+
+FileName: dcn-200
+Iteration: 10000
+Congestion Control: ns3::TcpCubic
+bufSize: 16384
+lossRate: 0
+Vector Size: 150
+
+#################### SIMULATION START ####################
+
+uint32_t consumerNum = 1;
+uint32_t producerNum = 200;
+uint32_t forwarderNum = 31;
+uint32_t aggregatorNum = 21;
+msg="Ipv4AddressGeneratorImpl::Add(): Address Collision: 0.0.0.1", +0.000000000s -1 file=/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/internet/model/ipv4-address-generator.cc, line=384
+NS_FATAL, terminating
+terminate called without an active exception
+Command 'build/scratch/ns3.42-innetwork-test-default --topotype=1' died with <Signals.SIGABRT: 6>.

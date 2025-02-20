@@ -13,10 +13,9 @@ fi
 git add .
 
 # Commit the changes
-git commit -m "TCP-Agg v-13.0-release:
-(1) Can run loss rate now (default is uni-direction).
-(2) Automation the config parameters in "src/innetwork-task/config-file/config.ini".
-(3) Update data set for evaluation.
+git commit -m "TCP-Agg v-13.1-release:
+(1) Support multiple lossRate and constraint input in the "config.ini", please check it.
+(2) BUGS report when run simulation on 10 and >=200 producer. Check what the problem is.
 "
 
 # Rename current branch to tcp-baseline (if needed)
