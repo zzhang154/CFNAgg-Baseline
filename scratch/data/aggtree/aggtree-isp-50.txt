@@ -1,0 +1,2 @@
+agg0: pro0 pro1 pro8 pro4 pro3 pro9 pro5 pro7 pro6 pro2 
+con0: agg0 

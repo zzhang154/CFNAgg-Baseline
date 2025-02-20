@@ -7,11 +7,12 @@ build_lib(
     helper/setup.cc
     helper/global-data.cc
     
-
     model/aggregator.cc
     model/consumer.cc
     model/InnetworkAggregationInterface.cc
     model/producer.cc
+
+    config-file/myConfig.cc
     
   HEADER_FILES
     helper/parameter.h
@@ -25,6 +26,8 @@ build_lib(
     model/consumer.h
     model/InnetworkAggregationInterface.h
     model/producer.h
+
+    config-file/myConfig.h
     
   LIBRARIES_TO_LINK ${libinternet}
                     ${libapplications}

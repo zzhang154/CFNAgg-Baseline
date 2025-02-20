@@ -28,38 +28,14 @@ using namespace ns3;
 
 // #include "innetwork-test.h"
 #include "ns3/setup.h"
+#include "ns3/myConfig.h"
 
 NS_LOG_COMPONENT_DEFINE("innetwork-test");
 
-// const std::string currentDir = GetCurrentWorkingDir();
-// const std::string Number = "-bin8";
-
-// /*
-// const std::string routerFilePath = currentDir + "/scratch/data/router" + Number + ".txt";
-// const std::string linkFilePath = currentDir + "/scratch/data/link" + Number + ".txt";
-// const std::string aggGroupFilePath = currentDir + "/scratch/data/aggtree" + Number + ".txt";
-// */
-
-// std::string routerFilePath;
-// std::string linkFilePath;
-// std::string aggGroupFilePath;
-
-// const std::string conName = "con";
-// const std::string proName = "pro";
-// const std::string fowName = "forwarder";
-// const std::string aggName = "agg";
-
-// // Zhuoxu: this should be set automatically by the datauration file.
-// uint32_t consumerNum;
-// uint32_t producerNum;
-// uint32_t forwarderNum;
-// uint32_t aggregatorNum;
-// std::string cc = "bbr";
-// uint16_t basetime = 1000;
-// uint16_t starttime = 1;
-// uint16_t stoptime = 500;//5000
-
 int main(int argc, char *argv[]) {
+    // Load configuration parameters from file
+    MyConfig::Load("src/innetwork-task/config-file/config.ini");
+
     HelloUtils();
     LogComponentEnable("TracedTimeQueue", LOG_LEVEL_ALL);
     // Create an instance of the custom class
@@ -75,7 +51,7 @@ int main(int argc, char *argv[]) {
     tracedTimeQueue.Pop();
                               
     CommandLine cmd;
-    uint32_t vsize = 150;
+    uint32_t vsize;
     bool topotype = 1;
     cmd.AddValue("vsize", "vector size", vsize);
     cmd.AddValue("topotype", "choose test topo type", topotype);
@@ -85,16 +61,13 @@ int main(int argc, char *argv[]) {
     cmd.AddValue("stoptime", "set stop time", stoptime);
     cmd.Parse(argc, argv);
 
+    vsize = MyConfig::GetVectorSize();
     SetBaseSize(vsize);
 
-    // std::vector<std::string> prefixFileNames = {"-bin8-no", "-bin16-no", "-bin32-no"}; // Example prefix file names
-    // std::vector<std::string> prefixFileNames = {"-1-fwd-2-agg"};
-    std::vector<std::string> prefixFileNames = {"10", "50", "100"};
-    // std::vector<std::string> prefixFileNames = {"-no-fwd3"};
-    // std::vector<uint16_t> iterationNumbers = {1000, 2000, 3000, 4000, 5000, 10000}; // Example iteration numbers
-    std::vector<uint16_t> iterationNumbers = {10000};
+    std::vector<std::string> FileNames = MyConfig::GetFileNames();
+    std::vector<uint16_t> iterationNumbers = MyConfig::GetIterationNumbers();
     // Example buffer sizes (in bytes)
-    std::vector<uint32_t> bufferSizes = {20000, 24000};
+    std::vector<uint32_t> bufferSizes = MyConfig::GetBufferSizes();
 
     const std::string outputFilename = "simulation_results.txt"; // Shared output file
 
@@ -106,17 +79,25 @@ int main(int argc, char *argv[]) {
         Config::SetDefault("ns3::TcpSocket::SndBufSize", UintegerValue(bufSize));
         Config::SetDefault("ns3::TcpSocket::RcvBufSize", UintegerValue(bufSize));
 
-    std::cout << "---- Starting simulation with SndBufSize/RcvBufSize = " << bufSize << " bytes ----" << std::endl;
+    std::cout << "\n---- Starting simulation with vsize " << vsize << std::endl;
 
-        for (std::string& prefix : prefixFileNames) {
-            routerFilePath = currentDir + "/scratch/data/router" + prefix + ".txt";
-            linkFilePath = currentDir + "/scratch/data/link" + prefix + ".txt";
-            aggGroupFilePath = currentDir + "/scratch/data/aggtree" + prefix + ".txt";
+        for (std::string& fileName : FileNames) {
+            currentFileName = fileName;
+
+            routerFilePath = currentDir + "/scratch/data/router/" + "router-" + fileName + ".txt";
+            linkFilePath = currentDir + "/scratch/data/link/" + "link-" + fileName + ".txt";
+            aggGroupFilePath = currentDir + "/scratch/data/aggtree/" + "aggtree-" + fileName + ".txt";
 
             for (uint16_t itr : iterationNumbers) {
-                std::cout << "\n\n#################### SIMULATION PARAMETERS ####################\n\n\n";
-                std::cout << "Prefix: " << prefix << " Iteration: " << itr << " Vector Size: " << vsize << " Congestion Control Algorithm: " << cc << std::endl;
-                std::cout << "\n\n#################### SIMULATION SET-UP ####################\n\n\n";
+                // Output the configuration details.
+                std::cout << "\n#################### SIMULATION CONFIG ####################\n\n";
+                std::cout << "FileName: " << fileName 
+                          << "\nIteration: " << itr 
+                          << "\nCongestion Control: " << MyConfig::GetCongestionControl() 
+                          << "\nbufSize: " << bufSize 
+                          << "\nlossRate: " << MyConfig::GetLossRate()
+                          << "\nVector Size: " << vsize
+                          << "\n\n#################### SIMULATION START ####################\n\n" << std::flush;
 
                 LogLevel log_precision = LOG_LEVEL_LOGIC;
 
@@ -146,17 +127,14 @@ int main(int argc, char *argv[]) {
                 LogComponentDisable("TcpRxBuffer", LOG_LEVEL_ALL);
                 LogComponentDisable("TcpTxBuffer", LOG_LEVEL_ALL);
                 LogComponentDisable("Packet", LOG_LEVEL_DEBUG);
+                
+                // LogComponentEnable("InnetworkAggregationInterface", LOG_LEVEL_WARN);
+                // LogComponentEnable("TCPclient", LOG_LEVEL_WARN);
+                // LogComponentEnable("TCPserver", LOG_LEVEL_WARN);
+                LogComponentEnable("TcpSocketBase", LOG_LEVEL_WARN);
 
                 // LogComponentEnable("PointToPointNetDevice", LOG_LEVEL_ALL);
-                // LogComponentEnable("LoopbackNetDevice", LOG_LEVEL_ALL);
-                // LogComponentEnable("Ipv4L3Protocol", LOG_LEVEL_ALL);
-                // LogComponentEnable("Ipv4Interface", LOG_LEVEL_ALL);
-                // LogComponentEnable("Ipv4GlobalRouting", LOG_LEVEL_ALL);
-                // LogComponentEnable("Ipv4ListRouting", LOG_LEVEL_ALL);
 
-                // LogComponentEnable("Ipv4L3Protocol", LOG_LEVEL_ALL);
-                // LogComponentEnable("Ipv4StaticRouting", LOG_LEVEL_ALL);
-                // LogComponentEnable("Ipv4GlobalRouting", LOG_LEVEL_ALL);
 
                 // Initialize node containers
                 NodeContainer consumer;
@@ -190,20 +168,16 @@ int main(int argc, char *argv[]) {
                 // Print routing tables
                 // PrintRoutingTables();
 
-                Simulator::Stop(Seconds(200.0));
+                Simulator::Stop(Seconds(100.00));
                 Simulator::Run();
                 Simulator::Destroy();
                 Names::Clear(); // Clear the Names database
 
-                std::string result = "Prefix: " + prefix + ", Iteration: " + std::to_string(itr) + " - Simulation completed successfully.";
-                std::cout << "Prefix: " + prefix + ", Iteration: " + std::to_string(itr) + " - Simulation completed successfully." << std::endl;
-                WriteToFile(outputFilename, result);
-
                 // Print debug info
                 // PrintIpToNodeMap();
                 PrintNewToOldIpMap();
-                PrintTraceRecord();
-                std::cout << "\n#################### SIMULATION END ####################\n\n\n";
+                PrintTraceRecord(fileName);
+                std::cout << "\n#################### SIMULATION END ####################\n\n\n\n\n";
 
             }
         }

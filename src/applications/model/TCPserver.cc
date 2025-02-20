@@ -68,8 +68,28 @@ void TCPserver::DoDispose() {
 void TCPserver::InitializeSocket() {
     if (!m_socket && m_node) {
         m_socket = Socket::CreateSocket(m_node, TcpSocketFactory::GetTypeId());
-        m_socket->Bind(InetSocketAddress(m_node->GetObject<Ipv4>()->GetAddress(1,0).GetLocal(), m_port));
-        m_socket->Listen();
+        InetSocketAddress bindAddress(m_node->GetObject<Ipv4>()->GetAddress(1, 0).GetLocal(), m_port);
+
+        // Check if Bind() succeeds
+        int bindResult = m_socket->Bind(bindAddress);
+        if (bindResult == -1) {
+            NS_LOG_ERROR("TCPserver: Failed to bind to "
+                         << bindAddress.GetIpv4() << " on port " << bindAddress.GetPort());
+            NS_FATAL_ERROR("Bind failed");
+        }
+
+        // Check if Listen() succeeds
+        int listenResult = m_socket->Listen();
+        if (listenResult == -1) {
+            // Retrieve the actual bound address/port for logging
+            Address localAddress;
+            m_socket->GetSockName(localAddress);
+            InetSocketAddress sockAddr = InetSocketAddress::ConvertFrom(localAddress);
+            NS_LOG_ERROR("TCPserver: Failed to listen on "
+                         << sockAddr.GetIpv4() << ":" << sockAddr.GetPort());
+            NS_FATAL_ERROR("Listen failed");
+        }
+
         m_socket->SetRecvCallback(MakeCallback(&TCPserver::HandleRead, this));
     }
 }

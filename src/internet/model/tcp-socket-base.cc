@@ -65,6 +65,7 @@
 #include <algorithm>
 #include <math.h>
 
+// Zhuoxu: the following DIY include function
 // Zhuoxu: for Ipv4 to std::string
 #include <arpa/inet.h> // For inet_ntop, INET_ADDRSTRLEN, AF_INET
 #include <string>
@@ -74,6 +75,10 @@
 
 #include <sstream>  // Add this if not already included
 #include "ns3/ipv6-address.h"
+
+#include "ns3/global-data.h"
+#include <sys/stat.h>    // For stat() and mkdir()
+#include <sys/types.h>
 
 namespace ns3
 {
@@ -659,6 +664,8 @@ TcpSocketBase::Bind(const Address& address)
             m_errno = port ? ERROR_ADDRINUSE : ERROR_ADDRNOTAVAIL;
             return -1;
         }
+        if(Ipv4AddressToString(ipv4) == "10.1.1.1")
+            NS_LOG_UNCOND("Using congestion control strategy: " << m_congestionControl->GetName());
     }
     else if (Inet6SocketAddress::IsMatchingType(address))
     {
@@ -2852,7 +2859,7 @@ void
 TcpSocketBase::SendEmptyPacket(uint8_t flags)
 {
     NS_LOG_FUNCTION(this << static_cast<uint32_t>(flags));
-    // NS_LOG_FUNCTION("Using congestion control strategy: " << m_congestionControl->GetName());
+    NS_LOG_FUNCTION("Using congestion control strategy: " << m_congestionControl->GetName());
 
     if (m_endPoint == nullptr && m_endPoint6 == nullptr)
     {
@@ -3388,6 +3395,7 @@ TcpSocketBase::SendDataPacket(SequenceNumber32 seq, uint32_t maxSize, bool withA
     m_tcb->m_highTxMark = std::max(seq + sz, m_tcb->m_highTxMark.Get());
 
     // DIY function: output retransmission info
+    
     if(isRetransmission)
     {
         if (this->localAddressStr.empty())
@@ -5081,80 +5089,84 @@ TcpSocketBase::GetTcpSocketState(){
 
 void TcpSocketBase::OutputRttData()
 {
-    if (this->localAddressStr.empty() || !isElementInFilter(this->localAddressStr))
-        return;
+    // if (this->localAddressStr.empty() || !isElementInFilter(this->localAddressStr))
+    //     return;
 
-    std::string filename;
-    std::ofstream outFile;
-    if (!m_packetRttPairs.empty()){
-        if (!isElementInFilter(this->localAddressStr))
-        return;
+    // std::string filename;
+    // std::ofstream outFile;
+    // if (!m_packetRttPairs.empty())
+    // {
+    //     if (!isElementInFilter(this->localAddressStr))
+    //         return;
 
-        // Output RTT data
-        filename = "./log/rtt/" + GetNodeNameFromIp(this->localAddressStr) + "_rtt.txt";
-        std::cout << " The rtt filename is: " << filename << std::endl;
-        outFile.open(filename);
-        if (outFile.is_open())
-        {
-            // if (!m_packetRttPairs.empty())
-            //     NS_LOG_UNCOND( this << "Address: " << this->localAddressStr 
-            //         << " Peer address: "
-            //         << peerAddressStr
-            //         << " call function OutputRttData");
-            for (const auto& pair : m_packetRttPairs)
-            {
-                // NS_LOG_UNCOND(pair.first.GetMilliSeconds() << " " << pair.second.GetMilliSeconds());
-                outFile << pair.first.GetMilliSeconds() << " " << pair.second.GetMilliSeconds() << "\n";
-            }
-            outFile.close();
-        }
-        else
-        {
-            NS_LOG_UNCOND("Failed to open file for RTT data: " << filename);
-        }
-    }
+    //     // Build RTT folder: "./result/rtt/<currentFileName>"
+    //     std::string rttFolder = "./result/rtt/" + currentFileName;
+    //     struct stat info;
+    //     if (stat(rttFolder.c_str(), &info) != 0)
+    //     {
+    //         if (mkdir(rttFolder.c_str(), 0755) != 0)
+    //             NS_LOG_UNCOND("Failed to create RTT directory: " << rttFolder);
+    //     }
+    //     // Build RTT filename using node name.
+    //     filename = rttFolder + "/" + GetNodeNameFromIp(this->localAddressStr) + "_rtt.txt";
+    //     std::cout << " The rtt filename is: " << filename << std::endl;
+    //     outFile.open(filename);
+    //     if (outFile.is_open())
+    //     {
+    //         for (const auto& pair : m_packetRttPairs)
+    //         {
+    //             outFile << pair.first.GetMilliSeconds() << " " << pair.second.GetMilliSeconds() << "\n";
+    //         }
+    //         outFile.close();
+    //     }
+    //     else
+    //     {
+    //         NS_LOG_UNCOND("Failed to open file for RTT data: " << filename);
+    //     }
+    // }
 
-    if(!m_tpRecord.empty()){
-        // Output Throughput data
-        // currently, we only keep the last record. Since previous record is the same
-        // filename = "./log/tp/" + this->localAddressStr + "+" + this->peerAddressStr + "_TP.txt";
-        if(this->peerAddressStr.empty())
-            return;
+    // if (!m_tpRecord.empty())
+    // {
+    //     // Output Throughput data.
+    //     if (this->peerAddressStr.empty())
+    //         return;
         
-        if(NewToOldIpMap.find(this->peerAddressStr) != NewToOldIpMap.end())
-            this->peerAddressStr = NewToOldIpMap[this->peerAddressStr];
+    //     if (NewToOldIpMap.find(this->peerAddressStr) != NewToOldIpMap.end())
+    //         this->peerAddressStr = NewToOldIpMap[this->peerAddressStr];
         
+    //     std::string localName = GetNodeNameFromIp(this->localAddressStr);
+    //     std::string peerName = GetNodeNameFromIp(this->peerAddressStr);
         
-
-        std::string localName = GetNodeNameFromIp(this->localAddressStr);
-        std::string peerName = GetNodeNameFromIp(this->peerAddressStr);
-        filename = "./log/tp/" + localName + "+" + peerName + "_TP.txt";
-        // If the base filename contains "con", then insert the counter.
-        if (filename.find("con") != std::string::npos)
-        {
-            filename = "./log/tp/" + localName + "_" + std::to_string(ns3::conCount++) + "+" + peerName + "_TP.txt";
-        }
-
-        std::cout << " The tp filename is: " << filename << std::endl;
-        outFile.open(filename);
-        if (outFile.is_open())
-        {
-            // if (!m_tpRecord.empty())
-            //     NS_LOG_UNCOND( this << "Address: " << this->localAddressStr 
-            //         << " Peer address: "
-            //         << peerAddressStr
-            //         << " call function OutputTpData");
-            for (const auto& pair : m_tpRecord)
-            {
-                outFile << pair.first.GetMilliSeconds() << " " << pair.second << "\n";
-            }
-            outFile.close();
-        }
-        else
-        {
-            NS_LOG_UNCOND("Failed to open file for Throughput data: " << filename);
-        }
-    }
+    //     // Build TP folder: "./result/tp/<currentFileName>"
+    //     std::string tpFolder = "./result/tp/" + currentFileName;
+    //     struct stat info;
+    //     if (stat(tpFolder.c_str(), &info) != 0)
+    //     {
+    //         if (mkdir(tpFolder.c_str(), 0755) != 0)
+    //             NS_LOG_UNCOND("Failed to create TP directory: " << tpFolder);
+    //     }
+        
+    //     filename = tpFolder + "/" + localName + "+" + peerName + "_TP.txt";
+    //     // If the base filename contains "con", then insert the counter.
+    //     if (filename.find("con") != std::string::npos)
+    //     {
+    //         filename = tpFolder + "/" + localName + "_" + std::to_string(ns3::conCount++) + "+" + peerName + "_TP.txt";
+    //     }
+    //     std::cout << " The tp filename is: " << filename << std::endl;
+    //     outFile.open(filename);
+    //     if (outFile.is_open())
+    //     {
+    //         for (const auto& pair : m_tpRecord)
+    //         {
+    //             outFile << pair.first.GetMilliSeconds() << " " << pair.second << "\n";
+    //         }
+    //         outFile.close();
+    //     }
+    //     else
+    //     {
+    //         NS_LOG_UNCOND("Failed to open file for Throughput data: " << filename);
+    //     }
+    // }
 }
 
 void TcpSocketBase::DoDispose()

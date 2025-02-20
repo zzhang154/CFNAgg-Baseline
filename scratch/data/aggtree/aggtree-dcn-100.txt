@@ -1,0 +1,6 @@
+agg0: pro5 pro7 pro19 pro6 pro2 pro15 pro0 pro13 pro4 pro12 pro14 pro16 pro11 pro10 pro3 pro17 pro9 pro1 pro18 pro8 
+agg1: pro24 pro30 pro39 pro32 pro35 pro21 pro34 pro26 pro27 pro28 pro31 pro38 pro25 pro37 pro23 pro33 pro22 pro20 pro36 pro29 
+agg2: pro57 pro48 pro51 pro56 pro47 pro43 pro54 pro58 pro40 pro59 pro50 pro44 pro46 pro53 pro49 pro41 pro45 pro52 pro42 pro55 
+agg3: pro64 pro63 pro67 pro73 pro65 pro76 pro70 pro61 pro69 pro78 pro66 pro71 pro77 pro68 pro79 pro72 pro62 pro75 pro74 pro60 
+agg4: pro80 pro96 pro98 pro83 pro82 pro85 pro94 pro99 pro88 pro93 pro92 pro95 pro87 pro90 pro97 pro81 pro89 pro86 pro84 pro91 
+con0: agg3 agg0 agg1 agg2 agg4 

@@ -1413,4 +1413,6 @@ scratch/CMakeFiles/scratch_innetwork-test.dir/innetwork-test.cc.o: \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/include/ns3/global-data.h \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/innetwork-task/helper/global-data.h \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/include/ns3/setup.h \
- /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/innetwork-task/helper/setup.h
+ /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/innetwork-task/helper/setup.h \
+ /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/include/ns3/myConfig.h \
+ /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/innetwork-task/config-file/myConfig.h

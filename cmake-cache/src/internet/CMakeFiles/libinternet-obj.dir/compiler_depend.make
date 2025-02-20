@@ -24603,7 +24603,43 @@ src/internet/CMakeFiles/libinternet-obj.dir/model/tcp-socket-base.cc.o: CMakeFil
   ../src/internet/model/tcp-option-winscale.h \
   ../src/internet/model/tcp-recovery-ops.h \
   ../src/internet/model/tcp-tx-buffer.h \
-  /usr/include/c++/11/math.h
+  /usr/include/c++/11/math.h \
+  ../build/include/ns3/global-data.h \
+  ../src/innetwork-task/helper/global-data.h \
+  ../build/include/ns3/PacketTraceTag.h \
+  ../src/innetwork-task/helper/PacketTraceTag.h \
+  ../build/include/ns3/tag.h \
+  ../src/network/model/tag.h \
+  ../src/innetwork-task/helper/parameter.h \
+  ../src/innetwork-task/helper/utils.h \
+  /usr/include/c++/11/iomanip \
+  /usr/include/c++/11/bits/ios_base.h \
+  /usr/include/c++/11/locale \
+  /usr/include/c++/11/bits/localefwd.h \
+  /usr/include/c++/11/bits/locale_classes.h \
+  /usr/include/c++/11/bits/locale_facets.h \
+  /usr/include/c++/11/bits/locale_facets_nonio.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/time_members.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/messages_members.h \
+  /usr/include/libintl.h \
+  /usr/include/c++/11/bits/codecvt.h \
+  /usr/include/c++/11/bits/locale_facets_nonio.tcc \
+  /usr/include/c++/11/bits/locale_conv.h \
+  /usr/include/c++/11/streambuf \
+  /usr/include/c++/11/bits/stringfwd.h \
+  /usr/include/c++/11/bits/quoted_string.h \
+  /usr/include/x86_64-linux-gnu/sys/stat.h \
+  /usr/include/x86_64-linux-gnu/bits/stat.h \
+  /usr/include/x86_64-linux-gnu/bits/struct_stat.h \
+  /usr/include/x86_64-linux-gnu/bits/statx.h \
+  /usr/include/linux/stat.h \
+  /usr/include/linux/types.h \
+  /usr/include/x86_64-linux-gnu/asm/types.h \
+  /usr/include/asm-generic/types.h \
+  /usr/include/asm-generic/int-ll64.h \
+  /usr/include/x86_64-linux-gnu/bits/statx-generic.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_statx_timestamp.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_statx.h
 
 src/internet/CMakeFiles/libinternet-obj.dir/model/tcp-socket-factory-impl.cc.o: CMakeFiles/stdlib_pch-default.dir/cmake_pch.hxx \
   ../src/internet/model/tcp-socket-factory-impl.cc \
@@ -27812,6 +27848,26 @@ src/internet/CMakeFiles/libinternet-obj.dir/model/udp-socket.cc.o: CMakeFiles/st
 
 ../src/internet/model/tcp-socket-factory-impl.cc:
 
+/usr/include/x86_64-linux-gnu/bits/types/struct_statx_timestamp.h:
+
+/usr/include/x86_64-linux-gnu/bits/statx-generic.h:
+
+/usr/include/x86_64-linux-gnu/asm/types.h:
+
+/usr/include/linux/types.h:
+
+/usr/include/x86_64-linux-gnu/bits/statx.h:
+
+/usr/include/x86_64-linux-gnu/bits/struct_stat.h:
+
+/usr/include/x86_64-linux-gnu/sys/stat.h:
+
+../src/innetwork-task/helper/PacketTraceTag.h:
+
+../build/include/ns3/PacketTraceTag.h:
+
+../src/innetwork-task/helper/global-data.h:
+
 /usr/include/c++/11/math.h:
 
 ../src/internet/model/tcp-recovery-ops.cc:
@@ -28091,6 +28147,8 @@ src/internet/CMakeFiles/libinternet-obj.dir/model/udp-socket.cc.o: CMakeFiles/st
 /usr/include/x86_64-linux-gnu/asm/socket.h:
 
 ../src/internet/model/ipv4-end-point.h:
+
+/usr/include/asm-generic/types.h:
 
 ../src/internet/model/icmpv6-l4-protocol.cc:
 
@@ -28420,6 +28478,8 @@ src/internet/CMakeFiles/libinternet-obj.dir/model/udp-socket.cc.o: CMakeFiles/st
 
 ../build/include/ns3/trace-helper.h:
 
+/usr/include/linux/stat.h:
+
 ../src/core/model/fatal-impl.h:
 
 ../src/internet/model/ipv6-extension-demux.cc:
@@ -28450,9 +28510,13 @@ src/internet/CMakeFiles/libinternet-obj.dir/model/udp-socket.cc.o: CMakeFiles/st
 
 ../build/include/ns3/packet.h:
 
+../build/include/ns3/global-data.h:
+
 /usr/include/boost/preprocessor/repetition/enum_params.hpp:
 
 ../src/internet/helper/ipv4-interface-container.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct_statx.h:
 
 ../build/include/ns3/log-macros-disabled.h:
 
@@ -28913,6 +28977,8 @@ CMakeFiles/stdlib_pch-default.dir/cmake_pch.hxx:
 ../src/core/model/event-id.h:
 
 /usr/include/boost/units/systems/si/conductivity.hpp:
+
+/usr/include/asm-generic/int-ll64.h:
 
 ../build/include/ns3/attribute-helper.h:
 
@@ -29835,6 +29901,8 @@ CMakeFiles/stdlib_pch-default.dir/cmake_pch.hxx:
 /usr/include/c++/11/bits/exception_defines.h:
 
 /usr/include/boost/mpl/aux_/numeric_cast_utils.hpp:
+
+/usr/include/x86_64-linux-gnu/bits/stat.h:
 
 /usr/include/boost/mpl/aux_/is_msvc_eti_arg.hpp:
 

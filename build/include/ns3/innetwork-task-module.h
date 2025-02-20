@@ -13,4 +13,5 @@
     #include <ns3/consumer.h>
     #include <ns3/InnetworkAggregationInterface.h>
     #include <ns3/producer.h>
+    #include <ns3/myConfig.h>
 #endif 

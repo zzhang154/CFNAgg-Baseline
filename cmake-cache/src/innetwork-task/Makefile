@@ -190,6 +190,30 @@ libinnetwork-task/fast:
 	cd /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/cmake-cache && $(MAKE) $(MAKESILENT) -f src/innetwork-task/CMakeFiles/libinnetwork-task.dir/build.make src/innetwork-task/CMakeFiles/libinnetwork-task.dir/build
 .PHONY : libinnetwork-task/fast
 
+config-file/myConfig.o: config-file/myConfig.cc.o
+.PHONY : config-file/myConfig.o
+
+# target to build an object file
+config-file/myConfig.cc.o:
+	cd /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/cmake-cache && $(MAKE) $(MAKESILENT) -f src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/build.make src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/config-file/myConfig.cc.o
+.PHONY : config-file/myConfig.cc.o
+
+config-file/myConfig.i: config-file/myConfig.cc.i
+.PHONY : config-file/myConfig.i
+
+# target to preprocess a source file
+config-file/myConfig.cc.i:
+	cd /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/cmake-cache && $(MAKE) $(MAKESILENT) -f src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/build.make src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/config-file/myConfig.cc.i
+.PHONY : config-file/myConfig.cc.i
+
+config-file/myConfig.s: config-file/myConfig.cc.s
+.PHONY : config-file/myConfig.s
+
+# target to generate assembly for a file
+config-file/myConfig.cc.s:
+	cd /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/cmake-cache && $(MAKE) $(MAKESILENT) -f src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/build.make src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/config-file/myConfig.cc.s
+.PHONY : config-file/myConfig.cc.s
+
 helper/global-data.o: helper/global-data.cc.o
 .PHONY : helper/global-data.o
 
@@ -420,6 +444,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... libinnetwork-task"
 	@echo "... libinnetwork-task-obj"
+	@echo "... config-file/myConfig.o"
+	@echo "... config-file/myConfig.i"
+	@echo "... config-file/myConfig.s"
 	@echo "... helper/global-data.o"
 	@echo "... helper/global-data.i"
 	@echo "... helper/global-data.s"

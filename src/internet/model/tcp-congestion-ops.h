@@ -238,6 +238,36 @@ class TcpNewReno : public TcpCongestionOps
     virtual void CongestionAvoidance(Ptr<TcpSocketState> tcb, uint32_t segmentsAcked);
 };
 
+class TcpAIMD : public TcpNewReno {
+  public:
+    static TypeId GetTypeId();
+    TcpAIMD() = default;
+    TcpAIMD(const TcpAIMD& sock) : TcpNewReno(sock) {}
+    ~TcpAIMD() override = default;
+  
+    std::string GetName() const override { return "TcpAIMD"; }
+  
+    void IncreaseWindow(Ptr<TcpSocketState> tcb, uint32_t segmentsAcked) override {
+      // Additive Increase: Increase cwnd by 1 MSS per RTT
+      tcb->m_cWnd += tcb->m_segmentSize;
+    }
+  
+    uint32_t GetSsThresh(Ptr<const TcpSocketState> tcb, uint32_t bytesInFlight) override {
+      // Multiplicative Decrease: Reduce cwnd by 50% on loss
+      return std::max(2 * tcb->m_segmentSize, bytesInFlight / 2);
+    }
+  
+    Ptr<TcpCongestionOps> Fork() override { return CreateObject<TcpAIMD>(*this); }
+  };
+
+  // Modify the GetTypeId definition by adding the inline keyword.
+  inline TypeId TcpAIMD::GetTypeId() {
+    static TypeId tid = TypeId("ns3::TcpAIMD")
+      .SetParent<TcpNewReno>()
+      .AddConstructor<TcpAIMD>();
+    return tid;
+  }
+  
 } // namespace ns3
 
 #endif // TCPCONGESTIONOPS_H

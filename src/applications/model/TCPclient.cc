@@ -64,15 +64,27 @@ void TCPclient::Bind(uint16_t port)
     m_running = true;
     m_bindPort = port;
 
-    if(!m_socket) {
+    if (!m_socket)
+    {
         m_socket = Socket::CreateSocket(m_node, TcpSocketFactory::GetTypeId());
         InetSocketAddress local = GetLocalAddress();
-        
-        if(m_socket->Bind(local) == -1) {
+
+        // Check socket bind
+        if (m_socket->Bind(local) == -1)
+        {
+            NS_LOG_ERROR("Failed to bind socket to " << local.GetIpv4() << " on port " << local.GetPort());
             NS_FATAL_ERROR("Failed to bind socket");
         }
-        
-        m_socket->Connect(InetSocketAddress::ConvertFrom(m_peerAddress));
+
+        // Check socket connection
+        int connectResult = m_socket->Connect(InetSocketAddress::ConvertFrom(m_peerAddress));
+        if (connectResult == -1)
+        {
+            InetSocketAddress peerAddr = InetSocketAddress::ConvertFrom(m_peerAddress);
+            NS_LOG_ERROR("Failed to connect to peer " << peerAddr.GetIpv4() << " on port " << peerAddr.GetPort());
+            NS_FATAL_ERROR("Failed to connect socket");
+        }
+
         m_socket->SetRecvCallback(MakeCallback(&TCPclient::HandleRead, this));
         m_socket->SetAllowBroadcast(true);
     }

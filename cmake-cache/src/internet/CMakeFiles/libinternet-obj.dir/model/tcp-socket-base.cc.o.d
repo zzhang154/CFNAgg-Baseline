@@ -915,4 +915,33 @@ src/internet/CMakeFiles/libinternet-obj.dir/model/tcp-socket-base.cc.o: \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/internet/model/tcp-option-winscale.h \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/internet/model/tcp-recovery-ops.h \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/internet/model/tcp-tx-buffer.h \
- /usr/include/c++/11/math.h
+ /usr/include/c++/11/math.h \
+ /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/include/ns3/global-data.h \
+ /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/innetwork-task/helper/global-data.h \
+ /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/include/ns3/PacketTraceTag.h \
+ /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/innetwork-task/helper/PacketTraceTag.h \
+ /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/include/ns3/tag.h \
+ /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/network/model/tag.h \
+ /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/innetwork-task/helper/parameter.h \
+ /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/innetwork-task/helper/utils.h \
+ /usr/include/c++/11/iomanip /usr/include/c++/11/bits/ios_base.h \
+ /usr/include/c++/11/locale /usr/include/c++/11/bits/localefwd.h \
+ /usr/include/c++/11/bits/locale_classes.h \
+ /usr/include/c++/11/bits/locale_facets.h \
+ /usr/include/c++/11/bits/locale_facets_nonio.h \
+ /usr/include/x86_64-linux-gnu/c++/11/bits/time_members.h \
+ /usr/include/x86_64-linux-gnu/c++/11/bits/messages_members.h \
+ /usr/include/libintl.h /usr/include/c++/11/bits/codecvt.h \
+ /usr/include/c++/11/bits/locale_facets_nonio.tcc \
+ /usr/include/c++/11/bits/locale_conv.h /usr/include/c++/11/streambuf \
+ /usr/include/c++/11/bits/stringfwd.h \
+ /usr/include/c++/11/bits/quoted_string.h \
+ /usr/include/x86_64-linux-gnu/sys/stat.h \
+ /usr/include/x86_64-linux-gnu/bits/stat.h \
+ /usr/include/x86_64-linux-gnu/bits/struct_stat.h \
+ /usr/include/x86_64-linux-gnu/bits/statx.h /usr/include/linux/stat.h \
+ /usr/include/linux/types.h /usr/include/x86_64-linux-gnu/asm/types.h \
+ /usr/include/asm-generic/types.h /usr/include/asm-generic/int-ll64.h \
+ /usr/include/x86_64-linux-gnu/bits/statx-generic.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_statx_timestamp.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_statx.h

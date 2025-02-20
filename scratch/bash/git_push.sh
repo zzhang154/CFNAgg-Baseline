@@ -13,8 +13,10 @@ fi
 git add .
 
 # Commit the changes
-git commit -m "TCP-Agg v-12.0-mirror:
-(1) Keep the mirror break point in 2025/02/18. In case there are bugs in the following days.
+git commit -m "TCP-Agg v-13.0-release:
+(1) Can run loss rate now (default is uni-direction).
+(2) Automation the config parameters in "src/innetwork-task/config-file/config.ini".
+(3) Update data set for evaluation.
 "
 
 # Rename current branch to tcp-baseline (if needed)

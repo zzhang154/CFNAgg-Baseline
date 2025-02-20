@@ -27,6 +27,10 @@
 #include "ns3/PacketTraceTag.h"
 #include "ns3/parameter.h"
 
+#include "ns3/tcp-congestion-ops.h"
+
+#include "ns3/myConfig.h"
+
 using namespace ns3;
 
 // *****************************************************************************
@@ -202,5 +206,23 @@ bool ForwarderPromiscRxCallback (Ptr<NetDevice> device, Ptr<const Packet> packet
  * @brief Installs the promiscuous callback on all forwarder nodes.
  */
 void InstallForwarderPromiscCallbacks (NodeContainer &forwarder);
+
+/**
+ * @brief Installs the specified TCP congestion control algorithm on all nodes.
+ * 
+ * @param congestionControl TypeId of the TCP congestion control algorithm to install
+ * @param consumer Container of consumer nodes
+ * @param producer Container of producer nodes
+ * @param forwarder Container of forwarder nodes
+ * @param aggregator Container of aggregator nodes
+ * 
+ * @note Must be called after Internet stack installation but before socket creation
+ * @example InstallTcpCongestionControl(TcpBbr::GetTypeId(), consumer, producer, forwarder, aggregator);
+ */
+void SetTcpCongestionControl(const TypeId& congestionControl,
+    const NodeContainer& consumer,
+    const NodeContainer& producer,
+    const NodeContainer& forwarder,
+    const NodeContainer& aggregator);
 
 #endif // SETUP_H

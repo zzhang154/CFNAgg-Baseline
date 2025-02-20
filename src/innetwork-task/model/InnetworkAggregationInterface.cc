@@ -210,7 +210,8 @@ int InnetworkAggregationInterface::SendPacket(std::string toStr,
             UpdateQueue(fromStr);
         }
     } else {
-        NS_LOG_DEBUG("SendPacket: Sending failed for iteration " << iterationNum << ". Handling failure.");
+        NS_LOG_DEBUG("SendPacket: Sending failed for iteration " << iterationNum 
+            << " from source " << thisAddress << ". Handling failure.");
         HandleSendFailure(toStr, iterationNum, buffer, fromStr);
     }
     
@@ -325,7 +326,7 @@ bool InnetworkAggregationInterface::PrintCompInfo(uint16_t iterationNum) {
     
     if (successIter.size() >= maxIteration - padIter) {
         if (sGroup.empty()) {
-            NS_LOG_INFO("Consumer completed all iterations in " 
+            NS_LOG_INFO("Consumer completed all iterations (" << successIter.size() << ") in " 
                        << (now.GetMilliSeconds() - 2000) << "ms");
             Simulator::Stop (Seconds(Simulator::Now().GetSeconds() + 0.001));
         } else {
@@ -335,6 +336,7 @@ bool InnetworkAggregationInterface::PrintCompInfo(uint16_t iterationNum) {
         return true;
     }
 
+    // Zhuoxu: Print every iteration.
     if ((iterationNum + 1) % 1000 == 0) {
         std::string nodeType = sGroup.empty() ? "Consumer" : "Aggregator";
         NS_LOG_INFO(nodeType << " " << thisAddress 

@@ -1480,8 +1480,14 @@ scratch/CMakeFiles/scratch_innetwork-test.dir/innetwork-test.cc.o: CMakeFiles/st
   ../build/include/ns3/global-data.h \
   ../src/innetwork-task/helper/global-data.h \
   ../build/include/ns3/setup.h \
-  ../src/innetwork-task/helper/setup.h
+  ../src/innetwork-task/helper/setup.h \
+  ../build/include/ns3/myConfig.h \
+  ../src/innetwork-task/config-file/myConfig.h
 
+
+../src/innetwork-task/config-file/myConfig.h:
+
+../build/include/ns3/myConfig.h:
 
 ../build/include/ns3/setup.h:
 

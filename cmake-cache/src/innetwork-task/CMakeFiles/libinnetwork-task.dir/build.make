@@ -82,7 +82,8 @@ libinnetwork__task_EXTERNAL_OBJECTS = \
 "/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/cmake-cache/src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/model/aggregator.cc.o" \
 "/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/cmake-cache/src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/model/consumer.cc.o" \
 "/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/cmake-cache/src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/model/InnetworkAggregationInterface.cc.o" \
-"/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/cmake-cache/src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/model/producer.cc.o"
+"/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/cmake-cache/src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/model/producer.cc.o" \
+"/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/cmake-cache/src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/config-file/myConfig.cc.o"
 
 ../build/lib/libns3.42-innetwork-task-default.so: src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/helper/parameter.cc.o
 ../build/lib/libns3.42-innetwork-task-default.so: src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/helper/vectorop.cc.o
@@ -93,6 +94,7 @@ libinnetwork__task_EXTERNAL_OBJECTS = \
 ../build/lib/libns3.42-innetwork-task-default.so: src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/model/consumer.cc.o
 ../build/lib/libns3.42-innetwork-task-default.so: src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/model/InnetworkAggregationInterface.cc.o
 ../build/lib/libns3.42-innetwork-task-default.so: src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/model/producer.cc.o
+../build/lib/libns3.42-innetwork-task-default.so: src/innetwork-task/CMakeFiles/libinnetwork-task-obj.dir/config-file/myConfig.cc.o
 ../build/lib/libns3.42-innetwork-task-default.so: src/innetwork-task/CMakeFiles/libinnetwork-task.dir/build.make
 ../build/lib/libns3.42-innetwork-task-default.so: /usr/lib/x86_64-linux-gnu/libgsl.so
 ../build/lib/libns3.42-innetwork-task-default.so: /usr/lib/x86_64-linux-gnu/libgslcblas.so

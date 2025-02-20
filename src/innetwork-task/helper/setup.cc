@@ -149,6 +149,7 @@ void BuildTopo(std::string &linkFile, NodeContainer &consumer, NodeContainer &pr
 
         // Configure P2P link parameters
         p2p.SetDeviceAttribute("DataRate", StringValue(dataRate));
+        // p2p.SetChannelAttribute("LossRate", StringValue(0.01));
         p2p.SetChannelAttribute("Delay", StringValue(delay));
         p2p.SetQueue("ns3::DropTailQueue", "MaxSize", StringValue(queueSize + "p"));
 
@@ -175,19 +176,21 @@ void BuildTopo(std::string &linkFile, NodeContainer &consumer, NodeContainer &pr
         // Store IP-to-Node mappings
         Ipv4Address node1Addr = n1n2.Get(0)->GetObject<Ipv4>()->GetAddress(1,0).GetLocal();
         Ipv4Address node2Addr = n1n2.Get(1)->GetObject<Ipv4>()->GetAddress(1,0).GetLocal();
-        std::cout << "---node1 ip--- " << node1 << " --- " << node1Addr
-                  << ", node2 ip--- " << node2 << " --- " << node2Addr << std::endl;
+        // std::cout << "---node1 ip--- " << node1 << " --- " << node1Addr << ", node2 ip--- " << node2 << " --- " << node2Addr << std::endl;
         ipToNodeName[Ipv4AddressToString(node1Addr)] = node1;
         ipToNodeName[Ipv4AddressToString(node2Addr)] = node2;
 
-        // test for link loss rate.
-        // If either node is agg10, attach an error model with 1% loss rate.
+        // Inside the link configuration loop:
         if (node1 == "pro0" || node2 == "pro0") {
-            Ptr<RateErrorModel> errorModel = CreateObject<RateErrorModel>();
-            // 1% loss rate: 0.01 probability
-            errorModel->SetAttribute("ErrorRate", DoubleValue(0.01));
-            d1d2.Get(0)->SetAttribute("ReceiveErrorModel", PointerValue(errorModel));
-            d1d2.Get(1)->SetAttribute("ReceiveErrorModel", PointerValue(errorModel));
+            // Determine which NetDevice belongs to the non-pro0 node
+            int targetDeviceIndex = (node1 == "pro0") ? 1 : 0; // pro0 is sender → apply loss to receiver
+
+            Ptr<RateErrorModel> em = CreateObject<RateErrorModel>();
+            em->SetAttribute("ErrorRate", DoubleValue(MyConfig::GetLossRate()));  // 1% loss rate
+            em->SetAttribute("ErrorUnit", EnumValue(RateErrorModel::ERROR_UNIT_PACKET));
+
+            // Apply error model to the receiver's device (non-pro0 side)
+            d1d2.Get(targetDeviceIndex)->SetAttribute("ReceiveErrorModel", PointerValue(em));
         }
     }
 
@@ -198,6 +201,16 @@ void BuildTopo(std::string &linkFile, NodeContainer &consumer, NodeContainer &pr
     InstallForwarderPromiscCallbacks(forwarder);
     InstallForwarderPromiscCallbacks(aggregator);
     InstallForwarderPromiscCallbacks(consumer);
+
+    // Comment both of them would be choose for Qbic
+    // Set TCP congestion control for ALL nodes
+    // SetTcpCongestionControl(TcpBbr::GetTypeId(), consumer, producer, forwarder, aggregator); // Use BBR
+    // OR
+    // SetTcpCongestionControl(TcpNewReno::GetTypeId(), consumer, producer, forwarder, aggregator); // Use NewReno (AIMD)
+    // SetTcpCongestionControl(TcpAIMD::GetTypeId(), consumer, producer, forwarder, aggregator); 
+
+    TypeId tcpTypeId = TypeId::LookupByName(MyConfig::GetCongestionControl());
+    SetTcpCongestionControl(tcpTypeId, consumer, producer, forwarder, aggregator);
 }
 
 // *****************************************************************************
@@ -569,5 +582,36 @@ void InstallForwarderPromiscCallbacks(NodeContainer &forwarder) {
         } else {
             NS_LOG_ERROR("Node " << node->GetId() << " has no IPv4 stack installed!");
         }
+    }
+}
+
+    // Function to set TCP congestion control for all nodes in given containers
+void SetTcpCongestionControl(const TypeId& typeId, 
+                             const NodeContainer& consumer, 
+                             const NodeContainer& producer,
+                             const NodeContainer& forwarder,
+                             const NodeContainer& aggregator) {
+    // Set CC for all consumer nodes
+    for (uint32_t i = 0; i < consumer.GetN(); ++i) {
+        Ptr<Node> node = consumer.Get(i);
+        node->GetObject<TcpL4Protocol>()->SetAttribute("SocketType", TypeIdValue(typeId));
+    }
+
+    // Set CC for all producer nodes
+    for (uint32_t i = 0; i < producer.GetN(); ++i) {
+        Ptr<Node> node = producer.Get(i);
+        node->GetObject<TcpL4Protocol>()->SetAttribute("SocketType", TypeIdValue(typeId));
+    }
+
+    // Set CC for all forwarder nodes
+    for (uint32_t i = 0; i < forwarder.GetN(); ++i) {
+        Ptr<Node> node = forwarder.Get(i);
+        node->GetObject<TcpL4Protocol>()->SetAttribute("SocketType", TypeIdValue(typeId));
+    }
+
+    // Set CC for all aggregator nodes
+    for (uint32_t i = 0; i < aggregator.GetN(); ++i) {
+        Ptr<Node> node = aggregator.Get(i);
+        node->GetObject<TcpL4Protocol>()->SetAttribute("SocketType", TypeIdValue(typeId));
     }
 }
