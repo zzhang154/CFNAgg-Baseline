@@ -101,7 +101,7 @@ void CountRouterNodes(const std::string& filename) {
     std::cout << "uint32_t consumerNum = " << consumerNum << ";\n"
               << "uint32_t producerNum = " << producerNum << ";\n"
               << "uint32_t forwarderNum = " << forwarderNum << ";\n"
-              << "uint32_t aggregatorNum = " << aggregatorNum << ";\n";
+              << "uint32_t aggregatorNum = " << aggregatorNum << ";\n" << std::flush;
 }
 
 /**
@@ -137,9 +137,15 @@ void BuildTopo(std::string &linkFile, NodeContainer &consumer, NodeContainer &pr
     std::string line;
     PointToPointHelper p2p;
     Ipv4AddressHelper address;
-    uint32_t ia = 1, ic = 1;
+    
+    // Initialize counters for each node type
+    uint32_t proSecondOctet = 0, proThirdOctet = 1;      // Producers: 10.0-7.x.0 (2048 subnets), starting at 10.0.1.0 (con0 uses 10.0.0.0)
+    uint32_t aggSecondOctet = 8, aggThirdOctet = 0;      // Aggregators: 10.8-15.x.0
+    uint32_t forwarderSecondOctet = 16, forwarderThirdOctet = 0; // Forwarders: 10.16-23.x.0
+    bool con0Assigned = false; // Flag to ensure con0's subnet is assigned only once
 
     while (std::getline(infile, line)) {
+        // std::cout << "Processing line: " << line << std::endl;
         std::istringstream iss(line);
         std::string node1, node2, dataRate, delay, queueSize;
         double linkCost;
@@ -163,11 +169,54 @@ void BuildTopo(std::string &linkFile, NodeContainer &consumer, NodeContainer &pr
         NodeContainer n1n2 = NodeContainer(Names::Find<Node>(node1), Names::Find<Node>(node2));
         NetDeviceContainer d1d2 = p2p.Install(n1n2);
 
+        // Instead of using only 10.1.x.0, cycle through ranges like 10.1.x.0, 10.3.x.0, etc., by incrementing coreSubnet when ic exceeds 255.
+        // Check if this link involves the special consumer "con0"
         std::string ipBaseAddr;
-        if (node1.find("agg") != std::string::npos || node2.find("agg") != std::string::npos) {
-            ipBaseAddr = "10.2." + std::to_string(ia++) + ".0";
-        } else {
-            ipBaseAddr = "10.1." + std::to_string(ic++) + ".0";
+        bool isCon0 = (node1 == "con0" || node2 == "con0");
+        bool isPro = (node1.find("pro") != std::string::npos) || 
+                     (node2.find("pro") != std::string::npos);
+        bool isAgg = (node1.find("agg") != std::string::npos) || 
+                     (node2.find("agg") != std::string::npos);
+        bool isForwarder = !isPro && !isAgg; // True only if BOTH nodes are forwarders
+
+        if (isCon0) {
+            if (con0Assigned) {
+                NS_FATAL_ERROR("con0 subnet already assigned.");
+            }
+            ipBaseAddr = "10.0.0.0"; // Dedicated producer subnet for con0
+            con0Assigned = true;
+        } 
+        else if (isPro) {
+            // Producer subnets: 10.0-7.x.0
+            ipBaseAddr = "10." + std::to_string(proSecondOctet) + "." + std::to_string(proThirdOctet) + ".0";
+            proThirdOctet++;
+            if (proThirdOctet > 255) {
+                proThirdOctet = 0;
+                proSecondOctet++;
+                if (proSecondOctet > 7) NS_FATAL_ERROR("Producer subnets exhausted.");
+            }
+        } 
+        else if (isAgg) {
+            // Aggregator subnets: 10.8-15.x.0 (includes aggregator-forwarder links)
+            ipBaseAddr = "10." + std::to_string(aggSecondOctet) + "." + std::to_string(aggThirdOctet) + ".0";
+            aggThirdOctet++;
+            if (aggThirdOctet > 255) {
+                aggThirdOctet = 0;
+                aggSecondOctet++;
+                if (aggSecondOctet > 15) NS_FATAL_ERROR("Aggregator subnets exhausted.");
+            }
+        } 
+        else if (isForwarder) {
+            // Forwarder-forwarder links: 10.16-23.x.0
+            ipBaseAddr = "10." + std::to_string(forwarderSecondOctet) + "." + std::to_string(forwarderThirdOctet) + ".0";
+            forwarderThirdOctet++;
+            if (forwarderThirdOctet > 255) {
+                forwarderThirdOctet = 0;
+                forwarderSecondOctet++;
+                if (forwarderSecondOctet > 23) {
+                    NS_FATAL_ERROR("Forwarder subnets exhausted.");
+                }
+            }
         }
 
         address.SetBase(Ipv4Address(ipBaseAddr.c_str()), "255.255.255.0");
@@ -181,9 +230,9 @@ void BuildTopo(std::string &linkFile, NodeContainer &consumer, NodeContainer &pr
         ipToNodeName[Ipv4AddressToString(node2Addr)] = node2;
 
         // Inside the link configuration loop:
-        if (node1 == "pro0" || node2 == "pro0") {
+        if (node1.find("pro") != std::string::npos || node2.find("pro") != std::string::npos) {
             // Determine which NetDevice belongs to the non-pro0 node
-            int targetDeviceIndex = (node1 == "pro0") ? 1 : 0; // pro0 is sender → apply loss to receiver
+            int targetDeviceIndex = (node1.find("pro") != std::string::npos) ? 1 : 0; // pro0 is sender → apply loss to receiver
 
             Ptr<RateErrorModel> em = CreateObject<RateErrorModel>();
             em->SetAttribute("ErrorRate", DoubleValue(MyConfig::GetLossRate()));

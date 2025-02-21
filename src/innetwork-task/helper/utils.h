@@ -37,6 +37,13 @@ ns3::Ipv4Address GetIpAddrFromNode (Ptr<Node> node);
 void EnableLoggingComponents();
 void DisableLoggingComponents();
 
+struct SimulationParams {
+    uint32_t bufSize;
+    std::string tcpCC;
+    double lossRate;
+    std::string fileName;
+    uint16_t iteration;
+};
 
 class TracedTimeQueue
 {

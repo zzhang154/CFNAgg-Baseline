@@ -8,7 +8,7 @@ out_dir = '/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build'
 
 NS3_ENABLED_MODULES = ['ns3-wimax', 'ns3-wifi', 'ns3-virtual-net-device', 'ns3-uan', 'ns3-traffic-control', 'ns3-topology-read', 'ns3-tap-bridge', 'ns3-stats', 'ns3-spectrum', 'ns3-sixlowpan', 'ns3-propagation', 'ns3-point-to-point-layout', 'ns3-point-to-point', 'ns3-olsr', 'ns3-nix-vector-routing', 'ns3-network', 'ns3-netanim', 'ns3-mobility', 'ns3-mesh', 'ns3-lte', 'ns3-lr-wpan', 'ns3-internet-apps', 'ns3-internet', 'ns3-innetwork-task', 'ns3-flow-monitor', 'ns3-fd-net-device', 'ns3-energy', 'ns3-dsr', 'ns3-dsdv', 'ns3-csma-layout', 'ns3-csma', 'ns3-core', 'ns3-config-store', 'ns3-buildings', 'ns3-bridge', 'ns3-applications', 'ns3-aodv', 'ns3-antenna', ]
 NS3_ENABLED_CONTRIBUTED_MODULES = []
-NS3_MODULE_PATH = ['/bin', '/home/dd/.vscode-server/cli/servers/Stable-e54c774e0add60467559eb0d1e229c6452cf8447/server/bin/remote-cli', '/home/dd/.local/bin', '/usr/local/sbin', '/usr/local/bin', '/usr/sbin', '/usr/bin', '/sbin', '/bin', '/usr/games', '/usr/local/games', '/snap/bin', '/home/dd/.vscode-server/cli/servers/Stable-e54c774e0add60467559eb0d1e229c6452cf8447/server/bin/remote-cli', '/home/dd/.local/bin', '/usr/local/sbin', '/usr/local/bin', '/usr/sbin', '/usr/bin', '/sbin', '/bin', '/usr/games', '/usr/local/games', '/snap/bin', '/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build', '/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/lib']
+NS3_MODULE_PATH = ['/home/dd/.vscode-server/cli/servers/Stable-e54c774e0add60467559eb0d1e229c6452cf8447/server/bin/remote-cli', '/home/dd/.local/bin', '/usr/local/sbin', '/usr/local/bin', '/usr/sbin', '/usr/bin', '/sbin', '/bin', '/usr/games', '/usr/local/games', '/snap/bin', '/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build', '/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/lib']
 ENABLE_EXAMPLES = False
 ENABLE_TESTS = False
 ENABLE_OPENFLOW = False
@@ -18,14 +18,14 @@ ENABLE_SUDO = False
 ENABLE_PYTHON_BINDINGS = False
 EXAMPLE_DIRECTORIES = []
 APPNAME = 'ns'
-BUILD_PROFILE = 'default'
+BUILD_PROFILE = 'debug'
 VERSION = '3.42' 
 BUILD_VERSION_STRING = '' 
-PYTHON = ['/bin/python3']
+PYTHON = ['/usr/bin/python3']
 VALGRIND_FOUND = False 
 
 
-ns3_runnable_programs = ['/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/utils/perf/ns3.42-perf-io-default', '/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/utils/ns3.42-print-introspected-doxygen-default', '/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/utils/ns3.42-bench-packets-default', '/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/utils/ns3.42-bench-scheduler-default', '/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/scratch/debug_test/ns3.42-debug-default', '/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/scratch/ns3.42-innetwork-test-default', '/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/src/tap-bridge/ns3.42-tap-creator-default', '/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/src/fd-net-device/ns3.42-netmap-device-creator-default', '/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/src/fd-net-device/ns3.42-tap-device-creator-default', '/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/src/fd-net-device/ns3.42-raw-sock-creator-default', '/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/cmake-cache/ns3.42-stdlib_pch_exec-default', ]
+ns3_runnable_programs = ['/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/utils/perf/ns3.42-perf-io-debug', '/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/utils/ns3.42-print-introspected-doxygen-debug', '/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/utils/ns3.42-bench-packets-debug', '/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/utils/ns3.42-bench-scheduler-debug', '/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/scratch/debug_test/ns3.42-debug-debug', '/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/scratch/ns3.42-innetwork-test-debug', '/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/src/tap-bridge/ns3.42-tap-creator-debug', '/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/src/fd-net-device/ns3.42-netmap-device-creator-debug', '/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/src/fd-net-device/ns3.42-tap-device-creator-debug', '/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/src/fd-net-device/ns3.42-raw-sock-creator-debug', '/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/ns3.42-stdlib_pch_exec-debug', ]
 
 ns3_runnable_scripts = []
 

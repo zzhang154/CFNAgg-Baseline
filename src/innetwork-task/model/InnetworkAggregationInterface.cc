@@ -326,8 +326,8 @@ bool InnetworkAggregationInterface::PrintCompInfo(uint16_t iterationNum) {
     
     if (successIter.size() >= maxIteration - padIter) {
         if (sGroup.empty()) {
-            NS_LOG_INFO("Consumer completed all iterations -- " << successIter.size() << " in " 
-                       << (now.GetMilliSeconds() - 2000) << "ms -- " << currentFileName);
+            NS_LOG_UNCOND("Consumer completed all iterations-" << successIter.size() << " in " 
+                       << (now.GetMilliSeconds() - 2000) << "ms: " << currentFileName);
             Simulator::Stop (Seconds(Simulator::Now().GetSeconds() + 0.001));
         } else {
             NS_LOG_INFO("Aggregator " << thisAddress 

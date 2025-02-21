@@ -3405,7 +3405,7 @@ TcpSocketBase::SendDataPacket(SequenceNumber32 seq, uint32_t maxSize, bool withA
             this->localAddressStr = Ipv4AddressToString(localAddress);
             // NS_LOG_UNCOND("localAddressStr " << this->localAddressStr);
         }
-        NS_LOG_UNCOND(this << " SendDataPacket seq: " << seq
+        NS_LOG_INFO(this << " SendDataPacket seq: " << seq
                         << ", size " << sz
                         << ", from " << this->localAddressStr
                         << " to " << m_endPoint->GetPeerAddress()
@@ -5173,7 +5173,7 @@ void TcpSocketBase::DoDispose()
 {
     if (localAddressStr == "10.2.21.2")
     {
-        NS_LOG_UNCOND( this
+        NS_LOG_DEBUG( this
             << " In DoDispose, localAddressStr: " << this->localAddressStr
             << " peerAddressStr: " << this->peerAddressStr
             << " at time: " << Simulator::Now().GetSeconds()

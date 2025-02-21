@@ -1119,10 +1119,6 @@ forwarder8       agg58       500Mbps       2       2ms       5000
 agg58       forwarder54       500Mbps       2       2ms       5000
 forwarder9       agg59       500Mbps       2       2ms       5000
 agg59       forwarder55       500Mbps       2       2ms       5000
-forwarder10       agg60       500Mbps       2       2ms       5000
-agg60       forwarder51       500Mbps       2       2ms       5000
-forwarder11       agg61       500Mbps       2       2ms       5000
-agg61       forwarder52       500Mbps       2       2ms       5000
 forwarder50       forwarder51       1250Mbps       1       1ms       5000
 forwarder51       forwarder52       1250Mbps       1       1ms       5000
 forwarder51       forwarder53       1250Mbps       1       1ms       5000

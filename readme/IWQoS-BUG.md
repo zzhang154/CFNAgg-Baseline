@@ -33,3 +33,9 @@ should be match with the namespace using
 
 6. straggler exp:
 Can extent more graph. i.e., the number of straggle and which link? producer straggler? consumer straggle? forwarder bottleneck straggler? In this categories, we can derive more graph.
+
+7. BUG report on TcpAIMD.
+namespace ns3 {
+NS_OBJECT_ENSURE_REGISTERED(TcpAIMD);
+}
+add this to the innetwork-test.cc file.

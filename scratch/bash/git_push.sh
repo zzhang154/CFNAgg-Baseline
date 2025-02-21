@@ -13,9 +13,10 @@ fi
 git add .
 
 # Commit the changes
-git commit -m "TCP-Agg v-13.1-release:
-(1) Support multiple lossRate and constraint input in the "config.ini", please check it.
-(2) BUGS report when run simulation on 10 and >=200 producer. Check what the problem is.
+git commit -m "TCP-Agg v-13.2-release:
+(1) Fix bugs for large graph (ipv4 address assignment).
+(2) Pipline more things together and updates the dataset.
+(3) Todo: write a function that can run TCPno-agg function. Just needs to change the aggtree. Others remains the same.
 "
 
 # Rename current branch to tcp-baseline (if needed)

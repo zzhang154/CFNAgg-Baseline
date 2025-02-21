@@ -571,6 +571,14 @@ forwarder9       agg34       500Mbps       2       2ms       5000
 agg34       forwarder30       500Mbps       2       2ms       5000
 forwarder10       agg35       500Mbps       2       2ms       5000
 agg35       forwarder26       500Mbps       2       2ms       5000
+forwarder11       agg36       500Mbps       2       2ms       5000
+agg36       forwarder27       500Mbps       2       2ms       5000
+forwarder12       agg37       500Mbps       2       2ms       5000
+agg37       forwarder28       500Mbps       2       2ms       5000
+forwarder13       agg38       500Mbps       2       2ms       5000
+agg38       forwarder29       500Mbps       2       2ms       5000
+forwarder14       agg39       500Mbps       2       2ms       5000
+agg39       forwarder30       500Mbps       2       2ms       5000
 forwarder25       forwarder26       625Mbps       1       1ms       5000
 forwarder26       forwarder27       625Mbps       1       1ms       5000
 forwarder26       forwarder28       625Mbps       1       1ms       5000

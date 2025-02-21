@@ -72,14 +72,15 @@ namespace ns3 {
     {
         std::cout << "Printing ipToNodeName:" << std::endl;
         for (auto &pair : ipToNodeName) {
-            std::cout << "IP: " << pair.first << " -> NodeName: " << pair.second << std::endl;
+            std::cout << "IP: " << pair.first << " -> NodeName: " << pair.second << " | ";
         }
+        std::cout << std::flush;
     }
 
     void PrintNewToOldIpMap() {
         std::cout << "NewToOldIpMap contents:" << std::endl;
         for (auto &entry : NewToOldIpMap) {
-            std::cout << "New IP: " << entry.first << " -> Old IP: " << entry.second << std::endl;
+            std::cout << "New IP: " << entry.first << " -> Old IP: " << entry.second << std::flush;
         }
     }
     

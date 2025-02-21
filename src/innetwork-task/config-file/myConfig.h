@@ -17,6 +17,9 @@ public:
   static void SetCurrentLossRate(double lr);
   static double GetLossRate(); // returns the current loss rate
 
+  // Change: new getter returning vector of congestion control strings.
+  static const std::vector<std::string>& GetCongestionControls();
+  static void SetCongestionControl(const std::string &cc);
   static std::string GetCongestionControl();
 
   // New getter for vector size.
@@ -35,7 +38,9 @@ private:
   static std::vector<double> m_lossRates;
   static double m_currentLossRate; // holds the current loss rate in simulation
 
-  static std::string m_congestionControl;
+  // Remove single cc and replace with a vector.
+  static std::vector<std::string> m_congestionControls;
+  static std::string m_congestionControl;  // can serve as current cc
 
   // New member for vector size.
   static uint32_t m_vectorSize;

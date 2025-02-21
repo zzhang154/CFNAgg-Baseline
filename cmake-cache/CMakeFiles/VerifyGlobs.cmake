@@ -15,6 +15,7 @@ set(OLD_GLOB
   "/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/scratch/debug_test"
   "/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/scratch/innetwork-test.cc"
   "/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/scratch/innetwork-test.h"
+  "/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/scratch/nohup_monitor.md"
   "/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/scratch/run.sh"
   "/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/scratch/tcp-bulk-send.log"
   "/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/scratch/test.ipynb"

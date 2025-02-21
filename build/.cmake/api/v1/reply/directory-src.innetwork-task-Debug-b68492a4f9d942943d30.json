@@ -1,0 +1,74 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"install",
+			"build_lib"
+		],
+		"files" : 
+		[
+			"build-support/custom-modules/ns3-module-macros.cmake",
+			"src/innetwork-task/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 1
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 1,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 481,
+				"parent" : 1
+			}
+		]
+	},
+	"installers" : 
+	[
+		{
+			"backtrace" : 2,
+			"component" : "Unspecified",
+			"destination" : "lib",
+			"paths" : 
+			[
+				"lib/libns3.42-innetwork-task-debug.so"
+			],
+			"targetId" : "libinnetwork-task::@93b89c33106a16822a1f",
+			"targetIndex" : 34,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 2,
+			"component" : "Unspecified",
+			"destination" : "include/ns3",
+			"paths" : 
+			[
+				"src/innetwork-task/helper/parameter.h",
+				"src/innetwork-task/helper/utils.h",
+				"src/innetwork-task/helper/vectorop.h",
+				"src/innetwork-task/helper/setup.h",
+				"src/innetwork-task/helper/PacketTraceTag.h",
+				"src/innetwork-task/helper/global-data.h",
+				"src/innetwork-task/model/aggregator.h",
+				"src/innetwork-task/model/consumer.h",
+				"src/innetwork-task/model/InnetworkAggregationInterface.h",
+				"src/innetwork-task/model/producer.h",
+				"src/innetwork-task/config-file/myConfig.h",
+				"build/include/ns3/innetwork-task-module.h"
+			],
+			"type" : "file"
+		}
+	],
+	"paths" : 
+	{
+		"build" : "src/innetwork-task",
+		"source" : "src/innetwork-task"
+	}
+}

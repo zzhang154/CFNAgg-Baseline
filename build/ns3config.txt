@@ -1,0 +1,48 @@
+---- Summary of ns-3 settings:
+Build profile                 : debug
+Build directory               : /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build
+Build with runtime asserts    : OFF (not requested)
+Build with runtime logging    : OFF (not requested)
+Build version embedding       : OFF (not requested)
+BRITE Integration             : OFF (Missing headers: "Brite.h" and missing libraries: "brite")
+DES Metrics event collection  : OFF (not requested)
+DPDK NetDevice                : OFF (not requested)
+Emulation FdNetDevice         : ON
+Examples                      : OFF (not requested)
+File descriptor NetDevice     : ON
+GNU Scientific Library (GSL)  : ON
+GtkConfigStore                : ON
+LibXml2 support               : ON
+MPI Support                   : OFF (not requested)
+ns-3 Click Integration        : OFF (Missing headers: "simclick.h" and missing libraries: "nsclickclick")
+ns-3 OpenFlow Integration     : OFF (Missing headers: "openflow.h" and missing libraries: "openflow")
+Netmap emulation FdNetDevice  : ON
+PyViz visualizer              : OFF (Python Bindings are disabled)
+Python Bindings               : OFF (not requested)
+SQLite support                : ON
+Eigen3 support                : ON
+Tap Bridge                    : ON
+Tap FdNetDevice               : ON
+Tests                         : OFF (not requested)
+
+
+Modules configured to be built:
+antenna                   aodv                      applications              
+bridge                    buildings                 config-store              
+core                      csma                      csma-layout               
+dsdv                      dsr                       energy                    
+fd-net-device             flow-monitor              innetwork-task            
+internet                  internet-apps             lr-wpan                   
+lte                       mesh                      mobility                  
+netanim                   network                   nix-vector-routing        
+olsr                      point-to-point            point-to-point-layout     
+propagation               sixlowpan                 spectrum                  
+stats                     tap-bridge                topology-read             
+traffic-control           uan                       virtual-net-device        
+wifi                      wimax                     
+
+Modules that cannot be built:
+brite                     click                     mpi                       
+openflow                  test                      visualizer                
+
+

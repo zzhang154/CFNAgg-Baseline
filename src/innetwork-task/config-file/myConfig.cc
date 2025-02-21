@@ -11,6 +11,9 @@ std::vector<uint16_t> MyConfig::m_iterationNumbers;
 std::vector<uint32_t> MyConfig::m_bufferSizes;
 std::vector<double> MyConfig::m_lossRates;
 double MyConfig::m_currentLossRate = 0.0;
+
+// congestion control
+std::vector<std::string> MyConfig::m_congestionControls;
 std::string MyConfig::m_congestionControl;
 
 uint32_t MyConfig::m_vectorSize = 150;
@@ -55,7 +58,19 @@ void MyConfig::Load(const std::string &filename) {
     if (!m_lossRates.empty())
       m_currentLossRate = m_lossRates[0];
 
-    m_congestionControl = pt.get<std::string>("Simulation.congestionControl");
+    // Load congestion controls (comma-separated list)
+    std::string ccStr = pt.get<std::string>("Simulation.congestionControl", "ns3::TcpAIMD");
+    m_congestionControls.clear();
+    std::istringstream ssCC(ccStr);
+    std::string token;
+    while (std::getline(ssCC, token, ',')) {
+        token.erase(std::remove_if(token.begin(), token.end(), ::isspace), token.end());
+        if (!token.empty())
+            m_congestionControls.push_back(token);
+    }
+    // Optionally, set current cc to first element.
+    if (!m_congestionControls.empty())
+        m_congestionControl = m_congestionControls[0];
 
     // Load vector size
     m_vectorSize = pt.get<uint32_t>("Simulation.vectorSize", 150);
@@ -114,6 +129,15 @@ void MyConfig::SetCurrentLossRate(double lr) {
 
 double MyConfig::GetLossRate() {
     return m_currentLossRate;
+}
+
+// New getter and setter for congestion control
+const std::vector<std::string>& MyConfig::GetCongestionControls() {
+    return m_congestionControls;
+}
+
+void MyConfig::SetCongestionControl(const std::string &cc) {
+    m_congestionControl = cc;
 }
 
 std::string MyConfig::GetCongestionControl() {

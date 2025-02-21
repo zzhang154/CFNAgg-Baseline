@@ -32,6 +32,30 @@ using namespace ns3;
 
 NS_LOG_COMPONENT_DEFINE("innetwork-test");
 
+NS_OBJECT_ENSURE_REGISTERED(TcpAIMD);
+
+std::vector<SimulationParams> BuildExperimentList() {
+    std::vector<SimulationParams> experiments;
+    auto bufferSizes = MyConfig::GetBufferSizes();
+    auto ccList = MyConfig::GetCongestionControls();
+    auto lossRates = MyConfig::GetLossRates();
+    auto fileNames = MyConfig::GetFileNames();
+    auto iterationNumbers = MyConfig::GetIterationNumbers();
+
+    for (uint32_t bufSize : bufferSizes) {
+        for (const auto &tcp_cc : ccList) {
+            for (double lossRate : lossRates) {
+                for (const auto &fileName : fileNames) {
+                    for (uint16_t itr : iterationNumbers) {
+                        experiments.push_back({bufSize, tcp_cc, lossRate, fileName, itr});
+                    }
+                }
+            }
+        }
+    }
+    return experiments;
+}
+
 int main(int argc, char *argv[]) {
     // Load configuration parameters from file
     MyConfig::Load("src/innetwork-task/config-file/config.ini");
@@ -74,117 +98,114 @@ int main(int argc, char *argv[]) {
     // Set the Time resolution once before the loops
     Time::SetResolution(Time::NS);
 
-    for (uint32_t bufSize : bufferSizes) {
-        // Set the default attributes before creating any TCP sockets.
-        Config::SetDefault("ns3::TcpSocket::SndBufSize", UintegerValue(bufSize));
-        Config::SetDefault("ns3::TcpSocket::RcvBufSize", UintegerValue(bufSize));
+    auto experiments = BuildExperimentList();
+    // Loop through each experiment.
+    for (auto &exp : experiments) {
+        // Apply configuration for this experiment.
+        Config::SetDefault("ns3::TcpSocket::SndBufSize", UintegerValue(exp.bufSize));
+        Config::SetDefault("ns3::TcpSocket::RcvBufSize", UintegerValue(exp.bufSize));
 
-    std::cout << "\n---- Starting simulation with vsize " << vsize << std::flush;
-        // New loop: for each loss rate
-        for (double lossRate : MyConfig::GetLossRates()) {
-            MyConfig::SetCurrentLossRate(lossRate); // Set the current loss rate for simulation
+        MyConfig::SetCongestionControl(exp.tcpCC);
+        MyConfig::SetCurrentLossRate(exp.lossRate);
 
-        for (std::string& fileName : FileNames) {
-            currentFileName = fileName;
+        // Build file paths (using a base directory currentDir, etc.)
+        currentFileName = exp.fileName;
+        routerFilePath = currentDir + "/scratch/data/router/router-" + exp.fileName + ".txt";
+        linkFilePath = currentDir + "/scratch/data/link/link-" + exp.fileName + ".txt";
+        aggGroupFilePath = currentDir + "/scratch/data/aggtree/aggtree-" + exp.fileName + ".txt";
 
-            routerFilePath = currentDir + "/scratch/data/router/" + "router-" + fileName + ".txt";
-            linkFilePath = currentDir + "/scratch/data/link/" + "link-" + fileName + ".txt";
-            aggGroupFilePath = currentDir + "/scratch/data/aggtree/" + "aggtree-" + fileName + ".txt";
+        // Output configuration details.
+        std::cout << "\n#################### SIMULATION START ####################\n\n" << std::flush;
 
-            for (uint16_t itr : iterationNumbers) {
-                // Output configuration details.
-                std::cout << "\n#################### SIMULATION CONFIG ####################\n\n" << std::flush;
-                
-                std::cout << "FileName: " << fileName 
-                          << "\nIteration: " << itr 
-                          << "\nCongestion Control: " << MyConfig::GetCongestionControl() 
-                          << "\nbufSize: " << bufSize 
-                          << "\nlossRate: " << MyConfig::GetLossRate()    // This now reflects the current lossRate.
-                          << "\nVector Size: " << vsize
-                          << "\n\n#################### SIMULATION START ####################\n\n" << std::flush;
+        LogLevel log_precision = LOG_LEVEL_LOGIC;
 
-                LogLevel log_precision = LOG_LEVEL_LOGIC;
+        LogComponentEnableAll(LOG_PREFIX_TIME);
+        LogComponentEnableAll(LOG_PREFIX_FUNC);
+        LogComponentEnableAll(LOG_PREFIX_NODE);
 
-                LogComponentEnableAll(LOG_PREFIX_TIME);
-                LogComponentEnableAll(LOG_PREFIX_FUNC);
-                LogComponentEnableAll(LOG_PREFIX_NODE);
+        LogComponentEnable("InnetworkAggregationInterface", log_precision);
+        // LogComponentEnable("Consumer", LOG_LEVEL_ALL);
+        // LogComponentEnable("Aggregator", LOG_LEVEL_ALL);
+        // LogComponentEnable("Producer", LOG_LEVEL_ALL);
+        // LogComponentEnable("Setup", LOG_LEVEL_ALL);
+        
+        LogComponentDisable("InnetworkAggregationInterface", LOG_LEVEL_ALL);
+        LogComponentEnable("InnetworkAggregationInterface", LOG_LEVEL_INFO);
+        // LogComponentEnable("InnetworkAggregationInterface", LOG_LEVEL_ALL);
 
-                LogComponentEnable("InnetworkAggregationInterface", log_precision);
-                // LogComponentEnable("Consumer", LOG_LEVEL_ALL);
-                // LogComponentEnable("Aggregator", LOG_LEVEL_ALL);
-                // LogComponentEnable("Producer", LOG_LEVEL_ALL);
-                // LogComponentEnable("Setup", LOG_LEVEL_ALL);
-                
-                LogComponentDisable("InnetworkAggregationInterface", LOG_LEVEL_ALL);
-                LogComponentEnable("InnetworkAggregationInterface", LOG_LEVEL_INFO);
-                // LogComponentEnable("InnetworkAggregationInterface", LOG_LEVEL_ALL);
-    
-                // LogComponentEnable("TcpSocketBase", LOG_LEVEL_ALL);
+        // LogComponentEnable("TcpSocketBase", LOG_LEVEL_ALL);
 
-                // LogComponentDisable("Consumer", LOG_LEVEL_ALL);
-                // LogComponentDisable("Aggregator", LOG_LEVEL_ALL);
-                // LogComponentDisable("Producer", LOG_LEVEL_ALL);
-                // // LogComponentDisable("InnetworkAggregationInterface", LOG_LEVEL_ALL);
-                LogComponentDisable("TCPclient", LOG_LEVEL_ALL);
-                LogComponentDisable("TCPserver", LOG_LEVEL_ALL);
-                LogComponentDisable("TcpSocketBase", LOG_LEVEL_ALL);
-                LogComponentDisable("TcpRxBuffer", LOG_LEVEL_ALL);
-                LogComponentDisable("TcpTxBuffer", LOG_LEVEL_ALL);
-                LogComponentDisable("Packet", LOG_LEVEL_DEBUG);
-                
-                // LogComponentEnable("InnetworkAggregationInterface", LOG_LEVEL_WARN);
-                // LogComponentEnable("TCPclient", LOG_LEVEL_WARN);
-                // LogComponentEnable("TCPserver", LOG_LEVEL_WARN);
-                LogComponentEnable("TcpSocketBase", LOG_LEVEL_WARN);
+        // LogComponentDisable("Consumer", LOG_LEVEL_ALL);
+        // LogComponentDisable("Aggregator", LOG_LEVEL_ALL);
+        // LogComponentDisable("Producer", LOG_LEVEL_ALL);
+        // // LogComponentDisable("InnetworkAggregationInterface", LOG_LEVEL_ALL);
+        LogComponentDisable("TCPclient", LOG_LEVEL_ALL);
+        LogComponentDisable("TCPserver", LOG_LEVEL_ALL);
+        LogComponentDisable("TcpSocketBase", LOG_LEVEL_ALL);
+        LogComponentDisable("TcpRxBuffer", LOG_LEVEL_ALL);
+        LogComponentDisable("TcpTxBuffer", LOG_LEVEL_ALL);
+        LogComponentDisable("Packet", LOG_LEVEL_DEBUG);
+        
+        // LogComponentEnable("InnetworkAggregationInterface", LOG_LEVEL_WARN);
+        // LogComponentEnable("TCPclient", LOG_LEVEL_WARN);
+        // LogComponentEnable("TCPserver", LOG_LEVEL_WARN);
+        // LogComponentEnable("TcpSocketBase", LOG_LEVEL_WARN);
 
-                // LogComponentEnable("PointToPointNetDevice", LOG_LEVEL_ALL);
+        // LogComponentEnable("PointToPointNetDevice", LOG_LEVEL_ALL);
 
 
-                // Initialize node containers
-                NodeContainer consumer;
-                NodeContainer producer;
-                NodeContainer forwarder;
-                NodeContainer aggregator;
+        // Initialize node containers
+        NodeContainer consumer;
+        NodeContainer producer;
+        NodeContainer forwarder;
+        NodeContainer aggregator;
 
-                // Reset consumer, producer, forwarder, and aggregator counts
-                consumerNum = 0;
-                producerNum = 0;
-                forwarderNum = 0;
-                aggregatorNum = 0;
+        // Reset consumer, producer, forwarder, and aggregator counts
+        consumerNum = 0;
+        producerNum = 0;
+        forwarderNum = 0;
+        aggregatorNum = 0;
 
-                CountRouterNodes(routerFilePath);
-                BuildTopo(linkFilePath, consumer, producer, forwarder, aggregator);
+        CountRouterNodes(routerFilePath);
+        BuildTopo(linkFilePath, consumer, producer, forwarder, aggregator);
 
-                uint16_t server_port = 1234;
-                if (topotype == 0) {
-                    CreateDirectTopo(consumer, producer, itr, vsize, server_port);
-                } else {
-                    CreateAggTreeTopo(itr, vsize, server_port);
-                }
-
-                Packet::EnablePrinting();
-                Packet::EnableChecking();
-
-                // Populate routing tables
-                Ipv4GlobalRoutingHelper::PopulateRoutingTables();
-
-                // Zhuoxu: we don't need this currently.
-                // Print routing tables
-                // PrintRoutingTables();
-
-                Simulator::Stop(Seconds(5000.00));
-                Simulator::Run();
-                Simulator::Destroy();
-                Names::Clear(); // Clear the Names database
-
-                // Print debug info
-                PrintIpToNodeMap();
-                PrintNewToOldIpMap();
-                PrintTraceRecord(fileName);
-                std::cout << "\n#################### SIMULATION END ####################\n\n\n\n" << std::flush;
-            }
+        uint16_t server_port = 1234;
+        if (topotype == 0) {
+            CreateDirectTopo(consumer, producer, exp.iteration, vsize, server_port);
+        } else {
+            CreateAggTreeTopo(exp.iteration, vsize, server_port);
         }
-        }
+
+        Packet::EnablePrinting();
+        Packet::EnableChecking();
+
+        // Populate routing tables
+        Ipv4GlobalRoutingHelper::PopulateRoutingTables();
+
+        // Zhuoxu: we don't need this currently.
+        // Print routing tables
+        // PrintRoutingTables();
+
+        Simulator::Stop(Seconds(5000.00));
+        Simulator::Run();
+        Simulator::Destroy();
+        Names::Clear(); // Clear the Names database
+
+        // Output configuration details.
+        std::cout << "\n#################### SIMULATION CONFIG ####################\n\n" << std::flush;
+        std::cout << "FileName: " << exp.fileName 
+                  << "\nIteration: " << exp.iteration
+                  << "\nCongestion Control: " << MyConfig::GetCongestionControl() 
+                  << "\nbufSize: " << exp.bufSize 
+                  << "\nlossRate: " << MyConfig::GetLossRate() 
+                  << "\nVector Size: " << vsize 
+                  << std::endl << std::endl << std::flush;
+
+        // Print debug info
+        PrintIpToNodeMap();
+        PrintNewToOldIpMap();
+        PrintTraceRecord(exp.fileName);
+        std::cout << "\n#################### SIMULATION END ####################\n\n\n\n" << std::flush;
     }
     return 0;
 }
