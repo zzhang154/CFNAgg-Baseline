@@ -1,0 +1,19 @@
+nohup: ignoring input
+Hello from utils
+0x7ffcda8b07f0 Time queue changed. Current size: 1
+Time queue changed. New size: 1
+0x7ffcda8b07f0 Time queue changed. Current size: 2
+Time queue changed. New size: 2
+0x7ffcda8b07f0 Time queue changed. Current size: 1
+Time queue changed. New size: 1
+
+#################### SIMULATION START ####################
+
+uint32_t consumerNum = 1;
+uint32_t producerNum = 10;
+uint32_t forwarderNum = 8;
+uint32_t aggregatorNum = 10;
++2.602000000s 19 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 1000 at 2602ms
++2.621000000s 20 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 1000 at 2621ms
++2.632000000s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 1000 at 2632ms
+Command 'build/scratch/ns3.42-innetwork-test-default --topotype=1' died with <Signals.SIGTERM: 15>.

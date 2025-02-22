@@ -7,10 +7,10 @@ file(GLOB NEW_GLOB LIST_DIRECTORIES true "/home/dd/tcp-agg/ns-allinone-3.42/ns-3
 set(OLD_GLOB
   "/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/scratch/CMakeLists.txt"
   "/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/scratch/IWQos.ipynb"
-  "/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/scratch/bash"
   "/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/scratch/data"
   "/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/scratch/data_test"
   "/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/scratch/debug_test"
+  "/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/scratch/git_push"
   "/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/scratch/innetwork-test.cc"
   "/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/scratch/nohup_monitor.md"
   "/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/scratch/run.sh"
@@ -26,15 +26,6 @@ endif()
 file(GLOB NEW_GLOB LIST_DIRECTORIES true "/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/scratch/[^.]*.cc")
 set(OLD_GLOB
   "/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/scratch/innetwork-test.cc"
-  )
-if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
-  message("-- GLOB mismatch!")
-  file(TOUCH_NOCREATE "/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/cmake-cache/CMakeFiles/cmake.verify_globs")
-endif()
-
-# scratch_sources at scratch/CMakeLists.txt:108 (file)
-file(GLOB NEW_GLOB LIST_DIRECTORIES true "/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/scratch/bash/[^.]*.cc")
-set(OLD_GLOB
   )
 if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   message("-- GLOB mismatch!")
@@ -63,6 +54,15 @@ endif()
 file(GLOB NEW_GLOB LIST_DIRECTORIES true "/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/scratch/debug_test/[^.]*.cc")
 set(OLD_GLOB
   "/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/scratch/debug_test/debug.cc"
+  )
+if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
+  message("-- GLOB mismatch!")
+  file(TOUCH_NOCREATE "/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/cmake-cache/CMakeFiles/cmake.verify_globs")
+endif()
+
+# scratch_sources at scratch/CMakeLists.txt:108 (file)
+file(GLOB NEW_GLOB LIST_DIRECTORIES true "/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/scratch/git_push/[^.]*.cc")
+set(OLD_GLOB
   )
 if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   message("-- GLOB mismatch!")

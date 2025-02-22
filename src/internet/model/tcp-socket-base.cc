@@ -664,8 +664,8 @@ TcpSocketBase::Bind(const Address& address)
             m_errno = port ? ERROR_ADDRINUSE : ERROR_ADDRNOTAVAIL;
             return -1;
         }
-        if(Ipv4AddressToString(ipv4) == "10.1.1.1")
-            NS_LOG_UNCOND("Using congestion control strategy: " << m_congestionControl->GetName());
+        // if(Ipv4AddressToString(ipv4) == "10.0.0.1")
+        //     NS_LOG_UNCOND("Using congestion control strategy: " << m_congestionControl->GetName());
     }
     else if (Inet6SocketAddress::IsMatchingType(address))
     {
@@ -3247,6 +3247,19 @@ TcpSocketBase::SendDataPacket(SequenceNumber32 seq, uint32_t maxSize, bool withA
 {
     NS_LOG_FUNCTION(this << seq << maxSize << withAck);
 
+    // if(this->localAddressStr == "10.1.1.1")
+    //     NS_LOG_UNCOND(this << " Outside, ACK sent from " << m_endPoint->GetPeerAddress()
+    //                     << " to " << this->localAddressStr
+    //                     << " ackSeq " << ackNumber
+    //                     << " at time " << Simulator::Now().GetSeconds()
+    //                     << " scoreboardUpdated " << scoreboardUpdated
+    //                     << " currentDelivered " << currentDelivered
+    //                     << " oldHeadSequence " << oldHeadSequence);
+
+    NS_LOG_DEBUG ("GetTxAvailable: " << this->GetTxAvailable());
+    NS_LOG_DEBUG ("GetTxMaxSize: " << this->m_txBuffer->MaxBufferSize());
+    // std::cout << "GetRxAvailable: " << GetRxAvailable() << std::endl;
+
     bool isStartOfTransmission = BytesInFlight() == 0U;
     TcpTxItem* outItem = m_txBuffer->CopyFromSequence(maxSize, seq);
 
@@ -3663,7 +3676,9 @@ TcpSocketBase::AdvertisedWindowSize(bool scale) const
         NS_LOG_DEBUG("\nm_tcb->m_rxBuffer->MaxRxSequence(): " 
              << m_tcb->m_rxBuffer->MaxRxSequence().GetValue()
              << "\nm_tcb->m_rxBuffer->NextRxSequence(): "
-             << m_tcb->m_rxBuffer->NextRxSequence().GetValue());
+             << m_tcb->m_rxBuffer->NextRxSequence().GetValue()
+             << "\nm_tcb->m_rxBuffer->MaxBufferSize()"
+             << m_tcb->m_rxBuffer->MaxBufferSize());
         w = static_cast<uint32_t>(m_tcb->m_rxBuffer->MaxRxSequence() -
                                   m_tcb->m_rxBuffer->NextRxSequence());
     }

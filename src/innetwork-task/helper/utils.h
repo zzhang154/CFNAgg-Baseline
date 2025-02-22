@@ -39,6 +39,7 @@ void DisableLoggingComponents();
 
 struct SimulationParams {
     uint32_t bufSize;
+    uint32_t apptbSize;
     std::string tcpCC;
     double lossRate;
     std::string fileName;

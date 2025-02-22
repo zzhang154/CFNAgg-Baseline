@@ -4,6 +4,7 @@
 #include "ns3/tcp-socket-factory.h"
 #include "ns3/ipv4.h"
 #include "ns3/seq-ts-header.h"
+#include "ns3/myConfig.h"
 
 namespace ns3 {
 
@@ -72,6 +73,7 @@ void TCPserver::InitializeSocket() {
 
         // Check if Bind() succeeds
         int bindResult = m_socket->Bind(bindAddress);
+        NS_LOG_WARN("Bind Address: " << bindAddress.GetIpv4() << ":" << bindAddress.GetPort());
         if (bindResult == -1) {
             NS_LOG_ERROR("TCPserver: Failed to bind to "
                          << bindAddress.GetIpv4() << " on port " << bindAddress.GetPort());
@@ -237,7 +239,7 @@ int TCPserver::CheckMemory() {
             chunkAvailable++;
         }
     }
-    chunkAvailable += static_cast<int>(ITERTHRESH-uint16_t(0)- (*iterChunkPtr).size());
+    chunkAvailable += static_cast<int>(MyConfig::GetAppTbSize() - uint16_t(0) - (*iterChunkPtr).size());
     return chunkAvailable;
 }
 
@@ -306,6 +308,11 @@ void TCPserver::PrintAppTable() {
       ss << "\n";
   }
   NS_LOG_INFO(ss.str());
+}
+
+// Implementation of GetSocket()
+Ptr<Socket> TCPserver::GetSocket() {
+    return m_socket;
 }
 
 // Configuration

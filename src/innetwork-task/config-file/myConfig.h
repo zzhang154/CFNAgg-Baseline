@@ -17,7 +17,7 @@ public:
   static void SetCurrentLossRate(double lr);
   static double GetLossRate(); // returns the current loss rate
 
-  // Change: new getter returning vector of congestion control strings.
+  // New getter returning vector of congestion control strings.
   static const std::vector<std::string>& GetCongestionControls();
   static void SetCongestionControl(const std::string &cc);
   static std::string GetCongestionControl();
@@ -31,6 +31,11 @@ public:
   // Generate final file name prefixes based on topo types, scales, and constraints.
   static std::vector<std::string> GetFileNames();
 
+  // New getters for appTbSize (used as iteration threshold)
+  static const std::vector<uint16_t>& GetAppTbSizes();
+  static void SetCurrentAppTbSize(uint16_t size);
+  static uint16_t GetAppTbSize();
+
 private:
   // Existing members
   static std::vector<uint16_t> m_iterationNumbers;
@@ -38,9 +43,9 @@ private:
   static std::vector<double> m_lossRates;
   static double m_currentLossRate; // holds the current loss rate in simulation
 
-  // Remove single cc and replace with a vector.
+  // Replace single cc with a vector.
   static std::vector<std::string> m_congestionControls;
-  static std::string m_congestionControl;  // can serve as current cc
+  static std::string m_congestionControl;  // current cc
 
   // New member for vector size.
   static uint32_t m_vectorSize;
@@ -51,6 +56,10 @@ private:
 
   // New member: constraints, if provided.
   static std::vector<uint16_t> m_constraints;
+
+  // New member: appTbSize (iteration threshold parameter), as vector and current value.
+  static std::vector<uint16_t> m_appTbSizes;
+  static uint16_t m_currentAppTbSize;
 };
 
 #endif // MYCONFIG_H

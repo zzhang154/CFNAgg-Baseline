@@ -13,10 +13,8 @@ fi
 git add .
 
 # Commit the changes
-git commit -m "TCP-Agg v-14.0-release:
-(1) Update the latest dataset.
-(2) Update the no-agg dataset.
-(3) Update stragger dataset for producer 50.
+git commit -m "TCP-Agg v-15.0-release:
+(1) Update parameter for appTbSize.
 "
 
 # Rename current branch to tcp-baseline (if needed)

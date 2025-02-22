@@ -1,0 +1,267 @@
+nohup: ignoring input
+Hello from utils
+0x7ffdaa9022f0 Time queue changed. Current size: 1
+Time queue changed. New size: 1
+0x7ffdaa9022f0 Time queue changed. Current size: 2
+Time queue changed. New size: 2
+0x7ffdaa9022f0 Time queue changed. Current size: 1
+Time queue changed. New size: 1
+
+#################### SIMULATION START ####################
+
+uint32_t consumerNum = 1;
+uint32_t producerNum = 10;
+uint32_t forwarderNum = 8;
+uint32_t aggregatorNum = 10;
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
++3.277118800s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 500 at 3277ms
++4.249286500s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 1000 at 4249ms
++5.223274300s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 1500 at 5223ms
++6.217283800s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 2000 at 6217ms
++7.230506200s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 2500 at 7230ms
++8.243324200s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 3000 at 8243ms
++9.255737800s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 3500 at 9255ms
++10.264915300s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 4000 at 10264ms
++11.275104100s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 4500 at 11275ms
++12.288933100s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 5000 at 12288ms
++13.297706200s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 5500 at 13297ms
++14.310524200s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 6000 at 14310ms
++15.322937800s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 6500 at 15322ms
++16.334137600s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 7000 at 16334ms
++17.342304100s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 7500 at 17342ms
++18.354717400s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 8000 at 18354ms
++19.366726600s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 8500 at 19366ms
++20.377522000s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 9000 at 20377ms
++21.388722100s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 9500 at 21388ms
+Consumer completed all iterations-10000 in 20240ms: isp-no-agg-10
+
+#################### SIMULATION CONFIG ####################
+
+FileName: isp-no-agg-10
+Iteration: 10000
+Congestion Control: ns3::TcpCubic
+TcpSocket bufSize: 131072
+AppTable bufSize: 100
+lossRate: 0
+Vector Size: 150
+
+Printing ipToNodeName:
+IP: 10.8.16.2 -> NodeName: agg8 | IP: 10.8.14.2 -> NodeName: agg7 | IP: 10.8.10.2 -> NodeName: agg5 | IP: 10.8.9.2 -> NodeName: forwarder7 | IP: 10.8.5.2 -> NodeName: forwarder5 | IP: 10.8.4.2 -> NodeName: agg2 | IP: 10.8.2.2 -> NodeName: agg1 | IP: 10.8.1.2 -> NodeName: forwarder3 | IP: 10.8.0.2 -> NodeName: agg0 | IP: 10.0.0.2 -> NodeName: forwarder2 | IP: 10.8.18.2 -> NodeName: agg9 | IP: 10.8.12.2 -> NodeName: agg6 | IP: 10.0.1.2 -> NodeName: forwarder0 | IP: 10.0.2.1 -> NodeName: pro1 | IP: 10.0.6.1 -> NodeName: pro5 | IP: 10.0.4.1 -> NodeName: pro3 | IP: 10.8.7.2 -> NodeName: forwarder6 | IP: 10.8.3.2 -> NodeName: forwarder4 | IP: 10.0.7.1 -> NodeName: pro6 | IP: 10.0.5.1 -> NodeName: pro4 | IP: 10.8.6.2 -> NodeName: agg3 | IP: 10.0.10.1 -> NodeName: pro9 | IP: 10.8.8.2 -> NodeName: agg4 | IP: 10.0.1.1 -> NodeName: pro0 | IP: 10.0.9.1 -> NodeName: pro8 | IP: 10.0.8.1 -> NodeName: pro7 | IP: 10.0.3.1 -> NodeName: pro2 | IP: 10.0.6.2 -> NodeName: forwarder1 | IP: 10.0.0.1 -> NodeName: con0 | NewToOldIpMap contents:
+
+#################### SIMULATION END ####################
+
+
+
+
+#################### SIMULATION START ####################
+
+uint32_t consumerNum = 1;
+uint32_t producerNum = 50;
+uint32_t forwarderNum = 16;
+uint32_t aggregatorNum = 20;
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
++3.292050100s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 500 at 3292ms
++4.262437900s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 1000 at 4262ms
++5.229023800s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 1500 at 5229ms
++6.230395000s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 2000 at 6230ms
++7.245073600s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 2500 at 7245ms
++8.254089400s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 3000 at 8254ms
++9.265774600s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 3500 at 9265ms
++10.276813000s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 4000 at 10276ms
++11.289266800s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 4500 at 11289ms
++12.299334400s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 5000 at 12299ms
++13.312111900s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 5500 at 13312ms
++14.321087200s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 6000 at 14321ms
++15.334026400s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 6500 at 15334ms
++16.344983800s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 7000 at 16344ms
++17.355213100s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 7500 at 17355ms
++18.368556700s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 8000 at 18368ms
++19.376844400s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 8500 at 19376ms
++20.391118600s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 9000 at 20391ms
++21.400822000s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 9500 at 21400ms
+Consumer completed all iterations-10000 in 20240ms: isp-no-agg-50
+
+#################### SIMULATION CONFIG ####################
+
+FileName: isp-no-agg-50
+Iteration: 10000
+Congestion Control: ns3::TcpCubic
+TcpSocket bufSize: 131072
+AppTable bufSize: 100
+lossRate: 0
+Vector Size: 150
+
+Printing ipToNodeName:
+IP: 10.8.34.2 -> NodeName: agg17 | IP: 10.8.24.2 -> NodeName: agg12 | IP: 10.8.22.2 -> NodeName: agg11 | IP: 10.8.32.2 -> NodeName: agg16 | IP: 10.8.20.2 -> NodeName: agg10 | IP: 10.0.50.1 -> NodeName: pro49 | IP: 10.0.49.1 -> NodeName: pro48 | IP: 10.0.48.1 -> NodeName: pro47 | IP: 10.0.46.1 -> NodeName: pro45 | IP: 10.0.44.1 -> NodeName: pro43 | IP: 10.0.43.1 -> NodeName: pro42 | IP: 10.0.42.1 -> NodeName: pro41 | IP: 10.0.41.1 -> NodeName: pro40 | IP: 10.0.46.2 -> NodeName: forwarder9 | IP: 10.0.40.1 -> NodeName: pro39 | IP: 10.0.39.1 -> NodeName: pro38 | IP: 10.8.26.2 -> NodeName: agg13 | IP: 10.0.38.1 -> NodeName: pro37 | IP: 10.0.36.2 -> NodeName: forwarder7 | IP: 10.0.36.1 -> NodeName: pro35 | IP: 10.8.14.2 -> NodeName: agg7 | IP: 10.8.10.2 -> NodeName: agg5 | IP: 10.0.13.1 -> NodeName: pro12 | IP: 10.8.9.2 -> NodeName: forwarder15 | IP: 10.8.4.2 -> NodeName: agg2 | IP: 10.8.2.2 -> NodeName: agg1 | IP: 10.0.6.2 -> NodeName: forwarder1 | IP: 10.8.0.2 -> NodeName: agg0 | IP: 10.0.21.1 -> NodeName: pro20 | IP: 10.0.0.2 -> NodeName: forwarder10 | IP: 10.8.18.2 -> NodeName: agg9 | IP: 10.0.1.1 -> NodeName: pro0 | IP: 10.0.32.1 -> NodeName: pro31 | IP: 10.0.41.2 -> NodeName: forwarder8 | IP: 10.0.1.2 -> NodeName: forwarder0 | IP: 10.0.37.1 -> NodeName: pro36 | IP: 10.8.3.2 -> NodeName: forwarder12 | IP: 10.0.47.1 -> NodeName: pro46 | IP: 10.0.10.1 -> NodeName: pro9 | IP: 10.0.12.1 -> NodeName: pro11 | IP: 10.8.1.2 -> NodeName: forwarder11 | IP: 10.0.2.1 -> NodeName: pro1 | IP: 10.0.6.1 -> NodeName: pro5 | IP: 10.8.16.2 -> NodeName: agg8 | IP: 10.0.4.1 -> NodeName: pro3 | IP: 10.0.14.1 -> NodeName: pro13 | IP: 10.8.7.2 -> NodeName: forwarder14 | IP: 10.0.7.1 -> NodeName: pro6 | IP: 10.0.5.1 -> NodeName: pro4 | IP: 10.0.25.1 -> NodeName: pro24 | IP: 10.8.38.2 -> NodeName: agg19 | IP: 10.0.9.1 -> NodeName: pro8 | IP: 10.0.8.1 -> NodeName: pro7 | IP: 10.8.8.2 -> NodeName: agg4 | IP: 10.0.26.1 -> NodeName: pro25 | IP: 10.0.3.1 -> NodeName: pro2 | IP: 10.8.36.2 -> NodeName: agg18 | IP: 10.0.15.1 -> NodeName: pro14 | IP: 10.0.17.1 -> NodeName: pro16 | IP: 10.0.31.2 -> NodeName: forwarder6 | IP: 10.0.22.1 -> NodeName: pro21 | IP: 10.0.0.1 -> NodeName: con0 | IP: 10.0.11.1 -> NodeName: pro10 | IP: 10.0.21.2 -> NodeName: forwarder4 | IP: 10.0.11.2 -> NodeName: forwarder2 | IP: 10.0.31.1 -> NodeName: pro30 | IP: 10.0.45.1 -> NodeName: pro44 | IP: 10.0.18.1 -> NodeName: pro17 | IP: 10.0.19.1 -> NodeName: pro18 | IP: 10.0.20.1 -> NodeName: pro19 | IP: 10.0.23.1 -> NodeName: pro22 | IP: 10.8.6.2 -> NodeName: agg3 | IP: 10.0.24.1 -> NodeName: pro23 | IP: 10.8.28.2 -> NodeName: agg14 | IP: 10.0.16.2 -> NodeName: forwarder3 | IP: 10.0.26.2 -> NodeName: forwarder5 | IP: 10.8.5.2 -> NodeName: forwarder13 | IP: 10.0.27.1 -> NodeName: pro26 | IP: 10.0.33.1 -> NodeName: pro32 | IP: 10.0.28.1 -> NodeName: pro27 | IP: 10.0.16.1 -> NodeName: pro15 | IP: 10.0.29.1 -> NodeName: pro28 | IP: 10.8.30.2 -> NodeName: agg15 | IP: 10.8.12.2 -> NodeName: agg6 | IP: 10.0.30.1 -> NodeName: pro29 | IP: 10.0.34.1 -> NodeName: pro33 | IP: 10.0.35.1 -> NodeName: pro34 | NewToOldIpMap contents:
+
+#################### SIMULATION END ####################
+
+
+
+
+#################### SIMULATION START ####################
+
+uint32_t consumerNum = 1;
+uint32_t producerNum = 100;
+uint32_t forwarderNum = 26;
+uint32_t aggregatorNum = 30;
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
+Using congestion control strategy: TcpCubic
++3.460147300s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 500 at 3460ms
++4.463197000s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 1000 at 4463ms

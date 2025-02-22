@@ -250,7 +250,7 @@ void InnetworkAggregationInterface::ReceiveDataFrom(std::string fromStr) {
         // NS_LOG_DEBUG("compQueue is empty.");
         if (!isEnd) {
             // NS_LOG_DEBUG("Scheduling ReceiveDataFrom for " << fromStr << " in 300 ns");
-            Simulator::Schedule(MilliSeconds(1), &InnetworkAggregationInterface::ReceiveDataFrom,
+            Simulator::Schedule(NanoSeconds(300), &InnetworkAggregationInterface::ReceiveDataFrom,
                                 this, fromStr);
         }
         return;
@@ -337,7 +337,8 @@ bool InnetworkAggregationInterface::PrintCompInfo(uint16_t iterationNum) {
     }
 
     // Zhuoxu: Print every iteration.
-    if ((iterationNum + 1) % 1000 == 0) {
+    if ((iterationNum + 1) % 500 == 0) {
+        // PrintRxBuffer("10.0.1.1");
         std::string nodeType = sGroup.empty() ? "Consumer" : "Aggregator";
         NS_LOG_INFO(nodeType << " " << thisAddress 
                    << " completed iteration " << iterationNum+1

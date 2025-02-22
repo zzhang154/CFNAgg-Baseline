@@ -1,0 +1,1407 @@
+nohup: ignoring input
+Hello from utils
+0x7fff6f478480 Time queue changed. Current size: 1
+Time queue changed. New size: 1
+0x7fff6f478480 Time queue changed. Current size: 2
+Time queue changed. New size: 2
+0x7fff6f478480 Time queue changed. Current size: 1
+Time queue changed. New size: 1
+
+#################### SIMULATION START ####################
+
+uint32_t consumerNum = 1;
+uint32_t producerNum = 10;
+uint32_t forwarderNum = 8;
+uint32_t aggregatorNum = 10;
+Using congestion control strategy: TcpBbr
+Using congestion control strategy: TcpBbr
++2.218522500s 19 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 500 at 2218ms
++2.218522500s 20 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 500 at 2218ms
++2.234362300s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 500 at 2234ms
++2.420762400s 19 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 1000 at 2420ms
++2.420762400s 20 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 1000 at 2420ms
++2.436602200s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 1000 at 2436ms
++2.623002600s 19 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 1500 at 2623ms
++2.623002600s 20 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 1500 at 2623ms
++2.638639900s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 1500 at 2638ms
++2.825242500s 19 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 2000 at 2825ms
++2.825242500s 20 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 2000 at 2825ms
++2.840677900s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 2000 at 2840ms
++3.027482400s 19 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 2500 at 3027ms
++3.027482400s 20 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 2500 at 3027ms
++3.043322200s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 2500 at 3043ms
++3.229722600s 19 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 3000 at 3229ms
++3.229722600s 20 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 3000 at 3229ms
++3.246169000s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 3000 at 3246ms
++3.431962500s 19 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 3500 at 3431ms
++3.431962500s 20 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 3500 at 3431ms
++3.449218000s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 3500 at 3449ms
++3.634202400s 19 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 4000 at 3634ms
++3.634202400s 20 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 4000 at 3634ms
++3.650042200s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 4000 at 3650ms
++3.836442600s 19 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 4500 at 3836ms
++3.836442600s 20 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 4500 at 3836ms
++3.852079900s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 4500 at 3852ms
++4.038682500s 19 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 5000 at 4038ms
++4.038682500s 20 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 5000 at 4038ms
++4.055331100s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 5000 at 4055ms
++4.240922400s 19 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 5500 at 4240ms
++4.240922400s 20 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 5500 at 4240ms
++4.256357800s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 5500 at 4256ms
++4.443162600s 19 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 6000 at 4443ms
++4.443162600s 20 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 6000 at 4443ms
++4.459406800s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 6000 at 4459ms
++4.645402500s 19 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 6500 at 4645ms
++4.645402500s 20 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 6500 at 4645ms
++4.662253600s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 6500 at 4662ms
++4.847642400s 19 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 7000 at 4847ms
++4.847642400s 20 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 7000 at 4847ms
++4.864897900s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 7000 at 4864ms
++5.049882600s 19 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 7500 at 5049ms
++5.049882600s 20 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 7500 at 5049ms
++5.065519900s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 7500 at 5065ms
++5.252122500s 19 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 8000 at 5252ms
++5.252122500s 20 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 8000 at 5252ms
++5.269378000s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 8000 at 5269ms
++5.454362400s 19 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 8500 at 5454ms
++5.454362400s 20 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 8500 at 5454ms
++5.470404400s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 8500 at 5470ms
++5.656602600s 19 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 9000 at 5656ms
++5.656602600s 20 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 9000 at 5656ms
++5.672239900s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 9000 at 5672ms
++5.858842500s 19 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 9500 at 5858ms
++5.858842500s 20 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 9500 at 5858ms
++5.874682300s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 9500 at 5874ms
++6.061082400s 19 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed processing
++6.061082400s 20 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed processing
+Consumer completed all iterations-10000 in 4076ms: isp-10
+
+#################### SIMULATION CONFIG ####################
+
+FileName: isp-10
+Iteration: 10000
+Congestion Control: ns3::TcpBbr
+TcpSocket bufSize: 81920
+AppTable bufSize: 30
+lossRate: 0
+Vector Size: 150
+
+Printing ipToNodeName:
+IP: 10.8.16.2 -> NodeName: agg8 | IP: 10.8.14.2 -> NodeName: agg7 | IP: 10.8.10.2 -> NodeName: agg5 | IP: 10.8.9.2 -> NodeName: forwarder7 | IP: 10.8.5.2 -> NodeName: forwarder5 | IP: 10.8.4.2 -> NodeName: agg2 | IP: 10.8.2.2 -> NodeName: agg1 | IP: 10.8.1.2 -> NodeName: forwarder3 | IP: 10.8.0.2 -> NodeName: agg0 | IP: 10.0.0.2 -> NodeName: forwarder2 | IP: 10.8.18.2 -> NodeName: agg9 | IP: 10.8.12.2 -> NodeName: agg6 | IP: 10.0.1.2 -> NodeName: forwarder0 | IP: 10.0.2.1 -> NodeName: pro1 | IP: 10.0.6.1 -> NodeName: pro5 | IP: 10.0.4.1 -> NodeName: pro3 | IP: 10.8.7.2 -> NodeName: forwarder6 | IP: 10.8.3.2 -> NodeName: forwarder4 | IP: 10.0.7.1 -> NodeName: pro6 | IP: 10.0.5.1 -> NodeName: pro4 | IP: 10.8.6.2 -> NodeName: agg3 | IP: 10.0.10.1 -> NodeName: pro9 | IP: 10.8.8.2 -> NodeName: agg4 | IP: 10.0.1.1 -> NodeName: pro0 | IP: 10.0.9.1 -> NodeName: pro8 | IP: 10.0.8.1 -> NodeName: pro7 | IP: 10.0.3.1 -> NodeName: pro2 | IP: 10.0.6.2 -> NodeName: forwarder1 | IP: 10.0.0.1 -> NodeName: con0 | NewToOldIpMap contents:
+New IP: 10.8.3.1 -> Old IP: 10.8.2.2New IP: 10.8.1.1 -> Old IP: 10.8.0.2
+#################### SIMULATION END ####################
+
+
+
+
+#################### SIMULATION START ####################
+
+uint32_t consumerNum = 1;
+uint32_t producerNum = 50;
+uint32_t forwarderNum = 16;
+uint32_t aggregatorNum = 20;
+Using congestion control strategy: TcpBbr
+Using congestion control strategy: TcpBbr
++2.218522500s 69 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.4.2 completed iteration 500 at 2218ms
++2.218522500s 70 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.6.2 completed iteration 500 at 2218ms
++2.218522500s 71 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.8.2 completed iteration 500 at 2218ms
++2.218522500s 72 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.10.2 completed iteration 500 at 2218ms
++2.218522500s 73 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.12.2 completed iteration 500 at 2218ms
++2.218522500s 74 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.14.2 completed iteration 500 at 2218ms
++2.218522500s 75 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.16.2 completed iteration 500 at 2218ms
++2.218522500s 76 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.18.2 completed iteration 500 at 2218ms
++2.221765500s 67 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 500 at 2221ms
++2.221765500s 68 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 500 at 2221ms
++2.227944600s 77 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.20.2 completed iteration 500 at 2227ms
++2.227944600s 78 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.22.2 completed iteration 500 at 2227ms
++2.237160700s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 500 at 2237ms
++2.420762400s 69 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.4.2 completed iteration 1000 at 2420ms
++2.420762400s 70 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.6.2 completed iteration 1000 at 2420ms
++2.420762400s 71 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.8.2 completed iteration 1000 at 2420ms
++2.420762400s 72 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.10.2 completed iteration 1000 at 2420ms
++2.420762400s 73 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.12.2 completed iteration 1000 at 2420ms
++2.420762400s 74 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.14.2 completed iteration 1000 at 2420ms
++2.420762400s 75 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.16.2 completed iteration 1000 at 2420ms
++2.420762400s 76 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.18.2 completed iteration 1000 at 2420ms
++2.427392400s 67 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 1000 at 2427ms
++2.427392400s 68 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 1000 at 2427ms
++2.433571500s 77 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.20.2 completed iteration 1000 at 2433ms
++2.433571500s 78 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.22.2 completed iteration 1000 at 2433ms
++2.442787600s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 1000 at 2442ms
++2.623002600s 69 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.4.2 completed iteration 1500 at 2623ms
++2.623002600s 70 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.6.2 completed iteration 1500 at 2623ms
++2.623002600s 71 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.8.2 completed iteration 1500 at 2623ms
++2.623002600s 72 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.10.2 completed iteration 1500 at 2623ms
++2.623002600s 73 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.12.2 completed iteration 1500 at 2623ms
++2.623002600s 74 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.14.2 completed iteration 1500 at 2623ms
++2.623002600s 75 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.16.2 completed iteration 1500 at 2623ms
++2.623002600s 76 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.18.2 completed iteration 1500 at 2623ms
++2.633036700s 67 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 1500 at 2633ms
++2.633036700s 68 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 1500 at 2633ms
++2.639215800s 77 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.20.2 completed iteration 1500 at 2639ms
++2.639215800s 78 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.22.2 completed iteration 1500 at 2639ms
++2.648431900s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 1500 at 2648ms
++2.825242500s 69 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.4.2 completed iteration 2000 at 2825ms
++2.825242500s 70 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.6.2 completed iteration 2000 at 2825ms
++2.825242500s 71 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.8.2 completed iteration 2000 at 2825ms
++2.825242500s 72 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.10.2 completed iteration 2000 at 2825ms
++2.825242500s 73 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.12.2 completed iteration 2000 at 2825ms
++2.825242500s 74 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.14.2 completed iteration 2000 at 2825ms
++2.825242500s 75 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.16.2 completed iteration 2000 at 2825ms
++2.825242500s 76 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.18.2 completed iteration 2000 at 2825ms
++2.839186800s 68 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 2000 at 2839ms
++2.839267800s 67 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 2000 at 2839ms
++2.845365900s 78 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.22.2 completed iteration 2000 at 2845ms
++2.845446900s 77 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.20.2 completed iteration 2000 at 2845ms
++2.854582000s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 2000 at 2854ms
++3.027482400s 69 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.4.2 completed iteration 2500 at 3027ms
++3.027482400s 70 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.6.2 completed iteration 2500 at 3027ms
++3.027482400s 71 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.8.2 completed iteration 2500 at 3027ms
++3.027482400s 72 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.10.2 completed iteration 2500 at 3027ms
++3.027482400s 73 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.12.2 completed iteration 2500 at 3027ms
++3.027482400s 74 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.14.2 completed iteration 2500 at 3027ms
++3.027482400s 75 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.16.2 completed iteration 2500 at 3027ms
++3.027482400s 76 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.18.2 completed iteration 2500 at 3027ms
++3.045583200s 68 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 2500 at 3045ms
++3.045812100s 67 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 2500 at 3045ms
++3.052874400s 78 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.22.2 completed iteration 2500 at 3052ms
++3.054587100s 77 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.20.2 completed iteration 2500 at 3054ms
++3.062762800s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 2500 at 3062ms
++3.229722600s 69 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.4.2 completed iteration 3000 at 3229ms
++3.229722600s 70 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.6.2 completed iteration 3000 at 3229ms
++3.229722600s 71 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.8.2 completed iteration 3000 at 3229ms
++3.229722600s 72 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.10.2 completed iteration 3000 at 3229ms
++3.229722600s 73 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.12.2 completed iteration 3000 at 3229ms
++3.229722600s 74 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.14.2 completed iteration 3000 at 3229ms
++3.229722600s 75 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.16.2 completed iteration 3000 at 3229ms
++3.229722600s 76 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.18.2 completed iteration 3000 at 3229ms
++3.252184500s 67 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 3000 at 3252ms
++3.252458100s 68 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 3000 at 3252ms
++3.263877000s 78 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.22.2 completed iteration 3000 at 3263ms
++3.265268400s 77 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.20.2 completed iteration 3000 at 3265ms
++3.273444100s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 3000 at 3273ms
++3.431962500s 69 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.4.2 completed iteration 3500 at 3431ms
++3.431962500s 70 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.6.2 completed iteration 3500 at 3431ms
++3.431962500s 71 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.8.2 completed iteration 3500 at 3431ms
++3.431962500s 72 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.10.2 completed iteration 3500 at 3431ms
++3.431962500s 73 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.12.2 completed iteration 3500 at 3431ms
++3.431962500s 74 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.14.2 completed iteration 3500 at 3431ms
++3.431962500s 75 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.16.2 completed iteration 3500 at 3431ms
++3.431962500s 76 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.18.2 completed iteration 3500 at 3431ms
++3.458949300s 67 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 3500 at 3458ms
++3.459961500s 68 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 3500 at 3459ms
++3.470101800s 78 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.22.2 completed iteration 3500 at 3470ms
++3.471314700s 77 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.20.2 completed iteration 3500 at 3471ms
++3.479490400s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 3500 at 3479ms
++3.634202400s 69 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.4.2 completed iteration 4000 at 3634ms
++3.634202400s 70 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.6.2 completed iteration 4000 at 3634ms
++3.634202400s 71 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.8.2 completed iteration 4000 at 3634ms
++3.634202400s 72 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.10.2 completed iteration 4000 at 3634ms
++3.634202400s 73 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.12.2 completed iteration 4000 at 3634ms
++3.634202400s 74 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.14.2 completed iteration 4000 at 3634ms
++3.634202400s 75 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.16.2 completed iteration 4000 at 3634ms
++3.634202400s 76 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.18.2 completed iteration 4000 at 3634ms
++3.666443200s 67 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 4000 at 3666ms
++3.667392300s 68 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 4000 at 3667ms
++3.677974500s 78 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.22.2 completed iteration 4000 at 3677ms
++3.680320500s 77 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.20.2 completed iteration 4000 at 3680ms
++3.688496200s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 4000 at 3688ms
++3.836442600s 70 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.6.2 completed iteration 4500 at 3836ms
++3.836442600s 72 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.10.2 completed iteration 4500 at 3836ms
++3.836442600s 73 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.12.2 completed iteration 4500 at 3836ms
++3.836442600s 74 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.14.2 completed iteration 4500 at 3836ms
++3.836442600s 75 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.16.2 completed iteration 4500 at 3836ms
++3.838004900s 71 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.8.2 completed iteration 4500 at 3838ms
++3.838196200s 76 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.18.2 completed iteration 4500 at 3838ms
++3.838387100s 69 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.4.2 completed iteration 4500 at 3838ms
++3.873003900s 68 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 4500 at 3873ms
++3.876341300s 67 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 4500 at 3876ms
++3.883153800s 78 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.22.2 completed iteration 4500 at 3883ms
++3.891770700s 77 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.20.2 completed iteration 4500 at 3891ms
++3.899946400s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 4500 at 3899ms
++4.038682500s 70 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.6.2 completed iteration 5000 at 4038ms
++4.038682500s 73 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.12.2 completed iteration 5000 at 4038ms
++4.038682500s 74 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.14.2 completed iteration 5000 at 4038ms
++4.038682500s 75 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.16.2 completed iteration 5000 at 4038ms
++4.043911700s 72 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.10.2 completed iteration 5000 at 4043ms
++4.046621600s 76 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.18.2 completed iteration 5000 at 4046ms
++4.047026200s 71 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.8.2 completed iteration 5000 at 4047ms
++4.047430600s 69 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.4.2 completed iteration 5000 at 4047ms
++4.078903200s 68 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 5000 at 4078ms
++4.086341300s 67 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 5000 at 4086ms
++4.086783600s 78 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.22.2 completed iteration 5000 at 4086ms
++4.099798800s 77 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.20.2 completed iteration 5000 at 4099ms
++4.107974500s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 5000 at 4107ms
++4.240922400s 73 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.12.2 completed iteration 5500 at 4240ms
++4.241574700s 74 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.14.2 completed iteration 5500 at 4241ms
++4.241788000s 70 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.6.2 completed iteration 5500 at 4241ms
++4.241979000s 75 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.16.2 completed iteration 5500 at 4241ms
++4.250911700s 72 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.10.2 completed iteration 5500 at 4250ms
++4.253026200s 71 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.8.2 completed iteration 5500 at 4253ms
++4.253430600s 69 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.4.2 completed iteration 5500 at 4253ms
++4.253621600s 76 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.18.2 completed iteration 5500 at 4253ms
++4.284167100s 68 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 5500 at 4284ms
++4.286341300s 67 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 5500 at 4286ms
++4.293188100s 78 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.22.2 completed iteration 5500 at 4293ms
++4.296801000s 77 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.20.2 completed iteration 5500 at 4296ms
++4.304976700s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 5500 at 4304ms
++4.443162400s 76 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.18.2 completed iteration 6000 at 4443ms
++4.443162500s 69 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.4.2 completed iteration 6000 at 4443ms
++4.443162500s 71 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.8.2 completed iteration 6000 at 4443ms
++4.443162600s 72 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.10.2 completed iteration 6000 at 4443ms
++4.448110900s 73 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.12.2 completed iteration 6000 at 4448ms
++4.450607700s 74 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.14.2 completed iteration 6000 at 4450ms
++4.451607600s 75 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.16.2 completed iteration 6000 at 4451ms
++4.451607700s 70 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.6.2 completed iteration 6000 at 4451ms
++4.484382900s 67 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 6000 at 4484ms
++4.490562000s 77 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.20.2 completed iteration 6000 at 4490ms
++4.490567100s 68 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 6000 at 4490ms
++4.504185300s 78 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.22.2 completed iteration 6000 at 4504ms
++4.513401400s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 6000 at 4513ms
++4.645402500s 72 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.10.2 completed iteration 6500 at 4645ms
++4.646357600s 71 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.8.2 completed iteration 6500 at 4646ms
++4.646380200s 76 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.18.2 completed iteration 6500 at 4646ms
++4.646762200s 69 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.4.2 completed iteration 6500 at 4646ms
++4.656110900s 73 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.12.2 completed iteration 6500 at 4656ms
++4.658607600s 75 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.16.2 completed iteration 6500 at 4658ms
++4.659607700s 70 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.6.2 completed iteration 6500 at 4659ms
++4.659607700s 74 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.14.2 completed iteration 6500 at 4659ms
++4.691745300s 67 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 6500 at 4691ms
++4.696211100s 68 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 6500 at 4696ms
++4.699045500s 77 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.20.2 completed iteration 6500 at 4699ms
++4.711355100s 78 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.22.2 completed iteration 6500 at 4711ms
++4.720571200s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 6500 at 4720ms
++4.853746400s 72 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.10.2 completed iteration 7000 at 4853ms
++4.856357600s 71 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.8.2 completed iteration 7000 at 4856ms
++4.856762200s 69 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.4.2 completed iteration 7000 at 4856ms
++4.857380200s 76 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.18.2 completed iteration 7000 at 4857ms
++4.865110900s 73 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.12.2 completed iteration 7000 at 4865ms
++4.867607600s 75 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.16.2 completed iteration 7000 at 4867ms
++4.867607700s 70 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.6.2 completed iteration 7000 at 4867ms
++4.867607700s 74 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.14.2 completed iteration 7000 at 4867ms
++4.899742200s 67 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 7000 at 4899ms
++4.903549100s 68 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 7000 at 4903ms
++4.911766800s 77 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.20.2 completed iteration 7000 at 4911ms
++4.918145400s 78 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.22.2 completed iteration 7000 at 4918ms
++4.927361500s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 7000 at 4927ms
++5.068110900s 73 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.12.2 completed iteration 7500 at 5068ms
++5.070746400s 72 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.10.2 completed iteration 7500 at 5070ms
++5.071607600s 75 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.16.2 completed iteration 7500 at 5071ms
++5.071607700s 70 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.6.2 completed iteration 7500 at 5071ms
++5.071607700s 74 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.14.2 completed iteration 7500 at 5071ms
++5.073762200s 69 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.4.2 completed iteration 7500 at 5073ms
++5.074357600s 71 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.8.2 completed iteration 7500 at 5074ms
++5.074380200s 76 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.18.2 completed iteration 7500 at 5074ms
++5.110549100s 68 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 7500 at 5110ms
++5.114131300s 67 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 7500 at 5114ms
++5.124447300s 78 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.22.2 completed iteration 7500 at 5124ms
++5.129677200s 77 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.20.2 completed iteration 7500 at 5129ms
++5.137852900s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 7500 at 5137ms
++5.276746400s 72 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.10.2 completed iteration 8000 at 5276ms
++5.278110900s 73 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.12.2 completed iteration 8000 at 5278ms
++5.279762200s 69 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.4.2 completed iteration 8000 at 5279ms
++5.280357600s 71 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.8.2 completed iteration 8000 at 5280ms
++5.280380200s 76 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.18.2 completed iteration 8000 at 5280ms
++5.281607600s 75 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.16.2 completed iteration 8000 at 5281ms
++5.281607700s 70 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.6.2 completed iteration 8000 at 5281ms
++5.281607700s 74 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.14.2 completed iteration 8000 at 5281ms
++5.314131300s 67 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 8000 at 5314ms
++5.316549100s 68 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 8000 at 5316ms
++5.325351600s 77 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.20.2 completed iteration 8000 at 5325ms
++5.328948900s 78 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.22.2 completed iteration 8000 at 5328ms
++5.338165000s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 8000 at 5338ms
++5.468746400s 72 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.10.2 completed iteration 8500 at 5468ms
++5.471762200s 69 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.4.2 completed iteration 8500 at 5471ms
++5.472357600s 71 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.8.2 completed iteration 8500 at 5472ms
++5.472380200s 76 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.18.2 completed iteration 8500 at 5472ms
++5.478110900s 73 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.12.2 completed iteration 8500 at 5478ms
++5.480607600s 75 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.16.2 completed iteration 8500 at 5480ms
++5.480607700s 70 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.6.2 completed iteration 8500 at 5480ms
++5.480607700s 74 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.14.2 completed iteration 8500 at 5480ms
++5.514919800s 67 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 8500 at 5514ms
++5.519549100s 68 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 8500 at 5519ms
++5.521098900s 77 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.20.2 completed iteration 8500 at 5521ms
++5.532289800s 78 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.22.2 completed iteration 8500 at 5532ms
++5.541505900s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 8500 at 5541ms
++5.671746400s 72 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.10.2 completed iteration 9000 at 5671ms
++5.674762200s 69 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.4.2 completed iteration 9000 at 5674ms
++5.675357600s 71 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.8.2 completed iteration 9000 at 5675ms
++5.675380200s 76 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.18.2 completed iteration 9000 at 5675ms
++5.686110900s 73 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.12.2 completed iteration 9000 at 5686ms
++5.689607600s 75 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.16.2 completed iteration 9000 at 5689ms
++5.689607700s 70 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.6.2 completed iteration 9000 at 5689ms
++5.689607700s 74 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.14.2 completed iteration 9000 at 5689ms
++5.720541900s 67 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 9000 at 5720ms
++5.726549100s 68 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 9000 at 5726ms
++5.726721000s 77 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.20.2 completed iteration 9000 at 5726ms
++5.742766200s 78 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.22.2 completed iteration 9000 at 5742ms
++5.751982300s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 9000 at 5751ms
++5.878746400s 72 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.10.2 completed iteration 9500 at 5878ms
++5.881357600s 71 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.8.2 completed iteration 9500 at 5881ms
++5.881380200s 76 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.18.2 completed iteration 9500 at 5881ms
++5.881762200s 69 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.4.2 completed iteration 9500 at 5881ms
++5.899110900s 73 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.12.2 completed iteration 9500 at 5899ms
++5.901607600s 75 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.16.2 completed iteration 9500 at 5901ms
++5.901607700s 70 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.6.2 completed iteration 9500 at 5901ms
++5.901607700s 74 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.14.2 completed iteration 9500 at 5901ms
++5.926681800s 67 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 9500 at 5926ms
++5.936300700s 77 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.20.2 completed iteration 9500 at 5936ms
++5.937549100s 68 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 9500 at 5937ms
++5.953133400s 78 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.22.2 completed iteration 9500 at 5953ms
++5.962349500s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 9500 at 5962ms
++6.089746400s 72 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.10.2 completed processing
++6.092357600s 71 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.8.2 completed processing
++6.092380200s 76 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.18.2 completed processing
++6.092762200s 69 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.4.2 completed processing
++6.095110900s 73 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.12.2 completed processing
++6.097607600s 75 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.16.2 completed processing
++6.097607700s 70 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.6.2 completed processing
++6.097607700s 74 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.14.2 completed processing
++6.129542400s 68 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed processing
++6.129680700s 67 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed processing
++6.144782700s 77 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.20.2 completed processing
++6.146304300s 78 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.22.2 completed processing
+Consumer completed all iterations-10000 in 4155ms: isp-50
+
+#################### SIMULATION CONFIG ####################
+
+FileName: isp-50
+Iteration: 10000
+Congestion Control: ns3::TcpBbr
+TcpSocket bufSize: 81920
+AppTable bufSize: 30
+lossRate: 0
+Vector Size: 150
+
+Printing ipToNodeName:
+IP: 10.8.34.2 -> NodeName: agg17 | IP: 10.8.24.2 -> NodeName: agg12 | IP: 10.8.22.2 -> NodeName: agg11 | IP: 10.8.32.2 -> NodeName: agg16 | IP: 10.8.20.2 -> NodeName: agg10 | IP: 10.0.50.1 -> NodeName: pro49 | IP: 10.0.49.1 -> NodeName: pro48 | IP: 10.0.48.1 -> NodeName: pro47 | IP: 10.0.46.1 -> NodeName: pro45 | IP: 10.0.44.1 -> NodeName: pro43 | IP: 10.0.43.1 -> NodeName: pro42 | IP: 10.0.42.1 -> NodeName: pro41 | IP: 10.0.41.1 -> NodeName: pro40 | IP: 10.0.46.2 -> NodeName: forwarder9 | IP: 10.0.40.1 -> NodeName: pro39 | IP: 10.0.39.1 -> NodeName: pro38 | IP: 10.8.26.2 -> NodeName: agg13 | IP: 10.0.38.1 -> NodeName: pro37 | IP: 10.0.36.2 -> NodeName: forwarder7 | IP: 10.0.36.1 -> NodeName: pro35 | IP: 10.8.14.2 -> NodeName: agg7 | IP: 10.8.10.2 -> NodeName: agg5 | IP: 10.0.13.1 -> NodeName: pro12 | IP: 10.8.9.2 -> NodeName: forwarder15 | IP: 10.8.4.2 -> NodeName: agg2 | IP: 10.8.2.2 -> NodeName: agg1 | IP: 10.0.6.2 -> NodeName: forwarder1 | IP: 10.8.0.2 -> NodeName: agg0 | IP: 10.0.21.1 -> NodeName: pro20 | IP: 10.0.0.2 -> NodeName: forwarder10 | IP: 10.8.18.2 -> NodeName: agg9 | IP: 10.0.1.1 -> NodeName: pro0 | IP: 10.0.32.1 -> NodeName: pro31 | IP: 10.0.41.2 -> NodeName: forwarder8 | IP: 10.0.1.2 -> NodeName: forwarder0 | IP: 10.0.37.1 -> NodeName: pro36 | IP: 10.8.3.2 -> NodeName: forwarder12 | IP: 10.0.47.1 -> NodeName: pro46 | IP: 10.0.10.1 -> NodeName: pro9 | IP: 10.0.12.1 -> NodeName: pro11 | IP: 10.8.1.2 -> NodeName: forwarder11 | IP: 10.0.2.1 -> NodeName: pro1 | IP: 10.0.6.1 -> NodeName: pro5 | IP: 10.8.16.2 -> NodeName: agg8 | IP: 10.0.4.1 -> NodeName: pro3 | IP: 10.0.14.1 -> NodeName: pro13 | IP: 10.8.7.2 -> NodeName: forwarder14 | IP: 10.0.7.1 -> NodeName: pro6 | IP: 10.0.5.1 -> NodeName: pro4 | IP: 10.0.25.1 -> NodeName: pro24 | IP: 10.8.38.2 -> NodeName: agg19 | IP: 10.0.9.1 -> NodeName: pro8 | IP: 10.0.8.1 -> NodeName: pro7 | IP: 10.8.8.2 -> NodeName: agg4 | IP: 10.0.26.1 -> NodeName: pro25 | IP: 10.0.3.1 -> NodeName: pro2 | IP: 10.8.36.2 -> NodeName: agg18 | IP: 10.0.15.1 -> NodeName: pro14 | IP: 10.0.17.1 -> NodeName: pro16 | IP: 10.0.31.2 -> NodeName: forwarder6 | IP: 10.0.22.1 -> NodeName: pro21 | IP: 10.0.0.1 -> NodeName: con0 | IP: 10.0.11.1 -> NodeName: pro10 | IP: 10.0.21.2 -> NodeName: forwarder4 | IP: 10.0.11.2 -> NodeName: forwarder2 | IP: 10.0.31.1 -> NodeName: pro30 | IP: 10.0.45.1 -> NodeName: pro44 | IP: 10.0.18.1 -> NodeName: pro17 | IP: 10.0.19.1 -> NodeName: pro18 | IP: 10.0.20.1 -> NodeName: pro19 | IP: 10.0.23.1 -> NodeName: pro22 | IP: 10.8.6.2 -> NodeName: agg3 | IP: 10.0.24.1 -> NodeName: pro23 | IP: 10.8.28.2 -> NodeName: agg14 | IP: 10.0.16.2 -> NodeName: forwarder3 | IP: 10.0.26.2 -> NodeName: forwarder5 | IP: 10.8.5.2 -> NodeName: forwarder13 | IP: 10.0.27.1 -> NodeName: pro26 | IP: 10.0.33.1 -> NodeName: pro32 | IP: 10.0.28.1 -> NodeName: pro27 | IP: 10.0.16.1 -> NodeName: pro15 | IP: 10.0.29.1 -> NodeName: pro28 | IP: 10.8.30.2 -> NodeName: agg15 | IP: 10.8.12.2 -> NodeName: agg6 | IP: 10.0.30.1 -> NodeName: pro29 | IP: 10.0.34.1 -> NodeName: pro33 | IP: 10.0.35.1 -> NodeName: pro34 | NewToOldIpMap contents:
+New IP: 10.8.21.1 -> Old IP: 10.8.20.2New IP: 10.8.19.1 -> Old IP: 10.8.18.2New IP: 10.8.17.1 -> Old IP: 10.8.16.2New IP: 10.8.15.1 -> Old IP: 10.8.14.2New IP: 10.8.13.1 -> Old IP: 10.8.12.2New IP: 10.8.11.1 -> Old IP: 10.8.10.2New IP: 10.8.9.1 -> Old IP: 10.8.8.2New IP: 10.8.7.1 -> Old IP: 10.8.6.2New IP: 10.8.23.1 -> Old IP: 10.8.22.2New IP: 10.8.5.1 -> Old IP: 10.8.4.2New IP: 10.8.3.1 -> Old IP: 10.8.2.2New IP: 10.8.1.1 -> Old IP: 10.8.0.2
+#################### SIMULATION END ####################
+
+
+
+
+#################### SIMULATION START ####################
+
+uint32_t consumerNum = 1;
+uint32_t producerNum = 100;
+uint32_t forwarderNum = 26;
+uint32_t aggregatorNum = 30;
+Using congestion control strategy: TcpBbr
+Using congestion control strategy: TcpBbr
+Using congestion control strategy: TcpBbr
+Using congestion control strategy: TcpBbr
++2.218522500s 131 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.8.2 completed iteration 500 at 2218ms
++2.218522500s 132 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.10.2 completed iteration 500 at 2218ms
++2.218522500s 133 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.12.2 completed iteration 500 at 2218ms
++2.218522500s 134 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.14.2 completed iteration 500 at 2218ms
++2.218522500s 135 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.16.2 completed iteration 500 at 2218ms
++2.218522500s 136 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.18.2 completed iteration 500 at 2218ms
++2.218522500s 137 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.20.2 completed iteration 500 at 2218ms
++2.218522500s 138 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.22.2 completed iteration 500 at 2218ms
++2.218522500s 139 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.24.2 completed iteration 500 at 2218ms
++2.218522500s 140 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.26.2 completed iteration 500 at 2218ms
++2.218522500s 141 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.28.2 completed iteration 500 at 2218ms
++2.218522500s 142 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.30.2 completed iteration 500 at 2218ms
++2.218522500s 143 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.32.2 completed iteration 500 at 2218ms
++2.218522500s 144 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.34.2 completed iteration 500 at 2218ms
++2.218522500s 145 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.36.2 completed iteration 500 at 2218ms
++2.218522500s 146 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.38.2 completed iteration 500 at 2218ms
++2.221765500s 127 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 500 at 2221ms
++2.221765500s 128 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 500 at 2221ms
++2.221765500s 129 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.4.2 completed iteration 500 at 2221ms
++2.221765500s 130 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.6.2 completed iteration 500 at 2221ms
++2.227944600s 147 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.40.2 completed iteration 500 at 2227ms
++2.227944600s 148 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.42.2 completed iteration 500 at 2227ms
++2.227944600s 149 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.44.2 completed iteration 500 at 2227ms
++2.227944600s 150 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.46.2 completed iteration 500 at 2227ms
++2.237140600s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 500 at 2237ms
++2.420762400s 131 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.8.2 completed iteration 1000 at 2420ms
++2.420762400s 132 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.10.2 completed iteration 1000 at 2420ms
++2.420762400s 133 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.12.2 completed iteration 1000 at 2420ms
++2.420762400s 134 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.14.2 completed iteration 1000 at 2420ms
++2.420762400s 135 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.16.2 completed iteration 1000 at 2420ms
++2.420762400s 136 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.18.2 completed iteration 1000 at 2420ms
++2.420762400s 137 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.20.2 completed iteration 1000 at 2420ms
++2.420762400s 138 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.22.2 completed iteration 1000 at 2420ms
++2.420762400s 139 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.24.2 completed iteration 1000 at 2420ms
++2.420762400s 140 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.26.2 completed iteration 1000 at 2420ms
++2.420762400s 141 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.28.2 completed iteration 1000 at 2420ms
++2.420762400s 142 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.30.2 completed iteration 1000 at 2420ms
++2.420762400s 143 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.32.2 completed iteration 1000 at 2420ms
++2.420762400s 144 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.34.2 completed iteration 1000 at 2420ms
++2.420762400s 145 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.36.2 completed iteration 1000 at 2420ms
++2.420762400s 146 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.38.2 completed iteration 1000 at 2420ms
++2.427392400s 127 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 1000 at 2427ms
++2.427392400s 128 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 1000 at 2427ms
++2.427392400s 129 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.4.2 completed iteration 1000 at 2427ms
++2.427392400s 130 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.6.2 completed iteration 1000 at 2427ms
++2.433571500s 147 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.40.2 completed iteration 1000 at 2433ms
++2.433571500s 148 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.42.2 completed iteration 1000 at 2433ms
++2.433571500s 149 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.44.2 completed iteration 1000 at 2433ms
++2.433571500s 150 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.46.2 completed iteration 1000 at 2433ms
++2.442767500s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 1000 at 2442ms
++2.623002600s 131 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.8.2 completed iteration 1500 at 2623ms
++2.623002600s 132 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.10.2 completed iteration 1500 at 2623ms
++2.623002600s 133 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.12.2 completed iteration 1500 at 2623ms
++2.623002600s 134 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.14.2 completed iteration 1500 at 2623ms
++2.623002600s 135 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.16.2 completed iteration 1500 at 2623ms
++2.623002600s 136 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.18.2 completed iteration 1500 at 2623ms
++2.623002600s 137 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.20.2 completed iteration 1500 at 2623ms
++2.623002600s 138 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.22.2 completed iteration 1500 at 2623ms
++2.623002600s 139 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.24.2 completed iteration 1500 at 2623ms
++2.623002600s 140 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.26.2 completed iteration 1500 at 2623ms
++2.623002600s 141 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.28.2 completed iteration 1500 at 2623ms
++2.623002600s 142 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.30.2 completed iteration 1500 at 2623ms
++2.623002600s 143 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.32.2 completed iteration 1500 at 2623ms
++2.623002600s 144 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.34.2 completed iteration 1500 at 2623ms
++2.623002600s 145 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.36.2 completed iteration 1500 at 2623ms
++2.623002600s 146 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.38.2 completed iteration 1500 at 2623ms
++2.633036700s 127 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 1500 at 2633ms
++2.633036700s 128 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 1500 at 2633ms
++2.633036700s 129 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.4.2 completed iteration 1500 at 2633ms
++2.633036700s 130 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.6.2 completed iteration 1500 at 2633ms
++2.639215800s 147 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.40.2 completed iteration 1500 at 2639ms
++2.639215800s 148 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.42.2 completed iteration 1500 at 2639ms
++2.639215800s 149 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.44.2 completed iteration 1500 at 2639ms
++2.639215800s 150 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.46.2 completed iteration 1500 at 2639ms
++2.648411800s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 1500 at 2648ms
++2.825242500s 131 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.8.2 completed iteration 2000 at 2825ms
++2.825242500s 132 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.10.2 completed iteration 2000 at 2825ms
++2.825242500s 133 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.12.2 completed iteration 2000 at 2825ms
++2.825242500s 134 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.14.2 completed iteration 2000 at 2825ms
++2.825242500s 135 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.16.2 completed iteration 2000 at 2825ms
++2.825242500s 136 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.18.2 completed iteration 2000 at 2825ms
++2.825242500s 137 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.20.2 completed iteration 2000 at 2825ms
++2.825242500s 138 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.22.2 completed iteration 2000 at 2825ms
++2.825242500s 139 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.24.2 completed iteration 2000 at 2825ms
++2.825242500s 140 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.26.2 completed iteration 2000 at 2825ms
++2.825242500s 141 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.28.2 completed iteration 2000 at 2825ms
++2.825242500s 142 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.30.2 completed iteration 2000 at 2825ms
++2.825242500s 143 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.32.2 completed iteration 2000 at 2825ms
++2.825242500s 144 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.34.2 completed iteration 2000 at 2825ms
++2.825242500s 145 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.36.2 completed iteration 2000 at 2825ms
++2.825242500s 146 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.38.2 completed iteration 2000 at 2825ms
++2.839186800s 128 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 2000 at 2839ms
++2.839267800s 127 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 2000 at 2839ms
++2.839267800s 129 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.4.2 completed iteration 2000 at 2839ms
++2.839267800s 130 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.6.2 completed iteration 2000 at 2839ms
++2.845365900s 148 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.42.2 completed iteration 2000 at 2845ms
++2.845446900s 147 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.40.2 completed iteration 2000 at 2845ms
++2.845446900s 149 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.44.2 completed iteration 2000 at 2845ms
++2.845446900s 150 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.46.2 completed iteration 2000 at 2845ms
++2.854622800s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 2000 at 2854ms
++3.027482400s 131 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.8.2 completed iteration 2500 at 3027ms
++3.027482400s 132 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.10.2 completed iteration 2500 at 3027ms
++3.027482400s 133 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.12.2 completed iteration 2500 at 3027ms
++3.027482400s 134 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.14.2 completed iteration 2500 at 3027ms
++3.027482400s 135 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.16.2 completed iteration 2500 at 3027ms
++3.027482400s 136 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.18.2 completed iteration 2500 at 3027ms
++3.027482400s 137 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.20.2 completed iteration 2500 at 3027ms
++3.027482400s 138 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.22.2 completed iteration 2500 at 3027ms
++3.027482400s 139 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.24.2 completed iteration 2500 at 3027ms
++3.027482400s 140 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.26.2 completed iteration 2500 at 3027ms
++3.027482400s 141 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.28.2 completed iteration 2500 at 3027ms
++3.027482400s 142 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.30.2 completed iteration 2500 at 3027ms
++3.027482400s 143 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.32.2 completed iteration 2500 at 3027ms
++3.027482400s 144 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.34.2 completed iteration 2500 at 3027ms
++3.027482400s 145 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.36.2 completed iteration 2500 at 3027ms
++3.027482400s 146 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.38.2 completed iteration 2500 at 3027ms
++3.045583200s 128 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 2500 at 3045ms
++3.045812100s 127 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 2500 at 3045ms
++3.045812100s 129 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.4.2 completed iteration 2500 at 3045ms
++3.045812100s 130 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.6.2 completed iteration 2500 at 3045ms
++3.052874400s 148 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.42.2 completed iteration 2500 at 3052ms
++3.054587100s 147 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.40.2 completed iteration 2500 at 3054ms
++3.054587100s 149 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.44.2 completed iteration 2500 at 3054ms
++3.054587100s 150 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.46.2 completed iteration 2500 at 3054ms
++3.063763000s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 2500 at 3063ms
++3.229722600s 131 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.8.2 completed iteration 3000 at 3229ms
++3.229722600s 132 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.10.2 completed iteration 3000 at 3229ms
++3.229722600s 133 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.12.2 completed iteration 3000 at 3229ms
++3.229722600s 134 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.14.2 completed iteration 3000 at 3229ms
++3.229722600s 135 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.16.2 completed iteration 3000 at 3229ms
++3.229722600s 136 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.18.2 completed iteration 3000 at 3229ms
++3.229722600s 137 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.20.2 completed iteration 3000 at 3229ms
++3.229722600s 138 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.22.2 completed iteration 3000 at 3229ms
++3.229722600s 139 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.24.2 completed iteration 3000 at 3229ms
++3.229722600s 140 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.26.2 completed iteration 3000 at 3229ms
++3.229722600s 141 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.28.2 completed iteration 3000 at 3229ms
++3.229722600s 142 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.30.2 completed iteration 3000 at 3229ms
++3.229722600s 143 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.32.2 completed iteration 3000 at 3229ms
++3.229722600s 144 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.34.2 completed iteration 3000 at 3229ms
++3.229722600s 145 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.36.2 completed iteration 3000 at 3229ms
++3.229722600s 146 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.38.2 completed iteration 3000 at 3229ms
++3.252184500s 127 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 3000 at 3252ms
++3.252184500s 129 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.4.2 completed iteration 3000 at 3252ms
++3.252184500s 130 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.6.2 completed iteration 3000 at 3252ms
++3.252458100s 128 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 3000 at 3252ms
++3.263877000s 148 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.42.2 completed iteration 3000 at 3263ms
++3.265268400s 147 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.40.2 completed iteration 3000 at 3265ms
++3.265268400s 149 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.44.2 completed iteration 3000 at 3265ms
++3.265268400s 150 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.46.2 completed iteration 3000 at 3265ms
++3.274444300s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 3000 at 3274ms
++3.431962500s 131 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.8.2 completed iteration 3500 at 3431ms
++3.431962500s 132 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.10.2 completed iteration 3500 at 3431ms
++3.431962500s 133 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.12.2 completed iteration 3500 at 3431ms
++3.431962500s 134 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.14.2 completed iteration 3500 at 3431ms
++3.431962500s 135 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.16.2 completed iteration 3500 at 3431ms
++3.431962500s 136 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.18.2 completed iteration 3500 at 3431ms
++3.431962500s 137 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.20.2 completed iteration 3500 at 3431ms
++3.431962500s 138 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.22.2 completed iteration 3500 at 3431ms
++3.431962500s 139 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.24.2 completed iteration 3500 at 3431ms
++3.431962500s 140 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.26.2 completed iteration 3500 at 3431ms
++3.431962500s 141 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.28.2 completed iteration 3500 at 3431ms
++3.431962500s 142 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.30.2 completed iteration 3500 at 3431ms
++3.431962500s 143 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.32.2 completed iteration 3500 at 3431ms
++3.431962500s 144 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.34.2 completed iteration 3500 at 3431ms
++3.431962500s 145 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.36.2 completed iteration 3500 at 3431ms
++3.431962500s 146 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.38.2 completed iteration 3500 at 3431ms
++3.458949300s 127 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 3500 at 3458ms
++3.458949300s 129 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.4.2 completed iteration 3500 at 3458ms
++3.458949300s 130 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.6.2 completed iteration 3500 at 3458ms
++3.459961500s 128 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 3500 at 3459ms
++3.470101800s 148 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.42.2 completed iteration 3500 at 3470ms
++3.471314700s 147 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.40.2 completed iteration 3500 at 3471ms
++3.471314700s 149 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.44.2 completed iteration 3500 at 3471ms
++3.471314700s 150 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.46.2 completed iteration 3500 at 3471ms
++3.480490600s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 3500 at 3480ms
++3.634202400s 131 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.8.2 completed iteration 4000 at 3634ms
++3.634202400s 132 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.10.2 completed iteration 4000 at 3634ms
++3.634202400s 133 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.12.2 completed iteration 4000 at 3634ms
++3.634202400s 134 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.14.2 completed iteration 4000 at 3634ms
++3.634202400s 135 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.16.2 completed iteration 4000 at 3634ms
++3.634202400s 136 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.18.2 completed iteration 4000 at 3634ms
++3.634202400s 137 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.20.2 completed iteration 4000 at 3634ms
++3.634202400s 138 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.22.2 completed iteration 4000 at 3634ms
++3.634202400s 139 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.24.2 completed iteration 4000 at 3634ms
++3.634202400s 140 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.26.2 completed iteration 4000 at 3634ms
++3.634202400s 141 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.28.2 completed iteration 4000 at 3634ms
++3.634202400s 142 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.30.2 completed iteration 4000 at 3634ms
++3.634202400s 143 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.32.2 completed iteration 4000 at 3634ms
++3.634202400s 144 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.34.2 completed iteration 4000 at 3634ms
++3.634202400s 145 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.36.2 completed iteration 4000 at 3634ms
++3.634202400s 146 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.38.2 completed iteration 4000 at 3634ms
++3.666443200s 127 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 4000 at 3666ms
++3.666443200s 129 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.4.2 completed iteration 4000 at 3666ms
++3.666443200s 130 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.6.2 completed iteration 4000 at 3666ms
++3.667392300s 128 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 4000 at 3667ms
++3.677974500s 148 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.42.2 completed iteration 4000 at 3677ms
++3.680239800s 147 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.40.2 completed iteration 4000 at 3680ms
++3.680239800s 150 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.46.2 completed iteration 4000 at 3680ms
++3.680320500s 149 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.44.2 completed iteration 4000 at 3680ms
++3.689482900s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 4000 at 3689ms
++3.836442600s 132 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.10.2 completed iteration 4500 at 3836ms
++3.836442600s 133 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.12.2 completed iteration 4500 at 3836ms
++3.836442600s 134 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.14.2 completed iteration 4500 at 3836ms
++3.836442600s 135 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.16.2 completed iteration 4500 at 3836ms
++3.836442600s 137 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.20.2 completed iteration 4500 at 3836ms
++3.836442600s 138 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.22.2 completed iteration 4500 at 3836ms
++3.836442600s 140 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.26.2 completed iteration 4500 at 3836ms
++3.836442600s 142 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.30.2 completed iteration 4500 at 3836ms
++3.836442600s 143 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.32.2 completed iteration 4500 at 3836ms
++3.836442600s 145 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.36.2 completed iteration 4500 at 3836ms
++3.837791500s 144 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.34.2 completed iteration 4500 at 3837ms
++3.837791600s 139 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.24.2 completed iteration 4500 at 3837ms
++3.837814000s 136 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.18.2 completed iteration 4500 at 3837ms
++3.838196100s 141 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.28.2 completed iteration 4500 at 3838ms
++3.838387100s 146 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.38.2 completed iteration 4500 at 3838ms
++3.838600500s 131 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.8.2 completed iteration 4500 at 3838ms
++3.873003900s 128 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 4500 at 3873ms
++3.876341300s 129 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.4.2 completed iteration 4500 at 3876ms
++3.876678800s 127 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 4500 at 3876ms
++3.876678800s 130 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.6.2 completed iteration 4500 at 3876ms
++3.883153800s 148 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.42.2 completed iteration 4500 at 3883ms
++3.891770700s 149 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.44.2 completed iteration 4500 at 3891ms
++3.892100700s 147 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.40.2 completed iteration 4500 at 3892ms
++3.892100700s 150 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.46.2 completed iteration 4500 at 3892ms
++3.901256200s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 4500 at 3901ms
++4.038682500s 133 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.12.2 completed iteration 5000 at 4038ms
++4.038682500s 134 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.14.2 completed iteration 5000 at 4038ms
++4.038682500s 138 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.22.2 completed iteration 5000 at 4038ms
++4.038682500s 143 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.32.2 completed iteration 5000 at 4038ms
++4.045081400s 145 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.36.2 completed iteration 5000 at 4045ms
++4.045081400s 142 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.30.2 completed iteration 5000 at 4045ms
++4.045676900s 132 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.10.2 completed iteration 5000 at 4045ms
++4.045676900s 137 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.20.2 completed iteration 5000 at 4045ms
++4.045677000s 135 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.16.2 completed iteration 5000 at 4045ms
++4.045677100s 140 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.26.2 completed iteration 5000 at 4045ms
++4.046621800s 131 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.8.2 completed iteration 5000 at 4046ms
++4.046835000s 136 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.18.2 completed iteration 5000 at 4046ms
++4.047239600s 141 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.28.2 completed iteration 5000 at 4047ms
++4.047621700s 146 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.38.2 completed iteration 5000 at 4047ms
++4.048217300s 139 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.24.2 completed iteration 5000 at 4048ms
++4.048812800s 144 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.34.2 completed iteration 5000 at 4048ms
++4.078903200s 128 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 5000 at 4078ms
++4.086341300s 129 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.4.2 completed iteration 5000 at 4086ms
++4.086678800s 127 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 5000 at 4086ms
++4.086678800s 130 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.6.2 completed iteration 5000 at 4086ms
++4.086783600s 148 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.42.2 completed iteration 5000 at 4086ms
++4.099798800s 149 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.44.2 completed iteration 5000 at 4099ms
++4.099960500s 147 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.40.2 completed iteration 5000 at 4099ms
++4.099960500s 150 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.46.2 completed iteration 5000 at 4099ms
++4.109125300s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 5000 at 4109ms
++4.240922400s 133 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.12.2 completed iteration 5500 at 4240ms
++4.240922400s 138 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.22.2 completed iteration 5500 at 4240ms
++4.240922400s 143 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.32.2 completed iteration 5500 at 4240ms
++4.242170200s 134 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.14.2 completed iteration 5500 at 4242ms
++4.251081400s 142 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.30.2 completed iteration 5500 at 4251ms
++4.251676900s 132 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.10.2 completed iteration 5500 at 4251ms
++4.251676900s 137 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.20.2 completed iteration 5500 at 4251ms
++4.251677000s 135 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.16.2 completed iteration 5500 at 4251ms
++4.251677100s 140 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.26.2 completed iteration 5500 at 4251ms
++4.252081400s 145 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.36.2 completed iteration 5500 at 4252ms
++4.252835000s 136 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.18.2 completed iteration 5500 at 4252ms
++4.253239600s 141 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.28.2 completed iteration 5500 at 4253ms
++4.253621700s 146 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.38.2 completed iteration 5500 at 4253ms
++4.253621800s 131 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.8.2 completed iteration 5500 at 4253ms
++4.254217300s 139 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.24.2 completed iteration 5500 at 4254ms
++4.254812800s 144 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.34.2 completed iteration 5500 at 4254ms
++4.284497700s 128 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 5500 at 4284ms
++4.286341300s 129 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.4.2 completed iteration 5500 at 4286ms
++4.287678800s 127 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 5500 at 4287ms
++4.287678800s 130 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.6.2 completed iteration 5500 at 4287ms
++4.293371400s 148 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.42.2 completed iteration 5500 at 4293ms
++4.296801000s 149 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.44.2 completed iteration 5500 at 4296ms
++4.300743000s 147 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.40.2 completed iteration 5500 at 4300ms
++4.300743000s 150 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.46.2 completed iteration 5500 at 4300ms
++4.309898500s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 5500 at 4309ms
++4.443162400s 136 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.18.2 completed iteration 6000 at 4443ms
++4.443162400s 146 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.38.2 completed iteration 6000 at 4443ms
++4.443162500s 141 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.28.2 completed iteration 6000 at 4443ms
++4.443162600s 131 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.8.2 completed iteration 6000 at 4443ms
++4.446676900s 132 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.10.2 completed iteration 6000 at 4446ms
++4.446676900s 137 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.20.2 completed iteration 6000 at 4446ms
++4.446677000s 135 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.16.2 completed iteration 6000 at 4446ms
++4.446677100s 140 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.26.2 completed iteration 6000 at 4446ms
++4.447081400s 145 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.36.2 completed iteration 6000 at 4447ms
++4.447081400s 142 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.30.2 completed iteration 6000 at 4447ms
++4.447515300s 133 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.12.2 completed iteration 6000 at 4447ms
++4.447515300s 143 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.32.2 completed iteration 6000 at 4447ms
++4.447920000s 138 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.22.2 completed iteration 6000 at 4447ms
++4.449812800s 144 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.34.2 completed iteration 6000 at 4449ms
++4.450217300s 139 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.24.2 completed iteration 6000 at 4450ms
++4.451012100s 134 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.14.2 completed iteration 6000 at 4451ms
++4.484382900s 129 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.4.2 completed iteration 6000 at 4484ms
++4.485840500s 127 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 6000 at 4485ms
++4.485840500s 130 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.6.2 completed iteration 6000 at 4485ms
++4.490148600s 128 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 6000 at 4490ms
++4.490562000s 149 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.44.2 completed iteration 6000 at 4490ms
++4.500168000s 147 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.40.2 completed iteration 6000 at 4500ms
++4.500168000s 150 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.46.2 completed iteration 6000 at 4500ms
++4.504884600s 148 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.42.2 completed iteration 6000 at 4504ms
++4.514040100s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 6000 at 4514ms
++4.646357600s 146 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.38.2 completed iteration 6500 at 4646ms
++4.646357700s 141 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.28.2 completed iteration 6500 at 4646ms
++4.646975500s 131 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.8.2 completed iteration 6500 at 4646ms
++4.646975700s 136 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.18.2 completed iteration 6500 at 4646ms
++4.651081400s 145 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.36.2 completed iteration 6500 at 4651ms
++4.651081400s 142 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.30.2 completed iteration 6500 at 4651ms
++4.651676900s 132 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.10.2 completed iteration 6500 at 4651ms
++4.651676900s 137 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.20.2 completed iteration 6500 at 4651ms
++4.651677000s 135 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.16.2 completed iteration 6500 at 4651ms
++4.651677100s 140 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.26.2 completed iteration 6500 at 4651ms
++4.654217300s 139 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.24.2 completed iteration 6500 at 4654ms
++4.654812800s 144 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.34.2 completed iteration 6500 at 4654ms
++4.658515300s 133 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.12.2 completed iteration 6500 at 4658ms
++4.658920000s 138 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.22.2 completed iteration 6500 at 4658ms
++4.659515300s 143 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.32.2 completed iteration 6500 at 4659ms
++4.662012100s 134 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.14.2 completed iteration 6500 at 4662ms
++4.691745300s 129 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.4.2 completed iteration 6500 at 4691ms
++4.693681100s 127 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 6500 at 4693ms
++4.693681100s 130 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.6.2 completed iteration 6500 at 4693ms
++4.697313400s 128 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 6500 at 4697ms
++4.699045500s 149 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.44.2 completed iteration 6500 at 4699ms
++4.705430100s 147 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.40.2 completed iteration 6500 at 4705ms
++4.705430100s 150 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.46.2 completed iteration 6500 at 4705ms
++4.712262900s 148 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.42.2 completed iteration 6500 at 4712ms
++4.721418400s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 6500 at 4721ms
++4.856357700s 141 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.28.2 completed iteration 7000 at 4856ms
++4.856975500s 131 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.8.2 completed iteration 7000 at 4856ms
++4.856975700s 136 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.18.2 completed iteration 7000 at 4856ms
++4.857357600s 146 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.38.2 completed iteration 7000 at 4857ms
++4.859676900s 132 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.10.2 completed iteration 7000 at 4859ms
++4.859676900s 137 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.20.2 completed iteration 7000 at 4859ms
++4.859677000s 135 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.16.2 completed iteration 7000 at 4859ms
++4.859677100s 140 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.26.2 completed iteration 7000 at 4859ms
++4.860081400s 145 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.36.2 completed iteration 7000 at 4860ms
++4.860081400s 142 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.30.2 completed iteration 7000 at 4860ms
++4.862217300s 139 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.24.2 completed iteration 7000 at 4862ms
++4.862812800s 144 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.34.2 completed iteration 7000 at 4862ms
++4.865920000s 138 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.22.2 completed iteration 7000 at 4865ms
++4.866515300s 133 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.12.2 completed iteration 7000 at 4866ms
++4.866515300s 143 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.32.2 completed iteration 7000 at 4866ms
++4.869012100s 134 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.14.2 completed iteration 7000 at 4869ms
++4.899742200s 129 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.4.2 completed iteration 7000 at 4899ms
++4.901297900s 127 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 7000 at 4901ms
++4.901297900s 130 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.6.2 completed iteration 7000 at 4901ms
++4.906313400s 128 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 7000 at 4906ms
++4.911766800s 149 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.44.2 completed iteration 7000 at 4911ms
++4.916121300s 147 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.40.2 completed iteration 7000 at 4916ms
++4.916121300s 150 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.46.2 completed iteration 7000 at 4916ms
++4.920530700s 148 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.42.2 completed iteration 7000 at 4920ms
++4.929686200s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 7000 at 4929ms
++5.067920000s 138 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.22.2 completed iteration 7500 at 5067ms
++5.068515300s 133 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.12.2 completed iteration 7500 at 5068ms
++5.068515300s 143 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.32.2 completed iteration 7500 at 5068ms
++5.071081400s 145 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.36.2 completed iteration 7500 at 5071ms
++5.071081400s 142 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.30.2 completed iteration 7500 at 5071ms
++5.071676900s 132 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.10.2 completed iteration 7500 at 5071ms
++5.071676900s 137 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.20.2 completed iteration 7500 at 5071ms
++5.071677000s 135 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.16.2 completed iteration 7500 at 5071ms
++5.071677100s 140 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.26.2 completed iteration 7500 at 5071ms
++5.072012100s 134 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.14.2 completed iteration 7500 at 5072ms
++5.073975500s 131 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.8.2 completed iteration 7500 at 5073ms
++5.073975700s 136 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.18.2 completed iteration 7500 at 5073ms
++5.074217300s 139 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.24.2 completed iteration 7500 at 5074ms
++5.074357600s 146 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.38.2 completed iteration 7500 at 5074ms
++5.074357700s 141 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.28.2 completed iteration 7500 at 5074ms
++5.074812800s 144 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.34.2 completed iteration 7500 at 5074ms
++5.110313400s 128 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 7500 at 5110ms
++5.113051600s 127 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 7500 at 5113ms
++5.113051600s 130 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.6.2 completed iteration 7500 at 5113ms
++5.114131300s 129 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.4.2 completed iteration 7500 at 5114ms
++5.123172600s 148 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.42.2 completed iteration 7500 at 5123ms
++5.127609900s 147 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.40.2 completed iteration 7500 at 5127ms
++5.127609900s 150 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.46.2 completed iteration 7500 at 5127ms
++5.129677200s 149 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.44.2 completed iteration 7500 at 5129ms
++5.138832700s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 7500 at 5138ms
++5.275081400s 145 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.36.2 completed iteration 8000 at 5275ms
++5.275081400s 142 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.30.2 completed iteration 8000 at 5275ms
++5.275676900s 132 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.10.2 completed iteration 8000 at 5275ms
++5.275676900s 137 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.20.2 completed iteration 8000 at 5275ms
++5.275677000s 135 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.16.2 completed iteration 8000 at 5275ms
++5.275677100s 140 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.26.2 completed iteration 8000 at 5275ms
++5.276515300s 133 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.12.2 completed iteration 8000 at 5276ms
++5.276515300s 143 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.32.2 completed iteration 8000 at 5276ms
++5.276920000s 138 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.22.2 completed iteration 8000 at 5276ms
++5.278217300s 139 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.24.2 completed iteration 8000 at 5278ms
++5.278812800s 144 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.34.2 completed iteration 8000 at 5278ms
++5.279012100s 134 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.14.2 completed iteration 8000 at 5279ms
++5.279975500s 131 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.8.2 completed iteration 8000 at 5279ms
++5.279975700s 136 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.18.2 completed iteration 8000 at 5279ms
++5.280357600s 146 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.38.2 completed iteration 8000 at 5280ms
++5.280357700s 141 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.28.2 completed iteration 8000 at 5280ms
++5.314131300s 129 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.4.2 completed iteration 8000 at 5314ms
++5.315051600s 127 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 8000 at 5315ms
++5.315051600s 130 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.6.2 completed iteration 8000 at 5315ms
++5.317313400s 128 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 8000 at 5317ms
++5.325351600s 149 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.44.2 completed iteration 8000 at 5325ms
++5.328301800s 147 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.40.2 completed iteration 8000 at 5328ms
++5.328301800s 150 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.46.2 completed iteration 8000 at 5328ms
++5.331753000s 148 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.42.2 completed iteration 8000 at 5331ms
++5.340908800s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 8000 at 5340ms
++5.471357600s 146 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.38.2 completed iteration 8500 at 5471ms
++5.471357700s 141 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.28.2 completed iteration 8500 at 5471ms
++5.471975500s 131 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.8.2 completed iteration 8500 at 5471ms
++5.471975700s 136 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.18.2 completed iteration 8500 at 5471ms
++5.477081400s 145 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.36.2 completed iteration 8500 at 5477ms
++5.477081400s 142 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.30.2 completed iteration 8500 at 5477ms
++5.477676900s 132 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.10.2 completed iteration 8500 at 5477ms
++5.477676900s 137 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.20.2 completed iteration 8500 at 5477ms
++5.477677000s 135 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.16.2 completed iteration 8500 at 5477ms
++5.477677100s 140 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.26.2 completed iteration 8500 at 5477ms
++5.480217300s 139 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.24.2 completed iteration 8500 at 5480ms
++5.480812800s 144 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.34.2 completed iteration 8500 at 5480ms
++5.484515300s 133 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.12.2 completed iteration 8500 at 5484ms
++5.484515300s 143 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.32.2 completed iteration 8500 at 5484ms
++5.484920000s 138 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.22.2 completed iteration 8500 at 5484ms
++5.487012100s 134 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.14.2 completed iteration 8500 at 5487ms
++5.514919800s 129 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.4.2 completed iteration 8500 at 5514ms
++5.519046300s 127 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 8500 at 5519ms
++5.519046300s 130 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.6.2 completed iteration 8500 at 5519ms
++5.521098900s 149 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.44.2 completed iteration 8500 at 5521ms
++5.527313400s 128 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 8500 at 5527ms
++5.532450300s 147 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.40.2 completed iteration 8500 at 5532ms
++5.532450300s 150 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.46.2 completed iteration 8500 at 5532ms
++5.539913400s 148 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.42.2 completed iteration 8500 at 5539ms
++5.549068900s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 8500 at 5549ms
++5.674975500s 131 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.8.2 completed iteration 9000 at 5674ms
++5.674975700s 136 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.18.2 completed iteration 9000 at 5674ms
++5.675357600s 146 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.38.2 completed iteration 9000 at 5675ms
++5.675357700s 141 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.28.2 completed iteration 9000 at 5675ms
++5.684515300s 133 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.12.2 completed iteration 9000 at 5684ms
++5.684920000s 138 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.22.2 completed iteration 9000 at 5684ms
++5.685515300s 143 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.32.2 completed iteration 9000 at 5685ms
++5.688012100s 134 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.14.2 completed iteration 9000 at 5688ms
++5.688081400s 145 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.36.2 completed iteration 9000 at 5688ms
++5.688676900s 132 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.10.2 completed iteration 9000 at 5688ms
++5.688676900s 137 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.20.2 completed iteration 9000 at 5688ms
++5.688677000s 135 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.16.2 completed iteration 9000 at 5688ms
++5.688677100s 140 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.26.2 completed iteration 9000 at 5688ms
++5.689081400s 142 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.30.2 completed iteration 9000 at 5689ms
++5.691217300s 139 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.24.2 completed iteration 9000 at 5691ms
++5.691812800s 144 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.34.2 completed iteration 9000 at 5691ms
++5.720541900s 129 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.4.2 completed iteration 9000 at 5720ms
++5.724313400s 128 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 9000 at 5724ms
++5.726721000s 149 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.44.2 completed iteration 9000 at 5726ms
++5.729190500s 127 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 9000 at 5729ms
++5.729190500s 130 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.6.2 completed iteration 9000 at 5729ms
++5.735790000s 148 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.42.2 completed iteration 9000 at 5735ms
++5.744404200s 147 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.40.2 completed iteration 9000 at 5744ms
++5.744404200s 150 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.46.2 completed iteration 9000 at 5744ms
++5.753559700s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 9000 at 5753ms
++5.881357600s 146 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.38.2 completed iteration 9500 at 5881ms
++5.881975500s 131 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.8.2 completed iteration 9500 at 5881ms
++5.881975700s 136 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.18.2 completed iteration 9500 at 5881ms
++5.882357700s 141 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.28.2 completed iteration 9500 at 5882ms
++5.883515300s 133 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.12.2 completed iteration 9500 at 5883ms
++5.883515300s 143 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.32.2 completed iteration 9500 at 5883ms
++5.883920000s 138 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.22.2 completed iteration 9500 at 5883ms
++5.887012100s 134 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.14.2 completed iteration 9500 at 5887ms
++5.897676900s 132 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.10.2 completed iteration 9500 at 5897ms
++5.897676900s 137 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.20.2 completed iteration 9500 at 5897ms
++5.897677000s 135 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.16.2 completed iteration 9500 at 5897ms
++5.897677100s 140 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.26.2 completed iteration 9500 at 5897ms
++5.898081400s 145 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.36.2 completed iteration 9500 at 5898ms
++5.898081400s 142 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.30.2 completed iteration 9500 at 5898ms
++5.900812800s 144 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.34.2 completed iteration 9500 at 5900ms
++5.901217300s 139 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.24.2 completed iteration 9500 at 5901ms
++5.925574900s 128 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 9500 at 5925ms
++5.926681800s 129 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.4.2 completed iteration 9500 at 5926ms
++5.934190500s 127 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 9500 at 5934ms
++5.934190500s 130 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.6.2 completed iteration 9500 at 5934ms
++5.936300700s 149 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.44.2 completed iteration 9500 at 5936ms
++5.937814500s 148 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.42.2 completed iteration 9500 at 5937ms
++5.948926500s 147 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.40.2 completed iteration 9500 at 5948ms
++5.948926500s 150 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.46.2 completed iteration 9500 at 5948ms
++5.958097000s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 9500 at 5958ms
++6.086515300s 133 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.12.2 completed processing
++6.086515300s 143 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.32.2 completed processing
++6.086920000s 138 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.22.2 completed processing
++6.090012100s 134 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.14.2 completed processing
++6.091676900s 132 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.10.2 completed processing
++6.091975500s 131 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.8.2 completed processing
++6.091975700s 136 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.18.2 completed processing
++6.092081400s 145 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.36.2 completed processing
++6.092081400s 142 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.30.2 completed processing
++6.092357600s 146 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.38.2 completed processing
++6.092357700s 141 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.28.2 completed processing
++6.092676900s 137 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.20.2 completed processing
++6.092677000s 135 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.16.2 completed processing
++6.092677100s 140 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.26.2 completed processing
++6.094812800s 144 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.34.2 completed processing
++6.095217300s 139 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.24.2 completed processing
++6.129653000s 127 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed processing
++6.129653000s 130 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.6.2 completed processing
++6.129680700s 129 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.4.2 completed processing
++6.129708100s 128 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed processing
++6.139783800s 148 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.42.2 completed processing
++6.144652800s 147 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.40.2 completed processing
++6.144652800s 150 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.46.2 completed processing
++6.144782700s 149 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.44.2 completed processing
+Consumer completed all iterations-10000 in 4153ms: isp-100
+
+#################### SIMULATION CONFIG ####################
+
+FileName: isp-100
+Iteration: 10000
+Congestion Control: ns3::TcpBbr
+TcpSocket bufSize: 81920
+AppTable bufSize: 30
+lossRate: 0
+Vector Size: 150
+
+Printing ipToNodeName:
+IP: 10.8.54.2 -> NodeName: agg27 | IP: 10.8.50.2 -> NodeName: agg25 | IP: 10.8.40.2 -> NodeName: agg20 | IP: 10.0.100.1 -> NodeName: pro99 | IP: 10.0.99.1 -> NodeName: pro98 | IP: 10.0.98.1 -> NodeName: pro97 | IP: 10.0.96.2 -> NodeName: forwarder19 | IP: 10.0.94.1 -> NodeName: pro93 | IP: 10.0.93.1 -> NodeName: pro92 | IP: 10.0.91.2 -> NodeName: forwarder18 | IP: 10.0.90.1 -> NodeName: pro89 | IP: 10.8.52.2 -> NodeName: agg26 | IP: 10.0.88.1 -> NodeName: pro87 | IP: 10.0.87.1 -> NodeName: pro86 | IP: 10.0.86.1 -> NodeName: pro85 | IP: 10.8.56.2 -> NodeName: agg28 | IP: 10.0.85.1 -> NodeName: pro84 | IP: 10.0.52.1 -> NodeName: pro51 | IP: 10.0.30.1 -> NodeName: pro29 | IP: 10.0.96.1 -> NodeName: pro95 | IP: 10.8.12.2 -> NodeName: agg6 | IP: 10.8.48.2 -> NodeName: agg24 | IP: 10.8.42.2 -> NodeName: agg21 | IP: 10.8.30.2 -> NodeName: agg15 | IP: 10.0.29.1 -> NodeName: pro28 | IP: 10.0.65.1 -> NodeName: pro64 | IP: 10.0.74.1 -> NodeName: pro73 | IP: 10.0.28.1 -> NodeName: pro27 | IP: 10.0.27.1 -> NodeName: pro26 | IP: 10.0.26.2 -> NodeName: forwarder5 | IP: 10.0.91.1 -> NodeName: pro90 | IP: 10.0.16.2 -> NodeName: forwarder3 | IP: 10.8.28.2 -> NodeName: agg14 | IP: 10.0.24.1 -> NodeName: pro23 | IP: 10.8.6.2 -> NodeName: agg3 | IP: 10.0.51.1 -> NodeName: pro50 | IP: 10.0.69.1 -> NodeName: pro68 | IP: 10.0.19.1 -> NodeName: pro18 | IP: 10.0.18.1 -> NodeName: pro17 | IP: 10.0.45.1 -> NodeName: pro44 | IP: 10.0.83.1 -> NodeName: pro82 | IP: 10.0.31.1 -> NodeName: pro30 | IP: 10.8.44.2 -> NodeName: agg22 | IP: 10.0.72.1 -> NodeName: pro71 | IP: 10.0.11.2 -> NodeName: forwarder2 | IP: 10.0.21.2 -> NodeName: forwarder4 | IP: 10.0.11.1 -> NodeName: pro10 | IP: 10.0.0.1 -> NodeName: con0 | IP: 10.0.31.2 -> NodeName: forwarder6 | IP: 10.0.17.1 -> NodeName: pro16 | IP: 10.0.15.1 -> NodeName: pro14 | IP: 10.8.36.2 -> NodeName: agg18 | IP: 10.0.3.1 -> NodeName: pro2 | IP: 10.0.26.1 -> NodeName: pro25 | IP: 10.0.8.1 -> NodeName: pro7 | IP: 10.0.9.1 -> NodeName: pro8 | IP: 10.8.38.2 -> NodeName: agg19 | IP: 10.0.60.1 -> NodeName: pro59 | IP: 10.0.5.1 -> NodeName: pro4 | IP: 10.0.97.1 -> NodeName: pro96 | IP: 10.0.7.1 -> NodeName: pro6 | IP: 10.0.92.1 -> NodeName: pro91 | IP: 10.8.7.2 -> NodeName: forwarder24 | IP: 10.0.71.2 -> NodeName: forwarder14 | IP: 10.8.58.2 -> NodeName: agg29 | IP: 10.0.14.1 -> NodeName: pro13 | IP: 10.0.4.1 -> NodeName: pro3 | IP: 10.0.6.1 -> NodeName: pro5 | IP: 10.8.46.2 -> NodeName: agg23 | IP: 10.0.2.1 -> NodeName: pro1 | IP: 10.0.23.1 -> NodeName: pro22 | IP: 10.8.1.2 -> NodeName: forwarder21 | IP: 10.0.73.1 -> NodeName: pro72 | IP: 10.8.16.2 -> NodeName: agg8 | IP: 10.0.12.1 -> NodeName: pro11 | IP: 10.0.10.1 -> NodeName: pro9 | IP: 10.0.47.1 -> NodeName: pro46 | IP: 10.0.20.1 -> NodeName: pro19 | IP: 10.8.3.2 -> NodeName: forwarder22 | IP: 10.0.37.1 -> NodeName: pro36 | IP: 10.0.57.1 -> NodeName: pro56 | IP: 10.0.1.2 -> NodeName: forwarder0 | IP: 10.0.32.1 -> NodeName: pro31 | IP: 10.0.89.1 -> NodeName: pro88 | IP: 10.0.1.1 -> NodeName: pro0 | IP: 10.0.54.1 -> NodeName: pro53 | IP: 10.8.18.2 -> NodeName: agg9 | IP: 10.0.0.2 -> NodeName: forwarder20 | IP: 10.8.5.2 -> NodeName: forwarder23 | IP: 10.0.21.1 -> NodeName: pro20 | IP: 10.8.0.2 -> NodeName: agg0 | IP: 10.0.51.2 -> NodeName: forwarder10 | IP: 10.0.66.1 -> NodeName: pro65 | IP: 10.0.66.2 -> NodeName: forwarder13 | IP: 10.8.2.2 -> NodeName: agg1 | IP: 10.8.9.2 -> NodeName: forwarder25 | IP: 10.0.22.1 -> NodeName: pro21 | IP: 10.0.61.1 -> NodeName: pro60 | IP: 10.0.13.1 -> NodeName: pro12 | IP: 10.0.56.2 -> NodeName: forwarder11 | IP: 10.8.10.2 -> NodeName: agg5 | IP: 10.0.41.2 -> NodeName: forwarder8 | IP: 10.0.36.1 -> NodeName: pro35 | IP: 10.0.36.2 -> NodeName: forwarder7 | IP: 10.0.38.1 -> NodeName: pro37 | IP: 10.0.35.1 -> NodeName: pro34 | IP: 10.8.26.2 -> NodeName: agg13 | IP: 10.0.25.1 -> NodeName: pro24 | IP: 10.0.39.1 -> NodeName: pro38 | IP: 10.0.40.1 -> NodeName: pro39 | IP: 10.8.4.2 -> NodeName: agg2 | IP: 10.0.46.2 -> NodeName: forwarder9 | IP: 10.0.80.1 -> NodeName: pro79 | IP: 10.0.41.1 -> NodeName: pro40 | IP: 10.0.68.1 -> NodeName: pro67 | IP: 10.0.42.1 -> NodeName: pro41 | IP: 10.0.43.1 -> NodeName: pro42 | IP: 10.0.67.1 -> NodeName: pro66 | IP: 10.0.44.1 -> NodeName: pro43 | IP: 10.0.46.1 -> NodeName: pro45 | IP: 10.0.53.1 -> NodeName: pro52 | IP: 10.0.76.2 -> NodeName: forwarder15 | IP: 10.8.14.2 -> NodeName: agg7 | IP: 10.0.48.1 -> NodeName: pro47 | IP: 10.0.49.1 -> NodeName: pro48 | IP: 10.0.16.1 -> NodeName: pro15 | IP: 10.8.8.2 -> NodeName: agg4 | IP: 10.0.50.1 -> NodeName: pro49 | IP: 10.0.71.1 -> NodeName: pro70 | IP: 10.0.6.2 -> NodeName: forwarder1 | IP: 10.8.20.2 -> NodeName: agg10 | IP: 10.0.34.1 -> NodeName: pro33 | IP: 10.8.32.2 -> NodeName: agg16 | IP: 10.8.22.2 -> NodeName: agg11 | IP: 10.8.24.2 -> NodeName: agg12 | IP: 10.0.86.2 -> NodeName: forwarder17 | IP: 10.8.34.2 -> NodeName: agg17 | IP: 10.0.55.1 -> NodeName: pro54 | IP: 10.0.33.1 -> NodeName: pro32 | IP: 10.0.56.1 -> NodeName: pro55 | IP: 10.0.78.1 -> NodeName: pro77 | IP: 10.0.95.1 -> NodeName: pro94 | IP: 10.0.64.1 -> NodeName: pro63 | IP: 10.0.58.1 -> NodeName: pro57 | IP: 10.0.76.1 -> NodeName: pro75 | IP: 10.0.61.2 -> NodeName: forwarder12 | IP: 10.0.62.1 -> NodeName: pro61 | IP: 10.0.63.1 -> NodeName: pro62 | IP: 10.0.70.1 -> NodeName: pro69 | IP: 10.0.75.1 -> NodeName: pro74 | IP: 10.0.59.1 -> NodeName: pro58 | IP: 10.0.77.1 -> NodeName: pro76 | IP: 10.0.79.1 -> NodeName: pro78 | IP: 10.0.81.1 -> NodeName: pro80 | IP: 10.0.81.2 -> NodeName: forwarder16 | IP: 10.0.84.1 -> NodeName: pro83 | IP: 10.0.82.1 -> NodeName: pro81 | NewToOldIpMap contents:
+New IP: 10.8.45.1 -> Old IP: 10.8.44.2New IP: 10.8.43.1 -> Old IP: 10.8.42.2New IP: 10.8.39.1 -> Old IP: 10.8.38.2New IP: 10.8.37.1 -> Old IP: 10.8.36.2New IP: 10.8.47.1 -> Old IP: 10.8.46.2New IP: 10.8.35.1 -> Old IP: 10.8.34.2New IP: 10.8.33.1 -> Old IP: 10.8.32.2New IP: 10.8.31.1 -> Old IP: 10.8.30.2New IP: 10.8.1.1 -> Old IP: 10.8.0.2New IP: 10.8.25.1 -> Old IP: 10.8.24.2New IP: 10.8.5.1 -> Old IP: 10.8.4.2New IP: 10.8.7.1 -> Old IP: 10.8.6.2New IP: 10.8.27.1 -> Old IP: 10.8.26.2New IP: 10.8.3.1 -> Old IP: 10.8.2.2New IP: 10.8.23.1 -> Old IP: 10.8.22.2New IP: 10.8.9.1 -> Old IP: 10.8.8.2New IP: 10.8.11.1 -> Old IP: 10.8.10.2New IP: 10.8.29.1 -> Old IP: 10.8.28.2New IP: 10.8.13.1 -> Old IP: 10.8.12.2New IP: 10.8.15.1 -> Old IP: 10.8.14.2New IP: 10.8.17.1 -> Old IP: 10.8.16.2New IP: 10.8.19.1 -> Old IP: 10.8.18.2New IP: 10.8.41.1 -> Old IP: 10.8.40.2New IP: 10.8.21.1 -> Old IP: 10.8.20.2
+#################### SIMULATION END ####################
+
+
+
+
+#################### SIMULATION START ####################
+
+uint32_t consumerNum = 1;
+uint32_t producerNum = 150;
+uint32_t forwarderNum = 21;
+uint32_t aggregatorNum = 30;
+Using congestion control strategy: TcpBbr
+Using congestion control strategy: TcpBbr
++2.218438200s 174 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.4.2 completed iteration 500 at 2218ms
++2.218438200s 175 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.6.2 completed iteration 500 at 2218ms
++2.218438200s 176 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.8.2 completed iteration 500 at 2218ms
++2.218438200s 177 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.10.2 completed iteration 500 at 2218ms
++2.218438200s 178 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.12.2 completed iteration 500 at 2218ms
++2.218438200s 179 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.14.2 completed iteration 500 at 2218ms
++2.218438200s 180 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.16.2 completed iteration 500 at 2218ms
++2.218438200s 181 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.18.2 completed iteration 500 at 2218ms
++2.218438200s 182 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.20.2 completed iteration 500 at 2218ms
++2.218438200s 183 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.22.2 completed iteration 500 at 2218ms
++2.218438200s 184 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.24.2 completed iteration 500 at 2218ms
++2.218438200s 185 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.26.2 completed iteration 500 at 2218ms
++2.218438200s 186 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.28.2 completed iteration 500 at 2218ms
++2.220022800s 172 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 500 at 2220ms
++2.220022800s 173 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 500 at 2220ms
++2.226121800s 187 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.30.2 completed iteration 500 at 2226ms
++2.226121800s 188 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.32.2 completed iteration 500 at 2226ms
++2.235255400s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 500 at 2235ms
++2.420678100s 174 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.4.2 completed iteration 1000 at 2420ms
++2.420678100s 175 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.6.2 completed iteration 1000 at 2420ms
++2.420678100s 176 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.8.2 completed iteration 1000 at 2420ms
++2.420678100s 177 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.10.2 completed iteration 1000 at 2420ms
++2.420678100s 178 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.12.2 completed iteration 1000 at 2420ms
++2.420678100s 179 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.14.2 completed iteration 1000 at 2420ms
++2.420678100s 180 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.16.2 completed iteration 1000 at 2420ms
++2.420678100s 181 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.18.2 completed iteration 1000 at 2420ms
++2.420678100s 182 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.20.2 completed iteration 1000 at 2420ms
++2.420678100s 183 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.22.2 completed iteration 1000 at 2420ms
++2.420678100s 184 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.24.2 completed iteration 1000 at 2420ms
++2.420678100s 185 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.26.2 completed iteration 1000 at 2420ms
++2.420678100s 186 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.28.2 completed iteration 1000 at 2420ms
++2.423976900s 172 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 1000 at 2423ms
++2.423976900s 173 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 1000 at 2423ms
++2.430075300s 187 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.30.2 completed iteration 1000 at 2430ms
++2.430075300s 188 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.32.2 completed iteration 1000 at 2430ms
++2.439208900s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 1000 at 2439ms
++2.622918000s 174 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.4.2 completed iteration 1500 at 2622ms
++2.622918000s 175 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.6.2 completed iteration 1500 at 2622ms
++2.622918000s 176 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.8.2 completed iteration 1500 at 2622ms
++2.622918000s 177 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.10.2 completed iteration 1500 at 2622ms
++2.622918000s 178 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.12.2 completed iteration 1500 at 2622ms
++2.622918000s 179 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.14.2 completed iteration 1500 at 2622ms
++2.622918000s 180 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.16.2 completed iteration 1500 at 2622ms
++2.622918000s 181 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.18.2 completed iteration 1500 at 2622ms
++2.622918000s 182 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.20.2 completed iteration 1500 at 2622ms
++2.622918000s 183 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.22.2 completed iteration 1500 at 2622ms
++2.622918000s 184 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.24.2 completed iteration 1500 at 2622ms
++2.622918000s 185 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.26.2 completed iteration 1500 at 2622ms
++2.622918000s 186 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.28.2 completed iteration 1500 at 2622ms
++2.627925900s 172 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 1500 at 2627ms
++2.627925900s 173 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 1500 at 2627ms
++2.634024300s 187 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.30.2 completed iteration 1500 at 2634ms
++2.634024300s 188 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.32.2 completed iteration 1500 at 2634ms
++2.643157900s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 1500 at 2643ms
++2.825158200s 174 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.4.2 completed iteration 2000 at 2825ms
++2.825158200s 175 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.6.2 completed iteration 2000 at 2825ms
++2.825158200s 176 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.8.2 completed iteration 2000 at 2825ms
++2.825158200s 177 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.10.2 completed iteration 2000 at 2825ms
++2.825158200s 178 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.12.2 completed iteration 2000 at 2825ms
++2.825158200s 179 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.14.2 completed iteration 2000 at 2825ms
++2.825158200s 180 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.16.2 completed iteration 2000 at 2825ms
++2.825158200s 181 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.18.2 completed iteration 2000 at 2825ms
++2.825158200s 182 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.20.2 completed iteration 2000 at 2825ms
++2.825158200s 183 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.22.2 completed iteration 2000 at 2825ms
++2.825158200s 184 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.24.2 completed iteration 2000 at 2825ms
++2.825158200s 185 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.26.2 completed iteration 2000 at 2825ms
++2.825158200s 186 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.28.2 completed iteration 2000 at 2825ms
++2.831881800s 172 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 2000 at 2831ms
++2.831881800s 173 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 2000 at 2831ms
++2.837980800s 187 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.30.2 completed iteration 2000 at 2837ms
++2.837980800s 188 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.32.2 completed iteration 2000 at 2837ms
++2.847114400s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 2000 at 2847ms
++3.027398100s 174 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.4.2 completed iteration 2500 at 3027ms
++3.027398100s 175 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.6.2 completed iteration 2500 at 3027ms
++3.027398100s 176 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.8.2 completed iteration 2500 at 3027ms
++3.027398100s 177 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.10.2 completed iteration 2500 at 3027ms
++3.027398100s 178 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.12.2 completed iteration 2500 at 3027ms
++3.027398100s 179 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.14.2 completed iteration 2500 at 3027ms
++3.027398100s 180 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.16.2 completed iteration 2500 at 3027ms
++3.027398100s 181 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.18.2 completed iteration 2500 at 3027ms
++3.027398100s 182 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.20.2 completed iteration 2500 at 3027ms
++3.027398100s 183 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.22.2 completed iteration 2500 at 3027ms
++3.027398100s 184 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.24.2 completed iteration 2500 at 3027ms
++3.027398100s 185 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.26.2 completed iteration 2500 at 3027ms
++3.027398100s 186 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.28.2 completed iteration 2500 at 3027ms
++3.035835900s 172 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 2500 at 3035ms
++3.035835900s 173 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 2500 at 3035ms
++3.041935200s 187 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.30.2 completed iteration 2500 at 3041ms
++3.041935200s 188 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.32.2 completed iteration 2500 at 3041ms
++3.051068800s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 2500 at 3051ms
++3.229638000s 174 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.4.2 completed iteration 3000 at 3229ms
++3.229638000s 175 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.6.2 completed iteration 3000 at 3229ms
++3.229638000s 176 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.8.2 completed iteration 3000 at 3229ms
++3.229638000s 177 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.10.2 completed iteration 3000 at 3229ms
++3.229638000s 178 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.12.2 completed iteration 3000 at 3229ms
++3.229638000s 179 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.14.2 completed iteration 3000 at 3229ms
++3.229638000s 180 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.16.2 completed iteration 3000 at 3229ms
++3.229638000s 181 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.18.2 completed iteration 3000 at 3229ms
++3.229638000s 182 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.20.2 completed iteration 3000 at 3229ms
++3.229638000s 183 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.22.2 completed iteration 3000 at 3229ms
++3.229638000s 184 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.24.2 completed iteration 3000 at 3229ms
++3.229638000s 185 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.26.2 completed iteration 3000 at 3229ms
++3.229638000s 186 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.28.2 completed iteration 3000 at 3229ms
++3.239790000s 172 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 3000 at 3239ms
++3.239790000s 173 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 3000 at 3239ms
++3.245889300s 187 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.30.2 completed iteration 3000 at 3245ms
++3.245889300s 188 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.32.2 completed iteration 3000 at 3245ms
++3.255022900s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 3000 at 3255ms
++3.431878200s 174 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.4.2 completed iteration 3500 at 3431ms
++3.431878200s 175 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.6.2 completed iteration 3500 at 3431ms
++3.431878200s 176 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.8.2 completed iteration 3500 at 3431ms
++3.431878200s 177 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.10.2 completed iteration 3500 at 3431ms
++3.431878200s 178 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.12.2 completed iteration 3500 at 3431ms
++3.431878200s 179 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.14.2 completed iteration 3500 at 3431ms
++3.431878200s 180 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.16.2 completed iteration 3500 at 3431ms
++3.431878200s 181 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.18.2 completed iteration 3500 at 3431ms
++3.431878200s 182 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.20.2 completed iteration 3500 at 3431ms
++3.431878200s 183 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.22.2 completed iteration 3500 at 3431ms
++3.431878200s 184 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.24.2 completed iteration 3500 at 3431ms
++3.431878200s 185 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.26.2 completed iteration 3500 at 3431ms
++3.431878200s 186 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.28.2 completed iteration 3500 at 3431ms
++3.443754600s 172 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 3500 at 3443ms
++3.443754600s 173 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 3500 at 3443ms
++3.451447200s 188 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.32.2 completed iteration 3500 at 3451ms
++3.451512600s 187 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.30.2 completed iteration 3500 at 3451ms
++3.460580800s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 3500 at 3460ms
++3.634118100s 174 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.4.2 completed iteration 4000 at 3634ms
++3.634118100s 175 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.6.2 completed iteration 4000 at 3634ms
++3.634118100s 176 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.8.2 completed iteration 4000 at 3634ms
++3.634118100s 177 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.10.2 completed iteration 4000 at 3634ms
++3.634118100s 178 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.12.2 completed iteration 4000 at 3634ms
++3.634118100s 179 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.14.2 completed iteration 4000 at 3634ms
++3.634118100s 180 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.16.2 completed iteration 4000 at 3634ms
++3.634118100s 181 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.18.2 completed iteration 4000 at 3634ms
++3.634118100s 182 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.20.2 completed iteration 4000 at 3634ms
++3.634118100s 183 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.22.2 completed iteration 4000 at 3634ms
++3.634118100s 184 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.24.2 completed iteration 4000 at 3634ms
++3.634118100s 185 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.26.2 completed iteration 4000 at 3634ms
++3.634118100s 186 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.28.2 completed iteration 4000 at 3634ms
++3.648086700s 173 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 4000 at 3648ms
++3.648329400s 172 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 4000 at 3648ms
++3.656100300s 187 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.30.2 completed iteration 4000 at 3656ms
++3.656144700s 188 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.32.2 completed iteration 4000 at 3656ms
++3.665278300s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 4000 at 3665ms
++3.836358000s 174 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.4.2 completed iteration 4500 at 3836ms
++3.836358000s 175 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.6.2 completed iteration 4500 at 3836ms
++3.836358000s 176 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.8.2 completed iteration 4500 at 3836ms
++3.836358000s 177 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.10.2 completed iteration 4500 at 3836ms
++3.836358000s 178 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.12.2 completed iteration 4500 at 3836ms
++3.836358000s 179 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.14.2 completed iteration 4500 at 3836ms
++3.836358000s 180 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.16.2 completed iteration 4500 at 3836ms
++3.836358000s 181 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.18.2 completed iteration 4500 at 3836ms
++3.836358000s 182 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.20.2 completed iteration 4500 at 3836ms
++3.836358000s 183 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.22.2 completed iteration 4500 at 3836ms
++3.836358000s 184 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.24.2 completed iteration 4500 at 3836ms
++3.836358000s 185 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.26.2 completed iteration 4500 at 3836ms
++3.836358000s 186 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.28.2 completed iteration 4500 at 3836ms
++3.852501300s 173 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 4500 at 3852ms
++3.853384200s 172 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 4500 at 3853ms
++3.859543800s 188 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.32.2 completed iteration 4500 at 3859ms
++3.860317200s 187 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.30.2 completed iteration 4500 at 3860ms
++3.868677400s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 4500 at 3868ms
++4.038598200s 174 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.4.2 completed iteration 5000 at 4038ms
++4.038598200s 175 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.6.2 completed iteration 5000 at 4038ms
++4.038598200s 176 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.8.2 completed iteration 5000 at 4038ms
++4.038598200s 177 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.10.2 completed iteration 5000 at 4038ms
++4.038598200s 178 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.12.2 completed iteration 5000 at 4038ms
++4.038598200s 179 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.14.2 completed iteration 5000 at 4038ms
++4.038598200s 180 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.16.2 completed iteration 5000 at 4038ms
++4.038598200s 181 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.18.2 completed iteration 5000 at 4038ms
++4.038598200s 182 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.20.2 completed iteration 5000 at 4038ms
++4.038598200s 183 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.22.2 completed iteration 5000 at 4038ms
++4.038598200s 184 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.24.2 completed iteration 5000 at 4038ms
++4.038598200s 185 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.26.2 completed iteration 5000 at 4038ms
++4.038598200s 186 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.28.2 completed iteration 5000 at 4038ms
++4.056411600s 173 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 5000 at 4056ms
++4.057340100s 172 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 5000 at 4057ms
++4.064140800s 188 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.32.2 completed iteration 5000 at 4064ms
++4.065094200s 187 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.30.2 completed iteration 5000 at 4065ms
++4.073274400s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 5000 at 4073ms
++4.240838100s 174 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.4.2 completed iteration 5500 at 4240ms
++4.240838100s 175 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.6.2 completed iteration 5500 at 4240ms
++4.240838100s 176 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.8.2 completed iteration 5500 at 4240ms
++4.240838100s 177 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.10.2 completed iteration 5500 at 4240ms
++4.240838100s 178 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.12.2 completed iteration 5500 at 4240ms
++4.240838100s 179 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.14.2 completed iteration 5500 at 4240ms
++4.240838100s 180 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.16.2 completed iteration 5500 at 4240ms
++4.240838100s 181 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.18.2 completed iteration 5500 at 4240ms
++4.240838100s 182 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.20.2 completed iteration 5500 at 4240ms
++4.240838100s 183 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.22.2 completed iteration 5500 at 4240ms
++4.240838100s 184 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.24.2 completed iteration 5500 at 4240ms
++4.240838100s 185 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.26.2 completed iteration 5500 at 4240ms
++4.240838100s 186 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.28.2 completed iteration 5500 at 4240ms
++4.260186000s 173 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 5500 at 4260ms
++4.261239300s 172 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 5500 at 4261ms
++4.266285000s 188 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.32.2 completed iteration 5500 at 4266ms
++4.267337700s 187 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.30.2 completed iteration 5500 at 4267ms
++4.275445600s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 5500 at 4275ms
++4.443078000s 174 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.4.2 completed iteration 6000 at 4443ms
++4.443078000s 175 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.6.2 completed iteration 6000 at 4443ms
++4.443078000s 176 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.8.2 completed iteration 6000 at 4443ms
++4.443078000s 177 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.10.2 completed iteration 6000 at 4443ms
++4.443078000s 178 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.12.2 completed iteration 6000 at 4443ms
++4.443078000s 179 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.14.2 completed iteration 6000 at 4443ms
++4.443078000s 180 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.16.2 completed iteration 6000 at 4443ms
++4.443078000s 181 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.18.2 completed iteration 6000 at 4443ms
++4.443078000s 182 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.20.2 completed iteration 6000 at 4443ms
++4.443078000s 183 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.22.2 completed iteration 6000 at 4443ms
++4.443078000s 184 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.24.2 completed iteration 6000 at 4443ms
++4.443078000s 185 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.26.2 completed iteration 6000 at 4443ms
++4.443078000s 186 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.28.2 completed iteration 6000 at 4443ms
++4.464073200s 173 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 6000 at 4464ms
++4.465933800s 172 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 6000 at 4465ms
++4.470276300s 188 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.32.2 completed iteration 6000 at 4470ms
++4.472032800s 187 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.30.2 completed iteration 6000 at 4472ms
++4.480137700s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 6000 at 4480ms
++4.645318200s 174 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.4.2 completed iteration 6500 at 4645ms
++4.645318200s 175 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.6.2 completed iteration 6500 at 4645ms
++4.645318200s 176 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.8.2 completed iteration 6500 at 4645ms
++4.645318200s 177 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.10.2 completed iteration 6500 at 4645ms
++4.645318200s 178 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.12.2 completed iteration 6500 at 4645ms
++4.645318200s 179 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.14.2 completed iteration 6500 at 4645ms
++4.645318200s 180 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.16.2 completed iteration 6500 at 4645ms
++4.645318200s 181 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.18.2 completed iteration 6500 at 4645ms
++4.645318200s 182 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.20.2 completed iteration 6500 at 4645ms
++4.645318200s 183 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.22.2 completed iteration 6500 at 4645ms
++4.645318200s 184 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.24.2 completed iteration 6500 at 4645ms
++4.645318200s 185 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.26.2 completed iteration 6500 at 4645ms
++4.645318200s 186 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.28.2 completed iteration 6500 at 4645ms
++4.668199500s 173 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 6500 at 4668ms
++4.669824300s 172 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 6500 at 4669ms
++4.675218600s 188 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.32.2 completed iteration 6500 at 4675ms
++4.675923300s 187 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.30.2 completed iteration 6500 at 4675ms
++4.684352200s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 6500 at 4684ms
++4.847558100s 174 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.4.2 completed iteration 7000 at 4847ms
++4.847558100s 175 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.6.2 completed iteration 7000 at 4847ms
++4.847558100s 176 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.8.2 completed iteration 7000 at 4847ms
++4.847558100s 177 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.10.2 completed iteration 7000 at 4847ms
++4.847558100s 178 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.12.2 completed iteration 7000 at 4847ms
++4.847558100s 179 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.14.2 completed iteration 7000 at 4847ms
++4.847558100s 180 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.16.2 completed iteration 7000 at 4847ms
++4.847558100s 181 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.18.2 completed iteration 7000 at 4847ms
++4.847558100s 182 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.20.2 completed iteration 7000 at 4847ms
++4.847558100s 183 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.22.2 completed iteration 7000 at 4847ms
++4.847558100s 184 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.24.2 completed iteration 7000 at 4847ms
++4.847558100s 185 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.26.2 completed iteration 7000 at 4847ms
++4.847558100s 186 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.28.2 completed iteration 7000 at 4847ms
++4.872174300s 173 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 7000 at 4872ms
++4.874034900s 172 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 7000 at 4874ms
++4.878273600s 188 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.32.2 completed iteration 7000 at 4878ms
++4.880134200s 187 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.30.2 completed iteration 7000 at 4880ms
++4.888249900s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 7000 at 4888ms
++5.049798000s 174 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.4.2 completed iteration 7500 at 5049ms
++5.049798000s 175 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.6.2 completed iteration 7500 at 5049ms
++5.049798000s 176 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.8.2 completed iteration 7500 at 5049ms
++5.049798000s 177 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.10.2 completed iteration 7500 at 5049ms
++5.049798000s 178 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.12.2 completed iteration 7500 at 5049ms
++5.049798000s 179 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.14.2 completed iteration 7500 at 5049ms
++5.049798000s 180 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.16.2 completed iteration 7500 at 5049ms
++5.049798000s 181 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.18.2 completed iteration 7500 at 5049ms
++5.049798000s 182 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.20.2 completed iteration 7500 at 5049ms
++5.049798000s 183 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.22.2 completed iteration 7500 at 5049ms
++5.049798000s 184 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.24.2 completed iteration 7500 at 5049ms
++5.049798000s 185 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.26.2 completed iteration 7500 at 5049ms
++5.049798000s 186 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.28.2 completed iteration 7500 at 5049ms
++5.076675000s 173 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 7500 at 5076ms
++5.077959000s 172 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 7500 at 5077ms
++5.082971100s 188 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.32.2 completed iteration 7500 at 5082ms
++5.086177800s 187 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.30.2 completed iteration 7500 at 5086ms
++5.094282700s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 7500 at 5094ms
++5.252038200s 174 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.4.2 completed iteration 8000 at 5252ms
++5.252038200s 175 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.6.2 completed iteration 8000 at 5252ms
++5.252038200s 176 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.8.2 completed iteration 8000 at 5252ms
++5.252038200s 177 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.10.2 completed iteration 8000 at 5252ms
++5.252038200s 178 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.12.2 completed iteration 8000 at 5252ms
++5.252038200s 179 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.14.2 completed iteration 8000 at 5252ms
++5.252038200s 180 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.16.2 completed iteration 8000 at 5252ms
++5.252038200s 181 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.18.2 completed iteration 8000 at 5252ms
++5.252038200s 182 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.20.2 completed iteration 8000 at 5252ms
++5.252038200s 183 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.22.2 completed iteration 8000 at 5252ms
++5.252038200s 184 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.24.2 completed iteration 8000 at 5252ms
++5.252038200s 185 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.26.2 completed iteration 8000 at 5252ms
++5.252038200s 186 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.28.2 completed iteration 8000 at 5252ms
++5.280511500s 173 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 8000 at 5280ms
++5.281932300s 172 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 8000 at 5281ms
++5.288518200s 188 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.32.2 completed iteration 8000 at 5288ms
++5.289367200s 187 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.30.2 completed iteration 8000 at 5289ms
++5.297653300s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 8000 at 5297ms
++5.454278100s 174 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.4.2 completed iteration 8500 at 5454ms
++5.454278100s 175 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.6.2 completed iteration 8500 at 5454ms
++5.454278100s 176 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.8.2 completed iteration 8500 at 5454ms
++5.454278100s 177 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.10.2 completed iteration 8500 at 5454ms
++5.454278100s 178 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.12.2 completed iteration 8500 at 5454ms
++5.454278100s 179 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.14.2 completed iteration 8500 at 5454ms
++5.454278100s 180 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.16.2 completed iteration 8500 at 5454ms
++5.454278100s 181 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.18.2 completed iteration 8500 at 5454ms
++5.454278100s 182 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.20.2 completed iteration 8500 at 5454ms
++5.454278100s 183 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.22.2 completed iteration 8500 at 5454ms
++5.454278100s 184 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.24.2 completed iteration 8500 at 5454ms
++5.454278100s 185 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.26.2 completed iteration 8500 at 5454ms
++5.454278100s 186 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.28.2 completed iteration 8500 at 5454ms
++5.484408900s 173 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 8500 at 5484ms
++5.485821000s 172 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 8500 at 5485ms
++5.491760400s 188 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.32.2 completed iteration 8500 at 5491ms
++5.492926200s 187 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.30.2 completed iteration 8500 at 5492ms
++5.501031100s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 8500 at 5501ms
++5.656518000s 174 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.4.2 completed iteration 9000 at 5656ms
++5.656518000s 175 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.6.2 completed iteration 9000 at 5656ms
++5.656518000s 176 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.8.2 completed iteration 9000 at 5656ms
++5.656518000s 177 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.10.2 completed iteration 9000 at 5656ms
++5.656518000s 178 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.12.2 completed iteration 9000 at 5656ms
++5.656518000s 179 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.14.2 completed iteration 9000 at 5656ms
++5.656518000s 180 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.16.2 completed iteration 9000 at 5656ms
++5.656518000s 181 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.18.2 completed iteration 9000 at 5656ms
++5.656518000s 182 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.20.2 completed iteration 9000 at 5656ms
++5.656518000s 183 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.22.2 completed iteration 9000 at 5656ms
++5.656518000s 184 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.24.2 completed iteration 9000 at 5656ms
++5.656518000s 185 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.26.2 completed iteration 9000 at 5656ms
++5.656518000s 186 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.28.2 completed iteration 9000 at 5656ms
++5.688292500s 173 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 9000 at 5688ms
++5.689817400s 172 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 9000 at 5689ms
++5.695577700s 188 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.32.2 completed iteration 9000 at 5695ms
++5.697142200s 187 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.30.2 completed iteration 9000 at 5697ms
++5.705247100s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 9000 at 5705ms
++5.858758200s 174 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.4.2 completed iteration 9500 at 5858ms
++5.858758200s 175 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.6.2 completed iteration 9500 at 5858ms
++5.858758200s 176 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.8.2 completed iteration 9500 at 5858ms
++5.858758200s 177 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.10.2 completed iteration 9500 at 5858ms
++5.858758200s 178 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.12.2 completed iteration 9500 at 5858ms
++5.858758200s 179 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.14.2 completed iteration 9500 at 5858ms
++5.858758200s 180 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.16.2 completed iteration 9500 at 5858ms
++5.858758200s 181 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.18.2 completed iteration 9500 at 5858ms
++5.858758200s 182 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.20.2 completed iteration 9500 at 5858ms
++5.858758200s 183 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.22.2 completed iteration 9500 at 5858ms
++5.858758200s 184 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.24.2 completed iteration 9500 at 5858ms
++5.858758200s 185 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.26.2 completed iteration 9500 at 5858ms
++5.858758200s 186 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.28.2 completed iteration 9500 at 5858ms
++5.892413700s 173 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 9500 at 5892ms
++5.894107200s 172 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 9500 at 5894ms
++5.899186500s 188 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.32.2 completed iteration 9500 at 5899ms
++5.901029400s 187 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.30.2 completed iteration 9500 at 5901ms
++5.909134300s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 9500 at 5909ms
++6.060998100s 174 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.4.2 completed processing
++6.060998100s 175 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.6.2 completed processing
++6.060998100s 176 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.8.2 completed processing
++6.060998100s 177 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.10.2 completed processing
++6.060998100s 178 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.12.2 completed processing
++6.060998100s 179 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.14.2 completed processing
++6.060998100s 180 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.16.2 completed processing
++6.060998100s 181 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.18.2 completed processing
++6.060998100s 182 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.20.2 completed processing
++6.060998100s 183 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.22.2 completed processing
++6.060998100s 184 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.24.2 completed processing
++6.060998100s 185 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.26.2 completed processing
++6.060998100s 186 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.28.2 completed processing
++6.095324700s 172 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed processing
++6.095324700s 173 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed processing
++6.104257200s 188 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.32.2 completed processing
++6.105082500s 187 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.30.2 completed processing
+Consumer completed all iterations-10000 in 4113ms: isp-150
+
+#################### SIMULATION CONFIG ####################
+
+FileName: isp-150
+Iteration: 10000
+Congestion Control: ns3::TcpBbr
+TcpSocket bufSize: 81920
+AppTable bufSize: 30
+lossRate: 0
+Vector Size: 150
+
+Printing ipToNodeName:
+IP: 10.0.150.1 -> NodeName: pro149 | IP: 10.0.148.1 -> NodeName: pro147 | IP: 10.0.147.1 -> NodeName: pro146 | IP: 10.0.146.1 -> NodeName: pro145 | IP: 10.0.145.1 -> NodeName: pro144 | IP: 10.0.141.2 -> NodeName: forwarder14 | IP: 10.0.139.1 -> NodeName: pro138 | IP: 10.0.137.1 -> NodeName: pro136 | IP: 10.0.134.1 -> NodeName: pro133 | IP: 10.0.133.1 -> NodeName: pro132 | IP: 10.0.131.2 -> NodeName: forwarder13 | IP: 10.0.126.1 -> NodeName: pro125 | IP: 10.0.125.1 -> NodeName: pro124 | IP: 10.0.124.1 -> NodeName: pro123 | IP: 10.0.121.2 -> NodeName: forwarder12 | IP: 10.0.120.1 -> NodeName: pro119 | IP: 10.0.117.1 -> NodeName: pro116 | IP: 10.0.138.1 -> NodeName: pro137 | IP: 10.0.116.1 -> NodeName: pro115 | IP: 10.0.115.1 -> NodeName: pro114 | IP: 10.0.114.1 -> NodeName: pro113 | IP: 10.0.119.1 -> NodeName: pro118 | IP: 10.0.112.1 -> NodeName: pro111 | IP: 10.0.111.2 -> NodeName: forwarder11 | IP: 10.0.108.1 -> NodeName: pro107 | IP: 10.0.106.1 -> NodeName: pro105 | IP: 10.0.103.1 -> NodeName: pro102 | IP: 10.0.102.1 -> NodeName: pro101 | IP: 10.0.136.1 -> NodeName: pro135 | IP: 10.0.101.1 -> NodeName: pro100 | IP: 10.8.54.2 -> NodeName: agg27 | IP: 10.8.50.2 -> NodeName: agg25 | IP: 10.0.107.1 -> NodeName: pro106 | IP: 10.8.40.2 -> NodeName: agg20 | IP: 10.0.100.1 -> NodeName: pro99 | IP: 10.0.99.1 -> NodeName: pro98 | IP: 10.0.98.1 -> NodeName: pro97 | IP: 10.0.135.1 -> NodeName: pro134 | IP: 10.0.96.2 -> NodeName: forwarder19 | IP: 10.0.105.1 -> NodeName: pro104 | IP: 10.0.94.1 -> NodeName: pro93 | IP: 10.0.93.1 -> NodeName: pro92 | IP: 10.0.91.2 -> NodeName: forwarder9 | IP: 10.0.90.1 -> NodeName: pro89 | IP: 10.8.52.2 -> NodeName: agg26 | IP: 10.0.88.1 -> NodeName: pro87 | IP: 10.0.109.1 -> NodeName: pro108 | IP: 10.0.87.1 -> NodeName: pro86 | IP: 10.0.86.1 -> NodeName: pro85 | IP: 10.8.56.2 -> NodeName: agg28 | IP: 10.0.85.1 -> NodeName: pro84 | IP: 10.0.52.1 -> NodeName: pro51 | IP: 10.0.30.1 -> NodeName: pro29 | IP: 10.0.96.1 -> NodeName: pro95 | IP: 10.8.12.2 -> NodeName: agg6 | IP: 10.8.48.2 -> NodeName: agg24 | IP: 10.8.42.2 -> NodeName: agg21 | IP: 10.8.30.2 -> NodeName: agg15 | IP: 10.0.29.1 -> NodeName: pro28 | IP: 10.0.65.1 -> NodeName: pro64 | IP: 10.0.74.1 -> NodeName: pro73 | IP: 10.0.28.1 -> NodeName: pro27 | IP: 10.0.27.1 -> NodeName: pro26 | IP: 10.0.121.1 -> NodeName: pro120 | IP: 10.0.26.2 -> NodeName: forwarder5 | IP: 10.0.91.1 -> NodeName: pro90 | IP: 10.0.16.2 -> NodeName: forwarder3 | IP: 10.8.28.2 -> NodeName: agg14 | IP: 10.0.24.1 -> NodeName: pro23 | IP: 10.8.6.2 -> NodeName: agg3 | IP: 10.0.140.1 -> NodeName: pro139 | IP: 10.0.127.1 -> NodeName: pro126 | IP: 10.0.51.1 -> NodeName: pro50 | IP: 10.0.69.1 -> NodeName: pro68 | IP: 10.0.19.1 -> NodeName: pro18 | IP: 10.0.18.1 -> NodeName: pro17 | IP: 10.0.45.1 -> NodeName: pro44 | IP: 10.0.83.1 -> NodeName: pro82 | IP: 10.0.128.1 -> NodeName: pro127 | IP: 10.0.31.1 -> NodeName: pro30 | IP: 10.8.44.2 -> NodeName: agg22 | IP: 10.0.72.1 -> NodeName: pro71 | IP: 10.0.11.2 -> NodeName: forwarder1 | IP: 10.0.21.2 -> NodeName: forwarder2 | IP: 10.0.143.1 -> NodeName: pro142 | IP: 10.0.11.1 -> NodeName: pro10 | IP: 10.0.0.1 -> NodeName: con0 | IP: 10.0.31.2 -> NodeName: forwarder3 | IP: 10.0.17.1 -> NodeName: pro16 | IP: 10.0.15.1 -> NodeName: pro14 | IP: 10.8.36.2 -> NodeName: agg18 | IP: 10.0.3.1 -> NodeName: pro2 | IP: 10.0.26.1 -> NodeName: pro25 | IP: 10.0.8.1 -> NodeName: pro7 | IP: 10.0.9.1 -> NodeName: pro8 | IP: 10.8.38.2 -> NodeName: agg19 | IP: 10.0.60.1 -> NodeName: pro59 | IP: 10.0.111.1 -> NodeName: pro110 | IP: 10.0.5.1 -> NodeName: pro4 | IP: 10.0.97.1 -> NodeName: pro96 | IP: 10.0.7.1 -> NodeName: pro6 | IP: 10.0.92.1 -> NodeName: pro91 | IP: 10.8.7.2 -> NodeName: forwarder19 | IP: 10.0.130.1 -> NodeName: pro129 | IP: 10.0.71.2 -> NodeName: forwarder7 | IP: 10.8.58.2 -> NodeName: agg29 | IP: 10.0.14.1 -> NodeName: pro13 | IP: 10.0.129.1 -> NodeName: pro128 | IP: 10.0.4.1 -> NodeName: pro3 | IP: 10.0.6.1 -> NodeName: pro5 | IP: 10.8.46.2 -> NodeName: agg23 | IP: 10.0.2.1 -> NodeName: pro1 | IP: 10.0.118.1 -> NodeName: pro117 | IP: 10.0.23.1 -> NodeName: pro22 | IP: 10.8.1.2 -> NodeName: forwarder16 | IP: 10.0.73.1 -> NodeName: pro72 | IP: 10.8.16.2 -> NodeName: agg8 | IP: 10.0.12.1 -> NodeName: pro11 | IP: 10.0.10.1 -> NodeName: pro9 | IP: 10.0.47.1 -> NodeName: pro46 | IP: 10.0.20.1 -> NodeName: pro19 | IP: 10.8.3.2 -> NodeName: forwarder17 | IP: 10.0.37.1 -> NodeName: pro36 | IP: 10.0.57.1 -> NodeName: pro56 | IP: 10.0.1.2 -> NodeName: forwarder0 | IP: 10.0.32.1 -> NodeName: pro31 | IP: 10.0.89.1 -> NodeName: pro88 | IP: 10.0.1.1 -> NodeName: pro0 | IP: 10.0.54.1 -> NodeName: pro53 | IP: 10.8.18.2 -> NodeName: agg9 | IP: 10.0.0.2 -> NodeName: forwarder15 | IP: 10.8.5.2 -> NodeName: forwarder18 | IP: 10.0.21.1 -> NodeName: pro20 | IP: 10.8.0.2 -> NodeName: agg0 | IP: 10.0.51.2 -> NodeName: forwarder5 | IP: 10.0.66.1 -> NodeName: pro65 | IP: 10.0.66.2 -> NodeName: forwarder13 | IP: 10.8.2.2 -> NodeName: agg1 | IP: 10.0.101.2 -> NodeName: forwarder10 | IP: 10.8.9.2 -> NodeName: forwarder20 | IP: 10.0.22.1 -> NodeName: pro21 | IP: 10.0.61.1 -> NodeName: pro60 | IP: 10.0.132.1 -> NodeName: pro131 | IP: 10.0.13.1 -> NodeName: pro12 | IP: 10.0.56.2 -> NodeName: forwarder11 | IP: 10.8.10.2 -> NodeName: agg5 | IP: 10.0.41.2 -> NodeName: forwarder4 | IP: 10.0.36.1 -> NodeName: pro35 | IP: 10.0.36.2 -> NodeName: forwarder7 | IP: 10.0.38.1 -> NodeName: pro37 | IP: 10.0.35.1 -> NodeName: pro34 | IP: 10.8.26.2 -> NodeName: agg13 | IP: 10.0.25.1 -> NodeName: pro24 | IP: 10.0.39.1 -> NodeName: pro38 | IP: 10.0.40.1 -> NodeName: pro39 | IP: 10.8.4.2 -> NodeName: agg2 | IP: 10.0.46.2 -> NodeName: forwarder9 | IP: 10.0.144.1 -> NodeName: pro143 | IP: 10.0.80.1 -> NodeName: pro79 | IP: 10.0.41.1 -> NodeName: pro40 | IP: 10.0.142.1 -> NodeName: pro141 | IP: 10.0.141.1 -> NodeName: pro140 | IP: 10.0.68.1 -> NodeName: pro67 | IP: 10.0.42.1 -> NodeName: pro41 | IP: 10.0.43.1 -> NodeName: pro42 | IP: 10.0.67.1 -> NodeName: pro66 | IP: 10.0.44.1 -> NodeName: pro43 | IP: 10.0.46.1 -> NodeName: pro45 | IP: 10.0.104.1 -> NodeName: pro103 | IP: 10.0.53.1 -> NodeName: pro52 | IP: 10.0.76.2 -> NodeName: forwarder15 | IP: 10.8.14.2 -> NodeName: agg7 | IP: 10.0.48.1 -> NodeName: pro47 | IP: 10.0.49.1 -> NodeName: pro48 | IP: 10.0.16.1 -> NodeName: pro15 | IP: 10.8.8.2 -> NodeName: agg4 | IP: 10.0.50.1 -> NodeName: pro49 | IP: 10.0.71.1 -> NodeName: pro70 | IP: 10.0.123.1 -> NodeName: pro122 | IP: 10.0.6.2 -> NodeName: forwarder1 | IP: 10.8.20.2 -> NodeName: agg10 | IP: 10.0.34.1 -> NodeName: pro33 | IP: 10.8.32.2 -> NodeName: agg16 | IP: 10.8.22.2 -> NodeName: agg11 | IP: 10.8.24.2 -> NodeName: agg12 | IP: 10.0.122.1 -> NodeName: pro121 | IP: 10.0.86.2 -> NodeName: forwarder17 | IP: 10.8.34.2 -> NodeName: agg17 | IP: 10.0.55.1 -> NodeName: pro54 | IP: 10.0.33.1 -> NodeName: pro32 | IP: 10.0.56.1 -> NodeName: pro55 | IP: 10.0.78.1 -> NodeName: pro77 | IP: 10.0.113.1 -> NodeName: pro112 | IP: 10.0.95.1 -> NodeName: pro94 | IP: 10.0.64.1 -> NodeName: pro63 | IP: 10.0.58.1 -> NodeName: pro57 | IP: 10.0.131.1 -> NodeName: pro130 | IP: 10.0.76.1 -> NodeName: pro75 | IP: 10.0.61.2 -> NodeName: forwarder6 | IP: 10.0.62.1 -> NodeName: pro61 | IP: 10.0.63.1 -> NodeName: pro62 | IP: 10.0.70.1 -> NodeName: pro69 | IP: 10.0.75.1 -> NodeName: pro74 | IP: 10.0.59.1 -> NodeName: pro58 | IP: 10.0.77.1 -> NodeName: pro76 | IP: 10.0.149.1 -> NodeName: pro148 | IP: 10.0.79.1 -> NodeName: pro78 | IP: 10.0.81.1 -> NodeName: pro80 | IP: 10.0.81.2 -> NodeName: forwarder8 | IP: 10.0.110.1 -> NodeName: pro109 | IP: 10.0.84.1 -> NodeName: pro83 | IP: 10.0.82.1 -> NodeName: pro81 | NewToOldIpMap contents:
+New IP: 10.8.45.1 -> Old IP: 10.8.44.2New IP: 10.8.43.1 -> Old IP: 10.8.42.2New IP: 10.8.39.1 -> Old IP: 10.8.38.2New IP: 10.8.37.1 -> Old IP: 10.8.36.2New IP: 10.8.47.1 -> Old IP: 10.8.46.2New IP: 10.8.35.1 -> Old IP: 10.8.34.2New IP: 10.8.33.1 -> Old IP: 10.8.32.2New IP: 10.8.31.1 -> Old IP: 10.8.30.2New IP: 10.8.1.1 -> Old IP: 10.8.0.2New IP: 10.8.25.1 -> Old IP: 10.8.24.2New IP: 10.8.5.1 -> Old IP: 10.8.4.2New IP: 10.8.7.1 -> Old IP: 10.8.6.2New IP: 10.8.27.1 -> Old IP: 10.8.26.2New IP: 10.8.3.1 -> Old IP: 10.8.2.2New IP: 10.8.23.1 -> Old IP: 10.8.22.2New IP: 10.8.9.1 -> Old IP: 10.8.8.2New IP: 10.8.11.1 -> Old IP: 10.8.10.2New IP: 10.8.29.1 -> Old IP: 10.8.28.2New IP: 10.8.13.1 -> Old IP: 10.8.12.2New IP: 10.8.15.1 -> Old IP: 10.8.14.2New IP: 10.8.17.1 -> Old IP: 10.8.16.2New IP: 10.8.19.1 -> Old IP: 10.8.18.2New IP: 10.8.41.1 -> Old IP: 10.8.40.2New IP: 10.8.21.1 -> Old IP: 10.8.20.2
+#################### SIMULATION END ####################
+
+
+
+
+#################### SIMULATION START ####################
+
+uint32_t consumerNum = 1;
+uint32_t producerNum = 10;
+uint32_t forwarderNum = 13;
+uint32_t aggregatorNum = 11;
+Using congestion control strategy: TcpBbr
+Using congestion control strategy: TcpBbr
++2.104790700s 24 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.1 completed iteration 500 at 2104ms
++2.104790700s 25 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.1 completed iteration 500 at 2104ms
++2.112268600s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 500 at 2112ms
++2.186790700s 24 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.1 completed iteration 1000 at 2186ms
++2.186790700s 25 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.1 completed iteration 1000 at 2186ms
++2.194530100s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 1000 at 2194ms
++2.268790700s 24 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.1 completed iteration 1500 at 2268ms
++2.268790700s 25 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.1 completed iteration 1500 at 2268ms
++2.276281300s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 1500 at 2276ms
++2.351790700s 24 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.1 completed iteration 2000 at 2351ms
++2.351790700s 25 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.1 completed iteration 2000 at 2351ms
++2.358892000s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 2000 at 2358ms
++2.432790700s 24 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.1 completed iteration 2500 at 2432ms
++2.432790700s 25 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.1 completed iteration 2500 at 2432ms
++2.440411600s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 2500 at 2440ms
++2.515790700s 24 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.1 completed iteration 3000 at 2515ms
++2.515790700s 25 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.1 completed iteration 3000 at 2515ms
++2.523022000s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 3000 at 2523ms
++2.596790700s 24 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.1 completed iteration 3500 at 2596ms
++2.596790700s 25 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.1 completed iteration 3500 at 2596ms
++2.604541600s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 3500 at 2604ms
++2.679790700s 24 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.1 completed iteration 4000 at 2679ms
++2.679790700s 25 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.1 completed iteration 4000 at 2679ms
++2.687151700s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 4000 at 2687ms
++2.761790700s 24 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.1 completed iteration 4500 at 2761ms
++2.761790700s 25 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.1 completed iteration 4500 at 2761ms
++2.768892100s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 4500 at 2768ms
++2.843790700s 24 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.1 completed iteration 5000 at 2843ms
++2.843790700s 25 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.1 completed iteration 5000 at 2843ms
++2.851151800s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 5000 at 2851ms
++2.925790700s 24 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.1 completed iteration 5500 at 2925ms
++2.925790700s 25 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.1 completed iteration 5500 at 2925ms
++2.933151700s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 5500 at 2933ms
++3.007790700s 24 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.1 completed iteration 6000 at 3007ms
++3.007790700s 25 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.1 completed iteration 6000 at 3007ms
++3.015281800s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 6000 at 3015ms
++3.089790700s 24 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.1 completed iteration 6500 at 3089ms
++3.089790700s 25 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.1 completed iteration 6500 at 3089ms
++3.097411600s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 6500 at 3097ms
++3.171790700s 24 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.1 completed iteration 7000 at 3171ms
++3.171790700s 25 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.1 completed iteration 7000 at 3171ms
++3.179411800s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 7000 at 3179ms
++3.253790700s 24 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.1 completed iteration 7500 at 3253ms
++3.253790700s 25 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.1 completed iteration 7500 at 3253ms
++3.261671500s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 7500 at 3261ms
++3.335790700s 24 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.1 completed iteration 8000 at 3335ms
++3.335790700s 25 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.1 completed iteration 8000 at 3335ms
++3.343411600s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 8000 at 3343ms
++3.418790700s 24 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.1 completed iteration 8500 at 3418ms
++3.418790700s 25 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.1 completed iteration 8500 at 3418ms
++3.426022000s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 8500 at 3426ms
++3.499790700s 24 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.1 completed iteration 9000 at 3499ms
++3.499790700s 25 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.1 completed iteration 9000 at 3499ms
++3.507541600s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 9000 at 3507ms
++3.582790700s 24 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.1 completed iteration 9500 at 3582ms
++3.582790700s 25 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.1 completed iteration 9500 at 3582ms
++3.590151700s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 9500 at 3590ms
++3.664790700s 24 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.1 completed processing
++3.664790700s 25 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.1 completed processing
+Consumer completed all iterations-10000 in 1671ms: dcn-10
+
+#################### SIMULATION CONFIG ####################
+
+FileName: dcn-10
+Iteration: 10000
+Congestion Control: ns3::TcpBbr
+TcpSocket bufSize: 81920
+AppTable bufSize: 30
+lossRate: 0
+Vector Size: 150
+
+Printing ipToNodeName:
+IP: 10.8.12.1 -> NodeName: agg10 | IP: 10.8.11.1 -> NodeName: agg9 | IP: 10.8.10.1 -> NodeName: agg8 | IP: 10.8.7.1 -> NodeName: agg5 | IP: 10.0.150.1 -> NodeName: pro149 | IP: 10.0.148.1 -> NodeName: pro147 | IP: 10.0.147.1 -> NodeName: pro146 | IP: 10.0.146.1 -> NodeName: pro145 | IP: 10.0.145.1 -> NodeName: pro144 | IP: 10.0.141.2 -> NodeName: forwarder14 | IP: 10.0.139.1 -> NodeName: pro138 | IP: 10.0.137.1 -> NodeName: pro136 | IP: 10.0.134.1 -> NodeName: pro133 | IP: 10.0.133.1 -> NodeName: pro132 | IP: 10.0.131.2 -> NodeName: forwarder13 | IP: 10.0.126.1 -> NodeName: pro125 | IP: 10.0.125.1 -> NodeName: pro124 | IP: 10.0.124.1 -> NodeName: pro123 | IP: 10.0.121.2 -> NodeName: forwarder12 | IP: 10.0.120.1 -> NodeName: pro119 | IP: 10.0.117.1 -> NodeName: pro116 | IP: 10.0.138.1 -> NodeName: pro137 | IP: 10.0.116.1 -> NodeName: pro115 | IP: 10.0.115.1 -> NodeName: pro114 | IP: 10.0.114.1 -> NodeName: pro113 | IP: 10.0.119.1 -> NodeName: pro118 | IP: 10.0.112.1 -> NodeName: pro111 | IP: 10.0.111.2 -> NodeName: forwarder11 | IP: 10.8.5.1 -> NodeName: agg3 | IP: 10.0.108.1 -> NodeName: pro107 | IP: 10.0.106.1 -> NodeName: pro105 | IP: 10.0.103.1 -> NodeName: pro102 | IP: 10.0.102.1 -> NodeName: pro101 | IP: 10.0.136.1 -> NodeName: pro135 | IP: 10.0.101.1 -> NodeName: pro100 | IP: 10.8.54.2 -> NodeName: agg27 | IP: 10.8.50.2 -> NodeName: agg25 | IP: 10.0.107.1 -> NodeName: pro106 | IP: 10.8.40.2 -> NodeName: agg20 | IP: 10.0.100.1 -> NodeName: pro99 | IP: 10.0.99.1 -> NodeName: pro98 | IP: 10.8.6.1 -> NodeName: agg4 | IP: 10.0.98.1 -> NodeName: pro97 | IP: 10.0.135.1 -> NodeName: pro134 | IP: 10.0.96.2 -> NodeName: forwarder19 | IP: 10.0.105.1 -> NodeName: pro104 | IP: 10.0.94.1 -> NodeName: pro93 | IP: 10.0.93.1 -> NodeName: pro92 | IP: 10.0.91.2 -> NodeName: forwarder9 | IP: 10.0.90.1 -> NodeName: pro89 | IP: 10.8.52.2 -> NodeName: agg26 | IP: 10.0.88.1 -> NodeName: pro87 | IP: 10.0.109.1 -> NodeName: pro108 | IP: 10.0.87.1 -> NodeName: pro86 | IP: 10.0.86.1 -> NodeName: pro85 | IP: 10.8.56.2 -> NodeName: agg28 | IP: 10.0.85.1 -> NodeName: pro84 | IP: 10.0.52.1 -> NodeName: pro51 | IP: 10.0.30.1 -> NodeName: pro29 | IP: 10.0.96.1 -> NodeName: pro95 | IP: 10.8.12.2 -> NodeName: agg6 | IP: 10.8.48.2 -> NodeName: agg24 | IP: 10.8.42.2 -> NodeName: agg21 | IP: 10.8.30.2 -> NodeName: agg15 | IP: 10.0.29.1 -> NodeName: pro28 | IP: 10.0.65.1 -> NodeName: pro64 | IP: 10.0.74.1 -> NodeName: pro73 | IP: 10.0.28.1 -> NodeName: pro27 | IP: 10.0.27.1 -> NodeName: pro26 | IP: 10.0.121.1 -> NodeName: pro120 | IP: 10.0.26.2 -> NodeName: forwarder5 | IP: 10.0.91.1 -> NodeName: pro90 | IP: 10.0.16.2 -> NodeName: forwarder3 | IP: 10.8.28.2 -> NodeName: agg14 | IP: 10.0.24.1 -> NodeName: pro23 | IP: 10.8.6.2 -> NodeName: forwarder6 | IP: 10.0.140.1 -> NodeName: pro139 | IP: 10.0.127.1 -> NodeName: pro126 | IP: 10.0.51.1 -> NodeName: pro50 | IP: 10.0.69.1 -> NodeName: pro68 | IP: 10.0.19.1 -> NodeName: pro18 | IP: 10.0.18.1 -> NodeName: pro17 | IP: 10.0.45.1 -> NodeName: pro44 | IP: 10.0.83.1 -> NodeName: pro82 | IP: 10.0.128.1 -> NodeName: pro127 | IP: 10.0.31.1 -> NodeName: pro30 | IP: 10.8.44.2 -> NodeName: agg22 | IP: 10.0.72.1 -> NodeName: pro71 | IP: 10.0.11.2 -> NodeName: forwarder1 | IP: 10.0.21.2 -> NodeName: forwarder2 | IP: 10.0.143.1 -> NodeName: pro142 | IP: 10.0.11.1 -> NodeName: pro10 | IP: 10.0.0.1 -> NodeName: con0 | IP: 10.0.31.2 -> NodeName: forwarder3 | IP: 10.8.0.1 -> NodeName: agg0 | IP: 10.0.17.1 -> NodeName: pro16 | IP: 10.0.15.1 -> NodeName: pro14 | IP: 10.8.36.2 -> NodeName: agg18 | IP: 10.0.3.1 -> NodeName: pro2 | IP: 10.0.26.1 -> NodeName: pro25 | IP: 10.0.8.1 -> NodeName: pro7 | IP: 10.0.9.1 -> NodeName: pro8 | IP: 10.8.38.2 -> NodeName: agg19 | IP: 10.0.60.1 -> NodeName: pro59 | IP: 10.0.111.1 -> NodeName: pro110 | IP: 10.0.5.1 -> NodeName: pro4 | IP: 10.0.97.1 -> NodeName: pro96 | IP: 10.0.7.1 -> NodeName: pro6 | IP: 10.0.92.1 -> NodeName: pro91 | IP: 10.8.7.2 -> NodeName: forwarder7 | IP: 10.0.130.1 -> NodeName: pro129 | IP: 10.0.71.2 -> NodeName: forwarder7 | IP: 10.8.58.2 -> NodeName: agg29 | IP: 10.0.14.1 -> NodeName: pro13 | IP: 10.0.129.1 -> NodeName: pro128 | IP: 10.0.4.1 -> NodeName: pro3 | IP: 10.0.6.1 -> NodeName: pro5 | IP: 10.8.46.2 -> NodeName: agg23 | IP: 10.0.2.1 -> NodeName: pro1 | IP: 10.0.118.1 -> NodeName: pro117 | IP: 10.0.23.1 -> NodeName: pro22 | IP: 10.8.1.2 -> NodeName: forwarder1 | IP: 10.8.4.1 -> NodeName: agg2 | IP: 10.0.73.1 -> NodeName: pro72 | IP: 10.8.16.2 -> NodeName: agg8 | IP: 10.0.12.1 -> NodeName: pro11 | IP: 10.0.10.1 -> NodeName: pro9 | IP: 10.0.47.1 -> NodeName: pro46 | IP: 10.0.20.1 -> NodeName: pro19 | IP: 10.8.3.2 -> NodeName: forwarder3 | IP: 10.8.2.1 -> NodeName: agg1 | IP: 10.0.37.1 -> NodeName: pro36 | IP: 10.0.57.1 -> NodeName: pro56 | IP: 10.0.1.2 -> NodeName: forwarder0 | IP: 10.0.32.1 -> NodeName: pro31 | IP: 10.0.89.1 -> NodeName: pro88 | IP: 10.0.1.1 -> NodeName: pro0 | IP: 10.0.54.1 -> NodeName: pro53 | IP: 10.8.18.2 -> NodeName: agg9 | IP: 10.0.0.2 -> NodeName: forwarder12 | IP: 10.8.5.2 -> NodeName: forwarder5 | IP: 10.0.21.1 -> NodeName: pro20 | IP: 10.8.0.2 -> NodeName: agg0 | IP: 10.8.9.1 -> NodeName: agg7 | IP: 10.0.51.2 -> NodeName: forwarder5 | IP: 10.0.66.1 -> NodeName: pro65 | IP: 10.0.66.2 -> NodeName: forwarder13 | IP: 10.8.2.2 -> NodeName: agg1 | IP: 10.0.101.2 -> NodeName: forwarder10 | IP: 10.8.9.2 -> NodeName: forwarder9 | IP: 10.0.22.1 -> NodeName: pro21 | IP: 10.0.61.1 -> NodeName: pro60 | IP: 10.0.132.1 -> NodeName: pro131 | IP: 10.0.13.1 -> NodeName: pro12 | IP: 10.0.56.2 -> NodeName: forwarder11 | IP: 10.8.10.2 -> NodeName: forwarder10 | IP: 10.0.41.2 -> NodeName: forwarder4 | IP: 10.0.36.1 -> NodeName: pro35 | IP: 10.0.36.2 -> NodeName: forwarder7 | IP: 10.0.38.1 -> NodeName: pro37 | IP: 10.0.35.1 -> NodeName: pro34 | IP: 10.8.26.2 -> NodeName: agg13 | IP: 10.0.25.1 -> NodeName: pro24 | IP: 10.0.39.1 -> NodeName: pro38 | IP: 10.0.40.1 -> NodeName: pro39 | IP: 10.8.4.2 -> NodeName: forwarder4 | IP: 10.0.46.2 -> NodeName: forwarder9 | IP: 10.0.144.1 -> NodeName: pro143 | IP: 10.0.80.1 -> NodeName: pro79 | IP: 10.0.41.1 -> NodeName: pro40 | IP: 10.0.142.1 -> NodeName: pro141 | IP: 10.0.141.1 -> NodeName: pro140 | IP: 10.0.68.1 -> NodeName: pro67 | IP: 10.0.42.1 -> NodeName: pro41 | IP: 10.0.43.1 -> NodeName: pro42 | IP: 10.0.67.1 -> NodeName: pro66 | IP: 10.0.44.1 -> NodeName: pro43 | IP: 10.0.46.1 -> NodeName: pro45 | IP: 10.0.104.1 -> NodeName: pro103 | IP: 10.0.53.1 -> NodeName: pro52 | IP: 10.8.8.1 -> NodeName: agg6 | IP: 10.0.76.2 -> NodeName: forwarder15 | IP: 10.8.14.2 -> NodeName: agg7 | IP: 10.0.48.1 -> NodeName: pro47 | IP: 10.8.11.2 -> NodeName: forwarder11 | IP: 10.0.49.1 -> NodeName: pro48 | IP: 10.0.16.1 -> NodeName: pro15 | IP: 10.8.8.2 -> NodeName: forwarder8 | IP: 10.0.50.1 -> NodeName: pro49 | IP: 10.0.71.1 -> NodeName: pro70 | IP: 10.0.123.1 -> NodeName: pro122 | IP: 10.0.6.2 -> NodeName: forwarder2 | IP: 10.8.20.2 -> NodeName: agg10 | IP: 10.0.34.1 -> NodeName: pro33 | IP: 10.8.32.2 -> NodeName: agg16 | IP: 10.8.22.2 -> NodeName: agg11 | IP: 10.8.24.2 -> NodeName: agg12 | IP: 10.0.122.1 -> NodeName: pro121 | IP: 10.0.86.2 -> NodeName: forwarder17 | IP: 10.8.34.2 -> NodeName: agg17 | IP: 10.0.55.1 -> NodeName: pro54 | IP: 10.0.33.1 -> NodeName: pro32 | IP: 10.0.56.1 -> NodeName: pro55 | IP: 10.0.78.1 -> NodeName: pro77 | IP: 10.0.113.1 -> NodeName: pro112 | IP: 10.0.95.1 -> NodeName: pro94 | IP: 10.0.64.1 -> NodeName: pro63 | IP: 10.0.58.1 -> NodeName: pro57 | IP: 10.0.131.1 -> NodeName: pro130 | IP: 10.0.76.1 -> NodeName: pro75 | IP: 10.0.61.2 -> NodeName: forwarder6 | IP: 10.0.62.1 -> NodeName: pro61 | IP: 10.0.63.1 -> NodeName: pro62 | IP: 10.0.70.1 -> NodeName: pro69 | IP: 10.0.75.1 -> NodeName: pro74 | IP: 10.0.59.1 -> NodeName: pro58 | IP: 10.0.77.1 -> NodeName: pro76 | IP: 10.0.149.1 -> NodeName: pro148 | IP: 10.0.79.1 -> NodeName: pro78 | IP: 10.0.81.1 -> NodeName: pro80 | IP: 10.0.81.2 -> NodeName: forwarder8 | IP: 10.0.110.1 -> NodeName: pro109 | IP: 10.0.84.1 -> NodeName: pro83 | IP: 10.0.82.1 -> NodeName: pro81 | NewToOldIpMap contents:
+New IP: 10.8.45.1 -> Old IP: 10.8.44.2New IP: 10.8.43.1 -> Old IP: 10.8.42.2New IP: 10.8.39.1 -> Old IP: 10.8.38.2New IP: 10.8.37.1 -> Old IP: 10.8.36.2New IP: 10.8.47.1 -> Old IP: 10.8.46.2New IP: 10.8.35.1 -> Old IP: 10.8.34.2New IP: 10.8.33.1 -> Old IP: 10.8.32.2New IP: 10.8.31.1 -> Old IP: 10.8.30.2New IP: 10.8.1.1 -> Old IP: 10.8.0.1New IP: 10.8.25.1 -> Old IP: 10.8.24.2New IP: 10.8.5.1 -> Old IP: 10.8.4.2New IP: 10.8.7.1 -> Old IP: 10.8.6.2New IP: 10.8.27.1 -> Old IP: 10.8.26.2New IP: 10.8.3.1 -> Old IP: 10.8.2.1New IP: 10.8.23.1 -> Old IP: 10.8.22.2New IP: 10.8.9.1 -> Old IP: 10.8.8.2New IP: 10.8.11.1 -> Old IP: 10.8.10.2New IP: 10.8.29.1 -> Old IP: 10.8.28.2New IP: 10.8.13.1 -> Old IP: 10.8.12.2New IP: 10.8.15.1 -> Old IP: 10.8.14.2New IP: 10.8.17.1 -> Old IP: 10.8.16.2New IP: 10.8.19.1 -> Old IP: 10.8.18.2New IP: 10.8.41.1 -> Old IP: 10.8.40.2New IP: 10.8.21.1 -> Old IP: 10.8.20.2
+#################### SIMULATION END ####################
+
+
+
+
+#################### SIMULATION START ####################
+
+uint32_t consumerNum = 1;
+uint32_t producerNum = 50;
+uint32_t forwarderNum = 31;
+uint32_t aggregatorNum = 21;
+Using congestion control strategy: TcpBbr
+Using congestion control strategy: TcpBbr
++2.080206400s 82 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.1 completed iteration 500 at 2080ms
++2.080206400s 84 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.4.1 completed iteration 500 at 2080ms
++2.085790700s 83 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.1 completed iteration 500 at 2085ms
++2.085790700s 85 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.6.1 completed iteration 500 at 2085ms
++2.085790700s 86 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.8.1 completed iteration 500 at 2085ms
++2.085790700s 87 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.10.1 completed iteration 500 at 2085ms
++2.085790700s 88 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.12.1 completed iteration 500 at 2085ms
++2.085790700s 89 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.14.1 completed iteration 500 at 2085ms
++2.085790700s 90 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.16.1 completed iteration 500 at 2085ms
++2.085790700s 91 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.18.1 completed iteration 500 at 2085ms
++2.092223100s 94 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.22.1 completed iteration 500 at 2092ms
++2.092224000s 92 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.20.1 completed iteration 500 at 2092ms
++2.098291600s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 500 at 2098ms

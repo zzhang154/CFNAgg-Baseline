@@ -7,12 +7,12 @@
 
 using boost::property_tree::ptree;
 
+// Definitions of static members
 std::vector<uint16_t> MyConfig::m_iterationNumbers;
 std::vector<uint32_t> MyConfig::m_bufferSizes;
 std::vector<double> MyConfig::m_lossRates;
 double MyConfig::m_currentLossRate = 0.0;
 
-// congestion control
 std::vector<std::string> MyConfig::m_congestionControls;
 std::string MyConfig::m_congestionControl;
 
@@ -20,7 +20,10 @@ uint32_t MyConfig::m_vectorSize = 150;
 
 std::vector<std::string> MyConfig::m_topoTypes;
 std::vector<uint16_t> MyConfig::m_topoScales;
-std::vector<uint16_t> MyConfig::m_constraints;  // new constraints vector
+std::vector<uint16_t> MyConfig::m_constraints;
+
+std::vector<uint16_t> MyConfig::m_appTbSizes;
+uint16_t MyConfig::m_currentAppTbSize = 30;  // default if not specified
 
 void MyConfig::Load(const std::string &filename) {
     ptree pt;
@@ -58,7 +61,7 @@ void MyConfig::Load(const std::string &filename) {
     if (!m_lossRates.empty())
       m_currentLossRate = m_lossRates[0];
 
-    // Load congestion controls (comma-separated list)
+    // Load congestion controls (comma separated)
     std::string ccStr = pt.get<std::string>("Simulation.congestionControl", "ns3::TcpAIMD");
     m_congestionControls.clear();
     std::istringstream ssCC(ccStr);
@@ -68,23 +71,34 @@ void MyConfig::Load(const std::string &filename) {
         if (!token.empty())
             m_congestionControls.push_back(token);
     }
-    // Optionally, set current cc to first element.
+    // Set current cc from first element.
     if (!m_congestionControls.empty())
         m_congestionControl = m_congestionControls[0];
 
     // Load vector size
     m_vectorSize = pt.get<uint32_t>("Simulation.vectorSize", 150);
 
-    // Load new topology parameters from [Topology] section
+    // Load appTbSize (iteration threshold) as a vector.
+    std::string appTbSizeStr = pt.get<std::string>("Simulation.appTbSize", "30");
+    std::istringstream ssAppTb(appTbSizeStr);
+    uint16_t tb;
+    while (ssAppTb >> tb) {
+        m_appTbSizes.push_back(tb);
+        if (ssAppTb.peek() == ',')
+            ssAppTb.ignore();
+    }
+    if (!m_appTbSizes.empty())
+        m_currentAppTbSize = m_appTbSizes[0];
+
+    // Load topology parameters from [Topology] section
     std::string topoTypesStr = pt.get<std::string>("Topology.topoTypes", "");
     std::istringstream ssTypes(topoTypesStr);
     std::string typeToken;
     while (std::getline(ssTypes, typeToken, ',')) {
         typeToken.erase(remove_if(typeToken.begin(), typeToken.end(), ::isspace), typeToken.end());
         std::transform(typeToken.begin(), typeToken.end(), typeToken.begin(), ::tolower);
-        if (!typeToken.empty()) {
+        if (!typeToken.empty())
             m_topoTypes.push_back(typeToken);
-        }
     }
     
     std::string topoScalesStr = pt.get<std::string>("Topology.topoScales", "");
@@ -96,7 +110,7 @@ void MyConfig::Load(const std::string &filename) {
           ssScales.ignore();
     }
     
-    // New: load optional constrain values from Topology section.
+    // Load optional constrain values from Topology section.
     std::string constrainStr = pt.get<std::string>("Topology.constrain", "");
     if (!constrainStr.empty()) {
         std::istringstream ssConstrain(constrainStr);
@@ -131,7 +145,6 @@ double MyConfig::GetLossRate() {
     return m_currentLossRate;
 }
 
-// New getter and setter for congestion control
 const std::vector<std::string>& MyConfig::GetCongestionControls() {
     return m_congestionControls;
 }
@@ -170,4 +183,16 @@ std::vector<std::string> MyConfig::GetFileNames() {
         }
     }
     return prefixes;
+}
+
+const std::vector<uint16_t>& MyConfig::GetAppTbSizes() {
+    return m_appTbSizes;
+}
+
+void MyConfig::SetCurrentAppTbSize(uint16_t size) {
+    m_currentAppTbSize = size;
+}
+
+uint16_t MyConfig::GetAppTbSize() {
+    return m_currentAppTbSize;
 }

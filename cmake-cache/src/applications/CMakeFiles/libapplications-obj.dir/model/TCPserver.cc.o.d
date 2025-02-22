@@ -1204,4 +1204,6 @@ src/applications/CMakeFiles/libapplications-obj.dir/model/TCPserver.cc.o: \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/innetwork-task/helper/utils.h \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/innetwork-task/helper/parameter.h \
  /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/include/ns3/seq-ts-header.h \
- /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/applications/model/seq-ts-header.h
+ /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/applications/model/seq-ts-header.h \
+ /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/build/include/ns3/myConfig.h \
+ /home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/innetwork-task/config-file/myConfig.h

@@ -39,3 +39,28 @@ namespace ns3 {
 NS_OBJECT_ENSURE_REGISTERED(TcpAIMD);
 }
 add this to the innetwork-test.cc file.
+
+8. log with Tx and Rx Buffer size (2025/02/22):
+
+Print RxBuffer:
+NS_ASSERT_MSG(m_tcb->m_rxBuffer->MaxRxSequence() - m_tcb->m_rxBuffer->NextRxSequence() >= 0,
+                      "Unexpected sequence number values");
+        NS_LOG_DEBUG("\nm_tcb->m_rxBuffer->MaxRxSequence(): " 
+             << m_tcb->m_rxBuffer->MaxRxSequence().GetValue()
+             << "\nm_tcb->m_rxBuffer->NextRxSequence(): "
+             << m_tcb->m_rxBuffer->NextRxSequence().GetValue()
+             << "\nm_tcb->m_rxBuffer->MaxBufferSize()"
+             << m_tcb->m_rxBuffer->MaxBufferSize());
+
+Print TxBuffer:
+NS_LOG_DEBUG ("GetTxAvailable: " << this->GetTxAvailable());
+    NS_LOG_DEBUG ("GetTxMaxSize: " << this->m_txBuffer->MaxBufferSize());
+
+in "/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/internet/model/tcp-socket-base.cc".
+
+Now in log, it shows:
+TcpSocketBase:SendDataPacket(): GetTxMaxSize: 122880
+
+m_tcb->m_rxBuffer->MaxRxSequence(): 122881
+m_tcb->m_rxBuffer->NextRxSequence(): 1
+m_tcb->m_rxBuffer->MaxBufferSize()122880

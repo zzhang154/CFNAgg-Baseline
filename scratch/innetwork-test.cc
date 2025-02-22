@@ -37,17 +37,20 @@ NS_OBJECT_ENSURE_REGISTERED(TcpAIMD);
 std::vector<SimulationParams> BuildExperimentList() {
     std::vector<SimulationParams> experiments;
     auto bufferSizes = MyConfig::GetBufferSizes();
+    auto apptbSizes = MyConfig::GetAppTbSizes();
     auto ccList = MyConfig::GetCongestionControls();
     auto lossRates = MyConfig::GetLossRates();
     auto fileNames = MyConfig::GetFileNames();
     auto iterationNumbers = MyConfig::GetIterationNumbers();
 
     for (uint32_t bufSize : bufferSizes) {
-        for (const auto &tcp_cc : ccList) {
-            for (double lossRate : lossRates) {
-                for (const auto &fileName : fileNames) {
-                    for (uint16_t itr : iterationNumbers) {
-                        experiments.push_back({bufSize, tcp_cc, lossRate, fileName, itr});
+        for (uint16_t apptbSize : apptbSizes) {
+            for (const auto &tcp_cc : ccList) {
+                for (double lossRate : lossRates) {
+                    for (const auto &fileName : fileNames) {
+                        for (uint16_t itr : iterationNumbers) {
+                            experiments.push_back({bufSize, apptbSize, tcp_cc, lossRate, fileName, itr});
+                        }
                     }
                 }
             }
@@ -93,8 +96,6 @@ int main(int argc, char *argv[]) {
     // Example buffer sizes (in bytes)
     std::vector<uint32_t> bufferSizes = MyConfig::GetBufferSizes();
 
-    const std::string outputFilename = "simulation_results.txt"; // Shared output file
-
     // Set the Time resolution once before the loops
     Time::SetResolution(Time::NS);
 
@@ -107,6 +108,7 @@ int main(int argc, char *argv[]) {
 
         MyConfig::SetCongestionControl(exp.tcpCC);
         MyConfig::SetCurrentLossRate(exp.lossRate);
+        MyConfig::SetCurrentAppTbSize(exp.apptbSize);
 
         // Build file paths (using a base directory currentDir, etc.)
         currentFileName = exp.fileName;
@@ -124,27 +126,29 @@ int main(int argc, char *argv[]) {
         LogComponentEnableAll(LOG_PREFIX_NODE);
 
         LogComponentEnable("InnetworkAggregationInterface", log_precision);
-        // LogComponentEnable("Consumer", LOG_LEVEL_ALL);
-        // LogComponentEnable("Aggregator", LOG_LEVEL_ALL);
-        // LogComponentEnable("Producer", LOG_LEVEL_ALL);
-        // LogComponentEnable("Setup", LOG_LEVEL_ALL);
-        
         LogComponentDisable("InnetworkAggregationInterface", LOG_LEVEL_ALL);
-        LogComponentEnable("InnetworkAggregationInterface", LOG_LEVEL_INFO);
-        // LogComponentEnable("InnetworkAggregationInterface", LOG_LEVEL_ALL);
-
-        // LogComponentEnable("TcpSocketBase", LOG_LEVEL_ALL);
-
-        // LogComponentDisable("Consumer", LOG_LEVEL_ALL);
-        // LogComponentDisable("Aggregator", LOG_LEVEL_ALL);
-        // LogComponentDisable("Producer", LOG_LEVEL_ALL);
-        // // LogComponentDisable("InnetworkAggregationInterface", LOG_LEVEL_ALL);
         LogComponentDisable("TCPclient", LOG_LEVEL_ALL);
         LogComponentDisable("TCPserver", LOG_LEVEL_ALL);
         LogComponentDisable("TcpSocketBase", LOG_LEVEL_ALL);
         LogComponentDisable("TcpRxBuffer", LOG_LEVEL_ALL);
         LogComponentDisable("TcpTxBuffer", LOG_LEVEL_ALL);
         LogComponentDisable("Packet", LOG_LEVEL_DEBUG);
+        LogComponentEnable("InnetworkAggregationInterface", LOG_LEVEL_INFO);
+
+
+        // LogComponentEnable("Consumer", LOG_LEVEL_ALL);
+        // LogComponentEnable("Aggregator", LOG_LEVEL_ALL);
+        // LogComponentEnable("Producer", LOG_LEVEL_ALL);
+        // LogComponentEnable("Setup", LOG_LEVEL_ALL);
+        LogComponentEnable("InnetworkAggregationInterface", LOG_LEVEL_WARN);
+        // LogComponentEnable("TCPclient", LOG_LEVEL_ALL);
+        // LogComponentEnable("TCPserver", LOG_LEVEL_ALL);
+        // LogComponentEnable("TcpSocketBase", LOG_LEVEL_ALL);
+
+        // LogComponentDisable("Consumer", LOG_LEVEL_ALL);
+        // LogComponentDisable("Aggregator", LOG_LEVEL_ALL);
+        // LogComponentDisable("Producer", LOG_LEVEL_ALL);
+        // // LogComponentDisable("InnetworkAggregationInterface", LOG_LEVEL_ALL);
         
         // LogComponentEnable("InnetworkAggregationInterface", LOG_LEVEL_WARN);
         // LogComponentEnable("TCPclient", LOG_LEVEL_WARN);
@@ -152,7 +156,6 @@ int main(int argc, char *argv[]) {
         // LogComponentEnable("TcpSocketBase", LOG_LEVEL_WARN);
 
         // LogComponentEnable("PointToPointNetDevice", LOG_LEVEL_ALL);
-
 
         // Initialize node containers
         NodeContainer consumer;
@@ -196,7 +199,8 @@ int main(int argc, char *argv[]) {
         std::cout << "FileName: " << exp.fileName 
                   << "\nIteration: " << exp.iteration
                   << "\nCongestion Control: " << MyConfig::GetCongestionControl() 
-                  << "\nbufSize: " << exp.bufSize 
+                  << "\nTcpSocket bufSize: " << exp.bufSize 
+                  << "\nAppTable bufSize: " << exp.apptbSize 
                   << "\nlossRate: " << MyConfig::GetLossRate() 
                   << "\nVector Size: " << vsize 
                   << std::endl << std::endl << std::flush;

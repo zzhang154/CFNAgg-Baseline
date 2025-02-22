@@ -1,0 +1,235 @@
+Hello from utils
+0x7ffd09868670 Time queue changed. Current size: 1
+Time queue changed. New size: 1
+0x7ffd09868670 Time queue changed. Current size: 2
+Time queue changed. New size: 2
+0x7ffd09868670 Time queue changed. Current size: 1
+Time queue changed. New size: 1
+
+#################### SIMULATION START ####################
+
+uint32_t consumerNum = 1;
+uint32_t producerNum = 50;
+uint32_t forwarderNum = 16;
+uint32_t aggregatorNum = 20;
++2.011449300s 67 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed processing
++2.011449300s 68 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed processing
++2.011449300s 69 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.4.2 completed processing
++2.011449300s 70 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.6.2 completed processing
++2.011449300s 71 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.8.2 completed processing
++2.011449300s 72 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.10.2 completed processing
++2.011449300s 73 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.12.2 completed processing
++2.011449300s 74 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.14.2 completed processing
++2.011449300s 75 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.16.2 completed processing
++2.011449300s 76 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.18.2 completed processing
++2.018813400s 77 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.20.2 completed processing
++2.018813400s 78 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.22.2 completed processing
+Consumer completed all iterations-10 in 28ms: isp-50
+
+#################### SIMULATION CONFIG ####################
+
+FileName: isp-50
+Iteration: 10
+Congestion Control: ns3::TcpCubic
+TcpSocket bufSize: 49152
+AppTable bufSize: 30
+lossRate: 0
+Vector Size: 150
+
+Printing ipToNodeName:
+IP: 10.8.34.2 -> NodeName: agg17 | IP: 10.8.24.2 -> NodeName: agg12 | IP: 10.8.22.2 -> NodeName: agg11 | IP: 10.8.32.2 -> NodeName: agg16 | IP: 10.8.20.2 -> NodeName: agg10 | IP: 10.8.18.2 -> NodeName: agg9 | IP: 10.8.14.2 -> NodeName: agg7 | IP: 10.8.10.2 -> NodeName: agg5 | IP: 10.8.9.2 -> NodeName: forwarder15 | IP: 10.8.7.2 -> NodeName: forwarder14 | IP: 10.8.4.2 -> NodeName: agg2 | IP: 10.8.2.2 -> NodeName: agg1 | IP: 10.8.0.2 -> NodeName: agg0 | IP: 10.0.0.2 -> NodeName: forwarder10 | IP: 10.0.50.1 -> NodeName: pro49 | IP: 10.0.17.1 -> NodeName: pro16 | IP: 10.8.36.2 -> NodeName: agg18 | IP: 10.0.15.1 -> NodeName: pro14 | IP: 10.0.3.1 -> NodeName: pro2 | IP: 10.0.5.1 -> NodeName: pro4 | IP: 10.0.25.1 -> NodeName: pro24 | IP: 10.0.14.1 -> NodeName: pro13 | IP: 10.8.16.2 -> NodeName: agg8 | IP: 10.0.4.1 -> NodeName: pro3 | IP: 10.0.13.1 -> NodeName: pro12 | IP: 10.0.12.1 -> NodeName: pro11 | IP: 10.8.1.2 -> NodeName: forwarder11 | IP: 10.0.2.1 -> NodeName: pro1 | IP: 10.0.6.1 -> NodeName: pro5 | IP: 10.0.21.2 -> NodeName: forwarder4 | IP: 10.0.11.2 -> NodeName: forwarder2 | IP: 10.0.31.1 -> NodeName: pro30 | IP: 10.0.11.1 -> NodeName: pro10 | IP: 10.0.21.1 -> NodeName: pro20 | IP: 10.0.36.2 -> NodeName: forwarder7 | IP: 10.0.44.1 -> NodeName: pro43 | IP: 10.8.6.2 -> NodeName: agg3 | IP: 10.0.24.1 -> NodeName: pro23 | IP: 10.0.7.1 -> NodeName: pro6 | IP: 10.0.0.1 -> NodeName: con0 | IP: 10.0.22.1 -> NodeName: pro21 | IP: 10.0.31.2 -> NodeName: forwarder6 | IP: 10.0.23.1 -> NodeName: pro22 | IP: 10.0.20.1 -> NodeName: pro19 | IP: 10.0.19.1 -> NodeName: pro18 | IP: 10.0.6.2 -> NodeName: forwarder1 | IP: 10.8.3.2 -> NodeName: forwarder12 | IP: 10.0.37.1 -> NodeName: pro36 | IP: 10.0.1.1 -> NodeName: pro0 | IP: 10.8.38.2 -> NodeName: agg19 | IP: 10.0.9.1 -> NodeName: pro8 | IP: 10.0.8.1 -> NodeName: pro7 | IP: 10.8.8.2 -> NodeName: agg4 | IP: 10.0.26.1 -> NodeName: pro25 | IP: 10.8.28.2 -> NodeName: agg14 | IP: 10.0.16.2 -> NodeName: forwarder3 | IP: 10.0.26.2 -> NodeName: forwarder5 | IP: 10.8.5.2 -> NodeName: forwarder13 | IP: 10.0.27.1 -> NodeName: pro26 | IP: 10.0.33.1 -> NodeName: pro32 | IP: 10.0.28.1 -> NodeName: pro27 | IP: 10.0.18.1 -> NodeName: pro17 | IP: 10.0.45.1 -> NodeName: pro44 | IP: 10.0.16.1 -> NodeName: pro15 | IP: 10.0.29.1 -> NodeName: pro28 | IP: 10.8.30.2 -> NodeName: agg15 | IP: 10.8.12.2 -> NodeName: agg6 | IP: 10.0.30.1 -> NodeName: pro29 | IP: 10.0.32.1 -> NodeName: pro31 | IP: 10.0.34.1 -> NodeName: pro33 | IP: 10.0.35.1 -> NodeName: pro34 | IP: 10.0.42.1 -> NodeName: pro41 | IP: 10.0.36.1 -> NodeName: pro35 | IP: 10.8.26.2 -> NodeName: agg13 | IP: 10.0.38.1 -> NodeName: pro37 | IP: 10.0.39.1 -> NodeName: pro38 | IP: 10.0.41.1 -> NodeName: pro40 | IP: 10.0.1.2 -> NodeName: forwarder0 | IP: 10.0.41.2 -> NodeName: forwarder8 | IP: 10.0.49.1 -> NodeName: pro48 | IP: 10.0.43.1 -> NodeName: pro42 | IP: 10.0.46.1 -> NodeName: pro45 | IP: 10.0.40.1 -> NodeName: pro39 | IP: 10.0.46.2 -> NodeName: forwarder9 | IP: 10.0.10.1 -> NodeName: pro9 | IP: 10.0.47.1 -> NodeName: pro46 | IP: 10.0.48.1 -> NodeName: pro47 | NewToOldIpMap contents:
+New IP: 10.8.21.1 -> Old IP: 10.8.20.2New IP: 10.8.19.1 -> Old IP: 10.8.18.2New IP: 10.8.17.1 -> Old IP: 10.8.16.2New IP: 10.8.15.1 -> Old IP: 10.8.14.2New IP: 10.8.13.1 -> Old IP: 10.8.12.2New IP: 10.8.11.1 -> Old IP: 10.8.10.2New IP: 10.8.9.1 -> Old IP: 10.8.8.2New IP: 10.8.7.1 -> Old IP: 10.8.6.2New IP: 10.8.23.1 -> Old IP: 10.8.22.2New IP: 10.8.5.1 -> Old IP: 10.8.4.2
+#################### SIMULATION END ####################
+
+
+
+
+#################### SIMULATION START ####################
+
+uint32_t consumerNum = 1;
+uint32_t producerNum = 50;
+uint32_t forwarderNum = 31;
+uint32_t aggregatorNum = 21;
++2.005112400s 82 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.1 completed processing
++2.005112400s 83 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.1 completed processing
++2.005112400s 84 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.4.1 completed processing
++2.005112400s 85 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.6.1 completed processing
++2.005112400s 86 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.8.1 completed processing
++2.005112400s 87 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.10.1 completed processing
++2.005112400s 88 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.12.1 completed processing
++2.005112400s 89 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.14.1 completed processing
++2.005112400s 90 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.16.1 completed processing
++2.005112400s 91 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.18.1 completed processing
++2.011240500s 92 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.20.1 completed processing
++2.011240500s 94 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.22.1 completed processing
+Consumer completed all iterations-10 in 17ms: dcn-50
+
+#################### SIMULATION CONFIG ####################
+
+FileName: dcn-50
+Iteration: 10
+Congestion Control: ns3::TcpCubic
+TcpSocket bufSize: 49152
+AppTable bufSize: 30
+lossRate: 0
+Vector Size: 150
+
+Printing ipToNodeName:
+IP: 10.8.30.1 -> NodeName: agg20 | IP: 10.8.27.1 -> NodeName: agg17 | IP: 10.8.29.2 -> NodeName: forwarder29 | IP: 10.8.25.2 -> NodeName: forwarder25 | IP: 10.8.21.1 -> NodeName: agg11 | IP: 10.8.20.1 -> NodeName: agg10 | IP: 10.8.18.1 -> NodeName: agg9 | IP: 10.8.15.2 -> NodeName: forwarder15 | IP: 10.8.27.2 -> NodeName: forwarder27 | IP: 10.8.13.2 -> NodeName: forwarder13 | IP: 10.8.11.2 -> NodeName: forwarder11 | IP: 10.8.10.1 -> NodeName: agg5 | IP: 10.8.6.1 -> NodeName: agg3 | IP: 10.8.17.2 -> NodeName: forwarder17 | IP: 10.8.34.2 -> NodeName: agg17 | IP: 10.8.24.2 -> NodeName: forwarder24 | IP: 10.8.22.2 -> NodeName: forwarder22 | IP: 10.8.32.2 -> NodeName: agg16 | IP: 10.8.20.2 -> NodeName: forwarder20 | IP: 10.8.22.1 -> NodeName: agg12 | IP: 10.8.18.2 -> NodeName: agg9 | IP: 10.8.14.2 -> NodeName: agg7 | IP: 10.8.10.2 -> NodeName: agg5 | IP: 10.8.4.1 -> NodeName: agg2 | IP: 10.8.9.2 -> NodeName: forwarder9 | IP: 10.8.7.2 -> NodeName: forwarder7 | IP: 10.8.4.2 -> NodeName: agg2 | IP: 10.8.21.2 -> NodeName: forwarder21 | IP: 10.8.2.2 -> NodeName: agg1 | IP: 10.8.0.2 -> NodeName: agg0 | IP: 10.0.0.2 -> NodeName: forwarder30 | IP: 10.0.50.1 -> NodeName: pro49 | IP: 10.8.26.1 -> NodeName: agg16 | IP: 10.0.17.1 -> NodeName: pro16 | IP: 10.8.36.2 -> NodeName: agg18 | IP: 10.0.15.1 -> NodeName: pro14 | IP: 10.0.3.1 -> NodeName: pro2 | IP: 10.0.5.1 -> NodeName: pro4 | IP: 10.0.25.1 -> NodeName: pro24 | IP: 10.0.14.1 -> NodeName: pro13 | IP: 10.8.16.2 -> NodeName: agg8 | IP: 10.0.4.1 -> NodeName: pro3 | IP: 10.8.2.1 -> NodeName: agg1 | IP: 10.0.13.1 -> NodeName: pro12 | IP: 10.0.12.1 -> NodeName: pro11 | IP: 10.8.1.2 -> NodeName: forwarder1 | IP: 10.0.2.1 -> NodeName: pro1 | IP: 10.0.6.1 -> NodeName: pro5 | IP: 10.0.21.2 -> NodeName: forwarder8 | IP: 10.0.11.2 -> NodeName: forwarder4 | IP: 10.0.31.1 -> NodeName: pro30 | IP: 10.8.28.1 -> NodeName: agg18 | IP: 10.0.11.1 -> NodeName: pro10 | IP: 10.8.19.2 -> NodeName: forwarder19 | IP: 10.0.21.1 -> NodeName: pro20 | IP: 10.0.36.2 -> NodeName: forwarder14 | IP: 10.0.44.1 -> NodeName: pro43 | IP: 10.8.24.1 -> NodeName: agg14 | IP: 10.8.6.2 -> NodeName: agg3 | IP: 10.0.24.1 -> NodeName: pro23 | IP: 10.8.12.1 -> NodeName: agg6 | IP: 10.0.7.1 -> NodeName: pro6 | IP: 10.8.25.1 -> NodeName: agg15 | IP: 10.0.0.1 -> NodeName: con0 | IP: 10.0.22.1 -> NodeName: pro21 | IP: 10.0.31.2 -> NodeName: forwarder12 | IP: 10.8.14.1 -> NodeName: agg7 | IP: 10.0.23.1 -> NodeName: pro22 | IP: 10.0.20.1 -> NodeName: pro19 | IP: 10.8.0.1 -> NodeName: agg0 | IP: 10.0.19.1 -> NodeName: pro18 | IP: 10.0.6.2 -> NodeName: forwarder2 | IP: 10.8.3.2 -> NodeName: forwarder3 | IP: 10.0.37.1 -> NodeName: pro36 | IP: 10.0.1.1 -> NodeName: pro0 | IP: 10.8.38.2 -> NodeName: agg19 | IP: 10.0.9.1 -> NodeName: pro8 | IP: 10.0.8.1 -> NodeName: pro7 | IP: 10.8.8.2 -> NodeName: agg4 | IP: 10.0.26.1 -> NodeName: pro25 | IP: 10.8.28.2 -> NodeName: forwarder28 | IP: 10.0.16.2 -> NodeName: forwarder6 | IP: 10.0.26.2 -> NodeName: forwarder10 | IP: 10.8.16.1 -> NodeName: agg8 | IP: 10.8.5.2 -> NodeName: forwarder5 | IP: 10.0.27.1 -> NodeName: pro26 | IP: 10.0.33.1 -> NodeName: pro32 | IP: 10.0.28.1 -> NodeName: pro27 | IP: 10.0.18.1 -> NodeName: pro17 | IP: 10.0.45.1 -> NodeName: pro44 | IP: 10.0.16.1 -> NodeName: pro15 | IP: 10.0.29.1 -> NodeName: pro28 | IP: 10.8.23.1 -> NodeName: agg13 | IP: 10.8.30.2 -> NodeName: agg15 | IP: 10.8.12.2 -> NodeName: agg6 | IP: 10.0.30.1 -> NodeName: pro29 | IP: 10.8.23.2 -> NodeName: forwarder23 | IP: 10.0.32.1 -> NodeName: pro31 | IP: 10.0.34.1 -> NodeName: pro33 | IP: 10.0.35.1 -> NodeName: pro34 | IP: 10.0.42.1 -> NodeName: pro41 | IP: 10.0.36.1 -> NodeName: pro35 | IP: 10.8.26.2 -> NodeName: forwarder26 | IP: 10.0.38.1 -> NodeName: pro37 | IP: 10.0.39.1 -> NodeName: pro38 | IP: 10.0.41.1 -> NodeName: pro40 | IP: 10.0.1.2 -> NodeName: forwarder0 | IP: 10.0.41.2 -> NodeName: forwarder16 | IP: 10.0.49.1 -> NodeName: pro48 | IP: 10.0.43.1 -> NodeName: pro42 | IP: 10.0.46.1 -> NodeName: pro45 | IP: 10.8.29.1 -> NodeName: agg19 | IP: 10.8.8.1 -> NodeName: agg4 | IP: 10.0.40.1 -> NodeName: pro39 | IP: 10.0.46.2 -> NodeName: forwarder18 | IP: 10.0.10.1 -> NodeName: pro9 | IP: 10.0.47.1 -> NodeName: pro46 | IP: 10.0.48.1 -> NodeName: pro47 | NewToOldIpMap contents:
+New IP: 10.8.3.1 -> Old IP: 10.8.2.1New IP: 10.8.1.1 -> Old IP: 10.8.0.1New IP: 10.8.21.1 -> Old IP: 10.8.20.2New IP: 10.8.19.1 -> Old IP: 10.8.18.1New IP: 10.8.17.1 -> Old IP: 10.8.16.1New IP: 10.8.15.1 -> Old IP: 10.8.14.1New IP: 10.8.13.1 -> Old IP: 10.8.12.1New IP: 10.8.11.1 -> Old IP: 10.8.10.1New IP: 10.8.9.1 -> Old IP: 10.8.8.1New IP: 10.8.7.1 -> Old IP: 10.8.6.1New IP: 10.8.23.1 -> Old IP: 10.8.22.2New IP: 10.8.5.1 -> Old IP: 10.8.4.1
+#################### SIMULATION END ####################
+
+
+
+
+#################### SIMULATION START ####################
+
+uint32_t consumerNum = 1;
+uint32_t producerNum = 50;
+uint32_t forwarderNum = 16;
+uint32_t aggregatorNum = 20;
++2.011449300s 67 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed processing
++2.011449300s 68 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed processing
++2.011449300s 69 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.4.2 completed processing
++2.011449300s 70 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.6.2 completed processing
++2.011449300s 71 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.8.2 completed processing
++2.011449300s 72 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.10.2 completed processing
++2.011449300s 73 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.12.2 completed processing
++2.011449300s 74 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.14.2 completed processing
++2.011449300s 75 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.16.2 completed processing
++2.011449300s 76 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.18.2 completed processing
++2.018813400s 77 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.20.2 completed processing
++2.018813400s 78 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.22.2 completed processing
+Consumer completed all iterations-10 in 28ms: isp-50
+
+#################### SIMULATION CONFIG ####################
+
+FileName: isp-50
+Iteration: 10
+Congestion Control: ns3::TcpCubic
+TcpSocket bufSize: 49152
+AppTable bufSize: 30
+lossRate: 0.0001
+Vector Size: 150
+
+Printing ipToNodeName:
+IP: 10.8.30.1 -> NodeName: agg20 | IP: 10.8.27.1 -> NodeName: agg17 | IP: 10.8.29.2 -> NodeName: forwarder29 | IP: 10.8.25.2 -> NodeName: forwarder25 | IP: 10.8.21.1 -> NodeName: agg11 | IP: 10.8.20.1 -> NodeName: agg10 | IP: 10.8.18.1 -> NodeName: agg9 | IP: 10.8.15.2 -> NodeName: forwarder15 | IP: 10.8.27.2 -> NodeName: forwarder27 | IP: 10.8.13.2 -> NodeName: forwarder13 | IP: 10.8.11.2 -> NodeName: forwarder11 | IP: 10.8.10.1 -> NodeName: agg5 | IP: 10.8.6.1 -> NodeName: agg3 | IP: 10.8.17.2 -> NodeName: forwarder17 | IP: 10.8.34.2 -> NodeName: agg17 | IP: 10.8.24.2 -> NodeName: agg12 | IP: 10.8.22.2 -> NodeName: agg11 | IP: 10.8.32.2 -> NodeName: agg16 | IP: 10.8.20.2 -> NodeName: agg10 | IP: 10.8.22.1 -> NodeName: agg12 | IP: 10.8.18.2 -> NodeName: agg9 | IP: 10.8.14.2 -> NodeName: agg7 | IP: 10.8.10.2 -> NodeName: agg5 | IP: 10.8.4.1 -> NodeName: agg2 | IP: 10.8.9.2 -> NodeName: forwarder15 | IP: 10.8.7.2 -> NodeName: forwarder14 | IP: 10.8.4.2 -> NodeName: agg2 | IP: 10.8.21.2 -> NodeName: forwarder21 | IP: 10.8.2.2 -> NodeName: agg1 | IP: 10.8.0.2 -> NodeName: agg0 | IP: 10.0.0.2 -> NodeName: forwarder10 | IP: 10.0.50.1 -> NodeName: pro49 | IP: 10.8.26.1 -> NodeName: agg16 | IP: 10.0.17.1 -> NodeName: pro16 | IP: 10.8.36.2 -> NodeName: agg18 | IP: 10.0.15.1 -> NodeName: pro14 | IP: 10.0.3.1 -> NodeName: pro2 | IP: 10.0.5.1 -> NodeName: pro4 | IP: 10.0.25.1 -> NodeName: pro24 | IP: 10.0.14.1 -> NodeName: pro13 | IP: 10.8.16.2 -> NodeName: agg8 | IP: 10.0.4.1 -> NodeName: pro3 | IP: 10.8.2.1 -> NodeName: agg1 | IP: 10.0.13.1 -> NodeName: pro12 | IP: 10.0.12.1 -> NodeName: pro11 | IP: 10.8.1.2 -> NodeName: forwarder11 | IP: 10.0.2.1 -> NodeName: pro1 | IP: 10.0.6.1 -> NodeName: pro5 | IP: 10.0.21.2 -> NodeName: forwarder4 | IP: 10.0.11.2 -> NodeName: forwarder2 | IP: 10.0.31.1 -> NodeName: pro30 | IP: 10.8.28.1 -> NodeName: agg18 | IP: 10.0.11.1 -> NodeName: pro10 | IP: 10.8.19.2 -> NodeName: forwarder19 | IP: 10.0.21.1 -> NodeName: pro20 | IP: 10.0.36.2 -> NodeName: forwarder7 | IP: 10.0.44.1 -> NodeName: pro43 | IP: 10.8.24.1 -> NodeName: agg14 | IP: 10.8.6.2 -> NodeName: agg3 | IP: 10.0.24.1 -> NodeName: pro23 | IP: 10.8.12.1 -> NodeName: agg6 | IP: 10.0.7.1 -> NodeName: pro6 | IP: 10.8.25.1 -> NodeName: agg15 | IP: 10.0.0.1 -> NodeName: con0 | IP: 10.0.22.1 -> NodeName: pro21 | IP: 10.0.31.2 -> NodeName: forwarder6 | IP: 10.8.14.1 -> NodeName: agg7 | IP: 10.0.23.1 -> NodeName: pro22 | IP: 10.0.20.1 -> NodeName: pro19 | IP: 10.8.0.1 -> NodeName: agg0 | IP: 10.0.19.1 -> NodeName: pro18 | IP: 10.0.6.2 -> NodeName: forwarder1 | IP: 10.8.3.2 -> NodeName: forwarder12 | IP: 10.0.37.1 -> NodeName: pro36 | IP: 10.0.1.1 -> NodeName: pro0 | IP: 10.8.38.2 -> NodeName: agg19 | IP: 10.0.9.1 -> NodeName: pro8 | IP: 10.0.8.1 -> NodeName: pro7 | IP: 10.8.8.2 -> NodeName: agg4 | IP: 10.0.26.1 -> NodeName: pro25 | IP: 10.8.28.2 -> NodeName: agg14 | IP: 10.0.16.2 -> NodeName: forwarder3 | IP: 10.0.26.2 -> NodeName: forwarder5 | IP: 10.8.16.1 -> NodeName: agg8 | IP: 10.8.5.2 -> NodeName: forwarder13 | IP: 10.0.27.1 -> NodeName: pro26 | IP: 10.0.33.1 -> NodeName: pro32 | IP: 10.0.28.1 -> NodeName: pro27 | IP: 10.0.18.1 -> NodeName: pro17 | IP: 10.0.45.1 -> NodeName: pro44 | IP: 10.0.16.1 -> NodeName: pro15 | IP: 10.0.29.1 -> NodeName: pro28 | IP: 10.8.23.1 -> NodeName: agg13 | IP: 10.8.30.2 -> NodeName: agg15 | IP: 10.8.12.2 -> NodeName: agg6 | IP: 10.0.30.1 -> NodeName: pro29 | IP: 10.8.23.2 -> NodeName: forwarder23 | IP: 10.0.32.1 -> NodeName: pro31 | IP: 10.0.34.1 -> NodeName: pro33 | IP: 10.0.35.1 -> NodeName: pro34 | IP: 10.0.42.1 -> NodeName: pro41 | IP: 10.0.36.1 -> NodeName: pro35 | IP: 10.8.26.2 -> NodeName: agg13 | IP: 10.0.38.1 -> NodeName: pro37 | IP: 10.0.39.1 -> NodeName: pro38 | IP: 10.0.41.1 -> NodeName: pro40 | IP: 10.0.1.2 -> NodeName: forwarder0 | IP: 10.0.41.2 -> NodeName: forwarder8 | IP: 10.0.49.1 -> NodeName: pro48 | IP: 10.0.43.1 -> NodeName: pro42 | IP: 10.0.46.1 -> NodeName: pro45 | IP: 10.8.29.1 -> NodeName: agg19 | IP: 10.8.8.1 -> NodeName: agg4 | IP: 10.0.40.1 -> NodeName: pro39 | IP: 10.0.46.2 -> NodeName: forwarder9 | IP: 10.0.10.1 -> NodeName: pro9 | IP: 10.0.47.1 -> NodeName: pro46 | IP: 10.0.48.1 -> NodeName: pro47 | NewToOldIpMap contents:
+New IP: 10.8.3.1 -> Old IP: 10.8.2.1New IP: 10.8.1.1 -> Old IP: 10.8.0.1New IP: 10.8.21.1 -> Old IP: 10.8.20.2New IP: 10.8.19.1 -> Old IP: 10.8.18.2New IP: 10.8.17.1 -> Old IP: 10.8.16.2New IP: 10.8.15.1 -> Old IP: 10.8.14.2New IP: 10.8.13.1 -> Old IP: 10.8.12.2New IP: 10.8.11.1 -> Old IP: 10.8.10.2New IP: 10.8.9.1 -> Old IP: 10.8.8.2New IP: 10.8.7.1 -> Old IP: 10.8.6.2New IP: 10.8.23.1 -> Old IP: 10.8.22.2New IP: 10.8.5.1 -> Old IP: 10.8.4.2
+#################### SIMULATION END ####################
+
+
+
+
+#################### SIMULATION START ####################
+
+uint32_t consumerNum = 1;
+uint32_t producerNum = 50;
+uint32_t forwarderNum = 31;
+uint32_t aggregatorNum = 21;
++2.005112400s 82 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.1 completed processing
++2.005112400s 83 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.1 completed processing
++2.005112400s 84 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.4.1 completed processing
++2.005112400s 85 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.6.1 completed processing
++2.005112400s 86 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.8.1 completed processing
++2.005112400s 87 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.10.1 completed processing
++2.005112400s 88 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.12.1 completed processing
++2.005112400s 89 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.14.1 completed processing
++2.005112400s 90 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.16.1 completed processing
++2.005112400s 91 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.18.1 completed processing
++2.011240500s 92 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.20.1 completed processing
++2.011240500s 94 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.22.1 completed processing
+Consumer completed all iterations-10 in 17ms: dcn-50
+
+#################### SIMULATION CONFIG ####################
+
+FileName: dcn-50
+Iteration: 10
+Congestion Control: ns3::TcpCubic
+TcpSocket bufSize: 49152
+AppTable bufSize: 30
+lossRate: 0.0001
+Vector Size: 150
+
+Printing ipToNodeName:
+IP: 10.8.30.1 -> NodeName: agg20 | IP: 10.8.27.1 -> NodeName: agg17 | IP: 10.8.29.2 -> NodeName: forwarder29 | IP: 10.8.25.2 -> NodeName: forwarder25 | IP: 10.8.21.1 -> NodeName: agg11 | IP: 10.8.20.1 -> NodeName: agg10 | IP: 10.8.18.1 -> NodeName: agg9 | IP: 10.8.15.2 -> NodeName: forwarder15 | IP: 10.8.27.2 -> NodeName: forwarder27 | IP: 10.8.13.2 -> NodeName: forwarder13 | IP: 10.8.11.2 -> NodeName: forwarder11 | IP: 10.8.10.1 -> NodeName: agg5 | IP: 10.8.6.1 -> NodeName: agg3 | IP: 10.8.17.2 -> NodeName: forwarder17 | IP: 10.8.34.2 -> NodeName: agg17 | IP: 10.8.24.2 -> NodeName: forwarder24 | IP: 10.8.22.2 -> NodeName: forwarder22 | IP: 10.8.32.2 -> NodeName: agg16 | IP: 10.8.20.2 -> NodeName: forwarder20 | IP: 10.8.22.1 -> NodeName: agg12 | IP: 10.8.18.2 -> NodeName: agg9 | IP: 10.8.14.2 -> NodeName: agg7 | IP: 10.8.10.2 -> NodeName: agg5 | IP: 10.8.4.1 -> NodeName: agg2 | IP: 10.8.9.2 -> NodeName: forwarder9 | IP: 10.8.7.2 -> NodeName: forwarder7 | IP: 10.8.4.2 -> NodeName: agg2 | IP: 10.8.21.2 -> NodeName: forwarder21 | IP: 10.8.2.2 -> NodeName: agg1 | IP: 10.8.0.2 -> NodeName: agg0 | IP: 10.0.0.2 -> NodeName: forwarder30 | IP: 10.0.50.1 -> NodeName: pro49 | IP: 10.8.26.1 -> NodeName: agg16 | IP: 10.0.17.1 -> NodeName: pro16 | IP: 10.8.36.2 -> NodeName: agg18 | IP: 10.0.15.1 -> NodeName: pro14 | IP: 10.0.3.1 -> NodeName: pro2 | IP: 10.0.5.1 -> NodeName: pro4 | IP: 10.0.25.1 -> NodeName: pro24 | IP: 10.0.14.1 -> NodeName: pro13 | IP: 10.8.16.2 -> NodeName: agg8 | IP: 10.0.4.1 -> NodeName: pro3 | IP: 10.8.2.1 -> NodeName: agg1 | IP: 10.0.13.1 -> NodeName: pro12 | IP: 10.0.12.1 -> NodeName: pro11 | IP: 10.8.1.2 -> NodeName: forwarder1 | IP: 10.0.2.1 -> NodeName: pro1 | IP: 10.0.6.1 -> NodeName: pro5 | IP: 10.0.21.2 -> NodeName: forwarder8 | IP: 10.0.11.2 -> NodeName: forwarder4 | IP: 10.0.31.1 -> NodeName: pro30 | IP: 10.8.28.1 -> NodeName: agg18 | IP: 10.0.11.1 -> NodeName: pro10 | IP: 10.8.19.2 -> NodeName: forwarder19 | IP: 10.0.21.1 -> NodeName: pro20 | IP: 10.0.36.2 -> NodeName: forwarder14 | IP: 10.0.44.1 -> NodeName: pro43 | IP: 10.8.24.1 -> NodeName: agg14 | IP: 10.8.6.2 -> NodeName: agg3 | IP: 10.0.24.1 -> NodeName: pro23 | IP: 10.8.12.1 -> NodeName: agg6 | IP: 10.0.7.1 -> NodeName: pro6 | IP: 10.8.25.1 -> NodeName: agg15 | IP: 10.0.0.1 -> NodeName: con0 | IP: 10.0.22.1 -> NodeName: pro21 | IP: 10.0.31.2 -> NodeName: forwarder12 | IP: 10.8.14.1 -> NodeName: agg7 | IP: 10.0.23.1 -> NodeName: pro22 | IP: 10.0.20.1 -> NodeName: pro19 | IP: 10.8.0.1 -> NodeName: agg0 | IP: 10.0.19.1 -> NodeName: pro18 | IP: 10.0.6.2 -> NodeName: forwarder2 | IP: 10.8.3.2 -> NodeName: forwarder3 | IP: 10.0.37.1 -> NodeName: pro36 | IP: 10.0.1.1 -> NodeName: pro0 | IP: 10.8.38.2 -> NodeName: agg19 | IP: 10.0.9.1 -> NodeName: pro8 | IP: 10.0.8.1 -> NodeName: pro7 | IP: 10.8.8.2 -> NodeName: agg4 | IP: 10.0.26.1 -> NodeName: pro25 | IP: 10.8.28.2 -> NodeName: forwarder28 | IP: 10.0.16.2 -> NodeName: forwarder6 | IP: 10.0.26.2 -> NodeName: forwarder10 | IP: 10.8.16.1 -> NodeName: agg8 | IP: 10.8.5.2 -> NodeName: forwarder5 | IP: 10.0.27.1 -> NodeName: pro26 | IP: 10.0.33.1 -> NodeName: pro32 | IP: 10.0.28.1 -> NodeName: pro27 | IP: 10.0.18.1 -> NodeName: pro17 | IP: 10.0.45.1 -> NodeName: pro44 | IP: 10.0.16.1 -> NodeName: pro15 | IP: 10.0.29.1 -> NodeName: pro28 | IP: 10.8.23.1 -> NodeName: agg13 | IP: 10.8.30.2 -> NodeName: agg15 | IP: 10.8.12.2 -> NodeName: agg6 | IP: 10.0.30.1 -> NodeName: pro29 | IP: 10.8.23.2 -> NodeName: forwarder23 | IP: 10.0.32.1 -> NodeName: pro31 | IP: 10.0.34.1 -> NodeName: pro33 | IP: 10.0.35.1 -> NodeName: pro34 | IP: 10.0.42.1 -> NodeName: pro41 | IP: 10.0.36.1 -> NodeName: pro35 | IP: 10.8.26.2 -> NodeName: forwarder26 | IP: 10.0.38.1 -> NodeName: pro37 | IP: 10.0.39.1 -> NodeName: pro38 | IP: 10.0.41.1 -> NodeName: pro40 | IP: 10.0.1.2 -> NodeName: forwarder0 | IP: 10.0.41.2 -> NodeName: forwarder16 | IP: 10.0.49.1 -> NodeName: pro48 | IP: 10.0.43.1 -> NodeName: pro42 | IP: 10.0.46.1 -> NodeName: pro45 | IP: 10.8.29.1 -> NodeName: agg19 | IP: 10.8.8.1 -> NodeName: agg4 | IP: 10.0.40.1 -> NodeName: pro39 | IP: 10.0.46.2 -> NodeName: forwarder18 | IP: 10.0.10.1 -> NodeName: pro9 | IP: 10.0.47.1 -> NodeName: pro46 | IP: 10.0.48.1 -> NodeName: pro47 | NewToOldIpMap contents:
+New IP: 10.8.3.1 -> Old IP: 10.8.2.1New IP: 10.8.1.1 -> Old IP: 10.8.0.1New IP: 10.8.21.1 -> Old IP: 10.8.20.2New IP: 10.8.19.1 -> Old IP: 10.8.18.1New IP: 10.8.17.1 -> Old IP: 10.8.16.1New IP: 10.8.15.1 -> Old IP: 10.8.14.1New IP: 10.8.13.1 -> Old IP: 10.8.12.1New IP: 10.8.11.1 -> Old IP: 10.8.10.1New IP: 10.8.9.1 -> Old IP: 10.8.8.1New IP: 10.8.7.1 -> Old IP: 10.8.6.1New IP: 10.8.23.1 -> Old IP: 10.8.22.2New IP: 10.8.5.1 -> Old IP: 10.8.4.1
+#################### SIMULATION END ####################
+
+
+
+
+#################### SIMULATION START ####################
+
+uint32_t consumerNum = 1;
+uint32_t producerNum = 50;
+uint32_t forwarderNum = 16;
+uint32_t aggregatorNum = 20;
++2.011449300s 67 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed processing
++2.011449300s 68 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed processing
++2.011449300s 69 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.4.2 completed processing
++2.011449300s 70 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.6.2 completed processing
++2.011449300s 71 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.8.2 completed processing
++2.011449300s 72 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.10.2 completed processing
++2.011449300s 73 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.12.2 completed processing
++2.011449300s 74 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.14.2 completed processing
++2.011449300s 75 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.16.2 completed processing
++2.011449300s 76 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.18.2 completed processing
++2.018813400s 77 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.20.2 completed processing
++2.018813400s 78 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.22.2 completed processing
+Consumer completed all iterations-10 in 28ms: isp-50
+
+#################### SIMULATION CONFIG ####################
+
+FileName: isp-50
+Iteration: 10
+Congestion Control: ns3::TcpCubic
+TcpSocket bufSize: 49152
+AppTable bufSize: 30
+lossRate: 0.001
+Vector Size: 150
+
+Printing ipToNodeName:
+IP: 10.8.30.1 -> NodeName: agg20 | IP: 10.8.27.1 -> NodeName: agg17 | IP: 10.8.29.2 -> NodeName: forwarder29 | IP: 10.8.25.2 -> NodeName: forwarder25 | IP: 10.8.21.1 -> NodeName: agg11 | IP: 10.8.20.1 -> NodeName: agg10 | IP: 10.8.18.1 -> NodeName: agg9 | IP: 10.8.15.2 -> NodeName: forwarder15 | IP: 10.8.27.2 -> NodeName: forwarder27 | IP: 10.8.13.2 -> NodeName: forwarder13 | IP: 10.8.11.2 -> NodeName: forwarder11 | IP: 10.8.10.1 -> NodeName: agg5 | IP: 10.8.6.1 -> NodeName: agg3 | IP: 10.8.17.2 -> NodeName: forwarder17 | IP: 10.8.34.2 -> NodeName: agg17 | IP: 10.8.24.2 -> NodeName: agg12 | IP: 10.8.22.2 -> NodeName: agg11 | IP: 10.8.32.2 -> NodeName: agg16 | IP: 10.8.20.2 -> NodeName: agg10 | IP: 10.8.22.1 -> NodeName: agg12 | IP: 10.8.18.2 -> NodeName: agg9 | IP: 10.8.14.2 -> NodeName: agg7 | IP: 10.8.10.2 -> NodeName: agg5 | IP: 10.8.4.1 -> NodeName: agg2 | IP: 10.8.9.2 -> NodeName: forwarder15 | IP: 10.8.7.2 -> NodeName: forwarder14 | IP: 10.8.4.2 -> NodeName: agg2 | IP: 10.8.21.2 -> NodeName: forwarder21 | IP: 10.8.2.2 -> NodeName: agg1 | IP: 10.8.0.2 -> NodeName: agg0 | IP: 10.0.0.2 -> NodeName: forwarder10 | IP: 10.0.50.1 -> NodeName: pro49 | IP: 10.8.26.1 -> NodeName: agg16 | IP: 10.0.17.1 -> NodeName: pro16 | IP: 10.8.36.2 -> NodeName: agg18 | IP: 10.0.15.1 -> NodeName: pro14 | IP: 10.0.3.1 -> NodeName: pro2 | IP: 10.0.5.1 -> NodeName: pro4 | IP: 10.0.25.1 -> NodeName: pro24 | IP: 10.0.14.1 -> NodeName: pro13 | IP: 10.8.16.2 -> NodeName: agg8 | IP: 10.0.4.1 -> NodeName: pro3 | IP: 10.8.2.1 -> NodeName: agg1 | IP: 10.0.13.1 -> NodeName: pro12 | IP: 10.0.12.1 -> NodeName: pro11 | IP: 10.8.1.2 -> NodeName: forwarder11 | IP: 10.0.2.1 -> NodeName: pro1 | IP: 10.0.6.1 -> NodeName: pro5 | IP: 10.0.21.2 -> NodeName: forwarder4 | IP: 10.0.11.2 -> NodeName: forwarder2 | IP: 10.0.31.1 -> NodeName: pro30 | IP: 10.8.28.1 -> NodeName: agg18 | IP: 10.0.11.1 -> NodeName: pro10 | IP: 10.8.19.2 -> NodeName: forwarder19 | IP: 10.0.21.1 -> NodeName: pro20 | IP: 10.0.36.2 -> NodeName: forwarder7 | IP: 10.0.44.1 -> NodeName: pro43 | IP: 10.8.24.1 -> NodeName: agg14 | IP: 10.8.6.2 -> NodeName: agg3 | IP: 10.0.24.1 -> NodeName: pro23 | IP: 10.8.12.1 -> NodeName: agg6 | IP: 10.0.7.1 -> NodeName: pro6 | IP: 10.8.25.1 -> NodeName: agg15 | IP: 10.0.0.1 -> NodeName: con0 | IP: 10.0.22.1 -> NodeName: pro21 | IP: 10.0.31.2 -> NodeName: forwarder6 | IP: 10.8.14.1 -> NodeName: agg7 | IP: 10.0.23.1 -> NodeName: pro22 | IP: 10.0.20.1 -> NodeName: pro19 | IP: 10.8.0.1 -> NodeName: agg0 | IP: 10.0.19.1 -> NodeName: pro18 | IP: 10.0.6.2 -> NodeName: forwarder1 | IP: 10.8.3.2 -> NodeName: forwarder12 | IP: 10.0.37.1 -> NodeName: pro36 | IP: 10.0.1.1 -> NodeName: pro0 | IP: 10.8.38.2 -> NodeName: agg19 | IP: 10.0.9.1 -> NodeName: pro8 | IP: 10.0.8.1 -> NodeName: pro7 | IP: 10.8.8.2 -> NodeName: agg4 | IP: 10.0.26.1 -> NodeName: pro25 | IP: 10.8.28.2 -> NodeName: agg14 | IP: 10.0.16.2 -> NodeName: forwarder3 | IP: 10.0.26.2 -> NodeName: forwarder5 | IP: 10.8.16.1 -> NodeName: agg8 | IP: 10.8.5.2 -> NodeName: forwarder13 | IP: 10.0.27.1 -> NodeName: pro26 | IP: 10.0.33.1 -> NodeName: pro32 | IP: 10.0.28.1 -> NodeName: pro27 | IP: 10.0.18.1 -> NodeName: pro17 | IP: 10.0.45.1 -> NodeName: pro44 | IP: 10.0.16.1 -> NodeName: pro15 | IP: 10.0.29.1 -> NodeName: pro28 | IP: 10.8.23.1 -> NodeName: agg13 | IP: 10.8.30.2 -> NodeName: agg15 | IP: 10.8.12.2 -> NodeName: agg6 | IP: 10.0.30.1 -> NodeName: pro29 | IP: 10.8.23.2 -> NodeName: forwarder23 | IP: 10.0.32.1 -> NodeName: pro31 | IP: 10.0.34.1 -> NodeName: pro33 | IP: 10.0.35.1 -> NodeName: pro34 | IP: 10.0.42.1 -> NodeName: pro41 | IP: 10.0.36.1 -> NodeName: pro35 | IP: 10.8.26.2 -> NodeName: agg13 | IP: 10.0.38.1 -> NodeName: pro37 | IP: 10.0.39.1 -> NodeName: pro38 | IP: 10.0.41.1 -> NodeName: pro40 | IP: 10.0.1.2 -> NodeName: forwarder0 | IP: 10.0.41.2 -> NodeName: forwarder8 | IP: 10.0.49.1 -> NodeName: pro48 | IP: 10.0.43.1 -> NodeName: pro42 | IP: 10.0.46.1 -> NodeName: pro45 | IP: 10.8.29.1 -> NodeName: agg19 | IP: 10.8.8.1 -> NodeName: agg4 | IP: 10.0.40.1 -> NodeName: pro39 | IP: 10.0.46.2 -> NodeName: forwarder9 | IP: 10.0.10.1 -> NodeName: pro9 | IP: 10.0.47.1 -> NodeName: pro46 | IP: 10.0.48.1 -> NodeName: pro47 | NewToOldIpMap contents:
+New IP: 10.8.3.1 -> Old IP: 10.8.2.1New IP: 10.8.1.1 -> Old IP: 10.8.0.1New IP: 10.8.21.1 -> Old IP: 10.8.20.2New IP: 10.8.19.1 -> Old IP: 10.8.18.2New IP: 10.8.17.1 -> Old IP: 10.8.16.2New IP: 10.8.15.1 -> Old IP: 10.8.14.2New IP: 10.8.13.1 -> Old IP: 10.8.12.2New IP: 10.8.11.1 -> Old IP: 10.8.10.2New IP: 10.8.9.1 -> Old IP: 10.8.8.2New IP: 10.8.7.1 -> Old IP: 10.8.6.2New IP: 10.8.23.1 -> Old IP: 10.8.22.2New IP: 10.8.5.1 -> Old IP: 10.8.4.2
+#################### SIMULATION END ####################
+
+
+
+
+#################### SIMULATION START ####################
+
+uint32_t consumerNum = 1;
+uint32_t producerNum = 50;
+uint32_t forwarderNum = 31;
+uint32_t aggregatorNum = 21;
++2.005112400s 82 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.1 completed processing
++2.005112400s 83 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.1 completed processing
++2.005112400s 84 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.4.1 completed processing
++2.005112400s 85 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.6.1 completed processing
++2.005112400s 86 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.8.1 completed processing
++2.005112400s 87 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.10.1 completed processing
++2.005112400s 88 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.12.1 completed processing
++2.005112400s 89 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.14.1 completed processing
++2.005112400s 90 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.16.1 completed processing
++2.005112400s 91 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.18.1 completed processing
++2.011240500s 92 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.20.1 completed processing
++2.011240500s 94 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.22.1 completed processing
+Consumer completed all iterations-10 in 17ms: dcn-50
+
+#################### SIMULATION CONFIG ####################
+
+FileName: dcn-50
+Iteration: 10
+Congestion Control: ns3::TcpCubic
+TcpSocket bufSize: 49152
+AppTable bufSize: 30
+lossRate: 0.001
+Vector Size: 150
+
+Printing ipToNodeName:
+IP: 10.8.30.1 -> NodeName: agg20 | IP: 10.8.27.1 -> NodeName: agg17 | IP: 10.8.29.2 -> NodeName: forwarder29 | IP: 10.8.25.2 -> NodeName: forwarder25 | IP: 10.8.21.1 -> NodeName: agg11 | IP: 10.8.20.1 -> NodeName: agg10 | IP: 10.8.18.1 -> NodeName: agg9 | IP: 10.8.15.2 -> NodeName: forwarder15 | IP: 10.8.27.2 -> NodeName: forwarder27 | IP: 10.8.13.2 -> NodeName: forwarder13 | IP: 10.8.11.2 -> NodeName: forwarder11 | IP: 10.8.10.1 -> NodeName: agg5 | IP: 10.8.6.1 -> NodeName: agg3 | IP: 10.8.17.2 -> NodeName: forwarder17 | IP: 10.8.34.2 -> NodeName: agg17 | IP: 10.8.24.2 -> NodeName: forwarder24 | IP: 10.8.22.2 -> NodeName: forwarder22 | IP: 10.8.32.2 -> NodeName: agg16 | IP: 10.8.20.2 -> NodeName: forwarder20 | IP: 10.8.22.1 -> NodeName: agg12 | IP: 10.8.18.2 -> NodeName: agg9 | IP: 10.8.14.2 -> NodeName: agg7 | IP: 10.8.10.2 -> NodeName: agg5 | IP: 10.8.4.1 -> NodeName: agg2 | IP: 10.8.9.2 -> NodeName: forwarder9 | IP: 10.8.7.2 -> NodeName: forwarder7 | IP: 10.8.4.2 -> NodeName: agg2 | IP: 10.8.21.2 -> NodeName: forwarder21 | IP: 10.8.2.2 -> NodeName: agg1 | IP: 10.8.0.2 -> NodeName: agg0 | IP: 10.0.0.2 -> NodeName: forwarder30 | IP: 10.0.50.1 -> NodeName: pro49 | IP: 10.8.26.1 -> NodeName: agg16 | IP: 10.0.17.1 -> NodeName: pro16 | IP: 10.8.36.2 -> NodeName: agg18 | IP: 10.0.15.1 -> NodeName: pro14 | IP: 10.0.3.1 -> NodeName: pro2 | IP: 10.0.5.1 -> NodeName: pro4 | IP: 10.0.25.1 -> NodeName: pro24 | IP: 10.0.14.1 -> NodeName: pro13 | IP: 10.8.16.2 -> NodeName: agg8 | IP: 10.0.4.1 -> NodeName: pro3 | IP: 10.8.2.1 -> NodeName: agg1 | IP: 10.0.13.1 -> NodeName: pro12 | IP: 10.0.12.1 -> NodeName: pro11 | IP: 10.8.1.2 -> NodeName: forwarder1 | IP: 10.0.2.1 -> NodeName: pro1 | IP: 10.0.6.1 -> NodeName: pro5 | IP: 10.0.21.2 -> NodeName: forwarder8 | IP: 10.0.11.2 -> NodeName: forwarder4 | IP: 10.0.31.1 -> NodeName: pro30 | IP: 10.8.28.1 -> NodeName: agg18 | IP: 10.0.11.1 -> NodeName: pro10 | IP: 10.8.19.2 -> NodeName: forwarder19 | IP: 10.0.21.1 -> NodeName: pro20 | IP: 10.0.36.2 -> NodeName: forwarder14 | IP: 10.0.44.1 -> NodeName: pro43 | IP: 10.8.24.1 -> NodeName: agg14 | IP: 10.8.6.2 -> NodeName: agg3 | IP: 10.0.24.1 -> NodeName: pro23 | IP: 10.8.12.1 -> NodeName: agg6 | IP: 10.0.7.1 -> NodeName: pro6 | IP: 10.8.25.1 -> NodeName: agg15 | IP: 10.0.0.1 -> NodeName: con0 | IP: 10.0.22.1 -> NodeName: pro21 | IP: 10.0.31.2 -> NodeName: forwarder12 | IP: 10.8.14.1 -> NodeName: agg7 | IP: 10.0.23.1 -> NodeName: pro22 | IP: 10.0.20.1 -> NodeName: pro19 | IP: 10.8.0.1 -> NodeName: agg0 | IP: 10.0.19.1 -> NodeName: pro18 | IP: 10.0.6.2 -> NodeName: forwarder2 | IP: 10.8.3.2 -> NodeName: forwarder3 | IP: 10.0.37.1 -> NodeName: pro36 | IP: 10.0.1.1 -> NodeName: pro0 | IP: 10.8.38.2 -> NodeName: agg19 | IP: 10.0.9.1 -> NodeName: pro8 | IP: 10.0.8.1 -> NodeName: pro7 | IP: 10.8.8.2 -> NodeName: agg4 | IP: 10.0.26.1 -> NodeName: pro25 | IP: 10.8.28.2 -> NodeName: forwarder28 | IP: 10.0.16.2 -> NodeName: forwarder6 | IP: 10.0.26.2 -> NodeName: forwarder10 | IP: 10.8.16.1 -> NodeName: agg8 | IP: 10.8.5.2 -> NodeName: forwarder5 | IP: 10.0.27.1 -> NodeName: pro26 | IP: 10.0.33.1 -> NodeName: pro32 | IP: 10.0.28.1 -> NodeName: pro27 | IP: 10.0.18.1 -> NodeName: pro17 | IP: 10.0.45.1 -> NodeName: pro44 | IP: 10.0.16.1 -> NodeName: pro15 | IP: 10.0.29.1 -> NodeName: pro28 | IP: 10.8.23.1 -> NodeName: agg13 | IP: 10.8.30.2 -> NodeName: agg15 | IP: 10.8.12.2 -> NodeName: agg6 | IP: 10.0.30.1 -> NodeName: pro29 | IP: 10.8.23.2 -> NodeName: forwarder23 | IP: 10.0.32.1 -> NodeName: pro31 | IP: 10.0.34.1 -> NodeName: pro33 | IP: 10.0.35.1 -> NodeName: pro34 | IP: 10.0.42.1 -> NodeName: pro41 | IP: 10.0.36.1 -> NodeName: pro35 | IP: 10.8.26.2 -> NodeName: forwarder26 | IP: 10.0.38.1 -> NodeName: pro37 | IP: 10.0.39.1 -> NodeName: pro38 | IP: 10.0.41.1 -> NodeName: pro40 | IP: 10.0.1.2 -> NodeName: forwarder0 | IP: 10.0.41.2 -> NodeName: forwarder16 | IP: 10.0.49.1 -> NodeName: pro48 | IP: 10.0.43.1 -> NodeName: pro42 | IP: 10.0.46.1 -> NodeName: pro45 | IP: 10.8.29.1 -> NodeName: agg19 | IP: 10.8.8.1 -> NodeName: agg4 | IP: 10.0.40.1 -> NodeName: pro39 | IP: 10.0.46.2 -> NodeName: forwarder18 | IP: 10.0.10.1 -> NodeName: pro9 | IP: 10.0.47.1 -> NodeName: pro46 | IP: 10.0.48.1 -> NodeName: pro47 | NewToOldIpMap contents:
+New IP: 10.8.3.1 -> Old IP: 10.8.2.1New IP: 10.8.1.1 -> Old IP: 10.8.0.1New IP: 10.8.21.1 -> Old IP: 10.8.20.2New IP: 10.8.19.1 -> Old IP: 10.8.18.1New IP: 10.8.17.1 -> Old IP: 10.8.16.1New IP: 10.8.15.1 -> Old IP: 10.8.14.1New IP: 10.8.13.1 -> Old IP: 10.8.12.1New IP: 10.8.11.1 -> Old IP: 10.8.10.1New IP: 10.8.9.1 -> Old IP: 10.8.8.1New IP: 10.8.7.1 -> Old IP: 10.8.6.1New IP: 10.8.23.1 -> Old IP: 10.8.22.2New IP: 10.8.5.1 -> Old IP: 10.8.4.1
+#################### SIMULATION END ####################
+
+
+

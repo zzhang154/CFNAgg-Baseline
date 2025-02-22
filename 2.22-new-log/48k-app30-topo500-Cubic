@@ -1,0 +1,46 @@
+nohup: ignoring input
+Hello from utils
+0x7fff805bda30 Time queue changed. Current size: 1
+Time queue changed. New size: 1
+0x7fff805bda30 Time queue changed. Current size: 2
+Time queue changed. New size: 2
+0x7fff805bda30 Time queue changed. Current size: 1
+Time queue changed. New size: 1
+
+#################### SIMULATION START ####################
+
+uint32_t consumerNum = 1;
+uint32_t producerNum = 500;
+uint32_t forwarderNum = 31;
+uint32_t aggregatorNum = 40;
++2.262153500s 542 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.20.2 completed iteration 500 at 2262ms
++2.262287300s 534 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.4.2 completed iteration 500 at 2262ms
++2.262557800s 552 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.40.2 completed iteration 500 at 2262ms
++2.262557900s 549 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.34.2 completed iteration 500 at 2262ms
++2.262557900s 554 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.44.2 completed iteration 500 at 2262ms
++2.262721100s 532 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.0.2 completed iteration 500 at 2262ms
++2.262748800s 539 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.14.2 completed iteration 500 at 2262ms
++2.265187500s 533 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.2.2 completed iteration 500 at 2265ms
++2.265187500s 535 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.6.2 completed iteration 500 at 2265ms
++2.265187500s 536 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.8.2 completed iteration 500 at 2265ms
++2.265187500s 538 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.12.2 completed iteration 500 at 2265ms
++2.265187500s 541 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.18.2 completed iteration 500 at 2265ms
++2.265187500s 543 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.22.2 completed iteration 500 at 2265ms
++2.265187500s 545 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.26.2 completed iteration 500 at 2265ms
++2.265187500s 546 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.28.2 completed iteration 500 at 2265ms
++2.265187500s 548 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.32.2 completed iteration 500 at 2265ms
++2.265187500s 550 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.36.2 completed iteration 500 at 2265ms
++2.265187500s 551 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.38.2 completed iteration 500 at 2265ms
++2.265187500s 555 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.46.2 completed iteration 500 at 2265ms
++2.265187500s 556 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.48.2 completed iteration 500 at 2265ms
++2.274871800s 547 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.30.2 completed iteration 500 at 2274ms
++2.301908400s 544 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.24.2 completed iteration 500 at 2301ms
++2.302811100s 537 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.10.2 completed iteration 500 at 2302ms
++2.303160900s 553 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.42.2 completed iteration 500 at 2303ms
++2.303165400s 540 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.16.2 completed iteration 500 at 2303ms
++2.310218400s 557 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.50.2 completed iteration 500 at 2310ms
++2.310222900s 559 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.54.2 completed iteration 500 at 2310ms
++2.319301300s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 500 at 2319ms
++2.528748800s 539 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.14.2 completed iteration 1000 at 2528ms
++2.529287300s 534 InnetworkAggregationInterface:PrintCompInfo(): Aggregator 10.8.4.2 completed iteration 1000 at 2529ms
++2.529557900s 549 InnetworkAggregationInterfa
