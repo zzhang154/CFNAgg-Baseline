@@ -1,0 +1,13 @@
+agg0: pro4 pro39 pro5 pro34 pro30
+agg1: pro42 pro20 pro12 pro27 pro6
+agg2: pro48 pro17 pro45 pro19 pro21
+agg3: pro25 pro47 pro41 pro36 pro43
+agg4: pro9 pro10 pro40 pro35 pro28
+agg5: pro24 pro29 pro32 pro23 pro14
+agg6: pro26 pro22 pro8 pro3 pro31
+agg7: pro46 pro38 pro44 pro7 pro37
+agg8: pro33 pro15 pro1 pro16 pro0
+agg9: pro2 pro11 pro49 pro13 pro18
+agg10: agg2 agg0 agg5 agg9 agg4 
+agg11: agg7 agg3 agg8 agg1 agg6 
+con0: agg11 agg10 

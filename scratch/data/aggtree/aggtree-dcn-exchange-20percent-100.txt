@@ -1,0 +1,25 @@
+agg0: pro3 pro2 pro0 pro4 pro1
+agg1: pro5 pro8 pro7 pro9 pro63
+agg10: pro50 pro53 pro52 pro51 pro6
+agg11: pro55 pro57 pro59 pro58 pro22
+agg12: pro62 pro60 pro61 pro64 pro16
+agg13: pro69 pro67 pro65 pro68 pro98
+agg14: pro74 pro72 pro70 pro71 pro54
+agg15: pro76 pro79 pro78 pro77 pro66
+agg16: pro81 pro80 pro83 pro82 pro90
+agg17: pro87 pro89 pro88 pro86 pro84
+agg18: pro94 pro91 pro93 pro92 pro35
+agg19: pro99 pro97 pro95 pro96 pro73
+agg2: pro13 pro14 pro12 pro11 pro10
+agg3: pro17 pro19 pro18 pro15 pro56
+agg4: pro24 pro20 pro23 pro21 pro41
+agg5: pro28 pro25 pro29 pro27 pro85
+agg6: pro32 pro30 pro33 pro31 pro48
+agg7: pro39 pro38 pro37 pro36 pro75
+agg8: pro42 pro43 pro44 pro40 pro34
+agg9: pro46 pro49 pro47 pro45 pro26
+agg20: agg0 agg13 agg10 agg3 agg12 
+agg21: agg8 agg18 agg14 agg11 agg1 
+agg22: agg2 agg19 agg9 agg4 agg5 
+agg25: agg7 agg15 agg6 agg17 agg16 
+con0: agg20 agg25 agg21 agg22 

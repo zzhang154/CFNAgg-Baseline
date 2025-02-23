@@ -1,0 +1,22 @@
+nohup: ignoring input
+Hello from utils
+0x7ffda8614f80 Time queue changed. Current size: 1
+Time queue changed. New size: 1
+0x7ffda8614f80 Time queue changed. Current size: 2
+Time queue changed. New size: 2
+0x7ffda8614f80 Time queue changed. Current size: 1
+Time queue changed. New size: 1
+
+#################### SIMULATION START ####################
+
+uint32_t consumerNum = 1;
+uint32_t producerNum = 150;
+uint32_t forwarderNum = 21;
+uint32_t aggregatorNum = 30;
++4.399904800s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 500 at 4399ms
++6.688949500s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 1000 at 6688ms
++8.591067100s 0 InnetworkAggregationInterface:PrintCompInfo(): Consumer 10.0.0.1 completed iteration 1500 at 8591ms
+NS_ASSERT failed, cond="m_current >= m_dataStart && m_current < m_dataEnd", msg="You have attempted to read beyond the bounds of the available buffer space. This usually indicates that a Header::Deserialize or Trailer::Deserialize method is trying to read data which was not written by a Header::Serialize or Trailer::Serialize method. In short: check the code of your Serialize and Deserialize methods.", +8.649880682s 0 file=/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/src/network/model/buffer.h, line=1008
+NS_FATAL, terminating
+terminate called without an active exception
+Command 'build/scratch/ns3.42-innetwork-test-default --topotype=1 --input_para=no-agg:128k-app30-isp150+200-AIMD-loss0' died with <Signals.SIGABRT: 6>.

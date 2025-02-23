@@ -1,0 +1,28 @@
+agg0: pro16 pro0 pro6 pro1 pro18 pro10 pro2 pro14 pro5 pro3 pro11 pro17 pro4 pro7 pro383 pro147 pro40 pro25 pro118 pro343
+agg1: pro20 pro31 pro32 pro30 pro28 pro24 pro38 pro21 pro39 pro34 pro35 pro29 pro36 pro22 pro151 pro136 pro37 pro425 pro146 pro415
+agg10: pro213 pro208 pro201 pro209 pro200 pro216 pro205 pro206 pro202 pro212 pro203 pro219 pro207 pro204 pro217 pro119 pro94 pro448 pro334 pro292
+agg11: pro231 pro224 pro235 pro226 pro221 pro233 pro237 pro222 pro239 pro234 pro238 pro236 pro228 pro232 pro98 pro220 pro453 pro60 pro8 pro355
+agg12: pro259 pro242 pro240 pro245 pro255 pro249 pro254 pro248 pro244 pro243 pro251 pro252 pro257 pro300 pro379 pro489 pro188 pro265 pro484 pro440
+agg13: pro279 pro274 pro272 pro260 pro271 pro276 pro261 pro268 pro275 pro278 pro270 pro269 pro264 pro263 pro411 pro421 pro90 pro413 pro196 pro388
+agg14: pro295 pro299 pro294 pro288 pro290 pro283 pro296 pro293 pro289 pro280 pro282 pro287 pro286 pro281 pro164 pro122 pro63 pro177 pro225 pro350
+agg15: pro316 pro312 pro307 pro310 pro308 pro302 pro318 pro313 pro315 pro303 pro301 pro317 pro111 pro319 pro61 pro273 pro337 pro13 pro162 pro210
+agg16: pro321 pro339 pro323 pro325 pro336 pro326 pro320 pro331 pro335 pro330 pro322 pro332 pro327 pro338 pro306 pro420 pro53 pro461 pro324 pro267
+agg17: pro351 pro349 pro356 pro346 pro353 pro357 pro344 pro348 pro340 pro345 pro342 pro347 pro354 pro359 pro402 pro103 pro230 pro192 pro328 pro428
+agg18: pro371 pro376 pro363 pro377 pro375 pro362 pro374 pro372 pro368 pro360 pro366 pro378 pro370 pro369 pro498 pro79 pro487 pro218 pro85 pro42
+agg19: pro398 pro380 pro399 pro397 pro391 pro381 pro394 pro385 pro390 pro382 pro396 pro389 pro387 pro392 pro160 pro423 pro284 pro464 pro488 pro26
+agg2: pro51 pro54 pro57 pro41 pro47 pro44 pro45 pro43 pro48 pro46 pro58 pro52 pro50 pro56 pro393 pro352 pro223 pro333 pro341 pro367
+agg20: pro409 pro403 pro416 pro410 pro417 pro418 pro404 pro400 pro412 pro419 pro405 pro406 pro408 pro401 pro386 pro468 pro361 pro297 pro482 pro298
+agg21: pro431 pro424 pro432 pro437 pro435 pro430 pro427 pro434 pro426 pro438 pro422 pro436 pro433 pro256 pro253 pro241 pro23 pro71 pro407 pro121
+agg22: pro442 pro458 pro449 pro457 pro446 pro450 pro441 pro447 pro444 pro459 pro452 pro454 pro456 pro445 pro305 pro215 pro250 pro186 pro469 pro19
+agg23: pro475 pro467 pro462 pro473 pro479 pro465 pro478 pro463 pro476 pro474 pro471 pro472 pro470 pro460 pro266 pro262 pro106 pro62 pro194 pro364
+agg24: pro491 pro480 pro499 pro485 pro496 pro497 pro490 pro493 pro483 pro492 pro486 pro494 pro481 pro495 pro49 pro258 pro304 pro291 pro455 pro133
+agg3: pro66 pro68 pro64 pro67 pro77 pro65 pro78 pro72 pro70 pro75 pro69 pro74 pro73 pro76 pro33 pro466 pro145 pro211 pro311 pro365
+agg4: pro91 pro96 pro88 pro93 pro86 pro82 pro83 pro97 pro92 pro99 pro87 pro95 pro80 pro84 pro12 pro429 pro277 pro229 pro187 pro246
+agg5: pro109 pro117 pro101 pro112 pro110 pro100 pro105 pro104 pro114 pro116 pro107 pro113 pro102 pro167 pro395 pro314 pro142 pro285 pro477 pro227
+agg6: pro138 pro132 pro126 pro130 pro128 pro137 pro120 pro124 pro135 pro131 pro125 pro129 pro134 pro139 pro329 pro9 pro89 pro127 pro443 pro123
+agg7: pro156 pro152 pro150 pro148 pro159 pro157 pro158 pro154 pro141 pro144 pro140 pro143 pro149 pro153 pro27 pro59 pro173 pro176 pro414 pro155
+agg8: pro172 pro168 pro179 pro166 pro163 pro175 pro178 pro174 pro165 pro171 pro170 pro161 pro169 pro439 pro309 pro451 pro15 pro115 pro384 pro108
+agg9: pro185 pro191 pro180 pro195 pro190 pro193 pro181 pro189 pro184 pro182 pro198 pro183 pro199 pro197 pro247 pro55 pro214 pro358 pro373 pro81
+agg25: agg10 agg20 agg18 agg3 agg0 agg16 agg11 agg6 agg1 agg5 agg23 agg15 agg21 
+agg27: agg13 agg4 agg9 agg12 agg22 agg19 agg2 agg7 agg17 agg24 agg14 agg8 
+con0: agg25 agg27 

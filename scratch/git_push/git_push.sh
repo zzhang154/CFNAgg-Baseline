@@ -13,8 +13,8 @@ fi
 git add .
 
 # Commit the changes
-git commit -m "TCP-Agg v-15.0-release:
-(1) Update parameter for appTbSize.
+git commit -m "TCP-Agg v-16.0-release:
+(1) add --input_para in the main function argument.
 "
 
 # Rename current branch to tcp-baseline (if needed)

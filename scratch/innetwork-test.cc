@@ -80,12 +80,15 @@ int main(int argc, char *argv[]) {
     CommandLine cmd;
     uint32_t vsize;
     bool topotype = 1;
+
+    std::string input_para;
     cmd.AddValue("vsize", "vector size", vsize);
     cmd.AddValue("topotype", "choose test topo type", topotype);
     cmd.AddValue("cc", "choose test congestion control", cc);
     cmd.AddValue("basetime", "set base time", basetime);
     cmd.AddValue("starttime", "set start time", starttime);
     cmd.AddValue("stoptime", "set stop time", stoptime);
+    cmd.AddValue("input_para", "input parameter", input_para);
     cmd.Parse(argc, argv);
 
     vsize = MyConfig::GetVectorSize();
@@ -140,9 +143,9 @@ int main(int argc, char *argv[]) {
         // LogComponentEnable("Aggregator", LOG_LEVEL_ALL);
         // LogComponentEnable("Producer", LOG_LEVEL_ALL);
         // LogComponentEnable("Setup", LOG_LEVEL_ALL);
-        LogComponentEnable("InnetworkAggregationInterface", LOG_LEVEL_WARN);
+        // LogComponentEnable("InnetworkAggregationInterface", LOG_LEVEL_ALL);
         // LogComponentEnable("TCPclient", LOG_LEVEL_ALL);
-        // LogComponentEnable("TCPserver", LOG_LEVEL_ALL);
+        // LogComponentEnable("TCPserver", LOG_LEVEL_WARN);
         // LogComponentEnable("TcpSocketBase", LOG_LEVEL_ALL);
 
         // LogComponentDisable("Consumer", LOG_LEVEL_ALL);

@@ -1,7 +1,6 @@
 Finished executing the following commands:
 rm -R build
 rm -R cmake-cache
-rm -R build
 rm -R .lock-ns3_linux_build
 Warn about uninitialized values.
 -- The CXX compiler identification is GNU 11.4.0

@@ -6,6 +6,7 @@ cmake_policy(SET CMP0009 NEW)
 file(GLOB NEW_GLOB LIST_DIRECTORIES true "/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/scratch/**")
 set(OLD_GLOB
   "/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/scratch/CMakeLists.txt"
+  "/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/scratch/Generate-exchange-tree.py"
   "/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/scratch/IWQos.ipynb"
   "/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/scratch/data"
   "/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/scratch/data_test"
@@ -14,6 +15,7 @@ set(OLD_GLOB
   "/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/scratch/innetwork-test.cc"
   "/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/scratch/nohup_monitor.md"
   "/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/scratch/run.sh"
+  "/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/scratch/run_exchange.sh"
   "/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/scratch/test.ipynb"
   "/home/dd/tcp-agg/ns-allinone-3.42/ns-3.42/scratch/topo_visual"
   )
